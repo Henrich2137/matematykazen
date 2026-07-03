@@ -13,7 +13,7 @@ body {
 
 
 /* ===================================================================
-            PCHŁA pchnęła pchłę!
+            PCHŁA pchnęła pchłę! A TERAZ DAJEMY BOCIANA!
    TOP BAR 
    Layout model: a single fixed bar holding a 3-column CSS grid
    (#bar-container) — #bar-left | #bar-center | #bar-right — with columns
@@ -30,7 +30,7 @@ body {
    CLAUDE.md.
    =================================================================== */
 #top-bar {
-    position: fixed;
+    position: fixed; 
     top: 0;
     left: 0;
     z-index: 10;
