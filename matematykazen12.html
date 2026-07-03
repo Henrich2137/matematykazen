@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <!--REFRESHING CODE    DELETE THIS BEFERE PUBLISHING
+    <meta http-equiv="refresh" content="5">
+    -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="text/javascript" src="exercises.js"></script>
+    <link rel="stylesheet" href="style.css">
+    
+    <title>Matematyka Zen</title>
+    
+</head>
+<body>
+    <div id="top-bar">
+        <div id="bar-container">
+
+            <div id="bar-left">
+                <div id="logo"><b>Matematyka Zen</b></div>
+            </div>
+
+            <div id="bar-center">
+                <div id="exercises-sheet-title">Egzamin maturalny z matematyki podstawowej grudzień 2024 (próbna, CKE)</div>
+            </div>
+
+            <div id="bar-right">
+                <span id="total-score">21 / 37 pkt</span>
+                <button id="score-switch-button">widok punktów: wszystko</button>
+                <button id="toggle-tablica">▼ Pokaż tablice wzorów</button>
+            </div>
+
+        </div>
+    </div>
+    
+    <object id="tablica-wzorow" type="application/pdf" data="wybrane_wzory_matematyczne.pdf#page=10&toolbar=0" width="300px" height="80vh"></object>
+    
+    <br><br><br><br>
+    
+    <!-- Exercise Template (Hidden) -->
+    <div id="exercise-template" class="exercise-container" style="display: none;">
+        
+        <p class="question"></p>
+        <div class="button-container answers-container"></div>
+        <div class="light-button-container">
+            <button class="hint-button light-button">Podpowiedź</button>
+            <button class="solution-button light-button">Rozwiązanie</button>
+            <button class="formulas-button light-button">Pokaż potrzebne wzory</button>
+        </div>
+
+            <div class="hint-container"></div>
+            <div class="solution-container">
+
+                <div class="solution-text-container"></div>
+
+                <div class="solution-step-by-step-container">
+                    <div class="steps-content"></div>
+                    <div class="steps-nav">
+                        <button class="step-prev light-button">◄</button>
+                        <span class="step-counter"></span>
+                        <button class="step-next light-button">►</button>
+                    </div>
+                </div>
+
+                <div class="solution-interactive-container" ></div>
+                
+                <div class="solution-text-more-container">
+                    <button class="light-button">Pokaż więcej</button>
+                    <span class="solution-text-more"></span>
+                </div>
+
+            </div>
+            
+            <span class="exercise-score low-exercise-score">8 / 9 pkt</span>
+        
+    </div>
+
+    <!-- Exercises will be dynamically added here -->
+    <div id="exercises-wrapper"></div>
+
+    <!--
+    <iframe id="tablica-wzorow" src="wybrane_wzory_matematyczne.pdf#toolbar=0" ></iframe>
+    -->
+
+
+    
+    
+</body>
+</html>
+<script>
+
+totalScore = 0;
+// przycisk tablicy wzorów
+document.getElementById("toggle-tablica").addEventListener("click", function() {
+const tablica = document.getElementById("tablica-wzorow");
+const toggleButton = document.getElementById("toggle-tablica");
+
+if (tablica.style.display === "none" || tablica.style.display === "") {
+    tablica.style.display = "block";
+    toggleButton.textContent = "▲ Schowaj tablice wzorów"; // Change to right arrow
+} else {
+    tablica.style.display = "none";
+    toggleButton.textContent = "▼ Pokaż tablice wzorów"; // Change back to book icon
+}
+});
+
+function otworzTabliceNaStronie(numerStrony) {
+    document.getElementById("toggle-tablica").textContent = "▲ Schowaj tablice wzorów"; // Change to right arrow
+
+    const tablica = document.getElementById("tablica-wzorow");
+    tablica.style.display = "block";
+
+    // Tworzymy nowy obiekt zamiast tylko zmieniać `data`
+    const nowyObject = document.createElement("object");
+    nowyObject.id = "tablica-wzorow";
+    nowyObject.type = "application/pdf";
+    nowyObject.data = `wybrane_wzory_matematyczne.pdf#page=${numerStrony}&toolbar=0`;
+
+    nowyObject.style.cssText = tablica.style.cssText;
+
+    // Zamieniamy stare <object> na nowy, aby wymusić przeładowanie
+    tablica.parentNode.replaceChild(nowyObject, tablica);
+    tablica.style.display = "block";
+
+}
+
+const scoreSwitchButton = document.getElementById("score-switch-button");
+
+
+scoreSwitchButton.addEventListener("click", () => {
+    
+    //potem można to podmienić na switch(scoreSwitchButton.innerHTML){}
+    if(scoreSwitchButton.innerHTML == "widok punktów: wszystko"){
+
+        scoreSwitchButton.innerHTML="widok punktów: tylko suma"
+
+        var elements = document.getElementsByClassName('exercise-score');
+        for (let el of elements) {
+            el.style.display = "none";
+        }
+    }else if(scoreSwitchButton.innerHTML == "widok punktów: tylko suma"){
+
+        scoreSwitchButton.innerHTML="widok punktów: nic"
+
+        document.getElementById('total-score').style.display = "none";
+    
+    }else{
+        scoreSwitchButton.innerHTML="widok punktów: wszystko"
+
+        document.getElementById('total-score').style.display = "block";
+        var elements = document.getElementsByClassName('exercise-score');
+        for (let el of elements) {
+            el.style.display = "block";
+        }
+
+
+    }
+    
+})
+
+function markCorrectAnswer(exercise) {
+    button = exercise.querySelector(".answers-container button.hiddenCorrect");
+    button.classList.add("correct");
+}
+
+
+// Function to load exercises
+function loadExercises() {
+    const exercisesWrapper = document.getElementById("exercises-wrapper");
+    const template = document.getElementById("exercise-template");
+    
+    const totalScoreSpan = document.getElementById("total-score")
+    totalScoreSpan.innerHTML = `${totalScore} / ${maxTotalScore} pkt`
+
+    exercises.forEach((exercise, index) => {
+        Object.defineProperty(exercise, "isScoreGiven", {value:false, writable: true});
+
+        //in the future we can make something like studentAttempt object that is passed by php after login and maybe chossing certan attempt in acc menu or smth
+
+        const exerciseClone = template.cloneNode(true);
+        exerciseClone.style.display = "block";
+        exerciseClone.id = `exercise-${index}`;
+
+        const scoreSpan = exerciseClone.querySelector(".exercise-score");
+
+        // Set question
+        exerciseClone.querySelector(".question").innerHTML = exercise.question;
+
+        // Set answers
+        const answersContainer = exerciseClone.querySelector(".answers-container");
+        exercise.answers.forEach((answer, i) => {
+            const answerButton = document.createElement("button");
+            answerButton.innerHTML = answer;
+            if (answer == exercise.correctAnswer) {
+                answerButton.classList.add("hiddenCorrect");
+            }
+            answerButton.addEventListener("click", () => {
+                const isSelected = answerButton.classList.contains("correct") || answerButton.querySelector(".feedback");
+
+                // Remove feedback from all buttons
+                answersContainer.querySelectorAll("button").forEach(btn => {
+                    btn.classList.remove("correct", "incorrect");
+                    btn.querySelector(".feedback")?.remove(); // Remove existing feedback
+                });
+                if (!isSelected){
+                    if (exercise.correctAnswer != ""){
+                        if (answer === exercise.correctAnswer) { //w warunku równie dobrze można zrobić coś w stylu anwser.
+                            answerButton.classList.add("correct");
+
+                            scoreSpan.textContent = `${exercise.maxScore} / ${exercise.maxScore} pkt`;
+                            scoreSpan.classList.remove("low-exercise-score", "mid-exercise-score");
+                            scoreSpan.classList.add("high-exercise-score");
+                            if(!exercise.isScoreGiven){
+                                totalScore += exercise.maxScore;
+                                exercise.isScoreGiven = true;
+                            }
+                            totalScoreSpan.innerHTML = `${totalScore} / ${maxTotalScore} pkt`
+
+                        } else {
+                            answerButton.classList.add("incorrect");
+                        }
+                    } else{
+                        answerButton.innerHTML += `<span class="feedback">?</span>`;
+                    }
+                }else{
+                    answerButton.innerHTML = answer;
+                }
+                
+                
+            });
+            answersContainer.appendChild(answerButton);
+        });
+        
+        // Set score
+        if (exercise.maxScore) {
+            scoreSpan.textContent = `0 / ${exercise.maxScore} pkt`;
+        }
+
+        // Set hint
+        const hintContainer = exerciseClone.querySelector(".hint-container");
+        hintContainer.innerHTML = exercise.hint;
+
+        // Set solution
+        const solutionContainer = exerciseClone.querySelector(".solution-container");
+        const solutionTextContainer = solutionContainer.querySelector(".solution-text-container");
+
+        const solutionStepByStepContainer = exerciseClone.querySelector(".solution-step-by-step-container");
+
+        const solutionInteractiveContainer = exerciseClone.querySelector(".solution-interactive-container");
+
+        const solutionTextMoreContainer = solutionContainer.querySelector(".solution-text-more-container");
+        const solutionTextMoreSpan = solutionTextMoreContainer.querySelector(".solution-text-more");
+        const showMoreButton = solutionTextMoreContainer.querySelector("button");
+
+        // Set solutionTextMore content
+        solutionTextMoreSpan.innerHTML = exercise.solutionTextMore;
+        
+        // Initially hide the solutionTextMore content
+        solutionTextMoreSpan.style.display = "none";
+        
+        // Add click event listener to show/hide button
+        showMoreButton.addEventListener("click", () => {
+            if (solutionTextMoreSpan.style.display === "none") {
+                solutionTextMoreSpan.style.display = "block";
+                showMoreButton.textContent = "Schowaj więcej";
+            } else {
+                solutionTextMoreSpan.style.display = "none";
+                showMoreButton.textContent = "Pokaż więcej";
+            }
+        });
+        
+        // Hide the entire container if there's no solutionTextMore content
+        if (!exercise.solutionTextMore || exercise.solutionTextMore.trim() === "") {
+            solutionTextMoreContainer.style.display = "none";
+        }
+
+        solutionTextContainer.innerHTML = exercise.solutionText;
+
+        if (exercise.solutionInteractive) {
+            exercise.solutionInteractive(solutionInteractiveContainer);
+        }
+
+        // Add event listeners for hint and solution buttons
+        formulasButton = exerciseClone.querySelector(".formulas-button")
+
+        if(exercise.formulasPage != null){
+            formulasButton.addEventListener("click", () => {
+                otworzTabliceNaStronie(exercise.formulasPage)
+            });
+        }else{
+            formulasButton.style.display = "none";
+
+        }
+        
+        exerciseClone.querySelector(".hint-button").addEventListener("click", () => {
+            hintContainer.style.display = hintContainer.style.display === "block" ? "none" : "block";
+            solutionContainer.style.display = "none";
+        });
+        
+        exerciseClone.querySelector(".solution-button").addEventListener("click", () => {
+            // Zawsze pokazuj solutionContainer!
+
+            hintContainer.style.display =  "none";
+            solutionContainer.style.display = solutionContainer.style.display === "block" ? "none" : "block";
+
+            //solutionContainer.style.display = "block";
+            //hintContainer.style.display = "none";
+            
+            //solutionStepByStepContainer.style.display = "block";
+
+
+            // Przełączaj tylko animowane kroki
+            /*
+            if (solutionStepByStepContainer.style.display === "block") {
+                solutionStepByStepContainer.style.display = "none";
+            } else {
+                solutionStepByStepContainer.style.display = "block";
+                showStep(currentStep);
+            }
+            */
+        });
+
+        
+        // SOLUTION STEP BY STEP CHATA GPT
+        
+        const stepsContent = solutionStepByStepContainer.querySelector(".steps-content");
+        const stepsNav = solutionStepByStepContainer.querySelector(".steps-nav");
+        const prevBtn = stepsNav.querySelector(".step-prev");
+        const nextBtn = stepsNav.querySelector(".step-next");
+        const stepCounter = stepsNav.querySelector(".step-counter");
+
+        function renderStep(step) {
+
+            if (!step) return "";
+            if (step.type === "video") {
+                const videoHtml = `
+                    <video autoplay playsinline>
+                        <source src="${step.src}" type="video/mp4">
+                    </video>
+                    <br>${step.text}
+                `;
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = videoHtml;
+                const video = tempDiv.querySelector('video');
+                
+                
+                video.defaultPlaybackRate = 0.01;
+                
+                
+                return tempDiv.innerHTML;
+            } else if (step.type === "image") {
+                return `<img src="${step.src}"><br>${step.text}`;
+            } else if (step.type === "text") {
+                return `<div>${step.text}</div>`;
+            }
+            return "";
+        }
+        
+        if (solutionStepByStepContainer && exercise.solutionStepByStep && Array.isArray(exercise.solutionStepByStep)) {
+            let currentStep = 0;
+            const steps = exercise.solutionStepByStep;
+            
+
+            function showStep(idx) {
+                currentStep = idx;
+                stepsContent.innerHTML = renderStep(steps[currentStep]);
+                stepCounter.textContent = `${currentStep + 1} / ${steps.length}`;
+                prevBtn.disabled = currentStep === 0;
+                nextBtn.disabled = currentStep === steps.length - 1;
+                if(currentStep == steps.length - 1){
+                    markCorrectAnswer(exerciseClone);
+                }
+            }
+
+            
+
+            prevBtn.addEventListener("click", () => {
+                if (currentStep > 0) showStep(currentStep - 1);
+            });
+            nextBtn.addEventListener("click", () => {
+                if (currentStep < steps.length - 1) showStep(currentStep + 1);
+            });
+            
+            // Pokaż/ukryj sekcję kroków po kliknięciu "Rozwiązanie"
+            
+            exerciseClone.querySelector(".solution-button").addEventListener("click", () => {
+                    showStep(currentStep);
+                    solutionStepByStepContainer.style.display = "block";
+            });
+
+            
+        } else {
+            exerciseClone.querySelector(".solution-button").addEventListener("click", () => {
+                solutionStepByStepContainer.style.display = "none";
+            });
+        }
+        
+
+        // Append the exercise to the wrapper
+        exercisesWrapper.appendChild(exerciseClone);
+    });
+}
+
+// Function to draw the number line of solutions of | x + a | = b
+function drawNumberLine1(inputElement) { //it does not care what input element you hand it
+    const container = inputElement.closest(".solution-container");
+    const canvas = container.querySelector("#numberLine");
+    const ctx = canvas.getContext("2d");
+    const width = canvas.width;
+    const height = canvas.height;
+    const centerY = height / 2;
+
+    ctx.textAlign = "center";
+    ctx.textBaseline = "top";
+
+    ctx.clearRect(0, 0, width, height);
+    ctx.beginPath();
+    ctx.moveTo(20, centerY);
+    ctx.lineTo(width-7, centerY);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(width - 10, centerY - 5);
+    ctx.lineTo(width, centerY);
+    ctx.lineTo(width - 10, centerY + 5);
+    ctx.stroke();
+    
+    const minRange = -15;
+    const maxRange = 5;
+    ctx.fillStyle = "black";
+    ctx.font = "12px Arial";
+    for (let i = minRange; i <= maxRange; i++) {
+        const position = ((i - minRange) / (maxRange - minRange)) * (width - 40) + 20;
+        ctx.beginPath();
+        ctx.moveTo(position, centerY - 3);
+        ctx.lineTo(position, centerY + 3);
+        ctx.stroke();
+        ctx.fillText(i, position, centerY + 15);
+    }
+    const a = parseFloat(container.querySelector("#aInput").value) || 0;
+    const b = parseFloat(container.querySelector("#bInput").value) || 0;
+    const x1 = -a + b;
+    const x2 = -a - b;
+    if(b>=0){
+        [x1, x2].forEach(number => {
+            if (number >= minRange && number <= maxRange) {
+                const position = ((number - minRange) / (maxRange - minRange)) * (width - 40) + 20;
+                ctx.beginPath();
+                ctx.arc(position, centerY, 5, 0, Math.PI * 2);
+                ctx.fillStyle = "orange";
+                ctx.fill();
+        }
+        });
+    }
+    
+}
+function drawExponentialGraph(inputElement){
+    const container = inputElement.closest(".solution-container");
+    const canvas = container.querySelector("#numberLine");
+    const ctx = canvas.getContext("2d");
+    const width = canvas.width;
+    const height = canvas.height;
+    const centerY = height / 2;
+
+    ctx.textAlign = "center";
+    ctx.textBaseline = "top";
+
+    ctx.clearRect(0, 0, width, height);
+    ctx.beginPath();
+    ctx.moveTo(20, centerY);
+    ctx.lineTo(width-7, centerY);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(width - 10, centerY - 5);
+    ctx.lineTo(width, centerY);
+    ctx.lineTo(width - 10, centerY + 5);
+    ctx.stroke();
+    
+    const minRange = -15;
+    const maxRange = 5;
+    ctx.fillStyle = "black";
+    ctx.font = "12px Arial";
+    for (let i = minRange; i <= maxRange; i++) {
+        const position = ((i - minRange) / (maxRange - minRange)) * (width - 40) + 20;
+        ctx.beginPath();
+        ctx.moveTo(position, centerY - 3);
+        ctx.lineTo(position, centerY + 3);
+        ctx.stroke();
+        ctx.fillText(i, position, centerY + 15);
+    }
+    const a = parseFloat(container.querySelector("#aInput").value) || 0;
+    const b = parseFloat(container.querySelector("#bInput").value) || 0;
+    const x1 = -a + b;
+    const x2 = -a - b;
+    if(b>=0){
+        [x1, x2].forEach(number => {
+            if (number >= minRange && number <= maxRange) {
+                const position = ((number - minRange) / (maxRange - minRange)) * (width - 40) + 20;
+                ctx.beginPath();
+                ctx.arc(position, centerY, 5, 0, Math.PI * 2);
+                ctx.fillStyle = "orange";
+                ctx.fill();
+        }
+        });
+    }
+
+}
+//old
+function rysujWykresEksponencjalny(container, a = 1, b = 2, zakresX = [-5, 5]) {
+    const canvas = container.querySelector("#numberLine");
+    if (!canvas) {
+        console.error("Nie znaleziono canvas o podanym ID!");
+        return;
+    }
+
+    const ctx = canvas.getContext("2d");
+    const width = canvas.width;
+    const height = canvas.height;
+
+    // Konfiguracja układu współrzędnych
+    const margin = 40;
+    const scaleX = (width - 2 * margin) / (zakresX[1] - zakresX[0]);
+    const zakresY = [-a * Math.pow(b, Math.abs(zakresX[0])), a * Math.pow(b, zakresX[1])];
+    const scaleY = (height - 2 * margin) / (zakresY[1] - zakresY[0]);
+
+    // Wyczyść canvas
+    ctx.clearRect(0, 0, width, height);
+
+    // Rysowanie osi
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 2;
+
+    // Oś X
+    ctx.beginPath();
+    ctx.moveTo(margin, height / 2);
+    ctx.lineTo(width - margin, height / 2);
+    ctx.stroke();
+
+    // Oś Y
+    ctx.beginPath();
+    ctx.moveTo(width / 2, margin);
+    ctx.lineTo(width / 2, height - margin);
+    ctx.stroke();
+
+    // Rysowanie wykresu funkcji f(x) = a * b^x
+    ctx.strokeStyle = "red";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    /*
+    for (let i = 0; i <= width; i++) {
+        let x = zakresX[0] + (i / width) * (zakresX[1] - zakresX
+    */
+}
+
+// Load all exercises when the page loads
+loadExercises();
+/*
+    POMYSŁY NA INTERAKRYWNE RZECZY
+        - Floating z prawej pdf z kartą wzorów
+*/
+
+</script>
