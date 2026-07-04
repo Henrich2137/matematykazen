@@ -5,7 +5,7 @@ Błędy/Bugi które znalazłem w smoke tescie:
 
 - zad 1 > solution step by step    większość filmików nie wyświetla się. Dzieje siętak tylko w VS code Integrated Browser, w chrome, firefox, brave i edge jest ok (z tego co zweryfikowalem to błąd raczej po stronie integrated browser, chyba nie ma się czym martwić)
 
-
+- wywalić interactive olution z zadania 5
 
 
 
@@ -27,8 +27,7 @@ Sugestie nie będące bugami (NIE REALIZUJ ICH JESZCZE):
 
 - literki A, B itd. czyli tekst w przyciskach odpowiedzi powinien znajdować się nie na dole ale na środku w osi pionowej.
 
-- zad 10: grafika jest nierówno, jest w środku tekstu i zbyt mocno przesunięta do prawej
-
+- w zad 10 grafika jest nierówno, jest w środku tekstu i zbyt mocno przesunięta do prawej
 
 
 
@@ -39,7 +38,7 @@ Sugestie na potem (NIE REALIZUJ ICH JESZCZE):
 
 - dodanie pól na własny tekst w zadaniach takich jak zadanie 10 w miejscach takich jak "..." i systemu sprawdzania odpowiedzi użytkownika czy pasuje chociaż do jednej wersji poprawnych odpowiedzi. Poniżej zadania powinien znajdować się przycisk sprawdź, po kliknięciu którego przy każdym z pól pojawi się oznaczenie na czerwono lub zielona w zależności od poprawności odpowiedzi. (moze być to w formie zmiany koloru ramki pola)
 
-
+- dodanie strony głównej z opisem projektu i odnośnikiem do arkusza demo (tego który teraz jest stroną główną) oraz hiperłącza na logo lewy górnym rogu
 
 
 
