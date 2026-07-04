@@ -335,7 +335,7 @@ body {
     top: 0;
     width: 4px;
     height: 100%;
-    background-color: #dadada;
+    background-color: #e0e0e0;
 }
 .step-video.paused:not(.ended) .video-overlay-icon::before {
     left: 0;
@@ -352,7 +352,7 @@ body {
     transform: translate(-50%, -50%);
     font-size: 18px;
     line-height: 1;
-    color: #dadada;
+    color: #d1d1d1;
 }
 /* Cienki pasek postępu na dole filmu (szary). */
 .video-progress {
