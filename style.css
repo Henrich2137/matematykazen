@@ -27,7 +27,7 @@ body {
    would grow #top-bar's height.
    If you edit this block, update the "CSS & layout reference" section in
    CLAUDE.md.
-   
+
    =================================================================== */
 #top-bar {
     position: fixed; 
@@ -320,7 +320,7 @@ body {
     top: 0;
     width: 4px;
     height: 100%;
-    background-color: #000;
+    background-color: #dadada;
 }
 .video-overlay-icon::before {
     left: 0;
