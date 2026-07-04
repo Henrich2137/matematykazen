@@ -117,7 +117,7 @@ const exercises = [
         selfScore: false,
         hint: "Korzystamy z wzoru na procent składany: <b>P = P<sub>0</sub> * (1 + r)<sup>n</sup></b>",
         formulasPage: 10,
-        solutionText: "Poniżej miał być wykres eksponencjalny, ale coś nie wyszło wtedy.",
+        solutionText: "Jak się podstawi dane wytłuszczone w tekście oraz 2 pod n do wzoru na procent składany to uzyskamy p. Tutaj warto dodać wykres eksponencjalny, próbowałem kiedyś, ale coś nie wyszło wtedy.",
         solutionTextMore: null,
         solutionStepByStep: null,
         solutionInteractive: null
