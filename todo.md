@@ -57,7 +57,7 @@ Uwaga: wyśrodkowanie liter A/B w odpowiedziach jest w style.css (ogólne, wszys
 
 
 
-Sugestie o najniższym priorytecie w stylu "było by idealnie" (NIE REALIZUJ ICH JESZCZE):
+Sugestie o najniższym priorytecie w stylu "było by idealnie":
 - zad 2 > interactiveSolution   Sprawić aby można było przesuwać punktu na osi liczbowej a liczby na dole zmieniały się odpowiednio. Oprócz tego można dodać strzałki kóre odchodzą od -4 lub innej go punktu który, który jest po środku pomarańczowych kropek
 
 - filmiki nie powinny migać podczas przełączania
@@ -66,3 +66,4 @@ Sugestie o najniższym priorytecie w stylu "było by idealnie" (NIE REALIZUJ ICH
 
 - tablica-wzorów którą dało by isę "odblokować" i przesuwać dowolnie jak sie chce i zmieniać rozmiar okna
 
+- gdyby nie było tekstu/komentarza pod video to mógłby pojawiać się jakiś wypełniacz w stylu seperatora w jego miejsce.
