@@ -156,15 +156,6 @@ body {
 .exercise-container {
     position: relative;
     width: 650px;
-
-    
-    /*a zamiast damy separator
-    margin: 20px auto;
-    padding: 30px;
-    border: 1px solid #f0f0f0;
-    */ 
-
-
     margin: auto;
     padding: 50px;
 
@@ -172,6 +163,7 @@ body {
     font-size: 18px;
     text-align: left;
 }
+
 /* Separator między zadaniami — krótsza (75%) wyśrodkowana kreska zamiast
    border-bottom na całą szerokość (border-width nie przyjmuje procentów). */
 .exercise-container::after {
@@ -227,7 +219,7 @@ body {
        więc litera (A., B., ...) w niższym przycisku ląduje na środku obok
        wyższych sąsiadów zamiast przyklejać się do dołu. */
     vertical-align: middle;
-    border: 2px solid #e7e7e7;
+    border: 1px solid #e7e7e7;
     border-radius: 3px;
     background-color: #fff;
     font-family: "STIX Two Math", "Lora", serif;
@@ -281,7 +273,7 @@ body {
     display: none;
     margin-top: 20px;
     padding: 20px;
-    border: 2px solid #eee;
+    border: 1px solid #eee;
 }
 .solution-text-container {
     padding: 30px 0 30px 30px;
