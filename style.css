@@ -173,7 +173,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
     width: 75%;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid #e0e0e0;
 }
 /* Grafiki-rysunki w treści zadania jako blok wyśrodkowany — inaczej obrazek
    wstawiony w linii tekstu (np. zad10) lądował "w środku zdania" i przesunięty
