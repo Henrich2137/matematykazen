@@ -108,8 +108,8 @@ const exercises = [
         selfScore: false,
         hint: "Skorzystaj z własności logarytmów: <b>log<sub>a</sub>(x) + log<sub>a</sub>(y) = log<sub>a</sub>(x*y)</b> oraz <b>log<sub>a</sub>(x<sup>b</sup>) = b*log<sub>a</sub>(x)</b>",
         formulasPage: 5,
-        solutionText: "",
-        solutionTextMore: "",
+        solutionText: null,
+        solutionTextMore: null,
         solutionStepByStep: null,
         solutionInteractive: null
     },
