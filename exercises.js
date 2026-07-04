@@ -118,9 +118,12 @@ const exercises = [
         hint: "Korzystamy z wzoru na procent składany: <b>P = P<sub>0</sub> * (1 + r)<sup>n</sup></b>",
         formulasPage: 10,
         solutionText: "Poniżej miał być wykres eksponencjalny, ale coś nie wyszło wtedy.",
-        solutionTextMore: "",
+        solutionTextMore: null,
         solutionStepByStep: null,
-        solutionInteractive:  function (container) {
+        solutionInteractive: null
+        //Nie wiem co tu autor miał na myśli, zamiast null, solutionInteractive miał być:
+        /*
+        function (container) {
             container.innerHTML += `
                 <canvas id="numberLine" width="500" height="100"></canvas> <br>
 
@@ -133,7 +136,9 @@ const exercises = [
             `;
 
             rysujWykresEksponencjalny(container.querySelector("#bInput")); // #aInput or #bInput whatever
+        
         }
+        */
     },
     {
         question: '<b>Zadanie 6.</b> <br><br> Dla każdej liczby rzeczywistej 𝑥 różnej od (−1), 0 oraz 1 wartość wyrażenia' +

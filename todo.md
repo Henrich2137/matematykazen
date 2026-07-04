@@ -5,7 +5,7 @@ Błędy/Bugi które znalazłem w smoke tescie:
 
 - zad 1 > solution step by step    większość filmików nie wyświetla się. Dzieje siętak tylko w VS code Integrated Browser, w chrome, firefox, brave i edge jest ok (z tego co zweryfikowalem to błąd raczej po stronie integrated browser, chyba nie ma się czym martwić)
 
-- wywalić interactive olution z zadania 5
+- wywalić interactive olution z zadania 5 DONE
 
 
 
