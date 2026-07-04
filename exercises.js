@@ -12,7 +12,7 @@ numberSection: null, // null sprawia, że nie będzie traktowane jako wieloczę�
 
 
 
-const maxTotalScore = 7;
+const maxTotalScore = 7; //to jest placeholder, jak będą wszystkie zadania to wpisze tu właścwą liczbe
 
 // correctAnswerIndex: indeks poprawnej odpowiedzi w tablicy answers (0 = A, 1 = B, ...).
 // -1 (lub brak pola) = zadanie otwarte / jeszcze niewypełnione — klik w odpowiedź
