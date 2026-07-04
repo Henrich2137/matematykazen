@@ -125,24 +125,6 @@ const exercises = [
         solutionTextMore: null,
         solutionStepByStep: null,
         solutionInteractive: null
-        //Nie wiem co tu autor miał na myśli, zamiast null, solutionInteractive miał być:
-        /*
-        function (container) {
-            container.innerHTML += `
-                <canvas id="numberLine" width="500" height="100"></canvas> <br>
-
-                <span class='mathText'>
-                | 𝑥 + 
-                <input type="number" id="aInput" value="4" oninput="drawNumberLine1(this)">
-                | = 
-                <input type="number" id="bInput" value="7" oninput="drawNumberLine1(this)">
-                </span>
-            `;
-
-            rysujWykresEksponencjalny(container.querySelector("#bInput")); // #aInput or #bInput whatever
-        
-        }
-        */
     },
     {
         question: '<b>Zadanie 6.</b> <br><br> Dla każdej liczby rzeczywistej 𝑥 różnej od (−1), 0 oraz 1 wartość wyrażenia' +
