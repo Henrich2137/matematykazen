@@ -16,7 +16,7 @@ This repo (`matematykazen12`) is one instance of the exam-sheet page pattern; si
 
 A static, single-page Polish-language practice site for one specific exam sheet ("Egzamin maturalny z matematyki podstawowej grudzień 2024, próbna CKE"). No backend, no build system, no package manager. Three files drive everything:
 
-- [matematykazen12.html](matematykazen12.html) — the page skeleton around which all logic revolves: renders exercises from the data file, and handles all UI (answer buttons, hints, step-by-step solutions, the CKE formula sheet shown as an embedded PDF). Contains the hidden exercise `<template>` div and an inline `<script>` at the bottom that renders exercises and wires up all interactivity.
+- [matematykazen.html](matematykazen.html) — the page skeleton around which all logic revolves: renders exercises from the data file, and handles all UI (answer buttons, hints, step-by-step solutions, the CKE formula sheet shown as an embedded PDF). Contains the hidden exercise `<template>` div and an inline `<script>` at the bottom that renders exercises and wires up all interactivity.
 - [exercises.js](exercises.js) — pure data: a single `exercises` array of plain objects (content, answers, correct answer, hint, solution text, optional step-by-step solution, scoring, link to a formula-sheet page), loaded via `<script src="exercises.js">` before the inline script runs. **Target format is `exercises.json`** — the plan is to migrate this data file to JSON; until then it stays a `.js` file exposing a global array.
 - [style.css](style.css) — all page styling: minimalist, single centered column.
 
@@ -26,11 +26,11 @@ Step-by-step solution videos are produced externally with **Manim** (the Python 
 
 ## Task tracking
 
-Active TODO lists live in `todo.md` (bugs + design/later suggestions from smoke-testing) and `todoFaza1.md` (remaining Faza 1 engine cleanups, written to be picked up by a fresh session). Check them before starting work; keep them in sync and delete a phase file once its work is done.
+The active TODO list lives in `todo.md` (bugs + design/later suggestions from smoke-testing). Check it before starting work and keep it in sync. Phase-specific files (e.g. the former `todoFaza1.md`) are deleted once their work is done — recreate one only if you need to hand off a phase to a fresh session.
 
 ## Running / previewing
 
-There is no build or test tooling. Open [matematykazen12.html](matematykazen12.html) directly in a browser, or serve the directory with any static file server (e.g. `npx serve` or `python -m http.server`) if `file://` restrictions cause the embedded PDF `<object>` not to load.
+There is no build or test tooling. Open [matematykazen.html](matematykazen.html) directly in a browser, or serve the directory with any static file server (e.g. `npx serve` or `python -m http.server`) if `file://` restrictions cause the embedded PDF `<object>` not to load.
 
 There's no linter or test suite — verify changes by opening the page and clicking through the exercise(s) you touched (answer buttons, hint/solution toggles, step navigation, formula-sheet button).
 
@@ -38,7 +38,7 @@ There's no linter or test suite — verify changes by opening the page and click
 
 ### Rendering model
 
-`loadExercises()` (defined inline at the bottom of [matematykazen12.html](matematykazen12.html)) runs once on page load. For each entry in the `exercises` array it clones the hidden `#exercise-template` node, fills in the fields, and appends the clone to `#exercises-wrapper`. All per-exercise behavior (answer click handling, hint/solution toggling, step-by-step nav, scoring) is wired up inside this same function at render time — there are no persistent component classes.
+`loadExercises()` (defined inline at the bottom of [matematykazen.html](matematykazen.html)) runs once on page load. For each entry in the `exercises` array it clones the hidden `#exercise-template` node, fills in the fields, and appends the clone to `#exercises-wrapper`. All per-exercise behavior (answer click handling, hint/solution toggling, step-by-step nav, scoring) is wired up inside this same function at render time — there are no persistent component classes.
 
 ### Exercise data schema (`exercises.js`)
 
@@ -96,4 +96,4 @@ Restructured to a **flexbox three-zone layout** (previously each element used `p
 ## Content notes
 
 - All user-facing content and code comments in the existing files are Polish; keep new exercise content in Polish and consistent with the existing tone (direct, exam-prep style).
-- [matematykazen12.html](matematykazen12.html) has a commented-out `<meta http-equiv="refresh" content="5">` dev-reload snippet flagged `DELETE THIS BEFERE PUBLISHING` — leave it commented out unless actively doing rapid local iteration, and don't ship it enabled.
+- [matematykazen.html](matematykazen.html) has a commented-out `<meta http-equiv="refresh" content="5">` dev-reload snippet flagged `DELETE THIS BEFERE PUBLISHING` — leave it commented out unless actively doing rapid local iteration, and don't ship it enabled.
