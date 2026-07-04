@@ -161,8 +161,22 @@ scoreSwitchButton.addEventListener("click", () => {
 })
 
 function markCorrectAnswer(exercise) {
-    button = exercise.querySelector(".answers-container button.hiddenCorrect");
-    button.classList.add("correct");
+    const button = exercise.querySelector(".answers-container button.hiddenCorrect");
+    if (button) {
+        button.classList.add("correct");
+    }
+}
+
+// Normalizuje odpowiedź do porównań: usuwa tagi HTML i nadmiarowe spacje,
+// dzięki czemu poprawną odpowiedź rozpoznajemy nawet gdy jej HTML różni się
+// drobiazgami (np. <b>B.</b> vs B.) od wpisu w tablicy answers. Gdy po usunięciu
+// tagów nie zostaje żaden tekst (np. odpowiedź to samo <img>), porównujemy
+// znormalizowany surowy HTML.
+function normalizeAnswer(html) {
+    const tmp = document.createElement("div");
+    tmp.innerHTML = html;
+    const text = (tmp.textContent || "").replace(/\s+/g, " ").trim();
+    return text || html.replace(/\s+/g, " ").trim();
 }
 
 
@@ -190,45 +204,61 @@ function loadExercises() {
 
         // Set answers
         const answersContainer = exerciseClone.querySelector(".answers-container");
+
+        // Znajdź poprawną odpowiedź po indeksie (odporne na różnice w HTML/spacjach),
+        // zamiast kruchego porównywania całych stringów HTML. -1 = brak zdefiniowanej
+        // poprawnej odpowiedzi (zadanie otwarte lub jeszcze niewypełnione) -> tryb "?".
+        const correctIndex = exercise.correctAnswer
+            ? exercise.answers.findIndex(a => normalizeAnswer(a) === normalizeAnswer(exercise.correctAnswer))
+            : -1;
+        if (exercise.correctAnswer && correctIndex === -1) {
+            console.warn(`Zadanie ${index + 1}: correctAnswer nie pasuje do żadnej odpowiedzi`, exercise.correctAnswer);
+        }
+
         exercise.answers.forEach((answer, i) => {
             const answerButton = document.createElement("button");
             answerButton.innerHTML = answer;
-            if (answer == exercise.correctAnswer) {
+            if (i === correctIndex) {
                 answerButton.classList.add("hiddenCorrect");
             }
             answerButton.addEventListener("click", () => {
-                const isSelected = answerButton.classList.contains("correct") || answerButton.querySelector(".feedback");
-
-                // Remove feedback from all buttons
-                answersContainer.querySelectorAll("button").forEach(btn => {
-                    btn.classList.remove("correct", "incorrect");
-                    btn.querySelector(".feedback")?.remove(); // Remove existing feedback
-                });
-                if (!isSelected){
-                    if (exercise.correctAnswer != ""){
-                        if (answer === exercise.correctAnswer) { //w warunku równie dobrze można zrobić coś w stylu anwser.
-                            answerButton.classList.add("correct");
-
-                            scoreSpan.textContent = `${exercise.maxScore} / ${exercise.maxScore} pkt`;
-                            scoreSpan.classList.remove("low-exercise-score", "mid-exercise-score");
-                            scoreSpan.classList.add("high-exercise-score");
-                            if(!exercise.isScoreGiven){
-                                totalScore += exercise.maxScore;
-                                exercise.isScoreGiven = true;
-                            }
-                            totalScoreSpan.innerHTML = `${totalScore} / ${maxTotalScore} pkt`
-
-                        } else {
-                            answerButton.classList.add("incorrect");
-                        }
-                    } else{
+                // Tryb "?" — brak zdefiniowanej poprawnej odpowiedzi (samoocena / niewypełnione).
+                // Klik dokłada lub zdejmuje znak "?" (tylko jeden na zadanie).
+                if (correctIndex === -1) {
+                    const hadFeedback = !!answerButton.querySelector(".feedback");
+                    answersContainer.querySelectorAll(".feedback").forEach(f => f.remove());
+                    if (!hadFeedback) {
                         answerButton.innerHTML += `<span class="feedback">?</span>`;
                     }
-                }else{
-                    answerButton.innerHTML = answer;
+                    return;
                 }
-                
-                
+
+                // Wyczyść stan wszystkich przycisków, potem ustaw stan klikniętego.
+                answersContainer.querySelectorAll("button").forEach(btn => {
+                    btn.classList.remove("correct", "incorrect");
+                });
+
+                if (i === correctIndex) {
+                    answerButton.classList.add("correct");
+                    scoreSpan.textContent = `${exercise.maxScore} / ${exercise.maxScore} pkt`;
+                    scoreSpan.classList.remove("low-exercise-score", "mid-exercise-score");
+                    scoreSpan.classList.add("high-exercise-score");
+                    if (!exercise.isScoreGiven) {
+                        totalScore += exercise.maxScore;
+                        exercise.isScoreGiven = true;
+                    }
+                } else {
+                    // Zła odpowiedź: zawsze 0 / X pkt i, jeśli punkt był przyznany, cofnij go.
+                    answerButton.classList.add("incorrect");
+                    scoreSpan.textContent = `0 / ${exercise.maxScore} pkt`;
+                    scoreSpan.classList.remove("high-exercise-score", "mid-exercise-score");
+                    scoreSpan.classList.add("low-exercise-score");
+                    if (exercise.isScoreGiven) {
+                        totalScore -= exercise.maxScore;
+                        exercise.isScoreGiven = false;
+                    }
+                }
+                totalScoreSpan.innerHTML = `${totalScore} / ${maxTotalScore} pkt`;
             });
             answersContainer.appendChild(answerButton);
         });
@@ -335,21 +365,15 @@ function loadExercises() {
 
             if (!step) return "";
             if (step.type === "video") {
-                const videoHtml = `
+                // Prędkość ustawiamy na realnym elemencie <video> w showStep(),
+                // bo właściwość JS (defaultPlaybackRate) nie przetrwałaby
+                // serializacji do stringa HTML.
+                return `
                     <video autoplay playsinline>
                         <source src="${step.src}" type="video/mp4">
                     </video>
                     <br>${step.text}
                 `;
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = videoHtml;
-                const video = tempDiv.querySelector('video');
-                
-                
-                video.defaultPlaybackRate = 0.01;
-                
-                
-                return tempDiv.innerHTML;
             } else if (step.type === "image") {
                 return `<img src="${step.src}"><br>${step.text}`;
             } else if (step.type === "text") {
@@ -366,6 +390,16 @@ function loadExercises() {
             function showStep(idx) {
                 currentStep = idx;
                 stepsContent.innerHTML = renderStep(steps[currentStep]);
+
+                // Spowolnij film (efekt „prawie stop-klatki"). Ustawiamy na realnym,
+                // już wstawionym <video>: defaultPlaybackRate na wypadek ponownego
+                // odtwarzania, playbackRate dla trwającego już autoplay.
+                const video = stepsContent.querySelector("video");
+                if (video) {
+                    video.defaultPlaybackRate = 0.1;
+                    video.playbackRate = 0.1;
+                }
+
                 stepCounter.textContent = `${currentStep + 1} / ${steps.length}`;
                 prevBtn.disabled = currentStep === 0;
                 nextBtn.disabled = currentStep === steps.length - 1;
