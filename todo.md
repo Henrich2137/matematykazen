@@ -11,12 +11,11 @@ Błędy/Bugi:
 
 Sugestie nie będące bugami (NIE REALIZUJ ICH JESZCZE):
 
-- zad 2 > interactiveSolution   Sprawić aby można było przesuwać punktu na osi liczbowej a liczby na dole zmieniały się odpowiednio. Oprócz tego można dodać strzałki kóre odchodzą od -4 lub innej go punktu który, który jest po środku pomarańczowych kropek
-
-- po kliknięciu "pokaż więcej" poniżej solution w formie stepbystep/interactive tekst powiniene znajdowaćsię bardziej na środku, jest za bardzo przyklejony do lewej. Można tez zrobić tak, żeby matematyczne zapisy były wycentrowane a zwykły tekst do lewej
+- po kliknięciu "pokaż więcej" poniżej solution w formie stepbystep/interactive tekst powiniene znajdować się bardziej na środku, jest za bardzo przyklejony do lewej. Można tez zrobić tak, żeby matematyczne zapisy były wycentrowane a zwykły tekst do lewej
 
 - dodać krzyżyk w prawym dolnym rogu przy tablicy wzorów który będzie ją wyłączał
-- sprawić aby przycisk Pokaż talblice wzorów nie zmieniał swojej wielkości po zamienieniu sięw Schowaj tablicę wzorów
+
+- sprawić aby przycisk "Pokaż talblice wzorów" nie zmieniał swojej wielkości po zamienieniu sięw Schowaj tablicę wzorów
 
 - podczas przełączania stepów w step by step solution wysokość całego diva się zmienia w zależności od ilości tekstu w komentarzu. Chciałbym, aby tak się nie działo, aby wysokość była z grubsza stała a dopiero gry komentarz przekracz np dwie linijki aby się zwiększyła. 
 
@@ -35,6 +34,8 @@ Sugestie nie będące bugami (NIE REALIZUJ ICH JESZCZE):
 
 
 Sugestie o najniższym priorytecie w stylu "było by idealnie" (NIE REALIZUJ ICH JESZCZE):
+- zad 2 > interactiveSolution   Sprawić aby można było przesuwać punktu na osi liczbowej a liczby na dole zmieniały się odpowiednio. Oprócz tego można dodać strzałki kóre odchodzą od -4 lub innej go punktu który, który jest po środku pomarańczowych kropek
+
 - filmiki nie powinny migać podczas przełączania
 
 - do zadań 23, 24 itd. nie wczytują się grafiki (chyba ich jeszcze nie ma)
