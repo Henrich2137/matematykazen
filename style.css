@@ -161,9 +161,11 @@ body {
     padding: 30px;
     border: 1px solid #f0f0f0;
     */ 
+
+
     margin: auto;
     padding: 50px;
-
+    border-bottom: 1px solid #f0f0f0;
 
 
     background-color: #fff;
