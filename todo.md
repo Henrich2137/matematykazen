@@ -1,6 +1,6 @@
 W tym pliku będę zapisywał błędy oraz sugestie znalezione w wyniku smoke testu
 
-Błędy/Bugi:
+Błędy/Bugi które znalazłem w smoke tescie:
 - W zadaniach z odpowiedziami ABCD gdy wybiorę najpierw dobrą, a potem złą odpowiedź to punkt pozostaje przyznany. Chciałbym, aby się cofało. Chciałbym aby zawsze po zaznaczeniu złej odpowiedzi pojawiło się 0 / 1 pkt
 
 - zad 1 > solution step by step    większość filmików nie wyświetla się. Dzieje siętak tylko w VS code Integrated Browser, w chrome, firefox, brave i edge jest ok (z tego co zweryfikowalem to błąd raczej po stronie integrated browser, chyba nie ma się czym martwić)
@@ -33,11 +33,20 @@ Sugestie nie będące bugami (NIE REALIZUJ ICH JESZCZE):
 
 
 
+Sugestie na potem (NIE REALIZUJ ICH JESZCZE):
+
+- do zadań 23, 24 itd. nie wczytują się grafiki (chyba ich jeszcze nie ma)
+
+- dodanie pól na własny tekst w zadaniach takich jak zadanie 10 w miejscach takich jak "..." i systemu sprawdzania odpowiedzi użytkownika czy pasuje chociaż do jednej wersji poprawnych odpowiedzi. Poniżej zadania powinien znajdować się przycisk sprawdź, po kliknięciu którego przy każdym z pól pojawi się oznaczenie na czerwono lub zielona w zależności od poprawności odpowiedzi. (moze być to w formie zmiany koloru ramki pola)
+
+
+
+
+
 Sugestie o najniższym priorytecie w stylu "było by idealnie" (NIE REALIZUJ ICH JESZCZE):
 - zad 2 > interactiveSolution   Sprawić aby można było przesuwać punktu na osi liczbowej a liczby na dole zmieniały się odpowiednio. Oprócz tego można dodać strzałki kóre odchodzą od -4 lub innej go punktu który, który jest po środku pomarańczowych kropek
 
 - filmiki nie powinny migać podczas przełączania
 
-- do zadań 23, 24 itd. nie wczytują się grafiki (chyba ich jeszcze nie ma)
-
 - zaznaczenie powinno być jasnoniebieskie i nie powinno zmieniać koloru tekstu na biały, wyglądałoby spójniej, tak myślę 
+
