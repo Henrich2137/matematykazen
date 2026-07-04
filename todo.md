@@ -1,7 +1,8 @@
-W tym pliku będę zapisywał błędy lub sugestie znalezione w wyniku smoke testu
+W tym pliku będę zapisywał błędy oraz sugestie znalezione w wyniku smoke testu
 
 Błędy/Bugi:
-- Gdy wybiorę najpierw dobrąa potem złą odpowiedź to punkt pozostaje przyznany. Chciałbym, aby się cofało. Chciałbym aby zawsze po wybraniu złej odpowiedzi pojawiło się 0 / 1 pkt
+- W zadaniach z odpowiedziami ABCD gdy wybiorę najpierw dobrą, a potem złą odpowiedź to punkt pozostaje przyznany. Chciałbym, aby się cofało. Chciałbym aby zawsze po zaznaczeniu złej odpowiedzi pojawiło się 0 / 1 pkt
+
 - zad 1 > solution step by step    większość filmików nie wyświetla się. Dzieje siętak tylko w VS code Integrated Browser, w chrome, firefox, brave i edge jest ok (z tego co zweryfikowalem to błąd raczej po stronie integrated browser, chyba nie ma się czym martwić)
 
 
@@ -20,7 +21,7 @@ Sugestie nie będące bugami (NIE REALIZUJ ICH JESZCZE):
 
 
 
-Sugestie o najniższym priorytecie w stylu "było by idealnie" NIE REALIZUJ ICH JESZCZE:
+Sugestie o najniższym priorytecie w stylu "było by idealnie" (NIE REALIZUJ ICH JESZCZE):
 - filmiki nie powinny migać podczas przełączania
 - do zadań 23, 24 itd. nie wczytują się grafiki (chyba ich jeszcze nie ma)
 - zaznaczenie powinno być jasnoniebieskie i nie powinno zmieniać koloru tekstu na biały, wyglądałoby spójniej, tak myślę 
