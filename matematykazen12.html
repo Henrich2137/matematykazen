@@ -167,29 +167,24 @@ function markCorrectAnswer(exercise) {
     }
 }
 
-// Normalizuje odpowiedź do porównań: usuwa tagi HTML i nadmiarowe spacje,
-// dzięki czemu poprawną odpowiedź rozpoznajemy nawet gdy jej HTML różni się
-// drobiazgami (np. <b>B.</b> vs B.) od wpisu w tablicy answers. Gdy po usunięciu
-// tagów nie zostaje żaden tekst (np. odpowiedź to samo <img>), porównujemy
-// znormalizowany surowy HTML.
-function normalizeAnswer(html) {
-    const tmp = document.createElement("div");
-    tmp.innerHTML = html;
-    const text = (tmp.textContent || "").replace(/\s+/g, " ").trim();
-    return text || html.replace(/\s+/g, " ").trim();
-}
-
-
 // Function to load exercises
 function loadExercises() {
     const exercisesWrapper = document.getElementById("exercises-wrapper");
     const template = document.getElementById("exercise-template");
     
-    const totalScoreSpan = document.getElementById("total-score")
-    totalScoreSpan.innerHTML = `${totalScore} / ${maxTotalScore} pkt`
+    const totalScoreSpan = document.getElementById("total-score");
+
+    // Suma punktów = suma zdobytych punktów ze wszystkich zadań. Liczymy ją od nowa
+    // przy każdej zmianie, więc kolejność klików nie ma znaczenia i nie da się
+    // podwójnie naliczyć ani zapomnieć odjąć punktu.
+    function updateTotalScore() {
+        totalScore = exercises.reduce((sum, e) => sum + (e.earnedScore || 0), 0);
+        totalScoreSpan.innerHTML = `${totalScore} / ${maxTotalScore} pkt`;
+    }
+    updateTotalScore();
 
     exercises.forEach((exercise, index) => {
-        Object.defineProperty(exercise, "isScoreGiven", {value:false, writable: true});
+        exercise.earnedScore = 0;
 
         //in the future we can make something like studentAttempt object that is passed by php after login and maybe chossing certan attempt in acc menu or smth
 
@@ -205,14 +200,11 @@ function loadExercises() {
         // Set answers
         const answersContainer = exerciseClone.querySelector(".answers-container");
 
-        // Znajdź poprawną odpowiedź po indeksie (odporne na różnice w HTML/spacjach),
-        // zamiast kruchego porównywania całych stringów HTML. -1 = brak zdefiniowanej
-        // poprawnej odpowiedzi (zadanie otwarte lub jeszcze niewypełnione) -> tryb "?".
-        const correctIndex = exercise.correctAnswer
-            ? exercise.answers.findIndex(a => normalizeAnswer(a) === normalizeAnswer(exercise.correctAnswer))
-            : -1;
-        if (exercise.correctAnswer && correctIndex === -1) {
-            console.warn(`Zadanie ${index + 1}: correctAnswer nie pasuje do żadnej odpowiedzi`, exercise.correctAnswer);
+        // Poprawną odpowiedź wskazuje indeks z danych (0 = A, 1 = B, ...).
+        // -1 lub brak pola = zadanie otwarte / jeszcze niewypełnione -> tryb "?".
+        const correctIndex = Number.isInteger(exercise.correctAnswerIndex) ? exercise.correctAnswerIndex : -1;
+        if (correctIndex >= exercise.answers.length) {
+            console.warn(`Zadanie ${index + 1}: correctAnswerIndex (${correctIndex}) wykracza poza liczbę odpowiedzi`);
         }
 
         exercise.answers.forEach((answer, i) => {
@@ -243,22 +235,16 @@ function loadExercises() {
                     scoreSpan.textContent = `${exercise.maxScore} / ${exercise.maxScore} pkt`;
                     scoreSpan.classList.remove("low-exercise-score", "mid-exercise-score");
                     scoreSpan.classList.add("high-exercise-score");
-                    if (!exercise.isScoreGiven) {
-                        totalScore += exercise.maxScore;
-                        exercise.isScoreGiven = true;
-                    }
+                    exercise.earnedScore = exercise.maxScore;
                 } else {
-                    // Zła odpowiedź: zawsze 0 / X pkt i, jeśli punkt był przyznany, cofnij go.
+                    // Zła odpowiedź: zawsze 0 / X pkt.
                     answerButton.classList.add("incorrect");
                     scoreSpan.textContent = `0 / ${exercise.maxScore} pkt`;
                     scoreSpan.classList.remove("high-exercise-score", "mid-exercise-score");
                     scoreSpan.classList.add("low-exercise-score");
-                    if (exercise.isScoreGiven) {
-                        totalScore -= exercise.maxScore;
-                        exercise.isScoreGiven = false;
-                    }
+                    exercise.earnedScore = 0;
                 }
-                totalScoreSpan.innerHTML = `${totalScore} / ${maxTotalScore} pkt`;
+                updateTotalScore();
             });
             answersContainer.appendChild(answerButton);
         });
