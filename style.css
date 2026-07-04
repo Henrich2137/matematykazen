@@ -298,8 +298,9 @@ body {
     display: inline-block;
     line-height: 0;
 }
-/* Mała ikonka pauzy (dwie czarne pionowe kreski) na dole filmu, wyśrodkowana
-   w poziomie; widoczna tylko gdy film jest zatrzymany/skończony. */
+/* Mała ikonka na dole filmu, wyśrodkowana w poziomie; widoczna tylko gdy film
+   jest zatrzymany lub skończony. Zatrzymany w trakcie → dwie pionowe kreski
+   (pauza); skończony → zakręcona strzałka „odtwórz od nowa". */
 .video-overlay-icon {
     position: absolute;
     left: 50%;
@@ -310,11 +311,13 @@ body {
     height: 14px;
     pointer-events: none;
 }
-.step-video.paused .video-overlay-icon {
+.step-video.paused .video-overlay-icon,
+.step-video.ended .video-overlay-icon {
     display: block;
 }
-.video-overlay-icon::before,
-.video-overlay-icon::after {
+/* Pauza — dwie pionowe kreski (gdy zatrzymany, ale nie na końcu filmu). */
+.step-video.paused:not(.ended) .video-overlay-icon::before,
+.step-video.paused:not(.ended) .video-overlay-icon::after {
     content: "";
     position: absolute;
     top: 0;
@@ -322,11 +325,22 @@ body {
     height: 100%;
     background-color: #dadada;
 }
-.video-overlay-icon::before {
+.step-video.paused:not(.ended) .video-overlay-icon::before {
     left: 0;
 }
-.video-overlay-icon::after {
+.step-video.paused:not(.ended) .video-overlay-icon::after {
     right: 0;
+}
+/* Koniec filmu — zakręcona strzałka „odtwórz od nowa". */
+.step-video.ended .video-overlay-icon::before {
+    content: "↺";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    line-height: 1;
+    color: #dadada;
 }
 /* Cienki pasek postępu na dole filmu (szary). */
 .video-progress {
