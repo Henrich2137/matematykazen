@@ -10,9 +10,9 @@
 
     <script type="text/javascript" src="exercises.js"></script>
     <link rel="stylesheet" href="style.css">
-    
+
     <title>Matematyka Zen</title>
-    
+
 </head>
 <body>
     <div id="top-bar">
@@ -27,24 +27,22 @@
             </div>
 
             <div id="bar-right">
-                <span id="total-score">21 / 37 pkt</span>
+                <span id="total-score">0 / 0 pkt</span>
                 <button id="score-switch-button">widok punktów: wszystko</button>
                 <button id="toggle-tablica">▼ Pokaż tablice wzorów</button>
             </div>
 
         </div>
     </div>
-    
+
     <div id="tablica-wzorow-panel">
         <object id="tablica-wzorow" type="application/pdf" data="wybrane_wzory_matematyczne.pdf#page=10&toolbar=0" width="300px" height="80vh"></object>
         <button id="tablica-close" title="Zamknij tablice wzorów">✕</button>
     </div>
-    
-    <br><br><br><br>
-    
+
     <!-- Exercise Template (Hidden) -->
     <div id="exercise-template" class="exercise-container" style="display: none;">
-        
+
         <p class="question"></p>
         <div class="button-container answers-container"></div>
         <div class="light-button-container">
@@ -68,27 +66,20 @@
                 </div>
 
                 <div class="solution-interactive-container" ></div>
-                
+
                 <div class="solution-text-more-container">
                     <button class="light-button">Pokaż więcej</button>
                     <span class="solution-text-more"></span>
                 </div>
 
             </div>
-            
+
             <span class="exercise-score low-exercise-score">8 / 9 pkt</span>
-        
+
     </div>
 
     <!-- Exercises will be dynamically added here -->
     <div id="exercises-wrapper"></div>
-
-    <!--
-    <iframe id="tablica-wzorow" src="wybrane_wzory_matematyczne.pdf#toolbar=0" ></iframe>
-    -->
-
-
-
 
     <script>
 
@@ -140,7 +131,7 @@ const scoreSwitchButton = document.getElementById("score-switch-button");
 
 
 scoreSwitchButton.addEventListener("click", () => {
-    
+
     //potem można to podmienić na switch(scoreSwitchButton.innerHTML){}
     if(scoreSwitchButton.innerHTML == "widok punktów: wszystko"){
 
@@ -155,7 +146,7 @@ scoreSwitchButton.addEventListener("click", () => {
         scoreSwitchButton.innerHTML="widok punktów: nic"
 
         document.getElementById('total-score').style.display = "none";
-    
+
     }else{
         scoreSwitchButton.innerHTML="widok punktów: wszystko"
 
@@ -167,7 +158,7 @@ scoreSwitchButton.addEventListener("click", () => {
 
 
     }
-    
+
 })
 
 function markCorrectAnswer(exercise) {
@@ -181,8 +172,12 @@ function markCorrectAnswer(exercise) {
 function loadExercises() {
     const exercisesWrapper = document.getElementById("exercises-wrapper");
     const template = document.getElementById("exercise-template");
-    
+
     const totalScoreSpan = document.getElementById("total-score");
+
+    // Maksymalna liczba punktów liczona wprost z danych — nie trzeba już ręcznie
+    // synchronizować stałej w exercises.js z sumą pól maxScore.
+    const maxTotalScore = exercises.reduce((sum, e) => sum + (e.maxScore || 0), 0);
 
     // Suma punktów = suma zdobytych punktów ze wszystkich zadań. Liczymy ją od nowa
     // przy każdej zmianie, więc kolejność klików nie ma znaczenia i nie da się
@@ -204,69 +199,193 @@ function loadExercises() {
 
         const scoreSpan = exerciseClone.querySelector(".exercise-score");
 
+        // Jeden wspólny sposób ustawiania punktów zadania: aktualizuje earnedScore,
+        // badge przy zadaniu (kolor zależny od 0 / część / komplet) i sumę w pasku.
+        function setScore(points) {
+            exercise.earnedScore = points;
+            scoreSpan.textContent = `${points} / ${exercise.maxScore} pkt`;
+            scoreSpan.classList.remove("low-exercise-score", "mid-exercise-score", "high-exercise-score");
+            scoreSpan.classList.add(
+                points === exercise.maxScore ? "high-exercise-score"
+                : points > 0 ? "mid-exercise-score"
+                : "low-exercise-score"
+            );
+            updateTotalScore();
+        }
+
         // Set question
         exerciseClone.querySelector(".question").innerHTML = exercise.question;
 
         // Set answers
         const answersContainer = exerciseClone.querySelector(".answers-container");
 
-        // Poprawną odpowiedź wskazuje indeks z danych (0 = A, 1 = B, ...).
-        // -1 lub brak pola = zadanie otwarte / jeszcze niewypełnione -> tryb "?".
-        const correctIndex = Number.isInteger(exercise.correctAnswerIndex) ? exercise.correctAnswerIndex : -1;
-        if (correctIndex >= exercise.answers.length) {
-            console.warn(`Zadanie ${index + 1}: correctAnswerIndex (${correctIndex}) wykracza poza liczbę odpowiedzi`);
-        }
+        // Typ zadania: jawny (exercise.type) albo wywnioskowany — odpowiedzi w answers
+        // oznaczają zwykły test jednokrotnego wyboru, brak odpowiedzi = zadanie otwarte.
+        const type = exercise.type || (exercise.answers && exercise.answers.length ? "ABCD" : "open");
 
-        exercise.answers.forEach((answer, i) => {
-            const answerButton = document.createElement("button");
-            answerButton.innerHTML = answer;
-            if (i === correctIndex) {
-                answerButton.classList.add("hiddenCorrect");
+        if (type === "ABCD") {
+            // Poprawną odpowiedź wskazuje indeks z danych (0 = A, 1 = B, ...).
+            // -1 lub brak pola = zadanie jeszcze niewypełnione -> tryb "?".
+            const correctIndex = Number.isInteger(exercise.correctAnswerIndex) ? exercise.correctAnswerIndex : -1;
+            if (correctIndex >= exercise.answers.length) {
+                console.warn(`Zadanie ${index + 1}: correctAnswerIndex (${correctIndex}) wykracza poza liczbę odpowiedzi`);
             }
-            answerButton.addEventListener("click", () => {
-                // Tryb "?" — brak zdefiniowanej poprawnej odpowiedzi (samoocena / niewypełnione).
-                // Klik dokłada lub zdejmuje znak "?" (tylko jeden na zadanie).
-                if (correctIndex === -1) {
-                    const hadFeedback = !!answerButton.querySelector(".feedback");
-                    answersContainer.querySelectorAll(".feedback").forEach(f => f.remove());
-                    if (!hadFeedback) {
-                        answerButton.innerHTML += `<span class="feedback">?</span>`;
-                    }
-                    return;
-                }
 
-                // Wyczyść stan wszystkich przycisków, potem ustaw stan klikniętego.
-                answersContainer.querySelectorAll("button").forEach(btn => {
-                    btn.classList.remove("correct", "incorrect");
+            exercise.answers.forEach((answer, i) => {
+                const answerButton = document.createElement("button");
+                answerButton.innerHTML = answer;
+                if (i === correctIndex) {
+                    answerButton.classList.add("hiddenCorrect");
+                }
+                answerButton.addEventListener("click", () => {
+                    // Tryb "?" — brak zdefiniowanej poprawnej odpowiedzi (niewypełnione).
+                    // Klik dokłada lub zdejmuje znak "?" (tylko jeden na zadanie).
+                    if (correctIndex === -1) {
+                        const hadFeedback = !!answerButton.querySelector(".feedback");
+                        answersContainer.querySelectorAll(".feedback").forEach(f => f.remove());
+                        if (!hadFeedback) {
+                            answerButton.innerHTML += `<span class="feedback">?</span>`;
+                        }
+                        return;
+                    }
+
+                    // Wyczyść stan wszystkich przycisków, potem ustaw stan klikniętego.
+                    answersContainer.querySelectorAll("button").forEach(btn => {
+                        btn.classList.remove("correct", "incorrect");
+                    });
+
+                    if (i === correctIndex) {
+                        answerButton.classList.add("correct");
+                        setScore(exercise.maxScore);
+                    } else {
+                        // Zła odpowiedź: zawsze 0 / X pkt.
+                        answerButton.classList.add("incorrect");
+                        setScore(0);
+                    }
+                });
+                answersContainer.appendChild(answerButton);
+            });
+        } else if (type === "PF") {
+            // Prawda/Fałsz: każde stwierdzenie dostaje własny wiersz z przyciskami P i F.
+            // Punkty (0 albo maxScore) wpadają dopiero, gdy WSZYSTKIE odpowiedzi są
+            // zaznaczone i poprawne — jak w arkuszu CKE.
+            answersContainer.classList.add("pf-container");
+            const chosen = new Array(exercise.statements.length).fill(null);
+
+            exercise.statements.forEach((statement, si) => {
+                const row = document.createElement("div");
+                row.className = "pf-row";
+
+                const label = document.createElement("span");
+                label.className = "pf-text";
+                label.innerHTML = `${si + 1}. ${statement.text}`;
+                row.appendChild(label);
+
+                const buttons = [];
+                [["P", true], ["F", false]].forEach(([caption, value]) => {
+                    const btn = document.createElement("button");
+                    btn.textContent = caption;
+                    btn.addEventListener("click", () => {
+                        chosen[si] = value;
+                        buttons.forEach(b => b.classList.remove("correct", "incorrect"));
+                        btn.classList.add(value === statement.answer ? "correct" : "incorrect");
+
+                        const answeredAll = chosen.every(c => c !== null);
+                        const allCorrect = chosen.every((c, ci) => c === exercise.statements[ci].answer);
+                        setScore(answeredAll && allCorrect ? exercise.maxScore : 0);
+                    });
+                    buttons.push(btn);
+                    row.appendChild(btn);
                 });
 
-                if (i === correctIndex) {
-                    answerButton.classList.add("correct");
-                    scoreSpan.textContent = `${exercise.maxScore} / ${exercise.maxScore} pkt`;
-                    scoreSpan.classList.remove("low-exercise-score", "mid-exercise-score");
-                    scoreSpan.classList.add("high-exercise-score");
-                    exercise.earnedScore = exercise.maxScore;
-                } else {
-                    // Zła odpowiedź: zawsze 0 / X pkt.
-                    answerButton.classList.add("incorrect");
-                    scoreSpan.textContent = `0 / ${exercise.maxScore} pkt`;
-                    scoreSpan.classList.remove("high-exercise-score", "mid-exercise-score");
-                    scoreSpan.classList.add("low-exercise-score");
-                    exercise.earnedScore = 0;
-                }
-                updateTotalScore();
+                answersContainer.appendChild(row);
             });
-            answersContainer.appendChild(answerButton);
-        });
-        
+        } else if (type === "multiSelect") {
+            // Wybór kilku odpowiedzi: klik zaznacza (jasnoniebieska ramka), ponowny klik
+            // odznacza. Ocena następuje dopiero po zaznaczeniu wymaganej liczby odpowiedzi;
+            // punkty częściowe: po 1 pkt za każde trafienie (maxScore/wymagane).
+            answersContainer.classList.add("multi-select-container");
+            const required = exercise.correctAnswerIndices.length;
+            const selected = new Set();
+            const buttons = [];
+
+            const note = document.createElement("div");
+            note.className = "multi-select-note";
+            note.textContent = `Wybierz ${required === 2 ? "dwie odpowiedzi" : required + " odpowiedzi"}.`;
+            answersContainer.appendChild(note);
+
+            function refresh() {
+                buttons.forEach((btn, i) => {
+                    btn.classList.remove("correct", "incorrect", "selected");
+                    if (!selected.has(i)) return;
+                    if (selected.size === required) {
+                        btn.classList.add(exercise.correctAnswerIndices.includes(i) ? "correct" : "incorrect");
+                    } else {
+                        btn.classList.add("selected");
+                    }
+                });
+                if (selected.size === required) {
+                    const hits = [...selected].filter(i => exercise.correctAnswerIndices.includes(i)).length;
+                    setScore(Math.round(exercise.maxScore * hits / required));
+                } else {
+                    setScore(0);
+                }
+            }
+
+            exercise.answers.forEach((answer, i) => {
+                const btn = document.createElement("button");
+                btn.innerHTML = answer;
+                btn.addEventListener("click", () => {
+                    if (selected.has(i)) {
+                        selected.delete(i);
+                    } else if (selected.size < required) {
+                        selected.add(i);
+                    } else {
+                        return; // komplet zaznaczony — najpierw trzeba coś odznaczyć
+                    }
+                    refresh();
+                });
+                buttons.push(btn);
+                answersContainer.appendChild(btn);
+            });
+        } else if (type === "open" && exercise.selfScore && exercise.maxScore) {
+            // Zadanie otwarte z samooceną: uczeń rozwiązuje na kartce, porównuje
+            // z rozwiązaniem i sam przyznaje sobie punkty (0..maxScore).
+            const box = document.createElement("div");
+            box.className = "self-score-container";
+
+            const label = document.createElement("div");
+            label.className = "self-score-label";
+            label.textContent = "Rozwiąż na kartce, porównaj z rozwiązaniem i oceń się:";
+            box.appendChild(label);
+
+            const buttons = [];
+            for (let n = 0; n <= exercise.maxScore; n++) {
+                const btn = document.createElement("button");
+                btn.textContent = `${n} pkt`;
+                btn.addEventListener("click", () => {
+                    buttons.forEach(b => b.classList.remove("selected"));
+                    btn.classList.add("selected");
+                    setScore(n);
+                });
+                buttons.push(btn);
+                box.appendChild(btn);
+            }
+            answersContainer.appendChild(box);
+        }
+
         // Set score
         if (exercise.maxScore) {
             scoreSpan.textContent = `0 / ${exercise.maxScore} pkt`;
         }
 
-        // Set hint
+        // Set hint — przycisk "Podpowiedź" znika, gdy zadanie nie ma podpowiedzi.
         const hintContainer = exerciseClone.querySelector(".hint-container");
-        hintContainer.innerHTML = exercise.hint;
+        const hasHint = !!(exercise.hint && exercise.hint.trim() !== "");
+        hintContainer.innerHTML = exercise.hint || "";
+        if (!hasHint) {
+            exerciseClone.querySelector(".hint-button").style.display = "none";
+        }
 
         // Set solution
         const solutionContainer = exerciseClone.querySelector(".solution-container");
@@ -281,11 +400,11 @@ function loadExercises() {
         const showMoreButton = solutionTextMoreContainer.querySelector("button");
 
         // Set solutionTextMore content
-        solutionTextMoreSpan.innerHTML = exercise.solutionTextMore;
-        
+        solutionTextMoreSpan.innerHTML = exercise.solutionTextMore || "";
+
         // Initially hide the solutionTextMore content
         solutionTextMoreSpan.style.display = "none";
-        
+
         // Add click event listener to show/hide button
         showMoreButton.addEventListener("click", () => {
             if (solutionTextMoreSpan.style.display === "none") {
@@ -296,13 +415,13 @@ function loadExercises() {
                 showMoreButton.textContent = "Pokaż więcej";
             }
         });
-        
+
         // Hide the entire container if there's no solutionTextMore content
         if (!exercise.solutionTextMore || exercise.solutionTextMore.trim() === "") {
             solutionTextMoreContainer.style.display = "none";
         }
 
-        solutionTextContainer.innerHTML = exercise.solutionText;
+        solutionTextContainer.innerHTML = exercise.solutionText || "";
 
         if (exercise.solutionInteractive) {
             exercise.solutionInteractive(solutionInteractiveContainer);
@@ -319,7 +438,7 @@ function loadExercises() {
             formulasButton.style.display = "none";
 
         }
-        
+
         exerciseClone.querySelector(".hint-button").addEventListener("click", () => {
             hintContainer.style.display = hintContainer.style.display === "block" ? "none" : "block";
             solutionContainer.style.display = "none";
@@ -393,9 +512,8 @@ function loadExercises() {
             currentStep = idx;
             stepsContent.innerHTML = renderStep(steps[currentStep]);
 
-            // Spowolnij film (efekt „prawie stop-klatki"). Ustawiamy na realnym,
-            // już wstawionym <video>: defaultPlaybackRate na wypadek ponownego
-            // odtwarzania, playbackRate dla trwającego już autoplay.
+            // Ustawiamy na realnym, już wstawionym <video>: defaultPlaybackRate na
+            // wypadek ponownego odtwarzania, playbackRate dla trwającego autoplay.
             const video = stepsContent.querySelector("video");
             if (video) {
                 video.defaultPlaybackRate = 1;
@@ -436,6 +554,15 @@ function loadExercises() {
                 syncState();
             }
 
+            // Podgrzewamy film następnego kroku, żeby przełączenie mniej migało —
+            // przeglądarka ściąga go do cache, zanim użytkownik kliknie ►.
+            const nextStep = steps[currentStep + 1];
+            if (nextStep && nextStep.type === "video") {
+                const preload = document.createElement("video");
+                preload.preload = "auto";
+                preload.src = nextStep.src;
+            }
+
             stepCounter.textContent = `${currentStep + 1} / ${steps.length}`;
             prevBtn.disabled = currentStep === 0;
             nextBtn.disabled = currentStep === steps.length - 1;
@@ -474,58 +601,980 @@ function loadExercises() {
     });
 }
 
-// Function to draw the number line of solutions of | x + a | = b
-function drawNumberLine1(inputElement) { //it does not care what input element you hand it
-    const container = inputElement.closest(".solution-container");
-    const canvas = container.querySelector("#numberLine");
-    const ctx = canvas.getContext("2d");
-    const width = canvas.width;
-    const height = canvas.height;
-    const centerY = height / 2;
+/* ===================================================================
+   WIDŻETY INTERAKTYWNE (solutionInteractive)
 
-    ctx.textAlign = "center";
-    ctx.textBaseline = "top";
+   Każdy widżet dostaje kontener (.solution-interactive-container) i buduje
+   w nim własny DOM — bez sztywnych id, wszystko szukane wewnątrz kontenera,
+   więc widżety mogą występować w wielu zadaniach naraz.
+   =================================================================== */
 
-    ctx.clearRect(0, 0, width, height);
-    ctx.beginPath();
-    ctx.moveTo(20, centerY);
-    ctx.lineTo(width-7, centerY);
-    ctx.stroke();
+// --- Wspólne pomocniki ---------------------------------------------------
 
-    ctx.beginPath();
-    ctx.moveTo(width - 10, centerY - 5);
-    ctx.lineTo(width, centerY);
-    ctx.lineTo(width - 10, centerY + 5);
-    ctx.stroke();
-    
-    const minRange = -15;
-    const maxRange = 5;
-    ctx.fillStyle = "black";
-    ctx.font = "12px Arial";
-    for (let i = minRange; i <= maxRange; i++) {
-        const position = ((i - minRange) / (maxRange - minRange)) * (width - 40) + 20;
-        ctx.beginPath();
-        ctx.moveTo(position, centerY - 3);
-        ctx.lineTo(position, centerY + 3);
-        ctx.stroke();
-        ctx.fillText(i, position, centerY + 15);
-    }
-    const a = parseFloat(container.querySelector("#aInput").value) || 0;
-    const b = parseFloat(container.querySelector("#bInput").value) || 0;
-    const x1 = -a + b;
-    const x2 = -a - b;
-    if(b>=0){
-        [x1, x2].forEach(number => {
-            if (number >= minRange && number <= maxRange) {
-                const position = ((number - minRange) / (maxRange - minRange)) * (width - 40) + 20;
-                ctx.beginPath();
-                ctx.arc(position, centerY, 5, 0, Math.PI * 2);
-                ctx.fillStyle = "orange";
-                ctx.fill();
+function wgElement(tag, className, html) {
+    const el = document.createElement(tag);
+    if (className) el.className = className;
+    if (html !== undefined) el.innerHTML = html;
+    return el;
+}
+
+function wgCanvas(container, width, height) {
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    canvas.className = "widget-canvas";
+    container.appendChild(canvas);
+    return canvas;
+}
+
+// Pozycja wskaźnika we współrzędnych canvasa (uwzględnia ewentualne skalowanie CSS).
+function wgPointerPos(canvas, event) {
+    const r = canvas.getBoundingClientRect();
+    return {
+        x: (event.clientX - r.left) * (canvas.width / r.width),
+        y: (event.clientY - r.top) * (canvas.height / r.height)
+    };
+}
+
+// Przeciąganie na canvasie: onDrag dostaje pozycję wskaźnika przy wciśniętym
+// przycisku; hitTest (opcjonalny) decyduje, czy start przeciągania jest "na" uchwycie.
+function wgDraggable(canvas, hitTest, onDrag) {
+    let dragging = false;
+    canvas.addEventListener("pointerdown", (e) => {
+        const pos = wgPointerPos(canvas, e);
+        if (!hitTest || hitTest(pos)) {
+            dragging = true;
+            canvas.setPointerCapture(e.pointerId);
+            onDrag(pos);
         }
-        });
+    });
+    canvas.addEventListener("pointermove", (e) => {
+        if (dragging) onDrag(wgPointerPos(canvas, e));
+    });
+    canvas.addEventListener("pointerup", () => { dragging = false; });
+    canvas.addEventListener("pointercancel", () => { dragging = false; });
+}
+
+function wgStrzalka(ctx, x1, y1, x2, y2) {
+    const angle = Math.atan2(y2 - y1, x2 - x1);
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(x2, y2);
+    ctx.lineTo(x2 - 8 * Math.cos(angle - 0.4), y2 - 8 * Math.sin(angle - 0.4));
+    ctx.lineTo(x2 - 8 * Math.cos(angle + 0.4), y2 - 8 * Math.sin(angle + 0.4));
+    ctx.closePath();
+    ctx.fill();
+}
+
+const WG_KOLORY = {
+    osie: "#666",
+    siatka: "#eee",
+    wykres: "#7a3fa8",   // fiolet jak na rysunkach CKE
+    punkt: "#e8871e",    // pomarańcz
+    ok: "#0AB32F",
+    zle: "#d9534f",
+    info: "#4a90d9"
+};
+
+// --- Zad 1: oś liczbowa |x + a| = b --------------------------------------
+// Środek (−a) + dwa rozwiązania w odległości b. Zielony punkt testowy do
+// przeciągania pokazuje, jak zmienia się |x + a|.
+
+function widgetOsLiczbowa(container) {
+    const wrap = wgElement("div", "widget");
+    wrap.appendChild(wgElement("div", "widget-title",
+        "Rozwiązania |𝑥 + a| = b to liczby odległe o <b>b</b> od liczby <b>(−a)</b>. Przeciągaj zielony punkt i zmieniaj a, b:"));
+
+    const canvas = wgCanvas(wrap, 520, 130);
+    const ctx = canvas.getContext("2d");
+
+    const controls = wgElement("div", "widget-controls",
+        `<span class='mathText'>| 𝑥 + <input type="number" class="wg-a" value="4"> | = <input type="number" class="wg-b" value="7"></span>`);
+    wrap.appendChild(controls);
+
+    const readout = wgElement("div", "widget-readout", "");
+    wrap.appendChild(readout);
+    container.appendChild(wrap);
+
+    const aInput = controls.querySelector(".wg-a");
+    const bInput = controls.querySelector(".wg-b");
+
+    const MIN = -15, MAX = 5;
+    const state = { x: 0 };
+    const toPix = v => 20 + (v - MIN) / (MAX - MIN) * (canvas.width - 40);
+    const toVal = px => MIN + (px - 20) / (canvas.width - 40) * (MAX - MIN);
+
+    function draw() {
+        const a = parseFloat(aInput.value) || 0;
+        const b = parseFloat(bInput.value) || 0;
+        const centerY = 85;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Oś ze strzałką i podziałką.
+        ctx.strokeStyle = ctx.fillStyle = WG_KOLORY.osie;
+        ctx.lineWidth = 1;
+        wgStrzalka(ctx, 12, centerY, canvas.width - 4, centerY);
+        ctx.font = "11px Arial";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "top";
+        for (let i = MIN; i <= MAX; i++) {
+            const px = toPix(i);
+            ctx.beginPath();
+            ctx.moveTo(px, centerY - 3);
+            ctx.lineTo(px, centerY + 3);
+            ctx.stroke();
+            ctx.fillText(i, px, centerY + 7);
+        }
+
+        const center = -a;
+        // Strzałki odległości b od środka do obu rozwiązań.
+        if (b >= 0) {
+            ctx.strokeStyle = ctx.fillStyle = WG_KOLORY.info;
+            ctx.lineWidth = 1.5;
+            [center + b, center - b].forEach(sol => {
+                if (Math.abs(sol - center) < 0.01) return;
+                wgStrzalka(ctx, toPix(center), centerY - 28, toPix(sol), centerY - 28);
+                ctx.font = "12px Arial";
+                ctx.textBaseline = "bottom";
+                ctx.fillText(`${b}`, (toPix(center) + toPix(sol)) / 2, centerY - 32);
+            });
+
+            // Rozwiązania (pomarańczowe punkty).
+            ctx.fillStyle = WG_KOLORY.punkt;
+            [center + b, center - b].forEach(sol => {
+                if (sol >= MIN && sol <= MAX) {
+                    ctx.beginPath();
+                    ctx.arc(toPix(sol), centerY, 5, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            });
+        }
+
+        // Środek (−a) — niebieski.
+        ctx.fillStyle = WG_KOLORY.info;
+        if (center >= MIN && center <= MAX) {
+            ctx.beginPath();
+            ctx.arc(toPix(center), centerY, 4, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.font = "12px Arial";
+            ctx.textBaseline = "bottom";
+            ctx.fillText("−a", toPix(center), centerY - 8);
+        }
+
+        // Punkt testowy (zielony) + jego odległość od środka.
+        const dist = Math.abs(state.x + a);
+        const trafiony = b >= 0 && Math.abs(dist - b) < 0.01;
+        ctx.fillStyle = trafiony ? WG_KOLORY.ok : "#2e7d32";
+        ctx.beginPath();
+        ctx.arc(toPix(state.x), centerY, 7, 0, Math.PI * 2);
+        ctx.fill();
+
+        readout.innerHTML = `<span class='mathText'>| ${state.x} + ${a} | = <b>${Math.round(dist * 100) / 100}</b></span> ` +
+            (trafiony ? `<span class="wg-ok">✓ to rozwiązanie!</span>`
+                      : `<span class="wg-neutral">(szukamy odległości ${b})</span>`);
     }
 
+    wgDraggable(canvas,
+        pos => Math.abs(pos.x - toPix(state.x)) < 25,
+        pos => {
+            state.x = Math.round(Math.min(MAX, Math.max(MIN, toVal(pos.x))) * 4) / 4;
+            draw();
+        });
+
+    aInput.addEventListener("input", draw);
+    bInput.addEventListener("input", draw);
+    draw();
+}
+
+// --- Zad 5: procent składany ----------------------------------------------
+// Suwak oprocentowania + słupki kapitału po 0/1/2 latach i linia celu.
+
+function widgetProcentSkladany(container) {
+    const wrap = wgElement("div", "widget");
+    wrap.appendChild(wgElement("div", "widget-title",
+        "Zmieniaj oprocentowanie <b>p</b> i sprawdź, kiedy kapitał po 2 latach trafi w <b>67 925,76 zł</b>:"));
+
+    const canvas = wgCanvas(wrap, 520, 230);
+    const ctx = canvas.getContext("2d");
+
+    const controls = wgElement("div", "widget-controls",
+        `<input type="range" min="0" max="10" step="0.1" value="3">`);
+    wrap.appendChild(controls);
+    const readout = wgElement("div", "widget-readout", "");
+    wrap.appendChild(readout);
+    container.appendChild(wrap);
+
+    const slider = controls.querySelector("input");
+    const START = 60000, CEL = 67925.76;
+
+    const zl = v => v.toLocaleString("pl-PL", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " zł";
+
+    function draw() {
+        const p = parseFloat(slider.value);
+        const r = p / 100;
+        const kwoty = [START, START * (1 + r), START * (1 + r) * (1 + r)];
+        const trafiony = Math.abs(kwoty[2] - CEL) < 0.5;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const baseY = 195, maxVal = 78000, scale = 160 / maxVal;
+
+        // Linia celu (przerywana czerwona).
+        const celY = baseY - CEL * scale;
+        ctx.strokeStyle = WG_KOLORY.zle;
+        ctx.setLineDash([6, 4]);
+        ctx.beginPath();
+        ctx.moveTo(40, celY);
+        ctx.lineTo(490, celY);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.fillStyle = WG_KOLORY.zle;
+        ctx.font = "12px Arial";
+        ctx.textAlign = "left";
+        ctx.textBaseline = "bottom";
+        ctx.fillText("cel: 67 925,76 zł", 42, celY - 3);
+
+        // Słupki.
+        const etykiety = ["wpłata", "po 1 roku", "po 2 latach"];
+        kwoty.forEach((kwota, i) => {
+            const x = 90 + i * 150;
+            const h = kwota * scale;
+            ctx.fillStyle = (i === 2 && trafiony) ? WG_KOLORY.ok : "#c9b3dd";
+            ctx.fillRect(x, baseY - h, 90, h);
+            ctx.strokeStyle = WG_KOLORY.wykres;
+            ctx.strokeRect(x, baseY - h, 90, h);
+
+            ctx.fillStyle = "#333";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "bottom";
+            ctx.font = "12px Arial";
+            ctx.fillText(zl(kwota), x + 45, baseY - h - 4);
+            ctx.textBaseline = "top";
+            ctx.fillText(etykiety[i], x + 45, baseY + 6);
+        });
+
+        readout.innerHTML =
+            `<span class='mathText'>p = ${p.toLocaleString("pl-PL", { minimumFractionDigits: 1 })}%</span> → 60 000 · (1 + ${(r).toLocaleString("pl-PL")})² = <b>${zl(kwoty[2])}</b> ` +
+            (trafiony ? `<span class="wg-ok">✓ p = 6,4%!</span>` : "");
+    }
+
+    slider.addEventListener("input", draw);
+    draw();
+}
+
+// --- Zad 9: nierówność kwadratowa x(x−6) ≤ 7 ------------------------------
+// Parabola x² − 6x − 7 z zaznaczonym przedziałem rozwiązań; punkt do przeciągania
+// po osi x pokazuje, czy nierówność jest spełniona.
+
+function widgetNierownoscKwadratowa(container) {
+    const wrap = wgElement("div", "widget");
+    wrap.appendChild(wgElement("div", "widget-title",
+        "Przeciągaj punkt po osi x — nierówność x(x − 6) ≤ 7 spełniają te x, dla których parabola x² − 6x − 7 jest pod osią (lub na niej):"));
+
+    const canvas = wgCanvas(wrap, 520, 260);
+    const ctx = canvas.getContext("2d");
+    const readout = wgElement("div", "widget-readout", "");
+    wrap.appendChild(readout);
+    container.appendChild(wrap);
+
+    const X0 = -4, X1 = 10, Y0 = -20, Y1 = 28;
+    const px = x => 20 + (x - X0) / (X1 - X0) * 480;
+    const py = y => 240 - (y - Y0) / (Y1 - Y0) * 230;
+    const vx = p => X0 + (p - 20) / 480 * (X1 - X0);
+    const f = x => x * x - 6 * x - 7;
+
+    const state = { x: 3 };
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Obszar rozwiązań (parabola pod osią) — delikatne zielone tło.
+        ctx.fillStyle = "rgba(10, 179, 47, 0.08)";
+        ctx.beginPath();
+        ctx.moveTo(px(-1), py(0));
+        for (let x = -1; x <= 7; x += 0.1) ctx.lineTo(px(x), py(f(x)));
+        ctx.closePath();
+        ctx.fill();
+
+        // Osie.
+        ctx.strokeStyle = ctx.fillStyle = WG_KOLORY.osie;
+        ctx.lineWidth = 1;
+        wgStrzalka(ctx, px(X0), py(0), px(X1), py(0));
+        wgStrzalka(ctx, px(0), py(Y0), px(0), py(Y1));
+        ctx.font = "11px Arial";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "top";
+        for (let i = X0 + 1; i < X1; i++) {
+            if (i === 0) continue;
+            ctx.beginPath();
+            ctx.moveTo(px(i), py(0) - 3);
+            ctx.lineTo(px(i), py(0) + 3);
+            ctx.stroke();
+            if (i % 2 === 0 || i === -1 || i === 7) ctx.fillText(i, px(i), py(0) + 6);
+        }
+
+        // Parabola.
+        ctx.strokeStyle = WG_KOLORY.wykres;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        for (let x = X0; x <= X1; x += 0.05) {
+            const p = { x: px(x), y: py(f(x)) };
+            x === X0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
+        }
+        ctx.stroke();
+
+        // Przedział rozwiązań na osi.
+        ctx.strokeStyle = WG_KOLORY.ok;
+        ctx.lineWidth = 5;
+        ctx.beginPath();
+        ctx.moveTo(px(-1), py(0));
+        ctx.lineTo(px(7), py(0));
+        ctx.stroke();
+        ctx.fillStyle = WG_KOLORY.ok;
+        [[-1, "−1"], [7, "7"]].forEach(([x, label]) => {
+            ctx.beginPath();
+            ctx.arc(px(x), py(0), 5, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.font = "bold 12px Arial";
+            ctx.textBaseline = "bottom";
+            ctx.fillText(label, px(x), py(0) - 8);
+        });
+
+        // Punkt testowy na osi + wartość na paraboli.
+        const val = state.x * (state.x - 6);
+        const spelnia = val <= 7.0001;
+        ctx.strokeStyle = "#aaa";
+        ctx.setLineDash([4, 3]);
+        ctx.beginPath();
+        ctx.moveTo(px(state.x), py(0));
+        ctx.lineTo(px(state.x), py(f(state.x)));
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        ctx.fillStyle = spelnia ? WG_KOLORY.ok : WG_KOLORY.zle;
+        ctx.beginPath();
+        ctx.arc(px(state.x), py(0), 7, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(px(state.x), py(f(state.x)), 4, 0, Math.PI * 2);
+        ctx.fill();
+
+        const xTxt = state.x.toLocaleString("pl-PL");
+        readout.innerHTML = `<span class='mathText'>x = ${xTxt}: &nbsp; x(x − 6) = ${val.toLocaleString("pl-PL", { maximumFractionDigits: 2 })}</span> ` +
+            (spelnia ? `<span class="wg-ok">≤ 7 ✓ spełnia</span>` : `<span class="wg-zle">> 7 ✗ nie spełnia</span>`);
+    }
+
+    wgDraggable(canvas, null, pos => {
+        state.x = Math.round(Math.min(X1, Math.max(X0, vx(pos.x))) * 4) / 4;
+        draw();
+    });
+    draw();
+}
+
+// --- Zad 10: funkcja określona przedziałami --------------------------------
+// Suwak przesuwa punkt po wykresie; podświetla się wzór aktualnie "aktywnego"
+// przedziału, a odczyt pokazuje znak wartości.
+
+function widgetFunkcjaPrzedzialami(container) {
+    const wrap = wgElement("div", "widget");
+    wrap.appendChild(wgElement("div", "widget-title",
+        "Przesuwaj x wzdłuż dziedziny i obserwuj, który wzór działa i jaki znak ma f(x):"));
+
+    const canvas = wgCanvas(wrap, 520, 300);
+    const ctx = canvas.getContext("2d");
+
+    const formulas = wgElement("div", "widget-formula-list",
+        `<div class="wg-formula" data-i="0"><span class='mathText'>3</span> &nbsp; dla x ∈ (−4, −2⟩</div>` +
+        `<div class="wg-formula" data-i="1"><span class='mathText'>−x + 1</span> &nbsp; dla x ∈ (−2, 2⟩</div>` +
+        `<div class="wg-formula" data-i="2"><span class='mathText'>x − 3</span> &nbsp; dla x ∈ (2, 4⟩</div>`);
+    wrap.appendChild(formulas);
+
+    const controls = wgElement("div", "widget-controls",
+        `<input type="range" min="-3.98" max="4" step="0.02" value="0">`);
+    wrap.appendChild(controls);
+    const readout = wgElement("div", "widget-readout", "");
+    wrap.appendChild(readout);
+    container.appendChild(wrap);
+
+    const slider = controls.querySelector("input");
+    const px = x => 260 + x * 44;
+    const py = y => 150 - y * 44;
+    const f = x => x <= -2 ? 3 : x <= 2 ? -x + 1 : x - 3;
+    const aktywny = x => x <= -2 ? 0 : x <= 2 ? 1 : 2;
+
+    function draw() {
+        const x = parseFloat(slider.value);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Siatka.
+        ctx.strokeStyle = WG_KOLORY.siatka;
+        ctx.lineWidth = 1;
+        for (let i = -5; i <= 5; i++) {
+            ctx.beginPath(); ctx.moveTo(px(i), py(-3)); ctx.lineTo(px(i), py(3.5)); ctx.stroke();
+        }
+        for (let j = -3; j <= 3; j++) {
+            ctx.beginPath(); ctx.moveTo(px(-5), py(j)); ctx.lineTo(px(5), py(j)); ctx.stroke();
+        }
+
+        // Osie.
+        ctx.strokeStyle = ctx.fillStyle = WG_KOLORY.osie;
+        wgStrzalka(ctx, px(-5.2), py(0), px(5.3), py(0));
+        wgStrzalka(ctx, px(0), py(-3.2), px(0), py(3.6));
+        ctx.font = "10px Arial";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "top";
+        for (let i = -5; i <= 5; i++) if (i !== 0) ctx.fillText(i, px(i), py(0) + 5);
+        ctx.textAlign = "right";
+        ctx.textBaseline = "middle";
+        for (let j = -3; j <= 3; j++) if (j !== 0) ctx.fillText(j, px(0) - 6, py(j));
+
+        // Wykres (3 kawałki).
+        ctx.strokeStyle = WG_KOLORY.wykres;
+        ctx.lineWidth = 2.5;
+        ctx.beginPath(); ctx.moveTo(px(-4), py(3)); ctx.lineTo(px(-2), py(3)); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(px(-2), py(3)); ctx.lineTo(px(2), py(-1)); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(px(2), py(-1)); ctx.lineTo(px(4), py(1)); ctx.stroke();
+
+        // Kółko otwarte na początku dziedziny i pełne na końcu.
+        ctx.lineWidth = 2;
+        ctx.fillStyle = "#fff";
+        ctx.beginPath(); ctx.arc(px(-4), py(3), 4, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = WG_KOLORY.wykres;
+        ctx.beginPath(); ctx.arc(px(4), py(1), 4, 0, Math.PI * 2); ctx.fill();
+
+        // Ruchomy punkt.
+        const y = f(x);
+        ctx.fillStyle = y < 0 ? WG_KOLORY.zle : WG_KOLORY.ok;
+        ctx.beginPath();
+        ctx.arc(px(x), py(y), 6, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Podświetlenie aktywnego wzoru.
+        formulas.querySelectorAll(".wg-formula").forEach(el =>
+            el.classList.toggle("active", parseInt(el.dataset.i) === aktywny(x)));
+
+        const fmt = v => v.toLocaleString("pl-PL", { maximumFractionDigits: 2 });
+        readout.innerHTML = `<span class='mathText'>x = ${fmt(x)}, &nbsp; f(x) = <b>${fmt(y)}</b></span> ` +
+            (y < 0 ? `<span class="wg-zle">wartość ujemna (pod osią)</span>`
+             : y === 3 ? `<span class="wg-ok">największa wartość!</span>` : "");
+    }
+
+    slider.addEventListener("input", draw);
+    draw();
+}
+
+// --- Zad 12.1: monotoniczność paraboli -------------------------------------
+// f(x) = −(x−3)²: lewa gałąź (rośnie) zielona, prawa (maleje) czerwona,
+// punkt do przeciągania po wykresie.
+
+function widgetParabola(container) {
+    const wrap = wgElement("div", "widget");
+    wrap.appendChild(wgElement("div", "widget-title",
+        "f(x) = −(x − 3)². Przeciągaj punkt po paraboli — monotoniczność zmienia się dokładnie w wierzchołku:"));
+
+    const canvas = wgCanvas(wrap, 520, 260);
+    const ctx = canvas.getContext("2d");
+    const readout = wgElement("div", "widget-readout", "");
+    wrap.appendChild(readout);
+    container.appendChild(wrap);
+
+    const X0 = -2, X1 = 8;
+    const px = x => 30 + (x - X0) / (X1 - X0) * 460;
+    const py = y => 40 - y * 17;
+    const vx = p => X0 + (p - 30) / 460 * (X1 - X0);
+    const f = x => -(x - 3) * (x - 3);
+
+    const state = { x: 5 };
+
+    function rysujGalaz(od, doX, kolor) {
+        ctx.strokeStyle = kolor;
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        for (let x = od; x <= doX + 0.001; x += 0.05) {
+            const p = { x: px(x), y: py(f(x)) };
+            x === od ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
+        }
+        ctx.stroke();
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Osie.
+        ctx.strokeStyle = ctx.fillStyle = WG_KOLORY.osie;
+        ctx.lineWidth = 1;
+        wgStrzalka(ctx, px(X0) - 10, py(0), px(X1) + 10, py(0));
+        wgStrzalka(ctx, px(0), 250, px(0), 15);
+        ctx.font = "11px Arial";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "top";
+        for (let i = X0; i <= X1; i++) if (i !== 0) ctx.fillText(i, px(i), py(0) + 6);
+
+        // Oś symetrii x = 3.
+        ctx.strokeStyle = "#bbb";
+        ctx.setLineDash([5, 4]);
+        ctx.beginPath();
+        ctx.moveTo(px(3), 245);
+        ctx.lineTo(px(3), 20);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Gałęzie: rosnąca zielona, malejąca czerwona.
+        rysujGalaz(X0, 3, WG_KOLORY.ok);
+        rysujGalaz(3, X1, WG_KOLORY.zle);
+
+        // Wierzchołek.
+        ctx.fillStyle = WG_KOLORY.wykres;
+        ctx.beginPath();
+        ctx.arc(px(3), py(0), 5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.font = "12px Arial";
+        ctx.textBaseline = "bottom";
+        ctx.fillText("W = (3, 0)", px(3) + 38, py(0) - 4);
+
+        // Punkt użytkownika.
+        ctx.fillStyle = "#333";
+        ctx.beginPath();
+        ctx.arc(px(state.x), py(f(state.x)), 7, 0, Math.PI * 2);
+        ctx.fill();
+
+        const fmt = v => v.toLocaleString("pl-PL", { maximumFractionDigits: 1 });
+        readout.innerHTML = state.x === 3
+            ? `<span class='mathText'>x = 3</span> — <b>wierzchołek</b>: tu funkcja przechodzi z rośnięcia w malenie`
+            : state.x < 3
+                ? `<span class='mathText'>x = ${fmt(state.x)}</span> <span class="wg-ok">↗ funkcja rośnie (x < 3)</span>`
+                : `<span class='mathText'>x = ${fmt(state.x)}</span> <span class="wg-zle">↘ funkcja maleje (x > 3) — przedział ⟨3, +∞)</span>`;
+    }
+
+    wgDraggable(canvas, null, pos => {
+        state.x = Math.round(Math.min(X1, Math.max(X0, vx(pos.x))) * 2) / 2;
+        draw();
+    });
+    draw();
+}
+
+// --- Zad 15: ciąg arytmetyczny (5m, 4+2m, m) --------------------------------
+// Suwak m; słupki trzech wyrazów i różnice między nimi — równe przy m = 4.
+
+function widgetCiagArytmetyczny(container) {
+    const wrap = wgElement("div", "widget");
+    wrap.appendChild(wgElement("div", "widget-title",
+        "Zmieniaj m i patrz na różnice między kolejnymi wyrazami — w ciągu arytmetycznym muszą być identyczne:"));
+
+    const canvas = wgCanvas(wrap, 520, 240);
+    const ctx = canvas.getContext("2d");
+    const controls = wgElement("div", "widget-controls",
+        `<span class='mathText'>m = </span><input type="range" min="-6" max="6" step="0.25" value="1">`);
+    wrap.appendChild(controls);
+    const readout = wgElement("div", "widget-readout", "");
+    wrap.appendChild(readout);
+    container.appendChild(wrap);
+
+    const slider = controls.querySelector("input");
+
+    function draw() {
+        const m = parseFloat(slider.value);
+        const wyrazy = [5 * m, 4 + 2 * m, m];
+        const r1 = wyrazy[1] - wyrazy[0];
+        const r2 = wyrazy[2] - wyrazy[1];
+        const arytmetyczny = Math.abs(r1 - r2) < 1e-9;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const zeroY = 120;
+        const maxAbs = Math.max(8, ...wyrazy.map(Math.abs));
+        const scale = 85 / maxAbs;
+
+        // Linia zera.
+        ctx.strokeStyle = "#ccc";
+        ctx.beginPath();
+        ctx.moveTo(30, zeroY);
+        ctx.lineTo(490, zeroY);
+        ctx.stroke();
+
+        const nazwy = ["a₁ = 5m", "a₂ = 4 + 2m", "a₃ = m"];
+        const fmt = v => v.toLocaleString("pl-PL", { maximumFractionDigits: 2 });
+
+        wyrazy.forEach((w, i) => {
+            const x = 70 + i * 150;
+            const h = w * scale;
+            ctx.fillStyle = arytmetyczny ? "rgba(10,179,47,0.35)" : "#c9b3dd";
+            ctx.strokeStyle = arytmetyczny ? WG_KOLORY.ok : WG_KOLORY.wykres;
+            ctx.fillRect(x, Math.min(zeroY, zeroY - h), 80, Math.abs(h));
+            ctx.strokeRect(x, Math.min(zeroY, zeroY - h), 80, Math.abs(h));
+
+            ctx.fillStyle = "#333";
+            ctx.font = "13px Arial";
+            ctx.textAlign = "center";
+            ctx.textBaseline = h >= 0 ? "bottom" : "top";
+            ctx.fillText(fmt(w), x + 40, h >= 0 ? zeroY - h - 5 : zeroY - h + 5);
+            ctx.textBaseline = "top";
+            ctx.fillText(nazwy[i], x + 40, 214);
+        });
+
+        // Różnice między słupkami.
+        ctx.font = "13px Arial";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        [[145, r1], [295, r2]].forEach(([x, r]) => {
+            ctx.fillStyle = arytmetyczny ? WG_KOLORY.ok : WG_KOLORY.zle;
+            ctx.fillText(`r = ${fmt(r)}`, x + 40, 25);
+            wgStrzalka(ctx, x + 12, 40, x + 68, 40);
+        });
+
+        readout.innerHTML = `<span class='mathText'>m = ${fmt(m)}: &nbsp; (${fmt(wyrazy[0])}, ${fmt(wyrazy[1])}, ${fmt(wyrazy[2])})</span> ` +
+            (arytmetyczny ? `<span class="wg-ok">✓ różnice równe — ciąg arytmetyczny (m = 4)</span>`
+                          : `<span class="wg-zle">różnice ${fmt(r1)} ≠ ${fmt(r2)}</span>`);
+    }
+
+    slider.addEventListener("input", draw);
+    draw();
+}
+
+// --- Zad 18: koło trygonometryczne -----------------------------------------
+// Przeciągany kąt na półokręgu; widać sin (pion) i cos (poziom) oraz to,
+// że dla kąta rozwartego cosinus jest ujemny.
+
+function widgetKoloTrygonometryczne(container) {
+    const wrap = wgElement("div", "widget");
+    wrap.appendChild(wgElement("div", "widget-title",
+        "Przeciągaj punkt po okręgu jednostkowym. Szukamy kąta <b>rozwartego</b> z sin α = √3/4 ≈ 0,433:"));
+
+    const canvas = wgCanvas(wrap, 520, 300);
+    const ctx = canvas.getContext("2d");
+    const readout = wgElement("div", "widget-readout", "");
+    wrap.appendChild(readout);
+    container.appendChild(wrap);
+
+    const cx = 260, cy = 175, R = 115;
+    const SIN_CEL = Math.sqrt(3) / 4;      // ≈ 0,4330
+    const COS_CEL = -Math.sqrt(13) / 4;    // ≈ −0,9014
+
+    const state = { deg: 30 };
+
+    function draw() {
+        const rad = state.deg * Math.PI / 180;
+        const sin = Math.sin(rad), cos = Math.cos(rad);
+        const P = { x: cx + R * cos, y: cy - R * sin };
+        const sinOk = Math.abs(sin - SIN_CEL) < 0.012;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // II ćwiartka (kąty rozwarte) — delikatne tło.
+        ctx.fillStyle = "rgba(74, 144, 217, 0.07)";
+        ctx.fillRect(cx - R - 15, cy - R - 15, R + 15, R + 15);
+        ctx.fillStyle = "#9bb8d4";
+        ctx.font = "11px Arial";
+        ctx.textAlign = "left";
+        ctx.textBaseline = "top";
+        ctx.fillText("kąty rozwarte (90°–180°)", cx - R - 10, cy - R - 10);
+
+        // Osie i okrąg.
+        ctx.strokeStyle = ctx.fillStyle = WG_KOLORY.osie;
+        ctx.lineWidth = 1;
+        wgStrzalka(ctx, cx - R - 25, cy, cx + R + 25, cy);
+        wgStrzalka(ctx, cx, cy + R + 20, cx, cy - R - 20);
+        ctx.strokeStyle = "#999";
+        ctx.beginPath();
+        ctx.arc(cx, cy, R, 0, Math.PI * 2);
+        ctx.stroke();
+
+        // Linia sin = √3/4.
+        const yCel = cy - R * SIN_CEL;
+        ctx.strokeStyle = WG_KOLORY.info;
+        ctx.setLineDash([5, 4]);
+        ctx.beginPath();
+        ctx.moveTo(cx - R - 20, yCel);
+        ctx.lineTo(cx + R + 20, yCel);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.fillStyle = WG_KOLORY.info;
+        ctx.font = "11px Arial";
+        ctx.textAlign = "left";
+        ctx.textBaseline = "bottom";
+        ctx.fillText("sin α = √3/4", cx + R - 40, yCel - 3);
+
+        // Ramię kąta + łuk.
+        ctx.strokeStyle = "#555";
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(P.x, P.y);
+        ctx.stroke();
+        ctx.strokeStyle = "#aaa";
+        ctx.beginPath();
+        ctx.arc(cx, cy, 24, 0, -rad, true);
+        ctx.stroke();
+
+        // cos (poziomy, czerwony) i sin (pionowy, zielony).
+        ctx.strokeStyle = WG_KOLORY.zle;
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(P.x, cy);
+        ctx.stroke();
+        ctx.strokeStyle = WG_KOLORY.ok;
+        ctx.beginPath();
+        ctx.moveTo(P.x, cy);
+        ctx.lineTo(P.x, P.y);
+        ctx.stroke();
+
+        // Punkt na okręgu.
+        ctx.fillStyle = sinOk ? (cos < 0 ? WG_KOLORY.ok : WG_KOLORY.punkt) : "#333";
+        ctx.beginPath();
+        ctx.arc(P.x, P.y, 7, 0, Math.PI * 2);
+        ctx.fill();
+
+        const fmt = v => v.toLocaleString("pl-PL", { minimumFractionDigits: 3, maximumFractionDigits: 3 });
+        let dodatek = "";
+        if (sinOk && cos < 0) {
+            dodatek = `<span class="wg-ok">✓ kąt rozwarty: cos α = −√13/4 ≈ ${fmt(COS_CEL)}</span>`;
+        } else if (sinOk) {
+            dodatek = `<span class="wg-neutral">sin się zgadza, ale ten kąt jest ostry — przejdź na lewą stronę!</span>`;
+        }
+        readout.innerHTML = `<span class='mathText'>α ≈ ${Math.round(state.deg)}°, &nbsp; ` +
+            `<span style="color:${WG_KOLORY.ok}">sin α ≈ ${fmt(sin)}</span>, &nbsp; ` +
+            `<span style="color:${WG_KOLORY.zle}">cos α ≈ ${fmt(cos)}</span></span> ${dodatek}`;
+    }
+
+    wgDraggable(canvas, null, pos => {
+        let deg = Math.atan2(cy - pos.y, pos.x - cx) * 180 / Math.PI;
+        deg = Math.max(0, Math.min(180, deg));
+        state.deg = Math.round(deg * 2) / 2;
+        draw();
+    });
+    draw();
+}
+
+// --- Zad 20: kąt wpisany i środkowy ----------------------------------------
+// C przeciągany po dużym łuku — kąt wpisany ACB cały czas ma 60°, a środkowy 120°.
+
+function widgetKatWpisany(container) {
+    const wrap = wgElement("div", "widget");
+    wrap.appendChild(wgElement("div", "widget-title",
+        "Przeciągaj punkt C po okręgu — kąt wpisany oparty na tym samym łuku się nie zmienia:"));
+
+    const canvas = wgCanvas(wrap, 520, 310);
+    const ctx = canvas.getContext("2d");
+    const readout = wgElement("div", "widget-readout", "");
+    wrap.appendChild(readout);
+    container.appendChild(wrap);
+
+    const cx = 260, cy = 155, R = 120;
+    const A_DEG = 210, B_DEG = 330;          // kąt środkowy AB = 120° (łuk dołem)
+    const pt = deg => ({
+        x: cx + R * Math.cos(deg * Math.PI / 180),
+        y: cy - R * Math.sin(deg * Math.PI / 180)
+    });
+
+    const state = { deg: 90 };
+
+    function draw() {
+        const A = pt(A_DEG), B = pt(B_DEG), C = pt(state.deg), S = { x: cx, y: cy };
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Okrąg.
+        ctx.strokeStyle = WG_KOLORY.wykres;
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.arc(cx, cy, R, 0, Math.PI * 2);
+        ctx.stroke();
+
+        // Łuk AB (dołem) — wyróżniony. W układzie canvasa (y w dół) punktowi o kącie
+        // matematycznym θ odpowiada kąt −θ, więc łuk 210°→330° dołem to 30°→150°.
+        ctx.strokeStyle = WG_KOLORY.punkt;
+        ctx.lineWidth = 5;
+        ctx.beginPath();
+        ctx.arc(cx, cy, R, 30 * Math.PI / 180, 150 * Math.PI / 180, false);
+        ctx.stroke();
+        ctx.fillStyle = WG_KOLORY.punkt;
+        ctx.font = "13px Arial";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "top";
+        ctx.fillText("łuk AB = ⅓ · 2π·6 = 4π", cx, cy + R + 12);
+
+        // Ramiona kąta środkowego.
+        ctx.strokeStyle = "#999";
+        ctx.lineWidth = 1.5;
+        [A, B].forEach(P => {
+            ctx.beginPath();
+            ctx.moveTo(S.x, S.y);
+            ctx.lineTo(P.x, P.y);
+            ctx.stroke();
+        });
+        // Łuczek kąta środkowego (między ramionami SA i SB, od strony łuku AB).
+        ctx.strokeStyle = WG_KOLORY.zle;
+        ctx.beginPath();
+        ctx.arc(cx, cy, 26, 30 * Math.PI / 180, 150 * Math.PI / 180, false);
+        ctx.stroke();
+        ctx.fillStyle = WG_KOLORY.zle;
+        ctx.font = "12px Arial";
+        ctx.textBaseline = "top";
+        ctx.fillText("120°", cx, cy + 32);
+
+        // Ramiona kąta wpisanego.
+        ctx.strokeStyle = "#444";
+        [A, B].forEach(P => {
+            ctx.beginPath();
+            ctx.moveTo(C.x, C.y);
+            ctx.lineTo(P.x, P.y);
+            ctx.stroke();
+        });
+
+        // Miara kąta wpisanego (liczona z wektorów — zawsze wyjdzie 60°).
+        const kat = (() => {
+            const v1 = { x: A.x - C.x, y: A.y - C.y };
+            const v2 = { x: B.x - C.x, y: B.y - C.y };
+            const dot = v1.x * v2.x + v1.y * v2.y;
+            const len = Math.hypot(v1.x, v1.y) * Math.hypot(v2.x, v2.y);
+            return Math.acos(dot / len) * 180 / Math.PI;
+        })();
+
+        // Łuczek przy C.
+        ctx.strokeStyle = WG_KOLORY.info;
+        const a1 = Math.atan2(A.y - C.y, A.x - C.x);
+        const a2 = Math.atan2(B.y - C.y, B.x - C.x);
+        ctx.beginPath();
+        // rysuj krótszy łuk między ramionami
+        let od = a1, do_ = a2;
+        if (((do_ - od + Math.PI * 2) % (Math.PI * 2)) > Math.PI) [od, do_] = [do_, od];
+        ctx.arc(C.x, C.y, 22, od, do_, false);
+        ctx.stroke();
+
+        // Punkty.
+        const punkty = [[A, "A"], [B, "B"], [S, "S"]];
+        ctx.font = "bold 13px Arial";
+        punkty.forEach(([P, name]) => {
+            ctx.fillStyle = "#333";
+            ctx.beginPath();
+            ctx.arc(P.x, P.y, 3.5, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            const przesX = name === "S" ? 12 : (P.x - cx) * 0.14;
+            const przesY = name === "S" ? -8 : (P.y - cy) * 0.14;
+            ctx.fillText(name, P.x + przesX, P.y + przesY);
+        });
+        ctx.fillStyle = WG_KOLORY.info;
+        ctx.beginPath();
+        ctx.arc(C.x, C.y, 7, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillText("C", C.x + (C.x - cx) * 0.16, C.y + (C.y - cy) * 0.16);
+
+        readout.innerHTML = `<span class='mathText'>kąt wpisany ACB = <b>${Math.round(kat)}°</b>, ` +
+            `kąt środkowy ASB = <b>120°</b></span> <span class="wg-neutral">— środkowy jest zawsze 2× większy</span>`;
+    }
+
+    wgDraggable(canvas, null, pos => {
+        let deg = Math.atan2(cy - pos.y, pos.x - cx) * 180 / Math.PI;
+        if (deg < 0) deg += 360;
+        // C zostaje na dużym łuku (nie wchodzi na łuk AB między 330° a 210° dołem).
+        if (deg > 205 && deg < 270) deg = 205;
+        if ((deg >= 270 && deg < 335)) deg = 335;
+        state.deg = deg;
+        draw();
+    });
+    draw();
+}
+
+// --- Zad 30: prostokąt o obwodzie 36 ----------------------------------------
+// Suwak boku a: rysunek prostokąta + wykres pola P(a) = a(18−a) z maksimum w a = 9.
+
+function widgetProstokatPole(container) {
+    const wrap = wgElement("div", "widget");
+    wrap.appendChild(wgElement("div", "widget-title",
+        "Obwód stale 36. Zmieniaj bok <b>a</b> i szukaj największego pola:"));
+
+    const canvas = wgCanvas(wrap, 520, 240);
+    const ctx = canvas.getContext("2d");
+    const controls = wgElement("div", "widget-controls",
+        `<span class='mathText'>a = </span><input type="range" min="1" max="17" step="0.25" value="4">`);
+    wrap.appendChild(controls);
+    const readout = wgElement("div", "widget-readout", "");
+    wrap.appendChild(readout);
+    container.appendChild(wrap);
+
+    const slider = controls.querySelector("input");
+
+    // Wykres P(a) po prawej stronie.
+    const gx = a => 285 + a / 18 * 215;
+    const gy = p => 210 - p / 85 * 180;
+
+    function draw() {
+        const a = parseFloat(slider.value);
+        const b = 18 - a;
+        const P = a * b;
+        const max = Math.abs(a - 9) < 0.001;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Prostokąt (skala 8 px / jednostkę), zakotwiczony w lewym dolnym rogu.
+        const s = 8;
+        const rx = 40, rby = 210;
+        ctx.fillStyle = max ? "rgba(10,179,47,0.25)" : "rgba(122,63,168,0.12)";
+        ctx.strokeStyle = max ? WG_KOLORY.ok : WG_KOLORY.wykres;
+        ctx.lineWidth = 2;
+        ctx.fillRect(rx, rby - b * s, a * s, b * s);
+        ctx.strokeRect(rx, rby - b * s, a * s, b * s);
+        ctx.fillStyle = "#333";
+        ctx.font = "12px Arial";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "top";
+        ctx.fillText(`a = ${a}`, rx + a * s / 2, rby + 6);
+        ctx.save();
+        ctx.translate(rx - 10, rby - b * s / 2);
+        ctx.rotate(-Math.PI / 2);
+        ctx.textBaseline = "bottom";
+        ctx.fillText(`b = ${b}`, 0, 0);
+        ctx.restore();
+
+        // Wykres P(a).
+        ctx.strokeStyle = ctx.fillStyle = WG_KOLORY.osie;
+        ctx.lineWidth = 1;
+        wgStrzalka(ctx, gx(0), gy(0), gx(18) + 12, gy(0));
+        wgStrzalka(ctx, gx(0), gy(0) + 5, gx(0), gy(85) - 8);
+        ctx.font = "11px Arial";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "top";
+        [9, 18].forEach(v => ctx.fillText(v, gx(v), gy(0) + 4));
+
+        ctx.strokeStyle = WG_KOLORY.wykres;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        for (let t = 0; t <= 18; t += 0.2) {
+            const p = { x: gx(t), y: gy(t * (18 - t)) };
+            t === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
+        }
+        ctx.stroke();
+
+        // Maksimum (9, 81).
+        ctx.strokeStyle = "#bbb";
+        ctx.setLineDash([4, 3]);
+        ctx.beginPath();
+        ctx.moveTo(gx(9), gy(0));
+        ctx.lineTo(gx(9), gy(81));
+        ctx.lineTo(gx(0), gy(81));
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.fillStyle = WG_KOLORY.osie;
+        ctx.textAlign = "right";
+        ctx.textBaseline = "middle";
+        ctx.fillText("81", gx(0) - 4, gy(81));
+
+        // Aktualny punkt na wykresie.
+        ctx.fillStyle = max ? WG_KOLORY.ok : WG_KOLORY.punkt;
+        ctx.beginPath();
+        ctx.arc(gx(a), gy(P), 6, 0, Math.PI * 2);
+        ctx.fill();
+
+        const fmt = v => v.toLocaleString("pl-PL", { maximumFractionDigits: 2 });
+        readout.innerHTML = `<span class='mathText'>a = ${fmt(a)}, &nbsp; b = ${fmt(b)}, &nbsp; P = a·b = <b>${fmt(P)}</b></span> ` +
+            (max ? `<span class="wg-ok">✓ największe pole — kwadrat 9 × 9, P = 81</span>` : "");
+    }
+
+    slider.addEventListener("input", draw);
+    draw();
 }
 
 // Load all exercises when the page loads

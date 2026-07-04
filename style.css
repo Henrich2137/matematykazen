@@ -11,6 +11,19 @@ body {
     text-align: center;
 }
 
+/* Zaznaczanie tekstu: jasnoniebieskie tło bez zmiany koloru tekstu —
+   spójniejsze z resztą strony niż systemowy granat z białym tekstem. */
+::selection {
+    background-color: #cce4ff;
+    color: inherit;
+}
+
+/* Odstęp pod fixed #top-bar — zamiast dawnych <br><br><br><br> w HTML.
+   Przy zmianie wysokości paska wystarczy poprawić ten padding. */
+#exercises-wrapper {
+    padding-top: 100px;
+}
+
 
 /* ===================================================================
    
@@ -239,6 +252,83 @@ body {
 .button-container button.incorrect {
     border-color: #ffaaaa;
 }
+/* multiSelect: zaznaczenie przed skompletowaniem wymaganej liczby odpowiedzi. */
+.button-container button.selected {
+    border-color: #9ec9ff;
+}
+
+/* ===== ZADANIA PRAWDA/FAŁSZ ===== */
+/* Wiersz = treść stwierdzenia + przyciski P i F po prawej. */
+.pf-container {
+    text-align: left;
+}
+.pf-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 10px 0;
+}
+.pf-text {
+    flex: 1;
+}
+.pf-row button {
+    flex: 0 0 44px;
+    width: 44px;
+    padding: 8px 0;
+    border: 1px solid #e7e7e7;
+    border-radius: 3px;
+    background-color: #fff;
+    font-family: "STIX Two Math", "Lora", serif;
+    font-size: 16px;
+    color: #111;
+    cursor: pointer;
+}
+.pf-row button.correct {
+    border-color: #88ff88;
+}
+.pf-row button.incorrect {
+    border-color: #ffaaaa;
+}
+
+/* ===== MULTISELECT ===== */
+.multi-select-note {
+    margin: 4px 0 2px;
+    font-size: 14px;
+    color: #909090;
+}
+/* Dłuższe wzory w odpowiedziach (np. zad 12.2) — szersze przyciski, 2-3 w rzędzie. */
+.multi-select-container button {
+    width: 30%;
+}
+
+/* ===== SAMOOCENA ZADAŃ OTWARTYCH ===== */
+.self-score-container {
+    margin-top: 15px;
+    text-align: center;
+}
+.self-score-label {
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #909090;
+}
+.self-score-container button {
+    display: inline-block;
+    width: auto;
+    min-width: 56px;
+    padding: 6px 10px;
+    margin: 4px;
+    border: 1px solid #e7e7e7;
+    border-radius: 3px;
+    background-color: #fff;
+    font-family: "STIX Two Math", "Lora", serif;
+    font-size: 15px;
+    color: #111;
+    cursor: pointer;
+}
+.self-score-container button.selected {
+    border-color: #9ec9ff;
+    background-color: #f2f8ff;
+}
 
 /* ===== PRZYCISKI TEKSTOWE (podpowiedź / rozwiązanie / wzory) ===== */
 .light-button-container {
@@ -395,6 +485,12 @@ body {
     margin-top: 8px;
     line-height: 1.4;
 }
+/* Krok bez komentarza dostaje dyskretny wypełniacz-separator zamiast pustki. */
+.step-comment:empty::before {
+    content: "· · ·";
+    color: #ddd;
+    letter-spacing: 4px;
+}
 .steps-nav {
     margin: 10px 0 30px;
     text-align: center;
@@ -412,6 +508,64 @@ body {
 canvas {
     margin-top: 10px;
     background-color: #fff;
+}
+
+/* ===== WIDŻETY INTERAKTYWNE (solutionInteractive) ===== */
+.widget {
+    padding-top: 10px;
+    text-align: center;
+}
+.widget-title {
+    margin: 0 20px 4px;
+    font-size: 15px;
+    color: #606060;
+}
+.widget-canvas {
+    max-width: 100%;
+    touch-action: none; /* przeciąganie palcem nie scrolluje strony */
+}
+.widget-controls {
+    margin-top: 6px;
+}
+/* Suwaki w widżetach — globalna reguła input { width: 24px } jest za wąska. */
+.widget input[type=range] {
+    width: 320px;
+    max-width: 90%;
+    border: none;
+}
+.widget input[type=number] {
+    width: 40px;
+}
+/* Stała wysokość odczytu, żeby widżet nie skakał przy zmianie komunikatu. */
+.widget-readout {
+    min-height: 1.6em;
+    margin-top: 8px;
+    font-size: 16px;
+}
+.wg-ok {
+    color: #0AB32F;
+}
+.wg-zle {
+    color: #d9534f;
+}
+.wg-neutral {
+    color: #909090;
+}
+/* Lista wzorów funkcji przedziałami (zad 10) — aktywny przedział podświetlony. */
+.widget-formula-list {
+    display: inline-block;
+    margin-top: 6px;
+    text-align: left;
+}
+.wg-formula {
+    padding: 2px 10px;
+    border-left: 3px solid transparent;
+    color: #909090;
+}
+.wg-formula.active {
+    border-left-color: #7a3fa8;
+    color: #111;
+    font-weight: bold;
 }
 
 /* ===== FORMULARZE ===== */
