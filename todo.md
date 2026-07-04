@@ -25,36 +25,39 @@ Sugestie na potem, to troche większe zadania (NIE REALIZUJ ICH JESZCZE):
 
 
 
-Sugestie WYGLĄD / DESIGN (NIE REALIZUJ ICH JESZCZE):
+Sugestie WYGLĄD / DESIGN:
 
-- po kliknięciu "pokaż więcej" poniżej solution w formie stepbystep/interactive tekst powiniene znajdować się bardziej na środku, jest za bardzo przyklejony do lewej. Można tez zrobić tak, żeby matematyczne zapisy były wycentrowane a zwykły tekst do lewej
+DO REALIZACJI:
+(wszystkie zrobione — patrz sekcja ZROBIONE WYGLĄD/DESIGN poniżej)
 
-- dodać krzyżyk w prawym dolnym rogu przy tablicy wzorów który będzie ją wyłączał
+ZROBIONE WYGLĄD/DESIGN (2026-07-04):
+- [DONE] "pokaż więcej" za bardzo przyklejone do lewej → .solution-text-more ma teraz padding 0 40px, treść odsunięta od krawędzi.
+- [DONE] Zbędny separator pod rozwiązaniem tylko-tekstowym → loadExercises() zdejmuje border-bottom z ostatniego widocznego bloku rozwiązania (na podstawie hasText/hasSteps/hasInteractive/hasMore).
+- [DONE] Przycisk "Pokaż/Schowaj tablice wzorów" zmieniał szerokość → #toggle-tablica ma min-width: 200px.
+- [DONE] Skakała wysokość diva step-by-step → podpis kroku owinięty w .step-comment (min-height ~2 linijki), .steps-content min-height 250px; wysokość stała do ~2 linijek komentarza.
+- [DONE] Litery A, B w przyciskach na dole → vertical-align: middle na przyciskach i obrazkach w nich (bez flexa, żeby nie zepsuć sup/sub).
+- [DONE] Grafika w zad 10 nierówna / przesunięta w prawo → .question img jako blok wyśrodkowany; inline obrazek w zad2 nadpisany display:inline-block.
 
-- sprawić aby przycisk "Pokaż talblice wzorów" nie zmieniał swojej wielkości po zamienieniu sięw Schowaj tablicę wzorów
+DO REALIZACJI:
+(wszystkie zrobione — patrz sekcja ZROBIONE WYGLĄD/DESIGN 2 poniżej)
 
-- podczas przełączania stepów w step by step solution wysokość całego diva się zmienia w zależności od ilości tekstu w komentarzu. Chciałbym, aby tak się nie działo, aby wysokość była z grubsza stała a dopiero gry komentarz przekracz np dwie linijki aby się zwiększyła. 
+ZROBIONE WYGLĄD/DESIGN 2 (2026-07-04):
+- [DONE] Przycisk "Rozwiązanie" tylko gdy istnieje jakiekolwiek rozwiązanie → loadExercises() chowa .solution-button, gdy brak tekstu/kroków/interaktywnego/"pokaż więcej".
+- [DONE] Klik w filmik zatrzymuje/wznawia + ikonka ▶ gdy zatrzymany → mała .video-overlay-icon w lewym dolnym rogu (nie na środku, nie zasłania filmu).
+- [DONE] Pasek postępu filmu → cienki (2px) szary .video-progress-bar aktualizowany w timeupdate, płynne przejście width (pełny = skończony).
+- [DONE] Krzyżyk zamykający tablicę wzorów → #tablica-close (✕) w prawym GÓRNYM rogu #tablica-wzorow-panel, chowa panel przez schowajTablice().
 
-- pasek postępu lub jakaś ikonka obrazująca czy filmik trwa czy już się skończył
-
-- klikanie na filmik mogłoby go zatrzymywac lub puszczać, jeżeli byłby zatrzymany mogłaby pojawić się ikonka gdzieś niżej
-
-- brakuje rozwiązania powinien pojawić się komunikat "Nie udało się wczytać bądź nie ma jeszcze rozwiązania do tego zadania" lub w ogóle nie powinno być przycisku rozwiązanie
-
-- literki A, B itd. czyli tekst w przyciskach odpowiedzi powinien znajdować się nie na dole ale na środku w osi pionowej.
-
-- w zad 10 grafika jest nierówno, jest w środku tekstu i zbyt mocno przesunięta do prawej
-
-- Jezeli rozwiąwiązanie istnieje tylko jako tekst to poniżej wyświetla się separator, który jest niepotrzebny
-
-
-
-
+Uwaga: wyśrodkowanie liter A/B w odpowiedziach jest w style.css (ogólne, wszystkie zadania), nie w exercises.js. Zmiana w exercises.js dotyczyła tylko grafiki w treści zad2.
 
 
 
 
-Sugestie o najniższym priorytecie w stylu "było by idealnie" (NIE REALIZUJ ICH JESZCZE):
+
+
+
+
+
+Sugestie o najniższym priorytecie w stylu "było by idealnie":
 - zad 2 > interactiveSolution   Sprawić aby można było przesuwać punktu na osi liczbowej a liczby na dole zmieniały się odpowiednio. Oprócz tego można dodać strzałki kóre odchodzą od -4 lub innej go punktu który, który jest po środku pomarańczowych kropek
 
 - filmiki nie powinny migać podczas przełączania
@@ -63,3 +66,4 @@ Sugestie o najniższym priorytecie w stylu "było by idealnie" (NIE REALIZUJ ICH
 
 - tablica-wzorów którą dało by isę "odblokować" i przesuwać dowolnie jak sie chce i zmieniać rozmiar okna
 
+- gdyby nie było tekstu/komentarza pod video to mógłby pojawiać się jakiś wypełniacz w stylu seperatora w jego miejsce.

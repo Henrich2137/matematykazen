@@ -13,7 +13,6 @@ body {
 
 
 /* ===================================================================
-   jest 20:04 czasu miejscowego zobaczymi kiedy zostanie to zaciągnięte, zapisujem
    
    Layout model: a single fixed bar holding a 3-column CSS grid
    (#bar-container) — #bar-left | #bar-center | #bar-right — with columns
@@ -28,6 +27,7 @@ body {
    would grow #top-bar's height.
    If you edit this block, update the "CSS & layout reference" section in
    CLAUDE.md.
+
    =================================================================== */
 #top-bar {
     position: fixed; 
@@ -95,6 +95,9 @@ body {
     cursor: pointer;
 }
 #toggle-tablica {
+    /* min-width mieści dłuższą wersję etykiety ("▲ Schowaj tablice wzorów"),
+       więc przycisk nie zmienia szerokości przy przełączaniu na "▼ Pokaż...". */
+    min-width: 200px;
     padding: 10px 12px;
     border: 2px solid #e7e7e7;
     border-radius: 3px;
@@ -106,8 +109,10 @@ body {
     cursor: pointer;
 }
 
-/* Floating formula-sheet panel — toggled to display:block by the JS. */
-#tablica-wzorow {
+/* Floating formula-sheet panel — toggled to display:block by the JS.
+   Panel to kontener (pozycja/rozmiar/ramka), a w środku <object> z PDF-em oraz
+   krzyżyk zamykający. JS przełącza display panelu i podmienia sam <object>. */
+#tablica-wzorow-panel {
     position: fixed;
     top: 100px;
     right: 30px;
@@ -120,16 +125,64 @@ body {
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+#tablica-wzorow {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+/* Krzyżyk zamykający w prawym górnym rogu tablicy wzorów. */
+#tablica-close {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    z-index: 1;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #fff;
+    font-size: 16px;
+    line-height: 1;
+    color: #111;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+#tablica-close:hover {
+    background-color: #f0f0f0;
+}
 
 .exercise-container {
     position: relative;
     width: 650px;
-    margin: 20px auto;
-    padding: 30px;
-    border: 1px solid #f0f0f0;
+    margin: auto;
+    padding: 50px;
+
     background-color: #fff;
     font-size: 18px;
     text-align: left;
+}
+
+/* Separator między zadaniami — krótsza (75%) wyśrodkowana kreska zamiast
+   border-bottom na całą szerokość (border-width nie przyjmuje procentów). */
+.exercise-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 75%;
+    border-bottom: 1px solid #e0e0e0;
+}
+/* Grafiki-rysunki w treści zadania jako blok wyśrodkowany — inaczej obrazek
+   wstawiony w linii tekstu (np. zad10) lądował "w środku zdania" i przesunięty
+   w prawo. Obrazki naprawdę inline (np. liczba w zad2) nadpisują to swoim
+   stylem display:inline-block. */
+.question img {
+    display: block;
+    max-width: 100%;
+    margin: 15px auto;
 }
 .exercise-score {
     position: absolute;
@@ -162,7 +215,11 @@ body {
     width: 22%;
     padding: 10px 12px;
     margin: 8px;
-    border: medium solid #e7e7e7;
+    /* Przyciski w wierszu wyrównują się do środka w pionie względem siebie,
+       więc litera (A., B., ...) w niższym przycisku ląduje na środku obok
+       wyższych sąsiadów zamiast przyklejać się do dołu. */
+    vertical-align: middle;
+    border: 1px solid #e7e7e7;
     border-radius: 3px;
     background-color: #fff;
     font-family: "STIX Two Math", "Lora", serif;
@@ -170,6 +227,11 @@ body {
     text-decoration: none;
     color: #111;
     cursor: pointer;
+}
+/* Grafiki odpowiedzi (np. zad6) wyrównane do środka, aby litera A./B. obok
+   nich była na środku w osi pionowej, a nie przy dolnej krawędzi obrazka. */
+.button-container button img {
+    vertical-align: middle;
 }
 .button-container button.correct {
     border-color: #88ff88;
@@ -211,7 +273,7 @@ body {
     display: none;
     margin-top: 20px;
     padding: 20px;
-    border: 2px solid #eee;
+    border: 1px solid #eee;
 }
 .solution-text-container {
     padding: 30px 0 30px 30px;
@@ -225,6 +287,11 @@ body {
 .solution-text-more-container button {
     margin: 15px 0;
 }
+/* Treść "Pokaż więcej" domyślnie kleiła się do lewej krawędzi panelu; wcięcie
+   po bokach odsuwa ją od brzegu, przez co siedzi bliżej środka karty. */
+.solution-text-more {
+    padding: 0 40px;
+}
 
 .solution-step-by-step-container {
     display: none;
@@ -232,8 +299,77 @@ body {
     text-align: center;
 }
 .solution-step-by-step-container video {
+    display: block;
     width: 420px;
     height: 180px;
+    cursor: pointer;
+}
+/* Kontener filmu kroku — pozwala nałożyć ikonkę ▶ i pasek postępu na film. */
+.step-video {
+    position: relative;
+    display: inline-block;
+    line-height: 0;
+}
+/* Mała ikonka na dole filmu, wyśrodkowana w poziomie; widoczna tylko gdy film
+   jest zatrzymany lub skończony. Zatrzymany w trakcie → dwie pionowe kreski
+   (pauza); skończony → zakręcona strzałka „odtwórz od nowa". */
+.video-overlay-icon {
+    position: absolute;
+    left: 50%;
+    bottom: 8px;
+    transform: translateX(-50%);
+    display: none;
+    width: 12px;
+    height: 14px;
+    pointer-events: none;
+}
+.step-video.paused .video-overlay-icon,
+.step-video.ended .video-overlay-icon {
+    display: block;
+}
+/* Pauza — dwie pionowe kreski (gdy zatrzymany, ale nie na końcu filmu). */
+.step-video.paused:not(.ended) .video-overlay-icon::before,
+.step-video.paused:not(.ended) .video-overlay-icon::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #e0e0e0;
+}
+.step-video.paused:not(.ended) .video-overlay-icon::before {
+    left: 0;
+}
+.step-video.paused:not(.ended) .video-overlay-icon::after {
+    right: 0;
+}
+/* Koniec filmu — zakręcona strzałka „odtwórz od nowa". */
+.step-video.ended .video-overlay-icon::before {
+    content: "↺";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    line-height: 1;
+    color: #d1d1d1;
+}
+/* Cienki pasek postępu na dole filmu (szary). */
+.video-progress {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background-color: rgba(173, 173, 173, 0.12);
+    pointer-events: none;
+}
+.video-progress-bar {
+    width: 0;
+    height: 100%;
+    background-color: #d6d6d6;
+    /* Płynniejsze przesuwanie między zdarzeniami timeupdate (~co 0.25s). */
+    transition: width 0.2s linear;
 }
 .solution-step-by-step-container img {
     display: block;
@@ -244,9 +380,20 @@ body {
     display: none;
 }
 .steps-content {
-    min-height: 230px;
+    /* Wysokość dobrana tak, by film (180px) + dwie linijki komentarza mieściły
+       się bez zmiany rozmiaru. Dzięki temu przy przełączaniu stepów div ma
+       stałą wysokość, a rośnie dopiero, gdy komentarz przekroczy ~2 linijki. */
+    min-height: 250px;
     margin: 10px 0;
     text-align: center;
+}
+/* Rezerwuje miejsce na ~2 linijki podpisu pod krokiem, żeby krótkie i puste
+   komentarze zajmowały tyle samo miejsca i nawigacja nie skakała. */
+.step-comment {
+    display: block;
+    min-height: 2.8em;
+    margin-top: 8px;
+    line-height: 1.4;
 }
 .steps-nav {
     margin: 10px 0 30px;

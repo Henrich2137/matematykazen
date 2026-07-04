@@ -12,7 +12,7 @@ numberSection: null, // null sprawia, że nie będzie traktowane jako wieloczę�
 
 
 
-const maxTotalScore = 7;
+const maxTotalScore = 7; //to jest placeholder, jak będą wszystkie zadania to wpisze tu właścwą liczbe
 
 // correctAnswerIndex: indeks poprawnej odpowiedzi w tablicy answers (0 = A, 1 = B, ...).
 // -1 (lub brak pola) = zadanie otwarte / jeszcze niewypełnione — klik w odpowiedź
@@ -58,7 +58,7 @@ const exercises = [
         }
     },
     {
-        question: '<b>Zadanie 2.</b> <br><br> Liczba <img src="zad2/zad2.png" style="width:160x;height:75px;"> jest równa:',
+        question: '<b>Zadanie 2.</b> <br><br> Liczba <img src="zad2/zad2.png" style="width:160px;height:75px;display:inline-block;vertical-align:middle;"> jest równa:',
         answers: ["A. 5<sup>4</sup>", "B. 5<sup>-4</sup>", "C. 5<sup>0.25</sup>", "D. 5<sup>-0.25</sup>"],
         correctAnswerIndex: 1,
         maxScore: 1,
@@ -108,8 +108,8 @@ const exercises = [
         selfScore: false,
         hint: "Skorzystaj z własności logarytmów: <b>log<sub>a</sub>(x) + log<sub>a</sub>(y) = log<sub>a</sub>(x*y)</b> oraz <b>log<sub>a</sub>(x<sup>b</sup>) = b*log<sub>a</sub>(x)</b>",
         formulasPage: 5,
-        solutionText: "",
-        solutionTextMore: "",
+        solutionText: null,
+        solutionTextMore: null,
         solutionStepByStep: null,
         solutionInteractive: null
     },

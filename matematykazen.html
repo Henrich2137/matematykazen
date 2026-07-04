@@ -35,7 +35,10 @@
         </div>
     </div>
     
-    <object id="tablica-wzorow" type="application/pdf" data="wybrane_wzory_matematyczne.pdf#page=10&toolbar=0" width="300px" height="80vh"></object>
+    <div id="tablica-wzorow-panel">
+        <object id="tablica-wzorow" type="application/pdf" data="wybrane_wzory_matematyczne.pdf#page=10&toolbar=0" width="300px" height="80vh"></object>
+        <button id="tablica-close" title="Zamknij tablice wzorów">✕</button>
+    </div>
     
     <br><br><br><br>
     
@@ -90,38 +93,47 @@
     <script>
 
 let totalScore = 0;
-// przycisk tablicy wzorów
-document.getElementById("toggle-tablica").addEventListener("click", function() {
-const tablica = document.getElementById("tablica-wzorow");
-const toggleButton = document.getElementById("toggle-tablica");
 
-if (tablica.style.display === "none" || tablica.style.display === "") {
-    tablica.style.display = "block";
-    toggleButton.textContent = "▲ Schowaj tablice wzorów"; // Change to right arrow
-} else {
-    tablica.style.display = "none";
-    toggleButton.textContent = "▼ Pokaż tablice wzorów"; // Change back to book icon
+// Tablica wzorów: panel (kontener) + <object> z PDF-em w środku. Pokazywanie/
+// chowanie działa na panelu, a etykieta przycisku w pasku jest z tym zsynchronizowana.
+const tablicaPanel = document.getElementById("tablica-wzorow-panel");
+const toggleTablicaButton = document.getElementById("toggle-tablica");
+
+function pokazTablice() {
+    tablicaPanel.style.display = "block";
+    toggleTablicaButton.textContent = "▲ Schowaj tablice wzorów";
 }
+function schowajTablice() {
+    tablicaPanel.style.display = "none";
+    toggleTablicaButton.textContent = "▼ Pokaż tablice wzorów";
+}
+
+toggleTablicaButton.addEventListener("click", function() {
+    const ukryta = tablicaPanel.style.display === "none" || tablicaPanel.style.display === "";
+    if (ukryta) {
+        pokazTablice();
+    } else {
+        schowajTablice();
+    }
 });
 
+// Krzyżyk w rogu tablicy wzorów po prostu ją chowa.
+document.getElementById("tablica-close").addEventListener("click", schowajTablice);
+
 function otworzTabliceNaStronie(numerStrony) {
-    document.getElementById("toggle-tablica").textContent = "▲ Schowaj tablice wzorów"; // Change to right arrow
-
     const tablica = document.getElementById("tablica-wzorow");
-    tablica.style.display = "block";
 
-    // Tworzymy nowy obiekt zamiast tylko zmieniać `data`
+    // Tworzymy nowy <object> zamiast tylko zmieniać `data` (przeglądarkowy
+    // podgląd PDF nie zawsze przeładowuje się po samej zmianie atrybutu).
     const nowyObject = document.createElement("object");
     nowyObject.id = "tablica-wzorow";
     nowyObject.type = "application/pdf";
     nowyObject.data = `wybrane_wzory_matematyczne.pdf#page=${numerStrony}&toolbar=0`;
 
-    nowyObject.style.cssText = tablica.style.cssText;
-
-    // Zamieniamy stare <object> na nowy, aby wymusić przeładowanie
+    // Zamieniamy stary <object> na nowy w panelu (styl bierze się z CSS #tablica-wzorow).
     tablica.parentNode.replaceChild(nowyObject, tablica);
-    tablica.style.display = "block";
 
+    pokazTablice();
 }
 
 const scoreSwitchButton = document.getElementById("score-switch-button");
@@ -325,20 +337,27 @@ function loadExercises() {
         function renderStep(step) {
 
             if (!step) return "";
+            // Podpis kroku zawsze w .step-comment — rezerwuje stałe miejsce (~2 linijki),
+            // dzięki czemu wysokość diva nie skacze między krokami o różnej długości tekstu.
             if (step.type === "video") {
                 // Prędkość ustawiamy na realnym elemencie <video> w showStep(),
                 // bo właściwość JS (defaultPlaybackRate) nie przetrwałaby
-                // serializacji do stringa HTML.
+                // serializacji do stringa HTML. Tam też podpinamy klik (pauza/play),
+                // ikonkę ▶ (widoczną gdy zatrzymany) i pasek postępu.
                 return `
-                    <video autoplay playsinline>
-                        <source src="${step.src}" type="video/mp4">
-                    </video>
-                    <br>${step.text}
+                    <div class="step-video">
+                        <video autoplay playsinline>
+                            <source src="${step.src}" type="video/mp4">
+                        </video>
+                        <div class="video-overlay-icon"></div>
+                        <div class="video-progress"><div class="video-progress-bar"></div></div>
+                    </div>
+                    <div class="step-comment">${step.text}</div>
                 `;
             } else if (step.type === "image") {
-                return `<img src="${step.src}"><br>${step.text}`;
+                return `<img src="${step.src}"><div class="step-comment">${step.text}</div>`;
             } else if (step.type === "text") {
-                return `<div>${step.text}</div>`;
+                return `<div class="step-comment">${step.text}</div>`;
             }
             return "";
         }
@@ -346,6 +365,29 @@ function loadExercises() {
         const hasSteps = Array.isArray(exercise.solutionStepByStep);
         const steps = hasSteps ? exercise.solutionStepByStep : [];
         let currentStep = 0;
+
+        // Separator (dolna kreska) rozdziela kolejne bloki rozwiązania. Pod ostatnim
+        // widocznym blokiem jest zbędny (np. gdy rozwiązanie to sam tekst) — zdejmujemy
+        // go z ostatniego widocznego bloku.
+        const hasText = !!(exercise.solutionText && exercise.solutionText.trim() !== "");
+        const hasInteractive = !!exercise.solutionInteractive;
+        const hasMore = !!(exercise.solutionTextMore && exercise.solutionTextMore.trim() !== "");
+        const solutionBlocks = [
+            hasText ? solutionTextContainer : null,
+            hasSteps ? solutionStepByStepContainer : null,
+            hasInteractive ? solutionInteractiveContainer : null,
+            hasMore ? solutionTextMoreContainer : null,
+        ].filter(Boolean);
+        if (solutionBlocks.length) {
+            solutionBlocks[solutionBlocks.length - 1].style.borderBottom = "none";
+        }
+
+        // Przycisk "Rozwiązanie" ma sens tylko, gdy istnieje jakiekolwiek rozwiązanie
+        // (tekst / kroki / interaktywne / "pokaż więcej"). W przeciwnym razie go chowamy.
+        const hasAnySolution = solutionBlocks.length > 0;
+        if (!hasAnySolution) {
+            exerciseClone.querySelector(".solution-button").style.display = "none";
+        }
 
         function showStep(idx) {
             currentStep = idx;
@@ -358,6 +400,40 @@ function loadExercises() {
             if (video) {
                 video.defaultPlaybackRate = 1;
                 video.playbackRate = 1;
+
+                const stepVideo = video.closest(".step-video");
+                const progressBar = stepVideo ? stepVideo.querySelector(".video-progress-bar") : null;
+
+                // Klik w film przełącza pauzę/odtwarzanie.
+                video.addEventListener("click", () => {
+                    if (video.paused) {
+                        video.play();
+                    } else {
+                        video.pause();
+                    }
+                });
+
+                // Klasy stanu na kontenerze sterują ikonką:
+                //  .paused (bez .ended) → dwie kreski (pauza),
+                //  .ended               → zakręcona strzałka (odtwórz od nowa).
+                const syncState = () => {
+                    if (stepVideo) {
+                        stepVideo.classList.toggle("paused", video.paused);
+                        stepVideo.classList.toggle("ended", video.ended);
+                    }
+                };
+                video.addEventListener("play", syncState);
+                video.addEventListener("pause", syncState);
+                video.addEventListener("ended", syncState);
+
+                // Pasek postępu — pokazuje, ile filmu zostało / że już się skończył.
+                video.addEventListener("timeupdate", () => {
+                    if (progressBar && video.duration) {
+                        progressBar.style.width = `${(video.currentTime / video.duration) * 100}%`;
+                    }
+                });
+
+                syncState();
             }
 
             stepCounter.textContent = `${currentStep + 1} / ${steps.length}`;
