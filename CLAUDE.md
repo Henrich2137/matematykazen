@@ -10,7 +10,7 @@ MatematykaZen is an interactive platform for learning math for the Polish "matur
 - **UI philosophy**: minimalist, no ads, no distractions.
 - **Business model**: freemium — the CKE exercise base is free; proprietary exercises/features are the paid tier (subscription vs. one-time purchase is still undecided).
 
-This repo (`matematykazen12`) is one instance of the exam-sheet page pattern; sibling/predecessor folders (e.g. `matematykazen11`, ...) hold other exam sheets following the same structure.
+This repo (`matematykazengithubrepo`) is one instance of the exam-sheet page pattern; sibling/predecessor folders (e.g. `matematykazen11`, ...) hold other exam sheets following the same structure.
 
 ## What this is
 
@@ -53,7 +53,7 @@ Each element of `exercises` is an object with this shape (see the header comment
 - `formulasPage` — page number into `wybrane_wzory_matematyczne.pdf`, or `null` to hide the "Pokaż potrzebne wzory" button. Clicking it calls `otworzTabliceNaStronie(page)`, which replaces the PDF `<object>` entirely (changing just `data` doesn't reliably reload PDF viewers).
 - `solutionText` / `solutionTextMore` — HTML for the solution panel; `solutionTextMore` is behind an extra "Pokaż więcej" toggle and its container auto-hides when empty.
 - `solutionStepByStep` — either `null` or an array of `{ type: "video"|"image"|"text", src, text }` steps rendered one at a time with prev/next navigation inside the solution panel. `renderStep()` returns a plain HTML string; `showStep()` then slows video steps down by setting `defaultPlaybackRate` **and** `playbackRate` to `0.1` on the real, already-inserted `<video>` (a near-frozen scrubbing effect). Doing it on the attached element is deliberate — a JS property can't be set on the throwaway string `renderStep` returns. Reaching the last step calls `markCorrectAnswer()`, which reveals the correct answer button (guarded against a missing button) — i.e. finishing the walkthrough is how open-style exercises "give away" the answer.
-- `solutionInteractive` — either `null` or a `function(container)` invoked at render time to inject custom interactive widgets (e.g. the `<canvas id="numberLine">` number-line/graph drawn by `drawNumberLine1()` / `drawExponentialGraph()` / `rysujWykresEksponencjalny()` in the inline script). Note `rysujWykresEksponencjalny` is an incomplete/broken older implementation (the actual plotting loop is commented out) — Zadanie 5 currently displays a placeholder note about this ("coś nie wyszło").
+- `solutionInteractive` — either `null` or a `function(container)` invoked at render time to inject custom interactive widgets (e.g. the `<canvas id="numberLine">` number-line drawn by `drawNumberLine1()` in the inline script — the only such helper actually defined). Note: Zadanie 5's data still calls a `rysujWykresEksponencjalny()` graph helper that no longer exists in the inline script (a dangling reference from an unfinished exponential-graph widget), so Zadanie 5 currently displays a placeholder note about this ("coś nie wyszło").
 
 ### Asset folder convention
 
