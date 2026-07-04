@@ -5,8 +5,6 @@ Błędy/Bugi które znalazłem w smoke tescie:
 
 - zad 1 > solution step by step    większość filmików nie wyświetla się. Dzieje siętak tylko w VS code Integrated Browser, w chrome, firefox, brave i edge jest ok (z tego co zweryfikowalem to błąd raczej po stronie integrated browser, chyba nie ma się czym martwić)
 
-- wywalić interactive olution z zadania 5 DONE
-
 
 
 Sugestie nie będące bugami (NIE REALIZUJ ICH JESZCZE):
@@ -29,7 +27,7 @@ Sugestie nie będące bugami (NIE REALIZUJ ICH JESZCZE):
 
 - w zad 10 grafika jest nierówno, jest w środku tekstu i zbyt mocno przesunięta do prawej
 
-
+- Jezeli rozwiąwiązanie istnieje tylko jako tekst to poniżej wyświetla się separator, który jest niepotrzebny
 
 
 Sugestie na potem (NIE REALIZUJ ICH JESZCZE):
