@@ -43,9 +43,11 @@ DO REALIZACJI:
 
 ZROBIONE WYGLĄD/DESIGN 2 (2026-07-04):
 - [DONE] Przycisk "Rozwiązanie" tylko gdy istnieje jakiekolwiek rozwiązanie → loadExercises() chowa .solution-button, gdy brak tekstu/kroków/interaktywnego/"pokaż więcej".
-- [DONE] Klik w filmik zatrzymuje/wznawia + ikonka ▶ gdy zatrzymany → .step-video z klasą .paused i nakładką .video-overlay-icon (widoczna, gdy film stoi lub się skończył).
-- [DONE] Pasek postępu filmu → .video-progress / .video-progress-bar aktualizowany w timeupdate (pełny = skończony).
-- [DONE] Krzyżyk zamykający tablicę wzorów → #tablica-close (✕) w prawym dolnym rogu #tablica-wzorow-panel, chowa panel przez schowajTablice().
+- [DONE] Klik w filmik zatrzymuje/wznawia + ikonka ▶ gdy zatrzymany → mała .video-overlay-icon w lewym dolnym rogu (nie na środku, nie zasłania filmu).
+- [DONE] Pasek postępu filmu → cienki (2px) szary .video-progress-bar aktualizowany w timeupdate, płynne przejście width (pełny = skończony).
+- [DONE] Krzyżyk zamykający tablicę wzorów → #tablica-close (✕) w prawym GÓRNYM rogu #tablica-wzorow-panel, chowa panel przez schowajTablice().
+
+Uwaga: wyśrodkowanie liter A/B w odpowiedziach jest w style.css (ogólne, wszystkie zadania), nie w exercises.js. Zmiana w exercises.js dotyczyła tylko grafiki w treści zad2.
 
 
 

@@ -131,11 +131,11 @@ body {
     height: 100%;
     border: none;
 }
-/* Krzyżyk zamykający w prawym dolnym rogu tablicy wzorów. */
+/* Krzyżyk zamykający w prawym górnym rogu tablicy wzorów. */
 #tablica-close {
     position: absolute;
     right: 8px;
-    bottom: 8px;
+    top: 8px;
     z-index: 1;
     width: 32px;
     height: 32px;
@@ -298,36 +298,39 @@ body {
     display: inline-block;
     line-height: 0;
 }
-/* Ikonka ▶ na środku filmu, widoczna tylko gdy film jest zatrzymany/skończony. */
+/* Mała ikonka ▶ w lewym dolnym rogu filmu (nad paskiem postępu), widoczna tylko
+   gdy film jest zatrzymany/skończony — celowo nie na środku, żeby nie zasłaniać
+   treści filmu. */
 .video-overlay-icon {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    left: 8px;
+    bottom: 8px;
     display: none;
     color: rgba(255, 255, 255, 0.9);
-    font-size: 46px;
+    font-size: 16px;
     line-height: 1;
-    text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
     pointer-events: none;
 }
 .step-video.paused .video-overlay-icon {
     display: block;
 }
-/* Pasek postępu na dole filmu. */
+/* Cienki pasek postępu na dole filmu (szary). */
 .video-progress {
     position: absolute;
     right: 0;
     bottom: 0;
     left: 0;
-    height: 4px;
+    height: 2px;
     background-color: rgba(0, 0, 0, 0.12);
     pointer-events: none;
 }
 .video-progress-bar {
     width: 0;
     height: 100%;
-    background-color: #0AB32F;
+    background-color: #666;
+    /* Płynniejsze przesuwanie między zdarzeniami timeupdate (~co 0.25s). */
+    transition: width 0.2s linear;
 }
 .solution-step-by-step-container img {
     display: block;
