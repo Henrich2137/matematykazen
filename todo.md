@@ -6,7 +6,8 @@ DO NAPRAWY. TE BŁĘDY MASZ NAPRAWIAĆ:
 - Porównanie answer == correctAnswer nigdy nie trafi → klasa hiddenCorrect się nie ustawia, klikanie poprawnej odpowiedzi nie punktuje. To żywcem pokazuje, dlaczego porównywanie odpowiedzi po stringu HTML jest kruche
 
 
-
+- defaultPlaybackRate na oderwanym tempDiv (matematykazen12.html:334-359). Ustawiasz właściwość na <video> w detached divie, potem zwracasz tempDiv.innerHTML (string) — właściwość JS nie serializuje się do HTML. Fix: renderStep niech wstawia węzeł DOM, a prędkość ustawiaj na realnym, wstawionym elemencie: po stepsContent.innerHTML = … zrób stepsContent.querySelector('video').defaultPlaybackRate = 0.01. 
+Jak coś to 0.01 było ustawione roboczo chyba aby zobaczyć czy działa chyba, możesz ustawić 0,1
 
 
 
