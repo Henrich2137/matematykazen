@@ -413,16 +413,18 @@ function loadExercises() {
                     }
                 });
 
-                // Ikonka ▶ (klasa .paused na kontenerze) widoczna tylko, gdy film stoi
-                // — także po jego zakończeniu.
-                const syncPaused = () => {
+                // Klasy stanu na kontenerze sterują ikonką:
+                //  .paused (bez .ended) → dwie kreski (pauza),
+                //  .ended               → zakręcona strzałka (odtwórz od nowa).
+                const syncState = () => {
                     if (stepVideo) {
                         stepVideo.classList.toggle("paused", video.paused);
+                        stepVideo.classList.toggle("ended", video.ended);
                     }
                 };
-                video.addEventListener("play", syncPaused);
-                video.addEventListener("pause", syncPaused);
-                video.addEventListener("ended", syncPaused);
+                video.addEventListener("play", syncState);
+                video.addEventListener("pause", syncState);
+                video.addEventListener("ended", syncState);
 
                 // Pasek postępu — pokazuje, ile filmu zostało / że już się skończył.
                 video.addEventListener("timeupdate", () => {
@@ -431,7 +433,7 @@ function loadExercises() {
                     }
                 });
 
-                syncPaused();
+                syncState();
             }
 
             stepCounter.textContent = `${currentStep + 1} / ${steps.length}`;

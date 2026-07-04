@@ -207,7 +207,7 @@ body {
        więc litera (A., B., ...) w niższym przycisku ląduje na środku obok
        wyższych sąsiadów zamiast przyklejać się do dołu. */
     vertical-align: middle;
-    border: medium solid #e7e7e7;
+    border: 2px solid #e7e7e7;
     border-radius: 3px;
     background-color: #fff;
     font-family: "STIX Two Math", "Lora", serif;
