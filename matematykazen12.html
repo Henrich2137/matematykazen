@@ -85,13 +85,11 @@
     -->
 
 
-    
-    
-</body>
-</html>
-<script>
 
-totalScore = 0;
+
+    <script>
+
+let totalScore = 0;
 // przycisk tablicy wzorów
 document.getElementById("toggle-tablica").addEventListener("click", function() {
 const tablica = document.getElementById("tablica-wzorow");
@@ -136,7 +134,7 @@ scoreSwitchButton.addEventListener("click", () => {
 
         scoreSwitchButton.innerHTML="widok punktów: tylko suma"
 
-        var elements = document.getElementsByClassName('exercise-score');
+        const elements = document.getElementsByClassName('exercise-score');
         for (let el of elements) {
             el.style.display = "none";
         }
@@ -150,7 +148,7 @@ scoreSwitchButton.addEventListener("click", () => {
         scoreSwitchButton.innerHTML="widok punktów: wszystko"
 
         document.getElementById('total-score').style.display = "block";
-        var elements = document.getElementsByClassName('exercise-score');
+        const elements = document.getElementsByClassName('exercise-score');
         for (let el of elements) {
             el.style.display = "block";
         }
@@ -299,7 +297,7 @@ function loadExercises() {
         }
 
         // Add event listeners for hint and solution buttons
-        formulasButton = exerciseClone.querySelector(".formulas-button")
+        const formulasButton = exerciseClone.querySelector(".formulas-button")
 
         if(exercise.formulasPage != null){
             formulasButton.addEventListener("click", () => {
@@ -461,4 +459,7 @@ loadExercises();
         - Floating z prawej pdf z kartą wzorów
 */
 
-</script>
+    </script>
+
+</body>
+</html>
