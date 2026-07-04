@@ -1,13 +1,11 @@
 W tym pliku będę zapisywał błędy oraz sugestie znalezione w wyniku smoke testu
 
-DO NAPRAWY. TE BŁĘDY MASZ NAPRAWIAĆ:
-- W zadaniach z odpowiedziami ABCD gdy wybiorę najpierw dobrą, a potem złą odpowiedź to punkt pozostaje przyznany. Chciałbym, aby się cofało. Chciałbym aby zawsze po zaznaczeniu złej odpowiedzi pojawiło się 0 / 1 pkt
+ZROBIONE (2026-07-04):
+- [x] Punkt nie cofał się po złej odpowiedzi → naprawione. Usunięto flag isScoreGiven; każde zadanie ma earnedScore (0 albo maxScore), a updateTotalScore() przelicza sumę od zera. Zła odpowiedź daje 0 / X pkt i zeruje earnedScore.
+- [x] Kruche porównywanie odpowiedzi po stringu HTML → naprawione. Dane używają teraz correctAnswerIndex (0=A, 1=B, ...; -1 = otwarte/niewypełnione), a ocena to i === correctIndex. Cały exercises.js zmigrowany.
+- [x] defaultPlaybackRate na oderwanym tempDiv → naprawione. renderStep() zwraca czysty string, a showStep() ustawia defaultPlaybackRate i playbackRate = 0.1 na realnym <video>.
 
-- Porównanie answer == correctAnswer nigdy nie trafi → klasa hiddenCorrect się nie ustawia, klikanie poprawnej odpowiedzi nie punktuje. To żywcem pokazuje, dlaczego porównywanie odpowiedzi po stringu HTML jest kruche
-
-
-- defaultPlaybackRate na oderwanym tempDiv (matematykazen12.html:334-359). Ustawiasz właściwość na <video> w detached divie, potem zwracasz tempDiv.innerHTML (string) — właściwość JS nie serializuje się do HTML. Fix: renderStep niech wstawia węzeł DOM, a prędkość ustawiaj na realnym, wstawionym elemencie: po stepsContent.innerHTML = … zrób stepsContent.querySelector('video').defaultPlaybackRate = 0.01. 
-Jak coś to 0.01 było ustawione roboczo chyba aby zobaczyć czy działa chyba, możesz ustawić 0,1
+Pozostałe porządki Fazy 1 (usunięcie martwego kodu, scalenie listenerów .solution-button, deklaracje globali, przeniesienie <script>) → opisane w todoFaza1.md.
 
 
 

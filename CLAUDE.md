@@ -24,6 +24,10 @@ Plus per-exercise asset folders `zad1/`, `zad2/`, `zad3/`, ... (Polish "zadanie"
 
 Step-by-step solution videos are produced externally with **Manim** (the Python math-animation library), then exported as short `.mp4` files and dropped into the relevant `zadN/` folder — they aren't generated or editable from within this repo, only referenced and played back (see `solutionStepByStep` below).
 
+## Task tracking
+
+Active TODO lists live in `todo.md` (bugs + design/later suggestions from smoke-testing) and `todoFaza1.md` (remaining Faza 1 engine cleanups, written to be picked up by a fresh session). Check them before starting work; keep them in sync and delete a phase file once its work is done.
+
 ## Running / previewing
 
 There is no build or test tooling. Open [matematykazen12.html](matematykazen12.html) directly in a browser, or serve the directory with any static file server (e.g. `npx serve` or `python -m http.server`) if `file://` restrictions cause the embedded PDF `<object>` not to load.
