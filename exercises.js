@@ -146,7 +146,7 @@ const exercises = [
         'jest równa wartości wyrażenia:'
         ,//Brzydki zapis matematyczny w html: <b> <sup>x</sup>&frasl;<sub>x<sup>2</sup> - 1<sub> : <sup>3x<sup>3</sup></sup>&frasl;<sub>x + 1<sub></b>
         answers: ['A. <img src="zad6/zad6odp1.png" style="height:50px;">', 'B. <img src="zad6/zad6odp2.png" style="height:50px;">', 'C. <img src="zad6/zad6odp3.png" style="height:50px;">', 'D. <img src="zad6/zad6odp4.png" style="height:40px;">'],
-        correctAnswer: '<b>B.</b> <img src="zad6/zad6odp2.png" style="height:50px;">',
+        correctAnswer: 'B. <img src="zad6/zad6odp2.png" style="height:50px;">',
         maxScore: 1,
         selfScore: false,
         hint: "Skorzystaj z własności logarytmów: <b>log<sub>a</sub>(x) + log<sub>a</sub>(y) = log<sub>a</sub>(x*y)</b> oraz <b>log<sub>a</sub>(x<sup>b</sup>) = b*log<sub>a</sub>(x)</b>",

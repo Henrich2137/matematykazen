@@ -30,13 +30,18 @@ Sugestie nie będące bugami (NIE REALIZUJ ICH JESZCZE):
 - Jezeli rozwiąwiązanie istnieje tylko jako tekst to poniżej wyświetla się separator, który jest niepotrzebny
 
 
-Sugestie na potem (NIE REALIZUJ ICH JESZCZE):
+
+
+
+Sugestie na potem, to troche większe zadania (NIE REALIZUJ ICH JESZCZE):
 
 - do zadań 23, 24 itd. nie wczytują się grafiki (chyba ich jeszcze nie ma)
 
 - dodanie pól na własny tekst w zadaniach takich jak zadanie 10 w miejscach takich jak "..." i systemu sprawdzania odpowiedzi użytkownika czy pasuje chociaż do jednej wersji poprawnych odpowiedzi. Poniżej zadania powinien znajdować się przycisk sprawdź, po kliknięciu którego przy każdym z pól pojawi się oznaczenie na czerwono lub zielona w zależności od poprawności odpowiedzi. (moze być to w formie zmiany koloru ramki pola)
 
 - dodanie strony głównej z opisem projektu i odnośnikiem do arkusza demo (tego który teraz jest stroną główną) oraz hiperłącza na logo lewy górnym rogu
+
+- w zadaniu 6 jest 
 
 
 
