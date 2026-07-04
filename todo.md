@@ -38,13 +38,11 @@ ZROBIONE WYGLĄD/DESIGN (2026-07-04):
 - [DONE] Litery A, B w przyciskach na dole → vertical-align: middle na przyciskach i obrazkach w nich (bez flexa, żeby nie zepsuć sup/sub).
 - [DONE] Grafika w zad 10 nierówna / przesunięta w prawo → .question img jako blok wyśrodkowany; inline obrazek w zad2 nadpisany display:inline-block.
 
-NIE REALIZUJ:
+DO REALIZACJI:
 
 - przycisk "Rozwiązanie" renderuje się tylko wtedy jeśli istnieje jakiekolwiek rozwiązanie
 
 - klikanie na filmik mogłoby go zatrzymywac lub puszczać, jeżeli byłby zatrzymany mogłaby pojawić się ikonka gdzieś niżej
-
-- brakuje rozwiązania powinien pojawić się komunikat "Nie udało się wczytać bądź nie ma jeszcze rozwiązania do tego zadania" lub w ogóle nie powinno być przycisku rozwiązanie
 
 - pasek postępu lub jakaś ikonka obrazująca czy filmik trwa czy już się skończył
 
