@@ -25,27 +25,31 @@ Sugestie na potem, to troche większe zadania (NIE REALIZUJ ICH JESZCZE):
 
 
 
-Sugestie WYGLĄD / DESIGN (NIE REALIZUJ ICH JESZCZE):
+Sugestie WYGLĄD / DESIGN:
 
+DO REALIZACJI:
 - po kliknięciu "pokaż więcej" poniżej solution w formie stepbystep/interactive tekst powiniene znajdować się bardziej na środku, jest za bardzo przyklejony do lewej. Można tez zrobić tak, żeby matematyczne zapisy były wycentrowane a zwykły tekst do lewej
 
-- dodać krzyżyk w prawym dolnym rogu przy tablicy wzorów który będzie ją wyłączał
+- Jezeli rozwiąwiązanie istnieje tylko jako tekst to poniżej wyświetla się separator, który jest niepotrzebny
 
 - sprawić aby przycisk "Pokaż talblice wzorów" nie zmieniał swojej wielkości po zamienieniu sięw Schowaj tablicę wzorów
 
 - podczas przełączania stepów w step by step solution wysokość całego diva się zmienia w zależności od ilości tekstu w komentarzu. Chciałbym, aby tak się nie działo, aby wysokość była z grubsza stała a dopiero gry komentarz przekracz np dwie linijki aby się zwiększyła. 
 
-- pasek postępu lub jakaś ikonka obrazująca czy filmik trwa czy już się skończył
+- literki A, B itd. czyli tekst w przyciskach odpowiedzi powinien znajdować się nie na dole ale na środku w osi pionowej.
+
+- w zad 10 grafika jest nierówno, jest w środku tekstu i zbyt mocno przesunięta do prawej
+
+NIE REALIZUJ:
 
 - klikanie na filmik mogłoby go zatrzymywac lub puszczać, jeżeli byłby zatrzymany mogłaby pojawić się ikonka gdzieś niżej
 
 - brakuje rozwiązania powinien pojawić się komunikat "Nie udało się wczytać bądź nie ma jeszcze rozwiązania do tego zadania" lub w ogóle nie powinno być przycisku rozwiązanie
 
-- literki A, B itd. czyli tekst w przyciskach odpowiedzi powinien znajdować się nie na dole ale na środku w osi pionowej.
+- pasek postępu lub jakaś ikonka obrazująca czy filmik trwa czy już się skończył
 
-- w zad 10 grafika jest nierówno, jest w środku tekstu i zbyt mocno przesunięta do prawej
+- dodać krzyżyk w prawym dolnym rogu przy tablicy wzorów który będzie ją wyłączał
 
-- Jezeli rozwiąwiązanie istnieje tylko jako tekst to poniżej wyświetla się separator, który jest niepotrzebny
 
 
 
