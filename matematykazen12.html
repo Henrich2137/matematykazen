@@ -396,8 +396,8 @@ function loadExercises() {
                 // odtwarzania, playbackRate dla trwającego już autoplay.
                 const video = stepsContent.querySelector("video");
                 if (video) {
-                    video.defaultPlaybackRate = 0.1;
-                    video.playbackRate = 0.1;
+                    video.defaultPlaybackRate = 0.5;
+                    video.playbackRate = 0.5;
                 }
 
                 stepCounter.textContent = `${currentStep + 1} / ${steps.length}`;
