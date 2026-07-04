@@ -167,13 +167,21 @@ body {
 
     margin: auto;
     padding: 50px;
-    border-bottom: 1px solid #f0f0f0;
-    border-bottom-width: 50%;
-
 
     background-color: #fff;
     font-size: 18px;
     text-align: left;
+}
+/* Separator między zadaniami — krótsza (75%) wyśrodkowana kreska zamiast
+   border-bottom na całą szerokość (border-width nie przyjmuje procentów). */
+.exercise-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 75%;
+    border-bottom: 1px solid #f0f0f0;
 }
 /* Grafiki-rysunki w treści zadania jako blok wyśrodkowany — inaczej obrazek
    wstawiony w linii tekstu (np. zad10) lądował "w środku zdania" i przesunięty
