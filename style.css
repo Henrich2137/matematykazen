@@ -156,6 +156,8 @@ body {
 .exercise-container {
     position: relative;
     width: 650px;
+
+    
     /*a zamiast damy separator
     margin: 20px auto;
     padding: 30px;
