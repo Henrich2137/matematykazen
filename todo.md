@@ -28,17 +28,15 @@ Sugestie na potem, to troche większe zadania (NIE REALIZUJ ICH JESZCZE):
 Sugestie WYGLĄD / DESIGN:
 
 DO REALIZACJI:
-- po kliknięciu "pokaż więcej" poniżej solution w formie stepbystep/interactive tekst powiniene znajdować się bardziej na środku, jest za bardzo przyklejony do lewej. Można tez zrobić tak, żeby matematyczne zapisy były wycentrowane a zwykły tekst do lewej
+(wszystkie zrobione — patrz sekcja ZROBIONE WYGLĄD/DESIGN poniżej)
 
-- Jezeli rozwiąwiązanie istnieje tylko jako tekst to poniżej wyświetla się separator, który jest niepotrzebny
-
-- sprawić aby przycisk "Pokaż talblice wzorów" nie zmieniał swojej wielkości po zamienieniu sięw Schowaj tablicę wzorów
-
-- podczas przełączania stepów w step by step solution wysokość całego diva się zmienia w zależności od ilości tekstu w komentarzu. Chciałbym, aby tak się nie działo, aby wysokość była z grubsza stała a dopiero gry komentarz przekracz np dwie linijki aby się zwiększyła. 
-
-- literki A, B itd. czyli tekst w przyciskach odpowiedzi powinien znajdować się nie na dole ale na środku w osi pionowej.
-
-- w zad 10 grafika jest nierówno, jest w środku tekstu i zbyt mocno przesunięta do prawej
+ZROBIONE WYGLĄD/DESIGN (2026-07-04):
+- [DONE] "pokaż więcej" za bardzo przyklejone do lewej → .solution-text-more ma teraz padding 0 40px, treść odsunięta od krawędzi.
+- [DONE] Zbędny separator pod rozwiązaniem tylko-tekstowym → loadExercises() zdejmuje border-bottom z ostatniego widocznego bloku rozwiązania (na podstawie hasText/hasSteps/hasInteractive/hasMore).
+- [DONE] Przycisk "Pokaż/Schowaj tablice wzorów" zmieniał szerokość → #toggle-tablica ma min-width: 200px.
+- [DONE] Skakała wysokość diva step-by-step → podpis kroku owinięty w .step-comment (min-height ~2 linijki), .steps-content min-height 250px; wysokość stała do ~2 linijek komentarza.
+- [DONE] Litery A, B w przyciskach na dole → vertical-align: middle na przyciskach i obrazkach w nich (bez flexa, żeby nie zepsuć sup/sub).
+- [DONE] Grafika w zad 10 nierówna / przesunięta w prawo → .question img jako blok wyśrodkowany; inline obrazek w zad2 nadpisany display:inline-block.
 
 NIE REALIZUJ:
 
