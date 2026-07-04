@@ -156,9 +156,16 @@ body {
 .exercise-container {
     position: relative;
     width: 650px;
+    /*a zamiast damy separator
     margin: 20px auto;
     padding: 30px;
     border: 1px solid #f0f0f0;
+    */ 
+    margin: auto;
+    padding: 50px;
+
+
+
     background-color: #fff;
     font-size: 18px;
     text-align: left;
