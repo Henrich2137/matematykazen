@@ -39,14 +39,13 @@ ZROBIONE WYGLĄD/DESIGN (2026-07-04):
 - [DONE] Grafika w zad 10 nierówna / przesunięta w prawo → .question img jako blok wyśrodkowany; inline obrazek w zad2 nadpisany display:inline-block.
 
 DO REALIZACJI:
+(wszystkie zrobione — patrz sekcja ZROBIONE WYGLĄD/DESIGN 2 poniżej)
 
-- przycisk "Rozwiązanie" renderuje się tylko wtedy jeśli istnieje jakiekolwiek rozwiązanie
-
-- klikanie na filmik mogłoby go zatrzymywac lub puszczać, jeżeli byłby zatrzymany mogłaby pojawić się ikonka gdzieś niżej
-
-- pasek postępu lub jakaś ikonka obrazująca czy filmik trwa czy już się skończył
-
-- dodać krzyżyk w prawym dolnym rogu przy tablicy wzorów który będzie ją wyłączał
+ZROBIONE WYGLĄD/DESIGN 2 (2026-07-04):
+- [DONE] Przycisk "Rozwiązanie" tylko gdy istnieje jakiekolwiek rozwiązanie → loadExercises() chowa .solution-button, gdy brak tekstu/kroków/interaktywnego/"pokaż więcej".
+- [DONE] Klik w filmik zatrzymuje/wznawia + ikonka ▶ gdy zatrzymany → .step-video z klasą .paused i nakładką .video-overlay-icon (widoczna, gdy film stoi lub się skończył).
+- [DONE] Pasek postępu filmu → .video-progress / .video-progress-bar aktualizowany w timeupdate (pełny = skończony).
+- [DONE] Krzyżyk zamykający tablicę wzorów → #tablica-close (✕) w prawym dolnym rogu #tablica-wzorow-panel, chowa panel przez schowajTablice().
 
 
 
