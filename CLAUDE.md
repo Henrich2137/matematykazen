@@ -10,13 +10,13 @@ MatematykaZen is an interactive platform for learning math for the Polish "matur
 - **UI philosophy**: minimalist, no ads, no distractions.
 - **Business model**: freemium — the CKE exercise base is free; proprietary exercises/features are the paid tier (subscription vs. one-time purchase is still undecided).
 
-This repo (`matematykazen12`) is one instance of the exam-sheet page pattern; sibling/predecessor folders (e.g. `matematykazen11`, ...) hold other exam sheets following the same structure.
+This repo (`matematykazengithubrepo`) is one instance of the exam-sheet page pattern; sibling/predecessor folders (e.g. `matematykazen11`, ...) hold other exam sheets following the same structure.
 
 ## What this is
 
 A static, single-page Polish-language practice site for one specific exam sheet ("Egzamin maturalny z matematyki podstawowej grudzień 2024, próbna CKE"). No backend, no build system, no package manager. Three files drive everything:
 
-- [matematykazen12.html](matematykazen12.html) — the page skeleton around which all logic revolves: renders exercises from the data file, and handles all UI (answer buttons, hints, step-by-step solutions, the CKE formula sheet shown as an embedded PDF). Contains the hidden exercise `<template>` div and an inline `<script>` at the bottom that renders exercises and wires up all interactivity.
+- [matematykazen.html](matematykazen.html) — the page skeleton around which all logic revolves: renders exercises from the data file, and handles all UI (answer buttons, hints, step-by-step solutions, the CKE formula sheet shown as an embedded PDF). Contains the hidden exercise `<template>` div and an inline `<script>` at the bottom that renders exercises and wires up all interactivity.
 - [exercises.js](exercises.js) — pure data: a single `exercises` array of plain objects (content, answers, correct answer, hint, solution text, optional step-by-step solution, scoring, link to a formula-sheet page), loaded via `<script src="exercises.js">` before the inline script runs. **Target format is `exercises.json`** — the plan is to migrate this data file to JSON; until then it stays a `.js` file exposing a global array.
 - [style.css](style.css) — all page styling: minimalist, single centered column.
 
@@ -24,9 +24,13 @@ Plus per-exercise asset folders `zad1/`, `zad2/`, `zad3/`, ... (Polish "zadanie"
 
 Step-by-step solution videos are produced externally with **Manim** (the Python math-animation library), then exported as short `.mp4` files and dropped into the relevant `zadN/` folder — they aren't generated or editable from within this repo, only referenced and played back (see `solutionStepByStep` below).
 
+## Task tracking
+
+The active TODO list lives in `todo.md` (bugs + design/later suggestions from smoke-testing). Check it before starting work and keep it in sync. Phase-specific files (e.g. the former `todoFaza1.md`) are deleted once their work is done — recreate one only if you need to hand off a phase to a fresh session.
+
 ## Running / previewing
 
-There is no build or test tooling. Open [matematykazen12.html](matematykazen12.html) directly in a browser, or serve the directory with any static file server (e.g. `npx serve` or `python -m http.server`) if `file://` restrictions cause the embedded PDF `<object>` not to load.
+There is no build or test tooling. Open [matematykazen.html](matematykazen.html) directly in a browser, or serve the directory with any static file server (e.g. `npx serve` or `python -m http.server`) if `file://` restrictions cause the embedded PDF `<object>` not to load.
 
 There's no linter or test suite — verify changes by opening the page and clicking through the exercise(s) you touched (answer buttons, hint/solution toggles, step navigation, formula-sheet button).
 
@@ -34,7 +38,7 @@ There's no linter or test suite — verify changes by opening the page and click
 
 ### Rendering model
 
-`loadExercises()` (defined inline at the bottom of [matematykazen12.html](matematykazen12.html)) runs once on page load. For each entry in the `exercises` array it clones the hidden `#exercise-template` node, fills in the fields, and appends the clone to `#exercises-wrapper`. All per-exercise behavior (answer click handling, hint/solution toggling, step-by-step nav, scoring) is wired up inside this same function at render time — there are no persistent component classes.
+`loadExercises()` (defined inline at the bottom of [matematykazen.html](matematykazen.html)) runs once on page load. For each entry in the `exercises` array it clones the hidden `#exercise-template` node, fills in the fields, and appends the clone to `#exercises-wrapper`. All per-exercise behavior (answer click handling, hint/solution toggling, step-by-step nav, scoring) is wired up inside this same function at render time — there are no persistent component classes.
 
 ### Exercise data schema (`exercises.js`)
 
@@ -42,18 +46,18 @@ Each element of `exercises` is an object with this shape (see the header comment
 
 - `question` — HTML string, rendered into `.question`. Often embeds `<img>` tags pointing into the exercise's `zadN/` folder.
 - `answers` — array of HTML strings for multiple-choice buttons. Empty array (`[]`) means an open-ended/self-graded exercise (no buttons rendered).
-- `correctAnswer` — must exactly match one string in `answers` (or `''` for open-ended exercises, which instead just append a `?` feedback marker when clicked). Comparison is a plain `===` string match, so any HTML in the answer (e.g. `'B. <img src="...">'`) must match the answers array entry verbatim.
-- `maxScore` — points added to the running `totalScore` the first time the correct answer is clicked (tracked per-exercise via `exercise.isScoreGiven` so repeat clicks don't double-count).
+- `correctAnswerIndex` — 0-based index into `answers` of the correct option (`0` = A, `1` = B, …). `-1` or a missing field marks an open-ended/unfilled exercise: clicking an answer just toggles a single `?` feedback marker instead of grading. Replaces the old string-matching `correctAnswer` field — grading is now `i === correctAnswerIndex` in the render loop, so the answer's HTML no longer has to match anything verbatim. `loadExercises` `console.warn`s if the index is out of range.
+- `maxScore` — the exercise's point value. A correct click sets that exercise's `exercise.earnedScore = maxScore`; a wrong click resets it to `0`. `totalScore` is then recomputed as the sum of every `earnedScore` (`updateTotalScore()`), so scoring is idempotent and self-correcting — no `isScoreGiven` flag or manual add/subtract.
 - `selfScore` — currently unused by the render logic (no self-scoring UI implemented yet); present in the data for future use.
 - `hint` — HTML shown/hidden by the "Podpowiedź" button.
 - `formulasPage` — page number into `wybrane_wzory_matematyczne.pdf`, or `null` to hide the "Pokaż potrzebne wzory" button. Clicking it calls `otworzTabliceNaStronie(page)`, which replaces the PDF `<object>` entirely (changing just `data` doesn't reliably reload PDF viewers).
 - `solutionText` / `solutionTextMore` — HTML for the solution panel; `solutionTextMore` is behind an extra "Pokaż więcej" toggle and its container auto-hides when empty.
-- `solutionStepByStep` — either `null` or an array of `{ type: "video"|"image"|"text", src, text }` steps rendered one at a time with prev/next navigation inside the solution panel. Video steps are *intended* to play at `defaultPlaybackRate = 0.01` (near-frozen scrubbing effect), but this currently doesn't work: `renderStep()` sets `defaultPlaybackRate` on a `<video>` element inside a detached `tempDiv`, then returns `tempDiv.innerHTML` as a string (matematykazen12.html:337-345) — a JS property like `defaultPlaybackRate` never serializes into an HTML string, so the `<video>` that actually lands in the DOM (via a later `innerHTML =` assignment) plays at normal speed. Fixing it means setting the rate on the real, attached video element after insertion (e.g. `stepsContent.querySelector('video').defaultPlaybackRate = 0.01`), not the throwaway detached one. Reaching the last step calls `markCorrectAnswer()`, which reveals the correct answer button — i.e. finishing the walkthrough is how open-style exercises "give away" the answer.
-- `solutionInteractive` — either `null` or a `function(container)` invoked at render time to inject custom interactive widgets (e.g. the `<canvas id="numberLine">` number-line/graph drawn by `drawNumberLine1()` / `drawExponentialGraph()` / `rysujWykresEksponencjalny()` in the inline script). Note `rysujWykresEksponencjalny` is an incomplete/broken older implementation (the actual plotting loop is commented out) — Zadanie 5 currently displays a placeholder note about this ("coś nie wyszło").
+- `solutionStepByStep` — either `null` or an array of `{ type: "video"|"image"|"text", src, text }` steps rendered one at a time with prev/next navigation inside the solution panel. `renderStep()` returns a plain HTML string; `showStep()` then slows video steps down by setting `defaultPlaybackRate` **and** `playbackRate` to `0.1` on the real, already-inserted `<video>` (a near-frozen scrubbing effect). Doing it on the attached element is deliberate — a JS property can't be set on the throwaway string `renderStep` returns. Reaching the last step calls `markCorrectAnswer()`, which reveals the correct answer button (guarded against a missing button) — i.e. finishing the walkthrough is how open-style exercises "give away" the answer.
+- `solutionInteractive` — either `null` or a `function(container)` invoked at render time to inject custom interactive widgets (e.g. the `<canvas id="numberLine">` number-line drawn by `drawNumberLine1()` in the inline script — the only such helper actually defined). Note: Zadanie 5's data still calls a `rysujWykresEksponencjalny()` graph helper that no longer exists in the inline script (a dangling reference from an unfinished exponential-graph widget), so Zadanie 5 currently displays a placeholder note about this ("coś nie wyszło").
 
 ### Asset folder convention
 
-Each exercise that needs images or video gets its own `zadN/` folder (matching the exercise number, not array index) referenced by relative path from the HTML's location, e.g. `zad6/zad6.png`, `zad6/zad6odp1.png` (odpowiedź = answer option image), `zad1/zad1rozw_step1.mp4` (rozwiązanie = solution). Many exercises defined in `exercises.js` (roughly 12 onward) are still stubs — empty `correctAnswer`, generic hints, no `solutionStepByStep`/`solutionInteractive`, and some reference `zadN/` folders or images (e.g. `zad23/zad23.png`) that don't exist on disk yet. When filling these in, follow the pattern of the completed early exercises (1–3, 6) rather than inventing a new structure.
+Each exercise that needs images or video gets its own `zadN/` folder (matching the exercise number, not array index) referenced by relative path from the HTML's location, e.g. `zad6/zad6.png`, `zad6/zad6odp1.png` (odpowiedź = answer option image), `zad1/zad1rozw_step1.mp4` (rozwiązanie = solution). Many exercises defined in `exercises.js` (roughly 12 onward) are still stubs — `correctAnswerIndex: -1`, generic hints, no `solutionStepByStep`/`solutionInteractive`, and some reference `zadN/` folders or images (e.g. `zad23/zad23.png`) that don't exist on disk yet. When filling these in, follow the pattern of the completed early exercises (1–3, 6) rather than inventing a new structure.
 
 ### Scoring / UI chrome
 
@@ -92,4 +96,4 @@ Restructured to a **flexbox three-zone layout** (previously each element used `p
 ## Content notes
 
 - All user-facing content and code comments in the existing files are Polish; keep new exercise content in Polish and consistent with the existing tone (direct, exam-prep style).
-- [matematykazen12.html](matematykazen12.html) has a commented-out `<meta http-equiv="refresh" content="5">` dev-reload snippet flagged `DELETE THIS BEFERE PUBLISHING` — leave it commented out unless actively doing rapid local iteration, and don't ship it enabled.
+- [matematykazen.html](matematykazen.html) has a commented-out `<meta http-equiv="refresh" content="5">` dev-reload snippet flagged `DELETE THIS BEFERE PUBLISHING` — leave it commented out unless actively doing rapid local iteration, and don't ship it enabled.
