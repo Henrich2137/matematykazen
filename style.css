@@ -95,6 +95,9 @@ body {
     cursor: pointer;
 }
 #toggle-tablica {
+    /* min-width mieści dłuższą wersję etykiety ("▲ Schowaj tablice wzorów"),
+       więc przycisk nie zmienia szerokości przy przełączaniu na "▼ Pokaż...". */
+    min-width: 200px;
     padding: 10px 12px;
     border: 2px solid #e7e7e7;
     border-radius: 3px;
@@ -131,6 +134,15 @@ body {
     font-size: 18px;
     text-align: left;
 }
+/* Grafiki-rysunki w treści zadania jako blok wyśrodkowany — inaczej obrazek
+   wstawiony w linii tekstu (np. zad10) lądował "w środku zdania" i przesunięty
+   w prawo. Obrazki naprawdę inline (np. liczba w zad2) nadpisują to swoim
+   stylem display:inline-block. */
+.question img {
+    display: block;
+    max-width: 100%;
+    margin: 15px auto;
+}
 .exercise-score {
     position: absolute;
     top: 48px;
@@ -162,6 +174,10 @@ body {
     width: 22%;
     padding: 10px 12px;
     margin: 8px;
+    /* Przyciski w wierszu wyrównują się do środka w pionie względem siebie,
+       więc litera (A., B., ...) w niższym przycisku ląduje na środku obok
+       wyższych sąsiadów zamiast przyklejać się do dołu. */
+    vertical-align: middle;
     border: medium solid #e7e7e7;
     border-radius: 3px;
     background-color: #fff;
@@ -170,6 +186,11 @@ body {
     text-decoration: none;
     color: #111;
     cursor: pointer;
+}
+/* Grafiki odpowiedzi (np. zad6) wyrównane do środka, aby litera A./B. obok
+   nich była na środku w osi pionowej, a nie przy dolnej krawędzi obrazka. */
+.button-container button img {
+    vertical-align: middle;
 }
 .button-container button.correct {
     border-color: #88ff88;
@@ -225,6 +246,11 @@ body {
 .solution-text-more-container button {
     margin: 15px 0;
 }
+/* Treść "Pokaż więcej" domyślnie kleiła się do lewej krawędzi panelu; wcięcie
+   po bokach odsuwa ją od brzegu, przez co siedzi bliżej środka karty. */
+.solution-text-more {
+    padding: 0 40px;
+}
 
 .solution-step-by-step-container {
     display: none;
@@ -244,9 +270,20 @@ body {
     display: none;
 }
 .steps-content {
-    min-height: 230px;
+    /* Wysokość dobrana tak, by film (180px) + dwie linijki komentarza mieściły
+       się bez zmiany rozmiaru. Dzięki temu przy przełączaniu stepów div ma
+       stałą wysokość, a rośnie dopiero, gdy komentarz przekroczy ~2 linijki. */
+    min-height: 250px;
     margin: 10px 0;
     text-align: center;
+}
+/* Rezerwuje miejsce na ~2 linijki podpisu pod krokiem, żeby krótkie i puste
+   komentarze zajmowały tyle samo miejsca i nawigacja nie skakała. */
+.step-comment {
+    display: block;
+    min-height: 2.8em;
+    margin-top: 8px;
+    line-height: 1.4;
 }
 .steps-nav {
     margin: 10px 0 30px;

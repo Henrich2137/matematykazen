@@ -325,6 +325,8 @@ function loadExercises() {
         function renderStep(step) {
 
             if (!step) return "";
+            // Podpis kroku zawsze w .step-comment — rezerwuje stałe miejsce (~2 linijki),
+            // dzięki czemu wysokość diva nie skacze między krokami o różnej długości tekstu.
             if (step.type === "video") {
                 // Prędkość ustawiamy na realnym elemencie <video> w showStep(),
                 // bo właściwość JS (defaultPlaybackRate) nie przetrwałaby
@@ -333,12 +335,12 @@ function loadExercises() {
                     <video autoplay playsinline>
                         <source src="${step.src}" type="video/mp4">
                     </video>
-                    <br>${step.text}
+                    <div class="step-comment">${step.text}</div>
                 `;
             } else if (step.type === "image") {
-                return `<img src="${step.src}"><br>${step.text}`;
+                return `<img src="${step.src}"><div class="step-comment">${step.text}</div>`;
             } else if (step.type === "text") {
-                return `<div>${step.text}</div>`;
+                return `<div class="step-comment">${step.text}</div>`;
             }
             return "";
         }
@@ -346,6 +348,22 @@ function loadExercises() {
         const hasSteps = Array.isArray(exercise.solutionStepByStep);
         const steps = hasSteps ? exercise.solutionStepByStep : [];
         let currentStep = 0;
+
+        // Separator (dolna kreska) rozdziela kolejne bloki rozwiązania. Pod ostatnim
+        // widocznym blokiem jest zbędny (np. gdy rozwiązanie to sam tekst) — zdejmujemy
+        // go z ostatniego widocznego bloku.
+        const hasText = !!(exercise.solutionText && exercise.solutionText.trim() !== "");
+        const hasInteractive = !!exercise.solutionInteractive;
+        const hasMore = !!(exercise.solutionTextMore && exercise.solutionTextMore.trim() !== "");
+        const solutionBlocks = [
+            hasText ? solutionTextContainer : null,
+            hasSteps ? solutionStepByStepContainer : null,
+            hasInteractive ? solutionInteractiveContainer : null,
+            hasMore ? solutionTextMoreContainer : null,
+        ].filter(Boolean);
+        if (solutionBlocks.length) {
+            solutionBlocks[solutionBlocks.length - 1].style.borderBottom = "none";
+        }
 
         function showStep(idx) {
             currentStep = idx;

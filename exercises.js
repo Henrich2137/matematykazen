@@ -58,7 +58,7 @@ const exercises = [
         }
     },
     {
-        question: '<b>Zadanie 2.</b> <br><br> Liczba <img src="zad2/zad2.png" style="width:160x;height:75px;"> jest równa:',
+        question: '<b>Zadanie 2.</b> <br><br> Liczba <img src="zad2/zad2.png" style="width:160px;height:75px;display:inline-block;vertical-align:middle;"> jest równa:',
         answers: ["A. 5<sup>4</sup>", "B. 5<sup>-4</sup>", "C. 5<sup>0.25</sup>", "D. 5<sup>-0.25</sup>"],
         correctAnswerIndex: 1,
         maxScore: 1,
