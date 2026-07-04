@@ -13,7 +13,6 @@ body {
 
 
 /* ===================================================================
-   jest 20:04 czasu miejscowego zobaczymi kiedy zostanie to zaciągnięte, zapisujem
    
    Layout model: a single fixed bar holding a 3-column CSS grid
    (#bar-container) — #bar-left | #bar-center | #bar-right — with columns
@@ -28,6 +27,7 @@ body {
    would grow #top-bar's height.
    If you edit this block, update the "CSS & layout reference" section in
    CLAUDE.md.
+   
    =================================================================== */
 #top-bar {
     position: fixed; 
@@ -298,22 +298,35 @@ body {
     display: inline-block;
     line-height: 0;
 }
-/* Mała ikonka ▶ w lewym dolnym rogu filmu (nad paskiem postępu), widoczna tylko
-   gdy film jest zatrzymany/skończony — celowo nie na środku, żeby nie zasłaniać
-   treści filmu. */
+/* Mała ikonka pauzy (dwie czarne pionowe kreski) na dole filmu, wyśrodkowana
+   w poziomie; widoczna tylko gdy film jest zatrzymany/skończony. */
 .video-overlay-icon {
     position: absolute;
-    left: 8px;
+    left: 50%;
     bottom: 8px;
+    transform: translateX(-50%);
     display: none;
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 16px;
-    line-height: 1;
-    text-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
+    width: 12px;
+    height: 14px;
     pointer-events: none;
 }
 .step-video.paused .video-overlay-icon {
     display: block;
+}
+.video-overlay-icon::before,
+.video-overlay-icon::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #000;
+}
+.video-overlay-icon::before {
+    left: 0;
+}
+.video-overlay-icon::after {
+    right: 0;
 }
 /* Cienki pasek postępu na dole filmu (szary). */
 .video-progress {
