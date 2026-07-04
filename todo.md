@@ -1,13 +1,32 @@
 W tym pliku będę zapisywał błędy oraz sugestie znalezione w wyniku smoke testu
 
-Błędy/Bugi które znalazłem w smoke tescie:
+DO NAPRAWY. TE BŁĘDY MASZ NAPRAWIAĆ:
 - W zadaniach z odpowiedziami ABCD gdy wybiorę najpierw dobrą, a potem złą odpowiedź to punkt pozostaje przyznany. Chciałbym, aby się cofało. Chciałbym aby zawsze po zaznaczeniu złej odpowiedzi pojawiło się 0 / 1 pkt
 
-- zad 1 > solution step by step    większość filmików nie wyświetla się. Dzieje siętak tylko w VS code Integrated Browser, w chrome, firefox, brave i edge jest ok (z tego co zweryfikowalem to błąd raczej po stronie integrated browser, chyba nie ma się czym martwić)
+- Porównanie answer == correctAnswer nigdy nie trafi → klasa hiddenCorrect się nie ustawia, klikanie poprawnej odpowiedzi nie punktuje. To żywcem pokazuje, dlaczego porównywanie odpowiedzi po stringu HTML jest kruche
 
 
 
-Sugestie nie będące bugami (NIE REALIZUJ ICH JESZCZE):
+
+
+
+Sugestie na potem, to troche większe zadania (NIE REALIZUJ ICH JESZCZE):
+
+- do zadań 23, 24 itd. nie wczytują się grafiki (chyba ich jeszcze nie ma)
+
+- dodanie pól na własny tekst w zadaniach takich jak zadanie 10 w miejscach takich jak "..." i systemu sprawdzania odpowiedzi użytkownika czy pasuje chociaż do jednej wersji poprawnych odpowiedzi. Poniżej zadania powinien znajdować się przycisk sprawdź, po kliknięciu którego przy każdym z pól pojawi się oznaczenie na czerwono lub zielona w zależności od poprawności odpowiedzi. (moze być to w formie zmiany koloru ramki pola)
+
+- dodanie strony głównej z opisem projektu i odnośnikiem do arkusza demo (tego który teraz jest stroną główną) oraz hiperłącza na logo lewy górnym rogu
+
+
+
+
+
+
+
+
+
+Sugestie WYGLĄD / DESIGN (NIE REALIZUJ ICH JESZCZE):
 
 - po kliknięciu "pokaż więcej" poniżej solution w formie stepbystep/interactive tekst powiniene znajdować się bardziej na środku, jest za bardzo przyklejony do lewej. Można tez zrobić tak, żeby matematyczne zapisy były wycentrowane a zwykły tekst do lewej
 
@@ -33,15 +52,7 @@ Sugestie nie będące bugami (NIE REALIZUJ ICH JESZCZE):
 
 
 
-Sugestie na potem, to troche większe zadania (NIE REALIZUJ ICH JESZCZE):
 
-- do zadań 23, 24 itd. nie wczytują się grafiki (chyba ich jeszcze nie ma)
-
-- dodanie pól na własny tekst w zadaniach takich jak zadanie 10 w miejscach takich jak "..." i systemu sprawdzania odpowiedzi użytkownika czy pasuje chociaż do jednej wersji poprawnych odpowiedzi. Poniżej zadania powinien znajdować się przycisk sprawdź, po kliknięciu którego przy każdym z pól pojawi się oznaczenie na czerwono lub zielona w zależności od poprawności odpowiedzi. (moze być to w formie zmiany koloru ramki pola)
-
-- dodanie strony głównej z opisem projektu i odnośnikiem do arkusza demo (tego który teraz jest stroną główną) oraz hiperłącza na logo lewy górnym rogu
-
-- w zadaniu 6 jest 
 
 
 
