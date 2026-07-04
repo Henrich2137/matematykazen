@@ -335,13 +335,13 @@ body {
     bottom: 0;
     left: 0;
     height: 2px;
-    background-color: rgba(0, 0, 0, 0.12);
+    background-color: rgba(173, 173, 173, 0.12);
     pointer-events: none;
 }
 .video-progress-bar {
     width: 0;
     height: 100%;
-    background-color: #666;
+    background-color: #d6d6d6;
     /* Płynniejsze przesuwanie między zdarzeniami timeupdate (~co 0.25s). */
     transition: width 0.2s linear;
 }
