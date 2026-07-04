@@ -54,11 +54,12 @@ Sugestie WYGLĄD / DESIGN (NIE REALIZUJ ICH JESZCZE):
 
 
 
-
 Sugestie o najniższym priorytecie w stylu "było by idealnie" (NIE REALIZUJ ICH JESZCZE):
 - zad 2 > interactiveSolution   Sprawić aby można było przesuwać punktu na osi liczbowej a liczby na dole zmieniały się odpowiednio. Oprócz tego można dodać strzałki kóre odchodzą od -4 lub innej go punktu który, który jest po środku pomarańczowych kropek
 
 - filmiki nie powinny migać podczas przełączania
 
 - zaznaczenie powinno być jasnoniebieskie i nie powinno zmieniać koloru tekstu na biały, wyglądałoby spójniej, tak myślę 
+
+- tablica-wzorów którą dało by isę "odblokować" i przesuwać dowolnie jak sie chce i zmieniać rozmiar okna
 
