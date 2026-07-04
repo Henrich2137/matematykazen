@@ -40,6 +40,8 @@ ZROBIONE WYGLĄD/DESIGN (2026-07-04):
 
 NIE REALIZUJ:
 
+- przycisk "Rozwiązanie" renderuje się tylko wtedy jeśli istnieje jakiekolwiek rozwiązanie
+
 - klikanie na filmik mogłoby go zatrzymywac lub puszczać, jeżeli byłby zatrzymany mogłaby pojawić się ikonka gdzieś niżej
 
 - brakuje rozwiązania powinien pojawić się komunikat "Nie udało się wczytać bądź nie ma jeszcze rozwiązania do tego zadania" lub w ogóle nie powinno być przycisku rozwiązanie
