@@ -1,12 +1,8 @@
 Nowy plik który tworzy Henrich (ja, użytkownik). Podczas Sprawdzania nowej wersji strony utworzonej przez fable (claude/project-improvements-exercises...)
 
 
-do zrobienia:
+FABLE, SPRAWDŹ POPRAWNOŚĆ ROZWIĄZAŃ I DAJ FEEDBACK PONIŻEJ CZY AKCEPTUJESZ TE ZADANIA PRZY KAŻDYM Z NICH NAPISZ [OPUS DID WELL] {OPUS DID POORLY] oraz dopisz czy zostało poprawione ZROBIONE PRZEZ OPUSA:
 - coś ty wymyślił za ikonke w title xd? Wywal to jeśli nie jest potrzebne, nie podoba mi się ta ikonka, możesz ewentualnie spróbować z inną, czarno-białym M. Jeśli nie to stworze własne logo lub żadne
-
-
-
-
 - zad 17.1 rozwiązanie się nie zgadza z treścia zadania ponieważ kąt ABC lezy przy wierzchołku B
 - zad 12 powinno by oddzielone od 12.1
 - przyciski w 12.2 nie działają intuicyjnie, trzeba je odklikiwać. Jeżeli uznasz, że jest to proste w implementacji to zrób tak aby ostatni zaznaczony przycisk był tym który automatycznie się odznaczy przy wybraniu nowego. Jeśli uznasz, że to zbyt skomplikuje kod i narazi go na błędy to dodaj lepszą ikonkę zaznaczenia, która będzie sugerować, że trzeba go odznaczyć lub komunikat lub animacje poszerzenia krawędzi która pojawi się po kliknięciu na inną odpowiedź cza, należy albo zmienić to zadanie na otwarte, albo w każdy zadaniu w exercises.js dodać element numberOfCorrectAnswers (lub nazwany jakoś lepiej jesli masz pomysł) który domyslnie byłby równy 1, a jeśli byłby równy więcej to skrypt w pliku matematykazen.html powinien umieć obsłużyć większą ilość poprawnych odpowiedzi
@@ -15,7 +11,7 @@ do zrobienia:
 
 
 
-inne pomysły (NIE REALIZUJ):
+inne pomysły REALIZUJ:
 - Renderowanie LATEX zamiast wpisywania tagów sub i sup które wyglądają brzydko oraz wklejania zdjęć, które się słabo skalują z UI i ciężko się zmienia ich barwy.
 - sprawdzić co by było gdybym wpisał ujemnął wartość w playback rate czy jakoś tak
 - do sekcji oceń się powinno być dodane kryteria sukcesu dopiero po kliknięci urozwiązania lae jeszcze nie mam pomysłu jak to skomponować aby miało sens
