@@ -13,7 +13,7 @@ FABLE, SPRAWDŹ POPRAWNOŚĆ ROZWIĄZAŃ I DAJ FEEDBACK PONIŻEJ CZY AKCEPTUJESZ
 
 
 
-inne pomysły REALIZUJ:
+TO-DO, DO REALIZACJI:
 - popraw 12 i 17 aby były oddzielne od swoich podzadań. (12.1 i 17.1)
 - Renderowanie LATEX zamiast wpisywania tagów sub i sup które wyglądają brzydko oraz wklejania zdjęć, które się słabo skalują z UI i ciężko się zmienia ich barwy.
 - sprawdzić co by było gdybym wpisał ujemnął wartość w playback rate czy jakoś tak
@@ -33,7 +33,7 @@ inne pomysły REALIZUJ:
 
 
 
-Chwalenie claude:
+POZYTYWNY FEEDBACK DLA CLAUDE:
 - ładne zrobiłeś rozwiązanie do zadania 5 z procentem składanym
 - fajny pomysł z tym, że im więcej punktów masz tym bardziej zielone są
 
