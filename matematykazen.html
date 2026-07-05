@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="description" content="Interaktywny arkusz maturalny z matematyki (grudzień 2024, próbna CKE): odpowiedzi od ręki, podpowiedzi, rozwiązania krok po kroku i tablica wzorów.">
-    <!-- Wywal to jeśli nie jest potrzebne, nie podoba mi się ta ikonka, możesz ewentualnie spróbować z inną, czarno-białym M. Jeśli nie to stworze własne logo lub żadne
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧘</text></svg>">
-    -->
+    <!-- Prosta ikonka: czarne, poważne „M" (serif, w duchu fontów strony). Jeśli nie pasuje — wystarczy usunąć tę linię (Henrich zrobi własne logo albo zostawi bez ikonki). -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50' y='78' font-size='80' text-anchor='middle' font-family='Georgia,serif' font-weight='bold'>M</text></svg>">
     <script type="text/javascript" src="exercises.js"></script>
     <link rel="stylesheet" href="style.css">
 
@@ -304,7 +303,9 @@ function loadExercises() {
             });
         } else if (type === "multiSelect") {
             // Wybór kilku odpowiedzi: klik zaznacza (jasnoniebieska ramka), ponowny klik
-            // odznacza. Ocena następuje dopiero po zaznaczeniu wymaganej liczby odpowiedzi;
+            // odznacza. Gdy komplet już zaznaczony, klik kolejnej odpowiedzi podmienia
+            // najdawniej wybraną (okno przesuwne) — nie trzeba nic ręcznie odklikiwać.
+            // Ocena następuje dopiero po zaznaczeniu wymaganej liczby odpowiedzi;
             // punkty częściowe: po 1 pkt za każde trafienie (maxScore/wymagane).
             answersContainer.classList.add("multi-select-container");
             const required = exercise.correctAnswerIndices.length;
@@ -340,10 +341,15 @@ function loadExercises() {
                 btn.addEventListener("click", () => {
                     if (selected.has(i)) {
                         selected.delete(i);
-                    } else if (selected.size < required) {
-                        selected.add(i);
                     } else {
-                        return; // komplet zaznaczony — najpierw trzeba coś odznaczyć
+                        // Komplet już zaznaczony? Klik nowej odpowiedzi podmienia
+                        // najdawniej wybraną (okno przesuwne), więc nie trzeba nic
+                        // ręcznie odklikiwać, żeby zmienić zdanie. Set zachowuje
+                        // kolejność wstawiania → najstarszy wybór to pierwszy element.
+                        if (selected.size >= required) {
+                            selected.delete(selected.values().next().value);
+                        }
+                        selected.add(i);
                     }
                     refresh();
                 });

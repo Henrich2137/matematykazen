@@ -583,8 +583,8 @@ const exercises = [
     },
     {
         question: '<b>Zadanie 29.</b> <br><br> Do szkolnego koła czytelniczego należy 50 uczniów. Opiekun koła zebrał dane dotyczące liczby książek przeczytanych przez tych uczniów w listopadzie 2024 roku. W poniższej tabeli przedstawiono wyniki zebrane przez opiekuna.<br><br>' +
-                '<table class="data-table"><tr><th>Liczba przeczytanych książek</th><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>' +
-                '<tr><th>Liczba uczniów</th><td>7</td><td>8</td><td>10</td><td>14</td><td>6</td><td>5</td></tr></table><br>' +
+                '<table class="data-table"><tr><th>Liczba przeczytanych książek</th><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr>' +
+                '<tr><th>Liczba uczniów</th><td>5</td><td>8</td><td>12</td><td>13</td><td>12</td></tr></table><br>' +
                 'Uzupełnij zdania. Wpisz odpowiednie liczby w wykropkowanych miejscach, aby zdania były prawdziwe.<br><br>' +
                 '1. Średnia arytmetyczna liczby przeczytanych książek w tej grupie uczniów jest równa …<br>' +
                 '2. Mediana liczby przeczytanych książek w tej grupie uczniów jest równa …',
@@ -595,7 +595,7 @@ const exercises = [
         selfScore: true,
         hint: "Średnia: suma (liczba książek · liczba uczniów) podzielona przez 50. Mediana przy 50 uczniach to średnia 25. i 26. wyniku po uporządkowaniu.",
         formulasPage: 31,
-        solutionText: "1. Średnia: <span class='mathText'>(4·7 + 5·8 + 6·10 + 7·14 + 8·6 + 9·5) / 50 = 319/50 = <b>6,38</b></span>. <br> 2. Mediana: 25. wynik to 6, a 26. to 7, więc <span class='mathText'>(6 + 7)/2 = <b>6,5</b></span>.",
+        solutionText: "1. Średnia: <span class='mathText'>(4·5 + 5·8 + 6·12 + 7·13 + 8·12) / 50 = 319/50 = <b>6,38</b></span>. <br> 2. Mediana: 25. wynik to 6, a 26. to 7, więc <span class='mathText'>(6 + 7)/2 = <b>6,5</b></span>.",
         solutionTextMore: "",
         solutionStepByStep: null,
         solutionInteractive: null
