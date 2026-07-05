@@ -9,25 +9,27 @@ Nowy plik który tworzy Henrich (ja, użytkownik). Podczas Sprawdzania nowej wer
 <h3>TO-DO, DO REALIZACJI, PODZIELONE NA PRIORYTET</h3>
 
 
-ŚREDNI PRIORYTET:
-- Renderowanie LATEX zamiast wpisywania tagów sub i sup które wyglądają brzydko oraz
-  wklejania zdjęć, które się słabo skalują z UI i ciężko się zmienia ich barwy.
-  (FABLE 2026-07-05: proponuję KaTeX + rozszerzenie auto-render. Potrzebna decyzja
-  Henricha: CDN (najprościej, ale wymaga internetu przy nauce) czy pliki zvendorowane
-  do repo (~1,5 MB, działa offline). Do tego dochodzi migracja treści wszystkich zadań
-  na \( ... \) — duża robota na osobną sesję, najlepiej razem z planowaną migracją
-  exercises.js → exercises.json.)
+WYSOKI PRIORYTET:
+- dodać przycisk trzech kropek który po kliknięciu otworzy okienko w który będą schowane przyciski: "pokaż/schowaj wszystkie rozwiązania" oraz "widok punktów"
+- dodać przycisk resetuj punktacje
+
+
 
 NISKI PRIORYTET:
-- [CZĘŚCIOWO 2026-07-04/05] filmiki nie powinny migać podczas przełączania → jest preload
-  następnego kroku, a pasek postępu jest teraz płynny (requestAnimationFrame); jeśli
-  przełączanie kroków nadal miga, następny krok to trzymanie dwóch elementów video
-  i podmiana widoczności (wymaga testu wzrokowego — Fable nie jest w stanie tego ocenić
-  bez przeglądarki).
+- [CZĘŚCIOWO] Filmiki nadal migoczą, można spróbować zostawić stary filmik w tle aby został tam na ostatniej klatce i wyłączyć go dopiero przy następnym kroku, jeśli dobrze rozumiem to chyba własnie to opisałeś tutaj: następny krok to trzymanie dwóch elementów video i podmiana widoczności (wymaga testu wzrokowego).
 
 NIE REALIZUJ, NA POTEM:
 - do sekcji "oceń się" powinno być dodane kryteria sukcesu dopiero po kliknięciu
   rozwiązania. Ale jeszcze nie mam pomysłu jak to skomponować aby miało sens.
+- Renderowanie LATEX zamiast wpisywania tagów sub i sup które wyglądają brzydko oraz
+wklejania zdjęć, które się słabo skalują z UI i ciężko się zmienia ich barwy.
+(FABLE 2026-07-05: proponuję KaTeX + rozszerzenie auto-render. Potrzebna decyzja
+Henricha: CDN (najprościej, ale wymaga internetu przy nauce) czy pliki zvendorowane
+do repo (~1,5 MB, działa offline). Do tego dochodzi migracja treści wszystkich zadań
+na \( ... \) — duża robota na osobną sesję, najlepiej razem z planowaną migracją
+exercises.js → exercises.json.)
+
+
 
 
 <br><br><br>
@@ -47,7 +49,7 @@ DLA UŻYTKOWNIKA:
 
 NOWE PUNKTY TODO ZAPISYWANE PRZEZ CLAUDE:
 
-- (FABLE 2026-07-05) Do przeklikania przez Henricha — nowe rzeczy z tej sesji:
+- (FABLE 2026-07-05) Do przeklikania przez Henricha:
   1) zad 10 i 29 mają teraz prawdziwe pola do wpisywania odpowiedzi + przycisk "Sprawdź"
      (zielona/czerwona ramka pola; punkty po równo za każde pole). Nawiasy przedziałów
      można wpisywać jako ⟨⟩, [] albo <>, liczby z kropką lub przecinkiem (6.38 = 6,38) —
