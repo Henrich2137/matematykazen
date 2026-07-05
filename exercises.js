@@ -243,8 +243,9 @@ const exercises = [
         solutionInteractive: null
     },
     {
-        question: '<b>Zadanie 12.1.</b> <br><br> W układzie współrzędnych wykresem funkcji kwadratowej <b>f</b> jest parabola, której wierzchołkiem jest punkt (3, 0). ' +
+        question: '<b>Zadanie 12.</b> <br><br> W układzie współrzędnych wykresem funkcji kwadratowej <b>f</b> jest parabola, której wierzchołkiem jest punkt (3, 0). ' +
                   'Ta parabola przechodzi przez punkt (0, -9).<br><br>' +
+                  '<b>Zadanie 12.1.</b> <br><br>' +
                   'Funkcja <b>f</b> jest malejąca w przedziale:<br>',
         answers: ['A. (-∞, 0⟩', 'B. (-∞, 3⟩', 'C. ⟨0, +∞)', 'D. ⟨3, +∞)'],
         correctAnswerIndex: 3,
@@ -260,8 +261,7 @@ const exercises = [
         }
     },
     {
-        question: '<b>Zadanie 12.2.</b> <br><br> W układzie współrzędnych wykresem funkcji kwadratowej <i>f</i> jest parabola, której wierzchołkiem jest punkt (3, 0). ' +
-                  'Ta parabola przechodzi przez punkt (0, -9).<br><br>' +
+        question: '<b>Zadanie 12.2.</b> <br><br> Dana jest ta sama funkcja <i>f</i> (parabola o wierzchołku (3, 0), przechodząca przez punkt (0, -9)).<br><br>' +
                   'Wzór funkcji <i>f</i> zapisano w dwóch spośród poniższych odpowiedzi. <b>Wybierz je obie.</b>',
         type: "multiSelect",
         answers: [
