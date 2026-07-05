@@ -1,4 +1,7 @@
-W tym pliku będę zapisywał błędy oraz sugestie znalezione w wyniku smoke testu
+ARCHIWUM ZROBIONYCH PUNKTÓW TODO. Tu trafiają wpisy [DONE]/[ZROBIONE] przenoszone z todo.md.
+Nie wczytuj tego pliku domyślnie — tylko gdy potrzebne jest szersze spojrzenie na projekt,
+rozwiązanie trudniejszego problemu albo sprawdzenie, czy/jak coś już kiedyś rozwiązano.
+(Zasada opisana w CLAUDE.md. Plik zaczął się jako notatki ze smoke testu.)
 
 ZROBIONE (2026-07-04):
 - [DONE] Punkt nie cofał się po złej odpowiedzi → naprawione. Usunięto flag isScoreGiven; każde zadanie ma earnedScore (0 albo maxScore), a updateTotalScore() przelicza sumę od zera. Zła odpowiedź daje 0 / X pkt i zeruje earnedScore.
