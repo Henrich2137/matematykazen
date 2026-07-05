@@ -13,7 +13,8 @@ Schemat zadania (docelowo plik przejdzie na exercises.json):
     correctAnswerIndex: 0,             // ABCD: 0 = A, 1 = B, ...; -1 = niewypełnione (tryb "?")
     correctAnswerIndices: [1, 3],      // tylko multiSelect (kolejność bez znaczenia)
     statements: [{ text, answer }],    // tylko PF; answer: true = P, false = F
-    maxScore: 1,
+    maxScore: 1,                       // 0 = "puste" zadanie nadrzędne (np. wspólny
+                                       // wstęp Zadania 12 / 17) — bez badge'a punktów
     selfScore: false,                  // open: true włącza panel samooceny
     hint: "HTML",                      // pusty string chowa przycisk "Podpowiedź"
     formulasPage: 4 | null,            // strona w wybrane_wzory_matematyczne.pdf
@@ -243,9 +244,24 @@ const exercises = [
         solutionInteractive: null
     },
     {
-        question: '<b>Zadanie 12.</b> <br><br> W układzie współrzędnych wykresem funkcji kwadratowej <b>f</b> jest parabola, której wierzchołkiem jest punkt (3, 0). ' +
-                  'Ta parabola przechodzi przez punkt (0, -9).<br><br>' +
-                  '<b>Zadanie 12.1.</b> <br><br>' +
+        // "Puste" zadanie nadrzędne: sama wspólna treść dla 12.1-12.3, bez
+        // odpowiedzi, punktów i rozwiązań (maxScore: 0 chowa badge punktów).
+        question: '<b>Zadanie 12.</b> <br><br> W kartezjańskim układzie współrzędnych (x, y) wykresem funkcji kwadratowej <b>f</b> jest parabola, której wierzchołkiem jest punkt (3, 0). ' +
+                  'Ta parabola przechodzi przez punkt o współrzędnych (0, −9).',
+        type: "open",
+        answers: [],
+        correctAnswerIndex: -1,
+        maxScore: 0,
+        selfScore: false,
+        hint: "",
+        formulasPage: null,
+        solutionText: "",
+        solutionTextMore: "",
+        solutionStepByStep: null,
+        solutionInteractive: null
+    },
+    {
+        question: '<b>Zadanie 12.1.</b> <br><br> Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>' +
                   'Funkcja <b>f</b> jest malejąca w przedziale:<br>',
         answers: ['A. (-∞, 0⟩', 'B. (-∞, 3⟩', 'C. ⟨0, +∞)', 'D. ⟨3, +∞)'],
         correctAnswerIndex: 3,
@@ -261,8 +277,7 @@ const exercises = [
         }
     },
     {
-        question: '<b>Zadanie 12.2.</b> <br><br> Dana jest ta sama funkcja <i>f</i> (parabola o wierzchołku (3, 0), przechodząca przez punkt (0, -9)).<br><br>' +
-                  'Wzór funkcji <i>f</i> zapisano w dwóch spośród poniższych odpowiedzi. <b>Wybierz je obie.</b>',
+        question: '<b>Zadanie 12.2.</b> <br><br> Wzór funkcji <i>f</i> zapisano w dwóch spośród poniższych odpowiedzi. <b>Wybierz je obie.</b>',
         type: "multiSelect",
         answers: [
             'A. f(x) = -x² - 9',
@@ -371,10 +386,23 @@ const exercises = [
         solutionInteractive: null
     },
     {
-        question: '<b>Zadanie 17.</b> <br><br> Dany jest trójkąt prostokątny ABC, w którym |AC| = √15 i |BC| = 8. Na przyprostokątnej AB leży taki punkt D, że |BD| = 6.<br><br>' +
-                '<img src="zad17/zad17.png"> <br><br>' +
-                '<b>Zadanie 17.1.</b> <br><br>' +
-                'Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>' +
+        // "Puste" zadanie nadrzędne dla 17.1-17.2 (jak zad 12 wyżej).
+        question: '<b>Zadanie 17.</b> <br><br> Dany jest trójkąt prostokątny ABC, w którym |AC| = √15 i |BC| = 8. Na przyprostokątnej AB leży taki punkt D, że |BD| = 6 (zobacz rysunek).<br>' +
+                '<img src="zad17/zad17.png">',
+        type: "open",
+        answers: [],
+        correctAnswerIndex: -1,
+        maxScore: 0,
+        selfScore: false,
+        hint: "",
+        formulasPage: null,
+        solutionText: "",
+        solutionTextMore: "",
+        solutionStepByStep: null,
+        solutionInteractive: null
+    },
+    {
+        question: '<b>Zadanie 17.1.</b> <br><br> Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>' +
                 'Sinus kąta ostrego ABC jest równy:',
         answers: ['A. 1/2', 'B. 7/8', 'C. √15/4', 'D. √15/8'],
         correctAnswerIndex: 3,
@@ -388,8 +416,7 @@ const exercises = [
         solutionInteractive: null
     },
     {
-        question: '<b>Zadanie 17.2.</b> <br><br> Dany jest ten sam trójkąt.<br><br>' +
-                'Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>' +
+        question: '<b>Zadanie 17.2.</b> <br><br> Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>' +
                 'Tangens kąta ostrego ADC jest równy:',
         answers: ['A. √15', 'B. 1/2', 'C. 7/8', 'D. √15/8'],
         correctAnswerIndex: 0,
@@ -601,7 +628,8 @@ const exercises = [
         solutionInteractive: null
     },
     {
-        question: '<b>Zadanie 30.</b> <br><br> Rozważamy wszystkie prostopadłościany ABCDEFGH, w których krawędź AE jest 3 razy dłuższa od krawędzi AB, a suma długości wszystkich dwunastu krawędzi prostopadłościanu jest równa 48. Niech P(x) oznacza funkcję pola powierzchni całkowitej takiego prostopadłościanu w zależności od długości x krawędzi AB.<br><br>' +
+        question: '<b>Zadanie 30.</b> <br><br> Rozważamy wszystkie prostopadłościany ABCDEFGH, w których krawędź AE jest 3 razy dłuższa od krawędzi AB, a suma długości wszystkich dwunastu krawędzi prostopadłościanu jest równa 48 (zobacz rysunek). Niech P(x) oznacza funkcję pola powierzchni całkowitej takiego prostopadłościanu w zależności od długości x krawędzi AB.<br>' +
+                '<img src="zad30/zad30.png" style="width:220px;"> <br>' +
                 'Wyznacz wzór i dziedzinę funkcji P. Oblicz długość x krawędzi AB tego z rozważanych prostopadłościanów, którego pole powierzchni całkowitej jest największe. Zapisz obliczenia.',
         type: "open",
         answers: [],
