@@ -69,8 +69,8 @@ const exercises = [
         selfScore: false,
         hint: "Stopień pierwiastka jest jak mianownik w wykładniku, a ⅕ = 5⁻¹. Wykładnik −5 możesz włączyć do nawiasu (do każdego z czynników) i takie tam.",
         formulasPage: 5,
-        solutionText: "<span class='mathText'>(⁵√5 · ⅕)<sup>−5</sup> = (5<sup>1/5</sup> · 5<sup>−1</sup>)<sup>−5</sup> = 5<sup>−1</sup> · 5<sup>5</sup> = 5<sup>4</sup></span> — odpowiedź <b>A</b>.",
-        solutionTextMore: null,
+        solutionText: null,
+        solutionTextMore: "Krok po kroku: <br><br> <span class='mathText'> ⁵√5 = 5<sup>1/5</sup>, &nbsp; ⅕ = 5<sup>−1</sup> <br><br> (5<sup>1/5</sup> · 5<sup>−1</sup>)<sup>−5</sup> = (5<sup>1/5 − 1</sup>)<sup>−5</sup> = (5<sup>−4/5</sup>)<sup>−5</sup> = 5<sup>(−4/5)·(−5)</sup> = <b>5<sup>4</sup></b> </span> <br><br> czyli odp. A.",
         solutionStepByStep: [
             { type: "video", src: "zad2/zad2rozw_step1.mp4", text: "" },
             { type: "video", src: "zad2/zad2rozw_step2.mp4", text: "" },
