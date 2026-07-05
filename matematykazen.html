@@ -19,6 +19,7 @@
 
             <div id="bar-left">
                 <a id="logo" href="index.html"><b>Matematyka Zen</b></a>
+                <button id="toggle-zasady">▼ Pokaż zasady oceniania</button>
             </div>
 
             <div id="bar-center">
@@ -37,6 +38,13 @@
     <div id="tablica-wzorow-panel">
         <object id="tablica-wzorow" type="application/pdf" data="wybrane_wzory_matematyczne.pdf#page=10&toolbar=0" width="300px" height="80vh"></object>
         <button id="tablica-close" title="Zamknij tablice wzorów">✕</button>
+    </div>
+
+    <!-- Zasady oceniania (oficjalny PDF CKE z odpowiedziami) — lustrzany
+         odpowiednik tablicy wzorów, przypięty do lewej krawędzi ekranu. -->
+    <div id="zasady-oceniania-panel">
+        <object id="zasady-oceniania" type="application/pdf" data="arkusze%20PDF/matematyka-2024-grudzien-probna-podstawowa-odpowiedzi.pdf#toolbar=0"></object>
+        <button id="zasady-close" title="Zamknij zasady oceniania">✕</button>
     </div>
 
     <!-- Exercise Template (Hidden) -->
@@ -109,6 +117,30 @@ toggleTablicaButton.addEventListener("click", function() {
 
 // Krzyżyk w rogu tablicy wzorów po prostu ją chowa.
 document.getElementById("tablica-close").addEventListener("click", schowajTablice);
+
+// Zasady oceniania: działa identycznie jak tablica wzorów, tylko po lewej
+// stronie i bez podmieniania strony PDF-a (jeden dokument CKE z odpowiedziami).
+const zasadyPanel = document.getElementById("zasady-oceniania-panel");
+const toggleZasadyButton = document.getElementById("toggle-zasady");
+
+function pokazZasady() {
+    zasadyPanel.style.display = "block";
+    toggleZasadyButton.textContent = "▲ Schowaj zasady oceniania";
+}
+function schowajZasady() {
+    zasadyPanel.style.display = "none";
+    toggleZasadyButton.textContent = "▼ Pokaż zasady oceniania";
+}
+
+toggleZasadyButton.addEventListener("click", function() {
+    const ukryte = zasadyPanel.style.display === "none" || zasadyPanel.style.display === "";
+    if (ukryte) {
+        pokazZasady();
+    } else {
+        schowajZasady();
+    }
+});
+document.getElementById("zasady-close").addEventListener("click", schowajZasady);
 
 function otworzTabliceNaStronie(numerStrony) {
     const tablica = document.getElementById("tablica-wzorow");
@@ -382,9 +414,14 @@ function loadExercises() {
             answersContainer.appendChild(box);
         }
 
-        // Set score
+        // Set score. Zadanie nadrzędne (maxScore: 0, np. wspólny wstęp Zadania 12/17)
+        // nie ma badge'a punktów wcale — usuwamy go z DOM (samo display:none nie
+        // wystarczy, bo przełącznik widoku punktów ustawia display na wszystkich
+        // .exercise-score i by go przywrócił).
         if (exercise.maxScore) {
             scoreSpan.textContent = `0 / ${exercise.maxScore} pkt`;
+        } else {
+            scoreSpan.remove();
         }
 
         // Set hint — przycisk "Podpowiedź" znika, gdy zadanie nie ma podpowiedzi.
@@ -552,12 +589,26 @@ function loadExercises() {
                 video.addEventListener("pause", syncState);
                 video.addEventListener("ended", syncState);
 
-                // Pasek postępu — pokazuje, ile filmu zostało / że już się skończył.
-                video.addEventListener("timeupdate", () => {
+                // Pasek postępu — rysowany w pętli requestAnimationFrame, a nie ze
+                // zdarzeń timeupdate (te przychodzą ~4×/s i pasek skakał; sztuczne
+                // wygładzanie transition-em w CSS wyglądało gumowato). Pętla kręci
+                // się tylko podczas odtwarzania i wygasza się sama, gdy film stoi
+                // albo krok został podmieniony (video wypada z DOM → !isConnected).
+                const updateBar = () => {
                     if (progressBar && video.duration) {
                         progressBar.style.width = `${(video.currentTime / video.duration) * 100}%`;
                     }
-                });
+                };
+                const barLoop = () => {
+                    updateBar();
+                    if (!video.paused && !video.ended && video.isConnected) {
+                        requestAnimationFrame(barLoop);
+                    }
+                };
+                video.addEventListener("play", () => requestAnimationFrame(barLoop));
+                video.addEventListener("pause", updateBar);
+                video.addEventListener("ended", updateBar);
+                barLoop();
 
                 syncState();
             }
