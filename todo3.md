@@ -5,6 +5,7 @@ do zrobienia:
 
 - zad 17.1 rozwiązanie się nie zgadza z treścia zadania ponieważ kąt ABClezy przy wierzchołku B
 - zad 12 powinno by oddzielone od 12.1
+- przyciski w 12.2 nie działają intuicyjnie, trzeba je odklikiwać. Jeżeli uznasz, że jest to proste w implementacji to zrób tak aby ostatni zaznaczony przycisk był tym który automatycznie się odznaczy przy wybraniu nowego. Jeśli uznasz, że to zbyt skomplikuje kod i narazi go na błędy to dodaj lepszą ikonkę zaznaczenia, która będzie sugerować, że trzeba go odznaczyć lub komunikat lub animacje poszerzenia krawędzi która pojawi się po kliknięciu na inną odpowiedź cza, należy albo zmienić to zadanie na otwarte, albo w każdy zadaniu w exercises.js dodać element numberOfCorrectAnswers (lub nazwany jakoś lepiej jesli masz pomysł) który domyslnie byłby równy 1, a jeśli byłby równy więcej to skrypt w pliku matematykazen.html powinien umieć obsłużyć większą ilość poprawnych odpowiedzi
 
 
 inne pomysły (NIE REALIZUJ):
@@ -19,7 +20,7 @@ inne pomysły (NIE REALIZUJ):
 - albo ulepszyć płynne przewijanie aby było rzeczywiście płynne albo wyłączyć tą opcje i zrobić tak jak było wcześniej czyli zwykłe skoki paska co pół sekundy czy coś takiego takie defaultowe. Teraz to wygląda jakby pod spodem było niepłynne a ktoś na siłe chciał to upłynić ale mu nie wyszło za bardzo i to męczy oko.
 - w zad 1 w solutioInteractive nie widać, że niebieskei strzałki są inym elementem, zlewają sięw jedno. mozna by je troszke odsunąć od siebie i troszke skrócić. mozna tez wywalić -a. Zmienić kolor okna z 4 na zielony i tego z 7 (domyślnie) na niebieski. x mozna oznaczyć żółtym kolorem lub ciemnożółtym. Mozna dodać przycisk resetu. opcjonalnie: sprawić aby przesuwanie 
 - dodać przycisk, "pokaż zasady oceniania" po lewej. Działałby on identycznie do przycisku "pokaż tablice wzorów", ale działałby po lewej stronie.
-
+- zaznaczone odpowiediz powinnu mieć gruszy border dwukrotnie
 Chwalenie claude:
 - ładne zrobiłeś rozwiązanie do zadania 5 z procentem składanym
 - fajny pomysł z tym, że im więcej punktów masz tym bardziej zielone są
