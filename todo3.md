@@ -28,3 +28,8 @@ inne pomysły (NIE REALIZUJ):
 Chwalenie claude:
 - ładne zrobiłeś rozwiązanie do zadania 5 z procentem składanym
 - fajny pomysł z tym, że im więcej punktów masz tym bardziej zielone są
+
+
+NOWE PUNKTY TODO ZAPISYWANE PRZEZ CLAUDE:
+- uzupełnij tutaj, zedytuj ten tekst
+- jeśli masz pomysły jakieś
