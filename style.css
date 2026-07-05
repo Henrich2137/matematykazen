@@ -626,10 +626,11 @@ input::-webkit-inner-spin-button {
     padding: 60px 20px 40px;
 }
 .landing-logo {
+    font-size: 40px;
     margin-bottom: 30px;
     font-weight: 600;
     letter-spacing: 0.02em;
-    color: #606060;
+    color: #0F0F0F;
 }
 .landing-hero {
     margin-bottom: 20px;
