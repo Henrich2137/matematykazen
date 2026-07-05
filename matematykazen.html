@@ -19,7 +19,7 @@
         <div id="bar-container">
 
             <div id="bar-left">
-                <div id="logo"><b>Matematyka Zen</b></div>
+                <a id="logo" href="index.html"><b>Matematyka Zen</b></a>
             </div>
 
             <div id="bar-center">
@@ -1478,99 +1478,115 @@ function widgetKatWpisany(container) {
     draw();
 }
 
-// --- Zad 30: prostokąt o obwodzie 36 ----------------------------------------
-// Suwak boku a: rysunek prostokąta + wykres pola P(a) = a(18−a) z maksimum w a = 9.
+// --- Zad 30: prostopadłościan o sumie krawędzi 48 ---------------------------
+// AE = 3·AB, suma krawędzi 48 → AD = 12 − 4x. Suwak x rysuje bryłę i wykres
+// P(x) = −26x² + 96x z maksimum w x = 24/13.
 
-function widgetProstokatPole(container) {
+function widgetProstopadloscian(container) {
     const wrap = wgElement("div", "widget");
     wrap.appendChild(wgElement("div", "widget-title",
-        "Obwód stale 36. Zmieniaj bok <b>a</b> i szukaj największego pola:"));
+        "Suma krawędzi stale 48 i AE = 3·AB. Zmieniaj <b>x = AB</b> i szukaj największego pola całkowitego:"));
 
-    const canvas = wgCanvas(wrap, 520, 240);
+    const canvas = wgCanvas(wrap, 520, 260);
     const ctx = canvas.getContext("2d");
     const controls = wgElement("div", "widget-controls",
-        `<span class='mathText'>a = </span><input type="range" min="1" max="17" step="0.25" value="4">`);
+        `<span class='mathText'>x = </span><input type="range" min="0.25" max="2.75" step="0.05" value="1">`);
     wrap.appendChild(controls);
     const readout = wgElement("div", "widget-readout", "");
     wrap.appendChild(readout);
     container.appendChild(wrap);
 
     const slider = controls.querySelector("input");
+    const X_MAX_POLA = 24 / 13; // wierzchołek paraboli P(x)
+    const P = x => -26 * x * x + 96 * x;
 
-    // Wykres P(a) po prawej stronie.
-    const gx = a => 285 + a / 18 * 215;
-    const gy = p => 210 - p / 85 * 180;
+    // Wykres P(x) po prawej stronie.
+    const gx = x => 300 + x / 3 * 195;
+    const gy = p => 225 - p / 95 * 190;
 
     function draw() {
-        const a = parseFloat(slider.value);
-        const b = 18 - a;
-        const P = a * b;
-        const max = Math.abs(a - 9) < 0.001;
+        const x = parseFloat(slider.value);
+        const y = 12 - 4 * x;           // AD
+        const h = 3 * x;                // AE
+        const pole = P(x);
+        const max = Math.abs(x - X_MAX_POLA) < 0.01;
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Prostokąt (skala 8 px / jednostkę), zakotwiczony w lewym dolnym rogu.
-        const s = 8;
-        const rx = 40, rby = 210;
-        ctx.fillStyle = max ? "rgba(10,179,47,0.25)" : "rgba(122,63,168,0.12)";
+        // Prostopadłościan w rzucie ukośnym (ściana przednia x × 3x, głębokość AD).
+        const s = 15;
+        const dx = y * s * 0.55, dy = y * s * 0.3;
+        const bx = 60, by = 225;        // lewy-dolny róg ściany przedniej
+        const w = x * s, wys = h * s;
+
         ctx.strokeStyle = max ? WG_KOLORY.ok : WG_KOLORY.wykres;
-        ctx.lineWidth = 2;
-        ctx.fillRect(rx, rby - b * s, a * s, b * s);
-        ctx.strokeRect(rx, rby - b * s, a * s, b * s);
+        ctx.fillStyle = max ? "rgba(10,179,47,0.15)" : "rgba(122,63,168,0.08)";
+        ctx.lineWidth = 1.5;
+        // ściana przednia
+        ctx.fillRect(bx, by - wys, w, wys);
+        ctx.strokeRect(bx, by - wys, w, wys);
+        // krawędzie w głąb + ściana górna i boczna
+        ctx.beginPath();
+        ctx.moveTo(bx, by - wys); ctx.lineTo(bx + dx, by - wys - dy);
+        ctx.lineTo(bx + dx + w, by - wys - dy); ctx.lineTo(bx + w, by - wys);
+        ctx.moveTo(bx + dx + w, by - wys - dy); ctx.lineTo(bx + w + dx, by - dy);
+        ctx.lineTo(bx + w, by);
+        ctx.stroke();
+
+        // Podpisy krawędzi.
         ctx.fillStyle = "#333";
         ctx.font = "12px Arial";
         ctx.textAlign = "center";
         ctx.textBaseline = "top";
-        ctx.fillText(`a = ${a}`, rx + a * s / 2, rby + 6);
-        ctx.save();
-        ctx.translate(rx - 10, rby - b * s / 2);
-        ctx.rotate(-Math.PI / 2);
-        ctx.textBaseline = "bottom";
-        ctx.fillText(`b = ${b}`, 0, 0);
-        ctx.restore();
+        const fmt = v => v.toLocaleString("pl-PL", { maximumFractionDigits: 2 });
+        ctx.fillText(`x = ${fmt(x)}`, bx + w / 2, by + 6);
+        ctx.textAlign = "right";
+        ctx.textBaseline = "middle";
+        ctx.fillText(`3x = ${fmt(h)}`, bx - 8, by - wys / 2);
+        ctx.textAlign = "left";
+        ctx.fillText(`${fmt(y)}`, bx + w + dx / 2 + 6, by - dy / 2);
 
-        // Wykres P(a).
+        // Wykres P(x).
         ctx.strokeStyle = ctx.fillStyle = WG_KOLORY.osie;
         ctx.lineWidth = 1;
-        wgStrzalka(ctx, gx(0), gy(0), gx(18) + 12, gy(0));
-        wgStrzalka(ctx, gx(0), gy(0) + 5, gx(0), gy(85) - 8);
+        wgStrzalka(ctx, gx(0), gy(0), gx(3) + 12, gy(0));
+        wgStrzalka(ctx, gx(0), gy(0) + 5, gx(0), gy(95) - 6);
         ctx.font = "11px Arial";
         ctx.textAlign = "center";
         ctx.textBaseline = "top";
-        [9, 18].forEach(v => ctx.fillText(v, gx(v), gy(0) + 4));
+        [1, 2, 3].forEach(v => ctx.fillText(v, gx(v), gy(0) + 4));
 
         ctx.strokeStyle = WG_KOLORY.wykres;
         ctx.lineWidth = 2;
         ctx.beginPath();
-        for (let t = 0; t <= 18; t += 0.2) {
-            const p = { x: gx(t), y: gy(t * (18 - t)) };
+        for (let t = 0; t <= 3; t += 0.05) {
+            const p = { x: gx(t), y: gy(P(t)) };
             t === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
         }
         ctx.stroke();
 
-        // Maksimum (9, 81).
+        // Maksimum (24/13, 1152/13).
         ctx.strokeStyle = "#bbb";
         ctx.setLineDash([4, 3]);
         ctx.beginPath();
-        ctx.moveTo(gx(9), gy(0));
-        ctx.lineTo(gx(9), gy(81));
-        ctx.lineTo(gx(0), gy(81));
+        ctx.moveTo(gx(X_MAX_POLA), gy(0));
+        ctx.lineTo(gx(X_MAX_POLA), gy(P(X_MAX_POLA)));
+        ctx.lineTo(gx(0), gy(P(X_MAX_POLA)));
         ctx.stroke();
         ctx.setLineDash([]);
         ctx.fillStyle = WG_KOLORY.osie;
-        ctx.textAlign = "right";
-        ctx.textBaseline = "middle";
-        ctx.fillText("81", gx(0) - 4, gy(81));
+        ctx.textAlign = "center";
+        ctx.textBaseline = "bottom";
+        ctx.fillText("24/13", gx(X_MAX_POLA), gy(0) - 4);
 
         // Aktualny punkt na wykresie.
         ctx.fillStyle = max ? WG_KOLORY.ok : WG_KOLORY.punkt;
         ctx.beginPath();
-        ctx.arc(gx(a), gy(P), 6, 0, Math.PI * 2);
+        ctx.arc(gx(x), gy(pole), 6, 0, Math.PI * 2);
         ctx.fill();
 
-        const fmt = v => v.toLocaleString("pl-PL", { maximumFractionDigits: 2 });
-        readout.innerHTML = `<span class='mathText'>a = ${fmt(a)}, &nbsp; b = ${fmt(b)}, &nbsp; P = a·b = <b>${fmt(P)}</b></span> ` +
-            (max ? `<span class="wg-ok">✓ największe pole — kwadrat 9 × 9, P = 81</span>` : "");
+        readout.innerHTML = `<span class='mathText'>x = ${fmt(x)}, &nbsp; AD = 12 − 4x = ${fmt(y)}, &nbsp; P(x) = −26x² + 96x = <b>${fmt(pole)}</b></span> ` +
+            (max ? `<span class="wg-ok">✓ największe pole przy x = 24/13</span>` : "");
     }
 
     slider.addEventListener("input", draw);

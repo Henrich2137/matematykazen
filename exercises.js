@@ -26,11 +26,11 @@ Schemat zadania (docelowo plik przejdzie na exercises.json):
 maxTotalScore NIE jest już deklarowane tutaj — suma liczy się automatycznie
 z pól maxScore w matematykazen.html.
 
-UWAGA (2026-07-04): zadania 21-31 NIE pochodzą z oryginalnego arkusza
-(MMAP-P0-100-2412) — środowisko nie miało dostępu do PDF-a CKE. Są to spójne
-matematycznie zadania w stylu CKE pokrywające brakujące działy (stereometria,
-geometria analityczna, statystyka, kombinatoryka, prawdopodobieństwo,
-optymalizacja). Do podmiany na oryginały — patrz todo.md.
+Zadania 1-30 odpowiadają oryginalnemu arkuszowi CKE (MMAP-P0-100-2412,
+grudzień 2024); treści i odpowiedzi 18-30 zweryfikowane z materiałem
+przekazanym przez autora (suma punktów = 50, zgodnie z arkuszem).
+Jedyny znany brak: tabela w zad 29 jest odtworzona tak, by dawała wyniki
+z klucza (średnia 6,38, mediana 6,5) — do porównania z oryginałem, patrz todo.md.
 */
 
 const exercises = [
@@ -77,7 +77,7 @@ const exercises = [
             { type: "video", src: "zad2/zad2rozw_step3.mp4", text: "" },
             { type: "video", src: "zad2/zad2rozw_step4.mp4", text: "Opuszczamy nawias, więc wykładnik -5 musimy wymnożyć przez wykładniki obu potęg." },
             { type: "video", src: "zad2/zad2rozw_step5.mp4", text: "" },
-            { type: "video", src: "zad2/zad2rozw_step6.mp4", text: "Z reguły aʳ · aˢ = aʳ⁺ˢ mamy 5⁻¹⁺⁵ = 5⁴, czyli odpowiedź A. (Na końcu filmu wkradł się błędny zapis 5⁻⁴ — poprawna jest odpowiedź A: 5⁴.)" },
+            { type: "video", src: "zad2/zad2rozw_step6.mp4", text: "5⁻¹⁺⁵ = 5⁴, czyli odpowiedź A (na końcu filmu błędny zapis 5⁻⁴)." },
         ],
         solutionInteractive: null
     },
@@ -454,186 +454,167 @@ const exercises = [
         }
     },
 
+
     /* ============================================================
-       ZADANIA 21-31 — ZAMIENNIKI W STYLU CKE (patrz komentarz na górze
-       pliku i todo.md: do podmiany na oryginały z arkusza).
+       ZADANIA 21-30 — zgodne z oryginalnym arkuszem CKE (treści
+       i odpowiedzi przekazane przez autora). Tabela w zad 29:
+       patrz todo.md (odtworzona pod wyniki z klucza).
        ============================================================ */
     {
-        question: '<b>Zadanie 21.</b> <br><br> W ostrosłupie prawidłowym czworokątnym wysokość ostrosłupa ma długość 3, a krawędź podstawy ma długość 4.<br><br>' +
-              'Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>' +
-              'Pole powierzchni bocznej tego ostrosłupa jest równe:',
-        answers: ['A. 24', 'B. 8√13', 'C. 16√13', 'D. 48'],
-        correctAnswerIndex: 1,
-        maxScore: 1,
-        selfScore: false,
-        hint: "Wysokość ściany bocznej znajdź z twierdzenia Pitagorasa: łączy się z wysokością ostrosłupa (3) i połową krawędzi podstawy (2). Potem policz pole jednego trójkąta i pomnóż przez 4.",
-        formulasPage: 27,
-        solutionText: "Wysokość ściany bocznej: <span class='mathText'>h = √(3² + 2²) = √13</span>. Pole jednej ściany: <span class='mathText'>½ · 4 · √13 = 2√13</span>, a całej powierzchni bocznej: <span class='mathText'>4 · 2√13 = <b>8√13</b></span> — odpowiedź <b>B</b>.",
-        solutionTextMore: "",
-        solutionStepByStep: null,
-        solutionInteractive: null
-    },
-    {
-        question: '<b>Zadanie 22.</b> <br><br> Dany jest graniastosłup prawidłowy sześciokątny, w którym krawędź podstawy ma długość 4, a wysokość jest równa 6.<br><br>' +
+        question: '<b>Zadanie 21.</b> <br><br> W kartezjańskim układzie współrzędnych (x, y) punkty <b>A = (−2, −1)</b> oraz <b>C = (3, 4)</b> są przeciwległymi wierzchołkami kwadratu ABCD.<br><br>' +
                 'Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>' +
-                'Pole powierzchni całkowitej tego graniastosłupa jest równe:',
-        answers: ['A. 24√3 + 144', 'B. 48√3 + 144', 'C. 48√3 + 96', 'D. 96√3'],
-        correctAnswerIndex: 1,
-        maxScore: 1,
-        selfScore: false,
-        hint: "Pole sześciokąta foremnego o boku a: <b>P = (3√3/2)·a²</b> (to 6 trójkątów równobocznych). Do tego 6 prostokątnych ścian bocznych a × h. Nie zapomnij o DWÓCH podstawach.",
-        formulasPage: 27,
-        solutionText: "Podstawa: <span class='mathText'>P = (3√3/2) · 16 = 24√3</span>, dwie podstawy: 48√3. Ściany boczne: <span class='mathText'>6 · 4 · 6 = 144</span>. Razem: <b>48√3 + 144</b> — odpowiedź <b>B</b>.",
-        solutionTextMore: "",
-        solutionStepByStep: null,
-        solutionInteractive: null
-    },
-    {
-        question: '<b>Zadanie 23.</b> <br><br> W kartezjańskim układzie współrzędnych (x, y) dane są punkty <b>A = (−2, 5)</b> oraz <b>B = (4, −3)</b>.<br><br>' +
-                'Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>' +
-                'Długość odcinka AB jest równa:',
-        answers: ['A. 2√7', 'B. √52', 'C. 10', 'D. 100'],
-        correctAnswerIndex: 2,
-        maxScore: 1,
-        selfScore: false,
-        hint: "Wzór na długość odcinka: <b>|AB| = √((x<sub>B</sub> − x<sub>A</sub>)² + (y<sub>B</sub> − y<sub>A</sub>)²)</b>. Przy okazji: trójkąt 6-8-10 to wielokrotność trójki pitagorejskiej 3-4-5.",
-        formulasPage: 22,
-        solutionText: "<span class='mathText'>|AB| = √((4 − (−2))² + (−3 − 5)²) = √(6² + (−8)²) = √(36 + 64) = √100 = <b>10</b></span> — odpowiedź <b>C</b>.",
-        solutionTextMore: "",
-        solutionStepByStep: null,
-        solutionInteractive: null
-    },
-    {
-        question: '<b>Zadanie 24.</b> <br><br> Prosta <i>k</i> ma równanie <span class="mathText">y = 2x − 3</span>. Prosta <i>l</i> jest prostopadła do prostej <i>k</i> i przechodzi przez punkt <b>P = (4, 1)</b>.<br><br>' +
-                'Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>' +
-                'Prosta <i>l</i> ma równanie:',
-        answers: ['A. y = -½x + 3', 'B. y = -½x - 1', 'C. y = 2x - 7', 'D. y = -2x + 9'],
+                'Długość boku kwadratu ABCD jest równa:',
+        answers: ['A. 5', 'B. 10', 'C. 5√2', 'D. √10'],
         correctAnswerIndex: 0,
         maxScore: 1,
         selfScore: false,
-        hint: "Proste są prostopadłe, gdy iloczyn ich współczynników kierunkowych wynosi −1: <b>a₁ · a₂ = −1</b>. Wyraz wolny wyznacz podstawiając punkt P.",
+        hint: "AC to przekątna kwadratu. Policz ją ze wzoru na długość odcinka, a potem skorzystaj z zależności: przekątna = bok · √2.",
+        formulasPage: 22,
+        solutionText: "<span class='mathText'>|AC| = √(5² + 5²) = 5√2</span>, a bok kwadratu to przekątna podzielona przez √2: <b>a = 5</b> — odpowiedź <b>A</b>.",
+        solutionTextMore: "",
+        solutionStepByStep: null,
+        solutionInteractive: null
+    },
+    {
+        question: '<b>Zadanie 22.</b> <br><br> W kartezjańskim układzie współrzędnych (x, y) dana jest prosta <i>k</i> o równaniu <span class="mathText">y = −7x + 3</span>. Prosta <i>l</i> jest równoległa do prostej <i>k</i> i przecina oś Oy w punkcie (0, 6). Punkt o współrzędnych (1, p) należy do prostej <i>l</i>.<br><br>' +
+                'Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>' +
+                'Liczba p jest równa:',
+        answers: ['A. (−4)', 'B. (−1)', 'C. 5/7', 'D. 7'],
+        correctAnswerIndex: 1,
+        maxScore: 1,
+        selfScore: false,
+        hint: "Proste równoległe mają ten sam współczynnik kierunkowy. Punkt (0, 6) od razu daje wyraz wolny prostej l.",
         formulasPage: 24,
-        solutionText: "Warunek prostopadłości: <span class='mathText'>2 · a = −1</span>, więc <span class='mathText'>a = −½</span>. Z punktu P: <span class='mathText'>1 = −½ · 4 + b</span>, czyli <span class='mathText'>b = 3</span>. Prosta l: <b>y = −½x + 3</b> — odpowiedź <b>A</b>.",
+        solutionText: "Prosta l: <span class='mathText'>y = −7x + 6</span>, więc <span class='mathText'>p = −7 · 1 + 6 = <b>−1</b></span> — odpowiedź <b>B</b>.",
         solutionTextMore: "",
         solutionStepByStep: null,
         solutionInteractive: null
     },
     {
-        question: '<b>Zadanie 25.</b> <br><br> Średnia arytmetyczna zestawu danych: <span class="mathText">3, 5, x, 9, 11</span> jest równa 7.<br><br>' +
-                'Oceń prawdziwość poniższych stwierdzeń. Wybierz <b>P</b>, jeśli stwierdzenie jest prawdziwe, albo <b>F</b> – jeśli jest fałszywe.',
-        type: "PF",
-        answers: [],
-        statements: [
-            { text: "Liczba x jest równa 7.", answer: true },
-            { text: "Mediana tego zestawu danych jest równa 9.", answer: false }
-        ],
-        correctAnswerIndex: -1,
+        question: '<b>Zadanie 23.</b> <br><br> W kartezjańskim układzie współrzędnych (x, y) dane są cztery okręgi o równaniach:<br><br>' +
+                '<span class="mathText">o₁: (x − 1)² + (y − 2)² = 1</span><br>' +
+                '<span class="mathText">o₂: (x + 1)² + (y + 2)² = 9</span><br>' +
+                '<span class="mathText">o₃: (x − 3)² + (y − 4)² = 4</span><br>' +
+                '<span class="mathText">o₄: (x + 3)² + (y + 4)² = 16</span><br><br>' +
+                'Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>' +
+                'Okręgiem, który nie ma żadnego punktu wspólnego z osiami układu współrzędnych (x, y), jest:',
+        answers: ['A. o₁', 'B. o₂', 'C. o₃', 'D. o₄'],
+        correctAnswerIndex: 2,
         maxScore: 1,
         selfScore: false,
-        hint: "Suma pięciu liczb to 5 · 7 = 35 — stąd x. Mediana to środkowa liczba PO uporządkowaniu zestawu rosnąco.",
-        formulasPage: 32,
-        solutionText: "<span class='mathText'>3 + 5 + x + 9 + 11 = 35</span>, więc <b>x = 7</b> (zdanie 1: <b>P</b>). Po uporządkowaniu: 3, 5, 7, 9, 11 — środkową liczbą jest 7, a nie 9 (zdanie 2: <b>F</b>).",
+        hint: "Okrąg o środku (a, b) i promieniu r nie dotyka osi, gdy |a| > r oraz |b| > r. Sprawdź każdy okrąg po kolei.",
+        formulasPage: 24,
+        solutionText: "o₃ ma środek (3, 4) i promień 2: odległości od osi (3 i 4) są większe od promienia, więc <b>o₃</b> nie dotyka żadnej z osi — odpowiedź <b>C</b>. (o₁ jest styczny do osi Oy, o₂ i o₄ przecinają osie.)",
         solutionTextMore: "",
         solutionStepByStep: null,
         solutionInteractive: null
     },
     {
-        question: '<b>Zadanie 26.</b> <br><br> Ze zbioru cyfr <b>{1, 2, 3, 4, 5}</b> tworzymy liczby trzycyfrowe o <u>różnych</u> cyfrach.<br><br>' +
+        question: '<b>Zadanie 24.</b> <br><br> Podstawą ostrosłupa prawidłowego czworokątnego jest kwadrat o boku długości 4. Ściana boczna tego ostrosłupa jest nachylona do płaszczyzny podstawy pod takim kątem α, że <span class="mathText">tg α = 3</span>.<br><br>' +
                 'Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>' +
-                'Wszystkich takich liczb jest:',
-        answers: ['A. 10', 'B. 60', 'C. 120', 'D. 125'],
+                'Wysokość tego ostrosłupa jest równa:',
+        answers: ['A. 3', 'B. 6', 'C. 6√2', 'D. 12'],
         correctAnswerIndex: 1,
         maxScore: 1,
         selfScore: false,
-        hint: "Reguła mnożenia: pierwszą cyfrę wybierasz na 5 sposobów, drugą (musi być inna) na 4, trzecią na 3.",
-        formulasPage: 28,
-        solutionText: "<span class='mathText'>5 · 4 · 3 = <b>60</b></span> — odpowiedź <b>B</b>. (Gdyby cyfry mogły się powtarzać, byłoby 5³ = 125.)",
+        hint: "Kąt nachylenia ściany bocznej leży w trójkącie: wysokość ostrosłupa H i połowa boku podstawy (2). tg α = H / 2.",
+        formulasPage: 27,
+        solutionText: "<span class='mathText'>tg α = H / (a/2)</span>, czyli <span class='mathText'>3 = H / 2</span>, stąd <b>H = 6</b> — odpowiedź <b>B</b>.",
         solutionTextMore: "",
         solutionStepByStep: null,
         solutionInteractive: null
     },
     {
-        question: '<b>Zadanie 27.</b> <br><br> Rzucamy dwa razy symetryczną sześcienną kostką do gry.<br><br>' +
+        question: '<b>Zadanie 25.</b> <br><br> Długości trzech krawędzi wychodzących z jednego wierzchołka prostopadłościanu są trzema kolejnymi parzystymi liczbami naturalnymi. Najdłuższa krawędź tego prostopadłościanu ma długość p.<br><br>' +
                 'Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>' +
-                'Prawdopodobieństwo, że suma oczek w obu rzutach będzie równa 5, wynosi:',
-        answers: ['A. 1/12', 'B. 1/9', 'C. 1/6', 'D. 5/36'],
-        correctAnswerIndex: 1,
+                'Objętość tego prostopadłościanu jest równa:',
+        answers: ['A. p³ − 3p² + 2p', 'B. p³ + 3p² + 2p', 'C. p³ − 6p² − 8p', 'D. p³ − 6p² + 8p'],
+        correctAnswerIndex: 3,
         maxScore: 1,
         selfScore: false,
-        hint: "Wszystkich wyników jest 6 · 6 = 36. Wypisz pary, które dają sumę 5: (1,4), (2,3), ...",
-        formulasPage: 29,
-        solutionText: "Sprzyjają pary: (1,4), (2,3), (3,2), (4,1) — jest ich 4. <span class='mathText'>P = 4/36 = <b>1/9</b></span> — odpowiedź <b>B</b>.",
+        hint: "Kolejne parzyste liczby różnią się o 2, więc krawędzie to p − 4, p − 2 oraz p. Wymnóż.",
+        formulasPage: 26,
+        solutionText: "<span class='mathText'>V = (p − 4)(p − 2)p = (p² − 6p + 8)p = <b>p³ − 6p² + 8p</b></span> — odpowiedź <b>D</b>.",
         solutionTextMore: "",
         solutionStepByStep: null,
         solutionInteractive: null
     },
     {
-        question: '<b>Zadanie 28.</b> <br><br> Funkcja wykładnicza <i>f</i> jest określona wzorem <span class="mathText">f(x) = 3 · (½)<sup>x</sup></span> dla każdej liczby rzeczywistej x.<br><br>' +
-                'Oceń prawdziwość poniższych stwierdzeń. Wybierz <b>P</b>, jeśli stwierdzenie jest prawdziwe, albo <b>F</b> – jeśli jest fałszywe.',
-        type: "PF",
-        answers: [],
-        statements: [
-            { text: "Wykres funkcji <i>f</i> przechodzi przez punkt (0, 3).", answer: true },
-            { text: "Funkcja <i>f</i> jest rosnąca.", answer: false }
-        ],
-        correctAnswerIndex: -1,
-        maxScore: 1,
-        selfScore: false,
-        hint: "Policz f(0) — każda liczba w potędze 0 daje 1. Funkcja a<sup>x</sup> jest malejąca, gdy 0 < a < 1.",
-        formulasPage: null,
-        solutionText: "<span class='mathText'>f(0) = 3 · (½)⁰ = 3 · 1 = 3</span>, więc punkt (0, 3) należy do wykresu (zdanie 1: <b>P</b>). Podstawa ½ ∈ (0, 1), więc funkcja jest <b>malejąca</b>, a nie rosnąca (zdanie 2: <b>F</b>).",
-        solutionTextMore: "",
-        solutionStepByStep: null,
-        solutionInteractive: null
-    },
-    {
-        question: '<b>Zadanie 29.</b> <br><br> Przekątna sześcianu ma długość <span class="mathText">4√3</span>.<br><br>' +
-                'Oblicz pole powierzchni całkowitej oraz objętość tego sześcianu. Zapisz obliczenia.',
+        question: '<b>Zadanie 26.</b> <br><br> Objętość stożka o wysokości 2 jest równa 8π. Oblicz miarę kąta rozwarcia tego stożka. Zapisz obliczenia.',
         type: "open",
         answers: [],
         correctAnswerIndex: -1,
         maxScore: 2,
         selfScore: true,
-        hint: "Przekątna sześcianu o krawędzi a ma długość <b>a√3</b>. Porównaj to z 4√3.",
+        hint: "Z wzoru V = ⅓πr²h wyznacz promień podstawy. Kąt rozwarcia to 2× kąt między wysokością a tworzącą: tg(α/2) = r / h.",
         formulasPage: 27,
-        solutionText: "Z <span class='mathText'>a√3 = 4√3</span> mamy <b>a = 4</b>. Pole całkowite: <span class='mathText'>P = 6a² = 6 · 16 = <b>96</b></span>, objętość: <span class='mathText'>V = a³ = <b>64</b></span>.",
+        solutionText: "<span class='mathText'>⅓ · πr² · 2 = 8π → r² = 12 → r = 2√3</span>. Dalej <span class='mathText'>tg(α/2) = r/h = 2√3/2 = √3</span>, więc α/2 = 60° i kąt rozwarcia <b>α = 120°</b>.",
         solutionTextMore: "",
         solutionStepByStep: null,
         solutionInteractive: null
     },
     {
-        question: '<b>Zadanie 30.</b> <br><br> Rozpatrujemy wszystkie prostokąty, których obwód jest równy 36.<br><br>' +
-                'Wyznacz wymiary tego z rozpatrywanych prostokątów, którego pole jest największe. Oblicz to pole. Zapisz obliczenia.',
+        question: '<b>Zadanie 27.</b> <br><br> Wszystkich liczb naturalnych pięciocyfrowych <u>nieparzystych</u>, w których zapisie dziesiętnym występują wyłącznie cyfry 0, 1, 2, 3 (np. 12303, 11111), jest:',
+        answers: ['A. 32', 'B. 384', 'C. 512', 'D. 576'],
+        correctAnswerIndex: 1,
+        maxScore: 1,
+        selfScore: false,
+        hint: "Reguła mnożenia: pierwsza cyfra nie może być zerem, ostatnia musi być nieparzysta (1 albo 3), środkowe trzy — dowolne z czterech cyfr.",
+        formulasPage: 28,
+        solutionText: "<span class='mathText'>3 · 4 · 4 · 4 · 2 = <b>384</b></span> — odpowiedź <b>B</b>.",
+        solutionTextMore: "",
+        solutionStepByStep: null,
+        solutionInteractive: null
+    },
+    {
+        question: '<b>Zadanie 28.</b> <br><br> Dane są dwa zbiory: <b>C = {1, 2, 3, 4, 5, 6}</b> oraz <b>D = {7, 8, 9, 10}</b>. Losujemy jedną liczbę ze zbioru C, a następnie losujemy jedną liczbę ze zbioru D.<br><br>' +
+                'Oblicz prawdopodobieństwo zdarzenia A polegającego na tym, że wylosujemy liczby, których iloczyn będzie podzielny przez 4. Zapisz obliczenia.',
+        type: "open",
+        answers: [],
+        correctAnswerIndex: -1,
+        maxScore: 2,
+        selfScore: true,
+        hint: "Wszystkich par jest 6 · 4 = 24. Przejrzyj liczby z D: przy 8 iloczyn zawsze dzieli się przez 4; przy 7 i 9 musi pomóc liczba z C; przy 10 wystarczy, że liczba z C jest parzysta.",
+        formulasPage: 29,
+        solutionText: "|Ω| = 24. Sprzyjające: z 8 — każde c (6 par); z 7 i 9 — tylko c = 4 (2 pary); z 10 — c parzyste: 2, 4, 6 (3 pary). Razem 11, więc <span class='mathText'><b>P(A) = 11/24</b></span>.",
+        solutionTextMore: "",
+        solutionStepByStep: null,
+        solutionInteractive: null
+    },
+    {
+        question: '<b>Zadanie 29.</b> <br><br> Do szkolnego koła czytelniczego należy 50 uczniów. Opiekun koła zebrał dane dotyczące liczby książek przeczytanych przez tych uczniów w listopadzie 2024 roku. W poniższej tabeli przedstawiono wyniki zebrane przez opiekuna.<br><br>' +
+                '<table class="data-table"><tr><th>Liczba przeczytanych książek</th><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>' +
+                '<tr><th>Liczba uczniów</th><td>7</td><td>8</td><td>10</td><td>14</td><td>6</td><td>5</td></tr></table><br>' +
+                'Uzupełnij zdania. Wpisz odpowiednie liczby w wykropkowanych miejscach, aby zdania były prawdziwe.<br><br>' +
+                '1. Średnia arytmetyczna liczby przeczytanych książek w tej grupie uczniów jest równa …<br>' +
+                '2. Mediana liczby przeczytanych książek w tej grupie uczniów jest równa …',
+        type: "open",
+        answers: [],
+        correctAnswerIndex: -1,
+        maxScore: 2,
+        selfScore: true,
+        hint: "Średnia: suma (liczba książek · liczba uczniów) podzielona przez 50. Mediana przy 50 uczniach to średnia 25. i 26. wyniku po uporządkowaniu.",
+        formulasPage: 31,
+        solutionText: "1. Średnia: <span class='mathText'>(4·7 + 5·8 + 6·10 + 7·14 + 8·6 + 9·5) / 50 = 319/50 = <b>6,38</b></span>. <br> 2. Mediana: 25. wynik to 6, a 26. to 7, więc <span class='mathText'>(6 + 7)/2 = <b>6,5</b></span>.",
+        solutionTextMore: "",
+        solutionStepByStep: null,
+        solutionInteractive: null
+    },
+    {
+        question: '<b>Zadanie 30.</b> <br><br> Rozważamy wszystkie prostopadłościany ABCDEFGH, w których krawędź AE jest 3 razy dłuższa od krawędzi AB, a suma długości wszystkich dwunastu krawędzi prostopadłościanu jest równa 48. Niech P(x) oznacza funkcję pola powierzchni całkowitej takiego prostopadłościanu w zależności od długości x krawędzi AB.<br><br>' +
+                'Wyznacz wzór i dziedzinę funkcji P. Oblicz długość x krawędzi AB tego z rozważanych prostopadłościanów, którego pole powierzchni całkowitej jest największe. Zapisz obliczenia.',
         type: "open",
         answers: [],
         correctAnswerIndex: -1,
         maxScore: 4,
         selfScore: true,
-        hint: "Oznacz jeden bok przez a — wtedy drugi to 18 − a (bo połowa obwodu wynosi 18). Pole P(a) = a(18 − a) to funkcja kwadratowa: jej największa wartość jest w wierzchołku.",
+        hint: "Oznacz AB = x, AE = 3x, a trzecią krawędź (AD) wyznacz z sumy krawędzi: 4(x + AD + 3x) = 48. Pole całkowite to suma pól trzech par ścian; maksimum funkcji kwadratowej jest w wierzchołku.",
         formulasPage: 7,
-        solutionText: "Boki: a oraz 18 − a. Pole: <span class='mathText'>P(a) = a(18 − a) = −a² + 18a</span> — parabola z ramionami w dół, maksimum w wierzchołku <span class='mathText'>a = 18/2 = 9</span>. Największe pole ma <b>kwadrat 9 × 9</b>, a jego pole to <b>81</b>.",
-        solutionTextMore: "Obwód: <span class='mathText'>2a + 2b = 36</span>, więc <span class='mathText'>b = 18 − a</span>, przy czym <span class='mathText'>a ∈ (0, 18)</span>. <br><br> <span class='mathText'>P(a) = a(18 − a) = −a² + 18a</span>. <br><br> Współczynnik przy a² jest ujemny, więc funkcja osiąga największą wartość w wierzchołku: <span class='mathText'>a<sub>w</sub> = −18/(2·(−1)) = 9</span>, wtedy <span class='mathText'>b = 18 − 9 = 9</span>. <br><br> <span class='mathText'>P(9) = 9 · 9 = <b>81</b></span>. Spośród prostokątów o stałym obwodzie największe pole ma kwadrat.",
+        solutionText: "Z sumy krawędzi: <span class='mathText'>AD = 12 − 4x</span>, stąd <span class='mathText'><b>P(x) = −26x² + 96x</b></span> dla <span class='mathText'><b>x ∈ (0, 3)</b></span>. Maksimum w wierzchołku: <span class='mathText'>x = 96/52 = <b>24/13</b></span>.",
+        solutionTextMore: "Krawędzie: <span class='mathText'>AB = x, AE = 3x, AD = y</span>. Suma: <span class='mathText'>4(x + y + 3x) = 48 → y = 12 − 4x</span>; warunek y > 0 daje dziedzinę <span class='mathText'>x ∈ (0, 3)</span>. <br><br> <span class='mathText'>P(x) = 2xy + 2·x·3x + 2·y·3x = 6x² + 8xy = 6x² + 8x(12 − 4x) = <b>−26x² + 96x</b></span>. <br><br> Ramiona w dół, więc największa wartość w wierzchołku: <span class='mathText'>x = −96 / (2·(−26)) = <b>24/13</b></span> (należy do dziedziny).",
         solutionStepByStep: null,
         solutionInteractive: function (container) {
-            widgetProstokatPole(container);
+            widgetProstopadloscian(container);
         }
-    },
-    {
-        question: '<b>Zadanie 31.</b> <br><br> Oceń prawdziwość poniższych stwierdzeń. Wybierz <b>P</b>, jeśli stwierdzenie jest prawdziwe, albo <b>F</b> – jeśli jest fałszywe.',
-        type: "PF",
-        answers: [],
-        statements: [
-            { text: "Liczba 25 jest pierwiastkiem równania log<sub>5</sub>x = 2.", answer: true },
-            { text: "Wartość log<sub>2</sub>16 jest równa 4.", answer: true }
-        ],
-        correctAnswerIndex: -1,
-        maxScore: 1,
-        selfScore: false,
-        hint: "Sprawdź: czy log₅25 = 2? Do jakiej potęgi trzeba podnieść 2, żeby otrzymać 16?",
-        formulasPage: 5,
-        solutionText: "<span class='mathText'>log₅25 = 2</span>, bo 5² = 25 — liczba 25 spełnia równanie (zdanie 1: <b>P</b>). <span class='mathText'>log₂16 = 4</span>, bo 2⁴ = 16 (zdanie 2: <b>P</b>).",
-        solutionTextMore: "",
-        solutionStepByStep: null,
-        solutionInteractive: null
     }
 ];

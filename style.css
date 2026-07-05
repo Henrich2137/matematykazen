@@ -84,9 +84,15 @@ body {
     pointer-events: none;
 }
 
+/* Logo jest linkiem do strony głównej (index.html) — wygląda jak zwykły napis. */
 #logo {
     white-space: nowrap;
     padding: 10px;
+    color: #111;
+    text-decoration: none;
+}
+#logo:hover {
+    text-decoration: underline;
 }
 
 #total-score {
@@ -592,4 +598,121 @@ input::-webkit-inner-spin-button {
 .feedback {
     margin-left: 10px;
     font-size: 16px;
+}
+
+/* ===== TABELKI DANYCH W TREŚCI ZADAŃ (np. zad 29) ===== */
+.data-table {
+    margin: 10px auto;
+    border-collapse: collapse;
+}
+.data-table th,
+.data-table td {
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    font-weight: normal;
+    text-align: center;
+}
+.data-table th {
+    background-color: #fafafa;
+    text-align: left;
+}
+
+/* ===== STRONA GŁÓWNA (index.html) ===== */
+/* Landing dzieli style.css z arkuszem; wszystko poniżej dotyczy tylko
+   body.landing-page. Jedna wąska kolumna, ta sama typografia co arkusz. */
+.landing-page {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 60px 20px 40px;
+}
+.landing-logo {
+    margin-bottom: 30px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: #606060;
+}
+.landing-hero {
+    margin-bottom: 20px;
+    text-align: center;
+}
+.landing-hero h1 {
+    margin: 0 0 20px;
+    font-size: 30px;
+    line-height: 1.3;
+}
+.landing-lede {
+    max-width: 560px;
+    margin: 0 auto 30px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #444;
+}
+.landing-cta {
+    display: inline-block;
+    padding: 14px 28px;
+    border: 2px solid #111;
+    border-radius: 3px;
+    font-size: 18px;
+    text-decoration: none;
+    color: #111;
+}
+.landing-cta:hover {
+    background-color: #111;
+    color: #fff;
+}
+.landing-cta-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    color: #858585;
+}
+.landing-section {
+    margin-top: 70px;
+    text-align: center;
+}
+.landing-section h2 {
+    margin-bottom: 25px;
+    font-size: 22px;
+}
+.landing-cards {
+    display: flex;
+    gap: 20px;
+    text-align: left;
+}
+.landing-card {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #f0f0f0;
+}
+.landing-card h3 {
+    margin: 0 0 10px;
+    font-size: 17px;
+}
+.landing-card p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #444;
+}
+.landing-section-alt p {
+    max-width: 560px;
+    margin: 0 auto 20px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #444;
+}
+.landing-feedback-link {
+    display: inline-block;
+    color: #606060;
+    text-decoration: underline;
+}
+.landing-footer {
+    margin-top: 70px;
+    font-size: 13px;
+    text-align: center;
+    color: #aaa;
+}
+@media (max-width: 640px) {
+    .landing-cards {
+        flex-direction: column;
+    }
 }

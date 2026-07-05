@@ -21,16 +21,21 @@ ZROBIONE (2026-07-04, sesja 2 — uzupełnienie arkusza + interaktywność):
 - [DONE] Spacer <br><br><br><br> pod paskiem zastąpiony paddingiem #exercises-wrapper (gotcha z CLAUDE.md).
 - [DONE] Zadania 23-30 (wymyślone przez ChatGPT, odwołujące się do nieistniejących obrazków zad23-29) zastąpione spójnymi zadaniami 21-31 w stylu CKE bez obrazków; brakujące grafiki przestały być problemem.
 
+ZROBIONE (2026-07-05, sesja 3 — oryginalne zadania 21-30 + strona główna):
+- [DONE] Zadania 21-30 podmienione na ORYGINAŁY z arkusza CKE (treści i klucz odpowiedzi wklejone przez autora; wszystkie odpowiedzi przeliczone i zgodne z kluczem). Suma punktów arkusza = 50 pkt — zgadza się z oficjalną, co potwierdza też punktację zadań otwartych 8 (3 pkt), 10 (4 pkt), 19 (4 pkt).
+- [DONE] Zweryfikowane z kluczem zadania 18 (A), 19 (22,14), 20 (B) — były poprawne.
+- [DONE] Widżet zad 30 przerobiony z prostokąta na prostopadłościan z arkusza (P(x) = −26x² + 96x, dziedzina (0,3), maksimum x = 24/13) — widgetProstopadloscian.
+- [DONE] Strona główna index.html (przeniesiona z gałęzi claude/practical-rubin-t7g7ya, style .landing-* w style.css) + logo w arkuszu jest teraz linkiem do index.html.
+- [DONE] Tabelka danych zad 29 jako HTML (.data-table), nie obrazek.
+
 DO ZROBIENIA — WAŻNE:
-- Podmienić zadania 21-31 na ORYGINAŁY z arkusza CKE (MMAP-P0-100-2412). Sandbox nie miał dostępu do internetu poza GitHubem, więc nie dało się pobrać PDF-a; obecne 21-31 to spójne zamienniki w stylu CKE (stereometria, geometria analityczna, statystyka, kombinatoryka, prawdopodobieństwo, optymalizacja). Arkusz: https://cke.gov.pl → arkusze diagnostyczne grudzień 2024.
-- Zweryfikować punktację zadań otwartych (8: 3 pkt?, 10: 4 pkt?, 19: 4 pkt?) z zasadami oceniania CKE.
+- Zad 29: tabela ODTWORZONA (książki 4-9, uczniowie 7/8/10/14/6/5) tak, by dawała wyniki z klucza (średnia 6,38, mediana 6,5). Porównać z tabelą w arkuszu CKE i ewentualnie poprawić liczności (wyniki się nie zmienią, jeśli klucz się zgadza).
+- Zadania 19, 20, 29, 30 mają w arkuszu rysunki/tabelę ("zobacz rysunek") — zad 19 i 20 mają obrazki, do 30 warto dodać crop rysunku prostopadłościanu z arkusza (zad30/zad30.png) zgodnie z konwencją zadN/.
 - Przerenderować w Manimie ostatni krok zad 2 (zad2/zad2rozw_step6.mp4): klatka końcowa pokazuje 5⁻⁴, a poprawny wynik to 5⁴ (5⁻¹ · 5⁵ = 5⁴). Komentarz pod filmem tymczasowo prostuje błąd.
 
 Sugestie na potem, to troche większe zadania (NIE REALIZUJ ICH JESZCZE):
 
 - dodanie pól na własny tekst w zadaniach takich jak zadanie 10 w miejscach takich jak "..." i systemu sprawdzania odpowiedzi użytkownika czy pasuje chociaż do jednej wersji poprawnych odpowiedzi. Poniżej zadania powinien znajdować się przycisk sprawdź, po kliknięciu którego przy każdym z pól pojawi się oznaczenie na czerwono lub zielona w zależności od poprawności odpowiedzi. (moze być to w formie zmiany koloru ramki pola) — częściowo zastąpione samooceną (selfScore), ale docelowo warto zrobić prawdziwe pola.
-
-- dodanie strony głównej z opisem projektu i odnośnikiem do arkusza demo (tego który teraz jest stroną główną) oraz hiperłącza na logo lewy górnym rogu
 
 
 Sugestie WYGLĄD / DESIGN:
