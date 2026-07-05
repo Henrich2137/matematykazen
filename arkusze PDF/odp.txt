@@ -1,0 +1,1373 @@
+                                                               Zasady oceniania rozwiza
+
+                                                 Rodzaj dokumentu:
+
+                                                               zada
+
+                                                 Egzamin:         Egzamin maturalny
+
+Wicej arkuszy znajdziesz na stronie: arkusze.pl                   TEST DIAGNOSTYCZNY
+
+                                                 Przedmiot:       Matematyka
+
+                                                 Poziom:          Poziom podstawowy
+
+                                                 Formy arkusza:   MMAP-P0-100, MMAP-P0-200,
+                                                                  MMAP-P0-300, MMAP-P0-400,
+                                                                  MMAP-P0-700, MMAP-P0-Q00,
+                                                                  MMAP-P0-K00, MMAU-P0-100
+
+                                                 Termin egzaminu: 6 grudnia 2024 r.
+
+                                                 Data publikacji  11 grudnia 2024 r.
+                                                 dokumentu:
+Wicej arkuszy znajdziesz na stronie: arkusze.pl  Egzamin maturalny z matematyki ­ poziom podstawowy. Test diagnostyczny ­ grudzie 2024 r.
+
+                                                 Uwagi ogólne:
+                                                 1. Akceptowane s wszystkie rozwizania merytorycznie poprawne i spelniajce warunki
+
+                                                    zadania.
+                                                 2. Jeeli zdajcy poprawnie rozwie zadanie i otrzyma poprawny wynik, lecz w kocowym
+
+                                                    zapisie przeksztalca ten wynik i popelnia przy tym bld, to moe uzyska maksymaln
+                                                    liczb punktów.
+                                                 3. Jeeli zdajcy popelni bldy rachunkowe, które na adnym etapie rozwizania nie
+                                                    upraszczaj i nie zmieniaj danego zagadnienia, lecz stosuje poprawn metod
+                                                    i konsekwentnie do popelnionych bldów rachunkowych rozwizuje zadanie, to moe
+                                                    otrzyma co najwyej ( - 1) punktów (gdzie  jest maksymaln moliw do uzyskania
+                                                    liczb punktów za dane zadanie).
+
+                                                 Strona 2 z 31
+                                                                                                     Zasady oceniania rozwiza zada
+
+                                                 Uwaga:
+                                                 Gdy wymaganie egzaminacyjne dotyczy treci z II etapu edukacyjnego, dopisano ,,SP".
+
+                                                 Zadanie 1. (0­1)
+
+                                                                   Wymagania okrelone w podstawie programowej1
+
+                                                                Wymaganie ogólne                    Wymaganie szczególowe
+
+                                                 III. Wykorzystanie i interpretowanie    Zdajcy:
+                                                 reprezentacji.                          I.7) stosuje interpretacj geometryczn
+                                                 1. Stosowanie obiektów matematycznych   i algebraiczn wartoci bezwzgldnej,
+                                                 i operowanie nimi, interpretowanie poj  rozwizuje równania typu: | + 4| = 5.
+                                                 matematycznych.
+
+Wicej arkuszy znajdziesz na stronie: arkusze.pl  Zasady oceniania
+                                                 1 pkt ­ odpowied poprawna.
+                                                 0 pkt ­ odpowied niepoprawna albo brak odpowiedzi.
+
+                                                 Rozwizanie
+                                                 B
+
+                                                 Zadanie 2. (0­1)                                   Wymaganie szczególowe
+
+                                                                  Wymaganie ogólne       Zdajcy:
+                                                                                         I.4) stosuje zwizek pierwiastkowania
+                                                  I. Sprawno rachunkowa.                 z potgowaniem oraz prawa dziala na
+                                                  Wykonywanie oblicze na liczbach        potgach i pierwiastkach.
+                                                  rzeczywistych, take przy uyciu
+                                                  kalkulatora, stosowanie praw dziala
+                                                  matematycznych przy przeksztalcaniu
+                                                  wyrae algebraicznych oraz
+                                                  wykorzystywanie tych umiejtnoci przy
+                                                  rozwizywaniu problemów w kontekstach
+                                                  rzeczywistych i teoretycznych.
+
+                                                 Zasady oceniania
+                                                 1 pkt ­ odpowied poprawna.
+                                                 0 pkt ­ odpowied niepoprawna albo brak odpowiedzi.
+
+                                                 Rozwizanie
+                                                 A
+
+                                                 1 Rozporzdzenie Ministra Edukacji z dnia 28 czerwca 2024 r. zmieniajce rozporzdzenie w sprawie podstawy
+                                                 programowej ksztalcenia ogólnego dla liceum ogólnoksztalccego, technikum oraz branowej szkoly II stopnia
+                                                 (Dz.U. z 2024 r. poz. 1019).
+
+                                                                                                                                                                                       Strona 3 z 31
+                                                 Egzamin maturalny z matematyki ­ poziom podstawowy. Test diagnostyczny ­ grudzie 2024 r.
+
+                                                 Zadanie 3. (0­2)
+
+                                                                Wymaganie ogólne       Wymagania szczególowe
+
+                                                 IV. Rozumowanie i argumentacja.       Zdajcy:
+                                                 1. Przeprowadzanie rozumowa, take     I.2) przeprowadza proste dowody dotyczce
+                                                 kilkuetapowych, podawanie argumentów  podzielnoci liczb calkowitych [...];
+                                                 uzasadniajcych poprawno rozumowania,  I.4) stosuje [...] prawa dziala na potgach
+                                                 odrónianie dowodu od przykladu.       [...].
+
+                                                 Zasady oceniania
+                                                 2 pkt ­ przeksztalcenie wyraenia 2100 + 449 + 1624 do postaci 21  , gdzie  jest liczb
+
+                                                          naturaln, np.: 296  21, 448  21.
+
+Wicej arkuszy znajdziesz na stronie: arkusze.pl  1 pkt ­ przeksztalcenie wyraenia 2100 + 449 + 1624 do postaci 2100 + 298 + 296
+
+                                                          ALBO
+                                                       ­ przeksztalcenie wyraenia 2100 + 449 + 1624 do postaci 450 + 449 + 448,
+
+                                                          ALBO
+                                                       ­ przeksztalcenie wyraenia 2100 + 449 + 1624 do postaci 1625 + 1624  4 + 1624.
+
+                                                 0 pkt ­ rozwizanie, w którym zastosowano niepoprawn metod, albo brak rozwizania.
+
+                                                 Przykladowe pelne rozwizania
+
+                                                 Sposób I
+                                                 Korzystamy z wlasnoci dziala na potgach i otrzymujemy:
+
+                                                                 2100 + 449 + 1624 = 2100 + (22)49 + (24)24 = 2100 + 298 + 296
+
+                                                 Wylczamy wspólny czynnik przed nawias
+                                                                          2100 + 298 + 296 = 296  (24 + 22 + 1) = 296  21
+
+                                                 Liczba 296 jest liczb calkowit, zatem liczba 2100 + 449 + 1624 jest podzielna przez 21.
+
+                                                 Sposób II
+                                                 Korzystamy z wlasnoci dziala na potgach i otrzymujemy:
+
+                                                                  2100 + 449 + 1624 = (22)50 + 449 + (42)24 = 450 + 449 + 448
+
+                                                 Wylczamy wspólny czynnik przed nawias
+                                                                            450 + 449 + 448 = 448  (42 + 4 + 1) = 448  21
+
+                                                 Liczba 448 jest liczb calkowit, zatem liczba 2100 + 449 + 1624 jest podzielna przez 21.
+
+                                                 Sposób III
+                                                 Korzystamy z wlasnoci dziala na potgach i otrzymujemy:
+
+                                                           2100 + 449 + 1624 = (24)25 + (42)24  4 + 1624 = 1625 + 1624  4 + 1624
+
+                                                 Wylczamy wspólny czynnik przed nawias
+
+                                                 Strona 4 z 31
+                                                                                                                                                          Zasady oceniania rozwiza zada
+
+                                                                     1625 + 1624  4 + 1624 = 1624  (16 + 4 + 1) = 1624  21
+                                                 Liczba 1624 jest liczb calkowit, zatem liczba 2100 + 449 + 1624 jest podzielna przez 21.
+
+                                                 Zadanie 4. (0­1)                                       Wymaganie szczególowe
+
+                                                                  Wymaganie ogólne           Zdajcy:
+                                                                                             I.9) [...] posluguje si wzorami na logarytm
+                                                  III. Wykorzystanie i interpretowanie       iloczynu [...] i logarytm potgi.
+                                                  reprezentacji.
+                                                  1. Stosowanie obiektów matematycznych
+                                                  i operowanie nimi, interpretowanie poj
+                                                  matematycznych.
+
+Wicej arkuszy znajdziesz na stronie: arkusze.pl  Zasady oceniania
+                                                 1 pkt ­ odpowied poprawna.
+                                                 0 pkt ­ odpowied niepoprawna albo brak odpowiedzi.
+
+                                                 Rozwizanie
+                                                 D
+
+                                                 Zadanie 5. (0­1)                                       Wymaganie szczególowe
+
+                                                                  Wymaganie ogólne           Zdajcy:
+                                                                                             I.8) wykorzystuje wlasnoci potgowania
+                                                  II. Wykorzystanie i tworzenie informacji.  i pierwiastkowania w sytuacjach
+                                                  2. Uywanie jzyka matematycznego do         praktycznych, w tym do obliczania
+                                                  tworzenia tekstów matematycznych, w tym    procentów skladanych, zysków z lokat
+                                                  do opisu prowadzonych rozumowa             i kosztów kredytów.
+                                                  i uzasadniania wniosków, a take do
+                                                  przedstawiania danych.
+
+                                                 Zasady oceniania
+                                                 1 pkt ­ odpowied poprawna.
+                                                 0 pkt ­ odpowied niepoprawna albo brak odpowiedzi.
+
+                                                 Rozwizanie
+                                                 B
+
+                                                                                                     Strona 5 z 31
+                                                 Egzamin maturalny z matematyki ­ poziom podstawowy. Test diagnostyczny ­ grudzie 2024 r.
+
+                                                 Zadanie 6. (0­1)                                    Wymaganie szczególowe
+
+                                                                  Wymaganie ogólne        Zdajcy:
+                                                                                          II.4) [...] dzieli wyraenia wymierne.
+                                                  III. Wykorzystanie i interpretowanie
+                                                  reprezentacji.
+                                                  1. Stosowanie obiektów matematycznych
+                                                  i operowanie nimi, interpretowanie poj
+                                                  matematycznych.
+
+                                                 Zasady oceniania
+                                                 1 pkt ­ odpowied poprawna.
+                                                 0 pkt ­ odpowied niepoprawna albo brak odpowiedzi.
+
+                                                 Rozwizanie
+                                                 B
+
+Wicej arkuszy znajdziesz na stronie: arkusze.pl  Zadanie 7. (0­1)                                    Wymaganie szczególowe
+
+                                                                  Wymaganie ogólne        Zdajcy:
+                                                                                          IV.1) rozwizuje uklady równa liniowych
+                                                  III. Wykorzystanie i interpretowanie    z dwiema niewiadomymi [...].
+                                                  reprezentacji.
+                                                  1. Stosowanie obiektów matematycznych
+                                                  i operowanie nimi, interpretowanie poj
+                                                  matematycznych.
+
+                                                 Zasady oceniania
+                                                 1 pkt ­ odpowied poprawna.
+                                                 0 pkt ­ odpowied niepoprawna albo brak odpowiedzi.
+
+                                                 Rozwizanie
+                                                 A
+
+                                                 Strona 6 z 31
+                                                                                                                       Zasady oceniania rozwiza zada
+
+                                                 Zadanie 8. (0­3)                                              Wymagania szczególowe
+
+                                                                  Wymaganie ogólne                 Zdajcy:
+
+                                                  III. Wykorzystanie i interpretowanie             III.1) przeksztalca równania i nierównoci
+                                                  reprezentacji.
+                                                  1. Stosowanie obiektów matematycznych            w sposób równowany, w tym np.
+                                                  i operowanie nimi, interpretowanie poj
+                                                  matematycznych.                                  przeksztalca równowanie równanie
+
+                                                                                                      5  1  =  2+-31;
+                                                                                                      +
+
+                                                                                                   III.4) rozwizuje równania [...] kwadratowe.
+
+                                                                                                   SP VI. Równania z jedn niewiadom.
+
+                                                                                                   3) rozwizuje równania, które po prostych
+
+                                                                                                   przeksztalceniach wyrae algebraicznych
+
+                                                                                                   sprowadzaj si do równa pierwszego
+
+                                                                                                   stopnia z jedn niewiadom.
+
+Wicej arkuszy znajdziesz na stronie: arkusze.pl  Zasady oceniania
+
+                                                 3 pkt ­ zastosowanie poprawnej metody oraz zapisanie zaloenia:   1, oraz poprawny
+                                                         wynik:  = -6.
+
+                                                 2 pkt ­ przeksztalcenie równania    +  3  =       2  do równania liniowego, np.
+                                                                                     -  1     2 -
+
+                                                 2( + 3) = , oraz rozwizanie tego równania:  = -6
+
+                                                 ALBO
+
+                                                 ­ przeksztalcenie równania          +  3  =       2  do równania kwadratowego, np.
+                                                                                     -  1     2 -
+
+                                                 ( + 3)(2 - 2) = ( - 1), oraz rozwizanie tego równania:
+
+                                                  = -6 oraz  = 1,
+
+                                                 ALBO
+
+                                                 ­ przeksztalcenie równania          +  3  =       2  do równania liniowego, np.
+                                                                                     -  1     2 -
+
+                                                 2( + 3) = , oraz zapisanie zaloenia:   1,
+
+                                                 ALBO
+
+                                                 ­ przeksztalcenie równania          +  3  =       2  do równania kwadratowego, np.
+                                                                                     -  1     2 -
+
+                                                 ( + 3)(2 - 2) = ( - 1), oraz zapisanie zaloenia:   1.
+
+                                                 1 pkt ­ przeksztalcenie równania    +  3  =       2  do równania liniowego, np.
+                                                                                     -  1     2 -
+
+                                                 2( + 3) = 
+
+                                                 ALBO
+
+                                                 ­ przeksztalcenie równania          +  3  =       2  do równania kwadratowego, np.
+                                                                                     -  1     2 -
+
+                                                 ( + 3)(2 - 2) = ( - 1),
+
+                                                 ALBO
+
+                                                 ­ zapisanie zaloenia:   1.
+
+                                                 0 pkt ­ rozwizanie, w którym zastosowano niepoprawn metod, albo brak rozwizania.
+
+                                                                                                                                  Strona 7 z 31
+                                                 Egzamin maturalny z matematyki ­ poziom podstawowy. Test diagnostyczny ­ grudzie 2024 r.
+
+                                                 Uwaga:
+                                                 Jeeli zdajcy stosuje metod analizy staroytnych i nie zapisze zaloenia, ale uwzgldni je
+                                                 w kocowej odpowiedzi, to moe otrzyma 3 punkty za cale rozwizanie.
+
+                                                 Przykladowe pelne rozwizania
+
+                                                 Sposób I
+
+                                                 Kade z wyrae:     +  3  ,             ma sens liczbowy dla     1.
+                                                                   -  1     2 - 2
+
+                                                 Przeksztalcamy równanie równowanie:
+                                                                              + 3 
+                                                                              - 1 = 2 - 2 / 2( - 1), gdzie   1
+                                                                                        2( + 3) = , gdzie   1
+
+Wicej arkuszy znajdziesz na stronie: arkusze.pl  Rozwizujemy otrzymane równanie liniowe:
+
+                                                                                             2 + 6 = 
+
+                                                                                                 = -6
+
+                                                 Rozwizaniem równania         +  3  =  2     2  jest liczba  (-6).
+                                                                              -  1        -
+
+                                                 Sposób II
+
+                                                 Kade z wyrae:     +  3  ,             ma sens liczbowy dla     1.
+                                                                   -  1     2 - 2
+
+                                                 Przeksztalcamy równanie równowanie:
+                                                                                                 + 3 
+                                                                                                 - 1 = 2 - 2
+
+                                                                              ( + 3)(2 - 2) = ( - 1), gdzie   1
+                                                 Rozwizujemy otrzymane równanie kwadratowe:
+
+                                                                                        22 - 2 + 6 - 6 = 2 - 
+                                                                                               2 + 5 - 6 = 0
+
+                                                 Obliczamy wyrónik trójmianu 2 + 5 - 6:
+                                                                                          = 52 - 4  1  (-6) = 49
+
+                                                 Std
+
+                                                                                             -5 - 49
+                                                                                       1 = 2  1 = -6
+
+                                                                                             -5 + 49
+                                                                                       2 = 2  1 = 1
+
+                                                 Wobec zaloenia    1        jedynym rozwizaniem równania              +  3  =       2  jest liczba  (-6).
+                                                                                                                      -  1     2 -
+
+                                                 Strona 8 z 31
+                                                                                          Zasady oceniania rozwiza zada
+
+                                                 Zadanie 9. (0­2)                                    Wymaganie szczególowe
+
+                                                                  Wymaganie ogólne        Zdajcy:
+                                                                                          III.4) rozwizuje [...] nierównoci
+                                                  III. Wykorzystanie i interpretowanie    kwadratowe.
+                                                  reprezentacji.
+                                                  1. Stosowanie obiektów matematycznych
+                                                  i operowanie nimi, interpretowanie poj
+                                                  matematycznych.
+
+Wicej arkuszy znajdziesz na stronie: arkusze.pl  Zasady oceniania
+                                                 2 pkt ­ spelnienie warunku okrelonego w zasadach oceniania za 1 pkt oraz zapisanie
+
+                                                          zbioru rozwiza nierównoci:   [-1, 7]
+                                                          ALBO
+                                                        ­ spelnienie warunku okrelonego w zasadach oceniania za 1 pkt oraz
+                                                          przedstawienie zbioru rozwiza nierównoci w postaci graficznej z poprawnie
+                                                          zaznaczonymi kocami przedzialów.
+
+                                                 1 pkt ­ obliczenie lub podanie pierwiastków trójmianu kwadratowego 2 - 6 - 7:
+                                                         1 = -1 oraz 2 = 7.
+
+                                                 0 pkt ­ rozwizanie, w którym zastosowano niepoprawn metod, albo brak rozwizania.
+
+                                                 Uwagi:
+
+                                                 1. Jeeli zdajcy, obliczajc pierwiastki trójmianu 2 - 6 - 7, popelni bldy (ale otrzyma
+                                                    dwa róne pierwiastki) i konsekwentnie do popelnionych bldów zapisze zbiór rozwiza
+                                                    nierównoci, to otrzymuje 1 punkt za cale rozwizanie.
+
+                                                 2. Jeeli zdajcy wyznacza pierwiastki trójmianu kwadratowego w przypadku, gdy bldnie
+                                                    obliczony przez zdajcego wyrónik  jest ujemny, to otrzymuje 0 punktów za cale
+                                                    rozwizanie.
+
+                                                 3. Jeeli zdajcy rozpatruje inny ni podany w zadaniu trójmian kwadratowy, który nie wynika
+                                                    z bldu przeksztalcenia (np. 2 - 6), i w konsekwencji rozpatruje inn nierówno (np.
+                                                    2 - 6  0), to otrzymuje 0 punktów za cale rozwizanie.
+
+                                                 4. Akceptowane jest zapisanie pierwiastków trójmianu w postaci  + , gdzie , ,  s
+                                                    liczbami wymiernymi.
+
+                                                 5. Jeeli zdajcy poda zbiór rozwiza w postaci graficznej z poprawnie zaznaczonymi
+                                                    kocami przedzialów i jednoczenie zapisze niewlaciwy przedzial jako zbiór rozwiza
+                                                    (np.   (-1, 7)), to otrzymuje 1 punkt za cale rozwizanie.
+
+                                                 Kryteria uwzgldniajce specyficzne trudnoci w uczeniu si matematyki
+
+                                                 Jeli zdajcy pomyli porzdek liczb na osi liczbowej, np. zapisze zbiór rozwiza nierównoci
+                                                 w postaci [7, -1], to otrzymuje 2 punkty.
+
+                                                                                          Strona 9 z 31
+                                                 Egzamin maturalny z matematyki ­ poziom podstawowy. Test diagnostyczny ­ grudzie 2024 r.
+
+                                                 Przykladowe pelne rozwizanie
+                                                 Zapisujemy nierówno w postaci 2 - 6 - 7  0 i obliczamy miejsca zerowe funkcji
+                                                  = 2 - 6 - 7.
+
+                                                 Obliczamy wyrónik trójmianu 2 - 6 - 7:
+                                                                                       = (-6)2 - 4  1  (-7) = 64
+
+                                                 Std
+
+                                                                 1 =  -(-6) - 64  = -1
+
+                                                                          21
+
+                                                                 2 =  -(-6) + 64  =7
+
+                                                                          21
+
+Wicej arkuszy znajdziesz na stronie: arkusze.pl  Szkicujemy wykres funkcji  = 2 - 6 - 7.
+                                                 Odczytujemy argumenty, dla których funkcja przyjmuje wartoci niedodatnie.
+
+                                                                      -1      7                      
+
+                                                 Zbiorem rozwiza nierównoci jest przedzial [-1, 7].
+
+                                                 Strona 10 z 31
+                                                                                                              Zasady oceniania rozwiza zada
+
+                                                 Zadanie 10. (0­4)                                      Wymaganie szczególowe
+
+                                                                  Wymaganie ogólne           Zdajcy:
+                                                                                             V.4) odczytuje z wykresu funkcji: dziedzin,
+                                                  II. Wykorzystanie i tworzenie informacji.  zbiór wartoci, [...] przedzialy, w których
+                                                  1. Interpretowanie i operowanie            funkcja przyjmuje wartoci wiksze (nie
+                                                  informacjami przedstawionymi w tekcie,     mniejsze) lub mniejsze (nie wiksze) od
+                                                  zarówno matematycznym, jak                 danej liczby, [...] argumenty, dla których
+                                                  i popularnonaukowym, a take w formie       wartoci najwiksze i najmniejsze s przez
+                                                  wykresów [...].                            funkcj przyjmowane.
+
+Wicej arkuszy znajdziesz na stronie: arkusze.pl  Zasady oceniania
+                                                 4 pkt ­ zapisanie dokladnie czterech poprawnych odpowiedzi.
+                                                 3 pkt ­ zapisanie dokladnie trzech poprawnych odpowiedzi.
+                                                 2 pkt ­ zapisanie dokladnie dwóch poprawnych odpowiedzi.
+                                                 1 pkt ­ zapisanie dokladnie jednej poprawnej odpowiedzi.
+                                                 0 pkt ­ brak spelnienia powyszych kryteriów.
+
+                                                 Rozwizanie
+                                                 1. Dziedzin funkcji  jest przedzial (-4, 4].
+                                                 2. Zbiorem wartoci funkcji  jest przedzial [-1, 3].
+
+                                                 3. Zbiorem wszystkich argumentów, dla których funkcja  przyjmuje wartoci ujemne, jest
+
+                                                 przedzial (1, 3).
+
+                                                 4. Zbiorem wszystkich argumentów, dla których funkcja  przyjmuje najwiksz warto,
+                                                     jest przedzial (-4, -2].
+
+                                                 Kryteria uwzgldniajce specyficzne trudnoci w uczeniu si matematyki
+
+                                                 Jeli zdajcy pomyli porzdek liczb na osi liczbowej przy zachowaniu poprawnych kraców
+                                                 przedzialu, np. zapisze, e dziedzin funkcji  jest przedzial [4, -4), to otrzymuje 1 punkt
+                                                 za tak zapisan odpowied.
+
+                                                                                                              Strona 11 z 31
+                                                 Egzamin maturalny z matematyki ­ poziom podstawowy. Test diagnostyczny ­ grudzie 2024 r.
+
+                                                 Zadanie 11. (0­1)                                      Wymagania szczególowe
+
+                                                                  Wymaganie ogólne           Zdajcy:
+                                                                                             V.6) wyznacza wzór funkcji liniowej na
+                                                  II. Wykorzystanie i tworzenie informacji.  podstawie informacji o jej wykresie lub o jej
+                                                  1. Interpretowanie i operowanie            wlasnociach;
+                                                  informacjami przedstawionymi w tekcie,     V.11) wykorzystuje wlasnoci funkcji
+                                                  zarówno matematycznym, jak                 liniowej [...] do interpretacji zagadnie
+                                                  i popularnonaukowym, a take w formie       geometrycznych [...].
+                                                  wykresów [...].
+
+                                                 Zasady oceniania
+                                                 1 pkt ­ odpowied poprawna.
+                                                 0 pkt ­ odpowied niepelna lub niepoprawna albo brak odpowiedzi.
+
+Wicej arkuszy znajdziesz na stronie: arkusze.pl  Rozwizanie
+                                                 PF
+
+                                                 Zadanie 12.1. (0­1)
+
+                                                                Wymaganie ogólne                        Wymaganie szczególowe
+
+                                                 III. Wykorzystanie i interpretowanie        Zdajcy:
+                                                 reprezentacji.                              V.4) odczytuje [...] przedzialy
+                                                 3. Tworzenie pomocniczych obiektów          monotonicznoci [...].
+                                                 matematycznych na podstawie istniejcych,
+                                                 w celu przeprowadzenia argumentacji lub
+                                                 rozwizania problemu.
+
+                                                 Zasady oceniania
+                                                 1 pkt ­ odpowied poprawna.
+                                                 0 pkt ­ odpowied niepoprawna albo brak odpowiedzi.
+
+                                                 Rozwizanie
+                                                 D
+
+                                                 Strona 12 z 31
+                                                                                           Zasady oceniania rozwiza zada
+
+                                                 Zadanie 12.2. (0­2)                                  Wymaganie szczególowe
+
+                                                                  Wymaganie ogólne         Zdajcy:
+                                                                                           V.9) wyznacza wzór funkcji kwadratowej na
+                                                  III. Wykorzystanie i interpretowanie     podstawie informacji o tej funkcji lub o jej
+                                                  reprezentacji.                           wykresie.
+                                                  1. Stosowanie obiektów matematycznych
+                                                  i operowanie nimi, interpretowanie poj
+                                                  matematycznych.
+
+                                                 Zasady oceniania
+                                                 2 pkt ­ wybranie dwóch odpowiedzi, z których obie s poprawne.
+                                                 1 pkt ­ wybranie jednej lub dwóch odpowiedzi, z których jedna jest poprawna.
+                                                 0 pkt ­ odpowied niepoprawna albo brak odpowiedzi.
+
+                                                 Uwaga:
+                                                 Jeeli zdajcy wybierze trzy lub wicej odpowiedzi, to otrzymuje 0 punktów.
+
+Wicej arkuszy znajdziesz na stronie: arkusze.pl  Rozwizanie
+                                                 BD
+
+                                                 Zadanie 12.3. (0­1)
+
+                                                                Wymaganie ogólne                      Wymaganie szczególowe
+
+                                                 III. Wykorzystanie i interpretowanie      Zdajcy:
+                                                 reprezentacji.                            V.12) na podstawie wykresu funkcji
+                                                 3. Tworzenie pomocniczych obiektów         = () szkicuje wykresy funkcji [...]
+                                                 matematycznych na podstawie istniejcych,   = () + .
+                                                 w celu przeprowadzenia argumentacji lub
+                                                 rozwizania problemu.
+
+                                                 Zasady oceniania
+                                                 1 pkt ­ odpowied poprawna.
+                                                 0 pkt ­ odpowied niepelna lub niepoprawna albo brak odpowiedzi.
+
+                                                 Rozwizanie
+                                                 FP
+
+                                                                                                                               Strona 13 z 31
+                                                 Egzamin maturalny z matematyki ­ poziom podstawowy. Test diagnostyczny ­ grudzie 2024 r.
+
+                                                 Zadanie 13. (0­1)                                   Wymaganie szczególowe
+
+                                                                  Wymaganie ogólne        Zdajcy:
+                                                                                          V.14) posluguje si funkcjami wykladnicz
+                                                  III. Wykorzystanie i interpretowanie    i logarytmiczn [...].
+                                                  reprezentacji.
+                                                  1. Stosowanie obiektów matematycznych
+                                                  i operowanie nimi, interpretowanie poj
+                                                  matematycznych.
+
+                                                 Zasady oceniania
+                                                 1 pkt ­ odpowied poprawna.
+                                                 0 pkt ­ odpowied niepelna lub niepoprawna albo brak odpowiedzi.
+
+                                                 Rozwizanie
+                                                 FP
+
+Wicej arkuszy znajdziesz na stronie: arkusze.pl  Zadanie 14. (0­1)                                   Wymagania szczególowe
+
+                                                                  Wymaganie ogólne        Zdajcy:
+                                                                                          VI.1) oblicza wyrazy cigu okrelonego
+                                                  III. Wykorzystanie i interpretowanie    wzorem ogólnym;
+                                                  reprezentacji.                          VI.4) sprawdza, czy dany cig jest [...]
+                                                  1. Stosowanie obiektów matematycznych   geometryczny.
+                                                  i operowanie nimi, interpretowanie poj
+                                                  matematycznych.
+
+                                                 Zasady oceniania
+                                                 1 pkt ­ odpowied poprawna.
+                                                 0 pkt ­ odpowied niepelna lub niepoprawna albo brak odpowiedzi.
+
+                                                 Rozwizanie
+                                                 FP
+
+                                                 Strona 14 z 31
+                                                                                                     Zasady oceniania rozwiza zada
+
+                                                 Zadanie 15. (0­1)                                    Wymaganie szczególowe
+
+                                                                  Wymaganie ogólne         Zdajcy:
+                                                                                           VI.7) wykorzystuje wlasnoci cigów [...]
+                                                  III. Wykorzystanie i interpretowanie     arytmetycznych [...] do rozwizywania
+                                                  reprezentacji.                           zada [...].
+                                                  2. Dobieranie i tworzenie modeli
+                                                  matematycznych przy rozwizywaniu
+                                                  problemów praktycznych i teoretycznych.
+
+                                                 Zasady oceniania
+                                                 1 pkt ­ odpowied poprawna.
+                                                 0 pkt ­ odpowied niepoprawna albo brak odpowiedzi.
+
+                                                 Rozwizanie
+                                                 D
+
+Wicej arkuszy znajdziesz na stronie: arkusze.pl  Zadanie 16. (0­1)                                    Wymaganie szczególowe
+
+                                                                  Wymaganie ogólne         Zdajcy:
+                                                                                           VI.6) stosuje wzór na -ty wyraz [...] cigu
+                                                  III. Wykorzystanie i interpretowanie     geometrycznego.
+                                                  reprezentacji.
+                                                  1. Stosowanie obiektów matematycznych
+                                                  i operowanie nimi, interpretowanie poj
+                                                  matematycznych.
+
+                                                 Zasady oceniania
+                                                 1 pkt ­ odpowied poprawna.
+                                                 0 pkt ­ odpowied niepoprawna albo brak odpowiedzi.
+
+                                                 Rozwizanie
+                                                 C
+
+                                                                                                     Strona 15 z 31
+                                                 Egzamin maturalny z matematyki ­ poziom podstawowy. Test diagnostyczny ­ grudzie 2024 r.
+
+                                                 Zadanie 17.1. (0­1)                                 Wymaganie szczególowe
+
+                                                                  Wymaganie ogólne        Zdajcy:
+                                                                                          VII.1) wykorzystuje definicje funkcji: sinus
+                                                  III. Wykorzystanie i interpretowanie    [...] dla któw od 0° do 180° [...].
+                                                  reprezentacji.
+                                                  1. Stosowanie obiektów matematycznych
+                                                  i operowanie nimi, interpretowanie poj
+                                                  matematycznych.
+
+                                                 Zasady oceniania
+                                                 1 pkt ­ odpowied poprawna.
+                                                 0 pkt ­ odpowied niepoprawna albo brak odpowiedzi.
+
+                                                 Rozwizanie
+                                                 D
+
+Wicej arkuszy znajdziesz na stronie: arkusze.pl  Zadanie 17.2. (0­1)                                 Wymaganie szczególowe
+
+                                                                  Wymaganie ogólne        Zdajcy:
+                                                                                          VII.1) wykorzystuje definicje funkcji [...]
+                                                  III. Wykorzystanie i interpretowanie    tangens dla któw od 0° do 180° [...].
+                                                  reprezentacji.
+                                                  1. Stosowanie obiektów matematycznych
+                                                  i operowanie nimi, interpretowanie poj
+                                                  matematycznych.
+
+                                                 Zasady oceniania
+                                                 1 pkt ­ odpowied poprawna.
+                                                 0 pkt ­ odpowied niepoprawna albo brak odpowiedzi.
+
+                                                 Rozwizanie
+                                                 A
+
+                                                 Strona 16 z 31
+                                                                                                     Zasady oceniania rozwiza zada
+
+                                                 Zadanie 18. (0­1)                                    Wymaganie szczególowe
+
+                                                                  Wymaganie ogólne         Zdajcy:
+                                                                                           VII.2) korzysta z wzorów
+                                                  III. Wykorzystanie i interpretowanie     sin2  + cos2  = 1 [...].
+                                                  reprezentacji.
+                                                  1. Stosowanie obiektów matematycznych
+                                                  i operowanie nimi, interpretowanie poj
+                                                  matematycznych.
+
+                                                 Zasady oceniania
+                                                 1 pkt ­ odpowied poprawna.
+                                                 0 pkt ­ odpowied niepoprawna albo brak odpowiedzi.
+
+                                                 Rozwizanie
+                                                 A
+
+Wicej arkuszy znajdziesz na stronie: arkusze.pl  Zadanie 19. (0­4)
+
+                                                                Wymaganie ogólne                      Wymagania szczególowe
+
+                                                 IV. Rozumowanie i argumentacja.           Zdajcy:
+                                                 4. Stosowanie i tworzenie strategii przy  VIII.8) korzysta z cech podobiestwa
+                                                 rozwizywaniu zada, równie w sytuacjach    trójktów.
+                                                 nietypowych.                              SP IX. Wielokty.
+                                                                                           2) stosuje wzory na pole trójkta, [...]
+                                                                                           trapezu, a take do wyznaczania dlugoci
+                                                                                           odcinków [...].
+
+                                                 Zasady oceniania
+                                                 4 pkt ­ zastosowanie poprawnej metody i poprawny wynik:  = 22,14.
+
+                                                 3 pkt ­ obliczenie dlugoci odcinków  oraz : || = 3,6 oraz || = 4,8
+                                                          ALBO
+
+                                                       ­ obliczenie pól trójktów  oraz :  = 13,5 oraz  = 8,64.
+
+                                                 2 pkt ­ obliczenie dlugoci odcinka : || = 3,6
+                                                          ALBO
+
+                                                       ­ obliczenie dlugoci odcinka : || = 4,8,
+                                                          ALBO
+
+                                                       ­ obliczenie pola trójkta :  = 13,5.
+
+                                                 1 pkt ­ obliczenie dlugoci odcinka : || = 4,5
+                                                          ALBO
+
+                                                       ­ zapisanie równania wynikajcego z podobiestwa trójktów  i , np.
+                                                          || ||
+                                                          || = || ,
+                                                          ALBO
+
+                                                                                                     Strona 17 z 31
+                                                 Egzamin maturalny z matematyki ­ poziom podstawowy. Test diagnostyczny ­ grudzie 2024 r.
+
+                                                 ­ zapisanie, e trójkt               jest podobny do trójkta    w skali    =               7,5  ,
+                                                                                                                                            6
+
+                                                 ALBO
+
+                                                 ­ zapisanie, e trójkt               jest podobny do trójkta    w skali    =                6   ,
+                                                                                                                                           7,5
+
+                                                 ALBO
+
+                                                 ­ zapisanie, e || = || oraz obliczenie cosinusa kta :
+
+                                                 cos||             =    6    ,
+                                                                       7,5
+
+                                                 ALBO
+
+                                                 ­ zapisanie zalenoci midzy wysokoci  trapezu a dlugoci ramienia , np.
+
+                                                 1    7,5          ||  =  1     6    ||.
+                                                 2                        2
+
+                                                 0 pkt ­ rozwizanie, w którym zastosowano niepoprawn metod, albo brak rozwizania.
+
+Wicej arkuszy znajdziesz na stronie: arkusze.pl  Uwaga:
+                                                 Jeeli jedynym bldem zdajcego jest:
+
+                                                          a) zastosowanie niepoprawnej definicji jednej funkcji trygonometrycznej
+                                                          b) bldne zastosowanie twierdzenia Pitagorasa
+                                                          c) zastosowanie niepoprawnej tosamoci 2 + 2 =  + 
+                                                          d) bldne zastosowanie podobiestwa trójktów (zapisanie bldnej proporcji),
+                                                 i rozwizanie zostanie doprowadzone konsekwentnie do koca, to zdajcy moe otrzyma
+                                                 co najwyej 2 punkty za cale rozwizanie.
+                                                 Jeeli zdajcy popelni wicej ni jeden z wymienionych bldów a)­d), to otrzymuje
+                                                 0 punktów za cale rozwizanie, o ile nie nabyl prawa do innej liczby punktów.
+
+                                                 Przykladowe pelne rozwizania
+
+                                                 Sposób I
+                                                 Trójkty  oraz  s podobne na podstawie cechy kt ­ kt ­ kt podobiestwa
+                                                 trójktów. Std
+
+                                                                                                  || ||
+                                                                                                  || = ||
+                                                                                                   || 6
+
+                                                                                                     6 = 7,5
+
+                                                                                                   || = 4,8
+
+                                                 Korzystamy z twierdzenia Pitagorasa i obliczamy dlugo odcinka :
+                                                                                           ||2 = ||2 - ||2
+                                                                                              ||2 = 62 - 4,82
+                                                                                                ||2 = 12,96
+                                                                                                   || = 3,6
+
+                                                 Strona 18 z 31
+                                                                                                      Zasady oceniania rozwiza zada
+
+                                                 Obliczamy pole trapezu :
+
+                                                 1                                                 1
+                                                  = 2  (|| + ||)  || = 2  (7,5 + 4,8)  3,6 = 22,14
+
+                                                 Sposób II
+                                                 Korzystamy z twierdzenia Pitagorasa i obliczamy dlugo odcinka :
+
+                                                                                           ||2 = ||2 - ||2
+                                                                                              ||2 = 7,52 - 62
+                                                                                                 ||2 = 20,25
+                                                                                                   || = 4,5
+
+                                                 Obliczamy pole trójkta :
+
+Wicej arkuszy znajdziesz na stronie: arkusze.pl                                 1                  1
+                                                     = 2  ||  || = 2  6  4,5 = 13,5
+
+                                                 Trójkt  jest podobny do trójkta  (na podstawie cechy kt ­ kt ­ kt
+
+                                                 podobiestwa trójktów) w skali     =   6   = 0,8.
+                                                                                      7,5
+
+                                                 Wykorzystujemy zaleno midzy polami figur podobnych i obliczamy pole trójkta :
+
+                                                     = 2   = 0,82  13,5 = 8,64
+
+                                                 Obliczamy pole trapezu :
+                                                                              =  +  = 13,5 + 8,64 = 22,14
+
+                                                 Sposób III
+                                                 Korzystamy z twierdzenia Pitagorasa i obliczamy dlugo odcinka :
+
+                                                                                           ||2 = ||2 - ||2
+                                                                                              ||2 = 7,52 - 62
+                                                                                                 ||2 = 20,25
+                                                                                                   || = 4,5
+
+                                                 Dlugo odcinka  jest równa wysokoci trójkta  poprowadzonej z wierzcholka .
+
+                                                 Pole trójkta  jest równe
+
+                                                                                                       1
+                                                                                              = 2  7,5  ||
+                                                 Ponadto pole trójkta  mona obliczy jako polow iloczynu dlugoci
+                                                 przyprostoktnych:
+
+                                                                                                                    Strona 19 z 31
+                                                 Egzamin maturalny z matematyki ­ poziom podstawowy. Test diagnostyczny ­ grudzie 2024 r.
+
+                                                                                        1
+                                                                                = 2  6  4,5 = 13,5
+
+                                                 Zatem
+
+                                                                               1    7,5    ||    =            13,5
+                                                                               2
+
+                                                                                    || = 3,6
+
+                                                 Korzystamy z twierdzenia Pitagorasa i obliczamy dlugo odcinka :
+                                                                                           ||2 = ||2 - ||2
+                                                                                              ||2 = 62 - 3,62
+                                                                                                 ||2 = 23,04
+                                                                                                   || = 4,8
+
+Wicej arkuszy znajdziesz na stronie: arkusze.pl  Obliczamy pole trapezu :
+
+                                                                    1                            1
+                                                                  = 2  (|| + ||)  || = 2  (7,5 + 4,8)  3,6 = 22,14
+
+                                                 Sposób IV
+                                                 Zauwamy, e || = ||.
+
+                                                 Zatem  cos||    =  cos||  =   ||   =     6   =  0,8 .
+                                                                               ||        7,5
+
+                                                 Jednoczenie     cos||  =  ||  =  ||  .
+                                                                           ||      6
+
+                                                 Std
+                                                                                                   ||
+                                                                                                     6 = 0,8
+
+                                                 wic
+
+                                                                                                   || = 4,8
+
+                                                 Korzystamy z twierdzenia Pitagorasa i obliczamy dlugo odcinka :
+                                                                                           ||2 = ||2 - ||2
+                                                                                              ||2 = 62 - 4,82
+                                                                                                ||2 = 12,96
+                                                                                                   || = 3,6
+
+                                                 Obliczamy pole trapezu :
+
+                                                                    1                            1
+                                                                  = 2  (|| + ||)  || = 2  (7,5 + 4,8)  3,6 = 22,14
+
+                                                 Strona 20 z 31
+                                                                                                     Zasady oceniania rozwiza zada
+
+                                                 Zadanie 20. (0­1)
+
+                                                 Wymaganie ogólne                                    Wymagania szczególowe
+
+                                                 IV. Rozumowanie i argumentacja.       Zdajcy:
+                                                 1. Przeprowadzanie rozumowa, take     VIII.5) stosuje wlasnoci któw wpisanych
+                                                 kilkuetapowych, podawanie argumentów  i rodkowych;
+                                                 uzasadniajcych poprawno rozumowania,  VIII.6) stosuje wzory na [...] dlugo luku
+                                                 odrónianie dowodu od przykladu.       okrgu.
+
+                                                 Zasady oceniania
+                                                 1 pkt ­ odpowied poprawna.
+                                                 0 pkt ­ odpowied niepoprawna albo brak odpowiedzi.
+
+                                                 Rozwizanie
+                                                 B
+
+Wicej arkuszy znajdziesz na stronie: arkusze.pl  Zadanie 21. (0­1)
+
+                                                 Wymaganie ogólne                                    Wymaganie szczególowe
+
+                                                 IV. Rozumowanie i argumentacja.       Zdajcy:
+                                                 1. Przeprowadzanie rozumowa, take     IX.3) oblicza odleglo dwóch punktów
+                                                 kilkuetapowych, podawanie argumentów  w ukladzie wspólrzdnych.
+                                                 uzasadniajcych poprawno rozumowania,
+                                                 odrónianie dowodu od przykladu.
+
+                                                 Zasady oceniania
+                                                 1 pkt ­ odpowied poprawna.
+                                                 0 pkt ­ odpowied niepoprawna albo brak odpowiedzi.
+
+                                                 Rozwizanie
+                                                 A
+
+                                                                                                     Strona 21 z 31
+                                                 Egzamin maturalny z matematyki ­ poziom podstawowy. Test diagnostyczny ­ grudzie 2024 r.
+
+                                                 Zadanie 22. (0­1)
+
+                                                                 Wymaganie ogólne                    Wymaganie szczególowe
+
+                                                 IV. Rozumowanie i argumentacja.           Zdajcy:
+                                                 4. Stosowanie i tworzenie strategii przy  IX.2) posluguje si równaniami prostych na
+                                                 rozwizywaniu zada, równie w sytuacjach    plaszczynie, w postaci kierunkowej [...],
+                                                 nietypowych.                              w tym wyznacza równanie prostej
+                                                                                           o zadanych wlasnociach (takich, jak np.
+                                                                                           [...] równoleglo do innej prostej).
+
+                                                 Zasady oceniania
+                                                 1 pkt ­ odpowied poprawna.
+                                                 0 pkt ­ odpowied niepoprawna albo brak odpowiedzi.
+
+                                                 Rozwizanie
+                                                 B
+
+Wicej arkuszy znajdziesz na stronie: arkusze.pl  Zadanie 23. (0­1)                                    Wymaganie szczególowe
+
+                                                                  Wymaganie ogólne         Zdajcy:
+                                                                                           IX.4) posluguje si równaniem okrgu
+                                                  III. Wykorzystanie i interpretowanie     ( - )2 + ( - )2 = 2.
+                                                  reprezentacji.
+                                                  1. Stosowanie obiektów matematycznych
+                                                  i operowanie nimi, interpretowanie poj
+                                                  matematycznych.
+
+                                                 Zasady oceniania
+                                                 1 pkt ­ odpowied poprawna.
+                                                 0 pkt ­ odpowied niepoprawna albo brak odpowiedzi.
+
+                                                 Rozwizanie
+                                                 C
+
+                                                 Strona 22 z 31
+                                                                                                     Zasady oceniania rozwiza zada
+
+                                                 Zadanie 24. (0­1)
+
+                                                                Wymaganie ogólne                         Wymagania szczególowe
+
+                                                 III. Wykorzystanie i interpretowanie         Zdajcy:
+                                                 reprezentacji.                               X.3) rozpoznaje w [...] ostroslupach [...]
+                                                 3. Tworzenie pomocniczych obiektów           kty midzy cianami [...];
+                                                 matematycznych na podstawie istniejcych,     X.5) oblicza objtoci [...] ostroslupów, [...]
+                                                 w celu przeprowadzenia argumentacji lub      równie z wykorzystaniem trygonometrii.
+                                                 rozwizania problemu.
+
+                                                 Zasady oceniania
+                                                 1 pkt ­ odpowied poprawna.
+                                                 0 pkt ­ odpowied niepoprawna albo brak odpowiedzi.
+
+                                                 Rozwizanie
+                                                 B
+
+Wicej arkuszy znajdziesz na stronie: arkusze.pl  Zadanie 25. (0­1)
+
+                                                 Wymaganie ogólne                                    Wymaganie szczególowe
+
+                                                 II. Wykorzystanie i tworzenie informacji.    Zdajcy:
+                                                 1. Interpretowanie i operowanie              X.5) oblicza objtoci [...] graniastoslupów
+                                                 informacjami przedstawionymi w tekcie [...]  [...].
+                                                 matematycznym [...].
+
+                                                 Zasady oceniania
+                                                 1 pkt ­ odpowied poprawna.
+                                                 0 pkt ­ odpowied niepoprawna albo brak odpowiedzi.
+
+                                                 Rozwizanie
+                                                 D
+
+                                                                                                     Strona 23 z 31
+                                                 Egzamin maturalny z matematyki ­ poziom podstawowy. Test diagnostyczny ­ grudzie 2024 r.
+
+                                                 Zadanie 26. (0­2)
+
+                                                                 Wymaganie ogólne                              Wymagania szczególowe
+
+                                                 IV. Rozumowanie i argumentacja.                 Zdajcy:
+                                                 4. Stosowanie i tworzenie strategii przy        X.4) rozpoznaje [...] w stokach kt midzy
+                                                 rozwizywaniu zada, równie w sytuacjach          odcinkami oraz kt midzy odcinkami
+                                                 nietypowych.                                    i plaszczyznami (np. kt rozwarcia stoka,
+                                                                                                 kt midzy tworzc a podstaw), oblicza
+                                                                                                 miary tych któw;
+                                                                                                 X.5) oblicza objtoci [...] stoka [...].
+
+                                                 Zasady oceniania
+                                                 2 pkt ­ zastosowanie poprawnej metody i poprawny wynik: 120°.
+
+                                                 1 pkt ­ obliczenie kwadratu promienia podstawy stoka: 2 = 12 .
+
+Wicej arkuszy znajdziesz na stronie: arkusze.pl  0 pkt ­ rozwizanie, w którym zastosowano niepoprawn metod, albo brak rozwizania.
+
+                                                 Przykladowe pelne rozwizanie
+                                                 Ze wzoru na objto stoka otrzymujemy:
+
+                                                                                       =  1        2      
+                                                                                          3
+
+                                                                                   8   =  1          2      2
+                                                                                          3
+
+                                                                                          2 = 12
+
+                                                                                    = 12 = 23
+
+                                                 Niech  oznacza polow miary kta rozwarcia stoka. Wtedy
+
+                                                                                   tg     =  23      =  3
+                                                                                              2
+
+                                                 Std  = 60°.
+
+                                                 Zatem kt rozwarcia stoka ma miar 120°.
+
+                                                 Strona 24 z 31
+                                                                                                          Zasady oceniania rozwiza zada
+
+                                                 Zadanie 27. (0­1)
+
+                                                 Wymaganie ogólne                                    Wymaganie szczególowe
+
+                                                 II. Wykorzystanie i tworzenie informacji.    Zdajcy:
+                                                 1. Interpretowanie i operowanie              XI.2) zlicza obiekty, stosujc reguly
+                                                 informacjami przedstawionymi w tekcie [...]  mnoenia i dodawania [...].
+                                                 matematycznym [...].
+
+                                                 Zasady oceniania
+                                                 1 pkt ­ odpowied poprawna.
+                                                 0 pkt ­ odpowied niepoprawna albo brak odpowiedzi.
+
+                                                 Rozwizanie
+                                                 B
+
+Wicej arkuszy znajdziesz na stronie: arkusze.pl  Zadanie 28. (0­2)                                       Wymaganie szczególowe
+
+                                                                  Wymaganie ogólne            Zdajcy:
+                                                                                              XII.1) oblicza prawdopodobiestwo
+                                                  III. Wykorzystanie i interpretowanie        w modelu klasycznym.
+                                                  reprezentacji.
+                                                  2. Dobieranie i tworzenie modeli
+                                                  matematycznych przy rozwizywaniu
+                                                  problemów praktycznych i teoretycznych.
+
+                                                 Zasady oceniania
+
+                                                 2 pkt ­ zastosowanie poprawnej metody i poprawny wynik:  ()  =  11  .
+                                                                                                                 24
+
+                                                 1 pkt ­ wypisanie wszystkich zdarze elementarnych LUB obliczenie/podanie liczby tych
+
+                                                 zdarze: || = 6  4, LUB sporzdzenie tabeli o 24 polach odpowiadajcych
+
+                                                 zdarzeniom elementarnym, LUB sporzdzenie pelnego drzewa stochastycznego
+
+                                                 ALBO
+
+                                                 ­ wypisanie (lub zaznaczenie w tabeli) wszystkich zdarze elementarnych
+
+                                                 sprzyjajcych zdarzeniu  i niewypisanie adnego niewlaciwego,
+
+                                                 ALBO
+
+                                                 ­ podanie liczby wszystkich zdarze elementarnych sprzyjajcych zdarzeniu :
+
+                                                 || = 11, o ile nie zostaly zliczone bldne pary,
+
+                                                 ALBO
+
+                                                 ­ sporzdzenie fragmentu drzewa stochastycznego, który zawiera wszystkie galzie
+
+                                                 sprzyjajce zdarzeniu , oraz zapisanie prawdopodobiestwa na co najmniej
+
+                                                 jednym odcinku kadego z etapów dowiadczenia,
+
+                                                 ALBO
+
+                                                 ­ podanie prawdopodobiestwa jednoelementowego zdarzenia (elementarnego):           1   ,
+                                                                                                                                    24
+
+                                                 ALBO
+
+                                                                                                                         Strona 25 z 31
+                                                 Egzamin maturalny z matematyki ­ poziom podstawowy. Test diagnostyczny ­ grudzie 2024 r.
+
+                                                 ­ zapisanie tylko  ()  =    11  .
+                                                                             24
+
+                                                 0 pkt ­ rozwizanie, w którym zastosowano niepoprawn metod, albo brak rozwizania.
+
+                                                 Uwaga:
+                                                 Jeeli zdajcy zapisuje tylko liczby 11 lub 24 i z rozwizania nie wynika znaczenie tych
+                                                 liczb, to otrzymuje 0 punktów za cale rozwizanie.
+
+                                                 Przykladowe pelne rozwizania
+
+                                                 Sposób I
+                                                 Zdarzeniami elementarnymi s wszystkie uporzdkowane pary liczb (, ), gdzie
+                                                   {1, 2, 3, 4, 5, 6} oraz   {7, 8, 9, 10}.
+
+Wicej arkuszy znajdziesz na stronie: arkusze.pl  Liczb wszystkich zdarze elementarnych obliczamy z wykorzystaniem reguly mnoenia.
+                                                 Moc zbioru  jest równa 6  4 = 24.
+
+                                                 Zdarzeniu  sprzyjaj nastpujce zdarzenia elementarne:
+                                                 (1, 8), (2, 8), (2, 10), (3, 8), (4, 7), (4, 8), (4, 9), (4, 10), (5, 8), (6, 8), (6, 10),
+                                                 wic moc zbioru  jest równa 11.
+
+                                                 Zatem prawdopodobiestwo zdarzenia     jest równe  11  .
+                                                                                                   24
+
+                                                 Sposób II
+                                                 W tabeli liter  zaznaczamy zdarzenia elementarne sprzyjajce zdarzeniu  (pary liczb,
+                                                 których iloczyn jest podzielny przez 4).
+
+                                                                               1    2  3  4            5  6
+                                                                    
+
+                                                                    7                     
+
+                                                                    8      
+
+                                                                    9                     
+
+                                                                    10                                    
+
+                                                 Moc zbioru  jest równa 24.
+
+                                                 Zdarze sprzyjajcych wylosowaniu liczb, których iloczyn jest podzielny przez 4, jest 11.
+
+                                                 Zatem prawdopodobiestwo zdarzenia     jest równe  11  .
+                                                                                                   24
+
+                                                 Strona 26 z 31
+                                                                                                                                                          Zasady oceniania rozwiza zada
+
+                                                 Sposób III (drzewo stochastyczne)
+                                                 Rysujemy fragment drzewa stochastycznego rozwaanego dowiadczenia z uwzgldnieniem
+                                                 wszystkich istotnych galzi.
+
+                                                               3                              2            1
+                                                               6
+                                                                                              6            6
+                                                    1
+                                                    3                                                      5
+                                                    5
+                                                                                           2                     4
+                                                                                           6
+
+                                                 1                                      2                     4
+
+                                                 4                                      4                     4
+
+Wicej arkuszy znajdziesz na stronie: arkusze.pl                                                                  7
+
+                                                    8                                      8                     8
+                                                                                           10                    9
+
+                                                                                                              10
+
+                                                 Prawdopodobiestwo zdarzenia  jest równe
+
+                                                                  ()     31             +  22    14     11
+                                                                      =64                  64+   64  = 24
+
+                                                 Zadanie 29. (0­2)                                        Wymaganie szczególowe
+
+                                                                  Wymaganie ogólne             Zdajcy:
+                                                                                               XII.2) oblicza redni arytmetyczn [...],
+                                                  I. Sprawno rachunkowa.                       znajduje median [...].
+                                                  Wykonywanie oblicze na liczbach
+                                                  rzeczywistych, take przy uyciu
+                                                  kalkulatora, stosowanie praw dziala
+                                                  matematycznych przy przeksztalcaniu
+                                                  wyrae algebraicznych oraz
+                                                  wykorzystywanie tych umiejtnoci przy
+                                                  rozwizywaniu problemów w kontekstach
+                                                  rzeczywistych i teoretycznych.
+
+                                                 Zasady oceniania
+                                                 2 pkt ­ zapisanie dokladnie dwóch poprawnych odpowiedzi.
+                                                 1 pkt ­ zapisanie dokladnie jednej poprawnej odpowiedzi.
+                                                 0 pkt ­ brak spelnienia powyszych kryteriów.
+
+                                                 Uwaga:
+                                                 Nie akceptuje si zaokrgle otrzymanych wyników.
+
+                                                                                                                    Strona 27 z 31
+                                                 Egzamin maturalny z matematyki ­ poziom podstawowy. Test diagnostyczny ­ grudzie 2024 r.
+
+                                                 Rozwizanie
+                                                 1. rednia arytmetyczna liczby przeczytanych ksiek w tej grupie uczniów jest równa 6,38.
+                                                 2. Mediana liczby przeczytanych ksiek w tej grupie uczniów jest równa 6,5.
+
+                                                 Zadanie 30. (0­4)                                       Wymaganie szczególowe
+
+                                                                  Wymaganie ogólne            Zdajcy:
+                                                                                              XIII) rozwizuje zadania optymalizacyjne
+                                                  III. Wykorzystanie i interpretowanie        w sytuacjach dajcych si opisa funkcj
+                                                  reprezentacji.                              kwadratow.
+                                                  2. Dobieranie i tworzenie modeli
+                                                  matematycznych przy rozwizywaniu
+                                                  problemów praktycznych i teoretycznych.
+
+Wicej arkuszy znajdziesz na stronie: arkusze.pl  Zasady oceniania
+
+                                                 4 pkt ­ zastosowanie poprawnej metody i poprawne wyniki, np.:
+
+                                                 () = -262 + 96    oraz   = (0, 3)                oraz    =  24  .
+                                                                                                             13
+
+                                                 3 pkt ­ zapisanie poprawnego wzoru na pole powierzchni calkowitej prostopadlocianu
+
+                                                  w zalenoci od zmiennej  oraz wyznaczenie dziedziny  tej
+
+                                                 funkcji, np. () = -262 + 96 oraz  = (0, 3)
+
+                                                 ALBO
+
+                                                 ­ zapisanie poprawnego wzoru na pole powierzchni calkowitej prostopadlocianu
+
+                                                  w zalenoci od zmiennej  (bez wyznaczonej dziedziny funkcji )
+
+                                                 oraz prawidlowe obliczenie pierwszej wspólrzdnej wierzcholka wykresu funkcji ,
+
+                                                 np.  () = -262 + 96     oraz              =  24  .
+                                                                                              13
+
+                                                 2 pkt ­ zapisanie poprawnego wzoru na pole powierzchni calkowitej prostopadlocianu
+                                                           w zalenoci od zmiennej  (bez wyznaczonej dziedziny funkcji ),
+                                                          np. () = -262 + 96
+                                                          ALBO
+
+                                                       ­ zapisanie zalenoci midzy dlugociami krawdzi  i  prostopadlocianu
+                                                          oraz wyznaczenie zakresu zmiennoci , np.
+                                                          4   + 4  || + 4  3 = 48 oraz   (0, 3).
+
+                                                 1 pkt ­ zapisanie zalenoci midzy dlugociami krawdzi  i  prostopadlocianu,
+                                                          np. 4   + 4  || + 4  3 = 48
+                                                          ALBO
+
+                                                       ­ wyznaczenie zakresu zmiennoci :   (0, 3).
+
+                                                 0 pkt ­ rozwizanie, w którym zastosowano niepoprawn metod, albo brak rozwizania.
+
+                                                 Strona 28 z 31
+Wicej arkuszy znajdziesz na stronie: arkusze.pl                                                                                                           Zasady oceniania rozwiza zada
+
+                                                 Uwagi:
+                                                 1. Jeeli zdajcy zapisze poprawny wzór funkcji  zmiennej  oraz zapisze poprawn
+
+                                                    dziedzin funkcji , a nastpnie obliczy  (1243) oraz wartoci funkcji  dla dwóch
+                                                    argumentów lecych symetrycznie wzgldem prostej  = 2134, i nie odwola si do
+                                                    symetrii wykresu funkcji kwadratowej, to otrzymuje 3 punkty za cale rozwizanie.
+                                                 2. Jeeli zdajcy nie zapisze pola powierzchni calkowitej prostopadlocianu jako funkcji 
+                                                    zmiennej , a jedynie obliczy wartoci pola dla wybranych dlugoci krawdzi i na tej
+                                                    podstawie wskazuje najwiksz warto pola, to za cale rozwizanie otrzymuje
+                                                    0 punktów, o ile nie nabyl prawa do innej liczby punktów.
+                                                 3. Jeeli zdajcy zamiast sumy dlugoci wszystkich krawdzi prostopadlocianu rozpatruje
+                                                    sum obwodów wszystkich jego cian i rozwie zadanie konsekwentnie do koca, to
+                                                    moe otrzyma co najwyej 3 punkty za cale rozwizanie (za konsekwentne:
+                                                    wyznaczenie wzoru funkcji pola, dziedziny tej funkcji oraz obliczenie wartoci , dla której
+                                                    funkcja osiga warto najwiksz).
+                                                 4. Jeeli zdajcy w wyniku popelnionych bldów otrzymuje funkcj pola, która jest funkcj
+                                                    kwadratow o dodatnim wspólczynniku przy 2, to moe otrzyma co najwyej 2 punkty
+                                                    za cale rozwizanie (za zapisanie zalenoci midzy dlugociami krawdzi  i 
+                                                    prostopadlocianu oraz za wyznaczenie zakresu zmiennoci ).
+                                                 5. Jeeli zdajcy oblicza najwiksz warto funkcji  z wykorzystaniem rachunku
+                                                    róniczkowego i nie uzasadni, e w punkcie bdcym miejscem zerowym pochodnej
+                                                    funkcji  jest najwiksza warto funkcji , to moe otrzyma co najwyej 3 punkty za
+                                                    cale rozwizanie.
+                                                    Za poprawne uzasadnienie, e w punkcie bdcym miejscem zerowym pochodnej
+                                                    funkcji  jest najwiksza warto funkcji , mona uzna sytuacj, gdy zdajcy bada
+                                                    znak pochodnej (np. szkicuje wykres funkcji, która w ten sam sposób jak pochodna
+                                                    zmienia znak, i zaznacza na rysunku, np. znakami ,,+" i ,,-", znak pochodnej), oraz:
+                                                    ­ opisuje przedzialy monotonicznoci funkcji  (slownie lub graficznie ­ np. przy uyciu
+                                                    strzalek)
+                                                    LUB
+                                                    ­ zapisuje, e dla wyznaczonego miejsca zerowego pochodnej, funkcja  ma maksimum
+                                                    lokalne i jest to jednoczenie jej najwiksza warto,
+                                                    LUB
+                                                    ­ zapisuje, e dla wyznaczonego miejsca zerowego pochodnej, funkcja  ma maksimum
+                                                    lokalne i jest to jedyne ekstremum tej funkcji.
+
+                                                                                                                                                                                      Strona 29 z 31
+                                                 Egzamin maturalny z matematyki ­ poziom podstawowy. Test diagnostyczny ­ grudzie 2024 r.
+
+                                                 Przykladowe pelne rozwizanie
+                                                 Przyjmijmy oznaczenia jak na rysunku.
+
+                                                                                              
+
+                                                                                            
+
+                                                                                              
+
+Wicej arkuszy znajdziesz na stronie: arkusze.pl                                           
+
+                                                 Poniewa || = , wic || = 3.
+                                                 Suma dlugoci wszystkich dwunastu krawdzi prostopadlocianu jest równa 48, zatem
+
+                                                                                    4  || + 4  || + 4  || = 48
+                                                                                          || + || + || = 12
+                                                                                              + || + 3 = 12
+                                                                                                || = 12 - 4
+
+                                                 Pole  powierzchni calkowitej prostopadlocianu  jest równe
+                                                                            = 2  (||  || + ||  || + ||  ||)
+
+                                                 Poniewa || = , || = 12 - 4, || = 3, wic wzór funkcji  zmiennej  ma
+                                                 posta
+
+                                                                         () = 2  [  (12 - 4) +   3 + (12 - 4)  3]
+                                                                             () = 2  (12 - 42 + 32 + 36 - 122)
+                                                                                         () = 2  (-132 + 48)
+                                                                                            () = -262 + 96
+
+                                                 Wyznaczamy dziedzin funkcji . Z warunków zadania wynika, e:
+                                                                  || =  > 0 oraz || = 12 - 4 > 0 oraz || = 3 > 0
+
+                                                 Zatem
+                                                                                               > 0 oraz  < 3
+
+                                                 Strona 30 z 31
+                                                                                                            Zasady oceniania rozwiza zada
+
+                                                 Zmienna  moe przyjmowa wartoci z przedzialu (0, 3).
+
+                                                 Wykresem funkcji  jest fragment paraboli skierowanej ramionami do dolu. Obliczamy
+                                                 pierwsz wspólrzdn wierzcholka tej paraboli:
+
+                                                                               -96 24
+                                                                        = 2  (-26) = 13  (0, 3)
+
+                                                 Zatem funkcja      przyjmuje warto najwiksz dla argumentu  24  .
+                                                                                                            13
+
+                                                 Sporód rozwaanych prostopadlocianów najwiksze pole powierzchni calkowitej ma ten,
+
+                                                 w którym    =  24  .
+                                                                13
+
+Wicej arkuszy znajdziesz na stronie: arkusze.pl
+
+                                                                                                                   Strona 31 z 31
+
