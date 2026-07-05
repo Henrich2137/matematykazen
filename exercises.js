@@ -2,10 +2,11 @@
 Schemat zadania (docelowo plik przejdzie na exercises.json):
 
 {
-    type: "ABCD" | "PF" | "multiSelect" | "open",
+    type: "ABCD" | "PF" | "multiSelect" | "fillIn" | "open",
         // ABCD        – jednokrotny wybór (domyślne, gdy answers ma elementy, a type brak)
         // PF          – prawda/fałsz: pole `statements` zamiast `answers`
         // multiSelect – wybór kilku odpowiedzi: pole `correctAnswerIndices`
+        // fillIn      – pola tekstowe do uzupełnienia: pole `blanks`
         // open        – zadanie otwarte (answers: []); przy selfScore: true renderuje
         //               się panel samooceny 0..maxScore pkt
     question: "HTML",
@@ -13,6 +14,10 @@ Schemat zadania (docelowo plik przejdzie na exercises.json):
     correctAnswerIndex: 0,             // ABCD: 0 = A, 1 = B, ...; -1 = niewypełnione (tryb "?")
     correctAnswerIndices: [1, 3],      // tylko multiSelect (kolejność bez znaczenia)
     statements: [{ text, answer }],    // tylko PF; answer: true = P, false = F
+    blanks: [{ label, accepted }],     // tylko fillIn; label = HTML zdania przed polem,
+                                       // accepted = lista uznawanych odpowiedzi (porównanie
+                                       // po normalizacji: bez spacji, ⟨/< → [, ⟩/> → ],
+                                       // − → -, ; → , — patrz normalizujOdpowiedz)
     maxScore: 1,                       // 0 = "puste" zadanie nadrzędne (np. wspólny
                                        // wstęp Zadania 12 / 17) — bez badge'a punktów
     selfScore: false,                  // open: true włącza panel samooceny
@@ -204,16 +209,20 @@ const exercises = [
                   '<img src="zad10/zad10.png"> <br>' +
                   'Wykres funkcji <i class="mathText"> y = f(x) </i> przedstawiono w kartezjańskim układzie współrzędnych (𝑥, 𝑦) na rysunku poniżej'+
                   '<img src="zad10/zad10rys.png"> <br>' +
-                  'Uzupełnij zdania. Wpisz odpowiednie przedziały w wykropkowanych miejscach, aby zdania były prawdziwe.<br><br>' +
-                  '1. Dziedziną funkcji <b>f</b> jest przedział …<br>' +
-                  '2. Zbiorem wartości funkcji <b>f</b> jest przedział …<br>' +
-                  '3. Zbiorem wszystkich argumentów, dla których funkcja <b>f</b> przyjmuje wartości ujemne, jest przedział …<br>' +
-                  '4. Zbiorem wszystkich argumentów, dla których funkcja <b>f</b> przyjmuje największą wartość, jest przedział …',
-        type: "open",
+                  'Uzupełnij zdania. Wpisz odpowiednie przedziały w polach, aby zdania były prawdziwe.',
+        type: "fillIn",
         answers: [],
+        // Nawiasy można wpisywać dowolnie: ⟨ ⟩, [ ], < > — normalizacja w
+        // matematykazen.html sprowadza je do jednej postaci przed porównaniem.
+        blanks: [
+            { label: "1. Dziedziną funkcji <b>f</b> jest przedział", accepted: ["(-4,4]"] },
+            { label: "2. Zbiorem wartości funkcji <b>f</b> jest przedział", accepted: ["[-1,3]"] },
+            { label: "3. Zbiorem wszystkich argumentów, dla których funkcja <b>f</b> przyjmuje wartości ujemne, jest przedział", accepted: ["(1,3)"] },
+            { label: "4. Zbiorem wszystkich argumentów, dla których funkcja <b>f</b> przyjmuje największą wartość, jest przedział", accepted: ["(-4,-2]"] }
+        ],
         correctAnswerIndex: -1,
         maxScore: 4,
-        selfScore: true,
+        selfScore: false,
         hint: "Dziedzina to wszystkie x, dla których wykres istnieje (uwaga na kółko otwarte przy x = −4). Zbiór wartości odczytasz z osi y. Wartości ujemne = fragmenty wykresu POD osią x.",
         formulasPage: null,
         solutionText: "1. Dziedzina: <b>(−4, 4⟩</b>. &nbsp; 2. Zbiór wartości: <b>⟨−1, 3⟩</b>. &nbsp; 3. Wartości ujemne dla <b>x ∈ (1, 3)</b>. &nbsp; 4. Największą wartość (3) funkcja przyjmuje dla <b>x ∈ (−4, −2⟩</b>.",
@@ -612,14 +621,16 @@ const exercises = [
         question: '<b>Zadanie 29.</b> <br><br> Do szkolnego koła czytelniczego należy 50 uczniów. Opiekun koła zebrał dane dotyczące liczby książek przeczytanych przez tych uczniów w listopadzie 2024 roku. W poniższej tabeli przedstawiono wyniki zebrane przez opiekuna.<br><br>' +
                 '<table class="data-table"><tr><th>Liczba przeczytanych książek</th><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr>' +
                 '<tr><th>Liczba uczniów</th><td>5</td><td>8</td><td>12</td><td>13</td><td>12</td></tr></table><br>' +
-                'Uzupełnij zdania. Wpisz odpowiednie liczby w wykropkowanych miejscach, aby zdania były prawdziwe.<br><br>' +
-                '1. Średnia arytmetyczna liczby przeczytanych książek w tej grupie uczniów jest równa …<br>' +
-                '2. Mediana liczby przeczytanych książek w tej grupie uczniów jest równa …',
-        type: "open",
+                'Uzupełnij zdania. Wpisz odpowiednie liczby w polach, aby zdania były prawdziwe.',
+        type: "fillIn",
         answers: [],
+        blanks: [
+            { label: "1. Średnia arytmetyczna liczby przeczytanych książek w tej grupie uczniów jest równa", accepted: ["6,38", "6.38", "319/50"] },
+            { label: "2. Mediana liczby przeczytanych książek w tej grupie uczniów jest równa", accepted: ["6,5", "6.5", "13/2"] }
+        ],
         correctAnswerIndex: -1,
         maxScore: 2,
-        selfScore: true,
+        selfScore: false,
         hint: "Średnia: suma (liczba książek · liczba uczniów) podzielona przez 50. Mediana przy 50 uczniach to średnia 25. i 26. wyniku po uporządkowaniu.",
         formulasPage: 31,
         solutionText: "1. Średnia: <span class='mathText'>(4·5 + 5·8 + 6·12 + 7·13 + 8·12) / 50 = 319/50 = <b>6,38</b></span>. <br> 2. Mediana: 25. wynik to 6, a 26. to 7, więc <span class='mathText'>(6 + 7)/2 = <b>6,5</b></span>.",

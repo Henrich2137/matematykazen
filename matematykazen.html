@@ -27,6 +27,7 @@
             </div>
 
             <div id="bar-right">
+                <button id="show-all-solutions">pokaż wszystkie rozwiązania</button>
                 <span id="total-score">0 / 0 pkt</span>
                 <button id="score-switch-button">widok punktów: wszystko</button>
                 <button id="toggle-tablica">▼ Pokaż tablice wzorów</button>
@@ -35,16 +36,22 @@
         </div>
     </div>
 
-    <div id="tablica-wzorow-panel">
+    <!-- Panele PDF są "odblokowane": pasek u góry (.panel-uchwyt) służy do
+         przesuwania, narożnik (.panel-rozmiar) do zmiany rozmiaru okna. -->
+    <div id="tablica-wzorow-panel" class="pdf-panel">
+        <div class="panel-uchwyt" title="Przeciągnij, aby przesunąć panel">⠿</div>
         <object id="tablica-wzorow" type="application/pdf" data="wybrane_wzory_matematyczne.pdf#page=10&toolbar=0" width="300px" height="80vh"></object>
         <button id="tablica-close" title="Zamknij tablice wzorów">✕</button>
+        <div class="panel-rozmiar" title="Przeciągnij, aby zmienić rozmiar">◢</div>
     </div>
 
     <!-- Zasady oceniania (oficjalny PDF CKE z odpowiedziami) — lustrzany
          odpowiednik tablicy wzorów, przypięty do lewej krawędzi ekranu. -->
-    <div id="zasady-oceniania-panel">
+    <div id="zasady-oceniania-panel" class="pdf-panel">
+        <div class="panel-uchwyt" title="Przeciągnij, aby przesunąć panel">⠿</div>
         <object id="zasady-oceniania" type="application/pdf" data="arkusze%20PDF/matematyka-2024-grudzien-probna-podstawowa-odpowiedzi.pdf#toolbar=0"></object>
         <button id="zasady-close" title="Zamknij zasady oceniania">✕</button>
+        <div class="panel-rozmiar" title="Przeciągnij, aby zmienić rozmiar">◢</div>
     </div>
 
     <!-- Exercise Template (Hidden) -->
@@ -142,6 +149,53 @@ toggleZasadyButton.addEventListener("click", function() {
 });
 document.getElementById("zasady-close").addEventListener("click", schowajZasady);
 
+// "Odblokowane" panele PDF: przeciąganie za górny pasek i zmiana rozmiaru za
+// narożnik. Używamy pointer capture na uchwytach, bo <object> z PDF-em połyka
+// zdarzenia myszy — bez capture przeciąganie urywałoby się nad dokumentem.
+function uczynPanelRuchomym(panel) {
+    const uchwyt = panel.querySelector(".panel-uchwyt");
+    const rozmiar = panel.querySelector(".panel-rozmiar");
+
+    uchwyt.addEventListener("pointerdown", (e) => {
+        const r = panel.getBoundingClientRect();
+        const dx = e.clientX - r.left;
+        const dy = e.clientY - r.top;
+        uchwyt.setPointerCapture(e.pointerId);
+        const move = (ev) => {
+            panel.style.left = Math.max(0, ev.clientX - dx) + "px";
+            panel.style.top = Math.max(0, ev.clientY - dy) + "px";
+            panel.style.right = "auto"; // od tej pory pozycjonujemy od lewej/góry
+        };
+        const up = () => {
+            uchwyt.removeEventListener("pointermove", move);
+            uchwyt.removeEventListener("pointerup", up);
+            uchwyt.removeEventListener("pointercancel", up);
+        };
+        uchwyt.addEventListener("pointermove", move);
+        uchwyt.addEventListener("pointerup", up);
+        uchwyt.addEventListener("pointercancel", up);
+    });
+
+    rozmiar.addEventListener("pointerdown", (e) => {
+        const r = panel.getBoundingClientRect();
+        rozmiar.setPointerCapture(e.pointerId);
+        const move = (ev) => {
+            panel.style.width = Math.max(260, ev.clientX - r.left) + "px";
+            panel.style.height = Math.max(200, ev.clientY - r.top) + "px";
+        };
+        const up = () => {
+            rozmiar.removeEventListener("pointermove", move);
+            rozmiar.removeEventListener("pointerup", up);
+            rozmiar.removeEventListener("pointercancel", up);
+        };
+        rozmiar.addEventListener("pointermove", move);
+        rozmiar.addEventListener("pointerup", up);
+        rozmiar.addEventListener("pointercancel", up);
+    });
+}
+uczynPanelRuchomym(tablicaPanel);
+uczynPanelRuchomym(zasadyPanel);
+
 function otworzTabliceNaStronie(numerStrony) {
     const tablica = document.getElementById("tablica-wzorow");
 
@@ -192,12 +246,30 @@ scoreSwitchButton.addEventListener("click", () => {
 
 })
 
+// Normalizacja odpowiedzi wpisywanych ręcznie (typ fillIn): bez spacji i bez
+// różnic zapisu — nawiasy przedziałów ⟨ ⟩ oraz klawiaturowe < > sprowadzamy
+// do [ ], minus typograficzny do zwykłego, średnik do przecinka. Obie strony
+// porównania (wpis ucznia i wzorzec z danych) przechodzą przez tę samą funkcję.
+function normalizujOdpowiedz(s) {
+    return (s || "")
+        .replace(/\s+/g, "")
+        .replace(/[−–]/g, "-")
+        .replace(/[⟨<]/g, "[")
+        .replace(/[⟩>]/g, "]")
+        .replace(/;/g, ",")
+        .toLowerCase();
+}
+
 function markCorrectAnswer(exercise) {
     const button = exercise.querySelector(".answers-container button.hiddenCorrect");
     if (button) {
         button.classList.add("correct");
     }
 }
+
+// Zebrane przy renderowaniu odnośniki do przycisków/paneli "Rozwiązanie"
+// wszystkich zadań — używa ich przycisk "pokaż wszystkie rozwiązania" w pasku.
+const wszystkieRozwiazania = [];
 
 // Function to load exercises
 function loadExercises() {
@@ -219,8 +291,33 @@ function loadExercises() {
     }
     updateTotalScore();
 
+    // ZAPIS POSTĘPU (localStorage). Zapamiętujemy "co użytkownik kliknął/wpisał",
+    // a przy wczytaniu strony odtwarzamy to symulując te same kliknięcia — dzięki
+    // temu ocena, kolory i punkty liczą się dokładnie tą samą drogą co na żywo.
+    // Zapis z inną liczbą zadań (zmiana arkusza/schematu) jest ignorowany.
+    const KLUCZ_POSTEPU = "matematykazen-postep-grudzien2024";
+    let zapis = null;
+    try { zapis = JSON.parse(localStorage.getItem(KLUCZ_POSTEPU)); } catch (e) { zapis = null; }
+    if (!zapis || zapis.n !== exercises.length || !Array.isArray(zapis.stany)) zapis = null;
+    const stanOdpowiedzi = exercises.map(() => ({}));
+    function zapiszPostep() {
+        try {
+            localStorage.setItem(KLUCZ_POSTEPU, JSON.stringify({ n: exercises.length, stany: stanOdpowiedzi }));
+        } catch (e) { /* np. zablokowane localStorage — działamy dalej bez zapisu */ }
+    }
+
     exercises.forEach((exercise, index) => {
         exercise.earnedScore = 0;
+        const stan = stanOdpowiedzi[index];
+
+        // Odnośniki do elementów odpowiedzi, przez które odtwarzamy zapisany
+        // postęp na końcu budowania zadania (patrz blok "Przywrócenie postępu").
+        const abcdButtons = [];
+        const pfButtons = [];      // tablica tablic [przyciskP, przyciskF]
+        const multiButtons = [];
+        const selfButtons = [];
+        const fillRows = [];
+        let fillCheck = null;
 
         //in the future we can make something like studentAttempt object that is passed by php after login and maybe chossing certan attempt in acc menu or smth
 
@@ -295,7 +392,10 @@ function loadExercises() {
                         answerButton.classList.add("incorrect");
                         setScore(0);
                     }
+                    stan.abcd = i;
+                    zapiszPostep();
                 });
+                abcdButtons.push(answerButton);
                 answersContainer.appendChild(answerButton);
             });
         } else if (type === "PF") {
@@ -326,10 +426,13 @@ function loadExercises() {
                         const answeredAll = chosen.every(c => c !== null);
                         const allCorrect = chosen.every((c, ci) => c === exercise.statements[ci].answer);
                         setScore(answeredAll && allCorrect ? exercise.maxScore : 0);
+                        stan.pf = [...chosen];
+                        zapiszPostep();
                     });
                     buttons.push(btn);
                     row.appendChild(btn);
                 });
+                pfButtons.push(buttons);
 
                 answersContainer.appendChild(row);
             });
@@ -384,8 +487,11 @@ function loadExercises() {
                         selected.add(i);
                     }
                     refresh();
+                    stan.multi = [...selected];
+                    zapiszPostep();
                 });
                 buttons.push(btn);
+                multiButtons.push(btn);
                 answersContainer.appendChild(btn);
             });
         } else if (type === "open" && exercise.selfScore && exercise.maxScore) {
@@ -407,11 +513,61 @@ function loadExercises() {
                     buttons.forEach(b => b.classList.remove("selected"));
                     btn.classList.add("selected");
                     setScore(n);
+                    stan.self = n;
+                    zapiszPostep();
                 });
                 buttons.push(btn);
+                selfButtons.push(btn);
                 box.appendChild(btn);
             }
             answersContainer.appendChild(box);
+        } else if (type === "fillIn") {
+            // Zadanie z polami do uzupełnienia ("...") — uczeń wpisuje odpowiedzi
+            // ręcznie, a przycisk "Sprawdź" koloruje ramki pól na zielono/czerwono
+            // i przyznaje punkty proporcjonalnie do trafień (po równo za pole).
+            // Wpis porównujemy z listą akceptowanych wariantów po normalizacji
+            // (patrz normalizujOdpowiedz), więc "(−4, 4⟩" i "(-4,4>" są równoważne.
+            answersContainer.classList.add("fill-in-container");
+
+            exercise.blanks.forEach(blank => {
+                const row = document.createElement("div");
+                row.className = "fill-in-row";
+
+                const label = document.createElement("span");
+                label.className = "fill-in-label";
+                label.innerHTML = blank.label;
+                row.appendChild(label);
+
+                const input = document.createElement("input");
+                input.type = "text";
+                input.className = "fill-in-input";
+                // Edycja pola kasuje jego poprzednią ocenę, żeby kolor nie kłamał.
+                input.addEventListener("input", () => {
+                    input.classList.remove("correct", "incorrect");
+                });
+                row.appendChild(input);
+
+                answersContainer.appendChild(row);
+                fillRows.push({ blank, input });
+            });
+
+            fillCheck = document.createElement("button");
+            fillCheck.className = "fill-in-check";
+            fillCheck.textContent = "Sprawdź";
+            fillCheck.addEventListener("click", () => {
+                let trafienia = 0;
+                fillRows.forEach(({ blank, input }) => {
+                    const wpis = normalizujOdpowiedz(input.value);
+                    const ok = wpis !== "" && blank.accepted.some(acc => normalizujOdpowiedz(acc) === wpis);
+                    input.classList.remove("correct", "incorrect");
+                    input.classList.add(ok ? "correct" : "incorrect");
+                    if (ok) trafienia++;
+                });
+                setScore(Math.round(exercise.maxScore * trafienia / fillRows.length));
+                stan.fill = fillRows.map(r => r.input.value);
+                zapiszPostep();
+            });
+            answersContainer.appendChild(fillCheck);
         }
 
         // Set score. Zadanie nadrzędne (maxScore: 0, np. wspólny wstęp Zadania 12/17)
@@ -549,9 +705,12 @@ function loadExercises() {
         // Przycisk "Rozwiązanie" ma sens tylko, gdy istnieje jakiekolwiek rozwiązanie
         // (tekst / kroki / interaktywne / "pokaż więcej"). W przeciwnym razie go chowamy.
         const hasAnySolution = solutionBlocks.length > 0;
+        const solutionButton = exerciseClone.querySelector(".solution-button");
         if (!hasAnySolution) {
-            exerciseClone.querySelector(".solution-button").style.display = "none";
+            solutionButton.style.display = "none";
         }
+        // Rejestr dla przycisku "pokaż wszystkie rozwiązania" w pasku.
+        wszystkieRozwiazania.push({ przycisk: solutionButton, panel: solutionContainer, ma: hasAnySolution });
 
         function showStep(idx) {
             currentStep = idx;
@@ -642,7 +801,7 @@ function loadExercises() {
         // Jeden handler przycisku "Rozwiązanie": chowa podpowiedź, przełącza panel
         // rozwiązania, a gdy zadanie ma kroki — pokazuje je i renderuje bieżący krok
         // (kroki pojawiają się dopiero po tym kliknięciu, ostatni woła markCorrectAnswer).
-        exerciseClone.querySelector(".solution-button").addEventListener("click", () => {
+        solutionButton.addEventListener("click", () => {
             hintContainer.style.display = "none";
             solutionContainer.style.display = solutionContainer.style.display === "block" ? "none" : "block";
 
@@ -655,9 +814,45 @@ function loadExercises() {
         });
 
 
+        // Przywrócenie postępu: symulujemy dokładnie te kliknięcia/wpisy, które
+        // użytkownik wykonał wcześniej — ocena i punkty liczą się tą samą drogą,
+        // więc nie ma drugiej, równoległej logiki oceniania do utrzymywania.
+        const zap = zapis ? zapis.stany[index] : null;
+        if (zap) {
+            if (Number.isInteger(zap.abcd) && abcdButtons[zap.abcd]) {
+                abcdButtons[zap.abcd].click();
+            }
+            if (Array.isArray(zap.pf)) {
+                zap.pf.forEach((wybor, si) => {
+                    if (wybor !== null && pfButtons[si]) pfButtons[si][wybor ? 0 : 1].click();
+                });
+            }
+            if (Array.isArray(zap.multi)) {
+                zap.multi.forEach(i => { if (multiButtons[i]) multiButtons[i].click(); });
+            }
+            if (Number.isInteger(zap.self) && selfButtons[zap.self]) {
+                selfButtons[zap.self].click();
+            }
+            if (Array.isArray(zap.fill) && fillRows.length) {
+                zap.fill.forEach((tekst, i) => { if (fillRows[i]) fillRows[i].input.value = tekst || ""; });
+                if (zap.fill.some(t => t) && fillCheck) fillCheck.click();
+            }
+        }
+
         // Append the exercise to the wrapper
         exercisesWrapper.appendChild(exerciseClone);
     });
+
+    // Dyskretny reset zapisanego postępu, na samym dole arkusza.
+    const clearProgressButton = document.createElement("button");
+    clearProgressButton.id = "clear-progress";
+    clearProgressButton.className = "light-button";
+    clearProgressButton.textContent = "wyczyść zapisany postęp";
+    clearProgressButton.addEventListener("click", () => {
+        try { localStorage.removeItem(KLUCZ_POSTEPU); } catch (e) {}
+        location.reload();
+    });
+    exercisesWrapper.appendChild(clearProgressButton);
 }
 
 /* ===================================================================
@@ -1698,6 +1893,25 @@ function widgetProstopadloscian(container) {
 
 // Load all exercises when the page loads
 loadExercises();
+
+// "Pokaż/schowaj wszystkie rozwiązania": przełącznik w pasku. Otwiera lub
+// zamyka panel rozwiązania każdego zadania klikając jego własny przycisk
+// (ta sama ścieżka co ręczne klikanie — kroki, filmy itd. działają normalnie).
+// Pomijamy zadania będące już w docelowym stanie, więc ręcznie otwarte
+// rozwiązania nie "mrugają" i nie zamykają się przy "pokaż wszystkie".
+const showAllButton = document.getElementById("show-all-solutions");
+let wszystkieOtwarte = false;
+showAllButton.addEventListener("click", () => {
+    wszystkieOtwarte = !wszystkieOtwarte;
+    wszystkieRozwiazania.forEach(({ przycisk, panel, ma }) => {
+        if (!ma) return;
+        const otwarty = panel.style.display === "block";
+        if (otwarty !== wszystkieOtwarte) przycisk.click();
+    });
+    showAllButton.textContent = wszystkieOtwarte
+        ? "schowaj wszystkie rozwiązania"
+        : "pokaż wszystkie rozwiązania";
+});
 
     </script>
 
