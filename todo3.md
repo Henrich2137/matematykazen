@@ -31,5 +31,33 @@ Chwalenie claude:
 
 
 NOWE PUNKTY TODO ZAPISYWANE PRZEZ CLAUDE:
+
+--- Weryfikacja zgodności z arkuszem PDF (2026-07-05, sesja: sprawdzenie exercises.js vs "arkusze PDF/") ---
+Porównałem cały exercises.js z arkuszem (matematyka-2024-grudzien-probna-podstawowa.pdf)
+i kluczem (…-odpowiedzi.pdf). Tekst obu PDF-ów wyciągnąłem przez `pdftotext -layout`
+do arkusze PDF/arkusz.txt oraz arkusze PDF/odp.txt (zostawione na przyszłość).
+
+WYNIK: wszystkie 30 odpowiedzi zgadza się z oficjalnym kluczem CKE. Treści też się
+zgadzają. Jedyna realna rozbieżność:
+
+- [DO POPRAWKI] Zad 29 — tabela w exercises.js NIE zgadza się z arkuszem.
+  * Arkusz CKE: 5 kolumn — książki {4, 5, 6, 7, 8}, uczniowie {5, 8, 12, 13, 12} (suma 50).
+  * exercises.js (obecnie): 6 kolumn — książki {4..9}, uczniowie {7,8,10,14,6,5} (wersja odtworzona).
+  * Obie wersje dają średnią 6,38 i medianę 6,5, więc odpowiedzi są OK, ale sama tabela
+    jest zmyślona. Podmienić <table class="data-table"> w zad 29 na oryginał: usunąć kolumnę
+    "9", nagłówek książek = 4,5,6,7,8, liczby uczniów = 5,8,12,13,12. Zaktualizować też
+    solutionText (rozpiskę średniej 4·5 + 5·8 + 6·12 + 7·13 + 8·12 = 319) — wynik 319/50 = 6,38
+    się nie zmienia. Po podmianie punkt "Zad 29 tabela" można zdjąć z todo2.md i todo3.md.
+
+- [OK, potwierdzone z kluczem] Punktacja zadań otwartych zgadza się z arkuszem:
+  zad 3 (0-2), 8 (0-3), 9 (0-2), 10 (0-4), 19 (0-4), 26 (0-2), 28 (0-2), 29 (0-2), 30 (0-4).
+  Suma całego arkusza = 50 pkt. Zgadza się z maxTotalScore liczonym z maxScore.
+
+- [DO ROZWAŻENIA] Zad 12 w arkuszu to jedno zadanie z trzema podpunktami (12.1, 12.2, 12.3)
+  poprzedzonymi wspólnym wprowadzeniem (parabola: wierzchołek (3,0), przechodzi przez (0,-9)).
+  W exercises.js 12.1/12.2/12.3 to osobne wpisy, każdy powtarza wprowadzenie — spójne z
+  konwencją "multi-part = osobne wpisy", ale pokrywa się z uwagą użytkownika wyżej
+  ("zad 12 powinno być oddzielone od 12.1"). Rozważyć wizualne zgrupowanie 12.1-12.3.
+
 - uzupełnij tutaj, zedytuj ten tekst
 - jeśli masz pomysły jakieś

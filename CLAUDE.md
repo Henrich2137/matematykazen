@@ -27,7 +27,13 @@ Step-by-step solution videos are produced externally with **Manim** (the Python 
 
 ## Task tracking
 
-The active TODO list lives in `todo.md` (bugs + design/later suggestions from smoke-testing). Check it before starting work and keep it in sync. Phase-specific files (e.g. the former `todoFaza1.md`) are deleted once their work is done — recreate one only if you need to hand off a phase to a fresh session.
+**The active TODO file is [todo3.md](todo3.md) — write new tasks/findings there.** The user (Henrich) checks `todo3.md` most often, so any new bug, idea, or verification result you want them to see goes into `todo3.md` (append under the "NOWE PUNKTY TODO ZAPISYWANE PRZEZ CLAUDE" section, in Polish). You may also duplicate/restate items here in `CLAUDE.md` if it helps you or a future session find them fast — that's encouraged. **Always check `todo3.md` before starting work and keep it in sync.**
+
+TODO file history (all Polish, oldest→newest): `todo1DONE.md` = archived done items (was `todo.md`); `todo2.md` = a short "still to do / later ideas" list; `todo3.md` = the current live list Henrich maintains. Phase-specific files (e.g. the former `todoFaza1.md`) are deleted once their work is done — recreate one only if you need to hand off a phase to a fresh session.
+
+### PDF source of truth & known open task
+
+The official exam and answer key live in `arkusze PDF/` (`matematyka-2024-grudzien-probna-podstawowa.pdf` and `…-odpowiedzi.pdf`); text-extracted copies `arkusze PDF/arkusz.txt` and `arkusze PDF/odp.txt` (via `pdftotext -layout`) are kept for quick reference — do not delete them. A full 2026-07-05 verification confirmed **all 30 answers in [exercises.js](exercises.js) match the official CKE key**, and open-question point values sum to 50. **One known content discrepancy remains: the Zad 29 data table.** exercises.js currently holds a *reconstructed* 6-column table (books 4–9, students 7,8,10,14,6,5); the real CKE table has **5 columns — books 4,5,6,7,8, students 5,8,12,13,12** (sum 50). Both yield mean 6,38 / median 6,5, so the answers are fine, but the table itself should be swapped to the original (see `todo3.md` for the exact fix).
 
 ## Running / previewing
 
