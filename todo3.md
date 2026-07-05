@@ -7,7 +7,7 @@ do zrobienia:
 
 
 
-- zad 17.1 rozwiązanie się nie zgadza z treścia zadania ponieważ kąt ABClezy przy wierzchołku B
+- zad 17.1 rozwiązanie się nie zgadza z treścia zadania ponieważ kąt ABC lezy przy wierzchołku B
 - zad 12 powinno by oddzielone od 12.1
 - przyciski w 12.2 nie działają intuicyjnie, trzeba je odklikiwać. Jeżeli uznasz, że jest to proste w implementacji to zrób tak aby ostatni zaznaczony przycisk był tym który automatycznie się odznaczy przy wybraniu nowego. Jeśli uznasz, że to zbyt skomplikuje kod i narazi go na błędy to dodaj lepszą ikonkę zaznaczenia, która będzie sugerować, że trzeba go odznaczyć lub komunikat lub animacje poszerzenia krawędzi która pojawi się po kliknięciu na inną odpowiedź cza, należy albo zmienić to zadanie na otwarte, albo w każdy zadaniu w exercises.js dodać element numberOfCorrectAnswers (lub nazwany jakoś lepiej jesli masz pomysł) który domyslnie byłby równy 1, a jeśli byłby równy więcej to skrypt w pliku matematykazen.html powinien umieć obsłużyć większą ilość poprawnych odpowiedzi
 - w 29 jest źle tabela zrobiona, jest dużo mało kolumn, a liczby uczniów powinny być następujące: 5, 8, 12, 13, 12
@@ -52,7 +52,10 @@ do arkusze PDF/arkusz.txt oraz arkusze PDF/odp.txt (zostawione na przyszłość)
 WYNIK: wszystkie 30 odpowiedzi zgadza się z oficjalnym kluczem CKE. Treści też się
 zgadzają. Jedyna realna rozbieżność:
 
-- [DO POPRAWKI] Zad 29 — tabela w exercises.js NIE zgadza się z arkuszem.
+- [ZROBIONE 2026-07-05] Zad 29 — tabela podmieniona na oryginał CKE (5 kolumn:
+  książki 4,5,6,7,8, uczniowie 5,8,12,13,12; suma 50). solutionText zsynchronizowany
+  (rozpiska średniej 4·5 + 5·8 + 6·12 + 7·13 + 8·12 = 319/50 = 6,38; mediana 6,5 bez zmian).
+- [BYŁO DO POPRAWKI] Zad 29 — tabela w exercises.js NIE zgadza się z arkuszem.
   * Arkusz CKE: 5 kolumn — książki {4, 5, 6, 7, 8}, uczniowie {5, 8, 12, 13, 12} (suma 50).
   * exercises.js (obecnie): 6 kolumn — książki {4..9}, uczniowie {7,8,10,14,6,5} (wersja odtworzona).
   * Obie wersje dają średnią 6,38 i medianę 6,5, więc odpowiedzi są OK, ale sama tabela
@@ -75,11 +78,35 @@ zgadzają. Jedyna realna rozbieżność:
   zad 3 (0-2), 8 (0-3), 9 (0-2), 10 (0-4), 19 (0-4), 26 (0-2), 28 (0-2), 29 (0-2), 30 (0-4).
   Suma całego arkusza = 50 pkt. Zgadza się z maxTotalScore liczonym z maxScore.
 
-- [DO ROZWAŻENIA] Zad 12 w arkuszu to jedno zadanie z trzema podpunktami (12.1, 12.2, 12.3)
-  poprzedzonymi wspólnym wprowadzeniem (parabola: wierzchołek (3,0), przechodzi przez (0,-9)).
-  W exercises.js 12.1/12.2/12.3 to osobne wpisy, każdy powtarza wprowadzenie — spójne z
-  konwencją "multi-part = osobne wpisy", ale pokrywa się z uwagą użytkownika wyżej
-  ("zad 12 powinno być oddzielone od 12.1"). Rozważyć wizualne zgrupowanie 12.1-12.3.
+- [ZROBIONE 2026-07-05] Zad 12 — wspólne wprowadzenie pokazywane raz (nagłówek
+  „Zadanie 12." na górze wpisu 12.1), 12.2 tylko krótko odwołuje się do tej samej
+  funkcji f — wzorem na zad 17. Szczegóły w sekcji sesji niżej.
+
+--- Sesja 2026-07-05: realizacja punktów „do zrobienia / do poprawki" z góry pliku ---
+Zrobione:
+- [ikonka w title] Usunąłem 🧘. W <head> matematykazen.html jest teraz prosta,
+  czarna ikonka „M" (serif, data-URI SVG) — włączona. Jeśli nie pasuje, wystarczy
+  usunąć jedną linię <link rel="icon"> (komentarz obok o tym mówi). Zrób własne logo,
+  gdy zechcesz — łatwo podmienić.
+- [zad 12 oddzielone od 12.1] Zrobione tak jak w zad 17: wpis 12.1 zaczyna się teraz
+  od nagłówka „Zadanie 12." + wspólne wprowadzenie o paraboli, a pod nim „Zadanie 12.1."
+  z samym pytaniem. 12.2 nie powtarza już całego wprowadzenia — krótkie „Dana jest ta
+  sama funkcja f (...)", jak „Dany jest ten sam trójkąt" w 17.2. 12.3 bez zmian
+  (buduje na f). To układ czysto w treści (question HTML) — pól number/numberSection
+  nadal nie ma.
+- [przyciski 12.2 nieintuicyjne] multiSelect: gdy komplet już zaznaczony, klik nowej
+  odpowiedzi podmienia teraz najdawniej wybraną (okno przesuwne) zamiast nic nie robić —
+  nie trzeba już ręcznie odklikiwać. Kod: obsługa kliknięcia w bloku multiSelect
+  w matematykazen.html; opis zaktualizowany w CLAUDE.md.
+  (Wybrałem podmianę NAJSTARSZEGO wyboru, nie ostatniego jak proponowałeś — przy
+  poprawianiu dwóch typowań daje płynniejsze „przesuwane okno ostatnich 2 klików".
+  Jak wolisz jednak LIFO, powiedz — to jedna linijka.)
+- [zad 29 tabela] Patrz wyżej — [ZROBIONE].
+
+Zostawione bez zmian (za Twoją decyzją):
+- [zad 17.1] Zweryfikowane z kluczem CKE i rysunkiem: odpowiedź D (√15/8) oraz całe
+  rozwiązanie są poprawne (kąt ABC przy wierzchołku B, sin = AC/BC = √15/8). Na Twoją
+  prośbę zostawione bez zmian.
 
 - uzupełnij tutaj, zedytuj ten tekst
 - jeśli masz pomysły jakieś
