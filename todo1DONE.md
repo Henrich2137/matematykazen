@@ -49,3 +49,8 @@ Uwaga: wyśrodkowanie liter A/B w odpowiedziach jest w style.css (ogólne, wszys
 
 
 
+
+Byłoby idealnie:
+- [DONE 2026-07-04] zad 2 (=zad 1?) > interactiveSolution: przesuwanie punktu na osi liczbowej + strzałki od środka — zrealizowane w widgetOsLiczbowa (zad 1).
+- [DONE 2026-07-04] zaznaczenie jasnoniebieskie bez białego tekstu (::selection).
+- [DONE 2026-07-04] gdyby nie było tekstu/komentarza pod video to pojawia się wypełniacz "· · ·" w jego miejsce.

@@ -1,4 +1,3 @@
-
 DO ZROBIENIA — WAŻNE:
 - Zad 29: tabela ODTWORZONA (książki 4-9, uczniowie 7/8/10/14/6/5) tak, by dawała wyniki z klucza (średnia 6,38, mediana 6,5). Porównać z tabelą w arkuszu CKE i ewentualnie poprawić liczności (wyniki się nie zmienią, jeśli klucz się zgadza).
 - Zadania 19, 20, 29, 30 mają w arkuszu rysunki/tabelę ("zobacz rysunek") — zad 19 i 20 mają obrazki, do 30 warto dodać crop rysunku prostopadłościanu z arkusza (zad30/zad30.png) zgodnie z konwencją zadN/.
@@ -10,8 +9,6 @@ Sugestie na potem, to troche większe zadania (NIE REALIZUJ ICH JESZCZE):
 
 
 Sugestie o najniższym priorytecie w stylu "było by idealnie":
-- [DONE 2026-07-04] zad 2 (=zad 1?) > interactiveSolution: przesuwanie punktu na osi liczbowej + strzałki od środka — zrealizowane w widgetOsLiczbowa (zad 1).
+
 - [CZĘŚCIOWO 2026-07-04] filmiki nie powinny migać podczas przełączania → dodany preload następnego kroku; jeśli dalej miga, następny krok to trzymanie dwóch video i podmiana widoczności.
-- [DONE 2026-07-04] zaznaczenie jasnoniebieskie bez białego tekstu (::selection).
-- tablica-wzorów którą dało by isę "odblokować" i przesuwać dowolnie jak sie chce i zmieniać rozmiar okna
-- [DONE 2026-07-04] gdyby nie było tekstu/komentarza pod video to pojawia się wypełniacz "· · ·" w jego miejsce.
+- tablica-wzorów którą dało by się "odblokować" i przesuwać dowolnie jak sie chce i zmieniać rozmiar okna

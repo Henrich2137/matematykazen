@@ -26,6 +26,6 @@ Interfejs:
 - Po pokazaniu karty wzorów pokazuje się też przyciski:
 	- do włączenia wyszukiwarki (podobnej ub tej samej co po wciśnięciu Ctrl+F)
 	- przybliżaznie i oddalanie (lupa + i -)
-	- otwórz w nowej karcie (link w stylu cke/wybranezworuymatematyczne.pdf
+	- otwórz w nowej karcie (link w stylu cke/wybranezworuymatematyczne.pdf)
 
 
