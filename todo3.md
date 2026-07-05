@@ -1,12 +1,19 @@
 Nowy plik który tworzy Henrich (ja, użytkownik). Podczas Sprawdzania nowej wersji strony utworzonej przez fable (claude/project-improvements-exercises...)
 
+
 do zrobienia:
 - coś ty wymyślił za ikonke w title xd? Wywal to jeśli nie jest potrzebne, nie podoba mi się ta ikonka, możesz ewentualnie spróbować z inną, czarno-białym M. Jeśli nie to stworze własne logo lub żadne
+
+
+
 
 - zad 17.1 rozwiązanie się nie zgadza z treścia zadania ponieważ kąt ABClezy przy wierzchołku B
 - zad 12 powinno by oddzielone od 12.1
 - przyciski w 12.2 nie działają intuicyjnie, trzeba je odklikiwać. Jeżeli uznasz, że jest to proste w implementacji to zrób tak aby ostatni zaznaczony przycisk był tym który automatycznie się odznaczy przy wybraniu nowego. Jeśli uznasz, że to zbyt skomplikuje kod i narazi go na błędy to dodaj lepszą ikonkę zaznaczenia, która będzie sugerować, że trzeba go odznaczyć lub komunikat lub animacje poszerzenia krawędzi która pojawi się po kliknięciu na inną odpowiedź cza, należy albo zmienić to zadanie na otwarte, albo w każdy zadaniu w exercises.js dodać element numberOfCorrectAnswers (lub nazwany jakoś lepiej jesli masz pomysł) który domyslnie byłby równy 1, a jeśli byłby równy więcej to skrypt w pliku matematykazen.html powinien umieć obsłużyć większą ilość poprawnych odpowiedzi
 - w 29 jest źle tabela zrobiona, jest dużo mało kolumn, a liczby uczniów powinny być następujące: 5, 8, 12, 13, 12
+
+
+
 
 inne pomysły (NIE REALIZUJ):
 - Renderowanie LATEX zamiast wpisywania tagów sub i sup które wyglądają brzydko oraz wklejania zdjęć, które się słabo skalują z UI i ciężko się zmienia ich barwy.
@@ -25,9 +32,14 @@ inne pomysły (NIE REALIZUJ):
 - zapisywanie postępu do pliku cookie czy coś
 
 
+
+
 Chwalenie claude:
 - ładne zrobiłeś rozwiązanie do zadania 5 z procentem składanym
 - fajny pomysł z tym, że im więcej punktów masz tym bardziej zielone są
+
+
+
 
 
 NOWE PUNKTY TODO ZAPISYWANE PRZEZ CLAUDE:
@@ -48,6 +60,16 @@ zgadzają. Jedyna realna rozbieżność:
     "9", nagłówek książek = 4,5,6,7,8, liczby uczniów = 5,8,12,13,12. Zaktualizować też
     solutionText (rozpiskę średniej 4·5 + 5·8 + 6·12 + 7·13 + 8·12 = 319) — wynik 319/50 = 6,38
     się nie zmienia. Po podmianie punkt "Zad 29 tabela" można zdjąć z todo2.md i todo3.md.
+
+- [OK, potwierdzone z kluczem] Toki ROZWIĄZAŃ (solutionText + solutionTextMore) sprawdzone
+  z modelowymi rozwiązaniami / "Zasadami oceniania" w odp.txt — wszystkie merytorycznie
+  poprawne. Zadania otwarte 3, 8, 9, 10, 19, 26, 28, 30 mają metodę zgodną z modelową
+  (zad 19 to poprawny wariant trygonometryczny zamiast podobieństwa — klucz akceptuje
+  każdą poprawną metodę). Uzasadnienia zadań zamkniętych prowadzą do litery z klucza.
+  Wyjątki (znane, nie nowe błędy w tokach): (a) zad 29 rozpiska średniej używa liczb
+  z odtworzonej tabeli — zsynchronizować po podmianie tabeli (wynik 6,38 bez zmian);
+  (b) zad 2 krok 6 filmu ma błędną klatkę 5⁻⁴, ale tekst rozwiązania jest poprawny
+  (film do przerenderowania — patrz todo2.md).
 
 - [OK, potwierdzone z kluczem] Punktacja zadań otwartych zgadza się z arkuszem:
   zad 3 (0-2), 8 (0-3), 9 (0-2), 10 (0-4), 19 (0-4), 26 (0-2), 28 (0-2), 29 (0-2), 30 (0-4).
