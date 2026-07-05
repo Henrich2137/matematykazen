@@ -35,7 +35,7 @@ z klucza (średnia 6,38, mediana 6,5) — do porównania z oryginałem, patrz to
 
 const exercises = [
     {
-        question: "<b>Zadanie 1.</b> <br><br> Liczby 𝑥₁ i 𝑥₂ są różnymi rozwiązaniami równania |𝑥 + 4| = 7. Suma 𝑥₁ + 𝑥₂ jest równa:",
+        question: "<b>Zadanie 1.</b> <br><br> Liczby 𝑥₁ i 𝑥₂ są różnymi rozwiązaniami równania |𝑥 + 4| = 7. <br>Suma 𝑥₁ + 𝑥₂ jest równa:",
         answers: ["A. (−14)", "B. (−8)", "C. 3", "D. 8"],
         correctAnswerIndex: 1,
         maxScore: 1,
