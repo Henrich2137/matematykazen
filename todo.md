@@ -3,7 +3,7 @@ Nowy plik który tworzy Henrich (ja, użytkownik). Podczas Sprawdzania nowej wer
 (Zasada: tu są TYLKO otwarte punkty. Zrobione wpisy [DONE]/[ZROBIONE] przenoszone są do todoDONE.md — patrz CLAUDE.md.)
 
 
-FABLE, SPRAWDŹ POPRAWNOŚĆ ROZWIĄZAŃ I DAJ FEEDBACK PONIŻEJ CZY AKCEPTUJESZ TE ZADANIA PRZY KAŻDYM Z NICH NAPISZ [OPUS DID WELL] {OPUS DID POORLY] oraz dopisz czy zostało poprawione ZROBIONE PRZEZ OPUSA:
+FABLE, SPRAWDŹ POPRAWNOŚĆ ROZWIĄZAŃ I DAJ FEEDBACK PONIŻEJ CZY AKCEPTUJESZ TE ZADANIA PRZY KAŻDYM Z NICH NAPISZ [OPUS DID WELL] [OPUS DID POORLY] oraz dopisz czy zostało poprawione ZROBIONE PRZEZ OPUSA:
 - coś ty wymyślił za ikonke w title xd? Wywal to jeśli nie jest potrzebne, nie podoba mi się ta ikonka, możesz ewentualnie spróbować z inną, czarno-białym M. Jeśli nie to stworze własne logo lub żadne
 - zad 17.1 rozwiązanie się nie zgadza z treścia zadania ponieważ kąt ABC lezy przy wierzchołku B
 - zad 12 powinno by oddzielone od 12.1 (to zostało np źle zrobione, ponieważ 12 jest jakby wewnątrz 12.1 a ma być zupełnie oddzielny melementem exercises który jest jakby pustym zadaniem, bez odpowiedzi rozwiązań itd. 17 też jest do dupy zrobione, ten sam błąd)
@@ -43,7 +43,7 @@ Chwalenie claude:
 NOWE PUNKTY TODO ZAPISYWANE PRZEZ CLAUDE:
 
 (Zrobione wpisy z sesji 2026-07-05 — weryfikacja arkusza PDF, realizacja punktów z góry
-pliku, odchudzenie CLAUDE.md + nowy ARCHITEKTURA.md — przeniesione do todoDONE.md.)
+pliku, odchudzenie CLAUDE.md + nowy ARCHITECTURE.md — przeniesione do todoDONE.md.)
 
 - uzupełnij tutaj, zedytuj ten tekst
 - jeśli masz pomysły jakieś

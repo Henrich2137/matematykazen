@@ -1,4 +1,4 @@
-# ARCHITEKTURA.md
+# ARCHITECTURE.md
 
 Detailed architecture, data-schema and CSS/layout reference for this repo. Read this **before** touching the rendering logic in [matematykazen.html](matematykazen.html), the data schema in [exercises.js](exercises.js), or anything in [style.css](style.css).
 

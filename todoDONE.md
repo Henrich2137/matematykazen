@@ -118,7 +118,7 @@ Zostawione bez zmian (za decyzją Henricha):
   w każdej sesji (kontekst produktu, 4 główne pliki, zasady todo.md, uruchamianie,
   notatki o treści). Cała szczegółowa dokumentacja (model renderowania, schemat
   exercises.js, konwencja zadN/, pełny opis CSS/layout z gotchami) przeniesiona
-  do NOWEGO pliku ARCHITEKTURA.md — CLAUDE.md odsyła do niego i każe go czytać
+  do NOWEGO pliku ARCHITECTURE.md — CLAUDE.md odsyła do niego i każe go czytać
   przed zmianami w renderowaniu/schemacie/CSS oraz utrzymywać w synchronizacji.
 - [ZROBIONE przy okazji] CLAUDE.md wskazywał na nieistniejące pliki todo3.md /
   todo2.md / todo1DONE.md — poprawione na faktyczne todo.md (aktywny) i todoDONE.md

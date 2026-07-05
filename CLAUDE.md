@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-**Detailed architecture, exercise data schema and the full CSS/layout reference live in [ARCHITEKTURA.md](ARCHITEKTURA.md).** Read it before touching the rendering logic in matematykazen.html, the schema in exercises.js, or style.css — and keep it in sync when you change what it describes. Don't duplicate its content here.
+**Detailed architecture, exercise data schema and the full CSS/layout reference live in [ARCHITECTURE.md](ARCHITECTURE.md).** Read it before touching the rendering logic in matematykazen.html, the schema in exercises.js, or style.css — and keep it in sync when you change what it describes. Don't duplicate its content here.
 
 ## Product context
 
