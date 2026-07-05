@@ -3,29 +3,6 @@ Nowy plik który tworzy Henrich (ja, użytkownik). Podczas Sprawdzania nowej wer
 (Zasada: tu są TYLKO otwarte punkty. Zrobione wpisy [DONE]/[ZROBIONE] przenoszone są do todoDONE.md — patrz CLAUDE.md.)
 
 
-FEEDBACK FABLE (2026-07-05) do prośby "sprawdź poprawność rozwiązań i oceń":
-
-- zad 17.1: [OPUS DID WELL] — treść, rysunek (zad17/zad17.png) i rozwiązanie są ZGODNE.
-  Kąt prosty jest przy A (AB i AC to przyprostokątne), przeciwprostokątna to BC = 8,
-  więc sin(∠ABC) = AC/BC = √15/8 — odp. D, potwierdzona w oficjalnym kluczu CKE
-  (odp.txt: "Rozwiązanie D"). Nie było czego poprawiać.
-
-- zad 12 i 17 oddzielenie od podzadań: [OPUS DID POORLY] — wstęp 12 był wklejony w treść
-  12.1, a wstęp 17 (z rysunkiem) w 17.1. POPRAWIONE PRZEZ FABLE (2026-07-05): 12 i 17 są
-  teraz osobnymi, "pustymi" elementami exercises (maxScore: 0 — bez odpowiedzi, punktów,
-  podpowiedzi i rozwiązań), a 12.1/12.2/17.1/17.2 zaczynają się od własnego numeru jak
-  w arkuszu (usunięte też powtórki treści "Dana jest ta sama funkcja/trójkąt").
-
-- przyciski w 12.2: [OPUS DID WELL] — okno przesuwne już działa: gdy komplet odpowiedzi
-  jest zaznaczony, klik nowej odpowiedzi automatycznie podmienia najdawniej wybraną,
-  więc nic nie trzeba ręcznie odklikiwać. Osobne pole numberOfCorrectAnswers nie jest
-  potrzebne — liczbę wymaganych odpowiedzi wyznacza długość correctAnswerIndices
-  i skrypt obsługuje dowolną ich liczbę.
-
-- zad 29 tabela: [OPUS DID WELL] — tabela w exercises.js jest zgodna z oryginałem CKE:
-  książki 4–8, liczby uczniów 5, 8, 12, 13, 12 (średnia 6,38, mediana 6,5 jak w kluczu).
-
-
 <br><br><br>
 
 
