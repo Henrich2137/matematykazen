@@ -18,17 +18,8 @@ DONE:
 - Zrobienie połowy animacji do zad 4 ✔️
 
 
-BIG BOIS:
+BIG BOYS:
 - dostosowanie stronki do telefonu 
-- niewidoczny watermark kodu
-- niewidoczny watermark animacji
-
-
-
-Wpisywanie zadań i pisanie rozwiązań
-- Dodać reszte zadań maturalnych ◘
-- Uzupełnić rozwiązania do zadań 1-3 ◘
-- Uzupełnić rozwiązania zadań: 4-6; 7-9; 10-12 ... ◘
 
 
 
