@@ -113,7 +113,8 @@ body {
     color: #111;
     cursor: pointer;
 }
-#toggle-tablica {
+#toggle-tablica,
+#toggle-zasady {
     /* min-width mieści dłuższą wersję etykiety ("▲ Schowaj tablice wzorów"),
        więc przycisk nie zmienia szerokości przy przełączaniu na "▼ Pokaż...". */
     min-width: 200px;
@@ -131,7 +132,8 @@ body {
 /* Floating formula-sheet panel — toggled to display:block by the JS.
    Panel to kontener (pozycja/rozmiar/ramka), a w środku <object> z PDF-em oraz
    krzyżyk zamykający. JS przełącza display panelu i podmienia sam <object>. */
-#tablica-wzorow-panel {
+#tablica-wzorow-panel,
+#zasady-oceniania-panel {
     position: fixed;
     top: 100px;
     right: 30px;
@@ -144,31 +146,42 @@ body {
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-#tablica-wzorow {
+/* Zasady oceniania — ten sam panel, tylko przypięty do lewej krawędzi. */
+#zasady-oceniania-panel {
+    right: auto;
+    left: 30px;
+}
+#tablica-wzorow,
+#zasady-oceniania {
     display: block;
     width: 100%;
     height: 100%;
     border: none;
 }
-/* Krzyżyk zamykający w prawym górnym rogu tablicy wzorów. */
-#tablica-close {
+/* Krzyżyk zamykający w prawym górnym rogu paneli (tablica wzorów / zasady
+   oceniania) — celowo duży i pogrubiony, z ramką i cieniem, żeby nie ginął
+   na tle PDF-a. */
+#tablica-close,
+#zasady-close {
     position: absolute;
     right: 8px;
     top: 8px;
     z-index: 1;
-    width: 32px;
-    height: 32px;
+    width: 42px;
+    height: 42px;
     padding: 0;
-    border: 1px solid #ccc;
+    border: 2px solid #aaa;
     border-radius: 3px;
     background-color: #fff;
-    font-size: 16px;
+    font-size: 22px;
+    font-weight: bold;
     line-height: 1;
     color: #111;
     cursor: pointer;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
-#tablica-close:hover {
+#tablica-close:hover,
+#zasady-close:hover {
     background-color: #f0f0f0;
 }
 
@@ -252,15 +265,21 @@ body {
 .button-container button img {
     vertical-align: middle;
 }
+/* Zaznaczone/ocenione odpowiedzi mają optycznie 2× grubszą ramkę — drugą
+   "warstwę" dokłada wewnętrzny box-shadow w kolorze ramki, więc przycisk
+   nie zmienia rozmiaru (prawdziwe pogrubienie border przesuwałoby layout). */
 .button-container button.correct {
     border-color: #88ff88;
+    box-shadow: inset 0 0 0 1px #88ff88;
 }
 .button-container button.incorrect {
     border-color: #ffaaaa;
+    box-shadow: inset 0 0 0 1px #ffaaaa;
 }
 /* multiSelect: zaznaczenie przed skompletowaniem wymaganej liczby odpowiedzi. */
 .button-container button.selected {
     border-color: #9ec9ff;
+    box-shadow: inset 0 0 0 1px #9ec9ff;
 }
 
 /* ===== ZADANIA PRAWDA/FAŁSZ ===== */
@@ -291,9 +310,11 @@ body {
 }
 .pf-row button.correct {
     border-color: #88ff88;
+    box-shadow: inset 0 0 0 1px #88ff88;
 }
 .pf-row button.incorrect {
     border-color: #ffaaaa;
+    box-shadow: inset 0 0 0 1px #ffaaaa;
 }
 
 /* ===== MULTISELECT ===== */
@@ -334,6 +355,7 @@ body {
 .self-score-container button.selected {
     border-color: #9ec9ff;
     background-color: #f2f8ff;
+    box-shadow: inset 0 0 0 1px #9ec9ff;
 }
 
 /* ===== PRZYCISKI TEKSTOWE (podpowiedź / rozwiązanie / wzory) ===== */
@@ -464,8 +486,9 @@ body {
     width: 0;
     height: 100%;
     background-color: #d6d6d6;
-    /* Płynniejsze przesuwanie między zdarzeniami timeupdate (~co 0.25s). */
-    transition: width 0.2s linear;
+    /* Bez transition — pasek jest teraz aktualizowany co klatkę pętlą
+       requestAnimationFrame w showStep(), więc rusza się naprawdę płynnie;
+       transition nałożone na to sprawiało gumowate, doganiające ruchy. */
 }
 .solution-step-by-step-container img {
     display: block;
@@ -542,9 +565,25 @@ canvas {
 .widget input[type=number] {
     width: 40px;
 }
-/* Stała wysokość odczytu, żeby widżet nie skakał przy zmianie komunikatu. */
+/* Zad 1: kolory okienek a i b odpowiadają kolorom elementów na osi —
+   a (zielone) to środek −a, b (niebieskie) to strzałki odległości. */
+.widget input.wg-a {
+    border: 2px solid #2e7d32;
+}
+.widget input.wg-b {
+    border: 2px solid #4a90d9;
+}
+/* Przycisk resetu w kontrolkach widżetu — nie rozciągamy go jak zwykłych
+   .light-button (30% szerokości), tylko trzymamy przy okienkach. */
+.widget .wg-reset {
+    width: auto;
+    margin-left: 14px;
+    font-size: 14px;
+}
+/* Stała wysokość odczytu, żeby widżet nie skakał przy zmianie komunikatu.
+   Dwie linijki: wartości w pierwszej, komentarz ✓/✗ w drugiej (po <br>). */
 .widget-readout {
-    min-height: 1.6em;
+    min-height: 3.4em;
     margin-top: 8px;
     font-size: 16px;
 }

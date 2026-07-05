@@ -714,6 +714,16 @@ function wgDraggable(canvas, hitTest, onDrag) {
     canvas.addEventListener("pointercancel", () => { dragging = false; });
 }
 
+// Delikatne "przyklejanie" przeciąganej wartości do najbliższego celu z listy
+// (gdy jest bliżej niż prog) — łatwiej trafić dokładnie w sytuację z zadania.
+// Zwraca cel albo wartość bez zmian; wołający decyduje, czy resztę zaokrąglić.
+function wgPrzyciagnij(value, targets, prog) {
+    for (const t of targets) {
+        if (Math.abs(value - t) <= prog) return t;
+    }
+    return value;
+}
+
 function wgStrzalka(ctx, x1, y1, x2, y2) {
     const angle = Math.atan2(y2 - y1, x2 - x1);
     ctx.beginPath();
@@ -745,13 +755,16 @@ const WG_KOLORY = {
 function widgetOsLiczbowa(container) {
     const wrap = wgElement("div", "widget");
     wrap.appendChild(wgElement("div", "widget-title",
-        "Rozwiązania |𝑥 + a| = b to liczby odległe o <b>b</b> od liczby <b>(−a)</b>. Przeciągaj zielony punkt i zmieniaj a, b:"));
+        "Rozwiązania |𝑥 + a| = b to liczby odległe o <b>b</b> od liczby <b>(−a)</b>. Przeciągaj żółty punkt i zmieniaj a, b:"));
 
     const canvas = wgCanvas(wrap, 520, 130);
     const ctx = canvas.getContext("2d");
 
+    // Kolory okienek = kolory na osi: a (zielone) to środek −a, b (niebieskie)
+    // to strzałki odległości. Reset przywraca dane z zadania.
     const controls = wgElement("div", "widget-controls",
-        `<span class='mathText'>| 𝑥 + <input type="number" class="wg-a" value="4"> | = <input type="number" class="wg-b" value="7"></span>`);
+        `<span class='mathText'>| 𝑥 + <input type="number" class="wg-a" value="4"> | = <input type="number" class="wg-b" value="7"></span>` +
+        `<button class="light-button wg-reset" title="Przywróć a = 4, b = 7">↺ reset</button>`);
     wrap.appendChild(controls);
 
     const readout = wgElement("div", "widget-readout", "");
@@ -789,16 +802,20 @@ function widgetOsLiczbowa(container) {
         }
 
         const center = -a;
-        // Strzałki odległości b od środka do obu rozwiązań.
+        // Strzałki odległości b od środka do obu rozwiązań — każda na innej
+        // wysokości i lekko skrócona z obu końców, żeby nie zlewały się
+        // w jedną długą linię przechodzącą przez środek.
         if (b >= 0) {
             ctx.strokeStyle = ctx.fillStyle = WG_KOLORY.info;
             ctx.lineWidth = 1.5;
-            [center + b, center - b].forEach(sol => {
+            [[center + b, centerY - 26], [center - b, centerY - 42]].forEach(([sol, y]) => {
                 if (Math.abs(sol - center) < 0.01) return;
-                wgStrzalka(ctx, toPix(center), centerY - 28, toPix(sol), centerY - 28);
+                const odX = toPix(center), doX = toPix(sol);
+                const kier = Math.sign(doX - odX);
+                wgStrzalka(ctx, odX + kier * 7, y, doX - kier * 5, y);
                 ctx.font = "12px Arial";
                 ctx.textBaseline = "bottom";
-                ctx.fillText(`${b}`, (toPix(center) + toPix(sol)) / 2, centerY - 32);
+                ctx.fillText(`${b}`, (odX + doX) / 2, y - 3);
             });
 
             // Rozwiązania (pomarańczowe punkty).
@@ -812,26 +829,31 @@ function widgetOsLiczbowa(container) {
             });
         }
 
-        // Środek (−a) — niebieski.
-        ctx.fillStyle = WG_KOLORY.info;
+        // Środek (−a) — zielony, jak okienko z a (ta sama liczba, tylko z minusem).
+        ctx.fillStyle = "#2e7d32";
         if (center >= MIN && center <= MAX) {
             ctx.beginPath();
             ctx.arc(toPix(center), centerY, 4, 0, Math.PI * 2);
             ctx.fill();
-            ctx.font = "12px Arial";
-            ctx.textBaseline = "bottom";
-            ctx.fillText("−a", toPix(center), centerY - 8);
         }
 
-        // Punkt testowy (zielony) + jego odległość od środka.
+        // Punkt testowy x (ciemnożółty) + jego odległość od środka;
+        // po trafieniu w rozwiązanie dostaje zieloną obwódkę.
         const dist = Math.abs(state.x + a);
         const trafiony = b >= 0 && Math.abs(dist - b) < 0.01;
-        ctx.fillStyle = trafiony ? WG_KOLORY.ok : "#2e7d32";
+        ctx.fillStyle = "#c99700";
         ctx.beginPath();
         ctx.arc(toPix(state.x), centerY, 7, 0, Math.PI * 2);
         ctx.fill();
+        if (trafiony) {
+            ctx.strokeStyle = WG_KOLORY.ok;
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.arc(toPix(state.x), centerY, 10, 0, Math.PI * 2);
+            ctx.stroke();
+        }
 
-        readout.innerHTML = `<span class='mathText'>| ${state.x} + ${a} | = <b>${Math.round(dist * 100) / 100}</b></span> ` +
+        readout.innerHTML = `<span class='mathText'>| ${state.x} + ${a} | = <b>${Math.round(dist * 100) / 100}</b></span><br>` +
             (trafiony ? `<span class="wg-ok">✓ to rozwiązanie!</span>`
                       : `<span class="wg-neutral">(szukamy odległości ${b})</span>`);
     }
@@ -839,12 +861,23 @@ function widgetOsLiczbowa(container) {
     wgDraggable(canvas,
         pos => Math.abs(pos.x - toPix(state.x)) < 25,
         pos => {
-            state.x = Math.round(Math.min(MAX, Math.max(MIN, toVal(pos.x))) * 4) / 4;
+            const a = parseFloat(aInput.value) || 0;
+            const b = parseFloat(bInput.value) || 0;
+            const raw = Math.min(MAX, Math.max(MIN, toVal(pos.x)));
+            // Przyciąganie do rozwiązań i środka; poza nimi krok co 0,25.
+            const snap = wgPrzyciagnij(raw, b >= 0 ? [-a + b, -a - b, -a] : [-a], 0.35);
+            state.x = snap !== raw ? snap : Math.round(raw * 4) / 4;
             draw();
         });
 
     aInput.addEventListener("input", draw);
     bInput.addEventListener("input", draw);
+    controls.querySelector(".wg-reset").addEventListener("click", () => {
+        aInput.value = 4;
+        bInput.value = 7;
+        state.x = 0;
+        draw();
+    });
     draw();
 }
 
@@ -915,8 +948,8 @@ function widgetProcentSkladany(container) {
         });
 
         readout.innerHTML =
-            `<span class='mathText'>p = ${p.toLocaleString("pl-PL", { minimumFractionDigits: 1 })}%</span> → 60 000 · (1 + ${(r).toLocaleString("pl-PL")})² = <b>${zl(kwoty[2])}</b> ` +
-            (trafiony ? `<span class="wg-ok">✓ p = 6,4%!</span>` : "");
+            `<span class='mathText'>p = ${p.toLocaleString("pl-PL", { minimumFractionDigits: 1 })}%</span> → 60 000 · (1 + ${(r).toLocaleString("pl-PL")})² = <b>${zl(kwoty[2])}</b>` +
+            (trafiony ? `<br><span class="wg-ok">✓ p = 6,4%!</span>` : "");
     }
 
     slider.addEventListener("input", draw);
@@ -1021,12 +1054,15 @@ function widgetNierownoscKwadratowa(container) {
         ctx.fill();
 
         const xTxt = state.x.toLocaleString("pl-PL");
-        readout.innerHTML = `<span class='mathText'>x = ${xTxt}: &nbsp; x(x − 6) = ${val.toLocaleString("pl-PL", { maximumFractionDigits: 2 })}</span> ` +
+        readout.innerHTML = `<span class='mathText'>x = ${xTxt}: &nbsp; x(x − 6) = ${val.toLocaleString("pl-PL", { maximumFractionDigits: 2 })}</span><br>` +
             (spelnia ? `<span class="wg-ok">≤ 7 ✓ spełnia</span>` : `<span class="wg-zle">> 7 ✗ nie spełnia</span>`);
     }
 
     wgDraggable(canvas, null, pos => {
-        state.x = Math.round(Math.min(X1, Math.max(X0, vx(pos.x))) * 4) / 4;
+        const raw = Math.min(X1, Math.max(X0, vx(pos.x)));
+        // Przyciąganie do końców przedziału rozwiązań; poza nimi krok co 0,25.
+        const snap = wgPrzyciagnij(raw, [-1, 7], 0.3);
+        state.x = snap !== raw ? snap : Math.round(raw * 4) / 4;
         draw();
     });
     draw();
@@ -1115,9 +1151,9 @@ function widgetFunkcjaPrzedzialami(container) {
             el.classList.toggle("active", parseInt(el.dataset.i) === aktywny(x)));
 
         const fmt = v => v.toLocaleString("pl-PL", { maximumFractionDigits: 2 });
-        readout.innerHTML = `<span class='mathText'>x = ${fmt(x)}, &nbsp; f(x) = <b>${fmt(y)}</b></span> ` +
-            (y < 0 ? `<span class="wg-zle">wartość ujemna (pod osią)</span>`
-             : y === 3 ? `<span class="wg-ok">największa wartość!</span>` : "");
+        readout.innerHTML = `<span class='mathText'>x = ${fmt(x)}, &nbsp; f(x) = <b>${fmt(y)}</b></span>` +
+            (y < 0 ? `<br><span class="wg-zle">wartość ujemna (pod osią)</span>`
+             : y === 3 ? `<br><span class="wg-ok">największa wartość!</span>` : "");
     }
 
     slider.addEventListener("input", draw);
@@ -1201,14 +1237,17 @@ function widgetParabola(container) {
 
         const fmt = v => v.toLocaleString("pl-PL", { maximumFractionDigits: 1 });
         readout.innerHTML = state.x === 3
-            ? `<span class='mathText'>x = 3</span> — <b>wierzchołek</b>: tu funkcja przechodzi z rośnięcia w malenie`
+            ? `<span class='mathText'>x = 3</span><br><b>wierzchołek</b>: tu funkcja przechodzi z rośnięcia w malenie`
             : state.x < 3
-                ? `<span class='mathText'>x = ${fmt(state.x)}</span> <span class="wg-ok">↗ funkcja rośnie (x < 3)</span>`
-                : `<span class='mathText'>x = ${fmt(state.x)}</span> <span class="wg-zle">↘ funkcja maleje (x > 3) — przedział ⟨3, +∞)</span>`;
+                ? `<span class='mathText'>x = ${fmt(state.x)}</span><br><span class="wg-ok">↗ funkcja rośnie (x < 3)</span>`
+                : `<span class='mathText'>x = ${fmt(state.x)}</span><br><span class="wg-zle">↘ funkcja maleje (x > 3) — przedział ⟨3, +∞)</span>`;
     }
 
     wgDraggable(canvas, null, pos => {
-        state.x = Math.round(Math.min(X1, Math.max(X0, vx(pos.x))) * 2) / 2;
+        const raw = Math.min(X1, Math.max(X0, vx(pos.x)));
+        // Przyciąganie do wierzchołka; poza nim krok co 0,5.
+        const snap = wgPrzyciagnij(raw, [3], 0.3);
+        state.x = snap !== raw ? snap : Math.round(raw * 2) / 2;
         draw();
     });
     draw();
@@ -1282,7 +1321,7 @@ function widgetCiagArytmetyczny(container) {
             wgStrzalka(ctx, x + 12, 40, x + 68, 40);
         });
 
-        readout.innerHTML = `<span class='mathText'>m = ${fmt(m)}: &nbsp; (${fmt(wyrazy[0])}, ${fmt(wyrazy[1])}, ${fmt(wyrazy[2])})</span> ` +
+        readout.innerHTML = `<span class='mathText'>m = ${fmt(m)}: &nbsp; (${fmt(wyrazy[0])}, ${fmt(wyrazy[1])}, ${fmt(wyrazy[2])})</span><br>` +
             (arytmetyczny ? `<span class="wg-ok">✓ różnice równe — ciąg arytmetyczny (m = 4)</span>`
                           : `<span class="wg-zle">różnice ${fmt(r1)} ≠ ${fmt(r2)}</span>`);
     }
@@ -1394,13 +1433,18 @@ function widgetKoloTrygonometryczne(container) {
         }
         readout.innerHTML = `<span class='mathText'>α ≈ ${Math.round(state.deg)}°, &nbsp; ` +
             `<span style="color:${WG_KOLORY.ok}">sin α ≈ ${fmt(sin)}</span>, &nbsp; ` +
-            `<span style="color:${WG_KOLORY.zle}">cos α ≈ ${fmt(cos)}</span></span> ${dodatek}`;
+            `<span style="color:${WG_KOLORY.zle}">cos α ≈ ${fmt(cos)}</span></span>` +
+            (dodatek ? `<br>${dodatek}` : "");
     }
 
+    // Kąt, przy którym sin α = √3/4 po stronie rozwartej (~154,3°) — i jego
+    // ostre lustro; przyciąganie ułatwia trafienie dokładnie w tę sytuację.
+    const KAT_CEL = 180 - Math.asin(SIN_CEL) * 180 / Math.PI;
     wgDraggable(canvas, null, pos => {
         let deg = Math.atan2(cy - pos.y, pos.x - cx) * 180 / Math.PI;
         deg = Math.max(0, Math.min(180, deg));
-        state.deg = Math.round(deg * 2) / 2;
+        const snap = wgPrzyciagnij(deg, [KAT_CEL, 180 - KAT_CEL], 2.5);
+        state.deg = snap !== deg ? snap : Math.round(deg * 2) / 2;
         draw();
     });
     draw();
@@ -1522,7 +1566,7 @@ function widgetKatWpisany(container) {
         ctx.fillText("C", C.x + (C.x - cx) * 0.16, C.y + (C.y - cy) * 0.16);
 
         readout.innerHTML = `<span class='mathText'>kąt wpisany ACB = <b>${Math.round(kat)}°</b>, ` +
-            `kąt środkowy ASB = <b>120°</b></span> <span class="wg-neutral">— środkowy jest zawsze 2× większy</span>`;
+            `kąt środkowy ASB = <b>120°</b></span><br><span class="wg-neutral">środkowy jest zawsze 2× większy</span>`;
     }
 
     wgDraggable(canvas, null, pos => {
@@ -1644,8 +1688,8 @@ function widgetProstopadloscian(container) {
         ctx.arc(gx(x), gy(pole), 6, 0, Math.PI * 2);
         ctx.fill();
 
-        readout.innerHTML = `<span class='mathText'>x = ${fmt(x)}, &nbsp; AD = 12 − 4x = ${fmt(y)}, &nbsp; P(x) = −26x² + 96x = <b>${fmt(pole)}</b></span> ` +
-            (max ? `<span class="wg-ok">✓ największe pole przy x = 24/13</span>` : "");
+        readout.innerHTML = `<span class='mathText'>x = ${fmt(x)}, &nbsp; AD = 12 − 4x = ${fmt(y)}, &nbsp; P(x) = −26x² + 96x = <b>${fmt(pole)}</b></span>` +
+            (max ? `<br><span class="wg-ok">✓ największe pole przy x = 24/13</span>` : "");
     }
 
     slider.addEventListener("input", draw);
