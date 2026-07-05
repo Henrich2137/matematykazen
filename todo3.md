@@ -22,6 +22,7 @@ inne pomysły (NIE REALIZUJ):
 - dodać przycisk, "pokaż zasady oceniania" po lewej. Działałby on identycznie do przycisku "pokaż tablice wzorów", ale działałby po lewej stronie.
 - zaznaczone odpowiediz powinnu mieć gruszy border dwukrotnie.
 - nie widać dobrze minusa na tej czcionce ale miejmy nadzieje ze to sie poprawi jak wejdzie latex
+- zapisywanie postępu do pliku cookie czy coś
 
 
 Chwalenie claude:
