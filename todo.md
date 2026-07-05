@@ -22,13 +22,11 @@ NIE REALIZUJ, NA POTEM:
 - do sekcji "oceń się" powinno być dodane kryteria sukcesu dopiero po kliknięciu
   rozwiązania. Ale jeszcze nie mam pomysłu jak to skomponować aby miało sens.
 
-- Renderowanie LATEX zamiast wpisywania tagów sub i sup które wyglądają brzydko oraz
-wklejania zdjęć, które się słabo skalują z UI i ciężko się zmienia ich barwy.
-(FABLE 2026-07-05: proponuję KaTeX + rozszerzenie auto-render. Potrzebna decyzja
-Henricha: CDN (najprościej, ale wymaga internetu przy nauce) czy pliki zvendorowane
-do repo (~1,5 MB, działa offline). Do tego dochodzi migracja treści wszystkich zadań
-na \( ... \) — duża robota na osobną sesję, najlepiej razem z planowaną migracją
-exercises.js → exercises.json.)
+- Zaimplementuj KaTeX zvendorowany do repo (offline) a jeśli się nie uda i będzie tworzyć dużo bagów to zrób KaTeX po stronie klienta
+
+- Migracja treści wszystkich zadań w exercises.js z <sub> i <sup> i tym podobnych na KATEXa
+
+(FABLE 2026-07-05: proponuję KaTeX + rozszerzenie auto-render. Potrzebna decyzja Henricha: CDN (najprościej, ale wymaga internetu przy nauce) czy pliki zvendorowane do repo (~1,5 MB, działa offline). Do tego dochodzi migracja treści wszystkich zadań na \( ... \) — duża robota na osobną sesję, najlepiej razem z planowaną migracją exercises.js → exercises.json.)
 
 
 
