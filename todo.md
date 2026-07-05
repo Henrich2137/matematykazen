@@ -3,15 +3,27 @@ Nowy plik który tworzy Henrich (ja, użytkownik). Podczas Sprawdzania nowej wer
 (Zasada: tu są TYLKO otwarte punkty. Zrobione wpisy [DONE]/[ZROBIONE] przenoszone są do todoDONE.md — patrz CLAUDE.md.)
 
 
-FABLE, SPRAWDŹ POPRAWNOŚĆ ROZWIĄZAŃ I DAJ FEEDBACK PONIŻEJ CZY AKCEPTUJESZ TE ZADANIA PRZY KAŻDYM Z NICH NAPISZ [OPUS DID WELL] [OPUS DID POORLY] oraz dopisz czy zostało poprawione ZROBIONE PRZEZ OPUSA:
+FEEDBACK FABLE (2026-07-05) do prośby "sprawdź poprawność rozwiązań i oceń":
 
-- zad 17.1 rozwiązanie się nie zgadza z treścia zadania chyba
+- zad 17.1: [OPUS DID WELL] — treść, rysunek (zad17/zad17.png) i rozwiązanie są ZGODNE.
+  Kąt prosty jest przy A (AB i AC to przyprostokątne), przeciwprostokątna to BC = 8,
+  więc sin(∠ABC) = AC/BC = √15/8 — odp. D, potwierdzona w oficjalnym kluczu CKE
+  (odp.txt: "Rozwiązanie D"). Nie było czego poprawiać.
 
-- zad 12 powinno by oddzielone od 12.1 (to zostało np źle zrobione, ponieważ 12 jest jakby wewnątrz 12.1 a ma być zupełnie oddzielny melementem exercises który jest jakby pustym zadaniem, bez odpowiedzi rozwiązań itd. 17 też jest do dupy zrobione, ten sam błąd)
+- zad 12 i 17 oddzielenie od podzadań: [OPUS DID POORLY] — wstęp 12 był wklejony w treść
+  12.1, a wstęp 17 (z rysunkiem) w 17.1. POPRAWIONE PRZEZ FABLE (2026-07-05): 12 i 17 są
+  teraz osobnymi, "pustymi" elementami exercises (maxScore: 0 — bez odpowiedzi, punktów,
+  podpowiedzi i rozwiązań), a 12.1/12.2/17.1/17.2 zaczynają się od własnego numeru jak
+  w arkuszu (usunięte też powtórki treści "Dana jest ta sama funkcja/trójkąt").
 
-- przyciski w 12.2 nie działają intuicyjnie, trzeba je odklikiwać. Jeżeli uznasz, że jest to proste w implementacji to zrób tak aby ostatni zaznaczony przycisk był tym który automatycznie się odznaczy przy wybraniu nowego. Jeśli uznasz, że to zbyt skomplikuje kod i narazi go na błędy to dodaj lepszą ikonkę zaznaczenia, która będzie sugerować, że trzeba go odznaczyć lub komunikat lub animacje poszerzenia krawędzi która pojawi się po kliknięciu na inną odpowiedź cza, należy albo zmienić to zadanie na otwarte, albo w każdy zadaniu w exercises.js dodać element numberOfCorrectAnswers (lub nazwany jakoś lepiej jesli masz pomysł) który domyslnie byłby równy 1, a jeśli byłby równy więcej to skrypt w pliku matematykazen.html powinien umieć obsłużyć większą ilość poprawnych odpowiedzi
+- przyciski w 12.2: [OPUS DID WELL] — okno przesuwne już działa: gdy komplet odpowiedzi
+  jest zaznaczony, klik nowej odpowiedzi automatycznie podmienia najdawniej wybraną,
+  więc nic nie trzeba ręcznie odklikiwać. Osobne pole numberOfCorrectAnswers nie jest
+  potrzebne — liczbę wymaganych odpowiedzi wyznacza długość correctAnswerIndices
+  i skrypt obsługuje dowolną ich liczbę.
 
-- w 29 jest była źle tabela zrobiona, jest dużo mało kolumn, a liczby uczniów powinny być następujące: 5, 8, 12, 13, 12
+- zad 29 tabela: [OPUS DID WELL] — tabela w exercises.js jest zgodna z oryginałem CKE:
+  książki 4–8, liczby uczniów 5, 8, 12, 13, 12 (średnia 6,38, mediana 6,5 jak w kluczu).
 
 
 <br><br><br>
@@ -20,66 +32,60 @@ FABLE, SPRAWDŹ POPRAWNOŚĆ ROZWIĄZAŃ I DAJ FEEDBACK PONIŻEJ CZY AKCEPTUJESZ
 <h3>TO-DO, DO REALIZACJI, PODZIELONE NA PRIORYTET</h3>
 
 
-WYSOKI PRIORYTET:
-- popraw 12 i 17 aby były oddzielne od swoich podzadań. (12.1 i 17.1)
-- Powiększyć przycisk X w prawym górnym rogu tablicy i pogrubić samego X aby łatwiej było go zauważyć, można też dać jakąś ramkę lub cień
-- zielone lub czerwone komentarze przy nteraktywnych rozwiązaniach można dać po br czy coś aby były w nast linijce mówie o czymś takim jak "✓ największe pole przy x = 24/13" w zad 30
-
-- albo ulepszyć płynne przewijanie aby było rzeczywiście płynne albo wyłączyć tą opcje i zrobić tak jak było wcześniej czyli zwykłe skoki paska co pół sekundy czy coś takiego takie defaultowe. Teraz to wygląda jakby pod spodem było niepłynne a ktoś na siłe chciał to upłynić ale mu nie wyszło za bardzo i to męczy oko.
-- w zad 1 w solutioInteractive nie widać, że niebieskei strzałki są inym elementem, zlewają sięw jedno. mozna by je troszke odsunąć od siebie i troszke skrócić. mozna tez wywalić -a. Zmienić kolor okna z 4 na zielony i tego z 7 (domyślnie) na niebieski. x mozna oznaczyć żółtym kolorem lub ciemnożółtym. Mozna dodać przycisk resetu. opcjonalnie: sprawić aby przesuwanie 
-
 ŚREDNI PRIORYTET:
-- Renderowanie LATEX zamiast wpisywania tagów sub i sup które wyglądają brzydko oraz wklejania zdjęć, które się słabo skalują z UI i ciężko się zmienia ich barwy.
-- w niektórych interaktywnych rozwiązaniach gdzie jest pewien punkt w którym pojawia się sytuacja taka jak w zadaniu możnaby zrobić tak aby łatwiej podczas przesuwania troszeczkę przyklejał się do odpowiedniego miejsca aby łatwiej było trafić na sytuacje opisanąw zadaniu.
+- Renderowanie LATEX zamiast wpisywania tagów sub i sup które wyglądają brzydko oraz
+  wklejania zdjęć, które się słabo skalują z UI i ciężko się zmienia ich barwy.
+  (FABLE 2026-07-05: proponuję KaTeX + rozszerzenie auto-render. Potrzebna decyzja
+  Henricha: CDN (najprościej, ale wymaga internetu przy nauce) czy pliki zvendorowane
+  do repo (~1,5 MB, działa offline). Do tego dochodzi migracja treści wszystkich zadań
+  na \( ... \) — duża robota na osobną sesję, najlepiej razem z planowaną migracją
+  exercises.js → exercises.json.)
 
-- dodać przycisk, "pokaż zasady oceniania" po lewej. Działałby on identycznie do przycisku "pokaż tablice wzorów", ale działałby po lewej stronie.
-- zaznaczone odpowiediz powinnu mieć gruszy border dwukrotnie.
-
-NISKI PRIOTYTET:
-
-- zapisywanie postępu do pliku cookie czy coś
-- dodać przycisk "pokaż wszystkie rozwiązania" którego funkcjonalność przyda się przy powyższym punkcie
+NISKI PRIORYTET:
+- [CZĘŚCIOWO 2026-07-04/05] filmiki nie powinny migać podczas przełączania → jest preload
+  następnego kroku, a pasek postępu jest teraz płynny (requestAnimationFrame); jeśli
+  przełączanie kroków nadal miga, następny krok to trzymanie dwóch elementów video
+  i podmiana widoczności (wymaga testu wzrokowego — Fable nie jest w stanie tego ocenić
+  bez przeglądarki).
 
 NIE REALIZUJ, NA POTEM:
-- do sekcji "oceń się" powinno być dodane kryteria sukcesu dopiero po kliknięciu rozwiązania. Ale jeszcze nie mam pomysłu jak to skomponować aby miało sens.
-
-
-
+- do sekcji "oceń się" powinno być dodane kryteria sukcesu dopiero po kliknięciu
+  rozwiązania. Ale jeszcze nie mam pomysłu jak to skomponować aby miało sens.
 
 
 <br><br><br>
-
-
 
 
 DLA UŻYTKOWNIKA:
-- Przerenderować w Manimie ostatni krok zad 2 (zad2/zad2rozw_step6.mp4): klatka końcowa pokazuje 5⁻⁴, a poprawny wynik to 5⁴ (5⁻¹ · 5⁵ = 5⁴). Komentarz pod filmem tymczasowo prostuje błąd.
-
-<br>
-
-POZYTYWNY FEEDBACK DLA CLAUDE:
-- ładne zrobiłeś rozwiązanie do zadania 5 z procentem składanym
-- fajny pomysł z tym, że im więcej punktów masz tym bardziej zielone są
-- sprawdzić co by było gdybym wpisał ujemnął wartość w playback rate czy jakoś tak
-
+- Przerenderować w Manimie ostatni krok zad 2 (zad2/zad2rozw_step6.mp4): klatka końcowa
+  pokazuje 5⁻⁴, a poprawny wynik to 5⁴ (5⁻¹ · 5⁵ = 5⁴). Komentarz pod filmem tymczasowo
+  prostuje błąd.
+- Punkt o widżecie zad 1 urwał się w połowie zdania: "opcjonalnie: sprawić aby
+  przesuwanie" — dokończ myśl, to zostanie zrobione (reszta punktu o zad 1 jest już
+  zrealizowana).
 
 
 <br><br><br>
 
 
+NOWE PUNKTY TODO ZAPISYWANE PRZEZ CLAUDE:
 
-SPRAWDŹCZY PONIŻSZE SĄ ZROBIONE, JEŚLI NIE TO ZRÓB PRZENIEŚ DO todoDONE.md, 
-
-ŚREDNI PRIORYTET:
-- Zadania 19, 20, 29, 30 mają w arkuszu rysunki/tabelę ("zobacz rysunek") — zad 19 i 20 mają obrazki, do 30 warto dodać crop rysunku prostopadłościanu z arkusza (zad30/zad30.png) zgodnie z konwencją zadN/.
-
-
-NISKI PRIORYTET:
-- [CZĘŚCIOWO 2026-07-04] filmiki nie powinny migać podczas przełączania → dodany preload następnego kroku; jeśli dalej miga, następny krok to trzymanie dwóch video i podmiana widoczności.
-- tablica-wzorów którą dało by się "odblokować" i przesuwać dowolnie jak sie chce i zmieniać rozmiar okna
-
-- dodanie pól na własny tekst w zadaniach takich jak zadanie 10 w miejscach takich jak "..." i systemu sprawdzania odpowiedzi użytkownika czy pasuje chociaż do jednej wersji poprawnych odpowiedzi. Poniżej zadania powinien znajdować się przycisk sprawdź, po kliknięciu którego przy każdym z pól pojawi się oznaczenie na czerwono lub zielona w zależności od poprawności odpowiedzi. (moze być to w formie zmiany koloru ramki pola) — częściowo zastąpione samooceną (selfScore), ale docelowo warto zrobić prawdziwe pola.
-
-
-
-
+- (FABLE 2026-07-05) Do przeklikania przez Henricha — nowe rzeczy z tej sesji:
+  1) zad 10 i 29 mają teraz prawdziwe pola do wpisywania odpowiedzi + przycisk "Sprawdź"
+     (zielona/czerwona ramka pola; punkty po równo za każde pole). Nawiasy przedziałów
+     można wpisywać jako ⟨⟩, [] albo <>, liczby z kropką lub przecinkiem (6.38 = 6,38) —
+     normalizacja to ujednolica.
+  2) postęp (odpowiedzi + punkty) zapisuje się w localStorage i wraca po odświeżeniu;
+     na samym dole arkusza jest dyskretny przycisk "wyczyść zapisany postęp". Zapis
+     unieważnia się sam, gdy zmieni się liczba zadań w exercises.js (celowo).
+  3) w pasku jest przełącznik "pokaż/schowaj wszystkie rozwiązania" (otwiera też kroki
+     wideo — przy "pokaż wszystkie" wystartuje kilka autoplayów naraz; jak to przeszkadza,
+     dopisz punkt).
+  4) po lewej przycisk "Pokaż zasady oceniania" (oficjalny PDF CKE z odpowiedziami).
+  5) oba panele PDF są "odblokowane": przesuwanie za górny pasek, zmiana rozmiaru za
+     narożnik ◢ w prawym dolnym rogu.
+  6) widżety 1, 9, 12.1 i 18 delikatnie przyciągają punkt do miejsc z zadania (snap).
+- (FABLE 2026-07-05) Odpowiedź na pytanie o ujemny playback rate: w UI nie ma już pola
+  prędkości — playbackRate jest ustawiony na sztywno (1) w showStep(). Nawet gdyby było,
+  przeglądarki nie odtwarzają wideo wstecz przy ujemnej wartości (Chrome/Firefox rzucają
+  błąd albo ignorują) — nie ma czego zabezpieczać.

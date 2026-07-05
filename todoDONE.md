@@ -128,3 +128,56 @@ Zostawione bez zmian (za decyzją Henricha):
   są z todo.md do todoDONE.md, a todoDONE.md NIE jest wczytywany domyślnie — tylko
   przy szerszym spojrzeniu na projekt / trudniejszym problemie. Ten blok wpisów to
   pierwsze zastosowanie tej zasady.
+--- Sesja 2026-07-05 (Fable): realizacja todo.md — wysoki priorytet + "cięższe rzeczy" ---
+- [ZROBIONE 2026-07-05] Zad 12 i 17 oddzielone od podzadań: wspólny wstęp każdego z nich
+  to teraz osobny, "pusty" element exercises (maxScore: 0 — bez odpowiedzi, rozwiązań
+  i badge'a punktów; badge jest usuwany z DOM, żeby przełącznik widoku punktów go nie
+  przywracał). Z 12.2 i 17.2 usunięte powtórki treści ("Dana jest ta sama funkcja...").
+- [ZROBIONE 2026-07-05] Rysunek do zad 30: zad30/zad30.png wycięty ze strony 28 arkusza
+  CKE (pdftoppm -x/-y/-W/-H, 150 dpi) i wstawiony do treści zadania.
+- [ZROBIONE 2026-07-05] Przycisk ✕ tablicy wzorów powiększony (40px), pogrubiony,
+  z ramką i mocniejszym cieniem; ten sam styl dostał ✕ panelu zasad oceniania.
+- [ZROBIONE 2026-07-05] Komentarze ✓/✗ w widżetach (np. "✓ największe pole przy
+  x = 24/13" w zad 30) są teraz w osobnej linijce (po <br>); .widget-readout ma
+  min-height na 2 linijki, żeby nic nie skakało. Dotyczy widżetów 1, 5, 9, 10,
+  12.1, 15, 18, 20, 30.
+- [ZROBIONE 2026-07-05] "Płynne przewijanie" paska postępu wideo: zamiast zdarzeń
+  timeupdate (~4/s) + transition w CSS (to dawało gumowate ruchy) pasek rysuje pętla
+  requestAnimationFrame działająca tylko podczas odtwarzania. Transition usunięty.
+- [ZROBIONE 2026-07-05] Widżet zad 1 (oś liczbowa): niebieskie strzałki odległości b
+  na dwóch różnych wysokościach i skrócone z obu końców (już się nie zlewają);
+  etykieta "−a" usunięta; okienko a ma zieloną ramkę (jak punkt środka −a na osi),
+  okienko b niebieską (jak strzałki); punkt testowy x jest ciemnożółty, po trafieniu
+  dostaje zieloną obwódkę; dodany przycisk "↺ reset" (a=4, b=7, x=0).
+- [ZROBIONE 2026-07-05] Snap (przyklejanie) w widżetach z przeciąganym punktem:
+  wspólny helper wgPrzyciagnij; zad 1 (rozwiązania i środek), zad 9 (−1 i 7),
+  zad 12.1 (wierzchołek x=3), zad 18 (kąt z sin α = √3/4 po obu stronach).
+- [ZROBIONE 2026-07-05] Przycisk "Pokaż zasady oceniania" po lewej stronie paska +
+  panel z oficjalnym PDF-em CKE (arkusze PDF/...-odpowiedzi.pdf, spacja w ścieżce
+  zakodowana jako %20). Działa jak tablica wzorów, tylko przypięty do lewej.
+- [ZROBIONE 2026-07-05] Zaznaczone/ocenione odpowiedzi mają optycznie 2× grubszą ramkę:
+  box-shadow inset w kolorze ramki (prawdziwe pogrubienie border przesuwałoby layout).
+  Dotyczy .correct/.incorrect/.selected w ABCD, PF, multiSelect, samoocenie i fillIn.
+- [ZROBIONE 2026-07-05] Zapisywanie postępu: localStorage (klucz
+  matematykazen-postep-grudzien2024) trzyma "co użytkownik kliknął/wpisał"; przy
+  wczytaniu strony postęp wraca przez SYMULACJĘ tych samych kliknięć (ta sama ścieżka
+  oceniania, zero drugiej logiki). Zapis o innej liczbie zadań jest ignorowany.
+  Na dole arkusza przycisk "wyczyść zapisany postęp".
+- [ZROBIONE 2026-07-05] Przycisk "pokaż wszystkie rozwiązania" w pasku — przełącznik
+  (pokaż/schowaj), klika przyciski "Rozwiązanie" poszczególnych zadań, pomijając te
+  już w docelowym stanie (na prośbę Henricha działa też w drugą stronę — chowa).
+- [ZROBIONE 2026-07-05] Tablica wzorów (i panel zasad) "odblokowana": przesuwanie za
+  górny pasek-uchwyt, zmiana rozmiaru za narożnik ◢; pointer capture na uchwytach,
+  bo <object> z PDF-em połyka zdarzenia myszy.
+- [ZROBIONE 2026-07-05] Pola na własny tekst (punkt z sekcji "sprawdź czy zrobione"):
+  nowy typ zadania fillIn (pole blanks w exercises.js) z przyciskiem "Sprawdź"
+  i zielonymi/czerwonymi ramkami pól; zad 10 (4 przedziały) i zad 29 (średnia,
+  mediana) przełączone z samooceny na fillIn. Odpowiedzi porównywane po normalizacji
+  (spacje, ⟨⟩/<>/[], minus typograficzny, ; vs ,; warianty 6,38/6.38/319/50).
+- [ZROBIONE 2026-07-05] Audyt sekcji "SPRAWDŹ CZY PONIŻSZE SĄ ZROBIONE": rysunki
+  zad 19 i 20 były już na miejscu (zad19/zad19.png, zad20/zad20.png), tabela zad 29
+  poprawna, crop do zad 30 dodany w tej sesji (patrz wyżej) — punkt zamknięty.
+- [ODNOTOWANE] Pozytywny feedback od Henricha: rozwiązanie zad 5 (procent składany)
+  i kolorowanie punktów w zależności od wyniku — zostawione jak jest. Pytanie
+  o ujemny playback rate: pola prędkości nie ma już w UI (playbackRate na sztywno 1),
+  przeglądarki i tak nie odtwarzają wstecz — nic do roboty.

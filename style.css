@@ -402,8 +402,11 @@ body {
     border-color: #d9534f;
     box-shadow: inset 0 0 0 1px #d9534f;
 }
-.fill-in-check {
+/* Selektor celowo mocniejszy niż `.button-container button` (kontener odpowiedzi
+   ma obie klasy), inaczej "Sprawdź" dostałby szerokość 22% i inline-block. */
+.fill-in-container button.fill-in-check {
     display: block;
+    width: auto;
     margin: 12px auto 0;
     padding: 8px 22px;
     border: 1px solid #e7e7e7;
@@ -414,7 +417,7 @@ body {
     color: #111;
     cursor: pointer;
 }
-.fill-in-check:hover {
+.fill-in-container button.fill-in-check:hover {
     background-color: #f7f7f7;
 }
 
