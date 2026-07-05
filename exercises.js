@@ -43,7 +43,7 @@ const exercises = [
         hint: "Z wartości bezwzględnej czyli |takich nawiasów| zawsze wyjdzie wartość nieujemna, czyli: |7| = 7 oraz |-7| = 7. Co więc musi stać zamiast x aby wychodziło podobnie jak w tych przykładach?",
         formulasPage: 4,
         solutionText: "Geometrycznie: |𝑥 + 4| = 7 to wszystkie liczby odległe o <b>7</b> od liczby <b>−4</b>, czyli 𝑥₁ = 3 i 𝑥₂ = −11. Suma: <b>3 + (−11) = −8</b> — odpowiedź <b>B</b>.",
-        solutionTextMore: "po opuszczeniu nawiasów są dwie możliwości: <br><br> <span class='mathText'> 1. <br>  x + 4 = 7 <br> x = 7 - 4 <br> <b> x = 3 </b>  <br><br> 2. <br> x + 4 = -7 <br> x = -7 - 4  <br> <b> x = -11</b> <br><br>  <b> 3 - 11 = -8 </b> </span><br> czyli odp B.<br><br>",
+        solutionTextMore: "po opuszczeniu nawiasów są dwie możliwości: <br><br> <span class='mathText'> 1. <br>  x + 4 = 7 <br> x = 7 - 4 <br> <b> x = 3 </b>  <br><br> 2. <br> x + 4 = -7 <br> x = -7 - 4  <br> <b> x = -11</b> <br><br>  <b> 3 + (-11) = -8 </b> </span><br><br> czyli odp B.<br><br>",
         solutionStepByStep: [
             { type: "video", src: "zad1/zad1rozw_step1.mp4", text: "Tu będą pojawiać się różne komentarze" },
             { type: "video", src: "zad1/zad1rozw_step2.mp4", text: "Niestety będą miały one różną długość więc jeśli przesadzę to albo zacznie to wchodzić na nawigacje albo nawigacja będzie skakać. Mogę coś tu jeszcze popisać aby to sprawdzić." },
