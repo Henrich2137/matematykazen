@@ -1,4 +1,5 @@
 W TYM PLIKU ZAPISAŁEM TO CO POZOSTAŁO DO ZROBIENIA (kiedyś to było w pliku todo.md którego nazwa została zmieniona na todo1DONE.md)
+Więśzośc rzeczy jest tu zapisana przez claude
 
 DO ZROBIENIA — WAŻNE:
 - Zad 29: tabela ODTWORZONA (książki 4-9, uczniowie 7/8/10/14/6/5) tak, by dawała wyniki z klucza (średnia 6,38, mediana 6,5). Porównać z tabelą w arkuszu CKE i ewentualnie poprawić liczności (wyniki się nie zmienią, jeśli klucz się zgadza).
@@ -14,5 +15,3 @@ Sugestie o najniższym priorytecie w stylu "było by idealnie":
 
 - [CZĘŚCIOWO 2026-07-04] filmiki nie powinny migać podczas przełączania → dodany preload następnego kroku; jeśli dalej miga, następny krok to trzymanie dwóch video i podmiana widoczności.
 - tablica-wzorów którą dało by się "odblokować" i przesuwać dowolnie jak sie chce i zmieniać rozmiar okna
-
-
