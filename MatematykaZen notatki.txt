@@ -1,27 +1,3 @@
-DONE:
-- system wczytywania zadań ✔️
-- przepisanie poleceń i wytluszczenie istotnych informacji ✔️
-- umieszczenie zdjęć tam gdzie zapis jest zbyt matematyczny ✔️
-- solutionInteractive dla 1. zadania ✔️
-- wstępny solutionStepByStep do 2giego zadania ✔️
-- ładny css do wszystkiego ✔️
-- wstępne solutionText do zadań 1-3 ✔️
-- Wrzucić matematykazen7 na githuba ✔️
-- Zapoznanie się z MANIMem jak zrobić przesuwanie, kolorki, oddzielne elementy LATEX itd. ✔️
-- Zrobienie powyższego w jednym z rozwiązań StepbyStep ✔️
-- Automatyczne zaznaczenie poprawnej odpowiedzi po przejściu do ostatniego kroku w solutionStepByStep ✔️
-- Naprawić błąd w zad2 na końcu 5^-4 vs 5^4 ✔️
-- Naprawić błąd w zad2 na początku "pierwiastk" ✔️
-- System punktów po prawej z switchem zmieniającym widoczność (wszystko, tylko suma lub nic) ✔️
-- CSS: przeniesienie napisu Matematyka Zen top bara i zmiana wyglądu pryzcisku toggle-tablica oraz switcha od widoczności punktacji ✔️
-- Wstępne wpisanie sekcji solution-text-more z przyciskiem "Pokaż więcej" do exercises.js oraz templatu html zadania ✔️
-- Zrobienie połowy animacji do zad 4 ✔️
-
-
-BIG BOYS:
-- dostosowanie stronki do telefonu 
-
-
 
 Dydaktyka:
 - Zastanowić się do jakiego zadania jaka forma wyjaśnienia ◘
@@ -30,38 +6,26 @@ Dydaktyka:
 - wrócenie do zaznaczenia poprawnej odpowiedzi odrazu po kliknięciu "Rozwiązanie" lub dodatkowy przycisk "pokaż odpowiedź" zamiast ostatni step w solutionStepByStep lub możliwość wybrania w ustawieniach, i wtedy zadaniamia bez solutionStepByStep muszą mieć jedną z dwóch powyższych opcji
 
 
+
+
 Technikalia:
-- exercises .js -> .json 
+- dostosowanie stronki do telefonu 
 - Możliwość przełączania maturek i autorkich zestawów zadań (exercises -> maturaGru2024) ◘
-- Stworzyć stronę główną ◘
+◘
 - Stworzyć stronę "autor" ◘
 - Znaleźć z czatem gpt najtańszą opcje zakupu domeny ◘
-- Kupić u ustawić domenę (możliwe, że trzebabędzie też postawić stronke na hostingu) ◘
+- Kupić u ustawić domenę (możliwe, że trzeba będzie też postawić stronke na hostingu) ◘
 
-
-
-pomysły na nazwę:
-Reaktywna Matma, Reaktywna Matematyka, Reaktywna Matura, Responsywna Matura, Interaktywna Matura, Matematyka Zen
 
 
 Interfejs:
 - Po kliknięciu prevStepButton animacja odpala się od tyłu (łatiwej chyba ffmpegiem wyrenderować wszystkie animacje od tyłu niż robić to w przeglądarce)
 - Feedback w interfejsie, satysfakcjonujące animacje przycisków i minimalistyczne efekty dźwiękowe
-- Darkmode (dwa pliki css tylko z kolorkami podmienianie prostym js?)
+- Darkmode (dwa pliki css tylko z kolorkami podmienianie prostym js?), ale chyba lepiej zrobić zmienne css dizęki czemu możnaby dodawać więcej trybów niz tylko jasny/ciemny
 
-- Po kliknięciu "Pokaż potrzebne wzory": Płynne skrolowanie do odpowiedniej strony na tablicy
 - Po pokazaniu karty wzorów pokazuje się też przyciski:
-	- do włączenia wyszukiwarki (tej samej co po wciśnięciu Ctrl+F)
+	- do włączenia wyszukiwarki (podobnej ub tej samej co po wciśnięciu Ctrl+F)
 	- przybliżaznie i oddalanie (lupa + i -)
-	- otwórz w nowej karcie (link typu cke/wybranezworuymatematyczne.pdf)
-
-- Zrobić aby odpowiedzi wyświetlały się albo w rzędzie o o o o albo w kratke:
-o o
-o o
-- po włączeniu Roziązania, poniżej przycisk "Pokaż więcej", który otwiera dodatkową treść i ukrywa się jeśli jej nie ma
-
-
-Marketing i Testowanie:
-wysłać link od githuba uczniom np. Julii
+	- otwórz w nowej karcie (link w stylu cke/wybranezworuymatematyczne.pdf
 
 
