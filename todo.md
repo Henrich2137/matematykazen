@@ -79,6 +79,18 @@ zgadzają. Jedyna realna rozbieżność:
   „Zadanie 12." na górze wpisu 12.1), 12.2 tylko krótko odwołuje się do tej samej
   funkcji f — wzorem na zad 17. Szczegóły w sekcji sesji niżej.
 
+--- Sesja 2026-07-05: odchudzenie CLAUDE.md (mniej tokenów na start sesji) ---
+- [ZROBIONE] CLAUDE.md skrócony z ~125 do ~35 linii: zostały tylko rzeczy potrzebne
+  w każdej sesji (kontekst produktu, 4 główne pliki, zasady todo.md, uruchamianie,
+  notatki o treści). Cała szczegółowa dokumentacja (model renderowania, schemat
+  exercises.js, konwencja zadN/, pełny opis CSS/layout z gotchami) przeniesiona
+  do NOWEGO pliku ARCHITEKTURA.md — CLAUDE.md odsyła do niego i każe go czytać
+  przed zmianami w renderowaniu/schemacie/CSS oraz utrzymywać w synchronizacji.
+- [ZROBIONE przy okazji] CLAUDE.md wskazywał na nieistniejące pliki todo3.md /
+  todo2.md / todo1DONE.md — poprawione na faktyczne todo.md (aktywny) i todoDONE.md
+  (archiwum). Usunięty też nieaktualny "known open task" o tabeli zad 29 (podmiana
+  była już zrobiona 2026-07-05 — potwierdzone w exercises.js).
+
 --- Sesja 2026-07-05: realizacja punktów „do zrobienia / do poprawki" z góry pliku ---
 Zrobione:
 - [ikonka w title] Usunąłem 🧘. W <head> matematykazen.html jest teraz prosta,
