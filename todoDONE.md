@@ -57,3 +57,74 @@ Byłoby idealnie:
 - [DONE 2026-07-04] zad 2 (=zad 1?) > interactiveSolution: przesuwanie punktu na osi liczbowej + strzałki od środka — zrealizowane w widgetOsLiczbowa (zad 1).
 - [DONE 2026-07-04] zaznaczenie jasnoniebieskie bez białego tekstu (::selection).
 - [DONE 2026-07-04] gdyby nie było tekstu/komentarza pod video to pojawia się wypełniacz "· · ·" w jego miejsce.
+
+
+=== PRZENIESIONE Z todo.md (2026-07-05, porządkowanie: zrobione wpisy trafiają tutaj) ===
+
+--- Weryfikacja zgodności z arkuszem PDF (2026-07-05, sesja: sprawdzenie exercises.js vs "arkusze PDF/") ---
+Porównałem cały exercises.js z arkuszem (matematyka-2024-grudzien-probna-podstawowa.pdf)
+i kluczem (…-odpowiedzi.pdf). Tekst obu PDF-ów wyciągnąłem przez `pdftotext -layout`
+do arkusze PDF/arkusz.txt oraz arkusze PDF/odp.txt (zostawione na przyszłość).
+
+WYNIK: wszystkie 30 odpowiedzi zgadza się z oficjalnym kluczem CKE. Treści też się zgadzają.
+
+- [ZROBIONE 2026-07-05] Zad 29 — tabela podmieniona na oryginał CKE (5 kolumn:
+  książki 4,5,6,7,8, uczniowie 5,8,12,13,12; suma 50). solutionText zsynchronizowany
+  (rozpiska średniej 4·5 + 5·8 + 6·12 + 7·13 + 8·12 = 319/50 = 6,38; mediana 6,5 bez zmian).
+  (Wcześniej w exercises.js była tabela ODTWORZONA: 6 kolumn, książki 4-9,
+  uczniowie 7,8,10,14,6,5 — dawała te same wyniki, ale była zmyślona.)
+- [OK, potwierdzone z kluczem] Toki ROZWIĄZAŃ (solutionText + solutionTextMore) sprawdzone
+  z modelowymi rozwiązaniami / "Zasadami oceniania" w odp.txt — wszystkie merytorycznie
+  poprawne. Zadania otwarte 3, 8, 9, 10, 19, 26, 28, 30 mają metodę zgodną z modelową
+  (zad 19 to poprawny wariant trygonometryczny zamiast podobieństwa — klucz akceptuje
+  każdą poprawną metodę). Uzasadnienia zadań zamkniętych prowadzą do litery z klucza.
+  Znany wyjątek (nie nowy błąd): zad 2 krok 6 filmu ma błędną klatkę 5⁻⁴, ale tekst
+  rozwiązania jest poprawny (film do przerenderowania — punkt otwarty w todo.md).
+- [OK, potwierdzone z kluczem] Punktacja zadań otwartych zgadza się z arkuszem:
+  zad 3 (0-2), 8 (0-3), 9 (0-2), 10 (0-4), 19 (0-4), 26 (0-2), 28 (0-2), 29 (0-2), 30 (0-4).
+  Suma całego arkusza = 50 pkt. Zgadza się z maxTotalScore liczonym z maxScore.
+- [ZROBIONE 2026-07-05] Zad 12 — wspólne wprowadzenie pokazywane raz (nagłówek
+  „Zadanie 12." na górze wpisu 12.1), 12.2 tylko krótko odwołuje się do tej samej
+  funkcji f — wzorem na zad 17.
+
+--- Sesja 2026-07-05: realizacja punktów „do zrobienia / do poprawki" z góry todo.md ---
+Zrobione:
+- [ikonka w title] Usunąłem 🧘. W <head> matematykazen.html jest teraz prosta,
+  czarna ikonka „M" (serif, data-URI SVG) — włączona. Jeśli nie pasuje, wystarczy
+  usunąć jedną linię <link rel="icon"> (komentarz obok o tym mówi). Zrób własne logo,
+  gdy zechcesz — łatwo podmienić.
+- [zad 12 oddzielone od 12.1] Zrobione tak jak w zad 17: wpis 12.1 zaczyna się teraz
+  od nagłówka „Zadanie 12." + wspólne wprowadzenie o paraboli, a pod nim „Zadanie 12.1."
+  z samym pytaniem. 12.2 nie powtarza już całego wprowadzenia — krótkie „Dana jest ta
+  sama funkcja f (...)", jak „Dany jest ten sam trójkąt" w 17.2. 12.3 bez zmian
+  (buduje na f). To układ czysto w treści (question HTML) — pól number/numberSection
+  nadal nie ma.
+- [przyciski 12.2 nieintuicyjne] multiSelect: gdy komplet już zaznaczony, klik nowej
+  odpowiedzi podmienia teraz najdawniej wybraną (okno przesuwne) zamiast nic nie robić —
+  nie trzeba już ręcznie odklikiwać. Kod: obsługa kliknięcia w bloku multiSelect
+  w matematykazen.html.
+  (Wybrałem podmianę NAJSTARSZEGO wyboru, nie ostatniego jak proponowałeś — przy
+  poprawianiu dwóch typowań daje płynniejsze „przesuwane okno ostatnich 2 klików".
+  Jak wolisz jednak LIFO, powiedz — to jedna linijka.)
+- [zad 29 tabela] Patrz wyżej — [ZROBIONE 2026-07-05].
+
+Zostawione bez zmian (za decyzją Henricha):
+- [zad 17.1] Zweryfikowane z kluczem CKE i rysunkiem: odpowiedź D (√15/8) oraz całe
+  rozwiązanie są poprawne (kąt ABC przy wierzchołku B, sin = AC/BC = √15/8). Na prośbę
+  Henricha zostawione bez zmian.
+
+--- Sesja 2026-07-05: odchudzenie CLAUDE.md (mniej tokenów na start sesji) ---
+- [ZROBIONE] CLAUDE.md skrócony z ~125 do ~35 linii: zostały tylko rzeczy potrzebne
+  w każdej sesji (kontekst produktu, 4 główne pliki, zasady todo.md, uruchamianie,
+  notatki o treści). Cała szczegółowa dokumentacja (model renderowania, schemat
+  exercises.js, konwencja zadN/, pełny opis CSS/layout z gotchami) przeniesiona
+  do NOWEGO pliku ARCHITEKTURA.md — CLAUDE.md odsyła do niego i każe go czytać
+  przed zmianami w renderowaniu/schemacie/CSS oraz utrzymywać w synchronizacji.
+- [ZROBIONE przy okazji] CLAUDE.md wskazywał na nieistniejące pliki todo3.md /
+  todo2.md / todo1DONE.md — poprawione na faktyczne todo.md (aktywny) i todoDONE.md
+  (archiwum). Usunięty też nieaktualny "known open task" o tabeli zad 29 (podmiana
+  była już zrobiona 2026-07-05 — potwierdzone w exercises.js).
+- [ZROBIONE 2026-07-05] Nowa zasada w CLAUDE.md: wpisy [DONE]/[ZROBIONE] przenoszone
+  są z todo.md do todoDONE.md, a todoDONE.md NIE jest wczytywany domyślnie — tylko
+  przy szerszym spojrzeniu na projekt / trudniejszym problemie. Ten blok wpisów to
+  pierwsze zastosowanie tej zasady.
