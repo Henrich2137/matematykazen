@@ -21,6 +21,7 @@ NISKI PRIORYTET:
 NIE REALIZUJ, NA POTEM:
 - do sekcji "oceń się" powinno być dodane kryteria sukcesu dopiero po kliknięciu
   rozwiązania. Ale jeszcze nie mam pomysłu jak to skomponować aby miało sens.
+
 - Renderowanie LATEX zamiast wpisywania tagów sub i sup które wyglądają brzydko oraz
 wklejania zdjęć, które się słabo skalują z UI i ciężko się zmienia ich barwy.
 (FABLE 2026-07-05: proponuję KaTeX + rozszerzenie auto-render. Potrzebna decyzja
