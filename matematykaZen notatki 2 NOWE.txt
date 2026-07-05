@@ -1,9 +1,0 @@
-DESIGN NOTES:
-
-Co warto zmienić/dodać:
-- przycisk restartu animacji rozwiązań
-- wolniejsze animacje rozwiązań, nie zaczynające się od razu
-- tło na biało i ramki zadań
-- usunąć separator
-- dać filmik troche niżej
-- zmienić czcionke na ładniejszą
