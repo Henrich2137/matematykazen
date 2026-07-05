@@ -4,7 +4,7 @@ do zrobienia:
 - coś ty wymyślił za ikonke w title xd? Wywal to jeśli nie jest potrzebne, nie podoba mi się ta ikonka, możesz ewentualnie spróbować z inną, czarno-białym M. Jeśli nie to stworze własne logo lub żadne
 
 - zad 17.1 rozwiązanie się nie zgadza z treścia zadania ponieważ kąt ABClezy przy wierzchołku B
-
+- zad 12 powinno by oddzielone od 12.1
 
 
 inne pomysły (NIE REALIZUJ):
