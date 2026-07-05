@@ -17,16 +17,13 @@ WYSOKI PRIORYTET:
 
 NISKI PRIORYTET:
 - [CZĘŚCIOWO] Filmiki nadal migoczą, można spróbować zostawić stary filmik w tle aby został tam na ostatniej klatce i wyłączyć go dopiero przy następnym kroku, jeśli dobrze rozumiem to chyba własnie to opisałeś tutaj: następny krok to trzymanie dwóch elementów video i podmiana widoczności (wymaga testu wzrokowego).
-
-NIE REALIZUJ, NA POTEM:
-- do sekcji "oceń się" powinno być dodane kryteria sukcesu dopiero po kliknięciu
-  rozwiązania. Ale jeszcze nie mam pomysłu jak to skomponować aby miało sens.
-
 - Zaimplementuj KaTeX zvendorowany do repo (offline) a jeśli się nie uda i będzie tworzyć dużo bagów to zrób KaTeX po stronie klienta
 
 - Migracja treści wszystkich zadań w exercises.js z <sub> i <sup> i tym podobnych na KATEXa
 
-(FABLE 2026-07-05: proponuję KaTeX + rozszerzenie auto-render. Potrzebna decyzja Henricha: CDN (najprościej, ale wymaga internetu przy nauce) czy pliki zvendorowane do repo (~1,5 MB, działa offline). Do tego dochodzi migracja treści wszystkich zadań na \( ... \) — duża robota na osobną sesję, najlepiej razem z planowaną migracją exercises.js → exercises.json.)
+NIE REALIZUJ, NA POTEM:
+- do sekcji "oceń się" powinno być dodane kryteria sukcesu dopiero po kliknięciu
+  rozwiązania. Ale jeszcze nie mam pomysłu jak to skomponować aby miało sens.
 
 
 
