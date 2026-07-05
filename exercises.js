@@ -2,10 +2,11 @@
 Schemat zadania (docelowo plik przejdzie na exercises.json):
 
 {
-    type: "ABCD" | "PF" | "multiSelect" | "open",
+    type: "ABCD" | "PF" | "multiSelect" | "fillIn" | "open",
         // ABCD        – jednokrotny wybór (domyślne, gdy answers ma elementy, a type brak)
         // PF          – prawda/fałsz: pole `statements` zamiast `answers`
         // multiSelect – wybór kilku odpowiedzi: pole `correctAnswerIndices`
+        // fillIn      – pola tekstowe do uzupełnienia: pole `blanks`
         // open        – zadanie otwarte (answers: []); przy selfScore: true renderuje
         //               się panel samooceny 0..maxScore pkt
     question: "HTML",
@@ -13,7 +14,12 @@ Schemat zadania (docelowo plik przejdzie na exercises.json):
     correctAnswerIndex: 0,             // ABCD: 0 = A, 1 = B, ...; -1 = niewypełnione (tryb "?")
     correctAnswerIndices: [1, 3],      // tylko multiSelect (kolejność bez znaczenia)
     statements: [{ text, answer }],    // tylko PF; answer: true = P, false = F
-    maxScore: 1,
+    blanks: [{ label, accepted }],     // tylko fillIn; label = HTML zdania przed polem,
+                                       // accepted = lista uznawanych odpowiedzi (porównanie
+                                       // po normalizacji: bez spacji, ⟨/< → [, ⟩/> → ],
+                                       // − → -, ; → , — patrz normalizujOdpowiedz)
+    maxScore: 1,                       // 0 = "puste" zadanie nadrzędne (np. wspólny
+                                       // wstęp Zadania 12 / 17) — bez badge'a punktów
     selfScore: false,                  // open: true włącza panel samooceny
     hint: "HTML",                      // pusty string chowa przycisk "Podpowiedź"
     formulasPage: 4 | null,            // strona w wybrane_wzory_matematyczne.pdf
@@ -35,7 +41,7 @@ z klucza (średnia 6,38, mediana 6,5) — do porównania z oryginałem, patrz to
 
 const exercises = [
     {
-        question: "<b>Zadanie 1.</b> <br><br> Liczby 𝑥₁ i 𝑥₂ są różnymi rozwiązaniami równania |𝑥 + 4| = 7. Suma 𝑥₁ + 𝑥₂ jest równa:",
+        question: "<b>Zadanie 1.</b> <br><br> Liczby 𝑥₁ i 𝑥₂ są różnymi rozwiązaniami równania |𝑥 + 4| = 7. <br>Suma 𝑥₁ + 𝑥₂ jest równa:",
         answers: ["A. (−14)", "B. (−8)", "C. 3", "D. 8"],
         correctAnswerIndex: 1,
         maxScore: 1,
@@ -43,7 +49,7 @@ const exercises = [
         hint: "Z wartości bezwzględnej czyli |takich nawiasów| zawsze wyjdzie wartość nieujemna, czyli: |7| = 7 oraz |-7| = 7. Co więc musi stać zamiast x aby wychodziło podobnie jak w tych przykładach?",
         formulasPage: 4,
         solutionText: "Geometrycznie: |𝑥 + 4| = 7 to wszystkie liczby odległe o <b>7</b> od liczby <b>−4</b>, czyli 𝑥₁ = 3 i 𝑥₂ = −11. Suma: <b>3 + (−11) = −8</b> — odpowiedź <b>B</b>.",
-        solutionTextMore: "po opuszczeniu nawiasów są dwie możliwości: <br><br> <span class='mathText'> 1. <br>  x + 4 = 7 <br> x = 7 - 4 <br> <b> x = 3 </b>  <br><br> 2. <br> x + 4 = -7 <br> x = -7 - 4  <br> <b> x = -11</b> <br><br>  <b> 3 - 11 = -8 </b> </span><br> czyli odp B.<br><br>",
+        solutionTextMore: "po opuszczeniu nawiasów są dwie możliwości: <br><br> <span class='mathText'> 1. <br>  x + 4 = 7 <br> x = 7 - 4 <br> <b> x = 3 </b>  <br><br> 2. <br> x + 4 = -7 <br> x = -7 - 4  <br> <b> x = -11</b> <br><br>  <b> 3 + (-11) = -8 </b> </span><br><br> czyli odp B.<br><br>",
         solutionStepByStep: [
             { type: "video", src: "zad1/zad1rozw_step1.mp4", text: "Tu będą pojawiać się różne komentarze" },
             { type: "video", src: "zad1/zad1rozw_step2.mp4", text: "Niestety będą miały one różną długość więc jeśli przesadzę to albo zacznie to wchodzić na nawigacje albo nawigacja będzie skakać. Mogę coś tu jeszcze popisać aby to sprawdzić." },
@@ -69,7 +75,7 @@ const exercises = [
         selfScore: false,
         hint: "Stopień pierwiastka jest jak mianownik w wykładniku, a ⅕ = 5⁻¹. Wykładnik −5 możesz włączyć do nawiasu (do każdego z czynników) i takie tam.",
         formulasPage: 5,
-        solutionText: "<span class='mathText'>(⁵√5 · ⅕)<sup>−5</sup> = (5<sup>1/5</sup> · 5<sup>−1</sup>)<sup>−5</sup> = 5<sup>−1</sup> · 5<sup>5</sup> = 5<sup>4</sup></span> — odpowiedź <b>A</b>.",
+        solutionText: null,
         solutionTextMore: "Krok po kroku: <br><br> <span class='mathText'> ⁵√5 = 5<sup>1/5</sup>, &nbsp; ⅕ = 5<sup>−1</sup> <br><br> (5<sup>1/5</sup> · 5<sup>−1</sup>)<sup>−5</sup> = (5<sup>1/5 − 1</sup>)<sup>−5</sup> = (5<sup>−4/5</sup>)<sup>−5</sup> = 5<sup>(−4/5)·(−5)</sup> = <b>5<sup>4</sup></b> </span> <br><br> czyli odp. A.",
         solutionStepByStep: [
             { type: "video", src: "zad2/zad2rozw_step1.mp4", text: "" },
@@ -106,7 +112,7 @@ const exercises = [
     },
     {
         question: "<b>Zadanie 4.</b> <br><br> Dla każdej dodatniej liczby rzeczywistej <b>x</b> i dla każdej dodatniej liczby rzeczywistej <b>y</b> wartość wyrażenia <b>log<sub>7</sub> x + 6 log<sub>7</sub> y</b> jest równa wartości wyrażenia:",
-        answers: ["A. log<sub>7</sub> (<sup>x</sup>&frasl;<sub>y<sup>6</sup>)</sub>", "B. log<sub>7</sub> ((xy)<sup>6</sup>)", "C. log<sub>7</sub>(6xy)", "D. log<sub>7</sub>(xy<sup>6</sup>)"],
+        answers: ["A. log<sub>7</sub> (<sup>x</sup>&frasl;<sub>y<sup>6</sup>)</sub>", "B. log<sub>7</sub> (xy)<sup>6</sup>", "C. log<sub>7</sub>(6xy)", "D. log<sub>7</sub>(xy<sup>6</sup>)"],
         correctAnswerIndex: 3,
         maxScore: 1,
         selfScore: false,
@@ -203,16 +209,20 @@ const exercises = [
                   '<img src="zad10/zad10.png"> <br>' +
                   'Wykres funkcji <i class="mathText"> y = f(x) </i> przedstawiono w kartezjańskim układzie współrzędnych (𝑥, 𝑦) na rysunku poniżej'+
                   '<img src="zad10/zad10rys.png"> <br>' +
-                  'Uzupełnij zdania. Wpisz odpowiednie przedziały w wykropkowanych miejscach, aby zdania były prawdziwe.<br><br>' +
-                  '1. Dziedziną funkcji <b>f</b> jest przedział …<br>' +
-                  '2. Zbiorem wartości funkcji <b>f</b> jest przedział …<br>' +
-                  '3. Zbiorem wszystkich argumentów, dla których funkcja <b>f</b> przyjmuje wartości ujemne, jest przedział …<br>' +
-                  '4. Zbiorem wszystkich argumentów, dla których funkcja <b>f</b> przyjmuje największą wartość, jest przedział …',
-        type: "open",
+                  'Uzupełnij zdania. Wpisz odpowiednie przedziały w polach, aby zdania były prawdziwe.',
+        type: "fillIn",
         answers: [],
+        // Nawiasy można wpisywać dowolnie: ⟨ ⟩, [ ], < > — normalizacja w
+        // matematykazen.html sprowadza je do jednej postaci przed porównaniem.
+        blanks: [
+            { label: "1. Dziedziną funkcji <b>f</b> jest przedział", accepted: ["(-4,4]"] },
+            { label: "2. Zbiorem wartości funkcji <b>f</b> jest przedział", accepted: ["[-1,3]"] },
+            { label: "3. Zbiorem wszystkich argumentów, dla których funkcja <b>f</b> przyjmuje wartości ujemne, jest przedział", accepted: ["(1,3)"] },
+            { label: "4. Zbiorem wszystkich argumentów, dla których funkcja <b>f</b> przyjmuje największą wartość, jest przedział", accepted: ["(-4,-2]"] }
+        ],
         correctAnswerIndex: -1,
         maxScore: 4,
-        selfScore: true,
+        selfScore: false,
         hint: "Dziedzina to wszystkie x, dla których wykres istnieje (uwaga na kółko otwarte przy x = −4). Zbiór wartości odczytasz z osi y. Wartości ujemne = fragmenty wykresu POD osią x.",
         formulasPage: null,
         solutionText: "1. Dziedzina: <b>(−4, 4⟩</b>. &nbsp; 2. Zbiór wartości: <b>⟨−1, 3⟩</b>. &nbsp; 3. Wartości ujemne dla <b>x ∈ (1, 3)</b>. &nbsp; 4. Największą wartość (3) funkcja przyjmuje dla <b>x ∈ (−4, −2⟩</b>.",
@@ -243,8 +253,24 @@ const exercises = [
         solutionInteractive: null
     },
     {
-        question: '<b>Zadanie 12.1.</b> <br><br> W układzie współrzędnych wykresem funkcji kwadratowej <b>f</b> jest parabola, której wierzchołkiem jest punkt (3, 0). ' +
-                  'Ta parabola przechodzi przez punkt (0, -9).<br><br>' +
+        // "Puste" zadanie nadrzędne: sama wspólna treść dla 12.1-12.3, bez
+        // odpowiedzi, punktów i rozwiązań (maxScore: 0 chowa badge punktów).
+        question: '<b>Zadanie 12.</b> <br><br> W kartezjańskim układzie współrzędnych (x, y) wykresem funkcji kwadratowej <b>f</b> jest parabola, której wierzchołkiem jest punkt (3, 0). ' +
+                  'Ta parabola przechodzi przez punkt o współrzędnych (0, −9).',
+        type: "open",
+        answers: [],
+        correctAnswerIndex: -1,
+        maxScore: 0,
+        selfScore: false,
+        hint: "",
+        formulasPage: null,
+        solutionText: "",
+        solutionTextMore: "",
+        solutionStepByStep: null,
+        solutionInteractive: null
+    },
+    {
+        question: '<b>Zadanie 12.1.</b> <br><br> Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>' +
                   'Funkcja <b>f</b> jest malejąca w przedziale:<br>',
         answers: ['A. (-∞, 0⟩', 'B. (-∞, 3⟩', 'C. ⟨0, +∞)', 'D. ⟨3, +∞)'],
         correctAnswerIndex: 3,
@@ -260,9 +286,7 @@ const exercises = [
         }
     },
     {
-        question: '<b>Zadanie 12.2.</b> <br><br> W układzie współrzędnych wykresem funkcji kwadratowej <i>f</i> jest parabola, której wierzchołkiem jest punkt (3, 0). ' +
-                  'Ta parabola przechodzi przez punkt (0, -9).<br><br>' +
-                  'Wzór funkcji <i>f</i> zapisano w dwóch spośród poniższych odpowiedzi. <b>Wybierz je obie.</b>',
+        question: '<b>Zadanie 12.2.</b> <br><br> Wzór funkcji <i>f</i> zapisano w dwóch spośród poniższych odpowiedzi. <b>Wybierz je obie.</b>',
         type: "multiSelect",
         answers: [
             'A. f(x) = -x² - 9',
@@ -371,10 +395,23 @@ const exercises = [
         solutionInteractive: null
     },
     {
-        question: '<b>Zadanie 17.</b> <br><br> Dany jest trójkąt prostokątny ABC, w którym |AC| = √15 i |BC| = 8. Na przyprostokątnej AB leży taki punkt D, że |BD| = 6.<br><br>' +
-                '<img src="zad17/zad17.png"> <br><br>' +
-                '<b>Zadanie 17.1.</b> <br><br>' +
-                'Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>' +
+        // "Puste" zadanie nadrzędne dla 17.1-17.2 (jak zad 12 wyżej).
+        question: '<b>Zadanie 17.</b> <br><br> Dany jest trójkąt prostokątny ABC, w którym |AC| = √15 i |BC| = 8. Na przyprostokątnej AB leży taki punkt D, że |BD| = 6 (zobacz rysunek).<br>' +
+                '<img src="zad17/zad17.png">',
+        type: "open",
+        answers: [],
+        correctAnswerIndex: -1,
+        maxScore: 0,
+        selfScore: false,
+        hint: "",
+        formulasPage: null,
+        solutionText: "",
+        solutionTextMore: "",
+        solutionStepByStep: null,
+        solutionInteractive: null
+    },
+    {
+        question: '<b>Zadanie 17.1.</b> <br><br> Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>' +
                 'Sinus kąta ostrego ABC jest równy:',
         answers: ['A. 1/2', 'B. 7/8', 'C. √15/4', 'D. √15/8'],
         correctAnswerIndex: 3,
@@ -388,8 +425,7 @@ const exercises = [
         solutionInteractive: null
     },
     {
-        question: '<b>Zadanie 17.2.</b> <br><br> Dany jest ten sam trójkąt.<br><br>' +
-                'Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>' +
+        question: '<b>Zadanie 17.2.</b> <br><br> Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>' +
                 'Tangens kąta ostrego ADC jest równy:',
         answers: ['A. √15', 'B. 1/2', 'C. 7/8', 'D. √15/8'],
         correctAnswerIndex: 0,
@@ -583,25 +619,28 @@ const exercises = [
     },
     {
         question: '<b>Zadanie 29.</b> <br><br> Do szkolnego koła czytelniczego należy 50 uczniów. Opiekun koła zebrał dane dotyczące liczby książek przeczytanych przez tych uczniów w listopadzie 2024 roku. W poniższej tabeli przedstawiono wyniki zebrane przez opiekuna.<br><br>' +
-                '<table class="data-table"><tr><th>Liczba przeczytanych książek</th><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>' +
-                '<tr><th>Liczba uczniów</th><td>7</td><td>8</td><td>10</td><td>14</td><td>6</td><td>5</td></tr></table><br>' +
-                'Uzupełnij zdania. Wpisz odpowiednie liczby w wykropkowanych miejscach, aby zdania były prawdziwe.<br><br>' +
-                '1. Średnia arytmetyczna liczby przeczytanych książek w tej grupie uczniów jest równa …<br>' +
-                '2. Mediana liczby przeczytanych książek w tej grupie uczniów jest równa …',
-        type: "open",
+                '<table class="data-table"><tr><th>Liczba przeczytanych książek</th><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr>' +
+                '<tr><th>Liczba uczniów</th><td>5</td><td>8</td><td>12</td><td>13</td><td>12</td></tr></table><br>' +
+                'Uzupełnij zdania. Wpisz odpowiednie liczby w polach, aby zdania były prawdziwe.',
+        type: "fillIn",
         answers: [],
+        blanks: [
+            { label: "1. Średnia arytmetyczna liczby przeczytanych książek w tej grupie uczniów jest równa", accepted: ["6,38", "6.38", "319/50"] },
+            { label: "2. Mediana liczby przeczytanych książek w tej grupie uczniów jest równa", accepted: ["6,5", "6.5", "13/2"] }
+        ],
         correctAnswerIndex: -1,
         maxScore: 2,
-        selfScore: true,
+        selfScore: false,
         hint: "Średnia: suma (liczba książek · liczba uczniów) podzielona przez 50. Mediana przy 50 uczniach to średnia 25. i 26. wyniku po uporządkowaniu.",
         formulasPage: 31,
-        solutionText: "1. Średnia: <span class='mathText'>(4·7 + 5·8 + 6·10 + 7·14 + 8·6 + 9·5) / 50 = 319/50 = <b>6,38</b></span>. <br> 2. Mediana: 25. wynik to 6, a 26. to 7, więc <span class='mathText'>(6 + 7)/2 = <b>6,5</b></span>.",
+        solutionText: "1. Średnia: <span class='mathText'>(4·5 + 5·8 + 6·12 + 7·13 + 8·12) / 50 = 319/50 = <b>6,38</b></span>. <br> 2. Mediana: 25. wynik to 6, a 26. to 7, więc <span class='mathText'>(6 + 7)/2 = <b>6,5</b></span>.",
         solutionTextMore: "",
         solutionStepByStep: null,
         solutionInteractive: null
     },
     {
-        question: '<b>Zadanie 30.</b> <br><br> Rozważamy wszystkie prostopadłościany ABCDEFGH, w których krawędź AE jest 3 razy dłuższa od krawędzi AB, a suma długości wszystkich dwunastu krawędzi prostopadłościanu jest równa 48. Niech P(x) oznacza funkcję pola powierzchni całkowitej takiego prostopadłościanu w zależności od długości x krawędzi AB.<br><br>' +
+        question: '<b>Zadanie 30.</b> <br><br> Rozważamy wszystkie prostopadłościany ABCDEFGH, w których krawędź AE jest 3 razy dłuższa od krawędzi AB, a suma długości wszystkich dwunastu krawędzi prostopadłościanu jest równa 48 (zobacz rysunek). Niech P(x) oznacza funkcję pola powierzchni całkowitej takiego prostopadłościanu w zależności od długości x krawędzi AB.<br>' +
+                '<img src="zad30/zad30.png" style="width:220px;"> <br>' +
                 'Wyznacz wzór i dziedzinę funkcji P. Oblicz długość x krawędzi AB tego z rozważanych prostopadłościanów, którego pole powierzchni całkowitej jest największe. Zapisz obliczenia.',
         type: "open",
         answers: [],
