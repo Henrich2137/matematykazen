@@ -12,6 +12,7 @@ FABLE, SPRAWDŹ POPRAWNOŚĆ ROZWIĄZAŃ I DAJ FEEDBACK PONIŻEJ CZY AKCEPTUJESZ
 
 
 inne pomysły REALIZUJ:
+- popraw 12 i 17 aby były oddzielne od swoich podzadań. (12.1 i 17.1)
 - Renderowanie LATEX zamiast wpisywania tagów sub i sup które wyglądają brzydko oraz wklejania zdjęć, które się słabo skalują z UI i ciężko się zmienia ich barwy.
 - sprawdzić co by było gdybym wpisał ujemnął wartość w playback rate czy jakoś tak
 - do sekcji oceń się powinno być dodane kryteria sukcesu dopiero po kliknięci urozwiązania lae jeszcze nie mam pomysłu jak to skomponować aby miało sens
