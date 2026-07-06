@@ -239,3 +239,12 @@ Zostawione bez zmian (za decyzją Henricha):
   poza, wszystkie 3 akcje), reset punktacji (0/50 po resecie), kroki wideo
   z podwójnym buforem, KaTeX w komentarzach kroków. Jedyne błędy konsoli to
   fonts.googleapis.com (brak internetu w sandboksie testowym) — nie dotyczy zmian.
+- [ZROBIONE 2026-07-06, własna inwencja] Responsywność (wąskie ekrany): sekcja
+  RESPONSYWNOŚĆ na końcu style.css. Breakpointy: 1024px (badge punktów wraca do
+  wnętrza karty — poza kartą mieści się dopiero od ~1010px okna), 900px (tytuł
+  arkusza w pasku znika), 720px (kompaktowy pasek, płynna szerokość karty,
+  skalowanie filmów przez aspect-ratio, przyciski odpowiedzi 38% z wyjątkiem
+  P/F 44px, panele PDF 94%), 560px (pasek w dwóch rzędach: logo+zasady /
+  punkty+tablica+⋯). Szerokie wzory blokowe: .katex-display { overflow-x: auto }.
+  Zweryfikowane sweepem Playwright: zero poziomego scrolla przy 360-1280px,
+  desktop bez zmian. Ikonka "M" dodana też do index.html.
