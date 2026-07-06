@@ -9,9 +9,16 @@ let totalScore = 0;
 // odwołanie nie wywróciło skryptu.
 let exercises = [];
 
+// Identyfikacja arkusza: strona arkusza może przed script.js ustawić
+// window.SHEET_ID (osobne klucze localStorage per arkusz) i window.TABLICE_PDF
+// (ścieżka do PDF-a z tablicami względem strony, np. "../wybrane_wzory..."
+// dla arkuszy w podfolderach). Brak ustawień = arkusz grudzień 2024 (root).
+const SHEET_ID = window.SHEET_ID || "grudzien2024";
+const TABLICE_PDF = window.TABLICE_PDF || "wybrane_wzory_matematyczne.pdf";
+
 // Klucz zapisu postępu w localStorage — używany przez loadExercises()
 // (zapis/odczyt) oraz przyciski "resetuj punktację" i "wyczyść zapisany postęp".
-const KLUCZ_POSTEPU = "matematykazen-postep-grudzien2024";
+const KLUCZ_POSTEPU = "matematykazen-postep-" + SHEET_ID;
 
 // KaTeX: renderuje zapisy \( ... \) (inline) i \[ ... \] (blokowe) wewnątrz
 // podanego elementu. Guard na window.renderMathInElement — gdyby vendor/katex/
@@ -60,7 +67,7 @@ document.getElementById("reset-scores").addEventListener("click", () => {
    Stan egzaminu ({ start: timestamp }) siedzi w OSOBNYM kluczu localStorage,
    więc odświeżenie strony nie przerywa egzaminu, a zwykły zapis postępu
    (KLUCZ_POSTEPU) działa bez zmian. */
-const KLUCZ_EGZAMINU = "matematykazen-egzamin-grudzien2024";
+const KLUCZ_EGZAMINU = "matematykazen-egzamin-" + SHEET_ID;
 const CZAS_EGZAMINU_MS = 170 * 60 * 1000; // 170 minut, jak na maturze podstawowej
 
 const egzaminTimerSpan = document.getElementById("egzamin-timer");
@@ -268,7 +275,7 @@ function openFormulasAtPage(numerStrony) {
     const nowyObject = document.createElement("object");
     nowyObject.id = "tablica-wzorow";
     nowyObject.type = "application/pdf";
-    nowyObject.data = `wybrane_wzory_matematyczne.pdf#page=${numerStrony}&toolbar=0`;
+    nowyObject.data = `${TABLICE_PDF}#page=${numerStrony}&toolbar=0`;
 
     // Zamieniamy stary <object> na nowy w panelu (styl bierze się z CSS #tablica-wzorow).
     tablica.parentNode.replaceChild(nowyObject, tablica);

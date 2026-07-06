@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Interaktywny arkusz maturalny z matematyki (maj 2026, CKE): odpowiedzi od ręki, podpowiedzi, rozwiązania krok po kroku i tablica wzorów.">
+    <!-- Prosta ikonka: czarne, poważne „M" (serif, w duchu fontów strony). Jeśli nie pasuje — wystarczy usunąć tę linię (Henrich zrobi własne logo albo zostawi bez ikonki). -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50' y='78' font-size='80' text-anchor='middle' font-family='Georgia,serif' font-weight='bold'>M</text></svg>">
+    <!-- Dane zadań są w exercises.json (w tym folderze) — wczytywane fetchem
+         w startSheet() we wspólnym ../script.js (schemat: ARCHITECTURE.md). -->
+    <link rel="stylesheet" href="../style.css">
+
+    <!-- KaTeX zvendorowany do repo (vendor/katex/) — działa w pełni offline.
+         Ładowany synchronicznie (lokalne pliki, bez defer), żeby inline skrypt
+         na dole strony mógł od razu wołać renderMathInElement. -->
+    <link rel="stylesheet" href="../vendor/katex/katex.min.css">
+    <script src="../vendor/katex/katex.min.js"></script>
+    <script src="../vendor/katex/contrib/auto-render.min.js"></script>
+
+    <title>Matematyka Zen — arkusz maj 2026</title>
+
+</head>
+<body>
+    <div id="top-bar">
+        <div id="bar-container">
+
+            <div id="bar-left">
+                <a id="logo" href="../index.html"><b>Matematyka Zen</b></a>
+                <button id="toggle-zasady">▼ Pokaż zasady oceniania</button>
+            </div>
+
+            <div id="bar-center">
+                <div id="exercises-sheet-title">Egzamin maturalny z matematyki podstawowej maj 2026 (CKE)</div>
+            </div>
+
+            <div id="bar-right">
+                <!-- Timer i "zakończ egzamin" widoczne tylko w trybie egzaminu
+                     (body.tryb-egzaminu w style.css); #total-score jest wtedy ukryty. -->
+                <span id="egzamin-timer" title="Pozostały czas próbnego egzaminu"></span>
+                <button id="egzamin-koniec">zakończ egzamin</button>
+                <span id="total-score">0 / 0 pkt</span>
+                <button id="toggle-tablica">▼ Pokaż tablice wzorów</button>
+                <button id="menu-button" title="Więcej opcji">⋯</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Okienko "więcej opcji" (przycisk ⋯ w pasku): rzadziej używane akcje
+         schowane, żeby nie zaśmiecały paska. ID przycisków bez zmian — inline
+         skrypt odwołuje się do nich tak samo jak wtedy, gdy były w pasku. -->
+    <div id="bar-menu">
+        <button id="show-all-solutions">pokaż wszystkie rozwiązania</button>
+        <button id="score-switch-button">widok punktów: wszystko</button>
+        <button id="reset-scores">resetuj punktację</button>
+        <button id="egzamin-start">rozpocznij próbny egzamin</button>
+    </div>
+
+    <!-- Podsumowanie próbnego egzaminu — nakładka pokazywana przez finishExam().
+         Treść (wynik, procent, czas) wypełnia JS. -->
+    <div id="egzamin-podsumowanie">
+        <div class="egzamin-okno"></div>
+    </div>
+
+    <!-- Panele PDF są "odblokowane": pasek u góry (.panel-uchwyt) służy do
+         przesuwania, narożnik (.panel-rozmiar) do zmiany rozmiaru okna. -->
+    <div id="tablica-wzorow-panel" class="pdf-panel">
+        <div class="panel-uchwyt" title="Przeciągnij, aby przesunąć panel">⠿</div>
+        <object id="tablica-wzorow" type="application/pdf" data="../wybrane_wzory_matematyczne.pdf#page=10&toolbar=0" width="300px" height="80vh"></object>
+        <button id="tablica-close" title="Zamknij tablice wzorów">✕</button>
+        <div class="panel-rozmiar" title="Przeciągnij, aby zmienić rozmiar">◢</div>
+    </div>
+
+    <!-- Zasady oceniania (oficjalny PDF CKE z odpowiedziami) — lustrzany
+         odpowiednik tablicy wzorów, przypięty do lewej krawędzi ekranu. -->
+    <div id="zasady-oceniania-panel" class="pdf-panel">
+        <div class="panel-uchwyt" title="Przeciągnij, aby przesunąć panel">⠿</div>
+        <object id="zasady-oceniania" type="application/pdf" data="../arkusze%20PDF/matematyka-2026-maj-matura-podstawowa-odpowiedzi.pdf#toolbar=0"></object>
+        <button id="zasady-close" title="Zamknij zasady oceniania">✕</button>
+        <div class="panel-rozmiar" title="Przeciągnij, aby zmienić rozmiar">◢</div>
+    </div>
+
+    <!-- Exercise Template (Hidden) -->
+    <div id="exercise-template" class="exercise-container" style="display: none;">
+
+        <p class="question"></p>
+        <div class="button-container answers-container"></div>
+        <div class="light-button-container">
+            <button class="hint-button light-button">Podpowiedź</button>
+            <button class="solution-button light-button">Rozwiązanie</button>
+            <button class="formulas-button light-button">Pokaż potrzebne wzory</button>
+        </div>
+
+            <div class="hint-container"></div>
+            <div class="solution-container">
+
+                <div class="solution-text-container"></div>
+
+                <div class="solution-step-by-step-container">
+                    <div class="steps-content"></div>
+                    <div class="steps-nav">
+                        <button class="step-prev light-button">◄</button>
+                        <span class="step-counter"></span>
+                        <button class="step-next light-button">►</button>
+                    </div>
+                </div>
+
+                <div class="solution-interactive-container" ></div>
+
+                <div class="solution-text-more-container">
+                    <button class="light-button">Pokaż więcej</button>
+                    <span class="solution-text-more"></span>
+                </div>
+
+            </div>
+
+            <span class="exercise-score low-exercise-score">8 / 9 pkt</span>
+
+    </div>
+
+    <!-- Exercises will be dynamically added here -->
+    <div id="exercises-wrapper"></div>
+
+    <!-- Konfiguracja arkusza dla wspólnego script.js: osobne klucze
+         localStorage (postęp/egzamin nie mieszają się z arkuszem 2024)
+         i ścieżka do tablic względem tego podfolderu. -->
+    <script>
+        window.SHEET_ID = "maj2026";
+        window.TABLICE_PDF = "../wybrane_wzory_matematyczne.pdf";
+    </script>
+    <script src="../solutionsInteractive.js"></script>
+    <script src="../script.js"></script>
+
+</body>
+</html>
