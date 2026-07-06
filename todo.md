@@ -80,3 +80,5 @@ INNE NOTATKI:
 - Tryb egzaminacyjny (zrealizowany 2026-07-06): sprawdzić cały przebieg — start →
   parę odpowiedzi (ramki powinny być neutralne/niebieskie) → F5 (czy egzamin dalej
   trwa) → "zakończ egzamin" → podsumowanie → samoocena zadania otwartego.
+  (Automatyczny smoke-test Playwright 2026-07-06 przeszedł cały ten przebieg bez
+  błędów — patrz todoDONE.md; to tylko na wyczucie/UX zostaje do Ciebie.)
