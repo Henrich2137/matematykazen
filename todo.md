@@ -17,6 +17,63 @@ WYSOKI PRIORYTET:
 NISKI PRIORYTET (drobne porządki, dobre na krótką sesję):
 (pusto — cztery punkty porządkowe z 2026-07-06 zrealizowane, patrz todoDONE.md)
 
+
+<br><br><br>
+
+
+<h3>DUŻE ZADANIA OD FABLE (2026-07-06) — każde na osobną, pełną sesję</h3>
+
+Zweryfikowałem sesję porządkową z 2026-07-06 (usunięte PNG — brak wiszących
+odwołań; komentarze zad 1 sprawdzone z klatkami filmików przez ffmpeg — zgodne;
+literówka i alty OK; 429 wzorów KaTeX renderuje się bez błędów, suma arkusza
+dalej 50 pkt). Poniżej następne zadania, trudnością odpowiadające sesji
+"KaTeX + menu + responsywność". Przed startem przeczytaj ARCHITECTURE.md.
+
+1. MIGRACJA exercises.js → exercises.json (zadeklarowany cel z CLAUDE.md):
+   - solutionInteractive nie przeżyje JSON-a: w danych zamień funkcję na nazwę
+     widżetu (string, np. "widgetOsLiczbowa"), a w matematykazen.html zrób
+     rejestr { nazwa → funkcja } i wywołuj z niego przy renderze.
+   - Wczytywanie: fetch("exercises.json") + async start loadExercises();
+     UWAGA na file:// — fetch tam nie działa; zostaw czytelny komunikat na
+     stronie ("uruchom przez serwer, np. npx serve") i opisz to w CLAUDE.md
+     (sekcja Running) oraz ARCHITECTURE.md.
+   - Escapowanie KaTeX-a w JSON jest takie samo jak w JS ("\\(...\\)") — nie
+     ruszaj treści, tylko przenieś; komentarze z nagłówka exercises.js przenieś
+     do ARCHITECTURE.md (JSON nie ma komentarzy).
+   - Kryteria: strona działa identycznie (punktacja, postęp, widżety, kroki),
+     suma pkt = 50, walidacja wszystkich wzorów katex.renderToString = 0 błędów
+     (wzorzec skryptu masz w todoDONE.md z 2026-07-06).
+
+2. KATEX W WIDŻETACH: tytuły, readouty (.widget-readout) i lista wzorów
+   zad 10 (.widget-formula-list) piszą matmę unicode'em w spanach .mathText —
+   przepisz na KaTeX. Nie używaj auto-rendera na żywych readoutach: przy
+   przeciąganiu aktualizują się dziesiątki razy na sekundę — użyj
+   katex.renderToString dla części matematycznej i renderuj TYLKO gdy tekst
+   faktycznie się zmienił (cache ostatniego stringa), albo rozdziel readout na
+   statyczny wzór (render raz) + zmienne liczby (textContent). Po migracji
+   sprawdź, czy klasa .mathText jeszcze gdzieś żyje — jak nie, usuń ją też
+   ze style.css. Przetestuj płynność przeciągania w widżetach 1, 9, 18, 30.
+
+3. TRYB EGZAMINACYJNY (nowa duża funkcja, produktowo w duchu Brilliant/CKE):
+   - Przycisk "rozpocznij próbny egzamin" w okienku ⋯: chowa podpowiedzi,
+     rozwiązania i punkty, startuje timer 170 min (widoczny w pasku),
+     "zakończ egzamin" (albo koniec czasu) pokazuje podsumowanie
+     (wynik/50, procent, czas) i przywraca normalny tryb z odblokowanymi
+     rozwiązaniami.
+   - Stan trybu i timera w osobnym kluczu localStorage (przetrwa odświeżenie);
+     nie może zepsuć zwykłego zapisu postępu ani trybu przeglądania.
+   - Zadania otwarte w egzaminie nadal przez samoocenę — ale dopiero PO
+     zakończeniu (w podsumowaniu wyraźnie to zaznacz).
+   - To zadanie ma decyzje projektowe — opisz je krótko w raporcie dla
+     Henricha w todo.md (co wybrałeś i dlaczego).
+
+Zasady wspólne: pracuj na gałęzi od najnowszego stanu tej gałęzi
+(claude/galileo-todo-followups); node --check po każdej zmianie danych;
+szybki smoke w przeglądarce (Playwright, chromium z /opt/pw-browsers);
+zrobione punkty przenieś do todoDONE.md, raport w todo.md, sync
+ARCHITECTURE.md/CLAUDE.md, commit + push.
+
+
 NIE REALIZUJ, NA POTEM:
 - do sekcji "oceń się" powinno być dodane kryteria sukcesu dopiero po kliknięciu
   rozwiązania. Ale jeszcze nie mam pomysłu jak to skomponować aby miało sens.
