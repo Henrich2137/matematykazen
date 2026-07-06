@@ -10,18 +10,12 @@ Nowy plik który tworzy Henrich (ja, użytkownik). Podczas Sprawdzania nowej wer
 
 
 WYSOKI PRIORYTET:
-
-- Zaimplementuj KaTeX zvendorowany do repo (offline) a jeśli się nie uda i będzie tworzyć dużo bagów to zrób KaTeX po stronie klienta
-
-- Migracja treści wszystkich zadań w exercises.js z <sub> i <sup> i tym podobnych na KATEXa
-
-- dodać przycisk trzech kropek który po kliknięciu otworzy okienko w który będą schowane przyciski: "pokaż/schowaj wszystkie rozwiązania" oraz "widok punktów"
-- dodać przycisk resetuj punktacje
+(pusto — wszystkie punkty z 2026-07-06 zrealizowane, patrz raport niżej i todoDONE.md)
 
 
 
 NISKI PRIORYTET:
-- [CZĘŚCIOWO] Filmiki nadal migoczą, można spróbować zostawić stary filmik w tle aby został tam na ostatniej klatce i wyłączyć go dopiero przy następnym kroku, jeśli dobrze rozumiem to chyba własnie to opisałeś tutaj: następny krok to trzymanie dwóch elementów video i podmiana widoczności (wymaga testu wzrokowego).
+(pusto)
 
 NIE REALIZUJ, NA POTEM:
 - do sekcji "oceń się" powinno być dodane kryteria sukcesu dopiero po kliknięciu
@@ -46,6 +40,29 @@ DLA UŻYTKOWNIKA:
 
 
 NOWE PUNKTY TODO ZAPISYWANE PRZEZ CLAUDE:
+
+- (FABLE 2026-07-06) RAPORT Z SESJI — do przeklikania przez Henricha:
+  1) KaTeX działa OFFLINE (zvendorowany do vendor/katex/, ~600 KB). Cała matematyka
+     w exercises.js (treści, odpowiedzi, podpowiedzi, rozwiązania, komentarze kroków)
+     przepisana na KaTeX — 422 wzory, wszystkie zweryfikowane automatycznie
+     (katex.renderToString, 0 błędów). BONUS: wzory-obrazki w zad 2, 6, 7, 8 i 10
+     (definicja funkcji) też są teraz KaTeXem — obrazki zostały tylko tam, gdzie są
+     prawdziwe rysunki (wykresy/figury). Nieużywane PNG zostawiłem na dysku.
+  2) W pasku jest przycisk ⋯ ("więcej opcji"): w okienku są "pokaż/schowaj wszystkie
+     rozwiązania", "widok punktów" i NOWY "resetuj punktację" (czyści zapisany postęp
+     i przeładowuje stronę — to samo co przycisk na dole arkusza). Okienko zamyka się
+     po kliknięciu gdziekolwiek poza nim.
+  3) Migotanie filmików: zrobiony podwójny bufor — stary krok wisi na ostatniej
+     klatce, aż nowy film ma zdekodowaną pierwszą klatkę, dopiero wtedy podmiana.
+     WYMAGA TWOJEGO TESTU WZROKOWEGO (w testach automatycznych działa, ale "czy miga"
+     widać tylko okiem).
+  4) Przyciski odpowiedzi: dłuższe wzory (przedziały, ułamki) poszerzają przycisk
+     zamiast łamać się na dwie linie; krótkie liczby trzymają równą siatkę.
+  5) Sprawdzone w przeglądarce (Playwright): punktacja, PF, multiSelect, fillIn
+     (zad 10 i 29), zapis/odczyt postępu, menu ⋯, reset, kroki wideo, KaTeX w
+     krokach — wszystko działa; suma punktów arkusza dalej 50.
+  Jeśli KaTeX gdzieś będzie brzydko wyglądał (rozmiar czcionki wzorów ustawiłem na
+  1.08em w style.css, reguła .katex) — dopisz punkt, łatwo doregulować.
 
 - (FABLE 2026-07-05) Do przeklikania przez Henricha:
   1) zad 10 i 29 mają teraz prawdziwe pola do wpisywania odpowiedzi + przycisk "Sprawdź"
