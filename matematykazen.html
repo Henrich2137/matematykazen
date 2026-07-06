@@ -35,6 +35,10 @@
             </div>
 
             <div id="bar-right">
+                <!-- Timer i "zakończ egzamin" widoczne tylko w trybie egzaminu
+                     (body.tryb-egzaminu w style.css); #total-score jest wtedy ukryty. -->
+                <span id="egzamin-timer" title="Pozostały czas próbnego egzaminu"></span>
+                <button id="egzamin-koniec">zakończ egzamin</button>
                 <span id="total-score">0 / 0 pkt</span>
                 <button id="toggle-tablica">▼ Pokaż tablice wzorów</button>
                 <button id="menu-button" title="Więcej opcji">⋯</button>
@@ -50,6 +54,13 @@
         <button id="show-all-solutions">pokaż wszystkie rozwiązania</button>
         <button id="score-switch-button">widok punktów: wszystko</button>
         <button id="reset-scores">resetuj punktację</button>
+        <button id="egzamin-start">rozpocznij próbny egzamin</button>
+    </div>
+
+    <!-- Podsumowanie próbnego egzaminu — nakładka pokazywana przez zakonczEgzamin().
+         Treść (wynik, procent, czas) wypełnia JS. -->
+    <div id="egzamin-podsumowanie">
+        <div class="egzamin-okno"></div>
     </div>
 
     <!-- Panele PDF są "odblokowane": pasek u góry (.panel-uchwyt) służy do
@@ -160,6 +171,119 @@ document.getElementById("reset-scores").addEventListener("click", () => {
     try { localStorage.removeItem(KLUCZ_POSTEPU); } catch (e) {}
     location.reload();
 });
+
+/* ===== TRYB EGZAMINACYJNY (próbny egzamin na czas) =====
+   Zasada działania: ocenianie i zapis postępu biegną NORMALNIE, tą samą drogą
+   co zawsze (jedna logika punktowania) — tryb egzaminu tylko dokłada klasę
+   body.tryb-egzaminu, a style.css pod nią chowa wszystko, co zdradza wynik:
+   kolory poprawności (zamienione na neutralne "zaznaczenie"), badge punktów,
+   sumę w pasku, podpowiedzi, rozwiązania, samoocenę i PDF z zasadami oceniania.
+   Tablice wzorów CKE zostają dostępne — na prawdziwej maturze też są.
+   Stan egzaminu ({ start: timestamp }) siedzi w OSOBNYM kluczu localStorage,
+   więc odświeżenie strony nie przerywa egzaminu, a zwykły zapis postępu
+   (KLUCZ_POSTEPU) działa bez zmian. */
+const KLUCZ_EGZAMINU = "matematykazen-egzamin-grudzien2024";
+const CZAS_EGZAMINU_MS = 170 * 60 * 1000; // 170 minut, jak na maturze podstawowej
+
+const egzaminTimerSpan = document.getElementById("egzamin-timer");
+const egzaminPodsumowanie = document.getElementById("egzamin-podsumowanie");
+let egzaminInterval = null;
+
+function odczytajEgzamin() {
+    try {
+        const stan = JSON.parse(localStorage.getItem(KLUCZ_EGZAMINU));
+        if (stan && typeof stan.start === "number") return stan;
+    } catch (e) {}
+    return null;
+}
+
+function formatujCzas(ms) {
+    const s = Math.max(0, Math.round(ms / 1000));
+    const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), sek = s % 60;
+    return `${h}:${String(m).padStart(2, "0")}:${String(sek).padStart(2, "0")}`;
+}
+
+// Tyka co sekundę: odświeża zegar w pasku; ostatnie 10 minut na czerwono.
+// Koniec czasu kończy egzamin automatycznie — ale dopiero gdy zadania są
+// wczytane (exercises.length), żeby podsumowanie miało skąd wziąć punkty
+// (czas mógł minąć, gdy karta była zamknięta — wtedy kończymy zaraz po
+// wczytaniu danych, pierwszym tyknięciem).
+function tykajEgzamin() {
+    const stan = odczytajEgzamin();
+    if (!stan) return;
+    const pozostalo = stan.start + CZAS_EGZAMINU_MS - Date.now();
+    egzaminTimerSpan.textContent = "⏱ " + formatujCzas(pozostalo);
+    egzaminTimerSpan.classList.toggle("malo-czasu", pozostalo < 10 * 60 * 1000);
+    if (pozostalo <= 0 && exercises.length) {
+        zakonczEgzamin(true);
+    }
+}
+
+function wlaczTrybEgzaminu() {
+    document.body.classList.add("tryb-egzaminu");
+    tykajEgzamin();
+    if (!egzaminInterval) egzaminInterval = setInterval(tykajEgzamin, 1000);
+}
+
+document.getElementById("egzamin-start").addEventListener("click", () => {
+    const zgoda = confirm(
+        "Rozpocząć próbny egzamin?\n\n" +
+        "• zapisane odpowiedzi i punkty zostaną wyczyszczone (egzamin startuje na czystym arkuszu),\n" +
+        "• podpowiedzi, rozwiązania i punktacja będą ukryte do końca egzaminu,\n" +
+        "• tablice wzorów CKE zostają dostępne — jak na prawdziwej maturze,\n" +
+        "• czas: 170 minut."
+    );
+    if (!zgoda) return;
+    try {
+        localStorage.removeItem(KLUCZ_POSTEPU);
+        localStorage.setItem(KLUCZ_EGZAMINU, JSON.stringify({ start: Date.now() }));
+    } catch (e) {
+        alert("Nie udało się zapisać stanu egzaminu (zablokowane localStorage) — egzamin nie wystartował.");
+        return;
+    }
+    location.reload(); // świeży render: czysty arkusz + tryb egzaminu od pierwszej klatki
+});
+
+document.getElementById("egzamin-koniec").addEventListener("click", () => {
+    if (confirm("Zakończyć egzamin i zobaczyć wynik?")) zakonczEgzamin(false);
+});
+
+function zakonczEgzamin(czasMinal) {
+    const stan = odczytajEgzamin();
+    if (!stan) return;
+    try { localStorage.removeItem(KLUCZ_EGZAMINU); } catch (e) {}
+    if (egzaminInterval) { clearInterval(egzaminInterval); egzaminInterval = null; }
+    document.body.classList.remove("tryb-egzaminu");
+
+    // Wynik z zadań zamkniętych (ocenianych automatycznie). Zadania otwarte
+    // (selfScore) w egzaminie nie mają jak dostać punktów — samoocena była
+    // schowana — więc rozliczamy je osobno, po egzaminie.
+    const uzyty = Math.min(Date.now() - stan.start, CZAS_EGZAMINU_MS);
+    const maxZamkniete = exercises.reduce((s, e) => s + (e.selfScore ? 0 : (e.maxScore || 0)), 0);
+    const maxOtwarte = exercises.reduce((s, e) => s + (e.selfScore ? (e.maxScore || 0) : 0), 0);
+    const punkty = exercises.reduce((s, e) => s + (e.earnedScore || 0), 0);
+    const procent = maxZamkniete ? Math.round(punkty / maxZamkniete * 100) : 0;
+
+    const okno = egzaminPodsumowanie.querySelector(".egzamin-okno");
+    okno.innerHTML =
+        `<h3>${czasMinal ? "Czas minął — egzamin zakończony" : "Egzamin zakończony"}</h3>` +
+        `<p><b>Zadania zamknięte: ${punkty} / ${maxZamkniete} pkt (${procent}%).</b></p>` +
+        `<p>Wykorzystany czas: ${formatujCzas(uzyty)} ze ${formatujCzas(CZAS_EGZAMINU_MS)}.</p>` +
+        `<p><b>Zadania otwarte (${maxOtwarte} pkt) nie są jeszcze policzone.</b> Rozwiązania są już ` +
+        `odblokowane — porównaj z nimi swoje notatki i oceń się pod każdym zadaniem otwartym ` +
+        `("Rozwiąż na kartce…"); punkty doliczą się do sumy w pasku.</p>` +
+        `<button id="egzamin-zamknij" class="light-button">wróć do arkusza</button>`;
+    egzaminPodsumowanie.style.display = "flex";
+    okno.querySelector("#egzamin-zamknij").addEventListener("click", () => {
+        egzaminPodsumowanie.style.display = "none";
+    });
+}
+
+// Egzamin w toku (np. po odświeżeniu strony)? Tryb włączamy od razu, zanim
+// cokolwiek się wyrenderuje — żadnego mignięcia punktów ani kolorów.
+if (odczytajEgzamin()) {
+    wlaczTrybEgzaminu();
+}
 
 // Tablica wzorów: panel (kontener) + <object> z PDF-em w środku. Pokazywanie/
 // chowanie działa na panelu, a etykieta przycisku w pasku jest z tym zsynchronizowana.
@@ -2099,6 +2223,9 @@ async function startujArkusz() {
         return;
     }
     loadExercises();
+    // Jeśli czas egzaminu minął, gdy karta była zamknięta — zakończ od razu
+    // (tykajEgzamin ma warunek na wczytane zadania, teraz już spełniony).
+    if (odczytajEgzamin()) tykajEgzamin();
 }
 startujArkusz();
 

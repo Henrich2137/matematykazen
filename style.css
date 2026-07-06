@@ -132,7 +132,8 @@ body {
 }
 #score-switch-button,
 #show-all-solutions,
-#reset-scores {
+#reset-scores,
+#egzamin-start {
     padding: 5px 10px;
     border: 2px solid #e7e7e7;
     background-color: #fff;
@@ -911,6 +912,103 @@ input::-webkit-inner-spin-button {
     .landing-cards {
         flex-direction: column;
     }
+}
+
+/* ===== TRYB EGZAMINACYJNY =====
+   Włączany klasą body.tryb-egzaminu (JS w matematykazen.html). Ocenianie
+   działa normalnie pod spodem — tu tylko chowamy wszystko, co zdradza wynik,
+   i neutralizujemy kolory poprawności na "zaznaczenie" (niebieska ramka). */
+
+/* Zegar i "zakończ egzamin" istnieją tylko w trybie egzaminu. */
+#egzamin-timer,
+#egzamin-koniec {
+    display: none;
+}
+body.tryb-egzaminu #egzamin-timer {
+    display: inline-block;
+    padding: 5px 8px;
+    border: 1px solid #e7e7e7;
+    background-color: #fff;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums; /* zegar nie "drga" przy zmianie cyfr */
+    color: #555;
+}
+#egzamin-timer.malo-czasu {
+    border-color: #d9534f;
+    color: #d9534f;
+}
+body.tryb-egzaminu #egzamin-koniec {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 2px solid #e7e7e7;
+    border-radius: 3px;
+    background-color: #fff;
+    white-space: nowrap;
+    color: #111;
+    cursor: pointer;
+}
+
+/* Wszystko, co zdradza wynik albo pozwala go obejść, znika na czas egzaminu.
+   !important, bo część z tych elementów ma display ustawiane inline przez JS
+   (np. przełącznik widoku punktów). Tablice wzorów CKE i przycisk "Pokaż
+   potrzebne wzory" celowo ZOSTAJĄ — na prawdziwej maturze też są dostępne. */
+body.tryb-egzaminu .hint-button,
+body.tryb-egzaminu .solution-button,
+body.tryb-egzaminu .self-score-container,
+body.tryb-egzaminu .exercise-score,
+body.tryb-egzaminu #total-score,
+body.tryb-egzaminu #toggle-zasady,
+body.tryb-egzaminu #show-all-solutions,
+body.tryb-egzaminu #score-switch-button,
+body.tryb-egzaminu #reset-scores,
+body.tryb-egzaminu #egzamin-start,
+body.tryb-egzaminu #clear-progress {
+    display: none !important;
+}
+
+/* Kliknięta odpowiedź wygląda jak neutralne zaznaczenie (jak .selected),
+   niezależnie od tego, czy jest poprawna — ocena zostaje w JS, kolory
+   wracają dopiero po zakończeniu egzaminu (zdjęcie klasy z body). */
+body.tryb-egzaminu .button-container button.correct,
+body.tryb-egzaminu .button-container button.incorrect,
+body.tryb-egzaminu .pf-row button.correct,
+body.tryb-egzaminu .pf-row button.incorrect {
+    border-color: #9ec9ff;
+    box-shadow: inset 0 0 0 1px #9ec9ff;
+}
+body.tryb-egzaminu .fill-in-input.correct,
+body.tryb-egzaminu .fill-in-input.incorrect {
+    border-color: #9ec9ff;
+    box-shadow: inset 0 0 0 1px #9ec9ff;
+}
+
+/* Nakładka z podsumowaniem egzaminu (JS przełącza display na flex). */
+#egzamin-podsumowanie {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.88);
+}
+#egzamin-podsumowanie .egzamin-okno {
+    max-width: 520px;
+    margin: 0 20px;
+    padding: 26px 34px;
+    border: 1px solid #dcdcdc;
+    background-color: #fff;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.10);
+    text-align: left;
+    font-size: 17px;
+    line-height: 1.55;
+}
+#egzamin-podsumowanie h3 {
+    margin-top: 0;
+}
+#egzamin-podsumowanie #egzamin-zamknij {
+    display: block;
+    margin: 14px auto 0;
 }
 
 /* ===== RESPONSYWNOŚĆ (WĄSKIE EKRANY) ===== */
