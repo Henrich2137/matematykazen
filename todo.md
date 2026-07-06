@@ -18,7 +18,18 @@ WYSOKI PRIORYTET:
 
 
 NISKI PRIORYTET (drobne porządki, dobre na krótką sesję):
-- Stworzyć nową stronę z nowym arkuszem matury 2026
+- Stworzyć nową stronę z nowym arkuszem matury 2026 — szkielet danych już gotowy:
+  matura-2026-maj/exercises.json (41 wpisów, wszystkie 33 zadania, suma punktów = 50,
+  wszystkie wzory KaTeX zweryfikowane przez katex.renderToString, patrz todoDONE.md).
+  Brakuje: hint/solutionText/solutionStepByStep/solutionInteractive (celowo puste —
+  do dorobienia), formulasPage (numery stron w wybrane_wzory_matematyczne.pdf), oraz
+  obrazki/wykresy dla zadań 12 (wykres funkcji łamanej), 13 (wykres funkcji liniowej
+  z kątem α), 19 (okrąg z punktami A,B,C,D), 20 (proste równoległe k,l,m,n) i 31
+  (dwa diagramy słupkowe klasa IVA/IVB — dane WYŁĄCZNIE na obrazku, bez niego zadanie
+  31 nie da się zweryfikować/rozwiązać) — trzeba je wyciąć z arkusze PDF/matematyka-
+  2026-maj-matura-podstawowa.pdf (wzorem zad30 z arkusza 2024: pdftoppm -x/-y/-W/-H).
+  Brakuje też matematykazen.html/script.js/style.css dla tej strony (folder ma na
+  razie tylko exercises.json).
 - Stworzyć nową stronę z nowym arkuszem matury 2027
 
 
@@ -32,12 +43,8 @@ NISKI PRIORYTET (drobne porządki, dobre na krótką sesję):
 Fable, nie ruszaj tego chyba, że nie masz co robić.
 
 WYSOKI PRIORYTET:
-- wyciągnięcie tekstu z PDF-ów:
-  * matematyka-2026-maj-matura-podstawowa.pdf
-  * matematyka-2026-maj-matura-podstawowa-odpowiedzi.pdf
-
-
-- w miescach takich jak zad 10 lub 29 dopisać w treści zadania krótki dopisek np. "Odpowiedź podaj jako ułamek dziesiętny z dwiema liczbami po przeciku 3,53"
+- (puste — patrz todoDONE.md, sesja 2026-07-06: ekstrakt PDF 2026 + szkielet
+  matura-2026-maj/exercises.json + dopisek formatu w zad 10/29 zrobione)
 
 NISKI PRIORYTET:
 - wyciągnięcie tekstu z PDF-ów:

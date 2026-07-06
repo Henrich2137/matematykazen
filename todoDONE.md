@@ -311,3 +311,28 @@ Zostawione bez zmian (za decyzją Henricha):
   responsywność) zweryfikowana i zaakceptowana przez Henricha (2026-07-06);
   rozmiar wzorów do doregulowania, gdyby gdzieś wyglądał brzydko: .katex
   { font-size: 1.08em } w style.css.
+
+--- Sesja 2026-07-06 (Opus): ekstrakt PDF 2026 + szkielet exercises.json na 2026 + dopisek formatu ---
+- [ZROBIONE 2026-07-06] Ekstrakt arkusza matury 2026 do tekstu: pdftotext -enc UTF-8 -layout
+  (poppler-utils doinstalowany w środowisku) na matematyka-2026-maj-matura-podstawowa.pdf
+  i ...-odpowiedzi.pdf → arkusze PDF/*.txt (polskie znaki zachowane, sprawdzone wzrokowo).
+- [ZROBIONE 2026-07-06] Szkielet matura-2026-maj/exercises.json: nowy folder-rodzeństwo,
+  41 wpisów pokrywających wszystkie 33 zadania (w tym zadania wieloczęściowe 12, 13, 24, 33
+  jako osobne "parent" + podpunkty, wzorem zad 12/17 z arkusza 2024). Wypełnione: question,
+  type (ABCD domyślnie/PF/fillIn/open), answers/statements/blanks,
+  correctAnswerIndex/correctAnswerIndices, maxScore, selfScore. Odpowiedzi i punktacja
+  przepisane z arkusze PDF/...-odpowiedzi.txt (Wersja A klucza CKE) i przeliczone ręcznie
+  jako sanity-check (każde zadanie zweryfikowane rachunkiem, zgadza się z kluczem CKE);
+  suma maxScore = 50 (jak w oficjalnym arkuszu). Cała matematyka w KaTeX — 205 wzorów
+  zweryfikowanych automatycznie przez katex.renderToString (vendor/katex), 0 błędów.
+  Celowo PUSTE/TODO (do dorobienia przez Fable): hint, solutionText, solutionTextMore,
+  solutionStepByStep, solutionInteractive (wszystkie null/""), formulasPage (null — strony
+  w wybrane_wzory_matematyczne.pdf jeszcze nie dopasowane). Brakujące obrazki/wykresy
+  (zadania 12, 13, 19, 20, 31 — zad 31 bez obrazka w ogóle się nie da rozwiązać, dane są
+  tylko na diagramach słupkowych) odnotowane w todo.md z instrukcją wycięcia (pdftoppm,
+  wzorem zad30/2024). Folder ma na razie tylko exercises.json — matematykazen.html/
+  script.js/style.css dla tej strony to osobna, nierozpoczęta robota.
+- [ZROBIONE 2026-07-06] Dopisek formatu odpowiedzi w exercises.json (arkusz 2024), zad 10
+  i 29 (fillIn): dodane krótkie zdanie w question z przykładem zapisu — zad 10 (przedziały)
+  "np. (-4, 4] lub [-1, 3] (nawias okrągły – wyłączony, kwadratowy – włączony)", zad 29
+  (liczby) "np. 6,38 (średnia) oraz 6,5 (mediana)". JSON zwalidowany po edycji.

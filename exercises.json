@@ -268,7 +268,7 @@
         "solutionInteractive": "widgetNierownoscKwadratowa"
     },
     {
-        "question": "<b>Zadanie 10.</b> <br><br> Funkcja \\(f\\) jest określona następująco:\\[f(x) = \\begin{cases} 3 & \\text{dla } x \\in (-4,\\ -2\\rangle \\\\ -x + 1 & \\text{dla } x \\in (-2,\\ 2\\rangle \\\\ x - 3 & \\text{dla } x \\in (2,\\ 4\\rangle \\end{cases}\\]Wykres funkcji \\(y = f(x)\\) przedstawiono w kartezjańskim układzie współrzędnych \\((x, y)\\) na rysunku poniżej<img src=\"zad10/zad10rys.png\" alt=\"Wykres funkcji f łamanej: odcinek poziomy na wysokości 3 od x=-4 (kółko otwarte) do x=-2, malejący odcinek do (2,-1), rosnący odcinek do (4,1) (kropka pełna).\"> <br>Uzupełnij zdania. Wpisz odpowiednie przedziały w polach, aby zdania były prawdziwe.",
+        "question": "<b>Zadanie 10.</b> <br><br> Funkcja \\(f\\) jest określona następująco:\\[f(x) = \\begin{cases} 3 & \\text{dla } x \\in (-4,\\ -2\\rangle \\\\ -x + 1 & \\text{dla } x \\in (-2,\\ 2\\rangle \\\\ x - 3 & \\text{dla } x \\in (2,\\ 4\\rangle \\end{cases}\\]Wykres funkcji \\(y = f(x)\\) przedstawiono w kartezjańskim układzie współrzędnych \\((x, y)\\) na rysunku poniżej<img src=\"zad10/zad10rys.png\" alt=\"Wykres funkcji f łamanej: odcinek poziomy na wysokości 3 od x=-4 (kółko otwarte) do x=-2, malejący odcinek do (2,-1), rosnący odcinek do (4,1) (kropka pełna).\"> <br>Uzupełnij zdania. Wpisz odpowiednie przedziały w polach, aby zdania były prawdziwe. Przedziały zapisz w postaci np. (-4, 4] lub [-1, 3] (nawias okrągły – koniec przedziału wyłączony, kwadratowy – włączony).",
         "type": "fillIn",
         "answers": [],
         "blanks": [
@@ -733,7 +733,7 @@
         "solutionInteractive": null
     },
     {
-        "question": "<b>Zadanie 29.</b> <br><br> Do szkolnego koła czytelniczego należy 50 uczniów. Opiekun koła zebrał dane dotyczące liczby książek przeczytanych przez tych uczniów w listopadzie 2024 roku. W poniższej tabeli przedstawiono wyniki zebrane przez opiekuna.<br><br><table class=\"data-table\"><tr><th>Liczba przeczytanych książek</th><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr><tr><th>Liczba uczniów</th><td>5</td><td>8</td><td>12</td><td>13</td><td>12</td></tr></table><br>Uzupełnij zdania. Wpisz odpowiednie liczby w polach, aby zdania były prawdziwe.",
+        "question": "<b>Zadanie 29.</b> <br><br> Do szkolnego koła czytelniczego należy 50 uczniów. Opiekun koła zebrał dane dotyczące liczby książek przeczytanych przez tych uczniów w listopadzie 2024 roku. W poniższej tabeli przedstawiono wyniki zebrane przez opiekuna.<br><br><table class=\"data-table\"><tr><th>Liczba przeczytanych książek</th><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr><tr><th>Liczba uczniów</th><td>5</td><td>8</td><td>12</td><td>13</td><td>12</td></tr></table><br>Uzupełnij zdania. Wpisz odpowiednie liczby w polach, aby zdania były prawdziwe. Odpowiedzi podaj jako ułamki dziesiętne, np. 6,38 (średnia) oraz 6,5 (mediana).",
         "type": "fillIn",
         "answers": [],
         "blanks": [
