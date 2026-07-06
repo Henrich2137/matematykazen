@@ -85,7 +85,17 @@ Restructured to a **flexbox three-zone layout** (previously each element used `p
 - `.data-table` — bordered, centred data tables embedded in question HTML (zad 29); header cells grey-tinted, normal font weight.
 - `.landing-*` — the whole landing page (index.html): `body.landing-page` is a 700px column; `.landing-hero` (h1 + `.landing-lede` + `.landing-cta` bordered button that inverts on hover), `.landing-cards` (3 flex cards, stack under 640px via the file's only media query), `.landing-section-alt` disclaimer, `.landing-footer`. `#logo` in the exam sheet is an `<a>` styled to look like the old plain text (black, underline on hover).
 
+### Responsive breakpoints
+
+The layout is still desktop-first (650px column), but a `/* ===== RESPONSYWNOŚĆ ===== */` section at the end of style.css adapts it downwards; **no horizontal scroll from 360px up** (verified by a Playwright sweep at 360/400/720/800/900/1000/1024/1100/1280). The breakpoints:
+
+- `max-width: 1024px` — the `.exercise-score` badge moves from `right: -120px` (outside the card; fits only when the window is ≥ ~1010px) into the card's top-right corner.
+- `max-width: 900px` — `#exercises-sheet-title` is hidden (it truncated into uselessness around there anyway).
+- `max-width: 720px` — bar paddings/buttons compact (`#toggle-tablica`/`#toggle-zasady` drop their `min-width: 200px`); `.exercise-container` becomes fluid (`width: auto; max-width: 650px`, smaller padding); step videos scale to container width (`aspect-ratio: 420/180` keeps the shape); answer buttons go to `min-width: 38%` (≈2 per row) **except** `.pf-row button`, which must stay 44px (the P/F buttons share `.button-container` with the ABCD ones, so they'd otherwise inherit the widening); PDF panels span 94% of the screen.
+- `max-width: 560px` — the bar grid collapses to one column and two rows (`#bar-left` on top, `#bar-right` below, both centred; `#bar-center` display:none), `#exercises-wrapper`/`#bar-menu` offsets grow to match the taller bar.
+
+Wide KaTeX display blocks get their own `overflow-x: auto` (on `.katex-display`, in the KaTeX rule near the top of the file) instead of stretching the page.
+
 ### Known layout gotchas
 
-- Spacing below the fixed `#top-bar` is `padding-top: 100px` on `#exercises-wrapper` (the old `<br><br><br><br>` spacer is gone). If you change the bar height noticeably, adjust that padding.
-- Widths are hard-coded `650px` in several places; there are no responsive/media-query breakpoints yet, so the layout is desktop-first. Narrow viewports are not handled beyond the top bar's `flex-wrap`.
+- Spacing below the fixed `#top-bar` is `padding-top: 100px` on `#exercises-wrapper` (the old `<br><br><br><br>` spacer is gone). If you change the bar height noticeably, adjust that padding **and** the 560px-breakpoint override (110px).

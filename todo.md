@@ -64,6 +64,16 @@ NOWE PUNKTY TODO ZAPISYWANE PRZEZ CLAUDE:
   Jeśli KaTeX gdzieś będzie brzydko wyglądał (rozmiar czcionki wzorów ustawiłem na
   1.08em w style.css, reguła .katex) — dopisz punkt, łatwo doregulować.
 
+- (FABLE 2026-07-06, własna inwencja) Strona jest teraz RESPONSYWNA: breakpointy
+  1024/900/720/560px (szczegóły w ARCHITECTURE.md). Na telefonie (sprawdzone od
+  360px wzwyż): pasek przechodzi na dwa rzędy, karta zadania wypełnia ekran,
+  filmiki i wykresy się skalują, szerokie wzory dostają własny poziomy scroll,
+  zero poziomego scrolla całej strony. Badge punktów na ekranach < ~1010px
+  przenosi się do prawego górnego rogu karty (wcześniej wisiał 120px za kartą).
+  DO OBEJRZENIA na prawdziwym telefonie — testowałem tylko w przeglądarce
+  z symulowaną szerokością. Dodałem też ikonkę "M" do index.html (była tylko
+  w arkuszu).
+
 - (FABLE 2026-07-05) Do przeklikania przez Henricha:
   1) zad 10 i 29 mają teraz prawdziwe pola do wpisywania odpowiedzi + przycisk "Sprawdź"
      (zielona/czerwona ramka pola; punkty po równo za każde pole). Nawiasy przedziałów
