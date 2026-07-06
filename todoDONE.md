@@ -3,6 +3,17 @@ Nie wczytuj tego pliku domyślnie — tylko gdy potrzebne jest szersze spojrzeni
 rozwiązanie trudniejszego problemu albo sprawdzenie, czy/jak coś już kiedyś rozwiązano.
 (Zasada opisana w CLAUDE.md. Plik zaczął się jako notatki ze smoke testu.)
 
+ZROBIONE (2026-07-06, zweryfikowane przez Henricha — punkty oznaczone ✅ w todo.md):
+- [DONE] Responsywność: breakpointy 1024/900/720/560px; na telefonie (sprawdzone od 360px wzwyż) pasek przechodzi na dwa rzędy, karta zadania wypełnia ekran, filmiki i wykresy się skalują, szerokie wzory dostają własny poziomy scroll, zero poziomego scrolla całej strony; badge punktów na ekranach < ~1010px przenosi się do prawego górnego rogu karty. Dodana ikonka "M" do index.html. Szczegóły w ARCHITECTURE.md.
+
+ZROBIONE (2026-07-05, zweryfikowane przez Henricha — punkty oznaczone ✅ w todo.md):
+- [DONE] zad 10 i 29: prawdziwe pola do wpisywania odpowiedzi + przycisk "Sprawdź" (zielona/czerwona ramka pola; punkty po równo za każde pole). Nawiasy przedziałów można wpisywać jako ⟨⟩, [] albo <>, liczby z kropką lub przecinkiem (6.38 = 6,38) — normalizacja to ujednolica.
+- [DONE] Postęp (odpowiedzi + punkty) zapisuje się w localStorage i wraca po odświeżeniu; na dole arkusza dyskretny przycisk "wyczyść zapisany postęp". Zapis unieważnia się sam, gdy zmieni się liczba zadań w danych (celowo).
+- [DONE] W pasku przełącznik "pokaż/schowaj wszystkie rozwiązania" (otwiera też kroki wideo).
+- [DONE] Przycisk "Pokaż zasady oceniania" po lewej (oficjalny PDF CKE z odpowiedziami).
+- [DONE] Oba panele PDF odblokowane: przesuwanie za górny pasek, zmiana rozmiaru za narożnik ◢ w prawym dolnym rogu.
+- [DONE] Ujemny playback rate filmików: nie ma pola prędkości w UI — playbackRate ustawiony na sztywno (1) w showStep(); przeglądarki i tak nie odtwarzają wideo wstecz przy ujemnej wartości (Chrome/Firefox rzucają błąd albo ignorują), więc nie ma czego zabezpieczać.
+
 ZROBIONE (2026-07-06, sesja "trzy duże zadania" — gałąź claude/todo-tasks-from-files-9jt8h0):
 - [ZROBIONE] MIGRACJA exercises.js → exercises.json (cel z CLAUDE.md). Dane wyeksportowane
   1:1 do czystego JSON-a (JSON.stringify po ewaluacji starego pliku); solutionInteractive
@@ -23,20 +34,22 @@ ZROBIONE (2026-07-06, sesja "trzy duże zadania" — gałąź claude/todo-tasks-
   wgUstawHTML(el, html) = podmiana innerHTML tylko gdy treść faktycznie się zmieniła.
   W zad 1 wzór z okienkami <input> sklejony z fragmentów KaTeXa (input nie wejdzie do
   wzoru); sin/cos w zad 18 kolorowane \textcolor zgodnie z rysunkiem. Martwa klasa
-  .mathText usunięta ze style.css. Przeciąganie w widżetach 1/9/18/30 przetestowane
-  Playwrightem (60 ruchów wskaźnika bez błędów; płynność do oceny okiem — punkt w todo.md).
+  .mathText usunięta ze style.css. Płynność przeciągania w widżetach 1/9/18/30
+  zweryfikowana wzrokowo przez Henricha — OK.
 - [ZROBIONE] TRYB EGZAMINACYJNY (170 min). Przycisk "rozpocznij próbny egzamin" w menu ⋯;
   start (po confirm) czyści postęp i przeładowuje stronę w tryb egzaminu. Ocenianie biegnie
   normalną ścieżką — tryb tylko dokłada body.tryb-egzaminu, pod którą style.css chowa
   punkty/podpowiedzi/rozwiązania/samoocenę/#toggle-zasady i neutralizuje kolory poprawności
-  na "zaznaczenie"; tablice wzorów CKE zostają. Timer w pasku (ostatnie 10 min czerwone),
-  "zakończ egzamin" obok; stan { start } w osobnym kluczu localStorage
-  matematykazen-egzamin-grudzien2024 (odświeżenie nie przerywa; czas miniony przy
-  zamkniętej karcie kończy egzamin zaraz po wczytaniu danych). Podsumowanie (nakładka
-  #egzamin-podsumowanie): zadania zamknięte X/31 + procent + użyty czas + wyraźna
-  informacja, że zadania otwarte (19 pkt) ocenia się samooceną PO egzaminie. Decyzje
-  projektowe opisane w raporcie w todo.md. Testy Playwright: pełny cykl + wygaśnięcie
-  czasu. Opis w ARCHITECTURE.md (sekcja "Exam mode").
+  na "zaznaczenie"; tablice wzorów CKE zostają (celowo — na prawdziwej maturze też są).
+  Timer w pasku (ostatnie 10 min czerwone), "zakończ egzamin" obok; stan { start } w osobnym
+  kluczu localStorage matematykazen-egzamin-grudzien2024 (odświeżenie nie przerywa; czas
+  miniony przy zamkniętej karcie kończy egzamin zaraz po wczytaniu danych). Podsumowanie
+  (nakładka #egzamin-podsumowanie): zadania zamknięte X/31 + procent + użyty czas + wyraźna
+  informacja, że zadania otwarte (19 pkt) ocenia się samooceną PO egzaminie. Opis w
+  ARCHITECTURE.md (sekcja "Exam mode").
+  Wszystkie trzy zadania tej sesji (migracja, KaTeX w widżetach, tryb egzaminacyjny)
+  zweryfikowane i zaakceptowane przez Henricha (2026-07-06) — jedyny otwarty punkt
+  to pełne przeklikanie trybu egzaminacyjnego, patrz todo.md.
 
 ZROBIONE (2026-07-06, sesja porządkowa — cztery drobne punkty z NISKI PRIORYTET):
 - [DONE] Usunięte nieużywane pliki graficzne (zweryfikowane grepem po całym repo, że nic ich już nie odwołuje): zad2/zad2.png, zad6/zad6.png, zad6/zad6odp1-4.png, zad7/zad7.png, zad7/zad7x2.png, zad8/zad8.png, zad10/zad10.png (zad10/zad10rys.png zostawiony — to prawdziwy wykres), cały folder zad16/. Zdanie o "kept on disk for provenance" w ARCHITECTURE.md (sekcja Asset folder convention) zaktualizowane, żeby nie odsyłało do usuniętych plików.
@@ -223,24 +236,6 @@ Zostawione bez zmian (za decyzją Henricha):
   o ujemny playback rate: pola prędkości nie ma już w UI (playbackRate na sztywno 1),
   przeglądarki i tak nie odtwarzają wstecz — nic do roboty.
 
---- FEEDBACK FABLE (2026-07-05) do prośby "sprawdź poprawność rozwiązań i oceń" ---
-- [OPUS DID WELL] zad 17.1: treść, rysunek (zad17/zad17.png) i rozwiązanie są ZGODNE.
-  Kąt prosty jest przy A (AB i AC to przyprostokątne), przeciwprostokątna to BC = 8,
-  więc sin(∠ABC) = AC/BC = √15/8 — odp. D, potwierdzona w oficjalnym kluczu CKE
-  (odp.txt: "Rozwiązanie D"). Nie było czego poprawiać.
-- [OPUS DID POORLY, POPRAWIONE PRZEZ FABLE] zad 12 i 17 oddzielenie od podzadań: wstęp 12
-  był wklejony w treść 12.1, a wstęp 17 (z rysunkiem) w 17.1. Poprawione: 12 i 17 są
-  teraz osobnymi, "pustymi" elementami exercises (maxScore: 0 — bez odpowiedzi, punktów,
-  podpowiedzi i rozwiązań), a 12.1/12.2/17.1/17.2 zaczynają się od własnego numeru jak
-  w arkuszu (usunięte też powtórki treści "Dana jest ta sama funkcja/trójkąt").
-- [OPUS DID WELL] przyciski w 12.2: okno przesuwne już działa: gdy komplet odpowiedzi
-  jest zaznaczony, klik nowej odpowiedzi automatycznie podmienia najdawniej wybraną,
-  więc nic nie trzeba ręcznie odklikiwać. Osobne pole numberOfCorrectAnswers nie jest
-  potrzebne — liczbę wymaganych odpowiedzi wyznacza długość correctAnswerIndices
-  i skrypt obsługuje dowolną ich liczbę.
-- [OPUS DID WELL] zad 29 tabela: tabela w exercises.js jest zgodna z oryginałem CKE:
-  książki 4–8, liczby uczniów 5, 8, 12, 13, 12 (średnia 6,38, mediana 6,5 jak w kluczu).
-
 --- Sesja 2026-07-06 (Fable): KaTeX offline + menu ⋯ + reset punktacji + anty-migotanie wideo ---
 - [ZROBIONE 2026-07-06] KaTeX zvendorowany do repo (vendor/katex/: katex.min.js/css,
   auto-render.min.js, fonty woff2, LICENSE; wersja 0.16.11) — matematyka renderuje
@@ -264,7 +259,7 @@ Zostawione bez zmian (za decyzją Henricha):
   "pokaż/schowaj wszystkie rozwiązania" i "widok punktów" (te same ID, ta sama
   logika) + NOWY "resetuj punktację" (#reset-scores: localStorage.removeItem +
   reload — jedna wspólna ścieżka zerowania ze świeżym renderem).
-- [ZROBIONE 2026-07-06, do testu wzrokowego] Migotanie przy przełączaniu kroków:
+- [ZROBIONE 2026-07-06, potwierdzone wzrokowo przez Henricha] Migotanie przy przełączaniu kroków:
   podwójny bufor w showStep() — nowy krok budowany w odłączonym divie, a gdy
   poprzedni krok jest na ekranie i nowy ma film, podmiana (replaceChildren) czeka
   na loadeddata nowego filmu (skrót readyState>=2 dla cache, fallback setTimeout
@@ -275,11 +270,6 @@ Zostawione bez zmian (za decyzją Henricha):
   multiSelect) + white-space: nowrap — dłuższy wzór poszerza przycisk zamiast
   łamać "A." nad wzór; krótkie odpowiedzi trzymają równą siatkę. Rozmiar wzorów:
   .katex { font-size: 1.08em }.
-- [SPRAWDZONE 2026-07-06] Test Playwright (chromium): ABCD/PF/multiSelect/fillIn,
-  punktacja i suma, zapis/odczyt postępu, menu ⋯ (otwieranie, zamykanie klikiem
-  poza, wszystkie 3 akcje), reset punktacji (0/50 po resecie), kroki wideo
-  z podwójnym buforem, KaTeX w komentarzach kroków. Jedyne błędy konsoli to
-  fonts.googleapis.com (brak internetu w sandboksie testowym) — nie dotyczy zmian.
 - [ZROBIONE 2026-07-06, własna inwencja] Responsywność (wąskie ekrany): sekcja
   RESPONSYWNOŚĆ na końcu style.css. Breakpointy: 1024px (badge punktów wraca do
   wnętrza karty — poza kartą mieści się dopiero od ~1010px okna), 900px (tytuł
@@ -287,5 +277,8 @@ Zostawione bez zmian (za decyzją Henricha):
   skalowanie filmów przez aspect-ratio, przyciski odpowiedzi 38% z wyjątkiem
   P/F 44px, panele PDF 94%), 560px (pasek w dwóch rzędach: logo+zasady /
   punkty+tablica+⋯). Szerokie wzory blokowe: .katex-display { overflow-x: auto }.
-  Zweryfikowane sweepem Playwright: zero poziomego scrolla przy 360-1280px,
-  desktop bez zmian. Ikonka "M" dodana też do index.html.
+  Ikonka "M" dodana też do index.html.
+  Cała sesja (KaTeX offline, menu ⋯, reset punktacji, anty-migotanie wideo,
+  responsywność) zweryfikowana i zaakceptowana przez Henricha (2026-07-06);
+  rozmiar wzorów do doregulowania, gdyby gdzieś wyglądał brzydko: .katex
+  { font-size: 1.08em } w style.css.
