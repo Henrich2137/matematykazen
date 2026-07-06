@@ -13,8 +13,18 @@ ZROBIONE PRZEZ OPUSA (2026-07-06, do ewentualnej weryfikacji przez Henricha):
   INTERAKTYWNE; ogon appki (startSheet + wywołanie + handler „pokaż wszystkie") wrócił do
   script.js. Weryfikacja: node --check obu plików OK, brak inline <script>, WIDZETY tylko w
   solutionsInteractive.js, w script.js tylko użycie WIDZETY[...]. Docs (CLAUDE.md,
-  ARCHITECTURE.md) zaktualizowane. UWAGA: brak smoke-testu w przeglądarce — do klikniętego
-  sprawdzenia przez Henricha (widżet, hinty, kroki wideo, tryb egzaminu).
+  ARCHITECTURE.md) zaktualizowane.
+  [ZROBIONE 2026-07-06, smoke-test dograny] Split przeklikany w przeglądarce (Playwright +
+  Chromium, serwowane przez python3 -m http.server, nie file://): strona ładuje się bez
+  błędów konsoli/JS (WIDZETY zdefiniowane, brak 404, 35 kart zadań), widżet zad 1 (oś
+  liczbowa) renderuje się i reaguje na przeciąganie, podpowiedź (zad 2) pokazuje się,
+  nawigacja krokowa wideo (zad 1, 9 kroków) poprawnie zmienia licznik i źródło filmu,
+  tryb próbnego egzaminu działa od startu (potwierdzenie → reload → klasa
+  body.tryb-egzaminu, timer tyka, klikn. odpowiedź ma neutralny niebieski border zamiast
+  zielony/czerwony) aż do zakończenia (drugie potwierdzenie → podsumowanie z realną
+  treścią, klasa zdjęta z body). Jedyny zaobserwowany błąd konsoli to zablokowane w tym
+  środowisku pobranie Google Fonts (ERR_CONNECTION_RESET) — niezwiązane ze splitem, strona
+  i tak działa (fallback na fonty systemowe). Brak regresji.
 - [DONE] Zad 1: usunięty zawsze-widoczny tekst „Geometrycznie…" (solutionText → pusty; kontener
   chowa się sam przez CSS .solution-text-container:empty). Wyprowadzenie rachunkowe zostaje pod
   „Pokaż więcej". Zmiana czysto w danych (exercises.json), format/CRLF zachowany.
