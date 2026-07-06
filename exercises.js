@@ -29,27 +29,37 @@ Schemat zadania (docelowo plik przejdzie na exercises.json):
     solutionInteractive: null | function (container) { ... }
 }
 
+ZAPIS MATEMATYKI — KaTeX (vendor/katex/, renderowany w matematykazen.html):
+- wzór w tekście:  \( ... \)   (w stringu JS: "\\( ... \\)")
+- wzór blokowy:    \[ ... \]   (wyśrodkowany; wieloliniowe przez \begin{aligned};
+                               separator wierszy KaTeXa to \\ czyli w stringu JS
+                               cztery ukośniki: "\\\\")
+- polski przecinek dziesiętny w matmie: 6{,}38; tangens: \operatorname{tg};
+  przedziały CKE: \langle -1, 7\rangle; wyróżnienie wyniku: \boldsymbol{...}.
+Zwykły tekst (polski opis, odnośniki do odpowiedzi A-D) zostaje czystym HTML-em.
+
 maxTotalScore NIE jest już deklarowane tutaj — suma liczy się automatycznie
 z pól maxScore w matematykazen.html.
 
 Zadania 1-30 odpowiadają oryginalnemu arkuszowi CKE (MMAP-P0-100-2412,
-grudzień 2024); treści i odpowiedzi 18-30 zweryfikowane z materiałem
-przekazanym przez autora (suma punktów = 50, zgodnie z arkuszem).
-Jedyny znany brak: tabela w zad 29 jest odtworzona tak, by dawała wyniki
-z klucza (średnia 6,38, mediana 6,5) — do porównania z oryginałem, patrz todo.md.
+grudzień 2024); wszystkie odpowiedzi zweryfikowane z oficjalnym kluczem
+(patrz ARCHITECTURE.md, sekcja "Provenance").
 */
 
 const exercises = [
     {
-        question: "<b>Zadanie 1.</b> <br><br> Liczby 𝑥₁ i 𝑥₂ są różnymi rozwiązaniami równania |𝑥 + 4| = 7. <br>Suma 𝑥₁ + 𝑥₂ jest równa:",
-        answers: ["A. (−14)", "B. (−8)", "C. 3", "D. 8"],
+        question: "<b>Zadanie 1.</b> <br><br> Liczby \\(x_1\\) i \\(x_2\\) są różnymi rozwiązaniami równania \\(|x + 4| = 7\\). <br>Suma \\(x_1 + x_2\\) jest równa:",
+        answers: ["A. \\((-14)\\)", "B. \\((-8)\\)", "C. \\(3\\)", "D. \\(8\\)"],
         correctAnswerIndex: 1,
         maxScore: 1,
         selfScore: false,
-        hint: "Z wartości bezwzględnej czyli |takich nawiasów| zawsze wyjdzie wartość nieujemna, czyli: |7| = 7 oraz |-7| = 7. Co więc musi stać zamiast x aby wychodziło podobnie jak w tych przykładach?",
+        hint: "Z wartości bezwzględnej czyli |takich nawiasów| zawsze wyjdzie wartość nieujemna, czyli: \\(|7| = 7\\) oraz \\(|-7| = 7\\). Co więc musi stać zamiast x aby wychodziło podobnie jak w tych przykładach?",
         formulasPage: 4,
-        solutionText: "Geometrycznie: |𝑥 + 4| = 7 to wszystkie liczby odległe o <b>7</b> od liczby <b>−4</b>, czyli 𝑥₁ = 3 i 𝑥₂ = −11. Suma: <b>3 + (−11) = −8</b> — odpowiedź <b>B</b>.",
-        solutionTextMore: "po opuszczeniu nawiasów są dwie możliwości: <br><br> <span class='mathText'> 1. <br>  x + 4 = 7 <br> x = 7 - 4 <br> <b> x = 3 </b>  <br><br> 2. <br> x + 4 = -7 <br> x = -7 - 4  <br> <b> x = -11</b> <br><br>  <b> 3 + (-11) = -8 </b> </span><br><br> czyli odp B.<br><br>",
+        solutionText: "Geometrycznie: \\(|x + 4| = 7\\) to wszystkie liczby odległe o <b>7</b> od liczby \\(-4\\), czyli \\(x_1 = 3\\) i \\(x_2 = -11\\). Suma: \\(3 + (-11) = \\boldsymbol{-8}\\) — odpowiedź <b>B</b>.",
+        solutionTextMore: "po opuszczeniu nawiasów są dwie możliwości: " +
+            "\\[1.\\quad \\begin{aligned} x + 4 &= 7 \\\\ x &= 7 - 4 \\\\ x &= \\boldsymbol{3} \\end{aligned}\\]" +
+            "\\[2.\\quad \\begin{aligned} x + 4 &= -7 \\\\ x &= -7 - 4 \\\\ x &= \\boldsymbol{-11} \\end{aligned}\\]" +
+            "\\[3 + (-11) = \\boldsymbol{-8}\\] czyli odp B.<br><br>",
         solutionStepByStep: [
             { type: "video", src: "zad1/zad1rozw_step1.mp4", text: "Tu będą pojawiać się różne komentarze" },
             { type: "video", src: "zad1/zad1rozw_step2.mp4", text: "Niestety będą miały one różną długość więc jeśli przesadzę to albo zacznie to wchodzić na nawigacje albo nawigacja będzie skakać. Mogę coś tu jeszcze popisać aby to sprawdzić." },
@@ -66,38 +76,39 @@ const exercises = [
         }
     },
     {
-        question: '<b>Zadanie 2.</b> <br><br> Liczba <img src="zad2/zad2.png" style="width:160px;height:75px;display:inline-block;vertical-align:middle;"> jest równa:',
-        answers: ["A. 5<sup>4</sup>", "B. 5<sup>-4</sup>", "C. 5<sup>0.25</sup>", "D. 5<sup>-0.25</sup>"],
+        question: '<b>Zadanie 2.</b> <br><br> Liczba \\(\\left(\\sqrt[5]{5} \\cdot \\dfrac{1}{5}\\right)^{-5}\\) jest równa:',
+        answers: ["A. \\(5^{4}\\)", "B. \\(5^{-4}\\)", "C. \\(5^{0{,}25}\\)", "D. \\(5^{-0{,}25}\\)"],
         // Rachunek: (⁵√5 · ⅕)⁻⁵ = (5^(1/5) · 5⁻¹)⁻⁵ = (5^(−4/5))⁻⁵ = 5⁴ → A.
         // (ostatnia klatka filmiku pokazuje błędnie 5⁻⁴ — do przerenderowania, patrz todo.md)
         correctAnswerIndex: 0,
         maxScore: 1,
         selfScore: false,
-        hint: "Stopień pierwiastka jest jak mianownik w wykładniku, a ⅕ = 5⁻¹. Wykładnik −5 możesz włączyć do nawiasu (do każdego z czynników) i takie tam.",
+        hint: "Stopień pierwiastka jest jak mianownik w wykładniku, a \\(\\frac{1}{5} = 5^{-1}\\). Wykładnik \\(-5\\) możesz włączyć do nawiasu (do każdego z czynników) i takie tam.",
         formulasPage: 5,
         solutionText: null,
-        solutionTextMore: "Krok po kroku: <br><br> <span class='mathText'> ⁵√5 = 5<sup>1/5</sup>, &nbsp; ⅕ = 5<sup>−1</sup> <br><br> (5<sup>1/5</sup> · 5<sup>−1</sup>)<sup>−5</sup> = (5<sup>1/5 − 1</sup>)<sup>−5</sup> = (5<sup>−4/5</sup>)<sup>−5</sup> = 5<sup>(−4/5)·(−5)</sup> = <b>5<sup>4</sup></b> </span> <br><br> czyli odp. A.",
+        solutionTextMore: "Krok po kroku: \\(\\sqrt[5]{5} = 5^{1/5}\\), \\(\\ \\frac{1}{5} = 5^{-1}\\)" +
+            "\\[\\left(5^{1/5} \\cdot 5^{-1}\\right)^{-5} = \\left(5^{1/5 - 1}\\right)^{-5} = \\left(5^{-4/5}\\right)^{-5} = 5^{(-4/5)\\cdot(-5)} = \\boldsymbol{5^{4}}\\] czyli odp. A.",
         solutionStepByStep: [
             { type: "video", src: "zad2/zad2rozw_step1.mp4", text: "" },
             { type: "video", src: "zad2/zad2rozw_step2.mp4", text: "" },
             { type: "video", src: "zad2/zad2rozw_step3.mp4", text: "" },
-            { type: "video", src: "zad2/zad2rozw_step4.mp4", text: "Opuszczamy nawias, więc wykładnik -5 musimy wymnożyć przez wykładniki obu potęg." },
+            { type: "video", src: "zad2/zad2rozw_step4.mp4", text: "Opuszczamy nawias, więc wykładnik \\(-5\\) musimy wymnożyć przez wykładniki obu potęg." },
             { type: "video", src: "zad2/zad2rozw_step5.mp4", text: "" },
-            { type: "video", src: "zad2/zad2rozw_step6.mp4", text: "5⁻¹⁺⁵ = 5⁴, czyli odpowiedź A (na końcu filmu błędny zapis 5⁻⁴)." },
+            { type: "video", src: "zad2/zad2rozw_step6.mp4", text: "\\(5^{-1+5} = 5^{4}\\), czyli odpowiedź A (na końcu filmu błędny zapis \\(5^{-4}\\))." },
         ],
         solutionInteractive: null
     },
     {
-        question: '<b>Zadanie 3.</b> <br><br> Wykaż, że liczba 𝟐<sup>𝟏𝟎𝟎</sup> + 𝟒<sup>𝟒𝟗</sup> + 𝟏𝟔<sup>𝟐𝟒</sup> jest podzielna przez 𝟐𝟏.',
+        question: '<b>Zadanie 3.</b> <br><br> Wykaż, że liczba \\(2^{100} + 4^{49} + 16^{24}\\) jest podzielna przez \\(21\\).',
         type: "open",
         answers: [],
         correctAnswerIndex: -1,
         maxScore: 2,
         selfScore: true,
-        hint: "Żeby wykazać podzielność przez <b>21</b>, będziemy rozkładać tę liczbę na czynniki, czyli wyciągać coś przed nawias aby powstało: <b>... · 21</b>",
+        hint: "Żeby wykazać podzielność przez <b>21</b>, będziemy rozkładać tę liczbę na czynniki, czyli wyciągać coś przed nawias aby powstało: \\(\\ldots \\cdot 21\\)",
         formulasPage: 5,
         solutionText: "Wszystkie składniki zapisujemy jako potęgi dwójki i wyciągamy najmniejszą z nich przed nawias — w nawiasie zostaje <b>21</b>.",
-        solutionTextMore: "<span class='mathText'><b> 2<sup>100</sup> + 4<sup>49</sup> + 16<sup>24</sup> = 2<sup>100</sup> + 2<sup>98</sup> + 2<sup>96</sup> <br> = 2<sup>96</sup> · (2<sup>4</sup> + 2<sup>2</sup> + 1) <br> = 2<sup>96</sup> · (16 + 4 + 1) = 2<sup>96</sup> · 21</b></span>  &nbsp;<- ta liczba jest podzielna przez <b>21</b>, co należało wykazać.",
+        solutionTextMore: "\\[\\begin{aligned} 2^{100} + 4^{49} + 16^{24} &= 2^{100} + 2^{98} + 2^{96} \\\\ &= 2^{96} \\cdot (2^{4} + 2^{2} + 1) \\\\ &= 2^{96} \\cdot (16 + 4 + 1) = \\boldsymbol{2^{96} \\cdot 21} \\end{aligned}\\] ta liczba jest podzielna przez <b>21</b>, co należało wykazać.",
         solutionStepByStep: [
             { type: "video", src: "zad3/zad3rozw_step1.mp4", text: "" },
             { type: "video", src: "zad3/zad3rozw_step2.mp4", text: "" },
@@ -106,89 +117,94 @@ const exercises = [
             { type: "video", src: "zad3/zad3rozw_step5.mp4", text: "" },
             { type: "video", src: "zad3/zad3rozw_step6.mp4", text: "" },
             { type: "video", src: "zad3/zad3rozw_step7.mp4", text: "" },
-            { type: "video", src: "zad3/zad3rozw_step8.mp4", text: "liczba c * 21 jest podzielne przez 21 (c - cokolwiek całkowitego)" }
+            { type: "video", src: "zad3/zad3rozw_step8.mp4", text: "liczba \\(c \\cdot 21\\) jest podzielna przez 21 (c — cokolwiek całkowitego)" }
         ],
         solutionInteractive: null
     },
     {
-        question: "<b>Zadanie 4.</b> <br><br> Dla każdej dodatniej liczby rzeczywistej <b>x</b> i dla każdej dodatniej liczby rzeczywistej <b>y</b> wartość wyrażenia <b>log<sub>7</sub> x + 6 log<sub>7</sub> y</b> jest równa wartości wyrażenia:",
-        answers: ["A. log<sub>7</sub> (<sup>x</sup>&frasl;<sub>y<sup>6</sup>)</sub>", "B. log<sub>7</sub> (xy)<sup>6</sup>", "C. log<sub>7</sub>(6xy)", "D. log<sub>7</sub>(xy<sup>6</sup>)"],
+        question: "<b>Zadanie 4.</b> <br><br> Dla każdej dodatniej liczby rzeczywistej \\(x\\) i dla każdej dodatniej liczby rzeczywistej \\(y\\) wartość wyrażenia \\(\\log_{7} x + 6\\log_{7} y\\) jest równa wartości wyrażenia:",
+        answers: ["A. \\(\\log_{7}\\frac{x}{y^{6}}\\)", "B. \\(\\log_{7}(xy)^{6}\\)", "C. \\(\\log_{7}(6xy)\\)", "D. \\(\\log_{7}\\left(xy^{6}\\right)\\)"],
         correctAnswerIndex: 3,
         maxScore: 1,
         selfScore: false,
-        hint: "Skorzystaj z własności logarytmów: <b>log<sub>a</sub>(x) + log<sub>a</sub>(y) = log<sub>a</sub>(x·y)</b> oraz <b>log<sub>a</sub>(x<sup>b</sup>) = b·log<sub>a</sub>(x)</b>",
+        hint: "Skorzystaj z własności logarytmów: \\(\\log_a x + \\log_a y = \\log_a(x \\cdot y)\\) oraz \\(\\log_a x^{b} = b\\log_a x\\)",
         formulasPage: 5,
-        solutionText: "<span class='mathText'>log<sub>7</sub> x + 6 log<sub>7</sub> y = log<sub>7</sub> x + log<sub>7</sub> y<sup>6</sup> = <b>log<sub>7</sub>(xy<sup>6</sup>)</b></span> — odpowiedź <b>D</b>.",
-        solutionTextMore: "Najpierw „chowamy\" 6 do logarytmu: <span class='mathText'>6 log<sub>7</sub> y = log<sub>7</sub> y<sup>6</sup></span> (własność log<sub>a</sub> x<sup>b</sup> = b·log<sub>a</sub> x, czytana od prawej). <br><br> Potem sumę logarytmów o tej samej podstawie zamieniamy na logarytm iloczynu: <span class='mathText'>log<sub>7</sub> x + log<sub>7</sub> y<sup>6</sup> = log<sub>7</sub>(x·y<sup>6</sup>)</span>.",
+        solutionText: "\\(\\log_{7} x + 6\\log_{7} y = \\log_{7} x + \\log_{7} y^{6} = \\boldsymbol{\\log_{7}\\left(xy^{6}\\right)}\\) — odpowiedź <b>D</b>.",
+        solutionTextMore: "Najpierw „chowamy\" 6 do logarytmu: \\(6\\log_{7} y = \\log_{7} y^{6}\\) (własność \\(\\log_a x^{b} = b\\log_a x\\), czytana od prawej). <br><br> Potem sumę logarytmów o tej samej podstawie zamieniamy na logarytm iloczynu: \\(\\log_{7} x + \\log_{7} y^{6} = \\log_{7}\\left(x \\cdot y^{6}\\right)\\).",
         solutionStepByStep: null,
         solutionInteractive: null
     },
     {
-        question: "<b>Zadanie 5.</b> <br><br> Pani Aniela wpłaciła do banku kwotę <b>60 000 zł</b> na lokatę dwuletnią. Po każdym rocznym okresie oszczędzania bank doliczał odsetki w wysokości 𝑝% w skali roku od kwoty bieżącego kapitału znajdującego się na lokacie – zgodnie z procentem składanym. Na koniec okresu oszczędzania kwota na tej lokacie była równa <b> 67 925,76 zł </b> wraz z odsetkami (bez uwzględniania podatków). <br><br> Oprocentowanie lokaty w skali roku było równe:",
+        question: "<b>Zadanie 5.</b> <br><br> Pani Aniela wpłaciła do banku kwotę <b>60 000 zł</b> na lokatę dwuletnią. Po każdym rocznym okresie oszczędzania bank doliczał odsetki w wysokości \\(p\\%\\) w skali roku od kwoty bieżącego kapitału znajdującego się na lokacie – zgodnie z procentem składanym. Na koniec okresu oszczędzania kwota na tej lokacie była równa <b> 67 925,76 zł </b> wraz z odsetkami (bez uwzględniania podatków). <br><br> Oprocentowanie lokaty w skali roku było równe:",
         answers: ["A. 6%", "B. 6,4%", "C. 6,5%", "D. 7%"],
         correctAnswerIndex: 1,
         maxScore: 1,
         selfScore: false,
-        hint: "Korzystamy z wzoru na procent składany: <b>P = P<sub>0</sub> · (1 + r)<sup>n</sup></b>",
+        hint: "Korzystamy z wzoru na procent składany: \\(P = P_0 \\cdot (1 + r)^{n}\\)",
         formulasPage: 10,
-        solutionText: "Podstawiamy do wzoru na procent składany: <span class='mathText'>60 000 · (1 + p)<sup>2</sup> = 67 925,76</span>, stąd <span class='mathText'>(1 + p)<sup>2</sup> = 1,132096</span>, czyli <span class='mathText'>1 + p = 1,064</span> i <b>p = 6,4%</b> — odpowiedź <b>B</b>.",
-        solutionTextMore: "<span class='mathText'>(1 + p)<sup>2</sup> = 67 925,76 / 60 000 = 1,132096 <br><br> 1 + p = √1,132096 = 1,064 <br><br> p = 0,064 = <b>6,4%</b></span> <br><br> Warto zauważyć, że wystarczyło sprawdzić odpowiedzi: 60 000 · 1,064² = 67 925,76 zł. ✓",
+        solutionText: "Podstawiamy do wzoru na procent składany: \\(60\\,000 \\cdot (1 + p)^{2} = 67\\,925{,}76\\), stąd \\((1 + p)^{2} = 1{,}132096\\), czyli \\(1 + p = 1{,}064\\) i \\(\\boldsymbol{p = 6{,}4\\%}\\) — odpowiedź <b>B</b>.",
+        solutionTextMore: "\\[\\begin{aligned} (1 + p)^{2} &= \\tfrac{67\\,925{,}76}{60\\,000} = 1{,}132096 \\\\ 1 + p &= \\sqrt{1{,}132096} = 1{,}064 \\\\ p &= 0{,}064 = \\boldsymbol{6{,}4\\%} \\end{aligned}\\] Warto zauważyć, że wystarczyło sprawdzić odpowiedzi: \\(60\\,000 \\cdot 1{,}064^{2} = 67\\,925{,}76\\) zł. ✓",
         solutionStepByStep: null,
         solutionInteractive: function (container) {
             widgetProcentSkladany(container);
         }
     },
     {
-        question: '<b>Zadanie 6.</b> <br><br> Dla każdej liczby rzeczywistej 𝑥 różnej od (−1), 0 oraz 1 wartość wyrażenia' +
-        '<img src="zad6/zad6.png" style="height:50px;"> <br>' +
+        question: '<b>Zadanie 6.</b> <br><br> Dla każdej liczby rzeczywistej \\(x\\) różnej od \\((-1)\\), \\(0\\) oraz \\(1\\) wartość wyrażenia' +
+        '\\[\\frac{x}{x^{2} - 1} : \\frac{3x^{2}}{x + 1}\\]' +
         'jest równa wartości wyrażenia:'
         ,
-        answers: ['A. <img src="zad6/zad6odp1.png" style="height:50px;">', 'B. <img src="zad6/zad6odp2.png" style="height:50px;">', 'C. <img src="zad6/zad6odp3.png" style="height:50px;">', 'D. <img src="zad6/zad6odp4.png" style="height:40px;">'],
+        answers: ['A. \\(\\dfrac{x}{x-1}\\)', 'B. \\(\\dfrac{1}{3x^{2}-3x}\\)', 'C. \\(-3x\\)', 'D. \\(-\\dfrac{1}{3x}\\)'],
         correctAnswerIndex: 1,
         maxScore: 1,
         selfScore: false,
-        hint: "Dzielenie przez ułamek to mnożenie przez jego odwrotność. Rozłóż też mianownik: <b>x² − 1 = (x − 1)(x + 1)</b> i skróć, co się da.",
+        hint: "Dzielenie przez ułamek to mnożenie przez jego odwrotność. Rozłóż też mianownik: \\(x^{2} - 1 = (x - 1)(x + 1)\\) i skróć, co się da.",
         formulasPage: 7,
-        solutionText: "Zamieniamy dzielenie na mnożenie przez odwrotność i skracamy: <span class='mathText'><sup>x</sup>&frasl;<sub>(x−1)(x+1)</sub> · <sup>(x+1)</sup>&frasl;<sub>3x²</sub> = <b><sup>1</sup>&frasl;<sub>3x(x−1)</sub> = <sup>1</sup>&frasl;<sub>3x²−3x</sub></b></span> — odpowiedź <b>B</b>.",
-        solutionTextMore: "Po kolei: <br><br> 1. Mianownik pierwszego ułamka rozkładamy ze wzoru skróconego mnożenia: <span class='mathText'>x² − 1 = (x − 1)(x + 1)</span>. <br><br> 2. Dzielenie zamieniamy na mnożenie przez odwrotność: <span class='mathText'>· <sup>(x+1)</sup>&frasl;<sub>3x²</sub></span>. <br><br> 3. Skracamy (x + 1) oraz jedno x: zostaje <span class='mathText'><sup>1</sup>&frasl;<sub>3x(x−1)</sub></span>, czyli po wymnożeniu mianownika <span class='mathText'><sup>1</sup>&frasl;<sub>3x²−3x</sub></span>. <br><br> Założenia x ≠ −1, 0, 1 gwarantują, że nic po drodze nie dzieliło przez zero.",
+        solutionText: "Zamieniamy dzielenie na mnożenie przez odwrotność i skracamy: \\(\\frac{x}{(x-1)(x+1)} \\cdot \\frac{x+1}{3x^{2}} = \\boldsymbol{\\frac{1}{3x(x-1)} = \\frac{1}{3x^{2}-3x}}\\) — odpowiedź <b>B</b>.",
+        solutionTextMore: "Po kolei: <br><br> 1. Mianownik pierwszego ułamka rozkładamy ze wzoru skróconego mnożenia: \\(x^{2} - 1 = (x - 1)(x + 1)\\). <br><br> 2. Dzielenie zamieniamy na mnożenie przez odwrotność: \\(\\cdot\\ \\frac{x+1}{3x^{2}}\\). <br><br> 3. Skracamy \\((x + 1)\\) oraz jedno \\(x\\): zostaje \\(\\frac{1}{3x(x-1)}\\), czyli po wymnożeniu mianownika \\(\\frac{1}{3x^{2}-3x}\\). <br><br> Założenia \\(x \\ne -1,\\ 0,\\ 1\\) gwarantują, że nic po drodze nie dzieliło przez zero.",
         solutionStepByStep: null,
         solutionInteractive: null
     },
     {
-        question: '<b>Zadanie 7.</b> <br><br> Para liczb <b>x = -1</b> i <b>y = 6</b> jest rozwiązaniem układu równań:<br>' +
-                '<img src="zad7/zad7.png"> <br>' +
-                'gdzie <i>a</i> oraz <i>b</i> są liczbami rzeczywistymi.<br><br>' +
-                'Wartość wyrażenia <i>a·b</i> jest równa:',
-        answers: ['A. -2', 'B. -0,5', 'C. 0,5', 'D. 2'],
+        question: '<b>Zadanie 7.</b> <br><br> Para liczb \\(x = -1\\) i \\(y = 6\\) jest rozwiązaniem układu równań:' +
+                '\\[\\begin{cases} ax + 3y = 20 \\\\ x + by = 5 \\end{cases}\\]' +
+                'gdzie \\(a\\) oraz \\(b\\) są liczbami rzeczywistymi.<br><br>' +
+                'Wartość wyrażenia \\(a \\cdot b\\) jest równa:',
+        answers: ['A. \\(-2\\)', 'B. \\(-0{,}5\\)', 'C. \\(0{,}5\\)', 'D. \\(2\\)'],
         correctAnswerIndex: 0,
         maxScore: 1,
         selfScore: false,
         hint: "Podstaw podane wartości x i y do obu równań, oblicz a i b, a następnie ich iloczyn.",
         formulasPage: null,
-        solutionText: "Po podstawieniu x = −1, y = 6: z pierwszego równania <span class='mathText'>−a + 18 = 20</span>, więc <b>a = −2</b>; z drugiego <span class='mathText'>−1 + 6b = 5</span>, więc <b>b = 1</b>. Zatem <b>a·b = −2</b> — odpowiedź <b>A</b>.",
-        solutionTextMore: "<span class='mathText'>a·(−1) + 3·6 = 20 <br> −a + 18 = 20 <br> −a = 2 <br> <b>a = −2</b> <br><br> (−1) + b·6 = 5 <br> 6b = 6 <br> <b>b = 1</b> <br><br> a·b = (−2)·1 = <b>−2</b></span>",
+        solutionText: "Po podstawieniu \\(x = -1\\), \\(y = 6\\): z pierwszego równania \\(-a + 18 = 20\\), więc \\(\\boldsymbol{a = -2}\\); z drugiego \\(-1 + 6b = 5\\), więc \\(\\boldsymbol{b = 1}\\). Zatem \\(a \\cdot b = \\boldsymbol{-2}\\) — odpowiedź <b>A</b>.",
+        solutionTextMore: "\\[\\begin{aligned} a \\cdot (-1) + 3 \\cdot 6 &= 20 \\\\ -a + 18 &= 20 \\\\ -a &= 2 \\\\ a &= \\boldsymbol{-2} \\end{aligned}\\]" +
+            "\\[\\begin{aligned} (-1) + b \\cdot 6 &= 5 \\\\ 6b &= 6 \\\\ b &= \\boldsymbol{1} \\end{aligned}\\]" +
+            "\\[a \\cdot b = (-2) \\cdot 1 = \\boldsymbol{-2}\\]",
         solutionStepByStep: null,
         solutionInteractive: null
     },
     {
-        question: '<b>Zadanie 8.</b> <br><br> Rozwiąż równanie:<br>' +
-                  '<img src="zad8/zad8.png"> <br>' +
+        question: '<b>Zadanie 8.</b> <br><br> Rozwiąż równanie:' +
+                  '\\[\\frac{x + 3}{x - 1} = \\frac{x}{2x - 2}\\]' +
                   'Zapisz konieczne założenie i obliczenia.',
         type: "open",
         answers: [],
         correctAnswerIndex: -1,
         maxScore: 3,
         selfScore: true,
-        hint: "Zacznij od określenia dziedziny (mianowniki ≠ 0). Zauważ, że <b>2x − 2 = 2(x − 1)</b> — oba mianowniki znikną po pomnożeniu przez 2(x − 1).",
+        hint: "Zacznij od określenia dziedziny (mianowniki \\(\\ne 0\\)). Zauważ, że \\(2x - 2 = 2(x - 1)\\) — oba mianowniki znikną po pomnożeniu przez \\(2(x - 1)\\).",
         formulasPage: null,
-        solutionText: "Założenie: <b>x ≠ 1</b>. Po pomnożeniu obu stron przez <span class='mathText'>2(x − 1)</span> dostajemy <span class='mathText'>2(x + 3) = x</span>, czyli <b>x = −6</b> (należy do dziedziny).",
-        solutionTextMore: "<span class='mathText'>2x − 2 = 2(x − 1)</span>, więc dziedzina: <b>x ≠ 1</b>. <br><br> <span class='mathText'><sup>x+3</sup>&frasl;<sub>x−1</sub> = <sup>x</sup>&frasl;<sub>2(x−1)</sub> &nbsp;&nbsp;| · 2(x−1) <br><br> 2(x + 3) = x <br> 2x + 6 = x <br> <b>x = −6</b></span> <br><br> −6 ≠ 1, więc rozwiązaniem równania jest <b>x = −6</b>.",
+        solutionText: "Założenie: \\(x \\ne 1\\). Po pomnożeniu obu stron przez \\(2(x - 1)\\) dostajemy \\(2(x + 3) = x\\), czyli \\(\\boldsymbol{x = -6}\\) (należy do dziedziny).",
+        solutionTextMore: "\\(2x - 2 = 2(x - 1)\\), więc dziedzina: \\(x \\ne 1\\)." +
+            "\\[\\frac{x+3}{x-1} = \\frac{x}{2(x-1)} \\quad \\Big/ \\cdot\\ 2(x-1)\\]" +
+            "\\[\\begin{aligned} 2(x + 3) &= x \\\\ 2x + 6 &= x \\\\ x &= \\boldsymbol{-6} \\end{aligned}\\]" +
+            "\\(-6 \\ne 1\\), więc rozwiązaniem równania jest \\(\\boldsymbol{x = -6}\\).",
         solutionStepByStep: null,
         solutionInteractive: null
     },
     {
         question: '<b>Zadanie 9.</b> <br><br> Rozwiąż nierówność:<br>' +
-                '<span class="mathText">x(x - 6) ≤ 7</span><br>' +
+                '\\(x(x - 6) \\le 7\\)<br>' +
                 'Zapisz obliczenia.',
         type: "open",
         answers: [],
@@ -197,17 +213,20 @@ const exercises = [
         selfScore: true,
         hint: "Przenieś wszystkie wyrazy na jedną stronę, rozwiąż równanie kwadratowe, naszkicuj parabolę i odczytaj, gdzie nierówność jest spełniona.",
         formulasPage: 7,
-        solutionText: "Po uporządkowaniu: <span class='mathText'>x² − 6x − 7 ≤ 0</span>. Miejsca zerowe: <b>x = −1</b> i <b>x = 7</b>, ramiona paraboli w górę, więc rozwiązaniem jest przedział <b>⟨−1, 7⟩</b>.",
-        solutionTextMore: "<span class='mathText'>x² − 6x − 7 ≤ 0 <br><br> Δ = 36 + 28 = 64, &nbsp; √Δ = 8 <br> x₁ = (6 − 8)/2 = −1, &nbsp; x₂ = (6 + 8)/2 = 7 <br><br></span> Współczynnik przy x² jest dodatni → parabola ma ramiona w górę → wartości ≤ 0 przyjmuje <b>między</b> miejscami zerowymi: <b>x ∈ ⟨−1, 7⟩</b>.",
+        solutionText: "Po uporządkowaniu: \\(x^{2} - 6x - 7 \\le 0\\). Miejsca zerowe: \\(x = -1\\) i \\(x = 7\\), ramiona paraboli w górę, więc rozwiązaniem jest przedział \\(\\boldsymbol{\\langle -1,\\ 7\\rangle}\\).",
+        solutionTextMore: "\\[x^{2} - 6x - 7 \\le 0\\]" +
+            "\\[\\Delta = 36 + 28 = 64, \\quad \\sqrt{\\Delta} = 8\\]" +
+            "\\[x_1 = \\frac{6 - 8}{2} = -1, \\quad x_2 = \\frac{6 + 8}{2} = 7\\]" +
+            "Współczynnik przy \\(x^{2}\\) jest dodatni → parabola ma ramiona w górę → wartości \\(\\le 0\\) przyjmuje <b>między</b> miejscami zerowymi: \\(\\boldsymbol{x \\in \\langle -1,\\ 7\\rangle}\\).",
         solutionStepByStep: null,
         solutionInteractive: function (container) {
             widgetNierownoscKwadratowa(container);
         }
     },
     {
-        question: '<b>Zadanie 10.</b> <br><br> Funkcja <b>f</b> jest określona następująco:<br><br>' +
-                  '<img src="zad10/zad10.png"> <br>' +
-                  'Wykres funkcji <i class="mathText"> y = f(x) </i> przedstawiono w kartezjańskim układzie współrzędnych (𝑥, 𝑦) na rysunku poniżej'+
+        question: '<b>Zadanie 10.</b> <br><br> Funkcja \\(f\\) jest określona następująco:' +
+                  '\\[f(x) = \\begin{cases} 3 & \\text{dla } x \\in (-4,\\ -2\\rangle \\\\ -x + 1 & \\text{dla } x \\in (-2,\\ 2\\rangle \\\\ x - 3 & \\text{dla } x \\in (2,\\ 4\\rangle \\end{cases}\\]' +
+                  'Wykres funkcji \\(y = f(x)\\) przedstawiono w kartezjańskim układzie współrzędnych \\((x, y)\\) na rysunku poniżej'+
                   '<img src="zad10/zad10rys.png"> <br>' +
                   'Uzupełnij zdania. Wpisz odpowiednie przedziały w polach, aby zdania były prawdziwe.',
         type: "fillIn",
@@ -215,39 +234,39 @@ const exercises = [
         // Nawiasy można wpisywać dowolnie: ⟨ ⟩, [ ], < > — normalizacja w
         // matematykazen.html sprowadza je do jednej postaci przed porównaniem.
         blanks: [
-            { label: "1. Dziedziną funkcji <b>f</b> jest przedział", accepted: ["(-4,4]"] },
-            { label: "2. Zbiorem wartości funkcji <b>f</b> jest przedział", accepted: ["[-1,3]"] },
-            { label: "3. Zbiorem wszystkich argumentów, dla których funkcja <b>f</b> przyjmuje wartości ujemne, jest przedział", accepted: ["(1,3)"] },
-            { label: "4. Zbiorem wszystkich argumentów, dla których funkcja <b>f</b> przyjmuje największą wartość, jest przedział", accepted: ["(-4,-2]"] }
+            { label: "1. Dziedziną funkcji \\(f\\) jest przedział", accepted: ["(-4,4]"] },
+            { label: "2. Zbiorem wartości funkcji \\(f\\) jest przedział", accepted: ["[-1,3]"] },
+            { label: "3. Zbiorem wszystkich argumentów, dla których funkcja \\(f\\) przyjmuje wartości ujemne, jest przedział", accepted: ["(1,3)"] },
+            { label: "4. Zbiorem wszystkich argumentów, dla których funkcja \\(f\\) przyjmuje największą wartość, jest przedział", accepted: ["(-4,-2]"] }
         ],
         correctAnswerIndex: -1,
         maxScore: 4,
         selfScore: false,
-        hint: "Dziedzina to wszystkie x, dla których wykres istnieje (uwaga na kółko otwarte przy x = −4). Zbiór wartości odczytasz z osi y. Wartości ujemne = fragmenty wykresu POD osią x.",
+        hint: "Dziedzina to wszystkie x, dla których wykres istnieje (uwaga na kółko otwarte przy \\(x = -4\\)). Zbiór wartości odczytasz z osi y. Wartości ujemne = fragmenty wykresu POD osią x.",
         formulasPage: null,
-        solutionText: "1. Dziedzina: <b>(−4, 4⟩</b>. &nbsp; 2. Zbiór wartości: <b>⟨−1, 3⟩</b>. &nbsp; 3. Wartości ujemne dla <b>x ∈ (1, 3)</b>. &nbsp; 4. Największą wartość (3) funkcja przyjmuje dla <b>x ∈ (−4, −2⟩</b>.",
-        solutionTextMore: "1. Wykres zaczyna się w x = −4 (kółko otwarte → −4 nie należy) i kończy w x = 4 (kropka pełna → 4 należy): dziedzina <b>(−4, 4⟩</b>. <br><br> 2. Najniższy punkt wykresu to y = −1 (w x = 2), najwyższy to y = 3: zbiór wartości <b>⟨−1, 3⟩</b>. <br><br> 3. Pod osią x wykres jest między x = 1 a x = 3 (w obu tych punktach f(x) = 0, więc ich nie zaliczamy): <b>(1, 3)</b>. <br><br> 4. Wartość 3 (największa) jest przyjmowana na całym poziomym fragmencie: <b>(−4, −2⟩</b>.",
+        solutionText: "1. Dziedzina: \\(\\boldsymbol{(-4,\\ 4\\rangle}\\). &nbsp; 2. Zbiór wartości: \\(\\boldsymbol{\\langle -1,\\ 3\\rangle}\\). &nbsp; 3. Wartości ujemne dla \\(\\boldsymbol{x \\in (1,\\ 3)}\\). &nbsp; 4. Największą wartość (3) funkcja przyjmuje dla \\(\\boldsymbol{x \\in (-4,\\ -2\\rangle}\\).",
+        solutionTextMore: "1. Wykres zaczyna się w \\(x = -4\\) (kółko otwarte → \\(-4\\) nie należy) i kończy w \\(x = 4\\) (kropka pełna → \\(4\\) należy): dziedzina \\(\\boldsymbol{(-4,\\ 4\\rangle}\\). <br><br> 2. Najniższy punkt wykresu to \\(y = -1\\) (w \\(x = 2\\)), najwyższy to \\(y = 3\\): zbiór wartości \\(\\boldsymbol{\\langle -1,\\ 3\\rangle}\\). <br><br> 3. Pod osią x wykres jest między \\(x = 1\\) a \\(x = 3\\) (w obu tych punktach \\(f(x) = 0\\), więc ich nie zaliczamy): \\(\\boldsymbol{(1,\\ 3)}\\). <br><br> 4. Wartość 3 (największa) jest przyjmowana na całym poziomym fragmencie: \\(\\boldsymbol{(-4,\\ -2\\rangle}\\).",
         solutionStepByStep: null,
         solutionInteractive: function (container) {
             widgetFunkcjaPrzedzialami(container);
         }
     },
     {
-        question: '<b>Zadanie 11.</b> <br><br> Miejscem zerowym funkcji liniowej <i>f</i> jest liczba 2, a punkt przecięcia wykresu funkcji <i>f</i> z osią <i>Oy</i> ma współrzędne (0, 4).<br><br>' +
+        question: '<b>Zadanie 11.</b> <br><br> Miejscem zerowym funkcji liniowej \\(f\\) jest liczba \\(2\\), a punkt przecięcia wykresu funkcji \\(f\\) z osią \\(Oy\\) ma współrzędne \\((0,\\ 4)\\).<br><br>' +
                   '<img src="zad11/zad11.png"> <br>' +
                   'Oceń prawdziwość poniższych stwierdzeń. Wybierz <b>P</b>, jeśli stwierdzenie jest prawdziwe, albo <b>F</b> – jeśli jest fałszywe.',
         type: "PF",
         answers: [],
         statements: [
-            { text: "Współczynnik kierunkowy prostej, która jest wykresem funkcji <i>f</i>, jest równy −2.", answer: true },
-            { text: "Pole trójkąta ograniczonego osiami układu współrzędnych oraz wykresem funkcji <i>f</i> jest równe 8.", answer: false }
+            { text: "Współczynnik kierunkowy prostej, która jest wykresem funkcji \\(f\\), jest równy \\(-2\\).", answer: true },
+            { text: "Pole trójkąta ograniczonego osiami układu współrzędnych oraz wykresem funkcji \\(f\\) jest równe \\(8\\).", answer: false }
         ],
         correctAnswerIndex: -1,
         maxScore: 1,
         selfScore: false,
-        hint: "Wyznacz wzór funkcji z dwóch punktów: (2, 0) i (0, 4). Trójkąt ma wierzchołki (0,0), (2,0), (0,4) — jego pole to połowa iloczynu przyprostokątnych.",
+        hint: "Wyznacz wzór funkcji z dwóch punktów: \\((2,\\ 0)\\) i \\((0,\\ 4)\\). Trójkąt ma wierzchołki \\((0,0)\\), \\((2,0)\\), \\((0,4)\\) — jego pole to połowa iloczynu przyprostokątnych.",
         formulasPage: null,
-        solutionText: "f(x) = ax + 4 i f(2) = 0, więc 2a + 4 = 0, czyli <b>a = −2</b> (zdanie 1: <b>P</b>). Pole trójkąta: <span class='mathText'>½ · 2 · 4 = <b>4</b></span>, a nie 8 (zdanie 2: <b>F</b>).",
+        solutionText: "\\(f(x) = ax + 4\\) i \\(f(2) = 0\\), więc \\(2a + 4 = 0\\), czyli \\(\\boldsymbol{a = -2}\\) (zdanie 1: <b>P</b>). Pole trójkąta: \\(\\frac{1}{2} \\cdot 2 \\cdot 4 = \\boldsymbol{4}\\), a nie 8 (zdanie 2: <b>F</b>).",
         solutionTextMore: "",
         solutionStepByStep: null,
         solutionInteractive: null
@@ -255,8 +274,8 @@ const exercises = [
     {
         // "Puste" zadanie nadrzędne: sama wspólna treść dla 12.1-12.3, bez
         // odpowiedzi, punktów i rozwiązań (maxScore: 0 chowa badge punktów).
-        question: '<b>Zadanie 12.</b> <br><br> W kartezjańskim układzie współrzędnych (x, y) wykresem funkcji kwadratowej <b>f</b> jest parabola, której wierzchołkiem jest punkt (3, 0). ' +
-                  'Ta parabola przechodzi przez punkt o współrzędnych (0, −9).',
+        question: '<b>Zadanie 12.</b> <br><br> W kartezjańskim układzie współrzędnych \\((x, y)\\) wykresem funkcji kwadratowej \\(f\\) jest parabola, której wierzchołkiem jest punkt \\((3,\\ 0)\\). ' +
+                  'Ta parabola przechodzi przez punkt o współrzędnych \\((0,\\ -9)\\).',
         type: "open",
         answers: [],
         correctAnswerIndex: -1,
@@ -271,14 +290,14 @@ const exercises = [
     },
     {
         question: '<b>Zadanie 12.1.</b> <br><br> Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>' +
-                  'Funkcja <b>f</b> jest malejąca w przedziale:<br>',
-        answers: ['A. (-∞, 0⟩', 'B. (-∞, 3⟩', 'C. ⟨0, +∞)', 'D. ⟨3, +∞)'],
+                  'Funkcja \\(f\\) jest malejąca w przedziale:<br>',
+        answers: ['A. \\((-\\infty,\\ 0\\rangle\\)', 'B. \\((-\\infty,\\ 3\\rangle\\)', 'C. \\(\\langle 0,\\ +\\infty)\\)', 'D. \\(\\langle 3,\\ +\\infty)\\)'],
         correctAnswerIndex: 3,
         maxScore: 1,
         selfScore: false,
-        hint: "Punkt (0, −9) leży PONIŻEJ wierzchołka (3, 0) — jakie muszą być ramiona paraboli? Funkcja kwadratowa zmienia monotoniczność dokładnie w wierzchołku.",
+        hint: "Punkt \\((0,\\ -9)\\) leży PONIŻEJ wierzchołka \\((3,\\ 0)\\) — jakie muszą być ramiona paraboli? Funkcja kwadratowa zmienia monotoniczność dokładnie w wierzchołku.",
         formulasPage: 7,
-        solutionText: "Parabola przechodzi przez punkt leżący poniżej wierzchołka, więc ma ramiona skierowane <b>w dół</b>. Taka funkcja rośnie do wierzchołka i maleje od niego, czyli jest malejąca w przedziale <b>⟨3, +∞)</b> — odpowiedź <b>D</b>.",
+        solutionText: "Parabola przechodzi przez punkt leżący poniżej wierzchołka, więc ma ramiona skierowane <b>w dół</b>. Taka funkcja rośnie do wierzchołka i maleje od niego, czyli jest malejąca w przedziale \\(\\boldsymbol{\\langle 3,\\ +\\infty)}\\) — odpowiedź <b>D</b>.",
         solutionTextMore: "",
         solutionStepByStep: null,
         solutionInteractive: function (container) {
@@ -286,93 +305,93 @@ const exercises = [
         }
     },
     {
-        question: '<b>Zadanie 12.2.</b> <br><br> Wzór funkcji <i>f</i> zapisano w dwóch spośród poniższych odpowiedzi. <b>Wybierz je obie.</b>',
+        question: '<b>Zadanie 12.2.</b> <br><br> Wzór funkcji \\(f\\) zapisano w dwóch spośród poniższych odpowiedzi. <b>Wybierz je obie.</b>',
         type: "multiSelect",
         answers: [
-            'A. f(x) = -x² - 9',
-            'B. f(x) = -(x - 3)²',
-            'C. f(x) = -(x + 3)²',
-            'D. f(x) = -x² + 6x - 9',
-            'E. f(x) = -x² - 6x + 9',
-            'F. f(x) = -x² - 6x - 9'
+            'A. \\(f(x) = -x^{2} - 9\\)',
+            'B. \\(f(x) = -(x - 3)^{2}\\)',
+            'C. \\(f(x) = -(x + 3)^{2}\\)',
+            'D. \\(f(x) = -x^{2} + 6x - 9\\)',
+            'E. \\(f(x) = -x^{2} - 6x + 9\\)',
+            'F. \\(f(x) = -x^{2} - 6x - 9\\)'
         ],
         correctAnswerIndices: [1, 3],
         correctAnswerIndex: -1,
         maxScore: 2,
         selfScore: false,
-        hint: "Wierzchołek (p, q) = (3, 0) → postać kanoniczna f(x) = a(x − 3)². Punkt (0, −9) daje a = −1. Drugi poprawny wzór to ta sama funkcja po rozwinięciu nawiasu.",
+        hint: "Wierzchołek \\((p, q) = (3,\\ 0)\\) → postać kanoniczna \\(f(x) = a(x - 3)^{2}\\). Punkt \\((0,\\ -9)\\) daje \\(a = -1\\). Drugi poprawny wzór to ta sama funkcja po rozwinięciu nawiasu.",
         formulasPage: 7,
-        solutionText: "Postać kanoniczna: <span class='mathText'>f(x) = a(x − 3)²</span>; z f(0) = −9 mamy 9a = −9, czyli a = −1, więc <b>f(x) = −(x − 3)²</b> (odp. <b>B</b>). Po rozwinięciu: <span class='mathText'>−(x² − 6x + 9) = <b>−x² + 6x − 9</b></span> (odp. <b>D</b>).",
+        solutionText: "Postać kanoniczna: \\(f(x) = a(x - 3)^{2}\\); z \\(f(0) = -9\\) mamy \\(9a = -9\\), czyli \\(a = -1\\), więc \\(\\boldsymbol{f(x) = -(x - 3)^{2}}\\) (odp. <b>B</b>). Po rozwinięciu: \\(-(x^{2} - 6x + 9) = \\boldsymbol{-x^{2} + 6x - 9}\\) (odp. <b>D</b>).",
         solutionTextMore: "",
         solutionStepByStep: null,
         solutionInteractive: null
     },
     {
-        question: '<b>Zadanie 12.3.</b> <br><br> Funkcja kwadratowa <b>g</b> jest określona za pomocą funkcji <b>f</b> następująco: <b> g(x) = f(x) - 1. </b> <br><br>' +
+        question: '<b>Zadanie 12.3.</b> <br><br> Funkcja kwadratowa \\(g\\) jest określona za pomocą funkcji \\(f\\) następująco: \\(g(x) = f(x) - 1\\). <br><br>' +
                   'Oceń prawdziwość poniższych stwierdzeń. Wybierz <b>P</b>, jeśli stwierdzenie jest prawdziwe, albo <b>F</b> – jeśli jest fałszywe.',
         type: "PF",
         answers: [],
         statements: [
-            { text: "Funkcja <i>g</i> ma jedno miejsce zerowe.", answer: false },
-            { text: "W układzie współrzędnych osią symetrii wykresu funkcji <i>g</i> jest prosta x = 3.", answer: true }
+            { text: "Funkcja \\(g\\) ma jedno miejsce zerowe.", answer: false },
+            { text: "W układzie współrzędnych osią symetrii wykresu funkcji \\(g\\) jest prosta \\(x = 3\\).", answer: true }
         ],
         correctAnswerIndex: -1,
         maxScore: 1,
         selfScore: false,
-        hint: "g to wykres f przesunięty o 1 w dół: g(x) = −(x − 3)² − 1. Jaka jest największa wartość g? Czy przesunięcie w dół zmienia oś symetrii?",
+        hint: "g to wykres f przesunięty o 1 w dół: \\(g(x) = -(x - 3)^{2} - 1\\). Jaka jest największa wartość g? Czy przesunięcie w dół zmienia oś symetrii?",
         formulasPage: 7,
-        solutionText: "g(x) = −(x − 3)² − 1 ma wierzchołek (3, −1) i ramiona w dół, więc największa wartość to −1 < 0 — funkcja <b>nie ma</b> miejsc zerowych (zdanie 1: <b>F</b>). Przesunięcie pionowe nie zmienia osi symetrii: nadal x = 3 (zdanie 2: <b>P</b>).",
+        solutionText: "\\(g(x) = -(x - 3)^{2} - 1\\) ma wierzchołek \\((3,\\ -1)\\) i ramiona w dół, więc największa wartość to \\(-1 < 0\\) — funkcja <b>nie ma</b> miejsc zerowych (zdanie 1: <b>F</b>). Przesunięcie pionowe nie zmienia osi symetrii: nadal \\(x = 3\\) (zdanie 2: <b>P</b>).",
         solutionTextMore: "",
         solutionStepByStep: null,
         solutionInteractive: null
     },
     {
-        question: '<b>Zadanie 13.</b> <br><br> Funkcja logarytmiczna <i>f</i> jest określona wzorem f(x) = log<sub>6</sub>x dla każdej dodatniej liczby rzeczywistej x.<br><br>' +
+        question: '<b>Zadanie 13.</b> <br><br> Funkcja logarytmiczna \\(f\\) jest określona wzorem \\(f(x) = \\log_{6} x\\) dla każdej dodatniej liczby rzeczywistej \\(x\\).<br><br>' +
                   'Oceń prawdziwość poniższych stwierdzeń. Wybierz <b>P</b>, jeśli stwierdzenie jest prawdziwe, albo <b>F</b> – jeśli jest fałszywe.',
         type: "PF",
         answers: [],
         statements: [
-            { text: "Wartość funkcji <i>f</i> dla argumentu 36 jest równa 6.", answer: false },
-            { text: "Funkcja <i>f</i> jest rosnąca.", answer: true }
+            { text: "Wartość funkcji \\(f\\) dla argumentu \\(36\\) jest równa \\(6\\).", answer: false },
+            { text: "Funkcja \\(f\\) jest rosnąca.", answer: true }
         ],
         correctAnswerIndex: -1,
         maxScore: 1,
         selfScore: false,
-        hint: "log₆36 to wykładnik, do którego trzeba podnieść 6, żeby dostać 36. Funkcja log<sub>a</sub>x jest rosnąca, gdy a > 1.",
+        hint: "\\(\\log_{6} 36\\) to wykładnik, do którego trzeba podnieść 6, żeby dostać 36. Funkcja \\(\\log_a x\\) jest rosnąca, gdy \\(a > 1\\).",
         formulasPage: 5,
-        solutionText: "<span class='mathText'>f(36) = log₆36 = <b>2</b></span> (bo 6² = 36), a nie 6 — zdanie 1: <b>F</b>. Podstawa 6 > 1, więc logarytm jest funkcją rosnącą — zdanie 2: <b>P</b>.",
+        solutionText: "\\(f(36) = \\log_{6} 36 = \\boldsymbol{2}\\) (bo \\(6^{2} = 36\\)), a nie 6 — zdanie 1: <b>F</b>. Podstawa \\(6 > 1\\), więc logarytm jest funkcją rosnącą — zdanie 2: <b>P</b>.",
         solutionTextMore: "",
         solutionStepByStep: null,
         solutionInteractive: null
     },
     {
-        question: '<b>Zadanie 14.</b> <br><br> Ciąg (a<sub>n</sub>) jest określony wzorem a<sub>n</sub> = 3·(-1)<sup>n</sup> + 10 dla każdej liczby naturalnej n ≥ 1.<br><br>' +
+        question: '<b>Zadanie 14.</b> <br><br> Ciąg \\((a_n)\\) jest określony wzorem \\(a_n = 3 \\cdot (-1)^{n} + 10\\) dla każdej liczby naturalnej \\(n \\ge 1\\).<br><br>' +
                   'Oceń prawdziwość poniższych stwierdzeń. Wybierz <b>P</b>, jeśli stwierdzenie jest prawdziwe, albo <b>F</b> – jeśli jest fałszywe.',
         type: "PF",
         answers: [],
         statements: [
-            { text: "Ciąg (a<sub>n</sub>) jest geometryczny.", answer: false },
-            { text: "Suma ośmiu początkowych kolejnych wyrazów ciągu (a<sub>n</sub>) jest równa 80.", answer: true }
+            { text: "Ciąg \\((a_n)\\) jest geometryczny.", answer: false },
+            { text: "Suma ośmiu początkowych kolejnych wyrazów ciągu \\((a_n)\\) jest równa \\(80\\).", answer: true }
         ],
         correctAnswerIndex: -1,
         maxScore: 1,
         selfScore: false,
-        hint: "Wypisz kilka pierwszych wyrazów: a₁ = 7, a₂ = 13, a₃ = 7, ... Czy iloraz kolejnych wyrazów jest stały? Ile wynosi suma jednej pary (7 + 13)?",
+        hint: "Wypisz kilka pierwszych wyrazów: \\(a_1 = 7\\), \\(a_2 = 13\\), \\(a_3 = 7\\), ... Czy iloraz kolejnych wyrazów jest stały? Ile wynosi suma jednej pary \\((7 + 13)\\)?",
         formulasPage: 9,
-        solutionText: "Wyrazy to na przemian 7 i 13: <span class='mathText'>13/7 ≠ 7/13</span>, więc iloraz nie jest stały — ciąg <b>nie jest</b> geometryczny (zdanie 1: <b>F</b>). Suma ośmiu wyrazów to cztery pary (7 + 13): <span class='mathText'>4 · 20 = <b>80</b></span> (zdanie 2: <b>P</b>).",
+        solutionText: "Wyrazy to na przemian 7 i 13: \\(\\frac{13}{7} \\ne \\frac{7}{13}\\), więc iloraz nie jest stały — ciąg <b>nie jest</b> geometryczny (zdanie 1: <b>F</b>). Suma ośmiu wyrazów to cztery pary \\((7 + 13)\\): \\(4 \\cdot 20 = \\boldsymbol{80}\\) (zdanie 2: <b>P</b>).",
         solutionTextMore: "",
         solutionStepByStep: null,
         solutionInteractive: null
     },
     {
-        question: '<b>Zadanie 15.</b> <br><br> Trzywyrazowy ciąg (5m, 4 + 2m, m) jest arytmetyczny, gdy liczba m jest równa:<br>',
-        answers: ['A. -4', 'B. -1', 'C. 1', 'D. 4'],
+        question: '<b>Zadanie 15.</b> <br><br> Trzywyrazowy ciąg \\((5m,\\ 4 + 2m,\\ m)\\) jest arytmetyczny, gdy liczba \\(m\\) jest równa:<br>',
+        answers: ['A. \\(-4\\)', 'B. \\(-1\\)', 'C. \\(1\\)', 'D. \\(4\\)'],
         correctAnswerIndex: 3,
         maxScore: 1,
         selfScore: false,
-        hint: "Warunek na ciąg arytmetyczny: wyraz środkowy jest średnią arytmetyczną wyrazów sąsiednich: <b>2·(4 + 2m) = 5m + m</b>.",
+        hint: "Warunek na ciąg arytmetyczny: wyraz środkowy jest średnią arytmetyczną wyrazów sąsiednich: \\(2 \\cdot (4 + 2m) = 5m + m\\).",
         formulasPage: 9,
-        solutionText: "Z warunku ciągu arytmetycznego: <span class='mathText'>2(4 + 2m) = 5m + m</span>, czyli <span class='mathText'>8 + 4m = 6m</span>, stąd <b>m = 4</b> — odpowiedź <b>D</b>. (Ciąg: 20, 12, 4 — różnica r = −8.)",
+        solutionText: "Z warunku ciągu arytmetycznego: \\(2(4 + 2m) = 5m + m\\), czyli \\(8 + 4m = 6m\\), stąd \\(\\boldsymbol{m = 4}\\) — odpowiedź <b>D</b>. (Ciąg: 20, 12, 4 — różnica \\(r = -8\\).)",
         solutionTextMore: "",
         solutionStepByStep: null,
         solutionInteractive: function (container) {
@@ -380,23 +399,23 @@ const exercises = [
         }
     },
     {
-        question: '<b>Zadanie 16.</b> <br><br> Dany jest ciąg geometryczny (a<sub>n</sub>) określony dla każdej liczby naturalnej n ≥ 1, w którym a<sub>2</sub> = 1/6 oraz a<sub>3</sub> = 1/9.<br><br>' +
+        question: '<b>Zadanie 16.</b> <br><br> Dany jest ciąg geometryczny \\((a_n)\\) określony dla każdej liczby naturalnej \\(n \\ge 1\\), w którym \\(a_2 = \\frac{1}{6}\\) oraz \\(a_3 = \\frac{1}{9}\\).<br><br>' +
               'Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>' +
-              'Piąty wyraz ciągu (a<sub>n</sub>) jest równy:',
-        answers: ['A. 1/15', 'B. 2/27', 'C. 4/81', 'D. 8/243'],
+              'Piąty wyraz ciągu \\((a_n)\\) jest równy:',
+        answers: ['A. \\(\\frac{1}{15}\\)', 'B. \\(\\frac{2}{27}\\)', 'C. \\(\\frac{4}{81}\\)', 'D. \\(\\frac{8}{243}\\)'],
         correctAnswerIndex: 2,
         maxScore: 1,
         selfScore: false,
-        hint: "Najpierw iloraz: q = a₃/a₂. Potem a₅ = a₃ · q².",
+        hint: "Najpierw iloraz: \\(q = \\frac{a_3}{a_2}\\). Potem \\(a_5 = a_3 \\cdot q^{2}\\).",
         formulasPage: 10,
-        solutionText: "<span class='mathText'>q = a₃/a₂ = (1/9)·(6/1) = 2/3</span>. Zatem <span class='mathText'>a₅ = a₃ · q² = (1/9)·(4/9) = <b>4/81</b></span> — odpowiedź <b>C</b>.",
+        solutionText: "\\(q = \\frac{a_3}{a_2} = \\frac{1}{9} \\cdot \\frac{6}{1} = \\frac{2}{3}\\). Zatem \\(a_5 = a_3 \\cdot q^{2} = \\frac{1}{9} \\cdot \\frac{4}{9} = \\boldsymbol{\\frac{4}{81}}\\) — odpowiedź <b>C</b>.",
         solutionTextMore: "",
         solutionStepByStep: null,
         solutionInteractive: null
     },
     {
         // "Puste" zadanie nadrzędne dla 17.1-17.2 (jak zad 12 wyżej).
-        question: '<b>Zadanie 17.</b> <br><br> Dany jest trójkąt prostokątny ABC, w którym |AC| = √15 i |BC| = 8. Na przyprostokątnej AB leży taki punkt D, że |BD| = 6 (zobacz rysunek).<br>' +
+        question: '<b>Zadanie 17.</b> <br><br> Dany jest trójkąt prostokątny ABC, w którym \\(|AC| = \\sqrt{15}\\) i \\(|BC| = 8\\). Na przyprostokątnej AB leży taki punkt D, że \\(|BD| = 6\\) (zobacz rysunek).<br>' +
                 '<img src="zad17/zad17.png">',
         type: "open",
         answers: [],
@@ -413,13 +432,13 @@ const exercises = [
     {
         question: '<b>Zadanie 17.1.</b> <br><br> Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>' +
                 'Sinus kąta ostrego ABC jest równy:',
-        answers: ['A. 1/2', 'B. 7/8', 'C. √15/4', 'D. √15/8'],
+        answers: ['A. \\(\\frac{1}{2}\\)', 'B. \\(\\frac{7}{8}\\)', 'C. \\(\\frac{\\sqrt{15}}{4}\\)', 'D. \\(\\frac{\\sqrt{15}}{8}\\)'],
         correctAnswerIndex: 3,
         maxScore: 1,
         selfScore: false,
-        hint: "Sinus = przyprostokątna naprzeciw kąta / przeciwprostokątna. Naprzeciw kąta przy B leży bok AC, a przeciwprostokątną jest BC = 8.",
+        hint: "Sinus = przyprostokątna naprzeciw kąta / przeciwprostokątna. Naprzeciw kąta przy B leży bok AC, a przeciwprostokątną jest \\(BC = 8\\).",
         formulasPage: 11,
-        solutionText: "Kąt prosty jest przy A, więc przeciwprostokątna to <b>BC = 8</b>. Naprzeciw kąta ABC leży przyprostokątna AC = √15, zatem <span class='mathText'>sin(∠ABC) = <b>√15/8</b></span> — odpowiedź <b>D</b>.",
+        solutionText: "Kąt prosty jest przy A, więc przeciwprostokątna to \\(BC = 8\\). Naprzeciw kąta ABC leży przyprostokątna \\(AC = \\sqrt{15}\\), zatem \\(\\sin(\\angle ABC) = \\boldsymbol{\\frac{\\sqrt{15}}{8}}\\) — odpowiedź <b>D</b>.",
         solutionTextMore: "",
         solutionStepByStep: null,
         solutionInteractive: null
@@ -427,28 +446,28 @@ const exercises = [
     {
         question: '<b>Zadanie 17.2.</b> <br><br> Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>' +
                 'Tangens kąta ostrego ADC jest równy:',
-        answers: ['A. √15', 'B. 1/2', 'C. 7/8', 'D. √15/8'],
+        answers: ['A. \\(\\sqrt{15}\\)', 'B. \\(\\frac{1}{2}\\)', 'C. \\(\\frac{7}{8}\\)', 'D. \\(\\frac{\\sqrt{15}}{8}\\)'],
         correctAnswerIndex: 0,
         maxScore: 1,
         selfScore: false,
-        hint: "Najpierw oblicz AB z twierdzenia Pitagorasa (AB² + AC² = BC²), potem AD = AB − BD. Tangens = przyprostokątna naprzeciw / przyprostokątna przy kącie.",
+        hint: "Najpierw oblicz AB z twierdzenia Pitagorasa (\\(AB^{2} + AC^{2} = BC^{2}\\)), potem \\(AD = AB - BD\\). Tangens = przyprostokątna naprzeciw / przyprostokątna przy kącie.",
         formulasPage: 11,
-        solutionText: "Z Pitagorasa: <span class='mathText'>|AB| = √(8² − (√15)²) = √49 = 7</span>, więc <span class='mathText'>|AD| = 7 − 6 = 1</span>. W trójkącie ACD (prostokątnym przy A): <span class='mathText'>tg(∠ADC) = |AC|/|AD| = √15/1 = <b>√15</b></span> — odpowiedź <b>A</b>.",
+        solutionText: "Z Pitagorasa: \\(|AB| = \\sqrt{8^{2} - (\\sqrt{15})^{2}} = \\sqrt{49} = 7\\), więc \\(|AD| = 7 - 6 = 1\\). W trójkącie ACD (prostokątnym przy A): \\(\\operatorname{tg}(\\angle ADC) = \\frac{|AC|}{|AD|} = \\frac{\\sqrt{15}}{1} = \\boldsymbol{\\sqrt{15}}\\) — odpowiedź <b>A</b>.",
         solutionTextMore: "",
         solutionStepByStep: null,
         solutionInteractive: null
     },
     {
-        question: '<b>Zadanie 18.</b> <br><br> Kąt o mierze α jest <u>rozwarty</u> oraz sin α = √3/4.<br><br>' +
+        question: '<b>Zadanie 18.</b> <br><br> Kąt o mierze \\(\\alpha\\) jest <u>rozwarty</u> oraz \\(\\sin\\alpha = \\frac{\\sqrt{3}}{4}\\).<br><br>' +
                 'Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>' +
-                'Cosinus kąta o mierze α jest równy:',
-        answers: ['A. -√13/4', 'B. -1/2', 'C. 1/2', 'D. √13/4'],
+                'Cosinus kąta o mierze \\(\\alpha\\) jest równy:',
+        answers: ['A. \\(-\\frac{\\sqrt{13}}{4}\\)', 'B. \\(-\\frac{1}{2}\\)', 'C. \\(\\frac{1}{2}\\)', 'D. \\(\\frac{\\sqrt{13}}{4}\\)'],
         correctAnswerIndex: 0,
         maxScore: 1,
         selfScore: false,
-        hint: "Skorzystaj z jedynki trygonometrycznej sin²α + cos²α = 1 oraz z faktu, że dla kąta rozwartego cos α < 0.",
+        hint: "Skorzystaj z jedynki trygonometrycznej \\(\\sin^{2}\\alpha + \\cos^{2}\\alpha = 1\\) oraz z faktu, że dla kąta rozwartego \\(\\cos\\alpha < 0\\).",
         formulasPage: 12,
-        solutionText: "Z jedynki trygonometrycznej: <span class='mathText'>cos²α = 1 − 3/16 = 13/16</span>, więc <span class='mathText'>cos α = ±√13/4</span>. Kąt jest rozwarty, więc cosinus jest ujemny: <b>cos α = −√13/4</b> — odpowiedź <b>A</b>.",
+        solutionText: "Z jedynki trygonometrycznej: \\(\\cos^{2}\\alpha = 1 - \\frac{3}{16} = \\frac{13}{16}\\), więc \\(\\cos\\alpha = \\pm\\frac{\\sqrt{13}}{4}\\). Kąt jest rozwarty, więc cosinus jest ujemny: \\(\\boldsymbol{\\cos\\alpha = -\\frac{\\sqrt{13}}{4}}\\) — odpowiedź <b>A</b>.",
         solutionTextMore: "",
         solutionStepByStep: null,
         solutionInteractive: function (container) {
@@ -456,7 +475,7 @@ const exercises = [
         }
     },
     {
-        question: '<b>Zadanie 19.</b> <br><br> W trapezie prostokątnym ABCD dłuższa podstawa AB ma długość 7,5. Krótsza przekątna AC ma długość równą 6 i dzieli trapez na dwa trójkąty prostokątne.<br><br>' +
+        question: '<b>Zadanie 19.</b> <br><br> W trapezie prostokątnym ABCD dłuższa podstawa AB ma długość \\(7{,}5\\). Krótsza przekątna AC ma długość równą \\(6\\) i dzieli trapez na dwa trójkąty prostokątne.<br><br>' +
                 '<img src="zad19/zad19.png"> <br>' +
                 'Oblicz pole trapezu ABCD. Zapisz obliczenia.',
         type: "open",
@@ -464,25 +483,25 @@ const exercises = [
         correctAnswerIndex: -1,
         maxScore: 4,
         selfScore: true,
-        hint: "W trójkącie ABC (prostokątnym przy C) oblicz BC z Pitagorasa. Kąty CAB i DCA są naprzemianległe (DC ∥ AB) — wykorzystaj to w trójkącie ACD do wyznaczenia wysokości AD i podstawy DC.",
+        hint: "W trójkącie ABC (prostokątnym przy C) oblicz BC z Pitagorasa. Kąty CAB i DCA są naprzemianległe (\\(DC \\parallel AB\\)) — wykorzystaj to w trójkącie ACD do wyznaczenia wysokości AD i podstawy DC.",
         formulasPage: 20,
-        solutionText: "|BC| = √(7,5² − 6²) = 4,5. Z podobieństwa kątów: |AD| = 3,6 i |DC| = 4,8. Pole: <span class='mathText'>P = ½ · (7,5 + 4,8) · 3,6 = <b>22,14</b></span>.",
-        solutionTextMore: "1. Trójkąt ABC jest prostokątny przy C: <span class='mathText'>|BC| = √(7,5² − 6²) = √20,25 = 4,5</span>. <br><br> 2. W tym trójkącie: <span class='mathText'>sin(∠CAB) = 4,5/7,5 = 0,6</span> oraz <span class='mathText'>cos(∠CAB) = 6/7,5 = 0,8</span>. <br><br> 3. DC ∥ AB, więc ∠DCA = ∠CAB (kąty naprzemianległe). W trójkącie ACD (prostokątnym przy D): <br> <span class='mathText'>|AD| = |AC| · sin(∠DCA) = 6 · 0,6 = 3,6</span> (wysokość trapezu), <br> <span class='mathText'>|DC| = |AC| · cos(∠DCA) = 6 · 0,8 = 4,8</span> (krótsza podstawa). <br><br> 4. <span class='mathText'>P = ½ (a + b) · h = ½ (7,5 + 4,8) · 3,6 = ½ · 12,3 · 3,6 = <b>22,14</b></span>.",
+        solutionText: "\\(|BC| = \\sqrt{7{,}5^{2} - 6^{2}} = 4{,}5\\). Z podobieństwa kątów: \\(|AD| = 3{,}6\\) i \\(|DC| = 4{,}8\\). Pole: \\(P = \\frac{1}{2} \\cdot (7{,}5 + 4{,}8) \\cdot 3{,}6 = \\boldsymbol{22{,}14}\\).",
+        solutionTextMore: "1. Trójkąt ABC jest prostokątny przy C: \\(|BC| = \\sqrt{7{,}5^{2} - 6^{2}} = \\sqrt{20{,}25} = 4{,}5\\). <br><br> 2. W tym trójkącie: \\(\\sin(\\angle CAB) = \\frac{4{,}5}{7{,}5} = 0{,}6\\) oraz \\(\\cos(\\angle CAB) = \\frac{6}{7{,}5} = 0{,}8\\). <br><br> 3. \\(DC \\parallel AB\\), więc \\(\\angle DCA = \\angle CAB\\) (kąty naprzemianległe). W trójkącie ACD (prostokątnym przy D): <br> \\(|AD| = |AC| \\cdot \\sin(\\angle DCA) = 6 \\cdot 0{,}6 = 3{,}6\\) (wysokość trapezu), <br> \\(|DC| = |AC| \\cdot \\cos(\\angle DCA) = 6 \\cdot 0{,}8 = 4{,}8\\) (krótsza podstawa). <br><br> 4. \\(P = \\frac{1}{2}(a + b) \\cdot h = \\frac{1}{2}(7{,}5 + 4{,}8) \\cdot 3{,}6 = \\frac{1}{2} \\cdot 12{,}3 \\cdot 3{,}6 = \\boldsymbol{22{,}14}\\).",
         solutionStepByStep: null,
         solutionInteractive: null
     },
     {
-        question: '<b>Zadanie 20.</b> <br><br> Dany jest okrąg o środku w punkcie S i promieniu 6. Miara kąta wpisanego ACB jest równa 60°.<br><br>' +
+        question: '<b>Zadanie 20.</b> <br><br> Dany jest okrąg o środku w punkcie S i promieniu \\(6\\). Miara kąta wpisanego ACB jest równa \\(60^{\\circ}\\).<br><br>' +
                 '<img src="zad20/zad20.png"> <br>' +
                 'Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>' +
                 'Długość łuku AB, na którym oparty jest kąt wpisany ACB, jest równa:',
-        answers: ['A. 2π', 'B. 4π', 'C. 6π', 'D. 12π'],
+        answers: ['A. \\(2\\pi\\)', 'B. \\(4\\pi\\)', 'C. \\(6\\pi\\)', 'D. \\(12\\pi\\)'],
         correctAnswerIndex: 1,
         maxScore: 1,
         selfScore: false,
-        hint: "Kąt środkowy oparty na tym samym łuku jest DWA razy większy od kąta wpisanego. Długość łuku to odpowiedni ułamek całego obwodu 2πr.",
+        hint: "Kąt środkowy oparty na tym samym łuku jest DWA razy większy od kąta wpisanego. Długość łuku to odpowiedni ułamek całego obwodu \\(2\\pi r\\).",
         formulasPage: 19,
-        solutionText: "Kąt środkowy ASB = 2 · 60° = 120°, czyli ⅓ pełnego kąta. Długość łuku: <span class='mathText'>⅓ · 2π · 6 = <b>4π</b></span> — odpowiedź <b>B</b>.",
+        solutionText: "Kąt środkowy \\(\\angle ASB = 2 \\cdot 60^{\\circ} = 120^{\\circ}\\), czyli \\(\\frac{1}{3}\\) pełnego kąta. Długość łuku: \\(\\frac{1}{3} \\cdot 2\\pi \\cdot 6 = \\boldsymbol{4\\pi}\\) — odpowiedź <b>B</b>.",
         solutionTextMore: "",
         solutionStepByStep: null,
         solutionInteractive: function (container) {
@@ -493,126 +512,125 @@ const exercises = [
 
     /* ============================================================
        ZADANIA 21-30 — zgodne z oryginalnym arkuszem CKE (treści
-       i odpowiedzi przekazane przez autora). Tabela w zad 29:
-       patrz todo.md (odtworzona pod wyniki z klucza).
+       i odpowiedzi zweryfikowane z oficjalnym kluczem).
        ============================================================ */
     {
-        question: '<b>Zadanie 21.</b> <br><br> W kartezjańskim układzie współrzędnych (x, y) punkty <b>A = (−2, −1)</b> oraz <b>C = (3, 4)</b> są przeciwległymi wierzchołkami kwadratu ABCD.<br><br>' +
+        question: '<b>Zadanie 21.</b> <br><br> W kartezjańskim układzie współrzędnych \\((x, y)\\) punkty \\(A = (-2,\\ -1)\\) oraz \\(C = (3,\\ 4)\\) są przeciwległymi wierzchołkami kwadratu ABCD.<br><br>' +
                 'Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>' +
                 'Długość boku kwadratu ABCD jest równa:',
-        answers: ['A. 5', 'B. 10', 'C. 5√2', 'D. √10'],
+        answers: ['A. \\(5\\)', 'B. \\(10\\)', 'C. \\(5\\sqrt{2}\\)', 'D. \\(\\sqrt{10}\\)'],
         correctAnswerIndex: 0,
         maxScore: 1,
         selfScore: false,
-        hint: "AC to przekątna kwadratu. Policz ją ze wzoru na długość odcinka, a potem skorzystaj z zależności: przekątna = bok · √2.",
+        hint: "AC to przekątna kwadratu. Policz ją ze wzoru na długość odcinka, a potem skorzystaj z zależności: przekątna \\(= a\\sqrt{2}\\).",
         formulasPage: 22,
-        solutionText: "<span class='mathText'>|AC| = √(5² + 5²) = 5√2</span>, a bok kwadratu to przekątna podzielona przez √2: <b>a = 5</b> — odpowiedź <b>A</b>.",
+        solutionText: "\\(|AC| = \\sqrt{5^{2} + 5^{2}} = 5\\sqrt{2}\\), a bok kwadratu to przekątna podzielona przez \\(\\sqrt{2}\\): \\(\\boldsymbol{a = 5}\\) — odpowiedź <b>A</b>.",
         solutionTextMore: "",
         solutionStepByStep: null,
         solutionInteractive: null
     },
     {
-        question: '<b>Zadanie 22.</b> <br><br> W kartezjańskim układzie współrzędnych (x, y) dana jest prosta <i>k</i> o równaniu <span class="mathText">y = −7x + 3</span>. Prosta <i>l</i> jest równoległa do prostej <i>k</i> i przecina oś Oy w punkcie (0, 6). Punkt o współrzędnych (1, p) należy do prostej <i>l</i>.<br><br>' +
+        question: '<b>Zadanie 22.</b> <br><br> W kartezjańskim układzie współrzędnych \\((x, y)\\) dana jest prosta \\(k\\) o równaniu \\(y = -7x + 3\\). Prosta \\(l\\) jest równoległa do prostej \\(k\\) i przecina oś \\(Oy\\) w punkcie \\((0,\\ 6)\\). Punkt o współrzędnych \\((1,\\ p)\\) należy do prostej \\(l\\).<br><br>' +
                 'Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>' +
-                'Liczba p jest równa:',
-        answers: ['A. (−4)', 'B. (−1)', 'C. 5/7', 'D. 7'],
+                'Liczba \\(p\\) jest równa:',
+        answers: ['A. \\((-4)\\)', 'B. \\((-1)\\)', 'C. \\(\\frac{5}{7}\\)', 'D. \\(7\\)'],
         correctAnswerIndex: 1,
         maxScore: 1,
         selfScore: false,
-        hint: "Proste równoległe mają ten sam współczynnik kierunkowy. Punkt (0, 6) od razu daje wyraz wolny prostej l.",
+        hint: "Proste równoległe mają ten sam współczynnik kierunkowy. Punkt \\((0,\\ 6)\\) od razu daje wyraz wolny prostej l.",
         formulasPage: 24,
-        solutionText: "Prosta l: <span class='mathText'>y = −7x + 6</span>, więc <span class='mathText'>p = −7 · 1 + 6 = <b>−1</b></span> — odpowiedź <b>B</b>.",
+        solutionText: "Prosta l: \\(y = -7x + 6\\), więc \\(p = -7 \\cdot 1 + 6 = \\boldsymbol{-1}\\) — odpowiedź <b>B</b>.",
         solutionTextMore: "",
         solutionStepByStep: null,
         solutionInteractive: null
     },
     {
-        question: '<b>Zadanie 23.</b> <br><br> W kartezjańskim układzie współrzędnych (x, y) dane są cztery okręgi o równaniach:<br><br>' +
-                '<span class="mathText">o₁: (x − 1)² + (y − 2)² = 1</span><br>' +
-                '<span class="mathText">o₂: (x + 1)² + (y + 2)² = 9</span><br>' +
-                '<span class="mathText">o₃: (x − 3)² + (y − 4)² = 4</span><br>' +
-                '<span class="mathText">o₄: (x + 3)² + (y + 4)² = 16</span><br><br>' +
+        question: '<b>Zadanie 23.</b> <br><br> W kartezjańskim układzie współrzędnych \\((x, y)\\) dane są cztery okręgi o równaniach:<br><br>' +
+                '\\(o_1\\colon\\ (x - 1)^{2} + (y - 2)^{2} = 1\\)<br>' +
+                '\\(o_2\\colon\\ (x + 1)^{2} + (y + 2)^{2} = 9\\)<br>' +
+                '\\(o_3\\colon\\ (x - 3)^{2} + (y - 4)^{2} = 4\\)<br>' +
+                '\\(o_4\\colon\\ (x + 3)^{2} + (y + 4)^{2} = 16\\)<br><br>' +
                 'Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>' +
-                'Okręgiem, który nie ma żadnego punktu wspólnego z osiami układu współrzędnych (x, y), jest:',
-        answers: ['A. o₁', 'B. o₂', 'C. o₃', 'D. o₄'],
+                'Okręgiem, który nie ma żadnego punktu wspólnego z osiami układu współrzędnych \\((x, y)\\), jest:',
+        answers: ['A. \\(o_1\\)', 'B. \\(o_2\\)', 'C. \\(o_3\\)', 'D. \\(o_4\\)'],
         correctAnswerIndex: 2,
         maxScore: 1,
         selfScore: false,
-        hint: "Okrąg o środku (a, b) i promieniu r nie dotyka osi, gdy |a| > r oraz |b| > r. Sprawdź każdy okrąg po kolei.",
+        hint: "Okrąg o środku \\((a,\\ b)\\) i promieniu \\(r\\) nie dotyka osi, gdy \\(|a| > r\\) oraz \\(|b| > r\\). Sprawdź każdy okrąg po kolei.",
         formulasPage: 24,
-        solutionText: "o₃ ma środek (3, 4) i promień 2: odległości od osi (3 i 4) są większe od promienia, więc <b>o₃</b> nie dotyka żadnej z osi — odpowiedź <b>C</b>. (o₁ jest styczny do osi Oy, o₂ i o₄ przecinają osie.)",
+        solutionText: "\\(o_3\\) ma środek \\((3,\\ 4)\\) i promień \\(2\\): odległości od osi (3 i 4) są większe od promienia, więc \\(\\boldsymbol{o_3}\\) nie dotyka żadnej z osi — odpowiedź <b>C</b>. (\\(o_1\\) jest styczny do osi \\(Oy\\), \\(o_2\\) i \\(o_4\\) przecinają osie.)",
         solutionTextMore: "",
         solutionStepByStep: null,
         solutionInteractive: null
     },
     {
-        question: '<b>Zadanie 24.</b> <br><br> Podstawą ostrosłupa prawidłowego czworokątnego jest kwadrat o boku długości 4. Ściana boczna tego ostrosłupa jest nachylona do płaszczyzny podstawy pod takim kątem α, że <span class="mathText">tg α = 3</span>.<br><br>' +
+        question: '<b>Zadanie 24.</b> <br><br> Podstawą ostrosłupa prawidłowego czworokątnego jest kwadrat o boku długości \\(4\\). Ściana boczna tego ostrosłupa jest nachylona do płaszczyzny podstawy pod takim kątem \\(\\alpha\\), że \\(\\operatorname{tg}\\alpha = 3\\).<br><br>' +
                 'Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>' +
                 'Wysokość tego ostrosłupa jest równa:',
-        answers: ['A. 3', 'B. 6', 'C. 6√2', 'D. 12'],
+        answers: ['A. \\(3\\)', 'B. \\(6\\)', 'C. \\(6\\sqrt{2}\\)', 'D. \\(12\\)'],
         correctAnswerIndex: 1,
         maxScore: 1,
         selfScore: false,
-        hint: "Kąt nachylenia ściany bocznej leży w trójkącie: wysokość ostrosłupa H i połowa boku podstawy (2). tg α = H / 2.",
+        hint: "Kąt nachylenia ściany bocznej leży w trójkącie: wysokość ostrosłupa H i połowa boku podstawy (2). \\(\\operatorname{tg}\\alpha = \\frac{H}{2}\\).",
         formulasPage: 27,
-        solutionText: "<span class='mathText'>tg α = H / (a/2)</span>, czyli <span class='mathText'>3 = H / 2</span>, stąd <b>H = 6</b> — odpowiedź <b>B</b>.",
+        solutionText: "\\(\\operatorname{tg}\\alpha = \\frac{H}{a/2}\\), czyli \\(3 = \\frac{H}{2}\\), stąd \\(\\boldsymbol{H = 6}\\) — odpowiedź <b>B</b>.",
         solutionTextMore: "",
         solutionStepByStep: null,
         solutionInteractive: null
     },
     {
-        question: '<b>Zadanie 25.</b> <br><br> Długości trzech krawędzi wychodzących z jednego wierzchołka prostopadłościanu są trzema kolejnymi parzystymi liczbami naturalnymi. Najdłuższa krawędź tego prostopadłościanu ma długość p.<br><br>' +
+        question: '<b>Zadanie 25.</b> <br><br> Długości trzech krawędzi wychodzących z jednego wierzchołka prostopadłościanu są trzema kolejnymi parzystymi liczbami naturalnymi. Najdłuższa krawędź tego prostopadłościanu ma długość \\(p\\).<br><br>' +
                 'Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>' +
                 'Objętość tego prostopadłościanu jest równa:',
-        answers: ['A. p³ − 3p² + 2p', 'B. p³ + 3p² + 2p', 'C. p³ − 6p² − 8p', 'D. p³ − 6p² + 8p'],
+        answers: ['A. \\(p^{3} - 3p^{2} + 2p\\)', 'B. \\(p^{3} + 3p^{2} + 2p\\)', 'C. \\(p^{3} - 6p^{2} - 8p\\)', 'D. \\(p^{3} - 6p^{2} + 8p\\)'],
         correctAnswerIndex: 3,
         maxScore: 1,
         selfScore: false,
-        hint: "Kolejne parzyste liczby różnią się o 2, więc krawędzie to p − 4, p − 2 oraz p. Wymnóż.",
+        hint: "Kolejne parzyste liczby różnią się o 2, więc krawędzie to \\(p - 4\\), \\(p - 2\\) oraz \\(p\\). Wymnóż.",
         formulasPage: 26,
-        solutionText: "<span class='mathText'>V = (p − 4)(p − 2)p = (p² − 6p + 8)p = <b>p³ − 6p² + 8p</b></span> — odpowiedź <b>D</b>.",
+        solutionText: "\\(V = (p - 4)(p - 2)p = (p^{2} - 6p + 8)p = \\boldsymbol{p^{3} - 6p^{2} + 8p}\\) — odpowiedź <b>D</b>.",
         solutionTextMore: "",
         solutionStepByStep: null,
         solutionInteractive: null
     },
     {
-        question: '<b>Zadanie 26.</b> <br><br> Objętość stożka o wysokości 2 jest równa 8π. Oblicz miarę kąta rozwarcia tego stożka. Zapisz obliczenia.',
+        question: '<b>Zadanie 26.</b> <br><br> Objętość stożka o wysokości \\(2\\) jest równa \\(8\\pi\\). Oblicz miarę kąta rozwarcia tego stożka. Zapisz obliczenia.',
         type: "open",
         answers: [],
         correctAnswerIndex: -1,
         maxScore: 2,
         selfScore: true,
-        hint: "Z wzoru V = ⅓πr²h wyznacz promień podstawy. Kąt rozwarcia to 2× kąt między wysokością a tworzącą: tg(α/2) = r / h.",
+        hint: "Z wzoru \\(V = \\frac{1}{3}\\pi r^{2} h\\) wyznacz promień podstawy. Kąt rozwarcia to 2× kąt między wysokością a tworzącą: \\(\\operatorname{tg}\\frac{\\alpha}{2} = \\frac{r}{h}\\).",
         formulasPage: 27,
-        solutionText: "<span class='mathText'>⅓ · πr² · 2 = 8π → r² = 12 → r = 2√3</span>. Dalej <span class='mathText'>tg(α/2) = r/h = 2√3/2 = √3</span>, więc α/2 = 60° i kąt rozwarcia <b>α = 120°</b>.",
+        solutionText: "\\(\\frac{1}{3}\\pi r^{2} \\cdot 2 = 8\\pi \\Rightarrow r^{2} = 12 \\Rightarrow r = 2\\sqrt{3}\\). Dalej \\(\\operatorname{tg}\\frac{\\alpha}{2} = \\frac{r}{h} = \\frac{2\\sqrt{3}}{2} = \\sqrt{3}\\), więc \\(\\frac{\\alpha}{2} = 60^{\\circ}\\) i kąt rozwarcia \\(\\boldsymbol{\\alpha = 120^{\\circ}}\\).",
         solutionTextMore: "",
         solutionStepByStep: null,
         solutionInteractive: null
     },
     {
         question: '<b>Zadanie 27.</b> <br><br> Wszystkich liczb naturalnych pięciocyfrowych <u>nieparzystych</u>, w których zapisie dziesiętnym występują wyłącznie cyfry 0, 1, 2, 3 (np. 12303, 11111), jest:',
-        answers: ['A. 32', 'B. 384', 'C. 512', 'D. 576'],
+        answers: ['A. \\(32\\)', 'B. \\(384\\)', 'C. \\(512\\)', 'D. \\(576\\)'],
         correctAnswerIndex: 1,
         maxScore: 1,
         selfScore: false,
         hint: "Reguła mnożenia: pierwsza cyfra nie może być zerem, ostatnia musi być nieparzysta (1 albo 3), środkowe trzy — dowolne z czterech cyfr.",
         formulasPage: 28,
-        solutionText: "<span class='mathText'>3 · 4 · 4 · 4 · 2 = <b>384</b></span> — odpowiedź <b>B</b>.",
+        solutionText: "\\(3 \\cdot 4 \\cdot 4 \\cdot 4 \\cdot 2 = \\boldsymbol{384}\\) — odpowiedź <b>B</b>.",
         solutionTextMore: "",
         solutionStepByStep: null,
         solutionInteractive: null
     },
     {
-        question: '<b>Zadanie 28.</b> <br><br> Dane są dwa zbiory: <b>C = {1, 2, 3, 4, 5, 6}</b> oraz <b>D = {7, 8, 9, 10}</b>. Losujemy jedną liczbę ze zbioru C, a następnie losujemy jedną liczbę ze zbioru D.<br><br>' +
+        question: '<b>Zadanie 28.</b> <br><br> Dane są dwa zbiory: \\(C = \\{1, 2, 3, 4, 5, 6\\}\\) oraz \\(D = \\{7, 8, 9, 10\\}\\). Losujemy jedną liczbę ze zbioru C, a następnie losujemy jedną liczbę ze zbioru D.<br><br>' +
                 'Oblicz prawdopodobieństwo zdarzenia A polegającego na tym, że wylosujemy liczby, których iloczyn będzie podzielny przez 4. Zapisz obliczenia.',
         type: "open",
         answers: [],
         correctAnswerIndex: -1,
         maxScore: 2,
         selfScore: true,
-        hint: "Wszystkich par jest 6 · 4 = 24. Przejrzyj liczby z D: przy 8 iloczyn zawsze dzieli się przez 4; przy 7 i 9 musi pomóc liczba z C; przy 10 wystarczy, że liczba z C jest parzysta.",
+        hint: "Wszystkich par jest \\(6 \\cdot 4 = 24\\). Przejrzyj liczby z D: przy 8 iloczyn zawsze dzieli się przez 4; przy 7 i 9 musi pomóc liczba z C; przy 10 wystarczy, że liczba z C jest parzysta.",
         formulasPage: 29,
-        solutionText: "|Ω| = 24. Sprzyjające: z 8 — każde c (6 par); z 7 i 9 — tylko c = 4 (2 pary); z 10 — c parzyste: 2, 4, 6 (3 pary). Razem 11, więc <span class='mathText'><b>P(A) = 11/24</b></span>.",
+        solutionText: "\\(|\\Omega| = 24\\). Sprzyjające: z 8 — każde c (6 par); z 7 i 9 — tylko \\(c = 4\\) (2 pary); z 10 — c parzyste: 2, 4, 6 (3 pary). Razem 11, więc \\(\\boldsymbol{P(A) = \\frac{11}{24}}\\).",
         solutionTextMore: "",
         solutionStepByStep: null,
         solutionInteractive: null
@@ -633,24 +651,26 @@ const exercises = [
         selfScore: false,
         hint: "Średnia: suma (liczba książek · liczba uczniów) podzielona przez 50. Mediana przy 50 uczniach to średnia 25. i 26. wyniku po uporządkowaniu.",
         formulasPage: 31,
-        solutionText: "1. Średnia: <span class='mathText'>(4·5 + 5·8 + 6·12 + 7·13 + 8·12) / 50 = 319/50 = <b>6,38</b></span>. <br> 2. Mediana: 25. wynik to 6, a 26. to 7, więc <span class='mathText'>(6 + 7)/2 = <b>6,5</b></span>.",
+        solutionText: "1. Średnia: \\(\\frac{4 \\cdot 5 + 5 \\cdot 8 + 6 \\cdot 12 + 7 \\cdot 13 + 8 \\cdot 12}{50} = \\frac{319}{50} = \\boldsymbol{6{,}38}\\). <br> 2. Mediana: 25. wynik to 6, a 26. to 7, więc \\(\\frac{6 + 7}{2} = \\boldsymbol{6{,}5}\\).",
         solutionTextMore: "",
         solutionStepByStep: null,
         solutionInteractive: null
     },
     {
-        question: '<b>Zadanie 30.</b> <br><br> Rozważamy wszystkie prostopadłościany ABCDEFGH, w których krawędź AE jest 3 razy dłuższa od krawędzi AB, a suma długości wszystkich dwunastu krawędzi prostopadłościanu jest równa 48 (zobacz rysunek). Niech P(x) oznacza funkcję pola powierzchni całkowitej takiego prostopadłościanu w zależności od długości x krawędzi AB.<br>' +
+        question: '<b>Zadanie 30.</b> <br><br> Rozważamy wszystkie prostopadłościany ABCDEFGH, w których krawędź AE jest 3 razy dłuższa od krawędzi AB, a suma długości wszystkich dwunastu krawędzi prostopadłościanu jest równa 48 (zobacz rysunek). Niech \\(P(x)\\) oznacza funkcję pola powierzchni całkowitej takiego prostopadłościanu w zależności od długości \\(x\\) krawędzi AB.<br>' +
                 '<img src="zad30/zad30.png" style="width:220px;"> <br>' +
-                'Wyznacz wzór i dziedzinę funkcji P. Oblicz długość x krawędzi AB tego z rozważanych prostopadłościanów, którego pole powierzchni całkowitej jest największe. Zapisz obliczenia.',
+                'Wyznacz wzór i dziedzinę funkcji P. Oblicz długość \\(x\\) krawędzi AB tego z rozważanych prostopadłościanów, którego pole powierzchni całkowitej jest największe. Zapisz obliczenia.',
         type: "open",
         answers: [],
         correctAnswerIndex: -1,
         maxScore: 4,
         selfScore: true,
-        hint: "Oznacz AB = x, AE = 3x, a trzecią krawędź (AD) wyznacz z sumy krawędzi: 4(x + AD + 3x) = 48. Pole całkowite to suma pól trzech par ścian; maksimum funkcji kwadratowej jest w wierzchołku.",
+        hint: "Oznacz \\(AB = x\\), \\(AE = 3x\\), a trzecią krawędź (AD) wyznacz z sumy krawędzi: \\(4(x + AD + 3x) = 48\\). Pole całkowite to suma pól trzech par ścian; maksimum funkcji kwadratowej jest w wierzchołku.",
         formulasPage: 7,
-        solutionText: "Z sumy krawędzi: <span class='mathText'>AD = 12 − 4x</span>, stąd <span class='mathText'><b>P(x) = −26x² + 96x</b></span> dla <span class='mathText'><b>x ∈ (0, 3)</b></span>. Maksimum w wierzchołku: <span class='mathText'>x = 96/52 = <b>24/13</b></span>.",
-        solutionTextMore: "Krawędzie: <span class='mathText'>AB = x, AE = 3x, AD = y</span>. Suma: <span class='mathText'>4(x + y + 3x) = 48 → y = 12 − 4x</span>; warunek y > 0 daje dziedzinę <span class='mathText'>x ∈ (0, 3)</span>. <br><br> <span class='mathText'>P(x) = 2xy + 2·x·3x + 2·y·3x = 6x² + 8xy = 6x² + 8x(12 − 4x) = <b>−26x² + 96x</b></span>. <br><br> Ramiona w dół, więc największa wartość w wierzchołku: <span class='mathText'>x = −96 / (2·(−26)) = <b>24/13</b></span> (należy do dziedziny).",
+        solutionText: "Z sumy krawędzi: \\(AD = 12 - 4x\\), stąd \\(\\boldsymbol{P(x) = -26x^{2} + 96x}\\) dla \\(\\boldsymbol{x \\in (0,\\ 3)}\\). Maksimum w wierzchołku: \\(x = \\frac{96}{52} = \\boldsymbol{\\frac{24}{13}}\\).",
+        solutionTextMore: "Krawędzie: \\(AB = x\\), \\(AE = 3x\\), \\(AD = y\\). Suma: \\(4(x + y + 3x) = 48 \\Rightarrow y = 12 - 4x\\); warunek \\(y > 0\\) daje dziedzinę \\(x \\in (0,\\ 3)\\)." +
+            "\\[P(x) = 2xy + 2 \\cdot x \\cdot 3x + 2 \\cdot y \\cdot 3x = 6x^{2} + 8xy = 6x^{2} + 8x(12 - 4x) = \\boldsymbol{-26x^{2} + 96x}\\]" +
+            "Ramiona w dół, więc największa wartość w wierzchołku: \\(x = \\frac{-96}{2 \\cdot (-26)} = \\boldsymbol{\\frac{24}{13}}\\) (należy do dziedziny).",
         solutionStepByStep: null,
         solutionInteractive: function (container) {
             widgetProstopadloscian(container);
