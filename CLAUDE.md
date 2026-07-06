@@ -14,8 +14,10 @@ A static Polish-language practice site for one exam sheet ("Egzamin maturalny z 
 
 - [index.html](index.html) — landing page, pure static HTML (`.landing-*` styles).
 - [matematykazen.html](matematykazen.html) — the exam-sheet page: hidden exercise `<template>` + inline `<script>` at the bottom that renders exercises from the data file and wires up all interactivity (answers, hints, step-by-step solutions, widgets, formula-sheet PDF panel).
-- [exercises.js](exercises.js) — pure data: a single global `exercises` array, loaded before the inline script. **Target format is `exercises.json`** — planned migration; until then it stays a `.js` file.
+- [exercises.js](exercises.js) — pure data: a single global `exercises` array, loaded before the inline script. **Target format is `exercises.json`** — planned migration; until then it stays a `.js` file. All math in it is written in **KaTeX** (`\( ... \)` / `\[ ... \]`; see the header comment there and ARCHITECTURE.md).
 - [style.css](style.css) — all styling (exam sheet + landing).
+
+Plus `vendor/katex/` — KaTeX vendored for fully offline math rendering (don't edit those files; to bump the version replace them from the npm tarball).
 
 Plus per-exercise asset folders `zad1/`, `zad2/`, … (PNG images + Manim-produced MP4 solution videos; keep filenames **lowercase**) and `wybrane_wzory_matematyczne.pdf` (formula sheet shown in a floating panel). The official exam + answer key PDFs and their text extracts live in `arkusze PDF/` — do not delete; all 30 answers in exercises.js were verified against the CKE key (2026-07-05).
 

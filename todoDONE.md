@@ -199,3 +199,43 @@ Zostawione bez zmian (za decyzją Henricha):
   i skrypt obsługuje dowolną ich liczbę.
 - [OPUS DID WELL] zad 29 tabela: tabela w exercises.js jest zgodna z oryginałem CKE:
   książki 4–8, liczby uczniów 5, 8, 12, 13, 12 (średnia 6,38, mediana 6,5 jak w kluczu).
+
+--- Sesja 2026-07-06 (Fable): KaTeX offline + menu ⋯ + reset punktacji + anty-migotanie wideo ---
+- [ZROBIONE 2026-07-06] KaTeX zvendorowany do repo (vendor/katex/: katex.min.js/css,
+  auto-render.min.js, fonty woff2, LICENSE; wersja 0.16.11) — matematyka renderuje
+  się w pełni offline. Ładowany synchronicznie w <head>; renderujMatematyke(el)
+  (wrapper na renderMathInElement, delimitery \( \) i \[ \], throwOnError: false,
+  guard na brak biblioteki) wołany na klonie każdego zadania oraz na każdym kroku
+  step-by-step w showStep().
+- [ZROBIONE 2026-07-06] Migracja CAŁEJ matematyki w exercises.js na KaTeX:
+  <sub>/<sup>, unicode (𝑥₁, ⁵√5, ⅕, ²⁄₃...), spany .mathText → \( \) / \[ \]
+  (wieloliniowe wyprowadzenia jako \[\begin{aligned}...\]). 422 wzory zweryfikowane
+  automatycznie przez katex.renderToString — 0 błędów; suma punktów arkusza nadal 50.
+  Konwencje: 6{,}38 (polski przecinek), \operatorname{tg}, przedziały \langle\rangle,
+  wyniki \boldsymbol{} — opisane w komentarzu nagłówkowym exercises.js.
+- [ZROBIONE 2026-07-06, bonus] Wzory-obrazki zastąpione KaTeXem: zad 2 (potęga
+  z pierwiastkiem), zad 6 (wyrażenie + wszystkie 4 odpowiedzi), zad 7 (układ równań,
+  \begin{cases}), zad 8 (równanie wymierne), zad 10 (definicja funkcji przedziałami,
+  \begin{cases}) — przepisane 1:1 z PNG. W treściach zostały tylko prawdziwe rysunki
+  (zad 10 wykres, 11, 17, 19, 20, 30). Nieużywane PNG zostają na dysku (prowieniencja).
+- [ZROBIONE 2026-07-06] Przycisk ⋯ (#menu-button) w prawej strefie paska + okienko
+  #bar-menu (fixed, pod paskiem, zamykane klikiem poza): przeniesione tam
+  "pokaż/schowaj wszystkie rozwiązania" i "widok punktów" (te same ID, ta sama
+  logika) + NOWY "resetuj punktację" (#reset-scores: localStorage.removeItem +
+  reload — jedna wspólna ścieżka zerowania ze świeżym renderem).
+- [ZROBIONE 2026-07-06, do testu wzrokowego] Migotanie przy przełączaniu kroków:
+  podwójny bufor w showStep() — nowy krok budowany w odłączonym divie, a gdy
+  poprzedni krok jest na ekranie i nowy ma film, podmiana (replaceChildren) czeka
+  na loadeddata nowego filmu (skrót readyState>=2 dla cache, fallback setTimeout
+  1,5 s); autoplay zdjęty, video.play() dopiero po wstawieniu; stepSwapToken +
+  flaga krokWstawiony chronią przed wyścigami (szybkie ◄/►, loadeddata+timeout).
+  Nawigacja (licznik, strzałki, markCorrectAnswer) aktualizuje się od razu.
+- [ZROBIONE 2026-07-06] Przyciski odpowiedzi: width → min-width (22% ABCD / 30%
+  multiSelect) + white-space: nowrap — dłuższy wzór poszerza przycisk zamiast
+  łamać "A." nad wzór; krótkie odpowiedzi trzymają równą siatkę. Rozmiar wzorów:
+  .katex { font-size: 1.08em }.
+- [SPRAWDZONE 2026-07-06] Test Playwright (chromium): ABCD/PF/multiSelect/fillIn,
+  punktacja i suma, zapis/odczyt postępu, menu ⋯ (otwieranie, zamykanie klikiem
+  poza, wszystkie 3 akcje), reset punktacji (0/50 po resecie), kroki wideo
+  z podwójnym buforem, KaTeX w komentarzach kroków. Jedyne błędy konsoli to
+  fonts.googleapis.com (brak internetu w sandboksie testowym) — nie dotyczy zmian.
