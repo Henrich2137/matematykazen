@@ -15,27 +15,7 @@ WYSOKI PRIORYTET:
 
 
 NISKI PRIORYTET (drobne porządki, dobre na krótką sesję):
-
-- Usunąć nieużywane pliki graficzne (po migracji na KaTeX nic się do nich nie
-  odwołuje — przed usunięciem potwierdź grepem po całym repo): zad2/zad2.png,
-  zad6/zad6.png, zad6/zad6odp1-4.png, zad7/zad7.png, zad7/zad7x2.png,
-  zad8/zad8.png, zad10/zad10.png (UWAGA: zad10/zad10rys.png ZOSTAJE — to wykres!),
-  zad16/zad16.png (cały folder zad16). Zaktualizować zdanie o "kept on disk for
-  provenance" w ARCHITECTURE.md (sekcja Asset folder convention).
-
-- Zad 1: komentarze pod krokami wideo to nadal placeholdery z czasów budowy
-  ("Tu będą pojawiać się różne komentarze", "Niestety będą miały one różną
-  długość..."). Napisać 9 prawdziwych, krótkich komentarzy po polsku opisujących
-  co dzieje się w danym kroku rozwiązania |x + 4| = 7 (obejrzyj filmiki
-  zad1/zad1rozw_step1-9.mp4 albo wyprowadź z toku rozwiązania w solutionTextMore).
-  Wolno używać KaTeX \( \) — komentarze kroków są renderowane.
-
-- Literówki w treściach: index.html "wzbogaconomi" → "wzbogaconymi" (i przeczytaj
-  cały landing pod kątem innych literówek).
-
-- Dostępność: rysunki w exercises.js nie mają atrybutu alt — dodać krótkie polskie
-  opisy do 6 obrazków (zad10/zad10rys.png, zad11/zad11.png, zad17/zad17.png,
-  zad19/zad19.png, zad20/zad20.png, zad30/zad30.png).
+(pusto — cztery punkty porządkowe z 2026-07-06 zrealizowane, patrz todoDONE.md)
 
 NIE REALIZUJ, NA POTEM:
 - do sekcji "oceń się" powinno być dodane kryteria sukcesu dopiero po kliknięciu
