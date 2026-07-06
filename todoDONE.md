@@ -3,6 +3,41 @@ Nie wczytuj tego pliku domyślnie — tylko gdy potrzebne jest szersze spojrzeni
 rozwiązanie trudniejszego problemu albo sprawdzenie, czy/jak coś już kiedyś rozwiązano.
 (Zasada opisana w CLAUDE.md. Plik zaczął się jako notatki ze smoke testu.)
 
+ZROBIONE (2026-07-06, sesja "trzy duże zadania" — gałąź claude/todo-tasks-from-files-9jt8h0):
+- [ZROBIONE] MIGRACJA exercises.js → exercises.json (cel z CLAUDE.md). Dane wyeksportowane
+  1:1 do czystego JSON-a (JSON.stringify po ewaluacji starego pliku); solutionInteractive
+  zamienione z funkcji na nazwę widżetu (string), w matematykazen.html rejestr
+  WIDZETY { nazwa → funkcja } używany przy renderze (nieznana nazwa → console.warn).
+  Wczytywanie: async startujArkusz() z fetch("exercises.json"); przy file:// (fetch
+  zablokowany) strona pokazuje komunikat .blad-wczytywania z instrukcją "uruchom przez
+  serwer (npx serve / python -m http.server)". Komentarze schematu z nagłówka exercises.js
+  przeniesione do ARCHITECTURE.md; CLAUDE.md (sekcja Running + opis plików) zaktualizowane.
+  Walidacja: skrypt node z vendor/katex — 429 wzorów \( \)/\[ \] renderuje się bez błędów;
+  suma maxScore = 50; smoke Playwright (punktacja, zapis/odczyt postępu, widżety, fillIn,
+  menu ⋯) — bez regresji. exercises.js usunięty.
+- [ZROBIONE] KATEX W WIDŻETACH. Wszystkie spany .mathText (tytuły, readouty, kontrolki,
+  lista wzorów zad 10) przepisane na KaTeX. Nowe pomocniki w sekcji widżetów:
+  wgMath(tex) = memoizowany katex.renderToString (bez auto-rendera na żywych readoutach —
+  wartości są skwantowane, więc cache wzór→HTML jest mały i każdy wzór renderuje się raz),
+  wgTexLiczba(v) = polski zapis liczby w TeX ({,} zamiast przecinka, \, dla tysięcy),
+  wgUstawHTML(el, html) = podmiana innerHTML tylko gdy treść faktycznie się zmieniła.
+  W zad 1 wzór z okienkami <input> sklejony z fragmentów KaTeXa (input nie wejdzie do
+  wzoru); sin/cos w zad 18 kolorowane \textcolor zgodnie z rysunkiem. Martwa klasa
+  .mathText usunięta ze style.css. Przeciąganie w widżetach 1/9/18/30 przetestowane
+  Playwrightem (60 ruchów wskaźnika bez błędów; płynność do oceny okiem — punkt w todo.md).
+- [ZROBIONE] TRYB EGZAMINACYJNY (170 min). Przycisk "rozpocznij próbny egzamin" w menu ⋯;
+  start (po confirm) czyści postęp i przeładowuje stronę w tryb egzaminu. Ocenianie biegnie
+  normalną ścieżką — tryb tylko dokłada body.tryb-egzaminu, pod którą style.css chowa
+  punkty/podpowiedzi/rozwiązania/samoocenę/#toggle-zasady i neutralizuje kolory poprawności
+  na "zaznaczenie"; tablice wzorów CKE zostają. Timer w pasku (ostatnie 10 min czerwone),
+  "zakończ egzamin" obok; stan { start } w osobnym kluczu localStorage
+  matematykazen-egzamin-grudzien2024 (odświeżenie nie przerywa; czas miniony przy
+  zamkniętej karcie kończy egzamin zaraz po wczytaniu danych). Podsumowanie (nakładka
+  #egzamin-podsumowanie): zadania zamknięte X/31 + procent + użyty czas + wyraźna
+  informacja, że zadania otwarte (19 pkt) ocenia się samooceną PO egzaminie. Decyzje
+  projektowe opisane w raporcie w todo.md. Testy Playwright: pełny cykl + wygaśnięcie
+  czasu. Opis w ARCHITECTURE.md (sekcja "Exam mode").
+
 ZROBIONE (2026-07-06, sesja porządkowa — cztery drobne punkty z NISKI PRIORYTET):
 - [DONE] Usunięte nieużywane pliki graficzne (zweryfikowane grepem po całym repo, że nic ich już nie odwołuje): zad2/zad2.png, zad6/zad6.png, zad6/zad6odp1-4.png, zad7/zad7.png, zad7/zad7x2.png, zad8/zad8.png, zad10/zad10.png (zad10/zad10rys.png zostawiony — to prawdziwy wykres), cały folder zad16/. Zdanie o "kept on disk for provenance" w ARCHITECTURE.md (sekcja Asset folder convention) zaktualizowane, żeby nie odsyłało do usuniętych plików.
 - [DONE] Zad 1: 9 placeholderowych komentarzy pod krokami wideo rozwiązania |x + 4| = 7 zastąpione prawdziwymi, krótkimi opisami po polsku (z KaTeX-em), wyprowadzonymi z faktycznej treści klatek (ffmpeg + odczyt kluczowych klatek każdego z 9 filmików step1-9).

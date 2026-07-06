@@ -21,57 +21,11 @@ NISKI PRIORYTET (drobne porządki, dobre na krótką sesję):
 <br><br><br>
 
 
-<h3>DUŻE ZADANIA OD FABLE (2026-07-06) — każde na osobną, pełną sesję</h3>
+<h3>DUŻE ZADANIA OD FABLE (2026-07-06)</h3>
 
-Zweryfikowałem sesję porządkową z 2026-07-06 (usunięte PNG — brak wiszących
-odwołań; komentarze zad 1 sprawdzone z klatkami filmików przez ffmpeg — zgodne;
-literówka i alty OK; 429 wzorów KaTeX renderuje się bez błędów, suma arkusza
-dalej 50 pkt). Poniżej następne zadania, trudnością odpowiadające sesji
-"KaTeX + menu + responsywność". Przed startem przeczytaj ARCHITECTURE.md.
-
-1. MIGRACJA exercises.js → exercises.json (zadeklarowany cel z CLAUDE.md):
-   - solutionInteractive nie przeżyje JSON-a: w danych zamień funkcję na nazwę
-     widżetu (string, np. "widgetOsLiczbowa"), a w matematykazen.html zrób
-     rejestr { nazwa → funkcja } i wywołuj z niego przy renderze.
-   - Wczytywanie: fetch("exercises.json") + async start loadExercises();
-     UWAGA na file:// — fetch tam nie działa; zostaw czytelny komunikat na
-     stronie ("uruchom przez serwer, np. npx serve") i opisz to w CLAUDE.md
-     (sekcja Running) oraz ARCHITECTURE.md.
-   - Escapowanie KaTeX-a w JSON jest takie samo jak w JS ("\\(...\\)") — nie
-     ruszaj treści, tylko przenieś; komentarze z nagłówka exercises.js przenieś
-     do ARCHITECTURE.md (JSON nie ma komentarzy).
-   - Kryteria: strona działa identycznie (punktacja, postęp, widżety, kroki),
-     suma pkt = 50, walidacja wszystkich wzorów katex.renderToString = 0 błędów
-     (wzorzec skryptu masz w todoDONE.md z 2026-07-06).
-
-2. KATEX W WIDŻETACH: tytuły, readouty (.widget-readout) i lista wzorów
-   zad 10 (.widget-formula-list) piszą matmę unicode'em w spanach .mathText —
-   przepisz na KaTeX. Nie używaj auto-rendera na żywych readoutach: przy
-   przeciąganiu aktualizują się dziesiątki razy na sekundę — użyj
-   katex.renderToString dla części matematycznej i renderuj TYLKO gdy tekst
-   faktycznie się zmienił (cache ostatniego stringa), albo rozdziel readout na
-   statyczny wzór (render raz) + zmienne liczby (textContent). Po migracji
-   sprawdź, czy klasa .mathText jeszcze gdzieś żyje — jak nie, usuń ją też
-   ze style.css. Przetestuj płynność przeciągania w widżetach 1, 9, 18, 30.
-
-3. TRYB EGZAMINACYJNY (nowa duża funkcja, produktowo w duchu Brilliant/CKE):
-   - Przycisk "rozpocznij próbny egzamin" w okienku ⋯: chowa podpowiedzi,
-     rozwiązania i punkty, startuje timer 170 min (widoczny w pasku),
-     "zakończ egzamin" (albo koniec czasu) pokazuje podsumowanie
-     (wynik/50, procent, czas) i przywraca normalny tryb z odblokowanymi
-     rozwiązaniami.
-   - Stan trybu i timera w osobnym kluczu localStorage (przetrwa odświeżenie);
-     nie może zepsuć zwykłego zapisu postępu ani trybu przeglądania.
-   - Zadania otwarte w egzaminie nadal przez samoocenę — ale dopiero PO
-     zakończeniu (w podsumowaniu wyraźnie to zaznacz).
-   - To zadanie ma decyzje projektowe — opisz je krótko w raporcie dla
-     Henricha w todo.md (co wybrałeś i dlaczego).
-
-Zasady wspólne: pracuj na gałęzi od najnowszego stanu tej gałęzi
-(claude/galileo-todo-followups); node --check po każdej zmianie danych;
-szybki smoke w przeglądarce (Playwright, chromium z /opt/pw-browsers);
-zrobione punkty przenieś do todoDONE.md, raport w todo.md, sync
-ARCHITECTURE.md/CLAUDE.md, commit + push.
+(wszystkie trzy — exercises.json, KaTeX w widżetach, tryb egzaminacyjny —
+zrealizowane 2026-07-06 na gałęzi claude/todo-tasks-from-files-9jt8h0;
+szczegóły w todoDONE.md, raport dla Henricha niżej)
 
 
 NIE REALIZUJ, NA POTEM:
@@ -97,6 +51,47 @@ DLA UŻYTKOWNIKA:
 
 
 NOWE PUNKTY TODO ZAPISYWANE PRZEZ CLAUDE:
+
+- (FABLE 2026-07-06, sesja "trzy duże zadania") RAPORT — do przeklikania przez
+  Henricha (WAŻNE: strona wymaga teraz serwera, np. `npx serve` — patrz pkt 1):
+  1) exercises.js → exercises.json ZROBIONE. Dane są czystym JSON-em; widżety
+     w danych to nazwy (np. "widgetOsLiczbowa"), a mapa nazwa→funkcja (WIDZETY)
+     siedzi w matematykazen.html. UWAGA: fetch nie działa z file:// — strona
+     otwarta prosto z pliku pokazuje czytelny komunikat "uruchom przez serwer".
+     Do codziennego oglądania: `npx serve` albo `python -m http.server`
+     w folderze strony. Walidacja po migracji: 429 wzorów KaTeX = 0 błędów,
+     suma arkusza = 50 pkt, punktacja/postęp/widżety/kroki działają (Playwright).
+  2) KATEX W WIDŻETACH ZROBIONE. Tytuły, readouty, kontrolki (m =, x =,
+     okienka zad 1) i lista wzorów zad 10 renderują się KaTeXem; sin/cos
+     w zad 18 mają kolory zgodne z rysunkiem (\textcolor). Żywe readouty
+     NIE używają auto-rendera: katex.renderToString z memoizacją (cache
+     wzór→HTML) + podmiana DOM tylko przy realnej zmianie treści — warto
+     przeciągnąć punkty w widżetach 1/9/18/30 i ocenić płynność okiem.
+     Martwa klasa .mathText wyleciała ze style.css.
+  3) TRYB EGZAMINACYJNY ZROBIONY (przycisk "rozpocznij próbny egzamin"
+     w okienku ⋯). DECYZJE PROJEKTOWE (co wybrałem i dlaczego):
+     a) start egzaminu CZYŚCI zapisany postęp (po confirm) — próbny egzamin
+        na w połowie rozwiązanym arkuszu nie ma sensu; ostrzeżenie jest
+        w okienku potwierdzenia.
+     b) ocenianie pod spodem biegnie NORMALNIE tą samą ścieżką kodu co zwykle
+        (zero drugiej logiki punktowania); tryb tylko dokłada klasę
+        body.tryb-egzaminu, a CSS pod nią chowa punkty/podpowiedzi/rozwiązania/
+        samoocenę/PDF zasad oceniania i przemalowuje kolory poprawności na
+        neutralne niebieskie "zaznaczenie". Dzięki temu zapis postępu działa
+        w egzaminie bez zmian, a po zakończeniu kolory od razu widać.
+     c) tablice wzorów CKE (przycisk w pasku i "Pokaż potrzebne wzory")
+        celowo ZOSTAJĄ dostępne — na prawdziwej maturze też są.
+     d) wynik w podsumowaniu = zadania zamknięte X/31 + procent + użyty czas;
+        zadania otwarte (19 pkt) wyraźnie opisane jako "jeszcze niepoliczone" —
+        samoocena robi się dopiero PO egzaminie (rozwiązania właśnie się
+        odblokowały), punkty doliczają się do sumy w pasku.
+     e) stan { start } w osobnym kluczu localStorage
+        (matematykazen-egzamin-grudzien2024): odświeżenie nie przerywa
+        egzaminu; jak czas minie przy zamkniętej karcie, wejście na stronę
+        od razu kończy egzamin i pokazuje podsumowanie ("Czas minął").
+     f) timer w pasku zamiast sumy punktów; ostatnie 10 minut na czerwono.
+     Do przeklikania: start → parę odpowiedzi (ramki neutralne?) → F5 (egzamin
+     trwa?) → "zakończ egzamin" → podsumowanie → samoocena zadania otwartego.
 
 - (FABLE 2026-07-06) RAPORT Z SESJI — do przeklikania przez Henricha:
   1) KaTeX działa OFFLINE (zvendorowany do vendor/katex/, ~600 KB). Cała matematyka
