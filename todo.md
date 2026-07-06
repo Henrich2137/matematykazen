@@ -17,16 +17,9 @@ WYSOKI PRIORYTET:
 
 
 NISKI PRIORYTET (drobne porządki, dobre na krótką sesję):
-- Dokończyć arkusz 2026 (strona już działa, matura-2026-maj/matematykazen.html):
-  * hint/solutionText/solutionStepByStep/solutionInteractive (celowo puste — do dorobienia)
-  * obrazki/wykresy dla zadań 12 (wykres funkcji łamanej), 13 (wykres funkcji liniowej
-    z kątem α), 19 (okrąg z punktami A,B,C,D), 20 (proste równoległe k,l,m,n) i 31
-    (dwa diagramy słupkowe klasa IVA/IVB — dane WYŁĄCZNIE na obrazku, bez niego zadanie
-    31 nie da się zweryfikować/rozwiązać) — trzeba je wyciąć z arkusze PDF/matematyka-
-    2026-maj-matura-podstawowa.pdf (wzorem zad30 z arkusza 2024: pdftoppm -x/-y/-W/-H;
-    docelowe ścieżki matura-2026-maj/zadN/zadNrys.png są już wpisane w exercises.json).
-    UWAGA: w środowisku zdalnym Claude nie ma pdftoppm/mutool/gs — to robota na lokalną sesję.
-- Stworzyć nową stronę z nowym arkuszem matury 2027
+- (dokańczanie arkusza 2026 przeniesione do sekcji Opusa niżej — odpowiedzi w
+  exercises.json są już ZWERYFIKOWANE z kluczem CKE i rachunkiem, patrz todoDONE.md,
+  więc reszta to robota przepisywacko-składacka)
 
 
 
@@ -43,6 +36,19 @@ WYSOKI PRIORYTET:
   matura-2026-maj/exercises.json + dopisek formatu w zad 10/29 zrobione)
 
 NISKI PRIORYTET:
+- Dokończenie arkusza 2026 (strona działa: matura-2026-maj/matematykazen.html;
+  odpowiedzi i punktacja w exercises.json zweryfikowane 2026-07-06 z kluczem CKE
+  Wersja A + rachunkiem — NIE zmieniaj correctAnswerIndex/blanks/statements/maxScore):
+  * hint + solutionText dla 41 wpisów — przepisz/zredaguj z gotowych rozwiązań w
+    arkusze PDF/matematyka-2026-maj-matura-podstawowa-odpowiedzi.txt (klucz zawiera
+    pełne rozwiązania zadań otwartych; wzory w KaTeX, konwencje jak w arkuszu 2024)
+  * obrazki zad 12 (wykres łamanej), 13 (prosta z kątem α), 19 (okrąg A,B,C,D),
+    20 (proste równoległe), 31 (diagramy IVA/IVB — dane TYLKO na obrazku) — wyciąć
+    z arkusze PDF/matematyka-2026-maj-matura-podstawowa.pdf wzorem zad30
+    (pdftoppm -x/-y/-W/-H); docelowe ścieżki matura-2026-maj/zadN/zadNrys.png już są
+    w exercises.json. UWAGA: sesja zdalna nie ma pdftoppm/mutool/gs — tylko lokalnie.
+- Stworzyć nową stronę z arkuszem matury 2027 (wzorem 2026: folder, exercises.json,
+  matematykazen.html z window.SHEET_ID/TABLICE_PDF, link na stronie głównej)
 - wyciągnięcie tekstu z PDF-ów:
   * matematyka-2025-maj-matura-podstawowa.pdf
   * matematyka-2025-maj-matura-podstawowa-odpowiedzi.pdf

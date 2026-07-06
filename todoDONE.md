@@ -18,6 +18,15 @@ ZROBIONE PRZEZ FABLE (2026-07-06, sesja zdalna, do ewentualnej weryfikacji przez
   requestAnimationFrame (script.js: renderStep + podepnijSterowanieWideo; style.css:
   .video-progress/.video-progress-bar). Klik pauza/play i ikonka stanu (pauza ⏸ / koniec ↺)
   zostają. Smoke-test: kroki wideo przełączają się bez błędów JS, paska brak w DOM.
+- [DONE] Weryfikacja WSZYSTKICH odpowiedzi arkusza 2026 (matura-2026-maj/exercises.json)
+  z kluczem CKE: wszystkie 27 rozstrzygalnych wpisów (ABCD + P/F + luki fillIn: 18 i 27)
+  zgadza się co do joty z kluczem WERSJA A (arkusz ma wersje A/B o przetasowanych
+  literach — nasz JSON to Wersja A). Dodatkowo niezależny rachunek potwierdził każde
+  zadanie liczone ręcznie (m.in. z1=3, z4=-1, z6=2, z9=12, z12.1: 1 i 4, z12.2: [-2,4]
+  i (-1,4), z19: 100°-30°=70°, z20: 12·6/8=9, z22: a=R√3=27, z28: (1/3·4)/1=4/3,
+  z33: uderzenie t=3s, wierzchołek t=1,5s). Punktacje maxScore zgodne z kluczem
+  (z14: 0–4, z15: 0–3, otwarte 0–2, zamknięte 0–1, suma 50). Szkielet Opusa bez
+  jednego błędu — correctAnswerIndex/blanks/statements można traktować jako pewnik.
 - [DONE] formulasPage uzupełnione dla arkusza 2026 (32 z 41 wpisów; reszta celowo null —
   zadania bez sensownego wzoru w broszurze, np. równania wymierne, funkcja liniowa; przycisk
   "Pokaż potrzebne wzory" jest wtedy ukryty). Numery stron NIE zgadywane: tekst
