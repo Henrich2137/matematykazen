@@ -740,15 +740,14 @@ function loadExercises() {
             if (step.type === "video") {
                 // Prędkość ustawiamy na realnym elemencie <video> w showStep(),
                 // bo właściwość JS (defaultPlaybackRate) nie przetrwałaby
-                // serializacji do stringa HTML. Tam też podpinamy klik (pauza/play),
-                // ikonkę ▶ (widoczną gdy zatrzymany) i pasek postępu.
+                // serializacji do stringa HTML. Tam też podpinamy klik (pauza/play)
+                // i ikonkę ▶ (widoczną gdy zatrzymany).
                 return `
                     <div class="step-video">
                         <video autoplay playsinline>
                             <source src="${step.src}" type="video/mp4">
                         </video>
                         <div class="video-overlay-icon"></div>
-                        <div class="video-progress"><div class="video-progress-bar"></div></div>
                     </div>
                     <div class="step-comment">${step.text}</div>
                 `;
@@ -857,15 +856,16 @@ function loadExercises() {
             }
         }
 
-        // Sterowanie filmem kroku (klik = pauza/play, ikonka stanu, pasek
-        // postępu) — podpinane do realnego, już wstawionego <video>.
+        // Sterowanie filmem kroku (klik = pauza/play, ikonka stanu) —
+        // podpinane do realnego, już wstawionego <video>.
+        // (Pasek postępu z pętlą requestAnimationFrame usunięty: klatkował
+        // stronę w Firefoksie podczas przewijania, a bajer nie był tego wart.)
         function podepnijSterowanieWideo(video) {
             if (video) {
                 video.defaultPlaybackRate = 1;
                 video.playbackRate = 1;
 
                 const stepVideo = video.closest(".step-video");
-                const progressBar = stepVideo ? stepVideo.querySelector(".video-progress-bar") : null;
 
                 // Klik w film przełącza pauzę/odtwarzanie.
                 video.addEventListener("click", () => {
@@ -888,27 +888,6 @@ function loadExercises() {
                 video.addEventListener("play", syncState);
                 video.addEventListener("pause", syncState);
                 video.addEventListener("ended", syncState);
-
-                // Pasek postępu — rysowany w pętli requestAnimationFrame, a nie ze
-                // zdarzeń timeupdate (te przychodzą ~4×/s i pasek skakał; sztuczne
-                // wygładzanie transition-em w CSS wyglądało gumowato). Pętla kręci
-                // się tylko podczas odtwarzania i wygasza się sama, gdy film stoi
-                // albo krok został podmieniony (video wypada z DOM → !isConnected).
-                const updateBar = () => {
-                    if (progressBar && video.duration) {
-                        progressBar.style.width = `${(video.currentTime / video.duration) * 100}%`;
-                    }
-                };
-                const barLoop = () => {
-                    updateBar();
-                    if (!video.paused && !video.ended && video.isConnected) {
-                        requestAnimationFrame(barLoop);
-                    }
-                };
-                video.addEventListener("play", () => requestAnimationFrame(barLoop));
-                video.addEventListener("pause", updateBar);
-                video.addEventListener("ended", updateBar);
-                barLoop();
 
                 syncState();
             }

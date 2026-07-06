@@ -629,24 +629,6 @@ body {
     line-height: 1;
     color: #d1d1d1;
 }
-/* Cienki pasek postępu na dole filmu (szary). */
-.video-progress {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    height: 2px;
-    background-color: rgba(173, 173, 173, 0.12);
-    pointer-events: none;
-}
-.video-progress-bar {
-    width: 0;
-    height: 100%;
-    background-color: #d6d6d6;
-    /* Bez transition — pasek jest teraz aktualizowany co klatkę pętlą
-       requestAnimationFrame w showStep(), więc rusza się naprawdę płynnie;
-       transition nałożone na to sprawiało gumowate, doganiające ruchy. */
-}
 .solution-step-by-step-container img {
     display: block;
     max-width: 320px;
