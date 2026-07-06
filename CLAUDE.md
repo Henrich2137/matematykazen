@@ -10,11 +10,13 @@ MatematykaZen is an interactive platform for learning math for the Polish "matur
 
 ## What this is
 
-A static Polish-language practice site for one exam sheet ("Egzamin maturalny z matematyki podstawowej grudzień 2024, próbna CKE"). No backend, no build system, no package manager. Four files drive everything:
+A static Polish-language practice site for one exam sheet ("Egzamin maturalny z matematyki podstawowej grudzień 2024, próbna CKE"). No backend, no build system, no package manager. These files drive everything:
 
 - [index.html](index.html) — landing page, pure static HTML (`.landing-*` styles).
-- [matematykazen.html](matematykazen.html) — the exam-sheet page: hidden exercise `<template>` + inline `<script>` at the bottom that renders exercises from the data file and wires up all interactivity (answers, hints, step-by-step solutions, widgets, formula-sheet PDF panel).
-- [exercises.json](exercises.json) — pure data: an array of exercise objects, `fetch`ed at startup by the inline script (`startujArkusz()`). Interactive widgets are referenced by name (`"solutionInteractive": "widgetX"` → the `WIDZETY` registry in matematykazen.html). All math in it is written in **KaTeX** (`\( ... \)` / `\[ ... \]`; schema + conventions documented in ARCHITECTURE.md — JSON has no comments).
+- [matematykazen.html](matematykazen.html) — the exam-sheet page: hidden exercise `<template>` + at the bottom two `<script src>` tags (`solutionsInteractive.js` then `script.js`) that render exercises from the data file and wire up all interactivity.
+- [script.js](script.js) — app logic: exercise rendering (`loadExercises`), answers/hints, step-by-step solutions, exam mode, formula-sheet PDF panels, bootstrap (`startSheet()`).
+- [solutionsInteractive.js](solutionsInteractive.js) — the interactive answer widgets (`wg*` helpers + `widget*` functions) and the `WIDZETY` name→function registry. **Loaded before `script.js`** because `loadExercises` reads `WIDZETY` (both are classic scripts sharing the global scope, so load order matters).
+- [exercises.json](exercises.json) — pure data: an array of exercise objects, `fetch`ed at startup by `startSheet()`. Interactive widgets are referenced by name (`"solutionInteractive": "widgetX"` → the `WIDZETY` registry in solutionsInteractive.js). All math in it is written in **KaTeX** (`\( ... \)` / `\[ ... \]`; schema + conventions documented in ARCHITECTURE.md — JSON has no comments).
 - [style.css](style.css) — all styling (exam sheet + landing).
 
 Plus `vendor/katex/` — KaTeX vendored for fully offline math rendering (don't edit those files; to bump the version replace them from the npm tarball).

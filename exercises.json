@@ -12,7 +12,7 @@
         "selfScore": false,
         "hint": "Z wartości bezwzględnej czyli |takich nawiasów| zawsze wyjdzie wartość nieujemna, czyli: \\(|7| = 7\\) oraz \\(|-7| = 7\\). Co więc musi stać zamiast x aby wychodziło podobnie jak w tych przykładach?",
         "formulasPage": 4,
-        "solutionText": "Geometrycznie: \\(|x + 4| = 7\\) to wszystkie liczby odległe o <b>7</b> od liczby \\(-4\\), czyli \\(x_1 = 3\\) i \\(x_2 = -11\\). Suma: \\(3 + (-11) = \\boldsymbol{-8}\\) — odpowiedź <b>B</b>.",
+        "solutionText": "",
         "solutionTextMore": "po opuszczeniu nawiasów są dwie możliwości: \\[1.\\quad \\begin{aligned} x + 4 &= 7 \\\\ x &= 7 - 4 \\\\ x &= \\boldsymbol{3} \\end{aligned}\\]\\[2.\\quad \\begin{aligned} x + 4 &= -7 \\\\ x &= -7 - 4 \\\\ x &= \\boldsymbol{-11} \\end{aligned}\\]\\[3 + (-11) = \\boldsymbol{-8}\\] czyli odp B.<br><br>",
         "solutionStepByStep": [
             {

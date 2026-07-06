@@ -3,6 +3,35 @@ Nie wczytuj tego pliku domyślnie — tylko gdy potrzebne jest szersze spojrzeni
 rozwiązanie trudniejszego problemu albo sprawdzenie, czy/jak coś już kiedyś rozwiązano.
 (Zasada opisana w CLAUDE.md. Plik zaczął się jako notatki ze smoke testu.)
 
+ZROBIONE PRZEZ OPUSA (2026-07-06, do ewentualnej weryfikacji przez Henricha):
+- [DONE] Split inline <script> z matematykazen.html na dwa zewnętrzne pliki klasyczne:
+  solutionsInteractive.js (helpery wg* + funkcje widget* + rejestr WIDZETY) oraz script.js
+  (logika appki: loadExercises, tryb egzaminu, panele PDF, startSheet). W HTML dwa tagi
+  <script src> na dole body w kolejności solutionsInteractive.js → script.js (WIDZETY musi
+  istnieć zanim loadExercises je odczyta; klasyczne skrypty współdzielą globalny scope, więc
+  kolejność ma znaczenie). Granica cięcia: po zamknięciu loadExercises / przed sekcją WIDŻETY
+  INTERAKTYWNE; ogon appki (startSheet + wywołanie + handler „pokaż wszystkie") wrócił do
+  script.js. Weryfikacja: node --check obu plików OK, brak inline <script>, WIDZETY tylko w
+  solutionsInteractive.js, w script.js tylko użycie WIDZETY[...]. Docs (CLAUDE.md,
+  ARCHITECTURE.md) zaktualizowane. UWAGA: brak smoke-testu w przeglądarce — do klikniętego
+  sprawdzenia przez Henricha (widżet, hinty, kroki wideo, tryb egzaminu).
+- [DONE] Zad 1: usunięty zawsze-widoczny tekst „Geometrycznie…" (solutionText → pusty; kontener
+  chowa się sam przez CSS .solution-text-container:empty). Wyprowadzenie rachunkowe zostaje pod
+  „Pokaż więcej". Zmiana czysto w danych (exercises.json), format/CRLF zachowany.
+
+- [DONE] Nazewnictwo funkcji z polskiego na angielskie (zachowawczo, tylko funkcje najwyższego
+  poziomu; zmiana whole-word we wszystkich miejscach użycia + komentarzach + docs). Mapa:
+  renderujMatematyke→renderMath, odczytajEgzamin→readExamState, formatujCzas→formatTime,
+  tykajEgzamin→tickExam, wlaczTrybEgzaminu→enableExamMode, zakonczEgzamin→finishExam,
+  pokazTablice→showFormulasPanel, schowajTablice→hideFormulasPanel, pokazZasady→showGradingRules,
+  schowajZasady→hideGradingRules, uczynPanelRuchomym→makePanelDraggable,
+  otworzTabliceNaStronie→openFormulasAtPage, normalizujOdpowiedz→normalizeAnswer,
+  startujArkusz→startSheet. NIE zmieniane (celowo): helpery wg*, funkcje widget* (są w
+  exercises.json jako stringi solutionInteractive), rejestr WIDZETY, oraz nazwy już angielskie
+  (loadExercises, markCorrectAnswer). Zmienione pliki: matematykazen.html (48), ARCHITECTURE.md (16),
+  CLAUDE.md (1), style.css (1). Weryfikacja: node --check wyciągniętego skryptu → OK, zero
+  pozostałości starych nazw. Split na script.js/solutionsInteractive.js zostawiony na później.
+
 ZROBIONE (2026-07-06, zweryfikowane przez Henricha — punkty oznaczone ✅ w todo.md):
 - [DONE] Responsywność: breakpointy 1024/900/720/560px; na telefonie (sprawdzone od 360px wzwyż) pasek przechodzi na dwa rzędy, karta zadania wypełnia ekran, filmiki i wykresy się skalują, szerokie wzory dostają własny poziomy scroll, zero poziomego scrolla całej strony; badge punktów na ekranach < ~1010px przenosi się do prawego górnego rogu karty. Dodana ikonka "M" do index.html. Szczegóły w ARCHITECTURE.md.
 
