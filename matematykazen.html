@@ -10,6 +10,13 @@
     <script type="text/javascript" src="exercises.js"></script>
     <link rel="stylesheet" href="style.css">
 
+    <!-- KaTeX zvendorowany do repo (vendor/katex/) — działa w pełni offline.
+         Ładowany synchronicznie (lokalne pliki, bez defer), żeby inline skrypt
+         na dole strony mógł od razu wołać renderMathInElement. -->
+    <link rel="stylesheet" href="vendor/katex/katex.min.css">
+    <script src="vendor/katex/katex.min.js"></script>
+    <script src="vendor/katex/contrib/auto-render.min.js"></script>
+
     <title>Matematyka Zen — arkusz grudzień 2024</title>
 
 </head>
@@ -27,13 +34,21 @@
             </div>
 
             <div id="bar-right">
-                <button id="show-all-solutions">pokaż wszystkie rozwiązania</button>
                 <span id="total-score">0 / 0 pkt</span>
-                <button id="score-switch-button">widok punktów: wszystko</button>
                 <button id="toggle-tablica">▼ Pokaż tablice wzorów</button>
+                <button id="menu-button" title="Więcej opcji">⋯</button>
             </div>
 
         </div>
+    </div>
+
+    <!-- Okienko "więcej opcji" (przycisk ⋯ w pasku): rzadziej używane akcje
+         schowane, żeby nie zaśmiecały paska. ID przycisków bez zmian — inline
+         skrypt odwołuje się do nich tak samo jak wtedy, gdy były w pasku. -->
+    <div id="bar-menu">
+        <button id="show-all-solutions">pokaż wszystkie rozwiązania</button>
+        <button id="score-switch-button">widok punktów: wszystko</button>
+        <button id="reset-scores">resetuj punktację</button>
     </div>
 
     <!-- Panele PDF są "odblokowane": pasek u góry (.panel-uchwyt) służy do
@@ -98,6 +113,47 @@
     <script>
 
 let totalScore = 0;
+
+// Klucz zapisu postępu w localStorage — używany przez loadExercises()
+// (zapis/odczyt) oraz przyciski "resetuj punktację" i "wyczyść zapisany postęp".
+const KLUCZ_POSTEPU = "matematykazen-postep-grudzien2024";
+
+// KaTeX: renderuje zapisy \( ... \) (inline) i \[ ... \] (blokowe) wewnątrz
+// podanego elementu. Guard na window.renderMathInElement — gdyby vendor/katex/
+// nie wczytał się (np. uszkodzony plik), strona ma dalej działać, tylko z
+// surowym zapisem zamiast ładnych wzorów.
+function renderujMatematyke(element) {
+    if (window.renderMathInElement && element) {
+        renderMathInElement(element, {
+            delimiters: [
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            throwOnError: false
+        });
+    }
+}
+
+// Okienko "więcej opcji" (⋯): pokaż/schowaj po kliknięciu przycisku,
+// zamknij po kliknięciu gdziekolwiek poza okienkiem.
+const menuButton = document.getElementById("menu-button");
+const barMenu = document.getElementById("bar-menu");
+menuButton.addEventListener("click", (e) => {
+    e.stopPropagation();
+    barMenu.style.display = barMenu.style.display === "block" ? "none" : "block";
+});
+document.addEventListener("click", (e) => {
+    if (barMenu.style.display === "block" && !barMenu.contains(e.target)) {
+        barMenu.style.display = "none";
+    }
+});
+
+// "Resetuj punktację": kasuje zapisany postęp i przeładowuje stronę — punkty,
+// kolory odpowiedzi i wpisy wracają do zera jedną, wspólną drogą (świeży render).
+document.getElementById("reset-scores").addEventListener("click", () => {
+    try { localStorage.removeItem(KLUCZ_POSTEPU); } catch (e) {}
+    location.reload();
+});
 
 // Tablica wzorów: panel (kontener) + <object> z PDF-em w środku. Pokazywanie/
 // chowanie działa na panelu, a etykieta przycisku w pasku jest z tym zsynchronizowana.
@@ -295,7 +351,7 @@ function loadExercises() {
     // a przy wczytaniu strony odtwarzamy to symulując te same kliknięcia — dzięki
     // temu ocena, kolory i punkty liczą się dokładnie tą samą drogą co na żywo.
     // Zapis z inną liczbą zadań (zmiana arkusza/schematu) jest ignorowany.
-    const KLUCZ_POSTEPU = "matematykazen-postep-grudzien2024";
+    // (KLUCZ_POSTEPU jest zadeklarowany globalnie na górze skryptu.)
     let zapis = null;
     try { zapis = JSON.parse(localStorage.getItem(KLUCZ_POSTEPU)); } catch (e) { zapis = null; }
     if (!zapis || zapis.n !== exercises.length || !Array.isArray(zapis.stany)) zapis = null;
@@ -712,13 +768,76 @@ function loadExercises() {
         // Rejestr dla przycisku "pokaż wszystkie rozwiązania" w pasku.
         wszystkieRozwiazania.push({ przycisk: solutionButton, panel: solutionContainer, ma: hasAnySolution });
 
+        // Podwójny bufor kroków: przy przejściu na krok z filmem STARY krok
+        // zostaje widoczny (na ostatniej klatce), a nowy podmieniamy dopiero,
+        // gdy jego film ma zdekodowaną pierwszą klatkę (loadeddata) — dzięki
+        // temu nie ma błysku pustego miejsca. Token chroni przed wyścigiem
+        // przy szybkim klikaniu ◄/► (spóźniona podmiana starego kroku jest
+        // ignorowana). Fallback setTimeout podmienia krok nawet, gdyby film
+        // ładował się wyjątkowo długo (wtedy mignięcie może wrócić — trudno).
+        let stepSwapToken = 0;
+
         function showStep(idx) {
             currentStep = idx;
-            stepsContent.innerHTML = renderStep(steps[currentStep]);
+            const swapToken = ++stepSwapToken;
 
-            // Ustawiamy na realnym, już wstawionym <video>: defaultPlaybackRate na
-            // wypadek ponownego odtwarzania, playbackRate dla trwającego autoplay.
-            const video = stepsContent.querySelector("video");
+            // Nawigacja aktualizuje się od razu (nie czeka na załadowanie filmu).
+            stepCounter.textContent = `${currentStep + 1} / ${steps.length}`;
+            prevBtn.disabled = currentStep === 0;
+            nextBtn.disabled = currentStep === steps.length - 1;
+            if (currentStep == steps.length - 1) {
+                markCorrectAnswer(exerciseClone);
+            }
+
+            // Nowy krok budujemy w odłączonym elemencie i dopiero gotowy
+            // wstawiamy w miejsce starego (replaceChildren).
+            const nowyKrok = document.createElement("div");
+            nowyKrok.innerHTML = renderStep(steps[currentStep]);
+            renderujMatematyke(nowyKrok);
+
+            const video = nowyKrok.querySelector("video");
+            let krokWstawiony = false; // loadeddata i fallback setTimeout mogą przyjść oba
+            const wstawKrok = () => {
+                if (swapToken !== stepSwapToken) return; // w międzyczasie wybrano inny krok
+                if (krokWstawiony) return;
+                krokWstawiony = true;
+                stepsContent.replaceChildren(...nowyKrok.childNodes);
+                if (video) {
+                    // play() zamiast atrybutu autoplay: film ma wystartować
+                    // dopiero po wstawieniu do DOM, nie w buforze.
+                    video.play().catch(() => {});
+                }
+                podepnijSterowanieWideo(video);
+            };
+
+            if (video && stepsContent.childElementCount) {
+                video.removeAttribute("autoplay");
+                video.preload = "auto";
+                video.load(); // element odłączony też się ładuje
+                if (video.readyState >= 2) { // HAVE_CURRENT_DATA — np. film z cache
+                    wstawKrok();
+                } else {
+                    video.addEventListener("loadeddata", wstawKrok, { once: true });
+                    setTimeout(wstawKrok, 1500);
+                }
+            } else {
+                // Pierwszy render kroku albo krok bez filmu — podmiana od razu.
+                wstawKrok();
+            }
+
+            // Podgrzewamy film następnego kroku, żeby przełączenie mniej migało —
+            // przeglądarka ściąga go do cache, zanim użytkownik kliknie ►.
+            const nextStep = steps[currentStep + 1];
+            if (nextStep && nextStep.type === "video") {
+                const preload = document.createElement("video");
+                preload.preload = "auto";
+                preload.src = nextStep.src;
+            }
+        }
+
+        // Sterowanie filmem kroku (klik = pauza/play, ikonka stanu, pasek
+        // postępu) — podpinane do realnego, już wstawionego <video>.
+        function podepnijSterowanieWideo(video) {
             if (video) {
                 video.defaultPlaybackRate = 1;
                 video.playbackRate = 1;
@@ -771,22 +890,6 @@ function loadExercises() {
 
                 syncState();
             }
-
-            // Podgrzewamy film następnego kroku, żeby przełączenie mniej migało —
-            // przeglądarka ściąga go do cache, zanim użytkownik kliknie ►.
-            const nextStep = steps[currentStep + 1];
-            if (nextStep && nextStep.type === "video") {
-                const preload = document.createElement("video");
-                preload.preload = "auto";
-                preload.src = nextStep.src;
-            }
-
-            stepCounter.textContent = `${currentStep + 1} / ${steps.length}`;
-            prevBtn.disabled = currentStep === 0;
-            nextBtn.disabled = currentStep === steps.length - 1;
-            if(currentStep == steps.length - 1){
-                markCorrectAnswer(exerciseClone);
-            }
         }
 
         if (hasSteps) {
@@ -838,6 +941,11 @@ function loadExercises() {
                 if (zap.fill.some(t => t) && fillCheck) fillCheck.click();
             }
         }
+
+        // KaTeX: renderujemy wzory w całym zbudowanym zadaniu (treść, odpowiedzi,
+        // podpowiedź, rozwiązania). Kroki step-by-step renderują się osobno w
+        // showStep(), bo ich HTML powstaje dopiero przy przełączaniu kroków.
+        renderujMatematyke(exerciseClone);
 
         // Append the exercise to the wrapper
         exercisesWrapper.appendChild(exerciseClone);

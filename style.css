@@ -4,6 +4,16 @@
     line-height: 1.5;
 }
 
+/* KaTeX (vendor/katex/): delikatnie mniejszy niż domyślne 1.21em, żeby wzory
+   nie dominowały nad tekstem zadania; blokowe wzory (\[ \]) są wyśrodkowane
+   przez sam KaTeX (.katex-display), zwykły tekst zostaje przy lewej. */
+.katex {
+    font-size: 1.08em;
+}
+.katex-display {
+    margin: 12px 0;
+}
+
 body {
     background-color: #fff;
     font-family: "STIX Two Math", "Lora", serif;
@@ -104,7 +114,8 @@ body {
     color: #858585;
 }
 #score-switch-button,
-#show-all-solutions {
+#show-all-solutions,
+#reset-scores {
     padding: 5px 10px;
     border: 2px solid #e7e7e7;
     background-color: #fff;
@@ -113,6 +124,37 @@ body {
     white-space: nowrap;
     color: #111;
     cursor: pointer;
+}
+
+/* Przycisk ⋯ w pasku i jego okienko "więcej opcji". Okienko jest fixed tuż
+   pod paskiem, przy prawej krawędzi; JS przełącza display na block i chowa
+   je po kliknięciu poza okienkiem. */
+#menu-button {
+    padding: 5px 12px;
+    border: 2px solid #e7e7e7;
+    border-radius: 3px;
+    background-color: #fff;
+    font-size: 18px;
+    line-height: 1;
+    color: #111;
+    cursor: pointer;
+}
+#bar-menu {
+    position: fixed;
+    top: 62px;
+    right: 30px;
+    z-index: 11;
+    display: none;
+    flex-direction: column;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+#bar-menu button {
+    display: block;
+    width: 100%;
+    margin: 4px 0;
 }
 #toggle-tablica,
 #toggle-zasady {
@@ -287,7 +329,11 @@ body {
 }
 .button-container button {
     display: inline-block;
-    width: 22%;
+    /* min-width zamiast sztywnego width: krótkie odpowiedzi (liczby) trzymają
+       równą siatkę, a dłuższy wzór KaTeX (przedziały, ułamki) poszerza swój
+       przycisk zamiast łamać się na dwie linie ("A." nad wzorem). */
+    min-width: 22%;
+    white-space: nowrap;
     padding: 10px 12px;
     margin: 8px;
     /* Przyciski w wierszu wyrównują się do środka w pionie względem siebie,
@@ -368,7 +414,7 @@ body {
 }
 /* Dłuższe wzory w odpowiedziach (np. zad 12.2) — szersze przyciski, 2-3 w rzędzie. */
 .multi-select-container button {
-    width: 30%;
+    min-width: 30%;
 }
 
 /* ===== ZADANIA Z POLAMI DO UZUPEŁNIENIA (fillIn) ===== */
