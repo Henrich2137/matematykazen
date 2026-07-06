@@ -38,6 +38,23 @@ body {
     padding-top: 100px;
 }
 
+/* Komunikat, gdy fetch("exercises.json") się nie powiedzie (np. strona
+   otwarta z file:// — patrz startujArkusz() w matematykazen.html). */
+.blad-wczytywania {
+    max-width: 650px;
+    margin: 40px auto;
+    padding: 24px 30px;
+    text-align: left;
+    font-size: 17px;
+    line-height: 1.6;
+    border: 1px solid #e0b4b4;
+    background-color: #fdf6f6;
+}
+.blad-wczytywania code {
+    background-color: #f3f3f3;
+    padding: 1px 5px;
+}
+
 
 /* ===================================================================
    

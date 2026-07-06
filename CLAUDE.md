@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-**Detailed architecture, exercise data schema and the full CSS/layout reference live in [ARCHITECTURE.md](ARCHITECTURE.md).** Read it before touching the rendering logic in matematykazen.html, the schema in exercises.js, or style.css — and keep it in sync when you change what it describes. Don't duplicate its content here.
+**Detailed architecture, exercise data schema and the full CSS/layout reference live in [ARCHITECTURE.md](ARCHITECTURE.md).** Read it before touching the rendering logic in matematykazen.html, the schema in exercises.json, or style.css — and keep it in sync when you change what it describes. Don't duplicate its content here.
 
 ## Product context
 
@@ -14,12 +14,12 @@ A static Polish-language practice site for one exam sheet ("Egzamin maturalny z 
 
 - [index.html](index.html) — landing page, pure static HTML (`.landing-*` styles).
 - [matematykazen.html](matematykazen.html) — the exam-sheet page: hidden exercise `<template>` + inline `<script>` at the bottom that renders exercises from the data file and wires up all interactivity (answers, hints, step-by-step solutions, widgets, formula-sheet PDF panel).
-- [exercises.js](exercises.js) — pure data: a single global `exercises` array, loaded before the inline script. **Target format is `exercises.json`** — planned migration; until then it stays a `.js` file. All math in it is written in **KaTeX** (`\( ... \)` / `\[ ... \]`; see the header comment there and ARCHITECTURE.md).
+- [exercises.json](exercises.json) — pure data: an array of exercise objects, `fetch`ed at startup by the inline script (`startujArkusz()`). Interactive widgets are referenced by name (`"solutionInteractive": "widgetX"` → the `WIDZETY` registry in matematykazen.html). All math in it is written in **KaTeX** (`\( ... \)` / `\[ ... \]`; schema + conventions documented in ARCHITECTURE.md — JSON has no comments).
 - [style.css](style.css) — all styling (exam sheet + landing).
 
 Plus `vendor/katex/` — KaTeX vendored for fully offline math rendering (don't edit those files; to bump the version replace them from the npm tarball).
 
-Plus per-exercise asset folders `zad1/`, `zad2/`, … (PNG images + Manim-produced MP4 solution videos; keep filenames **lowercase**) and `wybrane_wzory_matematyczne.pdf` (formula sheet shown in a floating panel). The official exam + answer key PDFs and their text extracts live in `arkusze PDF/` — do not delete; all 30 answers in exercises.js were verified against the CKE key (2026-07-05).
+Plus per-exercise asset folders `zad1/`, `zad2/`, … (PNG images + Manim-produced MP4 solution videos; keep filenames **lowercase**) and `wybrane_wzory_matematyczne.pdf` (formula sheet shown in a floating panel). The official exam + answer key PDFs and their text extracts live in `arkusze PDF/` — do not delete; all 30 answers in exercises.json were verified against the CKE key (2026-07-05).
 
 ## Task tracking
 
@@ -29,7 +29,7 @@ Plus per-exercise asset folders `zad1/`, `zad2/`, … (PNG images + Manim-produc
 
 ## Running / previewing
 
-No build or test tooling. Open [matematykazen.html](matematykazen.html) directly in a browser, or serve the directory with any static file server (e.g. `npx serve`, `python -m http.server`) if `file://` blocks the embedded PDF `<object>`. No linter/test suite — verify changes by opening the page and clicking through the exercise(s) you touched.
+No build or test tooling. **Serve the directory with a static file server** (e.g. `npx serve`, `python -m http.server`) — since the exercises.json migration the exam page loads its data with `fetch`, which does not work over `file://` (the page then shows a message explaining exactly this; index.html alone still opens fine from a file). No linter/test suite — verify changes by opening the page and clicking through the exercise(s) you touched.
 
 ## Content notes
 
