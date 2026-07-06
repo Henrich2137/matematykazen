@@ -19,7 +19,6 @@ WYSOKI PRIORYTET:
 NISKI PRIORYTET (drobne porządki, dobre na krótką sesję):
 - Dokończyć arkusz 2026 (strona już działa, matura-2026-maj/matematykazen.html):
   * hint/solutionText/solutionStepByStep/solutionInteractive (celowo puste — do dorobienia)
-  * formulasPage (numery stron w wybrane_wzory_matematyczne.pdf)
   * obrazki/wykresy dla zadań 12 (wykres funkcji łamanej), 13 (wykres funkcji liniowej
     z kątem α), 19 (okrąg z punktami A,B,C,D), 20 (proste równoległe k,l,m,n) i 31
     (dwa diagramy słupkowe klasa IVA/IVB — dane WYŁĄCZNIE na obrazku, bez niego zadanie

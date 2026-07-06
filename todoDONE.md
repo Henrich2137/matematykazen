@@ -18,6 +18,13 @@ ZROBIONE PRZEZ FABLE (2026-07-06, sesja zdalna, do ewentualnej weryfikacji przez
   requestAnimationFrame (script.js: renderStep + podepnijSterowanieWideo; style.css:
   .video-progress/.video-progress-bar). Klik pauza/play i ikonka stanu (pauza ⏸ / koniec ↺)
   zostają. Smoke-test: kroki wideo przełączają się bez błędów JS, paska brak w DOM.
+- [DONE] formulasPage uzupełnione dla arkusza 2026 (32 z 41 wpisów; reszta celowo null —
+  zadania bez sensownego wzoru w broszurze, np. równania wymierne, funkcja liniowa; przycisk
+  "Pokaż potrzebne wzory" jest wtedy ukryty). Numery stron NIE zgadywane: tekst
+  wybrane_wzory_matematyczne.pdf wyciągnięty pypdf-em i zmapowany na początek właściwej
+  (pod)sekcji broszury (np. Tales s.18, kąty w okręgu s.19, pole trójkąta o wierzchołkach
+  s.25, stereometria s.27), zgodnie z konwencją arkusza 2024. E2E: zad 1 otwiera tablice
+  na #page=5, zad 7 (null) nie pokazuje przycisku.
 - [DONE] zad 29 nie akceptowało "6,50": normalizeAnswer (script.js) obcina teraz zbędne zera
   końcowe części dziesiętnej ("6,50"→"6,5", "7,00"→"7"), ale TYLKO gdy cały wpis jest
   pojedynczą liczbą dziesiętną — przedziały typu "(-4,40]" nieruszone (przecinek rozdziela
