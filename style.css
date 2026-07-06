@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=STIX+Two+Math&display=swap');
 
-.mathText {
-    line-height: 1.5;
-}
-
 /* KaTeX (vendor/katex/): delikatnie mniejszy niż domyślne 1.21em, żeby wzory
    nie dominowały nad tekstem zadania; blokowe wzory (\[ \]) są wyśrodkowane
    przez sam KaTeX (.katex-display), zwykły tekst zostaje przy lewej.
