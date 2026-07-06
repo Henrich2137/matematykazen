@@ -3,6 +3,29 @@ Nie wczytuj tego pliku domyślnie — tylko gdy potrzebne jest szersze spojrzeni
 rozwiązanie trudniejszego problemu albo sprawdzenie, czy/jak coś już kiedyś rozwiązano.
 (Zasada opisana w CLAUDE.md. Plik zaczął się jako notatki ze smoke testu.)
 
+ZROBIONE PRZEZ FABLE (2026-07-06, sesja zdalna, do ewentualnej weryfikacji przez Henricha):
+- [DONE] Strona arkusza matura maj 2026 złożona ze szkieletu: matura-2026-maj/matematykazen.html
+  używa WSPÓLNEGO ../script.js i ../style.css (bez kopii). script.js sparametryzowany per
+  arkusz: strona może przed nim ustawić window.SHEET_ID (osobne klucze localStorage
+  postępu/egzaminu — 2024 zostaje przy dotychczasowych kluczach "…-grudzien2024", nic się
+  nie kasuje) i window.TABLICE_PDF (ścieżka do tablic z podfolderu). Zasady oceniania
+  wskazują na PDF odpowiedzi 2026. Przy okazji naprawione nadmiarowe escapowanie \" w <img>
+  zad 12/13 w matura-2026-maj/exercises.json (łamało src) i dodany link do arkusza 2026 na
+  stronie głównej. Smoke-test (Playwright+Chromium, http.server): 41 kart, 205 wzorów KaTeX,
+  0/50 pkt → 1/50 po poprawnym kliknięciu; arkusz 2024 bez regresji (te same klucze, 0 błędów).
+  ZOSTAJE do zrobienia: hinty/rozwiązania, formulasPage i obrazki zad 12/13/19/20/31 (todo.md).
+- [DONE] Klatkowanie w Firefoksie podczas filmiku: usunięty pasek postępu filmu wraz z pętlą
+  requestAnimationFrame (script.js: renderStep + podepnijSterowanieWideo; style.css:
+  .video-progress/.video-progress-bar). Klik pauza/play i ikonka stanu (pauza ⏸ / koniec ↺)
+  zostają. Smoke-test: kroki wideo przełączają się bez błędów JS, paska brak w DOM.
+- [DONE] zad 29 nie akceptowało "6,50": normalizeAnswer (script.js) obcina teraz zbędne zera
+  końcowe części dziesiętnej ("6,50"→"6,5", "7,00"→"7"), ale TYLKO gdy cały wpis jest
+  pojedynczą liczbą dziesiętną — przedziały typu "(-4,40]" nieruszone (przecinek rozdziela
+  tam końce przedziału). Ułamki mieszane (6 1/2): sprawdzone w zasadach oceniania CKE
+  (odp.txt, zad 29) — klucz podaje wyłącznie formy dziesiętne (6,38 i 6,5, "nie akceptuje
+  się zaokrągleń"), a samo polecenie każe podać ułamki dziesiętne, więc odczyt zapisu
+  "6 1/2" pominięty zgodnie z ustaleniem. E2E: wpis "6,380" i "6,50" → oba zielone, 2/50 pkt.
+
 ZROBIONE PRZEZ OPUSA (2026-07-06, do ewentualnej weryfikacji przez Henricha):
 - [DONE] Split inline <script> z matematykazen.html na dwa zewnętrzne pliki klasyczne:
   solutionsInteractive.js (helpery wg* + funkcje widget* + rejestr WIDZETY) oraz script.js
