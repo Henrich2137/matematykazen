@@ -35,7 +35,7 @@ body {
 }
 
 /* Komunikat, gdy fetch("exercises.json") się nie powiedzie (np. strona
-   otwarta z file:// — patrz startujArkusz() w matematykazen.html). */
+   otwarta z file:// — patrz startSheet() w matematykazen.html). */
 .blad-wczytywania {
     max-width: 650px;
     margin: 40px auto;

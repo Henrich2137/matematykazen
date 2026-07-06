@@ -16,8 +16,6 @@ WYSOKI PRIORYTET:
 
 - Strona wydaje się klatkowac podczas przewijania i trwania filmiku. Poszukaj przyczyny. Podejrzewam, że to kwestia płynnego paska postępu filmu to usuń ten bajer lub jeśli masz pomysł jak go łatwo zoptymalizowac to zrób to nie rób kombinacji alpejskich aby to zoptymalizować, nie warto. Dzieje siętak tylko w firefox, moze to jest związane z ustawieniami prywatnosci/bezpieczenstwa jakie tam mam idk.
 
-- przerestrukturyzowanie projektu było to łatwiejsze do pracy. Domyślam się, że wartoby zrobić oddzielny pliki script.js, solutionsInteractive.js,
-
 
 NISKI PRIORYTET (drobne porządki, dobre na krótką sesję):
 - Stworzyć nową stronę z nowym arkuszem matury 2026
@@ -34,15 +32,9 @@ NISKI PRIORYTET (drobne porządki, dobre na krótką sesję):
 Fable, nie ruszaj tego chyba, że nie masz co robić.
 
 WYSOKI PRIORYTET:
-- w zad 1 przekleić "Geometrycznie: ∣x+4∣=7∣x+4∣=7 to wszystkie liczby odległe o 7 od liczby −4−4, czyli x1=3x1​=3 i x2=−11x2​=−11. Suma: 3+(−11)=−83+(−11)=−8 — odpowiedź B." do rozwijalnego tekstu ("Pokaż więcej") lub wywalić całkiem albo najlepiej jakoś lepiej opisać pod interaktywnym rozwiązaniem.
-
 - wyciągnięcie tekstu z PDF-ów:
   * matematyka-2026-maj-matura-podstawowa.pdf
   * matematyka-2026-maj-matura-podstawowa-odpowiedzi.pdf
-
-- pozmieniaj nazewnictwo na anglojęzyczne w miejscach takich jak: renderujMatematyke, odczytajEgzamin. Elementy typowo związane z maturą takie jak nazwa folderu arkusze, które i tak w środku są po polsku, możesz zostawić. Nie tłumacz bezpośrednio tylko nazwij to jak programista, podobnie możesz zrobić z innymi amatorskimi nazwami nawet jeśli są jużpo angielsku, w szczególności jeżeli wiesz, że ułatwią pracę LLM.
-
-
 
 
 - w miescach takich jak zad 10 lub 29 dopisać w treści zadania krótki dopisek np. "Odpowiedź podaj jako ułamek dziesiętny z dwiema liczbami po przeciku 3,53"
