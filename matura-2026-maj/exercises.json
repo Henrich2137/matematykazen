@@ -192,7 +192,7 @@
         "solutionInteractive": null
     },
     {
-        "question": "<b>Zadanie 12.</b> <br><br> Funkcja \\(f\\) jest określona następująco:\\[f(x) = \\begin{cases} x + 2 & \\text{dla } x \\in [-4,\\ 2] \\\\ -x + 5 & \\text{dla } x \\in (2,\\ 5) \\end{cases}\\]Wykres funkcji \\(y = f(x)\\) przedstawiono w kartezjańskim układzie współrzędnych \\((x, y)\\) na rysunku poniżej.<br><br><img src=\\\"zad12/zad12rys.png\\\" alt=\\\"TODO: wykres funkcji f łamanej – dodać obraz (rosnący odcinek od (-4,-2) do (2,4), malejący do (5,0)).\\\">",
+        "question": "<b>Zadanie 12.</b> <br><br> Funkcja \\(f\\) jest określona następująco:\\[f(x) = \\begin{cases} x + 2 & \\text{dla } x \\in [-4,\\ 2] \\\\ -x + 5 & \\text{dla } x \\in (2,\\ 5) \\end{cases}\\]Wykres funkcji \\(y = f(x)\\) przedstawiono w kartezjańskim układzie współrzędnych \\((x, y)\\) na rysunku poniżej.<br><br><img src=\"zad12/zad12rys.png\" alt=\"TODO: wykres funkcji f łamanej – dodać obraz (rosnący odcinek od (-4,-2) do (2,4), malejący do (5,0)).\">",
         "type": "open",
         "answers": [],
         "correctAnswerIndex": -1,
@@ -262,7 +262,7 @@
         "solutionInteractive": null
     },
     {
-        "question": "<b>Zadanie 13.</b> <br><br> Funkcja liniowa \\(f\\) jest określona wzorem \\(f(x) = ax + b\\), gdzie \\(a\\) i \\(b\\) są pewnymi liczbami rzeczywistymi. W kartezjańskim układzie współrzędnych \\((x, y)\\) przedstawiono fragment wykresu funkcji \\(f\\). Każdy z punktów przecięcia wykresu funkcji \\(f\\) z osiami układu współrzędnych ma obie współrzędne całkowite. Wykres funkcji \\(f\\) jest nachylony do osi \\(Ox\\) układu współrzędnych pod kątem o mierze \\(\\alpha\\) (zobacz rysunek).<br><br><img src=\\\"zad13/zad13rys.png\\\" alt=\\\"TODO: wykres malejącej funkcji liniowej f z zaznaczonym kątem α do osi Ox – dodać obraz.\\\">",
+        "question": "<b>Zadanie 13.</b> <br><br> Funkcja liniowa \\(f\\) jest określona wzorem \\(f(x) = ax + b\\), gdzie \\(a\\) i \\(b\\) są pewnymi liczbami rzeczywistymi. W kartezjańskim układzie współrzędnych \\((x, y)\\) przedstawiono fragment wykresu funkcji \\(f\\). Każdy z punktów przecięcia wykresu funkcji \\(f\\) z osiami układu współrzędnych ma obie współrzędne całkowite. Wykres funkcji \\(f\\) jest nachylony do osi \\(Ox\\) układu współrzędnych pod kątem o mierze \\(\\alpha\\) (zobacz rysunek).<br><br><img src=\"zad13/zad13rys.png\" alt=\"TODO: wykres malejącej funkcji liniowej f z zaznaczonym kątem α do osi Ox – dodać obraz.\">",
         "type": "open",
         "answers": [],
         "correctAnswerIndex": -1,
