@@ -61,15 +61,15 @@ const exercises = [
             "\\[2.\\quad \\begin{aligned} x + 4 &= -7 \\\\ x &= -7 - 4 \\\\ x &= \\boldsymbol{-11} \\end{aligned}\\]" +
             "\\[3 + (-11) = \\boldsymbol{-8}\\] czyli odp B.<br><br>",
         solutionStepByStep: [
-            { type: "video", src: "zad1/zad1rozw_step1.mp4", text: "Tu będą pojawiać się różne komentarze" },
-            { type: "video", src: "zad1/zad1rozw_step2.mp4", text: "Niestety będą miały one różną długość więc jeśli przesadzę to albo zacznie to wchodzić na nawigacje albo nawigacja będzie skakać. Mogę coś tu jeszcze popisać aby to sprawdzić." },
-            { type: "video", src: "zad1/zad1rozw_step3.mp4", text: "Rozwiązaniem może być przesinięcie komentarzy poniżej nawigacji ale to będzie pewnie dziwnie wyglądać" },
-            { type: "video", src: "zad1/zad1rozw_step4.mp4", text: "W razie braku komentarzy będę mógł tu wstawić linię" },
-            { type: "video", src: "zad1/zad1rozw_step5.mp4", text: "" },
-            { type: "video", src: "zad1/zad1rozw_step6.mp4", text: "" },
-            { type: "video", src: "zad1/zad1rozw_step7.mp4", text: "" },
-            { type: "video", src: "zad1/zad1rozw_step8.mp4", text: "" },
-            { type: "video", src: "zad1/zad1rozw_step9.mp4", text: "" }
+            { type: "video", src: "zad1/zad1rozw_step1.mp4", text: "Zaczynamy od równania z wartością bezwzględną: \\(|x + 4| = 7\\)." },
+            { type: "video", src: "zad1/zad1rozw_step2.mp4", text: "Wartość bezwzględna wynosi 7, gdy wyrażenie w środku jest równe 7 albo \\(-7\\) — stąd dwa przypadki do rozpatrzenia osobno." },
+            { type: "video", src: "zad1/zad1rozw_step3.mp4", text: "Pierwszy przypadek: \\(x + 4 = 7\\)." },
+            { type: "video", src: "zad1/zad1rozw_step4.mp4", text: "Przenosimy 4 na prawą stronę, zmieniając jego znak." },
+            { type: "video", src: "zad1/zad1rozw_step5.mp4", text: "Pierwsze rozwiązanie: \\(x_1 = 3\\)." },
+            { type: "video", src: "zad1/zad1rozw_step6.mp4", text: "Drugi przypadek: \\(x + 4 = -7\\)." },
+            { type: "video", src: "zad1/zad1rozw_step7.mp4", text: "Znowu przenosimy 4 na prawą stronę, zmieniając jego znak." },
+            { type: "video", src: "zad1/zad1rozw_step8.mp4", text: "Drugie rozwiązanie: \\(x_2 = -11\\). Mamy już obie liczby, których szukaliśmy." },
+            { type: "video", src: "zad1/zad1rozw_step9.mp4", text: "Suma obu rozwiązań: \\(x_1 + x_2 = -8\\) — to odpowiedź B." }
         ],
         solutionInteractive: function (container) {
             widgetOsLiczbowa(container);
@@ -227,7 +227,7 @@ const exercises = [
         question: '<b>Zadanie 10.</b> <br><br> Funkcja \\(f\\) jest określona następująco:' +
                   '\\[f(x) = \\begin{cases} 3 & \\text{dla } x \\in (-4,\\ -2\\rangle \\\\ -x + 1 & \\text{dla } x \\in (-2,\\ 2\\rangle \\\\ x - 3 & \\text{dla } x \\in (2,\\ 4\\rangle \\end{cases}\\]' +
                   'Wykres funkcji \\(y = f(x)\\) przedstawiono w kartezjańskim układzie współrzędnych \\((x, y)\\) na rysunku poniżej'+
-                  '<img src="zad10/zad10rys.png"> <br>' +
+                  '<img src="zad10/zad10rys.png" alt="Wykres funkcji f łamanej: odcinek poziomy na wysokości 3 od x=-4 (kółko otwarte) do x=-2, malejący odcinek do (2,-1), rosnący odcinek do (4,1) (kropka pełna)."> <br>' +
                   'Uzupełnij zdania. Wpisz odpowiednie przedziały w polach, aby zdania były prawdziwe.',
         type: "fillIn",
         answers: [],
@@ -253,7 +253,7 @@ const exercises = [
     },
     {
         question: '<b>Zadanie 11.</b> <br><br> Miejscem zerowym funkcji liniowej \\(f\\) jest liczba \\(2\\), a punkt przecięcia wykresu funkcji \\(f\\) z osią \\(Oy\\) ma współrzędne \\((0,\\ 4)\\).<br><br>' +
-                  '<img src="zad11/zad11.png"> <br>' +
+                  '<img src="zad11/zad11.png" alt="Wykres malejącej funkcji liniowej f przecinającej oś Oy w punkcie (0,4) i oś Ox w punkcie (2,0)."> <br>' +
                   'Oceń prawdziwość poniższych stwierdzeń. Wybierz <b>P</b>, jeśli stwierdzenie jest prawdziwe, albo <b>F</b> – jeśli jest fałszywe.',
         type: "PF",
         answers: [],
@@ -416,7 +416,7 @@ const exercises = [
     {
         // "Puste" zadanie nadrzędne dla 17.1-17.2 (jak zad 12 wyżej).
         question: '<b>Zadanie 17.</b> <br><br> Dany jest trójkąt prostokątny ABC, w którym \\(|AC| = \\sqrt{15}\\) i \\(|BC| = 8\\). Na przyprostokątnej AB leży taki punkt D, że \\(|BD| = 6\\) (zobacz rysunek).<br>' +
-                '<img src="zad17/zad17.png">',
+                '<img src="zad17/zad17.png" alt="Trójkąt prostokątny ABC z kątem prostym przy A: bok AC ma długość √15, przeciwprostokątna BC ma długość 8, a punkt D leży na boku AB w odległości 6 od B.">',
         type: "open",
         answers: [],
         correctAnswerIndex: -1,
@@ -476,7 +476,7 @@ const exercises = [
     },
     {
         question: '<b>Zadanie 19.</b> <br><br> W trapezie prostokątnym ABCD dłuższa podstawa AB ma długość \\(7{,}5\\). Krótsza przekątna AC ma długość równą \\(6\\) i dzieli trapez na dwa trójkąty prostokątne.<br><br>' +
-                '<img src="zad19/zad19.png"> <br>' +
+                '<img src="zad19/zad19.png" alt="Trapez prostokątny ABCD z podstawą AB długości 7,5 i przekątną AC długości 6, dzielącą trapez na dwa trójkąty prostokątne."> <br>' +
                 'Oblicz pole trapezu ABCD. Zapisz obliczenia.',
         type: "open",
         answers: [],
@@ -492,7 +492,7 @@ const exercises = [
     },
     {
         question: '<b>Zadanie 20.</b> <br><br> Dany jest okrąg o środku w punkcie S i promieniu \\(6\\). Miara kąta wpisanego ACB jest równa \\(60^{\\circ}\\).<br><br>' +
-                '<img src="zad20/zad20.png"> <br>' +
+                '<img src="zad20/zad20.png" alt="Okrąg o środku S z kątem wpisanym ACB równym 60°, opartym na łuku AB."> <br>' +
                 'Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>' +
                 'Długość łuku AB, na którym oparty jest kąt wpisany ACB, jest równa:',
         answers: ['A. \\(2\\pi\\)', 'B. \\(4\\pi\\)', 'C. \\(6\\pi\\)', 'D. \\(12\\pi\\)'],
@@ -658,7 +658,7 @@ const exercises = [
     },
     {
         question: '<b>Zadanie 30.</b> <br><br> Rozważamy wszystkie prostopadłościany ABCDEFGH, w których krawędź AE jest 3 razy dłuższa od krawędzi AB, a suma długości wszystkich dwunastu krawędzi prostopadłościanu jest równa 48 (zobacz rysunek). Niech \\(P(x)\\) oznacza funkcję pola powierzchni całkowitej takiego prostopadłościanu w zależności od długości \\(x\\) krawędzi AB.<br>' +
-                '<img src="zad30/zad30.png" style="width:220px;"> <br>' +
+                '<img src="zad30/zad30.png" alt="Prostopadłościan ABCDEFGH z krawędzią AB oznaczoną jako x." style="width:220px;"> <br>' +
                 'Wyznacz wzór i dziedzinę funkcji P. Oblicz długość \\(x\\) krawędzi AB tego z rozważanych prostopadłościanów, którego pole powierzchni całkowitej jest największe. Zapisz obliczenia.',
         type: "open",
         answers: [],

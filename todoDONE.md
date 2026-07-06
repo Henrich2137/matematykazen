@@ -3,6 +3,12 @@ Nie wczytuj tego pliku domyślnie — tylko gdy potrzebne jest szersze spojrzeni
 rozwiązanie trudniejszego problemu albo sprawdzenie, czy/jak coś już kiedyś rozwiązano.
 (Zasada opisana w CLAUDE.md. Plik zaczął się jako notatki ze smoke testu.)
 
+ZROBIONE (2026-07-06, sesja porządkowa — cztery drobne punkty z NISKI PRIORYTET):
+- [DONE] Usunięte nieużywane pliki graficzne (zweryfikowane grepem po całym repo, że nic ich już nie odwołuje): zad2/zad2.png, zad6/zad6.png, zad6/zad6odp1-4.png, zad7/zad7.png, zad7/zad7x2.png, zad8/zad8.png, zad10/zad10.png (zad10/zad10rys.png zostawiony — to prawdziwy wykres), cały folder zad16/. Zdanie o "kept on disk for provenance" w ARCHITECTURE.md (sekcja Asset folder convention) zaktualizowane, żeby nie odsyłało do usuniętych plików.
+- [DONE] Zad 1: 9 placeholderowych komentarzy pod krokami wideo rozwiązania |x + 4| = 7 zastąpione prawdziwymi, krótkimi opisami po polsku (z KaTeX-em), wyprowadzonymi z faktycznej treści klatek (ffmpeg + odczyt kluczowych klatek każdego z 9 filmików step1-9).
+- [DONE] Literówka w index.html: "wzbogaconomi" → "wzbogaconymi"; cały plik przeczytany pod kątem innych literówek — nic więcej nie znaleziono.
+- [DONE] Dostępność: dodany atrybut alt (krótki polski opis) do 6 obrazków w exercises.js: zad10/zad10rys.png, zad11/zad11.png, zad17/zad17.png, zad19/zad19.png, zad20/zad20.png, zad30/zad30.png.
+
 ZROBIONE (2026-07-04):
 - [DONE] Punkt nie cofał się po złej odpowiedzi → naprawione. Usunięto flag isScoreGiven; każde zadanie ma earnedScore (0 albo maxScore), a updateTotalScore() przelicza sumę od zera. Zła odpowiedź daje 0 / X pkt i zeruje earnedScore.
 - [DONE] Kruche porównywanie odpowiedzi po stringu HTML → naprawione. Dane używają teraz correctAnswerIndex (0=A, 1=B, ...; -1 = otwarte/niewypełnione), a ocena to i === correctIndex. Cały exercises.js zmigrowany.
