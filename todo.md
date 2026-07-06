@@ -12,24 +12,21 @@ Zadania realizuj od góry do dołu.
 Opus, nie ruszaj tego chyba, że cię poproszę w promptcie, możesz zapytać czy to zrobić jeśli nie masz co robić
 
 WYSOKI PRIORYTET:
-- zad 29 nie akceptuje liczby 6,50 a powinno. Sprawdzić również w zasadach oceniania czy mozna wpisywać ułamki mieszane, jeśli tak to dorobić system odczytu zapisów 6 1/2 (sześć i jedna druga czyli 6,5)
-
-- Strona wydaje się klatkowac podczas przewijania i trwania filmiku. Poszukaj przyczyny. Podejrzewam, że to kwestia płynnego paska postępu filmu to usuń ten bajer lub jeśli masz pomysł jak go łatwo zoptymalizowac to zrób to nie rób kombinacji alpejskich aby to zoptymalizować, nie warto. Dzieje siętak tylko w firefox, moze to jest związane z ustawieniami prywatnosci/bezpieczenstwa jakie tam mam idk.
+- (puste — zad 29 „6,50", klatkowanie w Firefoksie i strona arkusza 2026
+  zrobione 2026-07-06, patrz todoDONE.md)
 
 
 NISKI PRIORYTET (drobne porządki, dobre na krótką sesję):
-- Stworzyć nową stronę z nowym arkuszem matury 2026 — szkielet danych już gotowy:
-  matura-2026-maj/exercises.json (41 wpisów, wszystkie 33 zadania, suma punktów = 50,
-  wszystkie wzory KaTeX zweryfikowane przez katex.renderToString, patrz todoDONE.md).
-  Brakuje: hint/solutionText/solutionStepByStep/solutionInteractive (celowo puste —
-  do dorobienia), formulasPage (numery stron w wybrane_wzory_matematyczne.pdf), oraz
-  obrazki/wykresy dla zadań 12 (wykres funkcji łamanej), 13 (wykres funkcji liniowej
-  z kątem α), 19 (okrąg z punktami A,B,C,D), 20 (proste równoległe k,l,m,n) i 31
-  (dwa diagramy słupkowe klasa IVA/IVB — dane WYŁĄCZNIE na obrazku, bez niego zadanie
-  31 nie da się zweryfikować/rozwiązać) — trzeba je wyciąć z arkusze PDF/matematyka-
-  2026-maj-matura-podstawowa.pdf (wzorem zad30 z arkusza 2024: pdftoppm -x/-y/-W/-H).
-  Brakuje też matematykazen.html/script.js/style.css dla tej strony (folder ma na
-  razie tylko exercises.json).
+- Dokończyć arkusz 2026 (strona już działa, matura-2026-maj/matematykazen.html):
+  * hint/solutionText/solutionStepByStep/solutionInteractive (celowo puste — do dorobienia)
+  * formulasPage (numery stron w wybrane_wzory_matematyczne.pdf)
+  * obrazki/wykresy dla zadań 12 (wykres funkcji łamanej), 13 (wykres funkcji liniowej
+    z kątem α), 19 (okrąg z punktami A,B,C,D), 20 (proste równoległe k,l,m,n) i 31
+    (dwa diagramy słupkowe klasa IVA/IVB — dane WYŁĄCZNIE na obrazku, bez niego zadanie
+    31 nie da się zweryfikować/rozwiązać) — trzeba je wyciąć z arkusze PDF/matematyka-
+    2026-maj-matura-podstawowa.pdf (wzorem zad30 z arkusza 2024: pdftoppm -x/-y/-W/-H;
+    docelowe ścieżki matura-2026-maj/zadN/zadNrys.png są już wpisane w exercises.json).
+    UWAGA: w środowisku zdalnym Claude nie ma pdftoppm/mutool/gs — to robota na lokalną sesję.
 - Stworzyć nową stronę z nowym arkuszem matury 2027
 
 

@@ -322,13 +322,20 @@ scoreSwitchButton.addEventListener("click", () => {
 // do [ ], minus typograficzny do zwykłego, średnik do przecinka. Obie strony
 // porównania (wpis ucznia i wzorzec z danych) przechodzą przez tę samą funkcję.
 function normalizeAnswer(s) {
-    return (s || "")
+    let wynik = (s || "")
         .replace(/\s+/g, "")
         .replace(/[−–]/g, "-")
         .replace(/[⟨<]/g, "[")
         .replace(/[⟩>]/g, "]")
         .replace(/;/g, ",")
         .toLowerCase();
+    // Zbędne zera na końcu części dziesiętnej: "6,50" ≡ "6,5", "7,0" ≡ "7".
+    // Tylko gdy CAŁY wpis jest pojedynczą liczbą dziesiętną — w przedziale
+    // typu "(-4,40]" przecinek rozdziela końce i nie wolno go ruszać.
+    if (/^-?\d+[,.]\d*$/.test(wynik)) {
+        wynik = wynik.replace(/0+$/, "").replace(/[,.]$/, "");
+    }
+    return wynik;
 }
 
 function markCorrectAnswer(exercise) {
