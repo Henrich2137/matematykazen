@@ -25,9 +25,9 @@ Plus per-exercise asset folders `zad1/`, `zad2/`, … (PNG images + Manim-produc
 
 ## Task tracking
 
-**The active TODO file is [todo.md](todo.md) — open items only.** The user (Henrich) checks it most often, so any new bug, idea, or verification result you want him to see goes there (append under the "NOWE PUNKTY TODO ZAPISYWANE PRZEZ CLAUDE" section, in Polish). **Always check `todo.md` before starting work and keep it in sync.**
+**The active TODO file is [TODO.md](TODO.md) — open items only.** The user (Henrich) checks it most often, so any new bug, idea, or verification result you want him to see goes there (append under the "NOWE PUNKTY TODO ZAPISYWANE PRZEZ CLAUDE" section, in Polish). **Always check `TODO.md` before starting work and keep it in sync.**
 
-**Done items do not stay in todo.md.** When an item is completed, move it to [todoDONE.md](todoDONE.md) (marked `[DONE]`/`[ZROBIONE]` with the date and a short note on how it was solved) and delete it from todo.md, so todo.md stays short and cheap to load. **Do not read todoDONE.md by default** — open it only when you genuinely need project history: a broader view of the project, debugging a harder problem, or checking whether/how something was already solved before. (Older names `todo1DONE.md`/`todo2.md`/`todo3.md` no longer exist — their content was merged into these two files.)
+**Done items do not stay in TODO.md.** When an item is completed, move it to [TODODONE.md](TODODONE.md) (marked `[DONE]`/`[ZROBIONE]` with the date and a short note on how it was solved) and delete it from TODO.md, so TODO.md stays short and cheap to load. **Do not read TODODONE.md by default** — open it only when you genuinely need project history: a broader view of the project, debugging a harder problem, or checking whether/how something was already solved before. (Older names `todo1DONE.md`/`todo2.md`/`todo3.md`/`todo.md`/`todoDONE.md` no longer exist — their content was merged/renamed into these two files.)
 
 ## Running / previewing
 

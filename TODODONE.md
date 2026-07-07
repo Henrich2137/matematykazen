@@ -1,4 +1,4 @@
-ARCHIWUM ZROBIONYCH PUNKTÓW TODO. Tu trafiają wpisy [DONE]/[ZROBIONE] przenoszone z todo.md.
+ARCHIWUM ZROBIONYCH PUNKTÓW TODO. Tu trafiają wpisy [DONE]/[ZROBIONE] przenoszone z TODO.md.
 Nie wczytuj tego pliku domyślnie — tylko gdy potrzebne jest szersze spojrzenie na projekt,
 rozwiązanie trudniejszego problemu albo sprawdzenie, czy/jak coś już kiedyś rozwiązano.
 (Zasada opisana w CLAUDE.md. Plik zaczął się jako notatki ze smoke testu.)
@@ -13,7 +13,7 @@ ZROBIONE PRZEZ FABLE (2026-07-06, sesja zdalna, do ewentualnej weryfikacji przez
   zad 12/13 w matura-2026-maj/exercises.json (łamało src) i dodany link do arkusza 2026 na
   stronie głównej. Smoke-test (Playwright+Chromium, http.server): 41 kart, 205 wzorów KaTeX,
   0/50 pkt → 1/50 po poprawnym kliknięciu; arkusz 2024 bez regresji (te same klucze, 0 błędów).
-  ZOSTAJE do zrobienia: hinty/rozwiązania, formulasPage i obrazki zad 12/13/19/20/31 (todo.md).
+  ZOSTAJE do zrobienia: hinty/rozwiązania, formulasPage i obrazki zad 12/13/19/20/31 (TODO.md).
 - [DONE] Klatkowanie w Firefoksie podczas filmiku: usunięty pasek postępu filmu wraz z pętlą
   requestAnimationFrame (script.js: renderStep + podepnijSterowanieWideo; style.css:
   .video-progress/.video-progress-bar). Klik pauza/play i ikonka stanu (pauza ⏸ / koniec ↺)
@@ -81,10 +81,10 @@ ZROBIONE PRZEZ OPUSA (2026-07-06, do ewentualnej weryfikacji przez Henricha):
   CLAUDE.md (1), style.css (1). Weryfikacja: node --check wyciągniętego skryptu → OK, zero
   pozostałości starych nazw. Split na script.js/solutionsInteractive.js zostawiony na później.
 
-ZROBIONE (2026-07-06, zweryfikowane przez Henricha — punkty oznaczone ✅ w todo.md):
+ZROBIONE (2026-07-06, zweryfikowane przez Henricha — punkty oznaczone ✅ w TODO.md):
 - [DONE] Responsywność: breakpointy 1024/900/720/560px; na telefonie (sprawdzone od 360px wzwyż) pasek przechodzi na dwa rzędy, karta zadania wypełnia ekran, filmiki i wykresy się skalują, szerokie wzory dostają własny poziomy scroll, zero poziomego scrolla całej strony; badge punktów na ekranach < ~1010px przenosi się do prawego górnego rogu karty. Dodana ikonka "M" do index.html. Szczegóły w ARCHITECTURE.md.
 
-ZROBIONE (2026-07-05, zweryfikowane przez Henricha — punkty oznaczone ✅ w todo.md):
+ZROBIONE (2026-07-05, zweryfikowane przez Henricha — punkty oznaczone ✅ w TODO.md):
 - [DONE] zad 10 i 29: prawdziwe pola do wpisywania odpowiedzi + przycisk "Sprawdź" (zielona/czerwona ramka pola; punkty po równo za każde pole). Nawiasy przedziałów można wpisywać jako ⟨⟩, [] albo <>, liczby z kropką lub przecinkiem (6.38 = 6,38) — normalizacja to ujednolica.
 - [DONE] Postęp (odpowiedzi + punkty) zapisuje się w localStorage i wraca po odświeżeniu; na dole arkusza dyskretny przycisk "wyczyść zapisany postęp". Zapis unieważnia się sam, gdy zmieni się liczba zadań w danych (celowo).
 - [DONE] W pasku przełącznik "pokaż/schowaj wszystkie rozwiązania" (otwiera też kroki wideo).
@@ -127,7 +127,7 @@ ZROBIONE (2026-07-06, sesja "trzy duże zadania" — gałąź claude/todo-tasks-
   ARCHITECTURE.md (sekcja "Exam mode").
   Wszystkie trzy zadania tej sesji (migracja, KaTeX w widżetach, tryb egzaminacyjny)
   zweryfikowane i zaakceptowane przez Henricha (2026-07-06) — jedyny otwarty punkt
-  to pełne przeklikanie trybu egzaminacyjnego, patrz todo.md.
+  to pełne przeklikanie trybu egzaminacyjnego, patrz TODO.md.
 
 ZROBIONE (2026-07-06, sesja porządkowa — cztery drobne punkty z NISKI PRIORYTET):
 - [DONE] Usunięte nieużywane pliki graficzne (zweryfikowane grepem po całym repo, że nic ich już nie odwołuje): zad2/zad2.png, zad6/zad6.png, zad6/zad6odp1-4.png, zad7/zad7.png, zad7/zad7x2.png, zad8/zad8.png, zad10/zad10.png (zad10/zad10rys.png zostawiony — to prawdziwy wykres), cały folder zad16/. Zdanie o "kept on disk for provenance" w ARCHITECTURE.md (sekcja Asset folder convention) zaktualizowane, żeby nie odsyłało do usuniętych plików.
@@ -191,7 +191,7 @@ Byłoby idealnie:
 - [DONE 2026-07-04] gdyby nie było tekstu/komentarza pod video to pojawia się wypełniacz "· · ·" w jego miejsce.
 
 
-=== PRZENIESIONE Z todo.md (2026-07-05, porządkowanie: zrobione wpisy trafiają tutaj) ===
+=== PRZENIESIONE Z TODO.md (2026-07-05, porządkowanie: zrobione wpisy trafiają tutaj) ===
 
 --- Weryfikacja zgodności z arkuszem PDF (2026-07-05, sesja: sprawdzenie exercises.js vs "arkusze PDF/") ---
 Porównałem cały exercises.js z arkuszem (matematyka-2024-grudzien-probna-podstawowa.pdf)
@@ -211,7 +211,7 @@ WYNIK: wszystkie 30 odpowiedzi zgadza się z oficjalnym kluczem CKE. Treści te�
   (zad 19 to poprawny wariant trygonometryczny zamiast podobieństwa — klucz akceptuje
   każdą poprawną metodę). Uzasadnienia zadań zamkniętych prowadzą do litery z klucza.
   Znany wyjątek (nie nowy błąd): zad 2 krok 6 filmu ma błędną klatkę 5⁻⁴, ale tekst
-  rozwiązania jest poprawny (film do przerenderowania — punkt otwarty w todo.md).
+  rozwiązania jest poprawny (film do przerenderowania — punkt otwarty w TODO.md).
 - [OK, potwierdzone z kluczem] Punktacja zadań otwartych zgadza się z arkuszem:
   zad 3 (0-2), 8 (0-3), 9 (0-2), 10 (0-4), 19 (0-4), 26 (0-2), 28 (0-2), 29 (0-2), 30 (0-4).
   Suma całego arkusza = 50 pkt. Zgadza się z maxTotalScore liczonym z maxScore.
@@ -219,7 +219,7 @@ WYNIK: wszystkie 30 odpowiedzi zgadza się z oficjalnym kluczem CKE. Treści te�
   „Zadanie 12." na górze wpisu 12.1), 12.2 tylko krótko odwołuje się do tej samej
   funkcji f — wzorem na zad 17.
 
---- Sesja 2026-07-05: realizacja punktów „do zrobienia / do poprawki" z góry todo.md ---
+--- Sesja 2026-07-05: realizacja punktów „do zrobienia / do poprawki" z góry TODO.md ---
 Zrobione:
 - [ikonka w title] Usunąłem 🧘. W <head> matematykazen.html jest teraz prosta,
   czarna ikonka „M" (serif, data-URI SVG) — włączona. Jeśli nie pasuje, wystarczy
@@ -247,20 +247,20 @@ Zostawione bez zmian (za decyzją Henricha):
 
 --- Sesja 2026-07-05: odchudzenie CLAUDE.md (mniej tokenów na start sesji) ---
 - [ZROBIONE] CLAUDE.md skrócony z ~125 do ~35 linii: zostały tylko rzeczy potrzebne
-  w każdej sesji (kontekst produktu, 4 główne pliki, zasady todo.md, uruchamianie,
+  w każdej sesji (kontekst produktu, 4 główne pliki, zasady TODO.md, uruchamianie,
   notatki o treści). Cała szczegółowa dokumentacja (model renderowania, schemat
   exercises.js, konwencja zadN/, pełny opis CSS/layout z gotchami) przeniesiona
   do NOWEGO pliku ARCHITECTURE.md — CLAUDE.md odsyła do niego i każe go czytać
   przed zmianami w renderowaniu/schemacie/CSS oraz utrzymywać w synchronizacji.
 - [ZROBIONE przy okazji] CLAUDE.md wskazywał na nieistniejące pliki todo3.md /
-  todo2.md / todo1DONE.md — poprawione na faktyczne todo.md (aktywny) i todoDONE.md
+  todo2.md / todo1DONE.md — poprawione na faktyczne TODO.md (aktywny) i TODODONE.md
   (archiwum). Usunięty też nieaktualny "known open task" o tabeli zad 29 (podmiana
   była już zrobiona 2026-07-05 — potwierdzone w exercises.js).
 - [ZROBIONE 2026-07-05] Nowa zasada w CLAUDE.md: wpisy [DONE]/[ZROBIONE] przenoszone
-  są z todo.md do todoDONE.md, a todoDONE.md NIE jest wczytywany domyślnie — tylko
+  są z TODO.md do TODODONE.md, a TODODONE.md NIE jest wczytywany domyślnie — tylko
   przy szerszym spojrzeniu na projekt / trudniejszym problemie. Ten blok wpisów to
   pierwsze zastosowanie tej zasady.
---- Sesja 2026-07-05 (Fable): realizacja todo.md — wysoki priorytet + "cięższe rzeczy" ---
+--- Sesja 2026-07-05 (Fable): realizacja TODO.md — wysoki priorytet + "cięższe rzeczy" ---
 - [ZROBIONE 2026-07-05] Zad 12 i 17 oddzielone od podzadań: wspólny wstęp każdego z nich
   to teraz osobny, "pusty" element exercises (maxScore: 0 — bez odpowiedzi, rozwiązań
   i badge'a punktów; badge jest usuwany z DOM, żeby przełącznik widoku punktów go nie
@@ -378,7 +378,7 @@ Zostawione bez zmian (za decyzją Henricha):
   solutionStepByStep, solutionInteractive (wszystkie null/""), formulasPage (null — strony
   w wybrane_wzory_matematyczne.pdf jeszcze nie dopasowane). Brakujące obrazki/wykresy
   (zadania 12, 13, 19, 20, 31 — zad 31 bez obrazka w ogóle się nie da rozwiązać, dane są
-  tylko na diagramach słupkowych) odnotowane w todo.md z instrukcją wycięcia (pdftoppm,
+  tylko na diagramach słupkowych) odnotowane w TODO.md z instrukcją wycięcia (pdftoppm,
   wzorem zad30/2024). Folder ma na razie tylko exercises.json — matematykazen.html/
   script.js/style.css dla tej strony to osobna, nierozpoczęta robota.
 - [ZROBIONE 2026-07-06] Dopisek formatu odpowiedzi w exercises.json (arkusz 2024), zad 10
