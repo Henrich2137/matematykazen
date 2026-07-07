@@ -1,6 +1,6 @@
 Nowy plik który tworzy Henrich (ja, użytkownik). Podczas Sprawdzania nowej wersji strony utworzonej przez fable (claude/project-improvements-exercises...)
 
-(Zasada: tu są TYLKO otwarte punkty. Zrobione wpisy [DONE]/[ZROBIONE] przenoszone są do todoDONE.md — patrz CLAUDE.md.)
+(Zasada: tu są TYLKO otwarte punkty. Zrobione wpisy [DONE]/[ZROBIONE] przenoszone są do TODODONE.md — patrz CLAUDE.md.)
 
 Zadania realizuj od góry do dołu.
 
@@ -13,12 +13,12 @@ Opus, nie ruszaj tego chyba, że cię poproszę w promptcie, możesz zapytać cz
 
 WYSOKI PRIORYTET:
 - (puste — zad 29 „6,50", klatkowanie w Firefoksie i strona arkusza 2026
-  zrobione 2026-07-06, patrz todoDONE.md)
+  zrobione 2026-07-06, patrz TODODONE.md)
 
 
 NISKI PRIORYTET (drobne porządki, dobre na krótką sesję):
 - (dokańczanie arkusza 2026 przeniesione do sekcji Opusa niżej — odpowiedzi w
-  exercises.json są już ZWERYFIKOWANE z kluczem CKE i rachunkiem, patrz todoDONE.md,
+  exercises.json są już ZWERYFIKOWANE z kluczem CKE i rachunkiem, patrz TODODONE.md,
   więc reszta to robota przepisywacko-składacka)
 
 
@@ -32,7 +32,7 @@ NISKI PRIORYTET (drobne porządki, dobre na krótką sesję):
 Fable, nie ruszaj tego chyba, że nie masz co robić.
 
 WYSOKI PRIORYTET:
-- (puste — patrz todoDONE.md, sesja 2026-07-06: ekstrakt PDF 2026 + szkielet
+- (puste — patrz TODODONE.md, sesja 2026-07-06: ekstrakt PDF 2026 + szkielet
   matura-2026-maj/exercises.json + dopisek formatu w zad 10/29 zrobione)
 
 NISKI PRIORYTET:
@@ -85,4 +85,4 @@ INNE NOTATKI:
   parę odpowiedzi (ramki powinny być neutralne/niebieskie) → F5 (czy egzamin dalej
   trwa) → "zakończ egzamin" → podsumowanie → samoocena zadania otwartego.
   (Automatyczny smoke-test Playwright 2026-07-06 przeszedł cały ten przebieg bez
-  błędów — patrz todoDONE.md; to tylko na wyczucie/UX zostaje do Ciebie.)
+  błędów — patrz TODODONE.md; to tylko na wyczucie/UX zostaje do Ciebie.)

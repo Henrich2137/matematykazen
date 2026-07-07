@@ -50,7 +50,7 @@ Pliki dotknięte: [matematykazen.html](matematykazen.html) (inline `<script>` + 
 3. **Lekka animacja kroku** w JS/CSS: fade-in + opcjonalne podświetlenie zmienianych członów kolorami `WG_KOLORY` (spójność z widgetami). Bez bibliotek zewnętrznych na start; jeśli potrzeba płynniejszych przejść — rozważyć zvendorowany anime.js.
 4. **PoC na zad 1**: przepisać `solutionStepByStep` zad 1 na kroki `type: "math"` (LaTeX), zostawiając wideo zad 2/3 nietknięte — bezpośrednie porównanie side-by-side w tej samej stronie.
 5. **Styl**: reguły KaTeX/rozmiar w `.solution-step-by-step-container` w [style.css](style.css); zaktualizować sekcję „CSS & layout reference" i opis `solutionStepByStep`/schematu w CLAUDE.md (typ `math`) — zgodnie z zasadą utrzymywania dokumentacji w synchronie.
-6. Wpisać zadanie/wynik do [todo3.md](todo3.md) (po polsku, sekcja „NOWE PUNKTY TODO ZAPISYWANE PRZEZ CLAUDE").
+6. Wpisać zadanie/wynik do [TODO.md](TODO.md) (po polsku, sekcja „NOWE PUNKTY TODO ZAPISYWANE PRZEZ CLAUDE").
 
 ### Weryfikacja (bez build/test tooling)
 Otworzyć [matematykazen.html](matematykazen.html) w przeglądarce (lub `python -m http.server`, żeby PDF/`object` i lokalne assety ładowały się poprawnie) i klik-test:
