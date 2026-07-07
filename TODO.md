@@ -64,6 +64,7 @@ NAJNIŻSZY PRIORYTET, NA POTEM:
    * Przycisk pokaż potrzebne wzory nie powinien się pokazywać, zrób też tak, aby nie było tam przerwy zadużej można wyłączyć div który jest gdzieś wyżej w hierarchi czy coś
    * przycisk opcji "..." po kliknięciu pokazuje pustą ramkę, dobrze aby albo nie było go w ogóle albo był szary lub po rozwinięciu pokazywał zaszarzone te przyciski które nie powinny działać podczas egzaminu.
    * Zadania otwarte np. 30 powinny mieć pole do zanotowania odpowiedzi do samodzielnego sprawdzenia potem.
+   * Przycisk zakończ egzamin powinien znajdować sięna dole strony zamiastt wyczyść wszysktie punkty
 - do sekcji "oceń się" powinno być dodane kryteria sukcesu dopiero po kliknięciu rozwiązania. Ale jeszcze nie mam pomysłu jak to skomponować aby miało sens.
 
 
@@ -72,11 +73,14 @@ NAJNIŻSZY PRIORYTET, NA POTEM:
 DLA UŻYTKOWNIKA:
 - Przerenderować w Manimie ostatni krok zad 2 (zad2/zad2rozw_step6.mp4): klatka końcowa pokazuje 5⁻⁴, a poprawny wynik to 5⁴ (5⁻¹ · 5⁵ = 5⁴). Komentarz pod filmem tymczasowo prostuje błąd.
 - Punkt o widżecie zad 1 urwał się w połowie zdania: "opcjonalnie: sprawić aby przesuwanie" — dokończ myśl, to zostanie zrobione (reszta punktu o zad 1 jest już zrealizowana).
-
+<br>
 INNE NOTATKI:
 - Tryb egzaminu nie powinien być tak "schowany" w opcjach. Przed rozpoczęciem arkusza powinno pytać użytkownika czy chce wejśc w tryb ćwiczeniowy czy egzaminu z checkboxem o zapamiętanie wyboru.
 - Etap sprawdzania odpowiedzi po trybie egzaminacyjnym. Idealnie powinien istnieć pomiędzy skończeniem egzaminu, a jego wyników pokazaniem wyników egzaminu.
-
+- Okno potwierdzenia chęci wyczyszczenia punktów
+- przycisk wyczyść wszystkie punkty nie powinien chyba być na kończu aby nikt se przez przypadek ni wyczyścił chcąc podsumować
+- analogicznie do boxów z punktacją powinny być do włączenia boxy z opisem typu zadania
+- okna otwierające pdf zasad oceniania i tablicy wzorów powinny zatrzymywać się nie tylko na lewej krawędzi al równie ż na dole i u góry (zanim schowa się za top-bar)
 
 <br><br><br>
 
