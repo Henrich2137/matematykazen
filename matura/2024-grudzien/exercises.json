@@ -17,47 +17,47 @@
         "solutionStepByStep": [
             {
                 "type": "video",
-                "src": "zad1/zad1rozw_step1.mp4",
+                "src": "media/zad1/zad1rozw_step1.mp4",
                 "text": "Zaczynamy od równania z wartością bezwzględną: \\(|x + 4| = 7\\)."
             },
             {
                 "type": "video",
-                "src": "zad1/zad1rozw_step2.mp4",
+                "src": "media/zad1/zad1rozw_step2.mp4",
                 "text": "Wartość bezwzględna wynosi 7, gdy wyrażenie w środku jest równe 7 albo \\(-7\\) — stąd dwa przypadki do rozpatrzenia osobno."
             },
             {
                 "type": "video",
-                "src": "zad1/zad1rozw_step3.mp4",
+                "src": "media/zad1/zad1rozw_step3.mp4",
                 "text": "Pierwszy przypadek: \\(x + 4 = 7\\)."
             },
             {
                 "type": "video",
-                "src": "zad1/zad1rozw_step4.mp4",
+                "src": "media/zad1/zad1rozw_step4.mp4",
                 "text": "Przenosimy 4 na prawą stronę, zmieniając jego znak."
             },
             {
                 "type": "video",
-                "src": "zad1/zad1rozw_step5.mp4",
+                "src": "media/zad1/zad1rozw_step5.mp4",
                 "text": "Pierwsze rozwiązanie: \\(x_1 = 3\\)."
             },
             {
                 "type": "video",
-                "src": "zad1/zad1rozw_step6.mp4",
+                "src": "media/zad1/zad1rozw_step6.mp4",
                 "text": "Drugi przypadek: \\(x + 4 = -7\\)."
             },
             {
                 "type": "video",
-                "src": "zad1/zad1rozw_step7.mp4",
+                "src": "media/zad1/zad1rozw_step7.mp4",
                 "text": "Znowu przenosimy 4 na prawą stronę, zmieniając jego znak."
             },
             {
                 "type": "video",
-                "src": "zad1/zad1rozw_step8.mp4",
+                "src": "media/zad1/zad1rozw_step8.mp4",
                 "text": "Drugie rozwiązanie: \\(x_2 = -11\\). Mamy już obie liczby, których szukaliśmy."
             },
             {
                 "type": "video",
-                "src": "zad1/zad1rozw_step9.mp4",
+                "src": "media/zad1/zad1rozw_step9.mp4",
                 "text": "Suma obu rozwiązań: \\(x_1 + x_2 = -8\\) — to odpowiedź B."
             }
         ],
@@ -81,32 +81,32 @@
         "solutionStepByStep": [
             {
                 "type": "video",
-                "src": "zad2/zad2rozw_step1.mp4",
+                "src": "media/zad2/zad2rozw_step1.mp4",
                 "text": ""
             },
             {
                 "type": "video",
-                "src": "zad2/zad2rozw_step2.mp4",
+                "src": "media/zad2/zad2rozw_step2.mp4",
                 "text": ""
             },
             {
                 "type": "video",
-                "src": "zad2/zad2rozw_step3.mp4",
+                "src": "media/zad2/zad2rozw_step3.mp4",
                 "text": ""
             },
             {
                 "type": "video",
-                "src": "zad2/zad2rozw_step4.mp4",
+                "src": "media/zad2/zad2rozw_step4.mp4",
                 "text": "Opuszczamy nawias, więc wykładnik \\(-5\\) musimy wymnożyć przez wykładniki obu potęg."
             },
             {
                 "type": "video",
-                "src": "zad2/zad2rozw_step5.mp4",
+                "src": "media/zad2/zad2rozw_step5.mp4",
                 "text": ""
             },
             {
                 "type": "video",
-                "src": "zad2/zad2rozw_step6.mp4",
+                "src": "media/zad2/zad2rozw_step6.mp4",
                 "text": "\\(5^{-1+5} = 5^{4}\\), czyli odpowiedź A (na końcu filmu błędny zapis \\(5^{-4}\\))."
             }
         ],
@@ -126,42 +126,42 @@
         "solutionStepByStep": [
             {
                 "type": "video",
-                "src": "zad3/zad3rozw_step1.mp4",
+                "src": "media/zad3/zad3rozw_step1.mp4",
                 "text": ""
             },
             {
                 "type": "video",
-                "src": "zad3/zad3rozw_step2.mp4",
+                "src": "media/zad3/zad3rozw_step2.mp4",
                 "text": ""
             },
             {
                 "type": "video",
-                "src": "zad3/zad3rozw_step3.mp4",
+                "src": "media/zad3/zad3rozw_step3.mp4",
                 "text": ""
             },
             {
                 "type": "video",
-                "src": "zad3/zad3rozw_step4.mp4",
+                "src": "media/zad3/zad3rozw_step4.mp4",
                 "text": ""
             },
             {
                 "type": "video",
-                "src": "zad3/zad3rozw_step5.mp4",
+                "src": "media/zad3/zad3rozw_step5.mp4",
                 "text": ""
             },
             {
                 "type": "video",
-                "src": "zad3/zad3rozw_step6.mp4",
+                "src": "media/zad3/zad3rozw_step6.mp4",
                 "text": ""
             },
             {
                 "type": "video",
-                "src": "zad3/zad3rozw_step7.mp4",
+                "src": "media/zad3/zad3rozw_step7.mp4",
                 "text": ""
             },
             {
                 "type": "video",
-                "src": "zad3/zad3rozw_step8.mp4",
+                "src": "media/zad3/zad3rozw_step8.mp4",
                 "text": "liczba \\(c \\cdot 21\\) jest podzielna przez 21 (c — cokolwiek całkowitego)"
             }
         ],
