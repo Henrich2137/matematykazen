@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-**Detailed architecture, exercise data schema and the full CSS/layout reference live in [ARCHITECTURE.md](ARCHITECTURE.md).** Read it before touching the rendering logic in matematykazen.html, the schema in exercises.json, or style.css — and keep it in sync when you change what it describes. Don't duplicate its content here.
+**Detailed architecture, exercise data schema and the full CSS/layout reference live in [ARCHITECTURE.md](ARCHITECTURE.md).** Read it before touching the rendering logic in template.html, the schema in a sheet's exercises.json, or style.css — and keep it in sync when you change what it describes. Don't duplicate its content here.
 
 ## Product context
 
@@ -10,18 +10,19 @@ MatematykaZen is an interactive platform for learning math for the Polish "matur
 
 ## What this is
 
-A static Polish-language practice site for one exam sheet ("Egzamin maturalny z matematyki podstawowej grudzień 2024, próbna CKE"). No backend, no build system, no package manager. These files drive everything:
+A static Polish-language practice site for CKE "matura podstawowa" exam sheets. No backend, no build system, no package manager.
 
-- [index.html](index.html) — landing page, pure static HTML (`.landing-*` styles).
-- [matematykazen.html](matematykazen.html) — the exam-sheet page: hidden exercise `<template>` + at the bottom two `<script src>` tags (`solutionsInteractive.js` then `script.js`) that render exercises from the data file and wire up all interactivity.
-- [script.js](script.js) — app logic: exercise rendering (`loadExercises`), answers/hints, step-by-step solutions, exam mode, formula-sheet PDF panels, bootstrap (`startSheet()`).
+**Migration in progress since 2026-07-10 (see TODO.md for status):** moving from one hardcoded exam-sheet page to multiple sheets sharing a single renderer. Target structure:
+
+- [index.html](index.html) — landing page, pure static HTML (`.landing-*` styles), links to each sheet.
+- `template.html` (root; replaces the old `matematykazen.html`) — the shared exam-sheet renderer: hidden exercise `<template>` + at the bottom two `<script src>` tags (`solutionsInteractive.js` then `script.js`) that render exercises from a sheet's data file and wire up all interactivity. Meant to serve *any* sheet once the URL-driven loading system lands (TODO.md) — don't assume it's fully wired up until that item is done.
+- `matura/<sheet-id>/` (e.g. `matura/2024-grudzien/`, `matura/2026-maj/`) — one folder per exam sheet: its `exercises.json` and `media/zadN/` assets (PNG images + Manim-produced MP4 solution videos; keep filenames **lowercase**). A sheet only needs its own `solutionsInteractive.js` if it has widgets the shared one doesn't cover.
+- [script.js](script.js) — app logic: exercise rendering (`loadExercises`), answers/hints, step-by-step solutions, exam mode, formula-sheet PDF panels, bootstrap (`startSheet()`). Reads `window.SHEET_ID` / `window.TABLICE_PDF` to key localStorage and pick the formula-sheet PDF per sheet.
 - [solutionsInteractive.js](solutionsInteractive.js) — the interactive answer widgets (`wg*` helpers + `widget*` functions) and the `WIDZETY` name→function registry. **Loaded before `script.js`** because `loadExercises` reads `WIDZETY` (both are classic scripts sharing the global scope, so load order matters).
-- [exercises.json](exercises.json) — pure data: an array of exercise objects, `fetch`ed at startup by `startSheet()`. Interactive widgets are referenced by name (`"solutionInteractive": "widgetX"` → the `WIDZETY` registry in solutionsInteractive.js). All math in it is written in **KaTeX** (`\( ... \)` / `\[ ... \]`; schema + conventions documented in ARCHITECTURE.md — JSON has no comments).
-- [style.css](style.css) — all styling (exam sheet + landing).
+- `exercises.json` (one per sheet, under `matura/<sheet-id>/`) — pure data: an array of exercise objects, `fetch`ed at startup by `startSheet()`. Interactive widgets are referenced by name (`"solutionInteractive": "widgetX"` → the `WIDZETY` registry in solutionsInteractive.js). All math in it is written in **KaTeX** (`\( ... \)` / `\[ ... \]`; schema + conventions documented in ARCHITECTURE.md — JSON has no comments).
+- [style.css](style.css) — all styling (exam sheet + landing), shared by all sheets.
 
-Plus `vendor/katex/` — KaTeX vendored for fully offline math rendering (don't edit those files; to bump the version replace them from the npm tarball).
-
-Plus per-exercise asset folders `zad1/`, `zad2/`, … (PNG images + Manim-produced MP4 solution videos; keep filenames **lowercase**) and `wybrane_wzory_matematyczne.pdf` (formula sheet shown in a floating panel). The official exam + answer key PDFs and their text extracts live in `arkusze PDF/` — do not delete; all 30 answers in exercises.json were verified against the CKE key (2026-07-05).
+Plus `vendor/katex/` — KaTeX vendored for fully offline math rendering (don't edit those files; to bump the version replace them from the npm tarball) — and `wybrane_wzory_matematyczne.pdf` (default formula sheet shown in a floating panel). The official exam + answer key PDFs and their text extracts live in `arkusze PDF/` — do not delete; the 2024-grudzień answers in `matura/2024-grudzien/exercises.json` were verified against the CKE key (2026-07-05).
 
 ## Task tracking
 
@@ -36,5 +37,4 @@ No build or test tooling. **Serve the directory with a static file server** (e.g
 ## Content notes
 
 - All user-facing content and code comments are Polish; keep new content in Polish, direct exam-prep tone.
-- [matematykazen.html](matematykazen.html) has a commented-out `<meta http-equiv="refresh" content="5">` dev-reload snippet flagged `DELETE THIS BEFERE PUBLISHING` — leave it commented out; don't ship it enabled.
-- Known media defect: last frame of `zad2/zad2rozw_step6.mp4` shows 5⁻⁴ instead of 5⁴ — needs an external Manim re-render; the step caption already carries the correction.
+- Known media defect: last frame of `matura/2024-grudzien/media/zad2/zad2rozw_step6.mp4` shows 5⁻⁴ instead of 5⁴ — needs an external Manim re-render; the step caption already carries the correction.
