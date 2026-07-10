@@ -1,6 +1,6 @@
 Nowy plik który tworzy Henrich (ja, użytkownik). Podczas Sprawdzania nowej wersji strony utworzonej przez fable (claude/project-improvements-exercises...)
 
-(Zasada: tu są TYLKO otwarte punkty. Zrobione wpisy [DONE]/[ZROBIONE] przenoszone są do TODODONE.md — patrz CLAUDE.md.)
+(Zasada: tu są TYLKO otwarte punkty. Zrobione wpisy [DONE]/[ZROBIONE] przenoszone są do DONE.md — patrz CLAUDE.md.)
 (Zasada: Drogi LLM, Sonnecie, Opusie, Jeżeli zmieniasz ten plik to wklejaj do odpowiedniej sekcji na dole)
 Zadania realizuj od góry do dołu.
 
@@ -16,7 +16,7 @@ WYSOKI PRIORYTET:
 
 NISKI PRIORYTET (drobne porządki, dobre na krótką sesję):
 - (dokańczanie arkusza 2026 przeniesione do sekcji Opusa niżej — odpowiedzi w
-  exercises.json są już ZWERYFIKOWANE z kluczem CKE i rachunkiem, patrz TODODONE.md,
+  exercises.json są już ZWERYFIKOWANE z kluczem CKE i rachunkiem, patrz DONE.md,
   więc reszta to robota przepisywacko-składacka)
 - wyciągnięcie tekstu z PDF-ów:
   * matematyka-2025-maj-matura-podstawowa.pdf
@@ -63,7 +63,7 @@ INNE NOTATKI:
   parę odpowiedzi (ramki powinny być neutralne/niebieskie) → F5 (czy egzamin dalej
   trwa) → "zakończ egzamin" → podsumowanie → samoocena zadania otwartego.
   (Automatyczny smoke-test Playwright 2026-07-06 przeszedł cały ten przebieg bez
-  błędów — patrz TODODONE.md; to tylko na wyczucie/UX zostaje do Ciebie.)
+  błędów — patrz DONE.md; to tylko na wyczucie/UX zostaje do Ciebie.)
 
 
 DO REALZACJI Dopisane przez SONNETA LUB OPUSA:
@@ -91,7 +91,7 @@ SONNET DOPISAŁ:
     matura/2026-maj/index.html
   * zgrep'uj cały projekt (też *.md) za starymi nazwami "matematykazen.html" i
     "matura-2026-maj" i popraw bieżące odnośniki w TODO.md/ARCHITECTURE.md;
-    wpisy historyczne w TODODONE.md możesz zostawić bez zmian (opisują przeszłość)
+    wpisy historyczne w DONE.md możesz zostawić bez zmian (opisują przeszłość)
   Cel: oba arkusze klikalne i działające ze strony głównej — duplikacja HTML
   między arkuszami to na razie akceptowalny stan przejściowy.
 
@@ -109,3 +109,30 @@ SONNET DOPISAŁ:
     w exercises.json. UWAGA: sesja zdalna nie ma pdftoppm/mutool/gs — tylko lokalnie.
 - Stworzyć nową stronę z arkuszem matury 2027 (wzorem 2026: folder, exercises.json,
   matematykazen.html z window.SHEET_ID/TABLICE_PDF, link na stronie głównej)
+
+
+OPUS DOPISAŁ:
+- Ujednolicenie renderowania arkuszy w jeden wspólny plik. WARUNEK WSTĘPNY: wymaga
+  wykonania zadania "Naprawa odnośników..." wyżej (SONNET DOPISAŁ) — root ma być
+  wtedy już template.html, a oba arkusze (matura/2024-grudzien/, matura/2026-maj/)
+  mają działać samodzielnie, każdy ze swoim zdublowanym HTML. Jeśli ten punkt nadal
+  wisi jako niezrobiony, zapytaj zanim zaczniesz — ta praca na nim bazuje.
+  * wybór arkusza przez parametr URL, np. template.html?arkusz=2024-grudzien
+    (strona statyczna, brak backendu/przekierowań serwera — patrz CLAUDE.md)
+  * DODAJ metadane arkusza WPROST DO KAŻDEGO exercises.json (nowe pola obok
+    istniejącej tablicy zadań): tytuł strony, meta description, tekst do
+    #exercises-sheet-title, ścieżka+numer strony PDF tablicy wzorów (dziś na
+    sztywno jako TABLICE_PDF w script.js:17), ścieżka PDF zasad oceniania (dziś
+    na sztywno w #zasady-oceniania w HTML)
+  * w script.js, funkcja startSheet() (ok. linii 974-991): zamień
+    fetch("exercises.json") na ścieżkę zależną od arkusza z URL
+    (matura/<id>/exercises.json) i użyj nowych pól metadanych zamiast
+    hardkodowanych stringów w HTML (<title>, meta description, itd.)
+  * gdy template.html działa dla obu arkuszy: usuń zdublowane
+    matura/2024-grudzien/index.html i matura/2026-maj/index.html; sprawdź czy
+    da się scalić solutionsInteractive.js z powrotem do jednego wspólnego pliku
+    w rootcie (czy arkusz 2026-maj w ogóle potrzebuje własnych widżetów)
+  * popraw linki na stronie głównej (index.html) na template.html?arkusz=...
+  * zaktualizuj ARCHITECTURE.md: nowy schemat pól metadanych w exercises.json +
+    mechanizm wyboru arkusza (wymóg z CLAUDE.md — trzymać ARCHITECTURE.md w
+    sync z tym co faktycznie opisuje)
