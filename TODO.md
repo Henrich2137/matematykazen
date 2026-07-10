@@ -69,19 +69,24 @@ INNE NOTATKI:
 DO REALZACJI Dopisane przez SONNETA LUB OPUSA:
 
 SONNET DOPISAŁ:
-- Dokończenie arkusza 2026 (strona działa: matura/2026-maj/index.html;
-  odpowiedzi i punktacja w exercises.json zweryfikowane 2026-07-06 z kluczem CKE
-  Wersja A + rachunkiem — NIE zmieniaj correctAnswerIndex/blanks/statements/maxScore):
+- Dokończenie arkusza 2026 (otwórz przez template.html?arkusz=2026-maj; dane w
+  matura/2026-maj/exercises.json — teraz obiekt { meta, exercises }; odpowiedzi i
+  punktacja zweryfikowane 2026-07-06 z kluczem CKE Wersja A + rachunkiem — NIE
+  zmieniaj correctAnswerIndex/blanks/statements/maxScore):
   * hint + solutionText dla 41 wpisów — przepisz/zredaguj z gotowych rozwiązań w
-    arkusze PDF/matematyka-2026-maj-matura-podstawowa-odpowiedzi.txt (klucz zawiera
-    pełne rozwiązania zadań otwartych; wzory w KaTeX, konwencje jak w arkuszu 2024)
+    matura/2026-maj/matematyka-2026-maj-matura-podstawowa-odpowiedzi.txt (klucz
+    zawiera pełne rozwiązania zadań otwartych; wzory w KaTeX, konwencje jak w 2024)
   * obrazki zad 12 (wykres łamanej), 13 (prosta z kątem α), 19 (okrąg A,B,C,D),
     20 (proste równoległe), 31 (diagramy IVA/IVB — dane TYLKO na obrazku) — wyciąć
-    z arkusze PDF/matematyka-2026-maj-matura-podstawowa.pdf wzorem zad30
-    (pdftoppm -x/-y/-W/-H); docelowe ścieżki matura/2026-maj/zadN/zadNrys.png już są
-    w exercises.json. UWAGA: sesja zdalna nie ma pdftoppm/mutool/gs — tylko lokalnie.
-- Stworzyć nową stronę z arkuszem matury 2027 (wzorem 2026: folder matura/2027-.../,
-  exercises.json, index.html z window.SHEET_ID/TABLICE_PDF, link na stronie głównej)
+    z matura/2026-maj/matematyka-2026-maj-matura-podstawowa.pdf wzorem zad30
+    (pdftoppm -x/-y/-W/-H). Docelowe ścieżki (już w exercises.json, konwencja media/):
+    matura/2026-maj/media/zadN/zadNrys.png. UWAGA: sesja zdalna nie ma
+    pdftoppm/mutool/gs — tylko lokalnie.
+- Stworzyć nową stronę z arkuszem matury 2027: nowy folder matura/2027-.../ z
+  exercises.json (obiekt { meta, exercises } — wypełnij blok meta jak w 2026),
+  assety w matura/2027-.../media/zadN/ (ścieżki sheet-relative), link na stronie
+  głównej jako template.html?arkusz=2027-... NIE trzeba już osobnego index.html ani
+  window.SHEET_ID — renderuje wspólny template.html wybierany parametrem ?arkusz=.
 
 
 OPUS DOPISAŁ:
