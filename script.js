@@ -1004,7 +1004,9 @@ function applySheetMeta(meta) {
     const tytulEl = document.getElementById("exercises-sheet-title");
     if (tytulEl && meta.sheetTitle) tytulEl.textContent = meta.sheetTitle;
     if (meta.zasadyPdf) {
-        document.getElementById("zasady-oceniania").data = `${encodeURI(meta.zasadyPdf)}#toolbar=0`;
+        // zasadyPdf jest ścieżką względną do folderu arkusza (jak media),
+        // więc idzie przez mediaPath. encodeURI na wypadek spacji w nazwie.
+        document.getElementById("zasady-oceniania").data = `${encodeURI(mediaPath(meta.zasadyPdf))}#toolbar=0`;
     }
     if (meta.tablicaPdfDefaultPage) {
         document.getElementById("tablica-wzorow").data =
