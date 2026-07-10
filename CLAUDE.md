@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-**Detailed architecture, exercise data schema and the full CSS/layout reference live in [ARCHITECTURE.md](ARCHITECTURE.md).** Read it before touching the rendering logic in matematykazen.html, the schema in exercises.json, or style.css — and keep it in sync when you change what it describes. Don't duplicate its content here.
+**Detailed architecture, exercise data schema and the full CSS/layout reference live in [ARCHITECTURE.md](ARCHITECTURE.md).** Read it before touching the rendering logic in template.html, the schema in a sheet's exercises.json, or style.css — and keep it in sync when you change what it describes. Don't duplicate its content here.
 
 ## Product context
 
@@ -10,24 +10,25 @@ MatematykaZen is an interactive platform for learning math for the Polish "matur
 
 ## What this is
 
-A static Polish-language practice site for one exam sheet ("Egzamin maturalny z matematyki podstawowej grudzień 2024, próbna CKE"). No backend, no build system, no package manager. These files drive everything:
+A static Polish-language practice site for CKE "matura podstawowa" exam sheets. No backend, no build system, no package manager.
 
-- [index.html](index.html) — landing page, pure static HTML (`.landing-*` styles).
-- [matematykazen.html](matematykazen.html) — the exam-sheet page: hidden exercise `<template>` + at the bottom two `<script src>` tags (`solutionsInteractive.js` then `script.js`) that render exercises from the data file and wire up all interactivity.
-- [script.js](script.js) — app logic: exercise rendering (`loadExercises`), answers/hints, step-by-step solutions, exam mode, formula-sheet PDF panels, bootstrap (`startSheet()`).
-- [solutionsInteractive.js](solutionsInteractive.js) — the interactive answer widgets (`wg*` helpers + `widget*` functions) and the `WIDZETY` name→function registry. **Loaded before `script.js`** because `loadExercises` reads `WIDZETY` (both are classic scripts sharing the global scope, so load order matters).
-- [exercises.json](exercises.json) — pure data: an array of exercise objects, `fetch`ed at startup by `startSheet()`. Interactive widgets are referenced by name (`"solutionInteractive": "widgetX"` → the `WIDZETY` registry in solutionsInteractive.js). All math in it is written in **KaTeX** (`\( ... \)` / `\[ ... \]`; schema + conventions documented in ARCHITECTURE.md — JSON has no comments).
-- [style.css](style.css) — all styling (exam sheet + landing).
+**Migration in progress since 2026-07-10 (see TODO.md for status):** moving from one hardcoded exam-sheet page to multiple sheets sharing a single renderer. Target structure:
 
-Plus `vendor/katex/` — KaTeX vendored for fully offline math rendering (don't edit those files; to bump the version replace them from the npm tarball).
+- [index.html](index.html) — landing page, pure static HTML (`.landing-*` styles), links to each sheet.
+- `template.html` (root; replaces the old `matematykazen.html`) — the shared exam-sheet renderer, now the **single** page that renders *any* sheet: hidden exercise `<template>` + at the bottom two `<script src>` tags (`solutionsInteractive.js` then `script.js`) that render exercises from a sheet's data file and wire up all interactivity. Which sheet is chosen by the `?arkusz=<id>` URL param (`<id>` = folder name under `matura/`); the per-sheet `matura/<id>/index.html` copies were removed.
+- `matura/<sheet-id>/` (e.g. `matura/2024-grudzien/`, `matura/2026-maj/`) — one folder per exam sheet: its `exercises.json`, its `media/zadN/` assets (PNG images + Manim-produced MP4 solution videos; keep filenames **lowercase**) and its own exam/answer-key PDFs. All asset paths in `exercises.json` are **sheet-relative** and joined to the folder by `mediaPath()` in script.js.
+- [script.js](script.js) — app logic: exercise rendering (`loadExercises`), answers/hints, step-by-step solutions, exam mode, formula-sheet PDF panels, bootstrap (`startSheet()`). Reads the `?arkusz=<id>` URL param into `SHEET_ID` to pick the sheet (`matura/<id>/exercises.json`), key its localStorage and resolve its media/PDF paths (`mediaPath`).
+- [solutionsInteractive.js](solutionsInteractive.js) — the interactive answer widgets (`wg*` helpers + `widget*` functions) and the `WIDZETY` name→function registry, in the repo **root** (one shared copy for all sheets). **Loaded before `script.js`** because `loadExercises` reads `WIDZETY` (both are classic scripts sharing the global scope, so load order matters).
+- `exercises.json` (one per sheet, under `matura/<sheet-id>/`) — pure data: an object `{ meta, exercises }` (`meta` = per-sheet title/description/marking-key PDF; `exercises` = the array of exercise objects), `fetch`ed at startup by `startSheet()`. Interactive widgets are referenced by name (`"solutionInteractive": "widgetX"` → the `WIDZETY` registry in solutionsInteractive.js). All math in it is written in **KaTeX** (`\( ... \)` / `\[ ... \]`; schema + conventions documented in ARCHITECTURE.md — JSON has no comments).
+- [style.css](style.css) — all styling (exam sheet + landing), shared by all sheets.
 
-Plus per-exercise asset folders `zad1/`, `zad2/`, … (PNG images + Manim-produced MP4 solution videos; keep filenames **lowercase**) and `wybrane_wzory_matematyczne.pdf` (formula sheet shown in a floating panel). The official exam + answer key PDFs and their text extracts live in `arkusze PDF/` — do not delete; all 30 answers in exercises.json were verified against the CKE key (2026-07-05).
+Plus `vendor/katex/` — KaTeX vendored for fully offline math rendering (don't edit those files; to bump the version replace them from the npm tarball) — and `wybrane_wzory_matematyczne.pdf` (shared formula sheet shown in a floating panel; stays in the root). Each wired sheet's exam + answer-key PDFs now live in its own `matura/<id>/` folder; other not-yet-wired sheets and text extracts sit in `inne arkusze PDF/` — do not delete. The 2024-grudzień answers in `matura/2024-grudzien/exercises.json` were verified against the CKE key (2026-07-05).
 
 ## Task tracking
 
-**The active TODO file is [TODO.md](TODO.md) — open items only.** The user (Henrich) checks it most often, so any new bug, idea, or verification result you want him to see goes there (append under the "NOWE PUNKTY TODO ZAPISYWANE PRZEZ CLAUDE" section, in Polish). **Always check `TODO.md` before starting work and keep it in sync.**
+**The active TODO file is [TODO.md](TODO.md) — open items only.** The user (Henrich) checks it most often and curates priority himself (`WYSOKI`/`NISKI`/`NAJNIŻSZY PRIORYTET` sections) — don't edit those directly. Any new bug, idea, or task you want him to see goes under the **"DO REALZACJI Dopisane przez SONNETA LUB OPUSA"** section at the bottom, appended under your own model's subsection (`SONNET DOPISAŁ:` / `OPUS DOPISAŁ:`), in Polish. **Always check `TODO.md` before starting work and keep it in sync.**
 
-**Done items do not stay in TODO.md.** When an item is completed, move it to [TODODONE.md](TODODONE.md) (marked `[DONE]`/`[ZROBIONE]` with the date and a short note on how it was solved) and delete it from TODO.md, so TODO.md stays short and cheap to load. **Do not read TODODONE.md by default** — open it only when you genuinely need project history: a broader view of the project, debugging a harder problem, or checking whether/how something was already solved before. (Older names `todo1DONE.md`/`todo2.md`/`todo3.md`/`todo.md`/`todoDONE.md` no longer exist — their content was merged/renamed into these two files.)
+**Done items do not stay in TODO.md.** When an item is completed, move it to [DONE.md](DONE.md) (marked `[DONE]`/`[ZROBIONE]` with the date and a short note on how it was solved) and delete it from TODO.md, so TODO.md stays short and cheap to load. **Do not read DONE.md by default** — open it only when you genuinely need project history: a broader view of the project, debugging a harder problem, or checking whether/how something was already solved before. (Older names `todo1DONE.md`/`todo2.md`/`todo3.md`/`todo.md`/`todoDONE.md`/`TODODONE.md` no longer exist — their content was merged/renamed into these two files.)
 
 ## Running / previewing
 
@@ -36,5 +37,4 @@ No build or test tooling. **Serve the directory with a static file server** (e.g
 ## Content notes
 
 - All user-facing content and code comments are Polish; keep new content in Polish, direct exam-prep tone.
-- [matematykazen.html](matematykazen.html) has a commented-out `<meta http-equiv="refresh" content="5">` dev-reload snippet flagged `DELETE THIS BEFERE PUBLISHING` — leave it commented out; don't ship it enabled.
-- Known media defect: last frame of `zad2/zad2rozw_step6.mp4` shows 5⁻⁴ instead of 5⁴ — needs an external Manim re-render; the step caption already carries the correction.
+- Known media defect: last frame of `matura/2024-grudzien/media/zad2/zad2rozw_step6.mp4` shows 5⁻⁴ instead of 5⁴ — needs an external Manim re-render; the step caption already carries the correction.

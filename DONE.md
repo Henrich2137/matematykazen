@@ -3,6 +3,81 @@ Nie wczytuj tego pliku domyślnie — tylko gdy potrzebne jest szersze spojrzeni
 rozwiązanie trudniejszego problemu albo sprawdzenie, czy/jak coś już kiedyś rozwiązano.
 (Zasada opisana w CLAUDE.md. Plik zaczął się jako notatki ze smoke testu.)
 
+ZROBIONE PRZEZ OPUSA (2026-07-10):
+- [ZROBIONE] Ujednolicenie renderowania arkuszy w jeden wspólny plik template.html
+  (punkt OPUSA z TODO.md). template.html jest teraz JEDYNYM plikiem renderującym
+  dowolny arkusz; usunięto zdublowane matura/2024-grudzien/index.html i
+  matura/2026-maj/index.html, a solutionsInteractive.js wrócił do rootu (jedna
+  wspólna kopia — arkusz 2026-maj i tak ma wszystkie "solutionInteractive": null).
+  * Wybór arkusza parametrem URL ?arkusz=<id> (id = nazwa folderu pod matura/,
+    np. template.html?arkusz=2026-maj; brak = 2024-grudzien). W script.js:
+    const SHEET_ID = new URLSearchParams(location.search).get("arkusz") || "2024-grudzien".
+    Zniknęły window.SHEET_ID / window.TABLICE_PDF (były w usuniętych index.html).
+  * Metadane arkusza dodane WPROST do exercises.json jako top-level obiekt
+    { "meta": {...}, "exercises": [...] } (wcześniej plik był samą tablicą). Pola
+    meta: pageTitle (<title>), metaDescription (<meta description>), sheetTitle
+    (#exercises-sheet-title w pasku), zasadyPdf (PDF zasad oceniania, ścieżka
+    względna do folderu arkusza), tablicaPdfDefaultPage (domyślna strona tablicy
+    wzorów). Nowa funkcja applySheetMeta() w script.js wypełnia nimi chrome strony;
+    startSheet() fetchuje matura/<SHEET_ID>/exercises.json i rozpakowuje {meta,exercises}.
+  * template.html odchudzony z hardkodów: <title>, meta description, #exercises-sheet-title
+    (był tam placeholder "ELOELO...") i data zasady-oceniania są teraz puste/generyczne,
+    wypełniane przez applySheetMeta.
+  * Ścieżki mediów: nowy helper mediaPath(src) = "matura/${SHEET_ID}/${src}" (poza
+    absolutnymi/http/data). Bo template.html renderuje z rootu, a ścieżki w
+    exercises.json są WZGLĘDNE do folderu arkusza. Stosowany w renderStep (video/img
+    kroków), preloadzie następnego kroku, zbiorczo dla <img> w treści zadań (sweep
+    querySelectorAll("img[src]") tuż przed renderMath) oraz dla meta.zasadyPdf.
+    Ścieżki obrazków arkusza 2026 ujednolicone do prefiksu "media/" (jak 2024) —
+    docelowe pliki: matura/2026-maj/media/zadN/zadNrys.png (nadal do wycięcia z PDF).
+  * Linki na stronie głównej (index.html) zmienione na template.html?arkusz=2024-grudzien
+    i ...?arkusz=2026-maj.
+  * PDF-y arkuszy przeniesione przez Henricha w trakcie sesji do folderów arkuszy
+    (matura/<id>/matematyka-<id>-...-odpowiedzi.pdf); meta.zasadyPdf ustawione na
+    nazwę pliku względem folderu arkusza (idzie przez mediaPath). Folder "arkusze PDF/"
+    → "inne arkusze PDF/" (2025 + ekstrakty txt). ARCHITECTURE.md i CLAUDE.md
+    zaktualizowane (schemat meta, mechanizm ?arkusz=, mediaPath, nowe lokalizacje PDF,
+    klucze localStorage matematykazen-postep-/egzamin-<SHEET_ID>).
+  UWAGA: SHEET_ID zmienił nazwę z "grudzien2024"/"maj2026" na nazwy folderów
+  "2024-grudzien"/"2026-maj", więc klucze localStorage też — stary zapisany postęp z
+  poprzednich kluczy jest osierocony (przy migracji akceptowalne, świeży start).
+  Weryfikacja: python -m http.server + Playwright (chromium headless) na obu arkuszach:
+  poprawny <title>/opis/tytuł w pasku, liczba zadań (35 i 41), data PDF-ów zasad
+  (200), zmiana strony tablicy wzorów po "Pokaż wzory", panel zasad, kliknięcie
+  odpowiedzi (punktacja 1/50), render widżetu zad 1, ZERO błędów konsoli i ZERO 404
+  podczas interakcji (filmy zad1 + wszystkie 6 obrazków 2024 → 200). Jedyne 404 to
+  obrazki 2026 jeszcze niewycięte z PDF (oczekiwane, osobny punkt SONNETA).
+
+ZROBIONE PRZEZ FABLE (2026-07-10, po ręcznej reorganizacji Henricha na foldery matura/<arkusz>/):
+- [DONE] Naprawa odnośników po reorganizacji: root matematykazen.html → template.html był
+  już zrobiony przez Henricha (surowiec pod przyszłe zadanie Opusa, celowo niepodłączony).
+  Wypełniłem PUSTY matura/2024-grudzien/index.html treścią starego matematykazen.html
+  (Henrich w międzyczasie sam skopiował plik, ja poprawiłem ścieżki): style.css,
+  vendor/katex/..., script.js, wybrane_wzory_matematyczne.pdf, arkusze PDF/..., link do
+  logo → ../../; dodałem window.SHEET_ID="grudzien2024" + window.TABLICE_PDF (analogicznie
+  do 2026-maj); exercises.json i solutionsInteractive.js zostały lokalne (bez zmian ścieżki).
+  matura/2026-maj/index.html miał już poprawne ścieżki ../, ale ładował martwy
+  ../solutionsInteractive.js (plik nigdy nie istniał w tej lokalizacji) — usunąłem ten
+  <script>, bo wszystkie "solutionInteractive" w tamtym exercises.json są null (WIDZETY
+  jest odczytywane w script.js tylko gdy pole jest ustawione, więc nic się nie wywali).
+  Poprawiłem linki na root index.html (landing) z "matematykazen.html" /
+  "matura-2026-maj/matematykazen.html" na "matura/2024-grudzien/index.html" /
+  "matura/2026-maj/index.html". Poprawiłem bieżące odnośniki do starych nazw w
+  ARCHITECTURE.md i TODO.md (wpisy historyczne w DONE.md zostawione bez zmian, opisują
+  przeszłość).
+  PRZY OKAZJI znaleziona i naprawiona osobna usterka z tej samej reorganizacji: pliki
+  matura/2024-grudzien/media/zadN/... (mp4 kroków rozwiązań zad1-3, png rysunków zad10,
+  11, 17, 19, 20, 30) zostały przeniesione do podfolderu media/, ale exercises.json wciąż
+  wskazywał stare ścieżki bez prefiksu "media/" (np. "zad1/zad1rozw_step1.mp4" zamiast
+  "media/zad1/zad1rozw_step1.mp4") — wszystkie 23 odnośniki dawały 404. Naprawione sedem
+  (dodanie prefiksu "media/") i zweryfikowane curlem przez lokalny python -m http.server,
+  że wszystkie 23 pliki teraz ładują się z kodem 200.
+  Weryfikacja: python -m http.server, curl -o /dev/null -w "%{http_code}" na wszystkich
+  asetach obu arkuszy (HTML, CSS, JS, KaTeX vendor, PDF-y, exercises.json, wszystkie mp4/png
+  z matura/2024-grudzien) — wszystko 200. matura/2026-maj nie ma jeszcze folderu media/
+  (obrazki zad12/13/19/20/31 nadal do wycięcia z PDF — osobne zadanie w TODO.md, nie
+  regresja z tej reorganizacji).
+
 ZROBIONE PRZEZ FABLE (2026-07-06, sesja zdalna, do ewentualnej weryfikacji przez Henricha):
 - [DONE] Strona arkusza matura maj 2026 złożona ze szkieletu: matura-2026-maj/matematykazen.html
   używa WSPÓLNEGO ../script.js i ../style.css (bez kopii). script.js sparametryzowany per

@@ -9,12 +9,23 @@ let totalScore = 0;
 // odwołanie nie wywróciło skryptu.
 let exercises = [];
 
-// Identyfikacja arkusza: strona arkusza może przed script.js ustawić
-// window.SHEET_ID (osobne klucze localStorage per arkusz) i window.TABLICE_PDF
-// (ścieżka do PDF-a z tablicami względem strony, np. "../wybrane_wzory..."
-// dla arkuszy w podfolderach). Brak ustawień = arkusz grudzień 2024 (root).
-const SHEET_ID = window.SHEET_ID || "grudzien2024";
-const TABLICE_PDF = window.TABLICE_PDF || "wybrane_wzory_matematyczne.pdf";
+// Identyfikacja arkusza: wybierana parametrem URL ?arkusz=<id>, gdzie <id> to
+// nazwa folderu pod matura/ (np. "2024-grudzien"). Brak parametru = arkusz
+// demonstracyjny grudzień 2024. Ten sam id: klucz do fetch exercises.json,
+// sufiks kluczy localStorage i (patrz startSheet()) zawartość bar-menu/tytułu.
+const SHEET_ID = new URLSearchParams(location.search).get("arkusz") || "2024-grudzien";
+// wybrane_wzory_matematyczne.pdf leży w rootcie obok template.html (jedynego
+// pliku renderującego arkusze), więc ścieżka jest zawsze ta sama.
+const TABLICE_PDF = "wybrane_wzory_matematyczne.pdf";
+
+// Media zadań (obrazki, filmy) leżą w matura/<id>/media/… i są zapisane w
+// exercises.json ścieżką WZGLĘDNĄ do folderu arkusza (np. "media/zad1/…").
+// template.html renderuje arkusz z rootu, więc każdą taką ścieżkę trzeba
+// poprzedzić folderem arkusza. Ścieżki bezwzględne / data:/http zostawiamy.
+function mediaPath(src) {
+    if (!src || /^(https?:|data:|\/)/.test(src)) return src;
+    return `matura/${SHEET_ID}/${src}`;
+}
 
 // Klucz zapisu postępu w localStorage — używany przez loadExercises()
 // (zapis/odczyt) oraz przyciski "resetuj punktację" i "wyczyść zapisany postęp".
@@ -752,14 +763,14 @@ function loadExercises() {
                 return `
                     <div class="step-video">
                         <video autoplay playsinline>
-                            <source src="${step.src}" type="video/mp4">
+                            <source src="${mediaPath(step.src)}" type="video/mp4">
                         </video>
                         <div class="video-overlay-icon"></div>
                     </div>
                     <div class="step-comment">${step.text}</div>
                 `;
             } else if (step.type === "image") {
-                return `<img src="${step.src}"><div class="step-comment">${step.text}</div>`;
+                return `<img src="${mediaPath(step.src)}"><div class="step-comment">${step.text}</div>`;
             } else if (step.type === "text") {
                 return `<div class="step-comment">${step.text}</div>`;
             }
@@ -859,7 +870,7 @@ function loadExercises() {
             if (nextStep && nextStep.type === "video") {
                 const preload = document.createElement("video");
                 preload.preload = "auto";
-                preload.src = nextStep.src;
+                preload.src = mediaPath(nextStep.src);
             }
         }
 
@@ -950,6 +961,14 @@ function loadExercises() {
             }
         }
 
+        // Obrazki osadzone w HTML zadania (treść, podpowiedź, rozwiązanie) mają
+        // w danych ścieżki względne do folderu arkusza (np. "media/zad11/…") —
+        // przepisujemy je przez mediaPath, bo strona renderuje się z rootu.
+        // (Filmy/obrazki kroków step-by-step idą osobno przez renderStep.)
+        exerciseClone.querySelectorAll("img[src]").forEach((img) => {
+            img.setAttribute("src", mediaPath(img.getAttribute("src")));
+        });
+
         // KaTeX: renderujemy wzory w całym zbudowanym zadaniu (treść, odpowiedzi,
         // podpowiedź, rozwiązania). Kroki step-by-step renderują się osobno w
         // showStep(), bo ich HTML powstaje dopiero przy przełączaniu kroków.
@@ -971,14 +990,41 @@ function loadExercises() {
     exercisesWrapper.appendChild(clearProgressButton);
 }
 
-// Start strony: dane zadań przychodzą fetchem z exercises.json. UWAGA: fetch
-// nie działa z file:// — wtedy (i przy każdym innym niepowodzeniu) pokazujemy
+// Wypełnia chrome strony (tytuł karty, meta description, tytuł w pasku, PDF
+// zasad oceniania, domyślna strona tablicy wzorów) danymi z pola "meta"
+// exercises.json — jedyne miejsce, gdzie template.html dowiaduje się, JAKI
+// to arkusz (poza samymi zadaniami).
+function applySheetMeta(meta) {
+    if (!meta) return;
+    if (meta.pageTitle) document.title = meta.pageTitle;
+    if (meta.metaDescription) {
+        const opis = document.querySelector('meta[name="description"]');
+        if (opis) opis.setAttribute("content", meta.metaDescription);
+    }
+    const tytulEl = document.getElementById("exercises-sheet-title");
+    if (tytulEl && meta.sheetTitle) tytulEl.textContent = meta.sheetTitle;
+    if (meta.zasadyPdf) {
+        // zasadyPdf jest ścieżką względną do folderu arkusza (jak media),
+        // więc idzie przez mediaPath. encodeURI na wypadek spacji w nazwie.
+        document.getElementById("zasady-oceniania").data = `${encodeURI(mediaPath(meta.zasadyPdf))}#toolbar=0`;
+    }
+    if (meta.tablicaPdfDefaultPage) {
+        document.getElementById("tablica-wzorow").data =
+            `${TABLICE_PDF}#page=${meta.tablicaPdfDefaultPage}&toolbar=0`;
+    }
+}
+
+// Start strony: dane zadań przychodzą fetchem z matura/<SHEET_ID>/exercises.json
+// (obiekt { meta, exercises } — patrz ARCHITECTURE.md). UWAGA: fetch nie
+// działa z file:// — wtedy (i przy każdym innym niepowodzeniu) pokazujemy
 // czytelny komunikat zamiast pustej strony.
 async function startSheet() {
     try {
-        const odpowiedz = await fetch("exercises.json");
+        const odpowiedz = await fetch(`matura/${SHEET_ID}/exercises.json`);
         if (!odpowiedz.ok) throw new Error(`HTTP ${odpowiedz.status}`);
-        exercises = await odpowiedz.json();
+        const dane = await odpowiedz.json();
+        exercises = dane.exercises;
+        applySheetMeta(dane.meta);
     } catch (blad) {
         const info = document.createElement("div");
         info.className = "blad-wczytywania";

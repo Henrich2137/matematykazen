@@ -1,4 +1,12 @@
-[
+{
+    "meta": {
+        "pageTitle": "Matematyka Zen — arkusz maj 2026",
+        "metaDescription": "Interaktywny arkusz maturalny z matematyki (maj 2026, CKE): odpowiedzi od ręki, podpowiedzi, rozwiązania krok po kroku i tablica wzorów.",
+        "sheetTitle": "Egzamin maturalny z matematyki podstawowej maj 2026 (CKE)",
+        "zasadyPdf": "matematyka-2026-maj-matura-podstawowa-odpowiedzi.pdf",
+        "tablicaPdfDefaultPage": 10
+    },
+    "exercises": [
     {
         "question": "<b>Zadanie 1.</b> <br><br> Liczba \\(\\sqrt{\\dfrac{25}{8}} \\cdot \\sqrt{2} + 2^{-1}\\) jest równa",
         "answers": [
@@ -192,7 +200,7 @@
         "solutionInteractive": null
     },
     {
-        "question": "<b>Zadanie 12.</b> <br><br> Funkcja \\(f\\) jest określona następująco:\\[f(x) = \\begin{cases} x + 2 & \\text{dla } x \\in [-4,\\ 2] \\\\ -x + 5 & \\text{dla } x \\in (2,\\ 5) \\end{cases}\\]Wykres funkcji \\(y = f(x)\\) przedstawiono w kartezjańskim układzie współrzędnych \\((x, y)\\) na rysunku poniżej.<br><br><img src=\"zad12/zad12rys.png\" alt=\"TODO: wykres funkcji f łamanej – dodać obraz (rosnący odcinek od (-4,-2) do (2,4), malejący do (5,0)).\">",
+        "question": "<b>Zadanie 12.</b> <br><br> Funkcja \\(f\\) jest określona następująco:\\[f(x) = \\begin{cases} x + 2 & \\text{dla } x \\in [-4,\\ 2] \\\\ -x + 5 & \\text{dla } x \\in (2,\\ 5) \\end{cases}\\]Wykres funkcji \\(y = f(x)\\) przedstawiono w kartezjańskim układzie współrzędnych \\((x, y)\\) na rysunku poniżej.<br><br><img src=\"media/zad12/zad12rys.png\" alt=\"TODO: wykres funkcji f łamanej – dodać obraz (rosnący odcinek od (-4,-2) do (2,4), malejący do (5,0)).\">",
         "type": "open",
         "answers": [],
         "correctAnswerIndex": -1,
@@ -262,7 +270,7 @@
         "solutionInteractive": null
     },
     {
-        "question": "<b>Zadanie 13.</b> <br><br> Funkcja liniowa \\(f\\) jest określona wzorem \\(f(x) = ax + b\\), gdzie \\(a\\) i \\(b\\) są pewnymi liczbami rzeczywistymi. W kartezjańskim układzie współrzędnych \\((x, y)\\) przedstawiono fragment wykresu funkcji \\(f\\). Każdy z punktów przecięcia wykresu funkcji \\(f\\) z osiami układu współrzędnych ma obie współrzędne całkowite. Wykres funkcji \\(f\\) jest nachylony do osi \\(Ox\\) układu współrzędnych pod kątem o mierze \\(\\alpha\\) (zobacz rysunek).<br><br><img src=\"zad13/zad13rys.png\" alt=\"TODO: wykres malejącej funkcji liniowej f z zaznaczonym kątem α do osi Ox – dodać obraz.\">",
+        "question": "<b>Zadanie 13.</b> <br><br> Funkcja liniowa \\(f\\) jest określona wzorem \\(f(x) = ax + b\\), gdzie \\(a\\) i \\(b\\) są pewnymi liczbami rzeczywistymi. W kartezjańskim układzie współrzędnych \\((x, y)\\) przedstawiono fragment wykresu funkcji \\(f\\). Każdy z punktów przecięcia wykresu funkcji \\(f\\) z osiami układu współrzędnych ma obie współrzędne całkowite. Wykres funkcji \\(f\\) jest nachylony do osi \\(Ox\\) układu współrzędnych pod kątem o mierze \\(\\alpha\\) (zobacz rysunek).<br><br><img src=\"media/zad13/zad13rys.png\" alt=\"TODO: wykres malejącej funkcji liniowej f z zaznaczonym kątem α do osi Ox – dodać obraz.\">",
         "type": "open",
         "answers": [],
         "correctAnswerIndex": -1,
@@ -404,7 +412,7 @@
         "solutionInteractive": null
     },
     {
-        "question": "<b>Zadanie 19.</b> <br><br> Punkty A, B, C oraz D leżą na okręgu o środku w punkcie O. Punkt B leży na krótszym łuku AC. Kąt CDA ma miarę 50°, a kąt COB ma miarę 30° (zobacz rysunek).<br><br><img src=\"zad19/zad19rys.png\" alt=\"TODO: okrąg z punktami A, B, C, D, O i zaznaczonymi kątami CDA=50° oraz COB=30° – dodać obraz.\"><br>Miara kąta ostrego BOA jest równa",
+        "question": "<b>Zadanie 19.</b> <br><br> Punkty A, B, C oraz D leżą na okręgu o środku w punkcie O. Punkt B leży na krótszym łuku AC. Kąt CDA ma miarę 50°, a kąt COB ma miarę 30° (zobacz rysunek).<br><br><img src=\"media/zad19/zad19rys.png\" alt=\"TODO: okrąg z punktami A, B, C, D, O i zaznaczonymi kątami CDA=50° oraz COB=30° – dodać obraz.\"><br>Miara kąta ostrego BOA jest równa",
         "answers": [
             "A. 50°",
             "B. 60°",
@@ -422,7 +430,7 @@
         "solutionInteractive": null
     },
     {
-        "question": "<b>Zadanie 20.</b> <br><br> Na płaszczyźnie dane są cztery proste: k, l, m oraz n. Proste k oraz l są równoległe. Prosta m przecina proste k oraz l w punktach – odpowiednio – A oraz C. Prosta n przecina proste k oraz l w punktach – odpowiednio – D oraz B. Odcinki AC i BD przecinają się w punkcie O. Ponadto |OA| = 12, |OB| = 6 oraz |OC| = 8 (zobacz rysunek).<br><br><img src=\"zad20/zad20rys.png\" alt=\"TODO: dwie proste równoległe k,l przecięte prostymi m,n z zaznaczonymi odcinkami OA=12, OB=6, OC=8 – dodać obraz.\"><br>Odcinek OD ma długość",
+        "question": "<b>Zadanie 20.</b> <br><br> Na płaszczyźnie dane są cztery proste: k, l, m oraz n. Proste k oraz l są równoległe. Prosta m przecina proste k oraz l w punktach – odpowiednio – A oraz C. Prosta n przecina proste k oraz l w punktach – odpowiednio – D oraz B. Odcinki AC i BD przecinają się w punkcie O. Ponadto |OA| = 12, |OB| = 6 oraz |OC| = 8 (zobacz rysunek).<br><br><img src=\"media/zad20/zad20rys.png\" alt=\"TODO: dwie proste równoległe k,l przecięte prostymi m,n z zaznaczonymi odcinkami OA=12, OB=6, OC=8 – dodać obraz.\"><br>Odcinek OD ma długość",
         "answers": [
             "A. 4",
             "B. 9",
@@ -650,7 +658,7 @@
         "solutionInteractive": null
     },
     {
-        "question": "<b>Zadanie 31.</b> <br><br> Nauczyciel matematyki po każdym sprawdzianie porównuje wyniki uzyskane przez uczniów dwóch klas: klasy IV A oraz klasy IV B. Na dwóch poniższych diagramach przedstawiono wyniki sprawdzianu ze statystyki, jakie uzyskali uczniowie tych klas. Na osiach poziomych podano oceny, które uzyskali uczniowie tych klas, a na osiach pionowych podano liczbę uczniów, którzy otrzymali daną ocenę.<br><br><img src=\"zad31/zad31rys.png\" alt=\"TODO: dwa diagramy słupkowe (klasa IV A, klasa IV B) liczby uczniów wg ocen – dodać obraz, dane nie są dostępne w formie tekstowej.\"><br>Oceń prawdziwość poniższych stwierdzeń. Wybierz <b>P</b>, jeśli stwierdzenie jest prawdziwe, albo <b>F</b> – jeśli jest fałszywe.",
+        "question": "<b>Zadanie 31.</b> <br><br> Nauczyciel matematyki po każdym sprawdzianie porównuje wyniki uzyskane przez uczniów dwóch klas: klasy IV A oraz klasy IV B. Na dwóch poniższych diagramach przedstawiono wyniki sprawdzianu ze statystyki, jakie uzyskali uczniowie tych klas. Na osiach poziomych podano oceny, które uzyskali uczniowie tych klas, a na osiach pionowych podano liczbę uczniów, którzy otrzymali daną ocenę.<br><br><img src=\"media/zad31/zad31rys.png\" alt=\"TODO: dwa diagramy słupkowe (klasa IV A, klasa IV B) liczby uczniów wg ocen – dodać obraz, dane nie są dostępne w formie tekstowej.\"><br>Oceń prawdziwość poniższych stwierdzeń. Wybierz <b>P</b>, jeśli stwierdzenie jest prawdziwe, albo <b>F</b> – jeśli jest fałszywe.",
         "type": "PF",
         "answers": [],
         "statements": [
@@ -741,4 +749,5 @@
         "solutionStepByStep": null,
         "solutionInteractive": null
     }
-]
+    ]
+}
