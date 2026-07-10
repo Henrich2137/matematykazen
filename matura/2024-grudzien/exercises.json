@@ -1,4 +1,12 @@
-[
+{
+    "meta": {
+        "pageTitle": "Matematyka Zen — arkusz grudzień 2024",
+        "metaDescription": "Interaktywny arkusz maturalny z matematyki (grudzień 2024, próbna CKE): odpowiedzi od ręki, podpowiedzi, rozwiązania krok po kroku i tablica wzorów.",
+        "sheetTitle": "Egzamin maturalny z matematyki podstawowej grudzień 2024 (próbna, CKE)",
+        "zasadyPdf": "arkusze PDF/matematyka-2024-grudzien-probna-podstawowa-odpowiedzi.pdf",
+        "tablicaPdfDefaultPage": 10
+    },
+    "exercises": [
     {
         "question": "<b>Zadanie 1.</b> <br><br> Liczby \\(x_1\\) i \\(x_2\\) są różnymi rozwiązaniami równania \\(|x + 4| = 7\\). <br>Suma \\(x_1 + x_2\\) jest równa:",
         "answers": [
@@ -778,4 +786,5 @@
         "solutionStepByStep": null,
         "solutionInteractive": "widgetProstopadloscian"
     }
-]
+    ]
+}
