@@ -18,6 +18,15 @@ const SHEET_ID = new URLSearchParams(location.search).get("arkusz") || "2024-gru
 // pliku renderującego arkusze), więc ścieżka jest zawsze ta sama.
 const TABLICE_PDF = "wybrane_wzory_matematyczne.pdf";
 
+// Media zadań (obrazki, filmy) leżą w matura/<id>/media/… i są zapisane w
+// exercises.json ścieżką WZGLĘDNĄ do folderu arkusza (np. "media/zad1/…").
+// template.html renderuje arkusz z rootu, więc każdą taką ścieżkę trzeba
+// poprzedzić folderem arkusza. Ścieżki bezwzględne / data:/http zostawiamy.
+function mediaPath(src) {
+    if (!src || /^(https?:|data:|\/)/.test(src)) return src;
+    return `matura/${SHEET_ID}/${src}`;
+}
+
 // Klucz zapisu postępu w localStorage — używany przez loadExercises()
 // (zapis/odczyt) oraz przyciski "resetuj punktację" i "wyczyść zapisany postęp".
 const KLUCZ_POSTEPU = "matematykazen-postep-" + SHEET_ID;
@@ -754,14 +763,14 @@ function loadExercises() {
                 return `
                     <div class="step-video">
                         <video autoplay playsinline>
-                            <source src="${step.src}" type="video/mp4">
+                            <source src="${mediaPath(step.src)}" type="video/mp4">
                         </video>
                         <div class="video-overlay-icon"></div>
                     </div>
                     <div class="step-comment">${step.text}</div>
                 `;
             } else if (step.type === "image") {
-                return `<img src="${step.src}"><div class="step-comment">${step.text}</div>`;
+                return `<img src="${mediaPath(step.src)}"><div class="step-comment">${step.text}</div>`;
             } else if (step.type === "text") {
                 return `<div class="step-comment">${step.text}</div>`;
             }
@@ -861,7 +870,7 @@ function loadExercises() {
             if (nextStep && nextStep.type === "video") {
                 const preload = document.createElement("video");
                 preload.preload = "auto";
-                preload.src = nextStep.src;
+                preload.src = mediaPath(nextStep.src);
             }
         }
 
@@ -951,6 +960,14 @@ function loadExercises() {
                 if (zap.fill.some(t => t) && fillCheck) fillCheck.click();
             }
         }
+
+        // Obrazki osadzone w HTML zadania (treść, podpowiedź, rozwiązanie) mają
+        // w danych ścieżki względne do folderu arkusza (np. "media/zad11/…") —
+        // przepisujemy je przez mediaPath, bo strona renderuje się z rootu.
+        // (Filmy/obrazki kroków step-by-step idą osobno przez renderStep.)
+        exerciseClone.querySelectorAll("img[src]").forEach((img) => {
+            img.setAttribute("src", mediaPath(img.getAttribute("src")));
+        });
 
         // KaTeX: renderujemy wzory w całym zbudowanym zadaniu (treść, odpowiedzi,
         // podpowiedź, rozwiązania). Kroki step-by-step renderują się osobno w
