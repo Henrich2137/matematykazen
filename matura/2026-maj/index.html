@@ -9,14 +9,14 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50' y='78' font-size='80' text-anchor='middle' font-family='Georgia,serif' font-weight='bold'>M</text></svg>">
     <!-- Dane zadań są w exercises.json (w tym folderze) — wczytywane fetchem
          w startSheet() we wspólnym ../script.js (schemat: ARCHITECTURE.md). -->
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../../style.css">
 
     <!-- KaTeX zvendorowany do repo (vendor/katex/) — działa w pełni offline.
          Ładowany synchronicznie (lokalne pliki, bez defer), żeby inline skrypt
          na dole strony mógł od razu wołać renderMathInElement. -->
-    <link rel="stylesheet" href="../vendor/katex/katex.min.css">
-    <script src="../vendor/katex/katex.min.js"></script>
-    <script src="../vendor/katex/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../../vendor/katex/katex.min.css">
+    <script src="../../vendor/katex/katex.min.js"></script>
+    <script src="../../vendor/katex/contrib/auto-render.min.js"></script>
 
     <title>Matematyka Zen — arkusz maj 2026</title>
 
@@ -26,7 +26,7 @@
         <div id="bar-container">
 
             <div id="bar-left">
-                <a id="logo" href="../index.html"><b>Matematyka Zen</b></a>
+                <a id="logo" href="../../index.html"><b>Matematyka Zen</b></a>
                 <button id="toggle-zasady">▼ Pokaż zasady oceniania</button>
             </div>
 
@@ -67,7 +67,7 @@
          przesuwania, narożnik (.panel-rozmiar) do zmiany rozmiaru okna. -->
     <div id="tablica-wzorow-panel" class="pdf-panel">
         <div class="panel-uchwyt" title="Przeciągnij, aby przesunąć panel">⠿</div>
-        <object id="tablica-wzorow" type="application/pdf" data="../wybrane_wzory_matematyczne.pdf#page=10&toolbar=0" width="300px" height="80vh"></object>
+        <object id="tablica-wzorow" type="application/pdf" data="../../wybrane_wzory_matematyczne.pdf#page=10&toolbar=0" width="300px" height="80vh"></object>
         <button id="tablica-close" title="Zamknij tablice wzorów">✕</button>
         <div class="panel-rozmiar" title="Przeciągnij, aby zmienić rozmiar">◢</div>
     </div>
@@ -76,7 +76,7 @@
          odpowiednik tablicy wzorów, przypięty do lewej krawędzi ekranu. -->
     <div id="zasady-oceniania-panel" class="pdf-panel">
         <div class="panel-uchwyt" title="Przeciągnij, aby przesunąć panel">⠿</div>
-        <object id="zasady-oceniania" type="application/pdf" data="../arkusze%20PDF/matematyka-2026-maj-matura-podstawowa-odpowiedzi.pdf#toolbar=0"></object>
+        <object id="zasady-oceniania" type="application/pdf" data="../../arkusze%20PDF/matematyka-2026-maj-matura-podstawowa-odpowiedzi.pdf#toolbar=0"></object>
         <button id="zasady-close" title="Zamknij zasady oceniania">✕</button>
         <div class="panel-rozmiar" title="Przeciągnij, aby zmienić rozmiar">◢</div>
     </div>
@@ -127,11 +127,11 @@
          i ścieżka do tablic względem tego podfolderu. -->
     <script>
         window.SHEET_ID = "maj2026";
-        window.TABLICE_PDF = "../wybrane_wzory_matematyczne.pdf";
+        window.TABLICE_PDF = "../../wybrane_wzory_matematyczne.pdf";
     </script>
     <!-- Ten arkusz nie ma żadnych zadań z solutionInteractive (sprawdzone w
          exercises.json) — nie potrzebuje solutionsInteractive.js. -->
-    <script src="../script.js"></script>
+    <script src="../../script.js"></script>
 
 </body>
 </html>
