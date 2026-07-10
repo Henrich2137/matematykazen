@@ -69,33 +69,6 @@ INNE NOTATKI:
 DO REALZACJI Dopisane przez SONNETA LUB OPUSA:
 
 SONNET DOPISAŁ:
-- Naprawa odnośników po ręcznej reorganizacji na foldery matura/<arkusz>/
-  (2026-07-10). NIE buduj wspólnego systemu wczytywania arkuszy — to osobne
-  zadanie Opusa niżej. Tu chodzi wyłącznie o przywrócenie działania strony
-  w OBECNEJ (na razie zdublowanej) strukturze:
-  * zmień nazwę root matematykazen.html → template.html (może na razie zostać
-    "martwy"/niepodłączony — to surowiec pod zadanie Opusa niżej, nie musi
-    samodzielnie działać)
-  * matura/2024-grudzien/index.html jest PUSTY (0 bajtów) — wypełnij go treścią
-    starego matematykazen.html (patrz historia git) i popraw ścieżki względne:
-    style.css, vendor/katex/..., script.js → ../../ ; exercises.json i
-    solutionsInteractive.js zostają lokalne (są już w tym folderze)
-  * matura/2026-maj/index.html ma już treść, ale ścieżki są napisane tak, jakby
-    plik był w rootcie — popraw analogicznie (../../style.css, ../../vendor/...,
-    ../../script.js). Ten arkusz NIE ma własnego solutionsInteractive.js —
-    sprawdź czy w exercises.json są w ogóle referencje "solutionInteractive" do
-    widżetów; jeśli tak, na razie odwołaj się do ../../matura/2024-grudzien/
-    solutionsInteractive.js, jeśli nie — pomiń
-  * popraw root index.html (landing): linki "matematykazen.html" i
-    "matura-2026-maj/matematykazen.html" → matura/2024-grudzien/index.html i
-    matura/2026-maj/index.html
-  * zgrep'uj cały projekt (też *.md) za starymi nazwami "matematykazen.html" i
-    "matura-2026-maj" i popraw bieżące odnośniki w TODO.md/ARCHITECTURE.md;
-    wpisy historyczne w DONE.md możesz zostawić bez zmian (opisują przeszłość)
-  Cel: oba arkusze klikalne i działające ze strony głównej — duplikacja HTML
-  między arkuszami to na razie akceptowalny stan przejściowy.
-
-
 - Dokończenie arkusza 2026 (strona działa: matura/2026-maj/index.html;
   odpowiedzi i punktacja w exercises.json zweryfikowane 2026-07-06 z kluczem CKE
   Wersja A + rachunkiem — NIE zmieniaj correctAnswerIndex/blanks/statements/maxScore):
@@ -112,11 +85,11 @@ SONNET DOPISAŁ:
 
 
 OPUS DOPISAŁ:
-- Ujednolicenie renderowania arkuszy w jeden wspólny plik. WARUNEK WSTĘPNY: wymaga
-  wykonania zadania "Naprawa odnośników..." wyżej (SONNET DOPISAŁ) — root ma być
-  wtedy już template.html, a oba arkusze (matura/2024-grudzien/, matura/2026-maj/)
-  mają działać samodzielnie, każdy ze swoim zdublowanym HTML. Jeśli ten punkt nadal
-  wisi jako niezrobiony, zapytaj zanim zaczniesz — ta praca na nim bazuje.
+- Ujednolicenie renderowania arkuszy w jeden wspólny plik. WARUNEK WSTĘPNY spełniony
+  (2026-07-10, patrz DONE.md): root to już template.html, a oba arkusze
+  (matura/2024-grudzien/, matura/2026-maj/) działają samodzielnie, każdy ze swoim
+  zdublowanym HTML — zweryfikowane lokalnym serwerem, wszystkie asety (w tym media/
+  arkusza 2024) ładują się poprawnie.
   * wybór arkusza przez parametr URL, np. template.html?arkusz=2024-grudzien
     (strona statyczna, brak backendu/przekierowań serwera — patrz CLAUDE.md)
   * DODAJ metadane arkusza WPROST DO KAŻDEGO exercises.json (nowe pola obok

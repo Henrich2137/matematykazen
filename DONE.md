@@ -3,6 +3,36 @@ Nie wczytuj tego pliku domyślnie — tylko gdy potrzebne jest szersze spojrzeni
 rozwiązanie trudniejszego problemu albo sprawdzenie, czy/jak coś już kiedyś rozwiązano.
 (Zasada opisana w CLAUDE.md. Plik zaczął się jako notatki ze smoke testu.)
 
+ZROBIONE PRZEZ FABLE (2026-07-10, po ręcznej reorganizacji Henricha na foldery matura/<arkusz>/):
+- [DONE] Naprawa odnośników po reorganizacji: root matematykazen.html → template.html był
+  już zrobiony przez Henricha (surowiec pod przyszłe zadanie Opusa, celowo niepodłączony).
+  Wypełniłem PUSTY matura/2024-grudzien/index.html treścią starego matematykazen.html
+  (Henrich w międzyczasie sam skopiował plik, ja poprawiłem ścieżki): style.css,
+  vendor/katex/..., script.js, wybrane_wzory_matematyczne.pdf, arkusze PDF/..., link do
+  logo → ../../; dodałem window.SHEET_ID="grudzien2024" + window.TABLICE_PDF (analogicznie
+  do 2026-maj); exercises.json i solutionsInteractive.js zostały lokalne (bez zmian ścieżki).
+  matura/2026-maj/index.html miał już poprawne ścieżki ../, ale ładował martwy
+  ../solutionsInteractive.js (plik nigdy nie istniał w tej lokalizacji) — usunąłem ten
+  <script>, bo wszystkie "solutionInteractive" w tamtym exercises.json są null (WIDZETY
+  jest odczytywane w script.js tylko gdy pole jest ustawione, więc nic się nie wywali).
+  Poprawiłem linki na root index.html (landing) z "matematykazen.html" /
+  "matura-2026-maj/matematykazen.html" na "matura/2024-grudzien/index.html" /
+  "matura/2026-maj/index.html". Poprawiłem bieżące odnośniki do starych nazw w
+  ARCHITECTURE.md i TODO.md (wpisy historyczne w DONE.md zostawione bez zmian, opisują
+  przeszłość).
+  PRZY OKAZJI znaleziona i naprawiona osobna usterka z tej samej reorganizacji: pliki
+  matura/2024-grudzien/media/zadN/... (mp4 kroków rozwiązań zad1-3, png rysunków zad10,
+  11, 17, 19, 20, 30) zostały przeniesione do podfolderu media/, ale exercises.json wciąż
+  wskazywał stare ścieżki bez prefiksu "media/" (np. "zad1/zad1rozw_step1.mp4" zamiast
+  "media/zad1/zad1rozw_step1.mp4") — wszystkie 23 odnośniki dawały 404. Naprawione sedem
+  (dodanie prefiksu "media/") i zweryfikowane curlem przez lokalny python -m http.server,
+  że wszystkie 23 pliki teraz ładują się z kodem 200.
+  Weryfikacja: python -m http.server, curl -o /dev/null -w "%{http_code}" na wszystkich
+  asetach obu arkuszy (HTML, CSS, JS, KaTeX vendor, PDF-y, exercises.json, wszystkie mp4/png
+  z matura/2024-grudzien) — wszystko 200. matura/2026-maj nie ma jeszcze folderu media/
+  (obrazki zad12/13/19/20/31 nadal do wycięcia z PDF — osobne zadanie w TODO.md, nie
+  regresja z tej reorganizacji).
+
 ZROBIONE PRZEZ FABLE (2026-07-06, sesja zdalna, do ewentualnej weryfikacji przez Henricha):
 - [DONE] Strona arkusza matura maj 2026 złożona ze szkieletu: matura-2026-maj/matematykazen.html
   używa WSPÓLNEGO ../script.js i ../style.css (bez kopii). script.js sparametryzowany per
