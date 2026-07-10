@@ -12,8 +12,31 @@ Zadania realizuj od góry do dołu.
 Opus, nie ruszaj tego chyba, że cię poproszę w promptcie, możesz zapytać czy to zrobić jeśli nie masz co robić
 
 WYSOKI PRIORYTET:
-- (puste — zad 29 „6,50", klatkowanie w Firefoksie i strona arkusza 2026
-  zrobione 2026-07-06, patrz TODODONE.md)
+- Naprawa odnośników po ręcznej reorganizacji na foldery matura/<arkusz>/
+  (2026-07-10). NIE buduj wspólnego systemu wczytywania arkuszy — to osobne
+  zadanie Opusa niżej. Tu chodzi wyłącznie o przywrócenie działania strony
+  w OBECNEJ (na razie zdublowanej) strukturze:
+  * zmień nazwę root matematykazen.html → template.html (może na razie zostać
+    "martwy"/niepodłączony — to surowiec pod zadanie Opusa niżej, nie musi
+    samodzielnie działać)
+  * matura/2024-grudzien/index.html jest PUSTY (0 bajtów) — wypełnij go treścią
+    starego matematykazen.html (patrz historia git) i popraw ścieżki względne:
+    style.css, vendor/katex/..., script.js → ../../ ; exercises.json i
+    solutionsInteractive.js zostają lokalne (są już w tym folderze)
+  * matura/2026-maj/index.html ma już treść, ale ścieżki są napisane tak, jakby
+    plik był w rootcie — popraw analogicznie (../../style.css, ../../vendor/...,
+    ../../script.js). Ten arkusz NIE ma własnego solutionsInteractive.js —
+    sprawdź czy w exercises.json są w ogóle referencje "solutionInteractive" do
+    widżetów; jeśli tak, na razie odwołaj się do ../../matura/2024-grudzien/
+    solutionsInteractive.js, jeśli nie — pomiń
+  * popraw root index.html (landing): linki "matematykazen.html" i
+    "matura-2026-maj/matematykazen.html" → matura/2024-grudzien/index.html i
+    matura/2026-maj/index.html
+  * zgrep'uj cały projekt (też *.md) za starymi nazwami "matematykazen.html" i
+    "matura-2026-maj" i popraw bieżące odnośniki w TODO.md/ARCHITECTURE.md;
+    wpisy historyczne w TODODONE.md możesz zostawić bez zmian (opisują przeszłość)
+  Cel: oba arkusze klikalne i działające ze strony głównej — duplikacja HTML
+  między arkuszami to na razie akceptowalny stan przejściowy.
 
 
 NISKI PRIORYTET (drobne porządki, dobre na krótką sesję):
@@ -32,8 +55,28 @@ NISKI PRIORYTET (drobne porządki, dobre na krótką sesję):
 Fable, nie ruszaj tego chyba, że nie masz co robić.
 
 WYSOKI PRIORYTET:
-- (puste — patrz TODODONE.md, sesja 2026-07-06: ekstrakt PDF 2026 + szkielet
-  matura-2026-maj/exercises.json + dopisek formatu w zad 10/29 zrobione)
+- Ujednolicenie renderowania arkuszy w jeden wspólny plik. WYKONAJ DOPIERO PO
+  tym, jak Fable naprawi odnośniki w sekcji wyżej (root ma być już wtedy
+  template.html, a oba arkusze mają działać w obecnej, zdublowanej strukturze):
+  * wybór arkusza przez parametr URL, np. template.html?arkusz=2024-grudzien
+    (strona statyczna, brak backendu/przekierowań serwera — patrz CLAUDE.md)
+  * DODAJ metadane arkusza WPROST DO KAŻDEGO exercises.json (nowe pola obok
+    istniejącej tablicy zadań): tytuł strony, meta description, tekst do
+    #exercises-sheet-title, ścieżka+numer strony PDF tablicy wzorów (dziś na
+    sztywno jako TABLICE_PDF w script.js:17), ścieżka PDF zasad oceniania (dziś
+    na sztywno w #zasady-oceniania w HTML)
+  * w script.js, funkcja startSheet() (ok. linii 974-991): zamień
+    fetch("exercises.json") na ścieżkę zależną od arkusza z URL
+    (matura/<id>/exercises.json) i użyj nowych pól metadanych zamiast
+    hardkodowanych stringów w HTML (<title>, meta description, itd.)
+  * gdy template.html działa dla obu arkuszy: usuń zdublowane
+    matura/2024-grudzien/index.html i matura/2026-maj/index.html; sprawdź czy
+    da się scalić solutionsInteractive.js z powrotem do jednego wspólnego pliku
+    w rootcie (czy arkusz 2026-maj w ogóle potrzebuje własnych widżetów)
+  * popraw linki na stronie głównej (index.html) na template.html?arkusz=...
+  * zaktualizuj ARCHITECTURE.md: nowy schemat pól metadanych w exercises.json +
+    mechanizm wyboru arkusza (wymóg z CLAUDE.md — trzymać ARCHITECTURE.md w
+    sync z tym co faktycznie opisuje)
 
 NISKI PRIORYTET:
 - Dokończenie arkusza 2026 (strona działa: matura-2026-maj/matematykazen.html;
