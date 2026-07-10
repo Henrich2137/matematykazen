@@ -2,7 +2,7 @@
 
 Detailed architecture, data-schema and CSS/layout reference for this repo. Read this **before** touching the rendering logic in [script.js](script.js) / [solutionsInteractive.js](solutionsInteractive.js), the data schema in [exercises.json](exercises.json), or anything in [style.css](style.css).
 
-> **Script layout.** The former inline `<script>` at the bottom of [matematykazen.html](matematykazen.html) is now two external classic scripts loaded there in order: [solutionsInteractive.js](solutionsInteractive.js) (widgets + `WIDZETY` registry) **then** [script.js](script.js) (app logic). Order matters — `loadExercises` in `script.js` reads the `WIDZETY` const declared in `solutionsInteractive.js`, and classic scripts share one global scope, so the declaring file must run first.
+> **Script layout.** The former inline `<script>` at the bottom of the old `matematykazen.html` (now `template.html`, and duplicated per-sheet in `matura/<sheet-id>/index.html`) is now two external classic scripts loaded there in order: [solutionsInteractive.js](solutionsInteractive.js) (widgets + `WIDZETY` registry) **then** [script.js](script.js) (app logic). Order matters — `loadExercises` in `script.js` reads the `WIDZETY` const declared in `solutionsInteractive.js`, and classic scripts share one global scope, so the declaring file must run first.
 
 > **Keep this file in sync.** Whenever you change the code or styles it describes, update the matching section here in the same edit. Treat it as the source of truth for "how is this built and why".
 

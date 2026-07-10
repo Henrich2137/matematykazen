@@ -96,7 +96,7 @@ SONNET DOPISAŁ:
   między arkuszami to na razie akceptowalny stan przejściowy.
 
 
-- Dokończenie arkusza 2026 (strona działa: matura-2026-maj/matematykazen.html;
+- Dokończenie arkusza 2026 (strona działa: matura/2026-maj/index.html;
   odpowiedzi i punktacja w exercises.json zweryfikowane 2026-07-06 z kluczem CKE
   Wersja A + rachunkiem — NIE zmieniaj correctAnswerIndex/blanks/statements/maxScore):
   * hint + solutionText dla 41 wpisów — przepisz/zredaguj z gotowych rozwiązań w
@@ -105,10 +105,10 @@ SONNET DOPISAŁ:
   * obrazki zad 12 (wykres łamanej), 13 (prosta z kątem α), 19 (okrąg A,B,C,D),
     20 (proste równoległe), 31 (diagramy IVA/IVB — dane TYLKO na obrazku) — wyciąć
     z arkusze PDF/matematyka-2026-maj-matura-podstawowa.pdf wzorem zad30
-    (pdftoppm -x/-y/-W/-H); docelowe ścieżki matura-2026-maj/zadN/zadNrys.png już są
+    (pdftoppm -x/-y/-W/-H); docelowe ścieżki matura/2026-maj/zadN/zadNrys.png już są
     w exercises.json. UWAGA: sesja zdalna nie ma pdftoppm/mutool/gs — tylko lokalnie.
-- Stworzyć nową stronę z arkuszem matury 2027 (wzorem 2026: folder, exercises.json,
-  matematykazen.html z window.SHEET_ID/TABLICE_PDF, link na stronie głównej)
+- Stworzyć nową stronę z arkuszem matury 2027 (wzorem 2026: folder matura/2027-.../,
+  exercises.json, index.html z window.SHEET_ID/TABLICE_PDF, link na stronie głównej)
 
 
 OPUS DOPISAŁ:
