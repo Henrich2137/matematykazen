@@ -9,12 +9,14 @@ let totalScore = 0;
 // odwołanie nie wywróciło skryptu.
 let exercises = [];
 
-// Identyfikacja arkusza: strona arkusza może przed script.js ustawić
-// window.SHEET_ID (osobne klucze localStorage per arkusz) i window.TABLICE_PDF
-// (ścieżka do PDF-a z tablicami względem strony, np. "../wybrane_wzory..."
-// dla arkuszy w podfolderach). Brak ustawień = arkusz grudzień 2024 (root).
-const SHEET_ID = window.SHEET_ID || "grudzien2024";
-const TABLICE_PDF = window.TABLICE_PDF || "wybrane_wzory_matematyczne.pdf";
+// Identyfikacja arkusza: wybierana parametrem URL ?arkusz=<id>, gdzie <id> to
+// nazwa folderu pod matura/ (np. "2024-grudzien"). Brak parametru = arkusz
+// demonstracyjny grudzień 2024. Ten sam id: klucz do fetch exercises.json,
+// sufiks kluczy localStorage i (patrz startSheet()) zawartość bar-menu/tytułu.
+const SHEET_ID = new URLSearchParams(location.search).get("arkusz") || "2024-grudzien";
+// wybrane_wzory_matematyczne.pdf leży w rootcie obok template.html (jedynego
+// pliku renderującego arkusze), więc ścieżka jest zawsze ta sama.
+const TABLICE_PDF = "wybrane_wzory_matematyczne.pdf";
 
 // Klucz zapisu postępu w localStorage — używany przez loadExercises()
 // (zapis/odczyt) oraz przyciski "resetuj punktację" i "wyczyść zapisany postęp".
@@ -971,14 +973,39 @@ function loadExercises() {
     exercisesWrapper.appendChild(clearProgressButton);
 }
 
-// Start strony: dane zadań przychodzą fetchem z exercises.json. UWAGA: fetch
-// nie działa z file:// — wtedy (i przy każdym innym niepowodzeniu) pokazujemy
+// Wypełnia chrome strony (tytuł karty, meta description, tytuł w pasku, PDF
+// zasad oceniania, domyślna strona tablicy wzorów) danymi z pola "meta"
+// exercises.json — jedyne miejsce, gdzie template.html dowiaduje się, JAKI
+// to arkusz (poza samymi zadaniami).
+function applySheetMeta(meta) {
+    if (!meta) return;
+    if (meta.pageTitle) document.title = meta.pageTitle;
+    if (meta.metaDescription) {
+        const opis = document.querySelector('meta[name="description"]');
+        if (opis) opis.setAttribute("content", meta.metaDescription);
+    }
+    const tytulEl = document.getElementById("exercises-sheet-title");
+    if (tytulEl && meta.sheetTitle) tytulEl.textContent = meta.sheetTitle;
+    if (meta.zasadyPdf) {
+        document.getElementById("zasady-oceniania").data = `${encodeURI(meta.zasadyPdf)}#toolbar=0`;
+    }
+    if (meta.tablicaPdfDefaultPage) {
+        document.getElementById("tablica-wzorow").data =
+            `${TABLICE_PDF}#page=${meta.tablicaPdfDefaultPage}&toolbar=0`;
+    }
+}
+
+// Start strony: dane zadań przychodzą fetchem z matura/<SHEET_ID>/exercises.json
+// (obiekt { meta, exercises } — patrz ARCHITECTURE.md). UWAGA: fetch nie
+// działa z file:// — wtedy (i przy każdym innym niepowodzeniu) pokazujemy
 // czytelny komunikat zamiast pustej strony.
 async function startSheet() {
     try {
-        const odpowiedz = await fetch("exercises.json");
+        const odpowiedz = await fetch(`matura/${SHEET_ID}/exercises.json`);
         if (!odpowiedz.ok) throw new Error(`HTTP ${odpowiedz.status}`);
-        exercises = await odpowiedz.json();
+        const dane = await odpowiedz.json();
+        exercises = dane.exercises;
+        applySheetMeta(dane.meta);
     } catch (blad) {
         const info = document.createElement("div");
         info.className = "blad-wczytywania";
