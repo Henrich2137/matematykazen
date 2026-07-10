@@ -10,8 +10,10 @@
     <meta name="description" content="Interaktywny arkusz maturalny z matematyki: odpowiedzi od ręki, podpowiedzi, rozwiązania krok po kroku i tablica wzorów.">
     <!-- Prosta ikonka: czarne, poważne „M" (serif, w duchu fontów strony). Jeśli nie pasuje — wystarczy usunąć tę linię (Henrich zrobi własne logo albo zostawi bez ikonki). -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50' y='78' font-size='80' text-anchor='middle' font-family='Georgia,serif' font-weight='bold'>M</text></svg>">
-    <!-- Dane zadań są w exercises.json — wczytywane fetchem w startSheet()
-         na dole strony (dokumentacja schematu: ARCHITECTURE.md). -->
+    <!-- Ten sam plik renderuje DOWOLNY arkusz — wybór przez ?arkusz=<id>
+         (patrz SHEET_ID w script.js). Dane zadań i metadane strony (tytuł,
+         opis, PDF-y) są w matura/<id>/exercises.json, wczytywane fetchem w
+         startSheet() na dole strony (dokumentacja schematu: ARCHITECTURE.md). -->
     <link rel="stylesheet" href="style.css">
 
     <!-- KaTeX zvendorowany do repo (vendor/katex/) — działa w pełni offline.
