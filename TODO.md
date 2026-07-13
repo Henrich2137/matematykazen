@@ -42,6 +42,7 @@ NAJNIŻSZY PRIORYTET, NA POTEM:
 
 - Obsługa błędnego/pustego ?arkusz=
 
+- okna otwierające pdf zasad oceniania i tablicy wzorów powinny zatrzymywać się nie tylko na lewej krawędzi al równie ż na dole i u góry (zanim schowa się za top-bar)
 
 <br>
 
@@ -52,15 +53,16 @@ DLA UŻYTKOWNIKA:
 <br>
 
 INNE NOTATKI:
-- analityka
-- Przycisk "zgłoś błąd w zadaniu"
+- Obczaić analitykę czyli śledzenie ilości i zaangażowania użytkowników (moze da sięjakoś przez githuba)
+- Stworzyć przycisk "zgłoś błąd w zadaniu" i odpowiedni formularz
 - Tryb egzaminu nie powinien być tak "schowany" w opcjach. Przed rozpoczęciem arkusza powinno pytać użytkownika czy chce wejśc w tryb ćwiczeniowy czy egzaminu z checkboxem o zapamiętanie wyboru.
+- dodać podtytuł pod nazwą arkusza z trybem (tryb ćwiczenia / tryb egzaminu)
 - Etap sprawdzania odpowiedzi po trybie egzaminacyjnym. Idealnie powinien istnieć pomiędzy skończeniem egzaminu, a jego wyników pokazaniem wyników egzaminu.
-- Okno potwierdzenia chęci wyczyszczenia punktów
-- przycisk wyczyść wszystkie punkty nie powinien chyba być na kończu aby nikt se przez przypadek ni wyczyścił chcąc podsumować
+- dodać okno potwierdzenia chęci wyczyszczenia punktów
+- wywalić przycisk "wyczyść wszystkie punkty" z dołu arkusza
 - analogicznie do boxów z punktacją powinny być do włączenia boxy z opisem typu zadania
-- okna otwierające pdf zasad oceniania i tablicy wzorów powinny zatrzymywać się nie tylko na lewej krawędzi al równie ż na dole i u góry (zanim schowa się za top-bar)
-- na telefonie pdfy się nie ładują (tablica i zasady oceniania). Podczas naprawy warto sprawić aby odpalały się one nie w okienu ale wypełniały całą stronę z krzyżykiem w rogu. Jeżeli nie uda się tego naprawić to należy usunąć tę funkcjonalność z wersji mobilnej.
+
+- na telefonie pdfy się nie ładują (tablica i zasady oceniania). Podczas naprawy warto sprawić aby odpalały się one nie w okienku ale wypełniały całą stronę z krzyżykiem w rogu. Jeżeli nie uda się tego naprawić to należy usunąć tę funkcjonalność z wersji mobilnej.
 
 <br><br><br>
 
