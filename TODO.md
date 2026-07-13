@@ -15,11 +15,41 @@ WYSOKI PRIORYTET:
 - nic
 
 NISKI PRIORYTET:
-- zmień w css przyciski wyboru ilości punktów ("oceń się") tak aby nie były wiele mniejsze od zwykłych przycisków odpowiedzi
-- okna otwierające pdf zasad oceniania i tablicy wzorów powinny zatrzymywać się nie tylko na lewej krawędzi ale również na dole i u góry (zanim schowa się za top-bar)
-- błędnego/pustego ?arkusz= powinien skutkować wyświetleniem się "błędny link, wróć do strony głównej" z odpowiednim hiperłączem.
-- dodać podtytuł pod nazwą arkusza z trybem (tryb ćwiczenia / tryb egzaminu)
-- dodać okno potwierdzenia chęci wyczyszczenia punktów podobne do okna pojawiającego sięprzed rozpoczęciem egzaminu
+- Przyciski "oceń się" (.self-score-container button, style.css ~493-516) są wyraźnie
+  mniejsze od przycisków odpowiedzi (.button-container button: min-width 22%,
+  padding 10px 12px, font-size 18px vs obecne min-width 56px, padding 6px 10px,
+  font-size 15px). Powiększyć je UMIARKOWANIE (nie 1:1 z przyciskami odpowiedzi) —
+  np. padding ~8px 11px, font-size ~16-17px — zachowując zwarty, poziomy rząd
+  przycisków punktowych 0/1/2/... (to nie mają być pełnowymiarowe przyciski
+  odpowiedzi, tylko przestać wyglądać "miniaturowo" obok nich).
+- Panele PDF (#tablica-wzorow-panel, #zasady-oceniania-panel; drag/resize logika w
+  script.js, funkcja makePanelDraggable ~linia 237) — jedyne ograniczenie do dodania:
+  uchwyt przeciągania (.panel-uchwyt, górny pasek panelu) nie może zjechać POD
+  top-bar — czyli panel.style.top nie powinien pozwolić, by cały pasek uchwytu
+  schował się za top-barem (inaczej użytkownik traci możliwość złapania panelu i
+  przesunięcia go z powrotem). To jedyny twardy limit. WSZYSTKIE pozostałe
+  krawędzie (lewo, prawo, dół) mają zostać całkowicie swobodne — łącznie z
+  obecnym Math.max(0, ...) na `left`, który należy USUNĄĆ (panel może wyjechać
+  poza lewy/prawy/dolny brzeg ekranu bez ograniczeń). Dotyczy to przeciągania;
+  zmiana rozmiaru (.panel-rozmiar, narożnik) zostaje bez zmian.
+- Błędny LUB pusty/brakujący ?arkusz= (nieznane id — fetch matura/<id>/exercises.json
+  zwraca błąd/404 — ORAZ całkowity brak parametru, ORAZ `?arkusz=` pusty string) ma
+  skutkować komunikatem "błędny link, wróć do strony głównej" z hiperłączem do
+  index.html — NIE cichym fallbackiem. To wymaga usunięcia obecnego domyślnego
+  fallbacku `|| "2024-grudzien"` w script.js:16 (SHEET_ID). Sprawdzone: linki z
+  index.html zawsze przekazują poprawny ?arkusz=, więc usunięcie fallbacku nic tam
+  nie psuje.
+- Dodać mały, szarawy podtytuł pod nazwą arkusza w top-barze (#exercises-sheet-title,
+  #bar-center w template.html) pokazujący aktualny tryb: "tryb ćwiczenia" domyślnie,
+  przełącza się dynamicznie na "tryb egzaminu" gdy aktywne jest body.tryb-egzaminu
+  (czyli po enableExamMode() i z powrotem po finishExam()) — ma być stałym, zawsze
+  widocznym elementem UI (nie tylko ostrzeżeniem pokazywanym wyłącznie w trybie
+  egzaminu).
+- Dodać KRÓTKIE okno potwierdzenia (confirm()) przed akcją "resetuj punktację"
+  (#reset-scores w menu ⋯, script.js) — jedno zdanie ostrzeżenia w stylu: "Wyczyścić
+  zapisane odpowiedzi i punkty? Tej operacji nie można cofnąć." (BEZ szczegółowego
+  wypunktowania jak w oknie startu egzaminu — to ma być krótkie, jednozdaniowe
+  ostrzeżenie).
 
 <br>
 
