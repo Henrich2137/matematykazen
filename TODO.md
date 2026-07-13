@@ -12,7 +12,7 @@ Zadania realizuj od góry do dołu.
 Jeżeli nie masz co robić to rób stąd.
 
 WYSOKI PRIORYTET:
-- Dodać pliki index.html w  folderach arkuszy maturalnych (/matura/2024-grudzien oraz /matura/2026-maj) usunąć logikę arkusza wybieranego parametrem ?arkusz=.
+- nic
 
 NISKI PRIORYTET:
 - nic
