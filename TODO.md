@@ -15,14 +15,14 @@ WYSOKI PRIORYTET:
 - nic
 
 NISKI PRIORYTET:
-- nic
+- zmień w css przyciski wyboru ilości punktów ("oceń się") tak aby nie były wiele mniejsze od zwykłych przycisków odpowiedzi
+
 
 
 <br>
 
 
 NAJNIŻSZY PRIORYTET, NA POTEM:
-- zmień w css przyciski wyboru ilości punktów ("oceń się") tak aby nie były wiele mniejsze od zwykłych przycisków odpowiedzi
 
 - na bieżąco obliczany procent obok sumy punktów, który świeci się na zielono gdy jest conajmniej 30%, poa najechaniu myszką pokazuje się, zdałeś/nie zdałeś (jeszcze)
 
@@ -42,7 +42,7 @@ NAJNIŻSZY PRIORYTET, NA POTEM:
 
 - Obsługa błędnego/pustego ?arkusz=
 
-- okna otwierające pdf zasad oceniania i tablicy wzorów powinny zatrzymywać się nie tylko na lewej krawędzi al równie ż na dole i u góry (zanim schowa się za top-bar)
+- okna otwierające pdf zasad oceniania i tablicy wzorów powinny zatrzymywać się nie tylko na lewej krawędzi ale również na dole i u góry (zanim schowa się za top-bar)
 
 <br>
 
