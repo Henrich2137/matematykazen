@@ -15,18 +15,23 @@ WYSOKI PRIORYTET:
 - nic
 
 NISKI PRIORYTET:
+- wywalić przycisk "wyczyść wszystkie punkty" z dołu arkusza
 - zmień w css przyciski wyboru ilości punktów ("oceń się") tak aby nie były wiele mniejsze od zwykłych przycisków odpowiedzi
-
-
+- okna otwierające pdf zasad oceniania i tablicy wzorów powinny zatrzymywać się nie tylko na lewej krawędzi ale również na dole i u góry (zanim schowa się za top-bar)
+- błędnego/pustego ?arkusz= powinien skutkować wyświetleniem się "błędny link, wróć do strony głównej" z odpowiednim hiperłączem.
+- dodać podtytuł pod nazwą arkusza z trybem (tryb ćwiczenia / tryb egzaminu)
+- dodać okno potwierdzenia chęci wyczyszczenia punktów podobne do okna pojawiającego sięprzed rozpoczęciem egzaminu
 
 <br>
 
 
 NAJNIŻSZY PRIORYTET, NA POTEM:
 
-- na bieżąco obliczany procent obok sumy punktów, który świeci się na zielono gdy jest conajmniej 30%, poa najechaniu myszką pokazuje się, zdałeś/nie zdałeś (jeszcze)
+- na bieżąco obliczany procent obok sumy punktów, który świeci się na zielono gdy jest conajmniej 30%, po najechaniu myszką pokazuje się, zdałeś/nie zdałeś (jeszcze)
 
 - utworzenie zmiennych css i zrobienie przełącznika na darkmode
+
+- dodanie rozwiązań do matury 2026
 
 - wyciągnięcie tekstu z PDF-ów:
   * matematyka-2025-maj-matura-podstawowa.pdf
@@ -36,13 +41,13 @@ NAJNIŻSZY PRIORYTET, NA POTEM:
    * Przycisk pokaż potrzebne wzory nie powinien się pokazywać, zrób też tak, aby nie było tam przerwy zadużej można wyłączyć div który jest gdzieś wyżej w hierarchi czy coś
    * przycisk opcji "..." po kliknięciu pokazuje pustą ramkę, dobrze aby albo nie było go w ogóle albo był szary lub po rozwinięciu pokazywał zaszarzone te przyciski które nie powinny działać podczas egzaminu.
    * Zadania otwarte np. 30 powinny mieć pole do zanotowania odpowiedzi do samodzielnego sprawdzenia potem.
-   * Przycisk zakończ egzamin powinien znajdować sięna dole strony zamiastt wyczyść wszysktie punkty
+   * Przycisk zakończ egzamin powinien znajdować się na dole strony zamiast wyczyść wszysktie punkty
 
 - do sekcji "oceń się" powinno być dodane kryteria sukcesu dopiero po kliknięciu rozwiązania. Ale jeszcze nie mam pomysłu jak to skomponować aby miało sens.
 
-- Obsługa błędnego/pustego ?arkusz=
 
-- okna otwierające pdf zasad oceniania i tablicy wzorów powinny zatrzymywać się nie tylko na lewej krawędzi ale również na dole i u góry (zanim schowa się za top-bar)
+
+
 
 <br>
 
@@ -55,11 +60,11 @@ DLA UŻYTKOWNIKA:
 INNE NOTATKI:
 - Obczaić analitykę czyli śledzenie ilości i zaangażowania użytkowników (moze da sięjakoś przez githuba)
 - Stworzyć przycisk "zgłoś błąd w zadaniu" i odpowiedni formularz
-- Tryb egzaminu nie powinien być tak "schowany" w opcjach. Przed rozpoczęciem arkusza powinno pytać użytkownika czy chce wejśc w tryb ćwiczeniowy czy egzaminu z checkboxem o zapamiętanie wyboru.
-- dodać podtytuł pod nazwą arkusza z trybem (tryb ćwiczenia / tryb egzaminu)
+- Tryb egzaminu nie powinien być tak "schowany" w opcjach. Przed rozpoczęciem arkusza powinno pytać użytkownika czy chce wejść w tryb ćwiczeniowy czy egzaminu z checkboxem o zapamiętanie wyboru.
+
 - Etap sprawdzania odpowiedzi po trybie egzaminacyjnym. Idealnie powinien istnieć pomiędzy skończeniem egzaminu, a jego wyników pokazaniem wyników egzaminu.
-- dodać okno potwierdzenia chęci wyczyszczenia punktów
-- wywalić przycisk "wyczyść wszystkie punkty" z dołu arkusza
+
+
 - analogicznie do boxów z punktacją powinny być do włączenia boxy z opisem typu zadania
 
 - na telefonie pdfy się nie ładują (tablica i zasady oceniania). Podczas naprawy warto sprawić aby odpalały się one nie w okienku ale wypełniały całą stronę z krzyżykiem w rogu. Jeżeli nie uda się tego naprawić to należy usunąć tę funkcjonalność z wersji mobilnej.
