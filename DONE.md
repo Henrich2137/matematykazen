@@ -3,6 +3,37 @@ Nie wczytuj tego pliku domyślnie — tylko gdy potrzebne jest szersze spojrzeni
 rozwiązanie trudniejszego problemu albo sprawdzenie, czy/jak coś już kiedyś rozwiązano.
 (Zasada opisana w CLAUDE.md. Plik zaczął się jako notatki ze smoke testu.)
 
+ZROBIONE PRZEZ OPUSA (2026-07-13) — cały WYSOKI PRIORYTET z TODO.md:
+- [ZROBIONE] Powiększone UMIARKOWANIE przyciski "oceń się" (.self-score-container button
+  w style.css): padding 6px 10px → 8px 11px, font-size 15px → 17px, min-width 56px → 62px.
+  Zwarty poziomy rząd przycisków punktowych zostaje — nie robią się pełnowymiarowymi
+  przyciskami odpowiedzi. Zweryfikowane Playwrightem (computed font-size=17px, padding=8px 11px).
+- [ZROBIONE] Panele PDF (makePanelDraggable w script.js): jedyne ograniczenie przeciągania
+  to top — uchwyt (.panel-uchwyt) nie zjedzie pod top-bar (minTop = dolna krawędź #top-bar,
+  liczona z getBoundingClientRect przy każdym pointerdown, więc panel zawsze da się złapać).
+  Usunięty Math.max(0,...) na left — lewo/prawo/dół całkowicie swobodne (panel może wyjechać
+  poza brzeg ekranu). Zmiana rozmiaru (.panel-rozmiar) bez zmian. Zweryfikowane Playwrightem:
+  drag w górę klampuje top do dolnej krawędzi paska, drag w lewo daje left=-821px (bez klampu).
+  UWAGA/decyzja: prompt mówił "by CAŁY pasek uchwytu się nie schował"; wybrałem ostrzejszy,
+  pewniejszy wariant — cały uchwyt zostaje pod paskiem (zawsze w pełni chwytalny), zamiast
+  dopuszczać częściowe wsunięcie z pozostawionym skrawkiem. Efekt (uchwyt zawsze chwytalny)
+  jest ten sam, a zachowanie czytelniejsze.
+- [ZROBIONE] Błędny/pusty/brakujący ?arkusz= → komunikat "Błędny link" z hiperłączem do
+  index.html zamiast cichego fallbacku. Usunięty `|| "2024-grudzien"` w script.js (SHEET_ID).
+  startSheet() rozróżnia: brak/pusty param → od razu błędny link (bez fetchu); fetch 404 →
+  błędny link; brak odpowiedzi (file:// / sieć) → dawny komunikat o serwerze; zły JSON →
+  komunikat o uszkodzonym pliku. Zweryfikowane Playwrightem (brak param / ?arkusz= / nieznane
+  id → "Błędny link" + link do index.html + zero wyrenderowanych zadań; poprawne id → render OK).
+- [ZROBIONE] Stały, szarawy podtytuł trybu pod nazwą arkusza w pasku
+  (#exercises-mode-subtitle w #bar-center, template.html; CSS 12px #999). Domyślnie
+  "tryb ćwiczenia", przełącza się na "tryb egzaminu" pod body.tryb-egzaminu przez
+  updateModeSubtitle() wołane w enableExamMode() i finishExam(). Chowany <900px razem
+  z tytułem. Zweryfikowane Playwrightem (ćwiczenie → "tryb ćwiczenia", start egzaminu →
+  "tryb egzaminu").
+- [ZROBIONE] Krótkie confirm() przed "resetuj punktację" (#reset-scores, script.js):
+  "Wyczyścić zapisane odpowiedzi i punkty? Tej operacji nie można cofnąć." Anulowanie
+  przerywa akcję. Zweryfikowane Playwrightem (klik pokazuje dialog z tym tekstem).
+
 ZROBIONE PRZEZ OPUSA (2026-07-13):
 - [ZROBIONE] Wywalony przycisk "wyczyść zapisany postęp" z dołu arkusza (był czystym
   duplikatem "resetuj punktację" z menu ⋯ — obie akcje robiły dokładnie to samo:

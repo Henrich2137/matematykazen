@@ -110,6 +110,16 @@ body {
     text-overflow: ellipsis;
     pointer-events: none;
 }
+/* Mały, szarawy podtytuł pod nazwą arkusza — stały wskaźnik trybu
+   (ćwiczenie / egzamin), przełączany przez updateModeSubtitle() w script.js. */
+#exercises-mode-subtitle {
+    margin-top: 2px;
+    font-size: 12px;
+    line-height: 1.2;
+    color: #999;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 /* Logo jest linkiem do strony głównej (index.html) — wygląda jak zwykły napis. */
 #logo {
@@ -498,14 +508,14 @@ body {
 .self-score-container button {
     display: inline-block;
     width: auto;
-    min-width: 56px;
-    padding: 6px 10px;
+    min-width: 62px;
+    padding: 8px 11px;
     margin: 4px;
     border: 1px solid #e7e7e7;
     border-radius: 3px;
     background-color: #fff;
     font-family: "STIX Two Math", "Lora", serif;
-    font-size: 15px;
+    font-size: 17px;
     color: #111;
     cursor: pointer;
 }
@@ -1007,7 +1017,8 @@ body.tryb-egzaminu .fill-in-input.incorrect {
 /* Tytuł arkusza w pasku znika, gdy strefy boczne zostawiają mu za mało miejsca
    (ellipsis przy ~900px robił się nieczytelny i tak). */
 @media (max-width: 900px) {
-    #exercises-sheet-title {
+    #exercises-sheet-title,
+    #exercises-mode-subtitle {
         display: none;
     }
 }
