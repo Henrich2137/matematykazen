@@ -15,23 +15,29 @@ WYSOKI PRIORYTET:
 - nic
 
 NISKI PRIORYTET (drobne porządki, dobre na krótką sesję):
-- zmień w css przyciski wyboru ilości punktów ("oceń się") tak aby nie były wiele mniejsze od zwykłych przycisków odpowiedzi
-- na bieżąco obliczany procent obok sumy punktów, który świeci się na zielono gdy jest conajmniej 30%, poa najechaniu myszką pokazuje się, zdałeś/nie zdałeś (jeszcze)
-- utworzenie zmiennych css i zrobienie przełącznika na darkmode
+- nic
 
 
 <br>
 
 
 NAJNIŻSZY PRIORYTET, NA POTEM:
-- - wyciągnięcie tekstu z PDF-ów:
+- zmień w css przyciski wyboru ilości punktów ("oceń się") tak aby nie były wiele mniejsze od zwykłych przycisków odpowiedzi
+
+- na bieżąco obliczany procent obok sumy punktów, który świeci się na zielono gdy jest conajmniej 30%, poa najechaniu myszką pokazuje się, zdałeś/nie zdałeś (jeszcze)
+
+- utworzenie zmiennych css i zrobienie przełącznika na darkmode
+
+- wyciągnięcie tekstu z PDF-ów:
   * matematyka-2025-maj-matura-podstawowa.pdf
   * matematyka-2025-maj-matura-podstawowa-odpowiedzi.pdf
+
 - DOTYCZĄCE TRYBU PRÓBNY EGZAMIN
    * Przycisk pokaż potrzebne wzory nie powinien się pokazywać, zrób też tak, aby nie było tam przerwy zadużej można wyłączyć div który jest gdzieś wyżej w hierarchi czy coś
    * przycisk opcji "..." po kliknięciu pokazuje pustą ramkę, dobrze aby albo nie było go w ogóle albo był szary lub po rozwinięciu pokazywał zaszarzone te przyciski które nie powinny działać podczas egzaminu.
    * Zadania otwarte np. 30 powinny mieć pole do zanotowania odpowiedzi do samodzielnego sprawdzenia potem.
    * Przycisk zakończ egzamin powinien znajdować sięna dole strony zamiastt wyczyść wszysktie punkty
+
 - do sekcji "oceń się" powinno być dodane kryteria sukcesu dopiero po kliknięciu rozwiązania. Ale jeszcze nie mam pomysłu jak to skomponować aby miało sens.
 
 
