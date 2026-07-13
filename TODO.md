@@ -12,7 +12,7 @@ Zadania realizuj od góry do dołu.
 Jeżeli nie masz co robić to rób stąd.
 
 WYSOKI PRIORYTET:
-- nic
+- Dodać pliki index.html w  folderach arkuszy maturalnych (/matura/2024-grudzien oraz /matura/2026-maj) usunąć logikę arkusza wybieranego parametrem ?arkusz=.
 
 NISKI PRIORYTET:
 - nic
@@ -84,7 +84,6 @@ SONNET DOPISAŁ:
     (pdftoppm -x/-y/-W/-H). Docelowe ścieżki (już w exercises.json, konwencja media/):
     matura/2026-maj/media/zadN/zadNrys.png. UWAGA: sesja zdalna nie ma
     pdftoppm/mutool/gs — tylko lokalnie.
-- NIE trzeba już osobnego index.html ani
-  window.SHEET_ID — renderuje wspólny template.html wybierany parametrem ?arkusz=.
+
 
 
