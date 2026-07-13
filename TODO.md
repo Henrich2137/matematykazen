@@ -15,12 +15,6 @@ WYSOKI PRIORYTET:
 - nic
 
 NISKI PRIORYTET (drobne porządki, dobre na krótką sesję):
-- (dokańczanie arkusza 2026 przeniesione do sekcji Opusa niżej — odpowiedzi w
-  exercises.json są już ZWERYFIKOWANE z kluczem CKE i rachunkiem, patrz DONE.md,
-  więc reszta to robota przepisywacko-składacka)
-- wyciągnięcie tekstu z PDF-ów:
-  * matematyka-2025-maj-matura-podstawowa.pdf
-  * matematyka-2025-maj-matura-podstawowa-odpowiedzi.pdf
 - zmień w css przyciski wyboru ilości punktów ("oceń się") tak aby nie były wiele mniejsze od zwykłych przycisków odpowiedzi
 - na bieżąco obliczany procent obok sumy punktów, który świeci się na zielono gdy jest conajmniej 30%, poa najechaniu myszką pokazuje się, zdałeś/nie zdałeś (jeszcze)
 - utworzenie zmiennych css i zrobienie przełącznika na darkmode
@@ -30,7 +24,9 @@ NISKI PRIORYTET (drobne porządki, dobre na krótką sesję):
 
 
 NAJNIŻSZY PRIORYTET, NA POTEM:
-
+- - wyciągnięcie tekstu z PDF-ów:
+  * matematyka-2025-maj-matura-podstawowa.pdf
+  * matematyka-2025-maj-matura-podstawowa-odpowiedzi.pdf
 - DOTYCZĄCE TRYBU PRÓBNY EGZAMIN
    * Przycisk pokaż potrzebne wzory nie powinien się pokazywać, zrób też tak, aby nie było tam przerwy zadużej można wyłączyć div który jest gdzieś wyżej w hierarchi czy coś
    * przycisk opcji "..." po kliknięciu pokazuje pustą ramkę, dobrze aby albo nie było go w ogóle albo był szary lub po rozwinięciu pokazywał zaszarzone te przyciski które nie powinny działać podczas egzaminu.
@@ -82,12 +78,7 @@ SONNET DOPISAŁ:
     (pdftoppm -x/-y/-W/-H). Docelowe ścieżki (już w exercises.json, konwencja media/):
     matura/2026-maj/media/zadN/zadNrys.png. UWAGA: sesja zdalna nie ma
     pdftoppm/mutool/gs — tylko lokalnie.
-- Stworzyć nową stronę z arkuszem matury 2027: nowy folder matura/2027-.../ z
-  exercises.json (obiekt { meta, exercises } — wypełnij blok meta jak w 2026),
-  assety w matura/2027-.../media/zadN/ (ścieżki sheet-relative), link na stronie
-  głównej jako template.html?arkusz=2027-... NIE trzeba już osobnego index.html ani
+- NIE trzeba już osobnego index.html ani
   window.SHEET_ID — renderuje wspólny template.html wybierany parametrem ?arkusz=.
 
 
-OPUS DOPISAŁ:
-- (nic — punkt "Ujednolicenie renderowania arkuszy" zrobiony 2026-07-10, patrz DONE.md)
