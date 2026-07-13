@@ -40,6 +40,8 @@ NAJNIŻSZY PRIORYTET, NA POTEM:
 
 - do sekcji "oceń się" powinno być dodane kryteria sukcesu dopiero po kliknięciu rozwiązania. Ale jeszcze nie mam pomysłu jak to skomponować aby miało sens.
 
+- Obsługa błędnego/pustego ?arkusz=
+
 
 <br>
 
@@ -50,7 +52,7 @@ DLA UŻYTKOWNIKA:
 <br>
 
 INNE NOTATKI:
-- 
+- analityka
 - Przycisk "zgłoś błąd w zadaniu"
 - Tryb egzaminu nie powinien być tak "schowany" w opcjach. Przed rozpoczęciem arkusza powinno pytać użytkownika czy chce wejśc w tryb ćwiczeniowy czy egzaminu z checkboxem o zapamiętanie wyboru.
 - Etap sprawdzania odpowiedzi po trybie egzaminacyjnym. Idealnie powinien istnieć pomiędzy skończeniem egzaminu, a jego wyników pokazaniem wyników egzaminu.
