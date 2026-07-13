@@ -15,7 +15,6 @@ WYSOKI PRIORYTET:
 - nic
 
 NISKI PRIORYTET:
-- wywalić przycisk "wyczyść wszystkie punkty" z dołu arkusza
 - zmień w css przyciski wyboru ilości punktów ("oceń się") tak aby nie były wiele mniejsze od zwykłych przycisków odpowiedzi
 - okna otwierające pdf zasad oceniania i tablicy wzorów powinny zatrzymywać się nie tylko na lewej krawędzi ale również na dole i u góry (zanim schowa się za top-bar)
 - błędnego/pustego ?arkusz= powinien skutkować wyświetleniem się "błędny link, wróć do strony głównej" z odpowiednim hiperłączem.
@@ -41,7 +40,6 @@ NAJNIŻSZY PRIORYTET, NA POTEM:
    * Przycisk pokaż potrzebne wzory nie powinien się pokazywać, zrób też tak, aby nie było tam przerwy zadużej można wyłączyć div który jest gdzieś wyżej w hierarchi czy coś
    * przycisk opcji "..." po kliknięciu pokazuje pustą ramkę, dobrze aby albo nie było go w ogóle albo był szary lub po rozwinięciu pokazywał zaszarzone te przyciski które nie powinny działać podczas egzaminu.
    * Zadania otwarte np. 30 powinny mieć pole do zanotowania odpowiedzi do samodzielnego sprawdzenia potem.
-   * Przycisk zakończ egzamin powinien znajdować się na dole strony zamiast wyczyść wszysktie punkty
 
 - do sekcji "oceń się" powinno być dodane kryteria sukcesu dopiero po kliknięciu rozwiązania. Ale jeszcze nie mam pomysłu jak to skomponować aby miało sens.
 
