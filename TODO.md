@@ -53,23 +53,28 @@ NAJNIŻSZY PRIORYTET, NA POTEM:
 
 DLA UŻYTKOWNIKA:
 - Przerenderować w Manimie ostatni krok zad 2 (zad2/zad2rozw_step6.mp4): klatka końcowa pokazuje 5⁻⁴, a poprawny wynik to 5⁴ (5⁻¹ · 5⁵ = 5⁴). Komentarz pod filmem tymczasowo prostuje błąd.
+
 - Punkt o widżecie zad 1 urwał się w połowie zdania: "opcjonalnie: sprawić aby przesuwanie" — dokończ myśl, to zostanie zrobione (reszta punktu o zad 1 jest już zrealizowana).
 
 <br>
 
 INNE NOTATKI:
+
 - Obczaić analitykę czyli śledzenie ilości i zaangażowania użytkowników (moze da sięjakoś przez githuba)
+
 - Stworzyć przycisk "zgłoś błąd w zadaniu" i odpowiedni formularz
+
 - Tryb egzaminu nie powinien być tak "schowany" w opcjach. Przed rozpoczęciem arkusza powinno pytać użytkownika czy chce wejść w tryb ćwiczeniowy czy egzaminu z checkboxem o zapamiętanie wyboru.
 
 - Etap sprawdzania odpowiedzi po trybie egzaminacyjnym. Idealnie powinien istnieć pomiędzy skończeniem egzaminu, a jego wyników pokazaniem wyników egzaminu.
-
 
 - analogicznie do boxów z punktacją powinny być do włączenia boxy z opisem typu zadania
 
 - na telefonie pdfy się nie ładują (tablica i zasady oceniania). Podczas naprawy warto sprawić aby odpalały się one nie w okienku ale wypełniały całą stronę z krzyżykiem w rogu. Jeżeli nie uda się tego naprawić to należy usunąć tę funkcjonalność z wersji mobilnej.
 
+
 <br><br><br>
+
 
 <h3>DO WERYFIKACJI PRZEZ HENRICHA</h3>
 - Tryb egzaminacyjny (zrealizowany 2026-07-06): sprawdzić cały przebieg — start →
