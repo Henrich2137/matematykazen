@@ -901,7 +901,8 @@ input::-webkit-inner-spin-button {
    działa normalnie pod spodem — tu tylko chowamy wszystko, co zdradza wynik,
    i neutralizujemy kolory poprawności na "zaznaczenie" (niebieska ramka). */
 
-/* Zegar i "zakończ egzamin" istnieją tylko w trybie egzaminu. */
+/* Zegar (w pasku) i "zakończ egzamin" (na dole arkusza, pod ostatnim
+   zadaniem) istnieją tylko w trybie egzaminu. */
 #egzamin-timer,
 #egzamin-koniec {
     display: none;
@@ -920,14 +921,20 @@ body.tryb-egzaminu #egzamin-timer {
     color: #d9534f;
 }
 body.tryb-egzaminu #egzamin-koniec {
-    display: inline-block;
-    padding: 5px 10px;
+    display: block;
+    margin: 0 auto 80px;
+    padding: 10px 24px;
     border: 2px solid #e7e7e7;
     border-radius: 3px;
     background-color: #fff;
+    font-family: inherit;
+    font-size: 17px;
     white-space: nowrap;
     color: #111;
     cursor: pointer;
+}
+body.tryb-egzaminu #egzamin-koniec:hover {
+    border-color: #ccc;
 }
 
 /* Wszystko, co zdradza wynik albo pozwala go obejść, znika na czas egzaminu.
@@ -943,8 +950,7 @@ body.tryb-egzaminu #toggle-zasady,
 body.tryb-egzaminu #show-all-solutions,
 body.tryb-egzaminu #score-switch-button,
 body.tryb-egzaminu #reset-scores,
-body.tryb-egzaminu #egzamin-start,
-body.tryb-egzaminu #clear-progress {
+body.tryb-egzaminu #egzamin-start {
     display: none !important;
 }
 

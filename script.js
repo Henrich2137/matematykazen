@@ -28,7 +28,7 @@ function mediaPath(src) {
 }
 
 // Klucz zapisu postępu w localStorage — używany przez loadExercises()
-// (zapis/odczyt) oraz przyciski "resetuj punktację" i "wyczyść zapisany postęp".
+// (zapis/odczyt), przycisk "resetuj punktację" (menu ⋯) i start egzaminu.
 const KLUCZ_POSTEPU = "matematykazen-postep-" + SHEET_ID;
 
 // KaTeX: renderuje zapisy \( ... \) (inline) i \[ ... \] (blokowe) wewnątrz
@@ -977,17 +977,6 @@ function loadExercises() {
         // Append the exercise to the wrapper
         exercisesWrapper.appendChild(exerciseClone);
     });
-
-    // Dyskretny reset zapisanego postępu, na samym dole arkusza.
-    const clearProgressButton = document.createElement("button");
-    clearProgressButton.id = "clear-progress";
-    clearProgressButton.className = "light-button";
-    clearProgressButton.textContent = "wyczyść zapisany postęp";
-    clearProgressButton.addEventListener("click", () => {
-        try { localStorage.removeItem(KLUCZ_POSTEPU); } catch (e) {}
-        location.reload();
-    });
-    exercisesWrapper.appendChild(clearProgressButton);
 }
 
 // Wypełnia chrome strony (tytuł karty, meta description, tytuł w pasku, PDF
