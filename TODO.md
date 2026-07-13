@@ -6,7 +6,7 @@ Zadania realizuj od góry do dołu.
 
 <br>
 
-
+NASTAŁA ERA NOWEGO MASTERA BUHAHAHAHAHA
 
 <h3>DO REALIZACJI</h3>
 Jeżeli nie masz co robić to rób stąd.
