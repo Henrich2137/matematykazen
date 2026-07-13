@@ -14,7 +14,7 @@ Jeżeli nie masz co robić to rób stąd.
 WYSOKI PRIORYTET:
 - nic
 
-NISKI PRIORYTET (drobne porządki, dobre na krótką sesję):
+NISKI PRIORYTET:
 - nic
 
 
