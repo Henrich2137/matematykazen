@@ -50,6 +50,8 @@ DLA UŻYTKOWNIKA:
 <br>
 
 INNE NOTATKI:
+- 
+- Przycisk "zgłoś błąd w zadaniu"
 - Tryb egzaminu nie powinien być tak "schowany" w opcjach. Przed rozpoczęciem arkusza powinno pytać użytkownika czy chce wejśc w tryb ćwiczeniowy czy egzaminu z checkboxem o zapamiętanie wyboru.
 - Etap sprawdzania odpowiedzi po trybie egzaminacyjnym. Idealnie powinien istnieć pomiędzy skończeniem egzaminu, a jego wyników pokazaniem wyników egzaminu.
 - Okno potwierdzenia chęci wyczyszczenia punktów
