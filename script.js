@@ -10,10 +10,11 @@ let totalScore = 0;
 let exercises = [];
 
 // Identyfikacja arkusza: wybierana parametrem URL ?arkusz=<id>, gdzie <id> to
-// nazwa folderu pod matura/ (np. "2024-grudzien"). Brak parametru = arkusz
-// demonstracyjny grudzień 2024. Ten sam id: klucz do fetch exercises.json,
-// sufiks kluczy localStorage i (patrz startSheet()) zawartość bar-menu/tytułu.
-const SHEET_ID = new URLSearchParams(location.search).get("arkusz") || "2024-grudzien";
+// nazwa folderu pod matura/ (np. "2024-grudzien"). Ten sam id: klucz do fetch
+// exercises.json, sufiks kluczy localStorage i (patrz startSheet()) zawartość
+// bar-menu/tytułu. BEZ domyślnego fallbacku — brak/pusty/nieznany ?arkusz=
+// kończy się komunikatem "błędny link" (startSheet()), nie cichym arkuszem.
+const SHEET_ID = new URLSearchParams(location.search).get("arkusz");
 // wybrane_wzory_matematyczne.pdf leży w rootcie obok template.html (jedynego
 // pliku renderującego arkusze), więc ścieżka jest zawsze ta sama.
 const TABLICE_PDF = "wybrane_wzory_matematyczne.pdf";
@@ -64,6 +65,7 @@ document.addEventListener("click", (e) => {
 // "Resetuj punktację": kasuje zapisany postęp i przeładowuje stronę — punkty,
 // kolory odpowiedzi i wpisy wracają do zera jedną, wspólną drogą (świeży render).
 document.getElementById("reset-scores").addEventListener("click", () => {
+    if (!confirm("Wyczyścić zapisane odpowiedzi i punkty? Tej operacji nie można cofnąć.")) return;
     try { localStorage.removeItem(KLUCZ_POSTEPU); } catch (e) {}
     location.reload();
 });
@@ -115,8 +117,19 @@ function tickExam() {
     }
 }
 
+// Podtytuł trybu w pasku: stały element UI pokazujący, czy trwa zwykłe
+// ćwiczenie czy próbny egzamin. Źródłem prawdy jest klasa body.tryb-egzaminu,
+// więc wołamy to zawsze po jej dodaniu/zdjęciu.
+function updateModeSubtitle() {
+    const el = document.getElementById("exercises-mode-subtitle");
+    if (el) el.textContent = document.body.classList.contains("tryb-egzaminu")
+        ? "tryb egzaminu"
+        : "tryb ćwiczenia";
+}
+
 function enableExamMode() {
     document.body.classList.add("tryb-egzaminu");
+    updateModeSubtitle();
     tickExam();
     if (!egzaminInterval) egzaminInterval = setInterval(tickExam, 1000);
 }
@@ -150,6 +163,7 @@ function finishExam(czasMinal) {
     try { localStorage.removeItem(KLUCZ_EGZAMINU); } catch (e) {}
     if (egzaminInterval) { clearInterval(egzaminInterval); egzaminInterval = null; }
     document.body.classList.remove("tryb-egzaminu");
+    updateModeSubtitle();
 
     // Wynik z zadań zamkniętych (ocenianych automatycznie). Zadania otwarte
     // (selfScore) w egzaminie nie mają jak dostać punktów — samoocena była
@@ -238,14 +252,21 @@ function makePanelDraggable(panel) {
     const uchwyt = panel.querySelector(".panel-uchwyt");
     const rozmiar = panel.querySelector(".panel-rozmiar");
 
+    const topBar = document.getElementById("top-bar");
+
     uchwyt.addEventListener("pointerdown", (e) => {
         const r = panel.getBoundingClientRect();
         const dx = e.clientX - r.left;
         const dy = e.clientY - r.top;
+        // Jedyne ograniczenie: uchwyt nie może schować się pod top-barem —
+        // inaczej użytkownik straciłby możliwość złapania i przesunięcia panelu.
+        // Trzymamy więc górę panelu (a więc cały pasek uchwytu) poniżej dolnej
+        // krawędzi paska. Lewo/prawo/dół zostają całkowicie swobodne.
+        const minTop = topBar ? topBar.getBoundingClientRect().bottom : 0;
         uchwyt.setPointerCapture(e.pointerId);
         const move = (ev) => {
-            panel.style.left = Math.max(0, ev.clientX - dx) + "px";
-            panel.style.top = Math.max(0, ev.clientY - dy) + "px";
+            panel.style.left = (ev.clientX - dx) + "px";
+            panel.style.top = Math.max(minTop, ev.clientY - dy) + "px";
             panel.style.right = "auto"; // od tej pory pozycjonujemy od lewej/góry
         };
         const up = () => {
@@ -1003,29 +1024,68 @@ function applySheetMeta(meta) {
     }
 }
 
+// Wspólny sposób pokazania komunikatu zamiast arkusza (pusta strona myli).
+function pokazKomunikat(html) {
+    const info = document.createElement("div");
+    info.className = "blad-wczytywania";
+    info.innerHTML = html;
+    document.getElementById("exercises-wrapper").appendChild(info);
+}
+
+// Nieznany / brakujący / pusty ?arkusz= — to nie jest awaria serwera, tylko
+// błędny link (np. wpisany ręcznie). Kierujemy użytkownika na stronę główną.
+function pokazBladLinku() {
+    pokazKomunikat(
+        "<b>Błędny link.</b><br>" +
+        "Nie znaleziono takiego arkusza. " +
+        '<a href="index.html">Wróć do strony głównej</a> i wybierz arkusz z listy.'
+    );
+}
+
 // Start strony: dane zadań przychodzą fetchem z matura/<SHEET_ID>/exercises.json
 // (obiekt { meta, exercises } — patrz ARCHITECTURE.md). UWAGA: fetch nie
 // działa z file:// — wtedy (i przy każdym innym niepowodzeniu) pokazujemy
 // czytelny komunikat zamiast pustej strony.
 async function startSheet() {
+    // Brak parametru albo pusty ?arkusz= — bez fetchu, od razu błędny link.
+    if (!SHEET_ID) {
+        pokazBladLinku();
+        return;
+    }
+
+    let odpowiedz;
     try {
-        const odpowiedz = await fetch(`matura/${SHEET_ID}/exercises.json`);
-        if (!odpowiedz.ok) throw new Error(`HTTP ${odpowiedz.status}`);
-        const dane = await odpowiedz.json();
-        exercises = dane.exercises;
-        applySheetMeta(dane.meta);
+        odpowiedz = await fetch(`matura/${SHEET_ID}/exercises.json`);
     } catch (blad) {
-        const info = document.createElement("div");
-        info.className = "blad-wczytywania";
-        info.innerHTML = location.protocol === "file:"
+        // Brak odpowiedzi z serwera: najczęściej file:// (fetch zablokowany),
+        // rzadziej padnięta sieć — to nie to samo co nieznany arkusz.
+        pokazKomunikat(location.protocol === "file:"
             ? "<b>Nie udało się wczytać zadań (exercises.json).</b><br>" +
               "Strona jest otwarta bezpośrednio z pliku (<code>file://</code>), a przeglądarka " +
               "blokuje wtedy wczytywanie danych. Uruchom ją przez lokalny serwer, np. " +
               "<code>npx serve</code> albo <code>python -m http.server</code> w folderze strony."
             : "<b>Nie udało się wczytać zadań (exercises.json).</b><br>" +
               "Odśwież stronę; jeśli błąd wraca, sprawdź, czy plik exercises.json jest na serwerze. " +
-              `<small>(${blad.message})</small>`;
-        document.getElementById("exercises-wrapper").appendChild(info);
+              `<small>(${blad.message})</small>`);
+        return;
+    }
+
+    // Serwer odpowiedział błędem (404 itp.) — nie ma folderu arkusza o tym id,
+    // czyli ?arkusz= wskazuje na nieistniejący arkusz: błędny link.
+    if (!odpowiedz.ok) {
+        pokazBladLinku();
+        return;
+    }
+
+    try {
+        const dane = await odpowiedz.json();
+        exercises = dane.exercises;
+        applySheetMeta(dane.meta);
+    } catch (blad) {
+        pokazKomunikat(
+            "<b>Nie udało się wczytać zadań (exercises.json).</b><br>" +
+            "Odśwież stronę; jeśli błąd wraca, plik może być uszkodzony. " +
+            `<small>(${blad.message})</small>`);
         return;
     }
     loadExercises();
