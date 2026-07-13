@@ -40,11 +40,11 @@
             </div>
 
             <div id="bar-right">
-                <!-- Timer i "zakończ egzamin" widoczne tylko w trybie egzaminu
-                     (body.tryb-egzaminu w style.css); #total-score jest wtedy ukryty. -->
+                <!-- Timer widoczny tylko w trybie egzaminu (body.tryb-egzaminu
+                     w style.css); #total-score jest wtedy ukryty. Przycisk
+                     "zakończ egzamin" jest na dole arkusza, pod zadaniami. -->
                 <span id="egzamin-timer" title="Pozostały czas próbnego egzaminu"></span>
-                <button id="egzamin-koniec">zakończ egzamin</button>
-                <span id="total-score">0 / 0 pkt</span>
+                <span id="total-score">0 / 0 pkt ERROR, coś się nie wczytało</span>
                 <button id="toggle-tablica">▼ Pokaż tablice wzorów</button>
                 <button id="menu-button" title="Więcej opcji">⋯</button>
             </div>
@@ -121,12 +121,18 @@
 
             </div>
 
-            <span class="exercise-score low-exercise-score">8 / 9 pkt</span>
+            <span class="exercise-score low-exercise-score">ERROR, coś się nie wczytało. 2 / 10 pkt</span>
 
     </div>
 
     <!-- Exercises will be dynamically added here -->
     <div id="exercises-wrapper"></div>
+
+    <!-- "Zakończ egzamin" — pod ostatnim zadaniem, tam gdzie zdający kończy
+         pracę. Poza #exercises-wrapper, bo zadania są do niego dopisywane
+         przez JS i statyczny przycisk wylądowałby nad nimi. Widoczny tylko
+         w trybie egzaminu (body.tryb-egzaminu w style.css). -->
+    <button id="egzamin-koniec">zakończ egzamin</button>
 
     <script src="solutionsInteractive.js"></script>
     <script src="script.js"></script>

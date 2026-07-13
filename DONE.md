@@ -3,6 +3,23 @@ Nie wczytuj tego pliku domyślnie — tylko gdy potrzebne jest szersze spojrzeni
 rozwiązanie trudniejszego problemu albo sprawdzenie, czy/jak coś już kiedyś rozwiązano.
 (Zasada opisana w CLAUDE.md. Plik zaczął się jako notatki ze smoke testu.)
 
+ZROBIONE PRZEZ OPUSA (2026-07-13):
+- [ZROBIONE] Wywalony przycisk "wyczyść zapisany postęp" z dołu arkusza (był czystym
+  duplikatem "resetuj punktację" z menu ⋯ — obie akcje robiły dokładnie to samo:
+  localStorage.removeItem(KLUCZ_POSTEPU) + reload). Zniknęło jego tworzenie na końcu
+  loadExercises() w script.js oraz reguła body.tryb-egzaminu #clear-progress w style.css.
+  Czyszczenie postępu zostaje jedną drogą: #reset-scores w menu ⋯.
+- [ZROBIONE] Przycisk "zakończ egzamin" (#egzamin-koniec) przeniesiony z paska górnego
+  na dół arkusza, w miejsce po skasowanym "wyczyść zapisany postęp". Siedzi teraz
+  statycznie w template.html ZA #exercises-wrapper (nie w środku — zadania są do
+  wrappera dopisywane przez JS, więc statyczny przycisk w środku wylądowałby nad nimi),
+  domyślnie display: none, a body.tryb-egzaminu robi z niego wyśrodkowany blok
+  (margin: 0 auto 80px). W pasku został sam zegar. ID bez zmian, więc listener
+  w script.js działa bez przeróbek.
+  Zweryfikowane Playwrightem (2024-grudzien): #clear-progress nie ma w DOM, #egzamin-koniec
+  niewidoczny w trybie ćwiczenia, w egzaminie widoczny pod ostatnim zadaniem i wyśrodkowany,
+  klik → podsumowanie egzaminu, "resetuj punktację" dalej czyści zapis. Zero błędów konsoli.
+
 ZROBIONE PRZEZ OPUSA (2026-07-10):
 - [ZROBIONE] Ujednolicenie renderowania arkuszy w jeden wspólny plik template.html
   (punkt OPUSA z TODO.md). template.html jest teraz JEDYNYM plikiem renderującym

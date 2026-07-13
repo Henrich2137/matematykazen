@@ -14,49 +14,64 @@ Jeżeli nie masz co robić to rób stąd.
 WYSOKI PRIORYTET:
 - nic
 
-NISKI PRIORYTET (drobne porządki, dobre na krótką sesję):
-- (dokańczanie arkusza 2026 przeniesione do sekcji Opusa niżej — odpowiedzi w
-  exercises.json są już ZWERYFIKOWANE z kluczem CKE i rachunkiem, patrz DONE.md,
-  więc reszta to robota przepisywacko-składacka)
-- wyciągnięcie tekstu z PDF-ów:
-  * matematyka-2025-maj-matura-podstawowa.pdf
-  * matematyka-2025-maj-matura-podstawowa-odpowiedzi.pdf
+NISKI PRIORYTET:
 - zmień w css przyciski wyboru ilości punktów ("oceń się") tak aby nie były wiele mniejsze od zwykłych przycisków odpowiedzi
-- na bieżąco obliczany procent obok sumy punktów, który świeci się na zielono gdy jest conajmniej 30%, poa najechaniu myszką pokazuje się, zdałeś/nie zdałeś (jeszcze)
-- utworzenie zmiennych css i zrobienie przełącznika na darkmode
-
+- okna otwierające pdf zasad oceniania i tablicy wzorów powinny zatrzymywać się nie tylko na lewej krawędzi ale również na dole i u góry (zanim schowa się za top-bar)
+- błędnego/pustego ?arkusz= powinien skutkować wyświetleniem się "błędny link, wróć do strony głównej" z odpowiednim hiperłączem.
+- dodać podtytuł pod nazwą arkusza z trybem (tryb ćwiczenia / tryb egzaminu)
+- dodać okno potwierdzenia chęci wyczyszczenia punktów podobne do okna pojawiającego sięprzed rozpoczęciem egzaminu
 
 <br>
 
 
 NAJNIŻSZY PRIORYTET, NA POTEM:
 
+- na bieżąco obliczany procent obok sumy punktów, który świeci się na zielono gdy jest conajmniej 30%, po najechaniu myszką pokazuje się, zdałeś/nie zdałeś (jeszcze)
+
+- utworzenie zmiennych css i zrobienie przełącznika na darkmode
+
+- dodanie rozwiązań do matury 2026
+
+- wyciągnięcie tekstu z PDF-ów:
+  * matematyka-2025-maj-matura-podstawowa.pdf
+  * matematyka-2025-maj-matura-podstawowa-odpowiedzi.pdf
+
 - DOTYCZĄCE TRYBU PRÓBNY EGZAMIN
    * Przycisk pokaż potrzebne wzory nie powinien się pokazywać, zrób też tak, aby nie było tam przerwy zadużej można wyłączyć div który jest gdzieś wyżej w hierarchi czy coś
    * przycisk opcji "..." po kliknięciu pokazuje pustą ramkę, dobrze aby albo nie było go w ogóle albo był szary lub po rozwinięciu pokazywał zaszarzone te przyciski które nie powinny działać podczas egzaminu.
    * Zadania otwarte np. 30 powinny mieć pole do zanotowania odpowiedzi do samodzielnego sprawdzenia potem.
-   * Przycisk zakończ egzamin powinien znajdować sięna dole strony zamiastt wyczyść wszysktie punkty
+
 - do sekcji "oceń się" powinno być dodane kryteria sukcesu dopiero po kliknięciu rozwiązania. Ale jeszcze nie mam pomysłu jak to skomponować aby miało sens.
+
+
+
 
 
 <br>
 
 DLA UŻYTKOWNIKA:
 - Przerenderować w Manimie ostatni krok zad 2 (zad2/zad2rozw_step6.mp4): klatka końcowa pokazuje 5⁻⁴, a poprawny wynik to 5⁴ (5⁻¹ · 5⁵ = 5⁴). Komentarz pod filmem tymczasowo prostuje błąd.
+
 - Punkt o widżecie zad 1 urwał się w połowie zdania: "opcjonalnie: sprawić aby przesuwanie" — dokończ myśl, to zostanie zrobione (reszta punktu o zad 1 jest już zrealizowana).
 
 <br>
 
 INNE NOTATKI:
-- Tryb egzaminu nie powinien być tak "schowany" w opcjach. Przed rozpoczęciem arkusza powinno pytać użytkownika czy chce wejśc w tryb ćwiczeniowy czy egzaminu z checkboxem o zapamiętanie wyboru.
+
+- Obczaić analitykę czyli śledzenie ilości i zaangażowania użytkowników (moze da sięjakoś przez githuba)
+
+- Stworzyć przycisk "zgłoś błąd w zadaniu" i odpowiedni formularz
+
+- Tryb egzaminu nie powinien być tak "schowany" w opcjach. Przed rozpoczęciem arkusza powinno pytać użytkownika czy chce wejść w tryb ćwiczeniowy czy egzaminu z checkboxem o zapamiętanie wyboru.
+
 - Etap sprawdzania odpowiedzi po trybie egzaminacyjnym. Idealnie powinien istnieć pomiędzy skończeniem egzaminu, a jego wyników pokazaniem wyników egzaminu.
-- Okno potwierdzenia chęci wyczyszczenia punktów
-- przycisk wyczyść wszystkie punkty nie powinien chyba być na kończu aby nikt se przez przypadek ni wyczyścił chcąc podsumować
+
 - analogicznie do boxów z punktacją powinny być do włączenia boxy z opisem typu zadania
-- okna otwierające pdf zasad oceniania i tablicy wzorów powinny zatrzymywać się nie tylko na lewej krawędzi al równie ż na dole i u góry (zanim schowa się za top-bar)
-- na telefonie pdfy się nie ładują (tablica i zasady oceniania). Podczas naprawy warto sprawić aby odpalały się one nie w okienu ale wypełniały całą stronę z krzyżykiem w rogu. Jeżeli nie uda się tego naprawić to należy usunąć tę funkcjonalność z wersji mobilnej.
+
+- na telefonie pdfy się nie ładują (tablica i zasady oceniania). Podczas naprawy warto sprawić aby odpalały się one nie w okienku ale wypełniały całą stronę z krzyżykiem w rogu. Jeżeli nie uda się tego naprawić to należy usunąć tę funkcjonalność z wersji mobilnej.
 
 <br><br><br>
+
 
 <h3>DO WERYFIKACJI PRZEZ HENRICHA</h3>
 - Tryb egzaminacyjny (zrealizowany 2026-07-06): sprawdzić cały przebieg — start →
@@ -82,12 +97,6 @@ SONNET DOPISAŁ:
     (pdftoppm -x/-y/-W/-H). Docelowe ścieżki (już w exercises.json, konwencja media/):
     matura/2026-maj/media/zadN/zadNrys.png. UWAGA: sesja zdalna nie ma
     pdftoppm/mutool/gs — tylko lokalnie.
-- Stworzyć nową stronę z arkuszem matury 2027: nowy folder matura/2027-.../ z
-  exercises.json (obiekt { meta, exercises } — wypełnij blok meta jak w 2026),
-  assety w matura/2027-.../media/zadN/ (ścieżki sheet-relative), link na stronie
-  głównej jako template.html?arkusz=2027-... NIE trzeba już osobnego index.html ani
-  window.SHEET_ID — renderuje wspólny template.html wybierany parametrem ?arkusz=.
 
 
-OPUS DOPISAŁ:
-- (nic — punkt "Ujednolicenie renderowania arkuszy" zrobiony 2026-07-10, patrz DONE.md)
+
