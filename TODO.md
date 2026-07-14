@@ -30,6 +30,11 @@ NAJNIŻSZY PRIORYTET, NA POTEM:
 
 - na bieżąco obliczany procent obok sumy punktów, który świeci się na zielono gdy jest conajmniej 30%, po najechaniu myszką pokazuje się, zdałeś/nie zdałeś (jeszcze)
 
+- zapis x∈ i tym podobne powinien być usuwany przy normalizacji odpowiedzi w zadaniach z okienkiem do wpisania odpowiedzi.
+
+- zadania otwarte powinny też mieć okienko normalizujące i sprawdzające wpisaną odpowiedź.
+
+
 - utworzenie zmiennych css i zrobienie przełącznika na darkmode
 
 - dodanie rozwiązań do matury 2026
