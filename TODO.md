@@ -22,6 +22,8 @@ NISKI PRIORYTET:
 
 
 NAJNIŻSZY PRIORYTET, NA POTEM:
+Tutaj będą już skonkretyzowane.
+
 - górnego paska okna z PDFem tablicy i zasad oceniania nie powinno móc się schować za dolną krawędzią wkranu (za windowsowym paskiem zadań)
 
 - przesunąć treść zadania troszkę na prawo (np poprzez powiększenie paddingu z lewej), aby tekt nie wydawał się przeważać do lewej tak bardzo
@@ -32,8 +34,21 @@ NAJNIŻSZY PRIORYTET, NA POTEM:
 
 - zapis x∈ i tym podobne powinien być usuwany przy normalizacji odpowiedzi w zadaniach z okienkiem do wpisania odpowiedzi.
 
-- zadania otwarte powinny też mieć okienko normalizujące i sprawdzające wpisaną odpowiedź.
+- DOTYCZĄCE TRYBU PRÓBNY EGZAMIN
+  * Przycisk pokaż potrzebne wzory nie powinien się pokazywać, zrób też tak, aby nie było tam przerwy zadużej można wyłączyć div który jest gdzieś wyżej w hierarchi czy coś
+  * Obecnie przycisk opcji "..." po kliknięciu pokazuje pustą ramkę. Dobrze aby 
+    albo nie było go w ogóle
+    albo był szary lub po rozwinięciu pokazywał zaszarzone te przyciski które nie powinny działać podczas egzaminu.
+  * zadania otwarte np. zad 30. powinny mieć pole do zanotowania odpowiedzi do samodzielnego sprawdzenia potem.
 
+
+<br>
+
+
+NIE REALIZUJ:
+Nieskonkretyzowane.
+
+- zadania otwarte powinny też mieć okienko normalizujące i sprawdzające wpisaną odpowiedź. Do tego można rozpisać i dorobić donich pytania w stylu "Czy masz opisana długość boku BC?" które wynikająz zasad oceniania i ułatiwają ustalenie ilości punktów. przy nich można dać gwiazdkę, że trzeba każdy przypadek sprawdzić indywidualnie i autor strony nie jest egzaminatorem. 
 
 - utworzenie zmiennych css i zrobienie przełącznika na darkmode
 
@@ -42,11 +57,6 @@ NAJNIŻSZY PRIORYTET, NA POTEM:
 - wyciągnięcie tekstu z PDF-ów:
   * matematyka-2025-maj-matura-podstawowa.pdf
   * matematyka-2025-maj-matura-podstawowa-odpowiedzi.pdf
-
-- DOTYCZĄCE TRYBU PRÓBNY EGZAMIN
-  * Przycisk pokaż potrzebne wzory nie powinien się pokazywać, zrób też tak, aby nie było tam przerwy zadużej można wyłączyć div który jest gdzieś wyżej w hierarchi czy coś
-  * przycisk opcji "..." po kliknięciu pokazuje pustą ramkę, dobrze aby albo nie było go w ogóle albo był szary lub po rozwinięciu pokazywał zaszarzone te przyciski które nie powinny działać podczas egzaminu.
-  * zadania otwarte np. 30 powinny mieć pole do zanotowania odpowiedzi do samodzielnego sprawdzenia potem.
 
 - do sekcji "oceń się" powinno być dodane kryteria sukcesu dopiero po kliknięciu rozwiązania. Ale jeszcze nie mam pomysłu jak to skomponować aby miało sens.
 
