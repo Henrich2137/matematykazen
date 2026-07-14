@@ -22,6 +22,7 @@ NISKI PRIORYTET:
 
 
 NAJNIŻSZY PRIORYTET, NA POTEM:
+- górnego paska okna z PDFem tablicy i zasad oceniania nie powinno móc się schować za dolną krawędzią wkranu (za windowsowym paskiem zadań)
 
 - przesunąć treść zadania troszkę na prawo (np poprzez powiększenie paddingu z lewej), aby tekt nie wydawał się przeważać do lewej tak bardzo
 
