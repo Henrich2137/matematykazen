@@ -25,6 +25,8 @@ NAJNIŻSZY PRIORYTET, NA POTEM:
 
 - przesunąć treść zadania troszkę na prawo (np poprzez powiększenie paddingu z lewej), aby tekt nie wydawał się przeważać do lewej tak bardzo
 
+- przesunąć ramki z punktacją zadań troszkę w dół.
+
 - na bieżąco obliczany procent obok sumy punktów, który świeci się na zielono gdy jest conajmniej 30%, po najechaniu myszką pokazuje się, zdałeś/nie zdałeś (jeszcze)
 
 - utworzenie zmiennych css i zrobienie przełącznika na darkmode
@@ -42,6 +44,7 @@ NAJNIŻSZY PRIORYTET, NA POTEM:
 
 - do sekcji "oceń się" powinno być dodane kryteria sukcesu dopiero po kliknięciu rozwiązania. Ale jeszcze nie mam pomysłu jak to skomponować aby miało sens.
 
+- dodać w opcjach toggle "pokaż poprawnośc odpowiedzi natychmiast po zaznaczeniu" oraz gdy jest wyłączony to musi być widac przycisk sprawdź po wybraniu odpowiedzi po prawej stronie, tak aby nie zmieniało wysokości diva/strony
 
 
 
