@@ -23,6 +23,8 @@ NISKI PRIORYTET:
 
 NAJNIŻSZY PRIORYTET, NA POTEM:
 
+- przesunąć treść zadania troszkę na prawo (np poprzez powiększenie paddingu z lewej), aby tekt nie wydawał się przeważać do lewej tak bardzo
+
 - na bieżąco obliczany procent obok sumy punktów, który świeci się na zielono gdy jest conajmniej 30%, po najechaniu myszką pokazuje się, zdałeś/nie zdałeś (jeszcze)
 
 - utworzenie zmiennych css i zrobienie przełącznika na darkmode
