@@ -3,6 +3,29 @@ Nie wczytuj tego pliku domyślnie — tylko gdy potrzebne jest szersze spojrzeni
 rozwiązanie trudniejszego problemu albo sprawdzenie, czy/jak coś już kiedyś rozwiązano.
 (Zasada opisana w CLAUDE.md. Plik zaczął się jako notatki ze smoke testu.)
 
+ZROBIONE PRZEZ OPUSA (2026-07-17) — NISKI PRIORYTET z TODO.md:
+- [ZROBIONE] Przeciąganie paneli PDF ograniczone do widocznego viewportu
+  (makePanelDraggable w script.js). Wcześniej dół/boki były swobodne i pasek
+  tytułowy (.panel-uchwyt) mógł zjechać pod dolną krawędź ekranu (za pasek zadań
+  Windows). Teraz w funkcji move() klampujemy: top ∈ [minTop, innerHeight −
+  uchwytH] (uchwyt zawsze w pełni widoczny, nie chowa się pod top-barem ani pod
+  dolną krawędzią), left ∈ [minWidoczne − szer, innerWidth − minWidoczne]
+  (min. 60px panelu zostaje na ekranie w bok). ŚWIADOMA ZMIANA wcześniejszej
+  decyzji z 2026-07-13 (wtedy celowo BEZ klampu dołu/boków) — użytkownik
+  poprosił o ograniczenie do viewportu. Zweryfikowane Playwrightem: drag daleko
+  w dół+prawo → uchwyt zostaje przy dolnej krawędzi i 60px w prawym rogu; drag
+  daleko w lewo → panel left=-298px, czyli 60px widoczne po lewej.
+- [ZROBIONE] Wcięcie treści zadania (.question padding-left: 16px w style.css) —
+  tekst nie klei się już do lewej krawędzi karty i nie wygląda na przeciągnięty
+  w lewo względem wyśrodkowanych odpowiedzi. Zweryfikowane (computed
+  padding-left=16px, wizualnie treść przesunięta w prawo).
+- [ZROBIONE] Wyrównanie badge'a punktacji zadania w pionie (.exercise-score
+  margin-top: 16px w style.css) — wcześniej siedział optycznie ~16px za wysoko
+  względem numeru zadania. Zmierzone Playwrightem: środek badge'a przesunięty
+  z y≈172 na y≈188, zrównany ze środkiem pierwszej linii treści (≈188). W media
+  query <=1024px (badge w rogu karty) margin-top wyzerowany, żeby trzymał się
+  górnej krawędzi.
+
 ZROBIONE PRZEZ OPUSA (2026-07-13) — cały WYSOKI PRIORYTET z TODO.md:
 - [ZROBIONE] Powiększone UMIARKOWANIE przyciski "oceń się" (.self-score-container button
   w style.css): padding 6px 10px → 8px 11px, font-size 15px → 17px, min-width 56px → 62px.
