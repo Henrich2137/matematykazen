@@ -16,7 +16,34 @@ WYSOKI PRIORYTET:
 
 
 NISKI PRIORYTET:
-- nic
+- pasek tytułowy okna PDF (tablica/zasady oceniania) nie może zostać przeciągnięty
+  poza dolną krawędź ekranu (za pasek zadań Windows) — ograniczyć drag do
+  widocznego obszaru viewportu.
+
+- zwiększyć padding-left treści zadania (np. o +16px), żeby tekst nie wydawał
+  się tak mocno przeciągnięty w lewo.
+
+- wyrównać ramki z punktacją zadań pionowo względem tekstu/numeru zadania
+  (obecnie są optycznie za wysoko — dodać margin-top).
+
+- w trybie ćwiczeniowym: obok sumy punktów pokazywać na bieżąco obliczany
+  procent, podświetlony na zielono gdy ≥30%; po najechaniu myszką tooltip
+  "zdałeś" / "nie zdałeś (jeszcze)".
+
+- normalizacja odpowiedzi w polach tekstowych: usuwać znaki x, y oraz E/∈
+  (spacje już są usuwane) przed porównaniem z poprawną odpowiedzią.
+
+- TRYB PRÓBNY EGZAMIN:
+  * ukryć przycisk "pokaż potrzebne wzory" wraz z divem trzymającym
+    light-buttony (bez pustej przerwy w layoucie); tablica wzorów i jej
+    przycisk toggle zostają widoczne (są dozwolone na maturze).
+  * przycisk opcji "..." zostaje widoczny, ale po rozwinięciu opcje
+    niedozwolone podczas egzaminu (np. tryb ćwiczeniowy) są
+    wyszarzone/disabled zamiast pokazywać pustą ramkę.
+  * zadania otwarte (np. zad 30) dostają textarea do zapisania własnej
+    odpowiedzi/toku rozwiązania podczas egzaminu, zapisywaną w localStorage
+    jak inne odpowiedzi, do porównania z kluczem po zakończeniu egzaminu
+    (selfScore).
 
 <br>
 
@@ -24,23 +51,7 @@ NISKI PRIORYTET:
 NAJNIŻSZY PRIORYTET, NA POTEM:
 Tutaj będą już skonkretyzowane.
 
-- górnego paska okna z PDFem tablicy i zasad oceniania nie powinno móc się schować za dolną krawędzią wkranu (za windowsowym paskiem zadań)
-
-- przesunąć treść zadania troszkę na prawo (np poprzez powiększenie paddingu z lewej), aby tekt nie wydawał się przeważać do lewej tak bardzo
-
-- przesunąć ramki z punktacją zadań troszkę w dół.
-
-- na bieżąco obliczany procent obok sumy punktów, który świeci się na zielono gdy jest conajmniej 30%, po najechaniu myszką pokazuje się, zdałeś/nie zdałeś (jeszcze)
-
-- zapis x∈ i tym podobne powinien być usuwany przy normalizacji odpowiedzi w zadaniach z okienkiem do wpisania odpowiedzi.
-
-- DOTYCZĄCE TRYBU PRÓBNY EGZAMIN
-  * Przycisk pokaż potrzebne wzory nie powinien się pokazywać, zrób też tak, aby nie było tam przerwy zadużej można wyłączyć div który jest gdzieś wyżej w hierarchi czy coś
-  * Obecnie przycisk opcji "..." po kliknięciu pokazuje pustą ramkę. Dobrze aby 
-    albo nie było go w ogóle
-    albo był szary lub po rozwinięciu pokazywał zaszarzone te przyciski które nie powinny działać podczas egzaminu.
-  * zadania otwarte np. zad 30. powinny mieć pole do zanotowania odpowiedzi do samodzielnego sprawdzenia potem.
-
+- nic
 
 <br>
 
@@ -70,6 +81,8 @@ Nieskonkretyzowane.
 <br>
 
 DLA UŻYTKOWNIKA:
+
+- POTESTOWAĆ TO CO POZMIENIAŁ OPUS (ZAPISANE W DONE.md) i ZMERGOWAĆ Z MASTEREM 
 
 - Przerenderować w Manimie ostatni krok zad 2 (zad2/zad2rozw_step6.mp4): klatka końcowa pokazuje 5⁻⁴, a poprawny wynik to 5⁴ (5⁻¹ · 5⁵ = 5⁴). Komentarz pod filmem tymczasowo prostuje błąd.
 
