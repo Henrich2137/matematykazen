@@ -41,6 +41,29 @@ ZROBIONE PRZEZ OPUSA (2026-07-17) — NISKI PRIORYTET z TODO.md:
   Zweryfikowane Playwrightem: normalizeAnswer(warianty) → czysty przedział;
   realne pole fillIn (zad 17, exercise-9) z wpisami "x∈(-4, 4]" itd. → wszystkie
   4 pola .correct.
+- [ZROBIONE] TRYB PRÓBNY EGZAMIN — trzy poprawki (style.css + script.js):
+  * (6a) Cały wiersz light-buttonów chowany w trybie egzaminu przez
+    `body.tryb-egzaminu .light-button-container { display:none }` (wcześniej
+    ukrywane były tylko .hint-button/.solution-button, a "Pokaż potrzebne wzory"
+    zostawał sam z pustym odstępem). TABLICA wzorów CKE i #toggle-tablica nadal
+    widoczne; #toggle-zasady (klucz odpowiedzi) nadal ukryty.
+  * (6b) Opcje w menu "..." (pokaż rozwiązania / widok punktów / reset / start
+    egzaminu) NIE znikają już w egzaminie — zostają widoczne, ale disabled
+    (wyszarzone, nieklikalne), więc menu nie jest pustą ramką. setExamMenuDisabled()
+    w script.js ustawia atrybut disabled na tych 4 przyciskach w enableExamMode()
+    i zdejmuje go w finishExam(); CSS `#bar-menu button:disabled` daje opacity 0.4
+    + cursor not-allowed. Usunięte te 4 id z listy display:none w bloku egzaminu.
+  * (6c) Zadania otwarte (selfScore) dostają textarea "Twoja odpowiedź / tok
+    rozwiązania" w OSOBNYM kontenerze .open-answer-container (poza
+    .self-score-container, którą egzamin chowa) — dzięki temu textarea jest
+    widoczna i podczas egzaminu (samoocena schowana), i po nim (samoocena wraca).
+    Zapis do localStorage tą samą drogą co reszta (stan.open w zapiszPostep,
+    przywracane w bloku "Przywrócenie postępu" gdy typeof zap.open === "string").
+    Zweryfikowane Playwrightem: NORMAL → textarea+samoocena+light-buttony widoczne;
+    EXAM → light-buttony ukryte, textarea widoczna, samoocena ukryta,
+    #toggle-tablica widoczny, #toggle-zasady ukryty, 4 opcje menu disabled=true;
+    wpis w textarea przetrwał reload; po "zakończ egzamin" — samoocena wraca,
+    treść textarea zachowana, opcje menu disabled=false.
 
 ZROBIONE PRZEZ OPUSA (2026-07-13) — cały WYSOKI PRIORYTET z TODO.md:
 - [ZROBIONE] Powiększone UMIARKOWANIE przyciski "oceń się" (.self-score-container button

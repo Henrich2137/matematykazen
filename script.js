@@ -127,9 +127,23 @@ function updateModeSubtitle() {
         : "tryb ćwiczenia";
 }
 
+// Opcje w menu "..." niedozwolone podczas próbnego egzaminu: zostają widoczne,
+// ale disabled (CSS wyszarza je i blokuje klik) — inaczej po ukryciu menu
+// zostawałoby pustą ramką. Odblokowujemy je z powrotem po zakończeniu egzaminu.
+const OPCJE_MENU_EGZAMIN = ["show-all-solutions", "score-switch-button", "reset-scores", "egzamin-start"];
+function setExamMenuDisabled(disabled) {
+    OPCJE_MENU_EGZAMIN.forEach(id => {
+        const btn = document.getElementById(id);
+        if (!btn) return;
+        btn.disabled = disabled;
+        btn.title = disabled ? "Niedostępne podczas próbnego egzaminu" : "";
+    });
+}
+
 function enableExamMode() {
     document.body.classList.add("tryb-egzaminu");
     updateModeSubtitle();
+    setExamMenuDisabled(true);
     tickExam();
     if (!egzaminInterval) egzaminInterval = setInterval(tickExam, 1000);
 }
@@ -164,6 +178,7 @@ function finishExam(czasMinal) {
     if (egzaminInterval) { clearInterval(egzaminInterval); egzaminInterval = null; }
     document.body.classList.remove("tryb-egzaminu");
     updateModeSubtitle();
+    setExamMenuDisabled(false);
 
     // Wynik z zadań zamkniętych (ocenianych automatycznie). Zadania otwarte
     // (selfScore) w egzaminie nie mają jak dostać punktów — samoocena była
@@ -448,6 +463,7 @@ function loadExercises() {
         const selfButtons = [];
         const fillRows = [];
         let fillCheck = null;
+        let openTextarea = null;   // textarea zadania otwartego (tok rozwiązania)
 
         //in the future we can make something like studentAttempt object that is passed by php after login and maybe chossing certan attempt in acc menu or smth
 
@@ -625,6 +641,31 @@ function loadExercises() {
                 answersContainer.appendChild(btn);
             });
         } else if (type === "open" && exercise.selfScore && exercise.maxScore) {
+            // Textarea na własną odpowiedź / tok rozwiązania. OSOBNY kontener
+            // (nie w .self-score-container, bo ta jest chowana w trybie egzaminu):
+            // podczas egzaminu samoocena znika, ale uczeń ma tu gdzie zapisać
+            // rozwiązanie, a po egzaminie — gdy rozwiązania i samoocena wracają —
+            // porównuje wpisany tok z kluczem i przyznaje sobie punkty. Zapis
+            // idzie do localStorage tą samą drogą co reszta odpowiedzi (stan.open).
+            const openBox = document.createElement("div");
+            openBox.className = "open-answer-container";
+
+            const openLabel = document.createElement("div");
+            openLabel.className = "open-answer-label";
+            openLabel.textContent = "Twoja odpowiedź / tok rozwiązania:";
+            openBox.appendChild(openLabel);
+
+            openTextarea = document.createElement("textarea");
+            openTextarea.className = "open-answer";
+            openTextarea.rows = 4;
+            openTextarea.placeholder = "Zapisz tu swoją odpowiedź lub tok rozwiązania — po odsłonięciu rozwiązania porównasz je z kluczem i ocenisz się.";
+            openTextarea.addEventListener("input", () => {
+                stan.open = openTextarea.value;
+                zapiszPostep();
+            });
+            openBox.appendChild(openTextarea);
+            answersContainer.appendChild(openBox);
+
             // Zadanie otwarte z samooceną: uczeń rozwiązuje na kartce, porównuje
             // z rozwiązaniem i sam przyznaje sobie punkty (0..maxScore).
             const box = document.createElement("div");
@@ -995,6 +1036,9 @@ function loadExercises() {
             }
             if (Number.isInteger(zap.self) && selfButtons[zap.self]) {
                 selfButtons[zap.self].click();
+            }
+            if (typeof zap.open === "string" && openTextarea) {
+                openTextarea.value = zap.open;
             }
             if (Array.isArray(zap.fill) && fillRows.length) {
                 zap.fill.forEach((tekst, i) => { if (fillRows[i]) fillRows[i].input.value = tekst || ""; });

@@ -16,17 +16,7 @@ WYSOKI PRIORYTET:
 
 
 NISKI PRIORYTET:
-- TRYB PRÓBNY EGZAMIN:
-  * ukryć przycisk "pokaż potrzebne wzory" wraz z divem trzymającym
-    light-buttony (bez pustej przerwy w layoucie); tablica wzorów i jej
-    przycisk toggle zostają widoczne (są dozwolone na maturze).
-  * przycisk opcji "..." zostaje widoczny, ale po rozwinięciu opcje
-    niedozwolone podczas egzaminu (np. tryb ćwiczeniowy) są
-    wyszarzone/disabled zamiast pokazywać pustą ramkę.
-  * zadania otwarte (np. zad 30) dostają textarea do zapisania własnej
-    odpowiedzi/toku rozwiązania podczas egzaminu, zapisywaną w localStorage
-    jak inne odpowiedzi, do porównania z kluczem po zakończeniu egzaminu
-    (selfScore).
+- nic (cały poprzedni NISKI PRIORYTET zrobiony przez Opusa 2026-07-17 — patrz DONE.md)
 
 
 <br>

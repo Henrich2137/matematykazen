@@ -515,6 +515,38 @@ body {
     background-color: #f7f7f7;
 }
 
+/* ===== ZADANIA OTWARTE: WŁASNA ODPOWIEDŹ / TOK ROZWIĄZANIA ===== */
+/* Textarea, w której uczeń zapisuje rozwiązanie — przydatna zwłaszcza w trybie
+   egzaminu (samoocena schowana), zapis w localStorage do porównania z kluczem
+   po egzaminie. Osobny kontener od .self-score-container (tamten znika na czas
+   egzaminu, textarea zostaje). */
+.open-answer-container {
+    margin-top: 15px;
+    text-align: center;
+}
+.open-answer-label {
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #909090;
+}
+.open-answer {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #fff;
+    font-family: inherit;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: left;
+    resize: vertical;
+}
+.open-answer:focus {
+    border-color: #9ec9ff;
+    outline: none;
+}
+
 /* ===== SAMOOCENA ZADAŃ OTWARTYCH ===== */
 .self-score-container {
     margin-top: 15px;
@@ -969,19 +1001,27 @@ body.tryb-egzaminu #egzamin-koniec:hover {
 
 /* Wszystko, co zdradza wynik albo pozwala go obejść, znika na czas egzaminu.
    !important, bo część z tych elementów ma display ustawiane inline przez JS
-   (np. przełącznik widoku punktów). Tablice wzorów CKE i przycisk "Pokaż
-   potrzebne wzory" celowo ZOSTAJĄ — na prawdziwej maturze też są dostępne. */
-body.tryb-egzaminu .hint-button,
-body.tryb-egzaminu .solution-button,
+   (np. przełącznik widoku punktów). Cały wiersz light-buttonów (Podpowiedź /
+   Rozwiązanie / Pokaż potrzebne wzory) chowamy razem z kontenerem, żeby nie
+   został pusty odstęp — „Pokaż potrzebne wzory" naprowadzałaby na metodę
+   konkretnego zadania, więc na egzaminie znika. TABLICA wzorów CKE i jej
+   przycisk toggle (#toggle-tablica) celowo ZOSTAJĄ — na maturze też są.
+   Zasady oceniania (#toggle-zasady = klucz odpowiedzi) zostają ukryte. */
+body.tryb-egzaminu .light-button-container,
 body.tryb-egzaminu .self-score-container,
 body.tryb-egzaminu .exercise-score,
 body.tryb-egzaminu #total-score,
-body.tryb-egzaminu #toggle-zasady,
-body.tryb-egzaminu #show-all-solutions,
-body.tryb-egzaminu #score-switch-button,
-body.tryb-egzaminu #reset-scores,
-body.tryb-egzaminu #egzamin-start {
+body.tryb-egzaminu #toggle-zasady {
     display: none !important;
+}
+
+/* Opcje w menu „..." niedozwolone podczas egzaminu (pokaż rozwiązania, widok
+   punktów, reset, start egzaminu) NIE znikają — zostają widoczne, ale
+   wyszarzone i nieklikalne, żeby menu nie było pustą ramką. Atrybut disabled
+   ustawia JS w enableExamMode()/finishExam(); tu tylko wygląd. */
+body.tryb-egzaminu #bar-menu button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
 }
 
 /* Kliknięta odpowiedź wygląda jak neutralne zaznaczenie (jak .selected),
