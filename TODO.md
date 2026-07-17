@@ -71,6 +71,8 @@ Nieskonkretyzowane.
 
 DLA UŻYTKOWNIKA:
 
+- POTESTOWAĆ TO CO POZMIENIAŁ OPUS (ZAPISANE W DONE.md) i ZMERGOWAĆ Z MASTEREM 
+
 - Przerenderować w Manimie ostatni krok zad 2 (zad2/zad2rozw_step6.mp4): klatka końcowa pokazuje 5⁻⁴, a poprawny wynik to 5⁴ (5⁻¹ · 5⁵ = 5⁴). Komentarz pod filmem tymczasowo prostuje błąd.
 
 - Punkt o widżecie zad 1 urwał się w połowie zdania: "opcjonalnie: sprawić aby przesuwanie" — dokończ myśl, to zostanie zrobione (reszta punktu o zad 1 jest już zrealizowana).
