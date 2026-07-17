@@ -45,6 +45,7 @@ NISKI PRIORYTET:
     jak inne odpowiedzi, do porównania z kluczem po zakończeniu egzaminu
     (selfScore).
 
+
 <br>
 
 
