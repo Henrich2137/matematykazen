@@ -258,15 +258,22 @@ function makePanelDraggable(panel) {
         const r = panel.getBoundingClientRect();
         const dx = e.clientX - r.left;
         const dy = e.clientY - r.top;
-        // Jedyne ograniczenie: uchwyt nie może schować się pod top-barem —
-        // inaczej użytkownik straciłby możliwość złapania i przesunięcia panelu.
-        // Trzymamy więc górę panelu (a więc cały pasek uchwytu) poniżej dolnej
-        // krawędzi paska. Lewo/prawo/dół zostają całkowicie swobodne.
+        // Pasek uchwytu (a więc "chwyt" panelu) musi zostać w widocznym
+        // viewportcie, żeby nie dało się go zgubić: u góry nie chowa się pod
+        // top-barem, u dołu nie zjeżdża pod dolną krawędź ekranu (za pasek
+        // zadań Windows), a w bok zostaje zawsze min. kawałek do złapania.
         const minTop = topBar ? topBar.getBoundingClientRect().bottom : 0;
+        const uchwytH = uchwyt.offsetHeight || 46;
+        const minWidoczne = 60; // ile px panelu musi zostać na ekranie w poziomie
         uchwyt.setPointerCapture(e.pointerId);
         const move = (ev) => {
-            panel.style.left = (ev.clientX - dx) + "px";
-            panel.style.top = Math.max(minTop, ev.clientY - dy) + "px";
+            const szer = panel.getBoundingClientRect().width;
+            let noweLeft = ev.clientX - dx;
+            let noweTop = ev.clientY - dy;
+            noweLeft = Math.min(Math.max(noweLeft, minWidoczne - szer), window.innerWidth - minWidoczne);
+            noweTop = Math.min(Math.max(noweTop, minTop), window.innerHeight - uchwytH);
+            panel.style.left = noweLeft + "px";
+            panel.style.top = noweTop + "px";
             panel.style.right = "auto"; // od tej pory pozycjonujemy od lewej/góry
         };
         const up = () => {

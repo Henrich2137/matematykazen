@@ -16,16 +16,6 @@ WYSOKI PRIORYTET:
 
 
 NISKI PRIORYTET:
-- pasek tytułowy okna PDF (tablica/zasady oceniania) nie może zostać przeciągnięty
-  poza dolną krawędź ekranu (za pasek zadań Windows) — ograniczyć drag do
-  widocznego obszaru viewportu.
-
-- zwiększyć padding-left treści zadania (np. o +16px), żeby tekst nie wydawał
-  się tak mocno przeciągnięty w lewo.
-
-- wyrównać ramki z punktacją zadań pionowo względem tekstu/numeru zadania
-  (obecnie są optycznie za wysoko — dodać margin-top).
-
 - w trybie ćwiczeniowym: obok sumy punktów pokazywać na bieżąco obliczany
   procent, podświetlony na zielono gdy ≥30%; po najechaniu myszką tooltip
   "zdałeś" / "nie zdałeś (jeszcze)".

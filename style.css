@@ -320,6 +320,12 @@ body {
     width: 75%;
     border-bottom: 1px solid #e0e0e0;
 }
+/* Delikatne wcięcie treści zadania od lewej — bez niego tekst kleił się do
+   lewej krawędzi karty i wyglądał na "przeciągnięty w lewo" względem
+   wyśrodkowanych odpowiedzi / przycisków pod spodem. */
+.question {
+    padding-left: 16px;
+}
 /* Grafiki-rysunki w treści zadania jako blok wyśrodkowany — inaczej obrazek
    wstawiony w linii tekstu (np. zad10) lądował "w środku zdania" i przesunięty
    w prawo. Obrazki naprawdę inline (np. liczba w zad2) nadpisują to swoim
@@ -333,6 +339,9 @@ body {
     position: absolute;
     top: 48px;
     right: -120px;
+    /* Zrównanie w pionie z pierwszą linią treści (numerem zadania). Bez tego
+       badge siedział optycznie ~16px za wysoko względem "Zadanie N.". */
+    margin-top: 16px;
     padding: 5px;
     border: 1px solid;
 }
@@ -1030,6 +1039,9 @@ body.tryb-egzaminu .fill-in-input.incorrect {
     .exercise-score {
         top: 8px;
         right: 8px;
+        /* W rogu karty badge nie ma się z czym równać w pionie — trzymamy go
+           przy górnej krawędzi (bez margin-top z reguły bazowej). */
+        margin-top: 0;
     }
 }
 
