@@ -140,6 +140,17 @@ body {
     white-space: nowrap;
     color: #858585;
 }
+/* Procent zdobytych punktów obok sumy (tryb ćwiczeniowy). Zielony dopiero od
+   progu zdawalności (30%); cursor: help podpowiada, że po najechaniu jest
+   tooltip "zdałeś" / "nie zdałeś (jeszcze)". */
+.total-percent {
+    margin-left: 4px;
+    cursor: help;
+}
+.total-percent.zdane {
+    color: #0AB32F;
+    font-weight: bold;
+}
 #score-switch-button,
 #show-all-solutions,
 #reset-scores,

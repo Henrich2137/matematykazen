@@ -358,8 +358,11 @@ scoreSwitchButton.addEventListener("click", () => {
 
 // Normalizacja odpowiedzi wpisywanych ręcznie (typ fillIn): bez spacji i bez
 // różnic zapisu — nawiasy przedziałów ⟨ ⟩ oraz klawiaturowe < > sprowadzamy
-// do [ ], minus typograficzny do zwykłego, średnik do przecinka. Obie strony
-// porównania (wpis ucznia i wzorzec z danych) przechodzą przez tę samą funkcję.
+// do [ ], minus typograficzny do zwykłego, średnik do przecinka. Dodatkowo
+// wycinamy znaki zmiennej/przynależności (x, y, E/∈), żeby "x∈(-4,4]" czy
+// "y ∈ [-1,3]" pasowało do samego przedziału z klucza — żadna poprawna
+// odpowiedź w danych ich nie zawiera, więc usunięcie z obu stron jest bezpieczne.
+// Obie strony porównania (wpis ucznia i wzorzec z danych) przechodzą przez tę samą funkcję.
 function normalizeAnswer(s) {
     let wynik = (s || "")
         .replace(/\s+/g, "")
@@ -367,6 +370,7 @@ function normalizeAnswer(s) {
         .replace(/[⟨<]/g, "[")
         .replace(/[⟩>]/g, "]")
         .replace(/;/g, ",")
+        .replace(/[xye∈]/gi, "")
         .toLowerCase();
     // Zbędne zera na końcu części dziesiętnej: "6,50" ≡ "6,5", "7,0" ≡ "7".
     // Tylko gdy CAŁY wpis jest pojedynczą liczbą dziesiętną — w przedziale
@@ -404,7 +408,16 @@ function loadExercises() {
     // podwójnie naliczyć ani zapomnieć odjąć punktu.
     function updateTotalScore() {
         totalScore = exercises.reduce((sum, e) => sum + (e.earnedScore || 0), 0);
-        totalScoreSpan.innerHTML = `${totalScore} / ${maxTotalScore} pkt`;
+        // Procent na bieżąco (tryb ćwiczeniowy — w trybie egzaminu #total-score
+        // i tak jest ukryty). Próg zdawalności matury podstawowej to 30%: od
+        // niego procent robi się zielony, a tooltip mówi "zdałeś" zamiast
+        // "nie zdałeś (jeszcze)".
+        const procent = maxTotalScore ? Math.round(totalScore / maxTotalScore * 100) : 0;
+        const zdane = procent >= 30;
+        totalScoreSpan.innerHTML =
+            `${totalScore} / ${maxTotalScore} pkt ` +
+            `<span class="total-percent${zdane ? " zdane" : ""}" ` +
+            `title="${zdane ? "zdałeś" : "nie zdałeś (jeszcze)"}">${procent}%</span>`;
     }
     updateTotalScore();
 
