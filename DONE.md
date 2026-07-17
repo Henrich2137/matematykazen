@@ -25,6 +25,22 @@ ZROBIONE PRZEZ OPUSA (2026-07-17) — NISKI PRIORYTET z TODO.md:
   z y≈172 na y≈188, zrównany ze środkiem pierwszej linii treści (≈188). W media
   query <=1024px (badge w rogu karty) margin-top wyzerowany, żeby trzymał się
   górnej krawędzi.
+- [ZROBIONE] Procent zdobytych punktów obok sumy w pasku (tryb ćwiczeniowy).
+  updateTotalScore() (script.js) dokłada do #total-score <span.total-percent>
+  z bieżącym procentem (round(pkt/max*100)); od progu zdawalności 30% dostaje
+  klasę .zdane (zielony #0AB32F, bold) i title="zdałeś", poniżej szary +
+  title="nie zdałeś (jeszcze)" (CSS w style.css, cursor: help). Ponieważ procent
+  jest WEWNĄTRZ #total-score, automatycznie znika w trybie egzaminu i w widoku
+  punktów "nic". Zweryfikowane Playwrightem: 24% → szary/"nie zdałeś (jeszcze)";
+  38% → zielony bold/"zdałeś".
+- [ZROBIONE] Normalizacja odpowiedzi fillIn (normalizeAnswer w script.js) —
+  dołożony .replace(/[xye∈]/gi, "") wycina znaki zmiennej/przynależności
+  (x, y, E/∈), więc "x∈(-4,4]", "y ∈ [-1,3]", "X E (1,3)" pasują do samego
+  przedziału z klucza. Sprawdzone, że żadna accepted w obu exercises.json nie
+  zawiera x/y/e/∈, więc usunięcie z obu stron porównania jest bezpieczne.
+  Zweryfikowane Playwrightem: normalizeAnswer(warianty) → czysty przedział;
+  realne pole fillIn (zad 17, exercise-9) z wpisami "x∈(-4, 4]" itd. → wszystkie
+  4 pola .correct.
 
 ZROBIONE PRZEZ OPUSA (2026-07-13) — cały WYSOKI PRIORYTET z TODO.md:
 - [ZROBIONE] Powiększone UMIARKOWANIE przyciski "oceń się" (.self-score-container button

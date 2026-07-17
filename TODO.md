@@ -16,13 +16,6 @@ WYSOKI PRIORYTET:
 
 
 NISKI PRIORYTET:
-- w trybie ćwiczeniowym: obok sumy punktów pokazywać na bieżąco obliczany
-  procent, podświetlony na zielono gdy ≥30%; po najechaniu myszką tooltip
-  "zdałeś" / "nie zdałeś (jeszcze)".
-
-- normalizacja odpowiedzi w polach tekstowych: usuwać znaki x, y oraz E/∈
-  (spacje już są usuwane) przed porównaniem z poprawną odpowiedzią.
-
 - TRYB PRÓBNY EGZAMIN:
   * ukryć przycisk "pokaż potrzebne wzory" wraz z divem trzymającym
     light-buttony (bez pustej przerwy w layoucie); tablica wzorów i jej
