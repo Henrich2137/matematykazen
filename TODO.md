@@ -63,7 +63,7 @@ INNE NOTATKI:
 
 - Zgłaszanie błędów - Formspree / Getform ale wewnątrz strony (submit przez fetch (AJAX) czy coś)
 - Analityka - GoatCounter
-- Dodać stronę donate.html
+- W index.html dodać sekcję o autorze i link do patronite
 
 <br><br><br>
 
