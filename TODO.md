@@ -19,7 +19,9 @@ WYSOKI PRIORYTET:
 
 - Przycisk rozpocznij próbny egzamin powinien znajdować na dole ale tylko w trybie ćiwczeniowym
 
-- 
+- Spraw aby Tytuł egzaminu oraz podtytuł "tryb ćwiczenia"/"tryb egzaminu" oba były nieco niżej
+
+
 
 
 NISKI PRIORYTET:
@@ -37,7 +39,7 @@ Tutaj będą już skonkretyzowane.
 NIE REALIZUJ:
 Nieskonkretyzowane.
 
-- flating żółte wskaźniki pokazujące otwarte zadania które zostały wypełnione ale wymają zaznaczenia liczby punktów po ukończeniu egzaminu
+- flating żółte wskaźniki po prawej stronie które pokazują otwarte zadania, które zostały wypełnione, ale wymagają zaznaczenia liczby punktów po ukończeniu egzaminu. Wskaźniki powinny mieć gdzieś przycisk który wyłącza je wszystkie. Każy z wskaźników powinien znajdować się przy danym zadaniu lub przyklejać się do góry lub dołu strony w zależniści od tego gdzie trzeba przeskrolować.
 
 - zadania otwarte powinny też mieć okienko normalizujące i sprawdzające wpisaną odpowiedź. Do tego można rozpisać i dorobić donich pytania w stylu "Czy masz opisana długość boku BC?" które wynikająz zasad oceniania i ułatiwają ustalenie ilości punktów. przy nich można dać gwiazdkę, że trzeba każdy przypadek sprawdzić indywidualnie i autor strony nie jest egzaminatorem. 
 
