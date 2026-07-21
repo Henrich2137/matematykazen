@@ -3,6 +3,37 @@ Nie wczytuj tego pliku domyślnie — tylko gdy potrzebne jest szersze spojrzeni
 rozwiązanie trudniejszego problemu albo sprawdzenie, czy/jak coś już kiedyś rozwiązano.
 (Zasada opisana w CLAUDE.md. Plik zaczął się jako notatki ze smoke testu.)
 
+ZROBIONE PRZEZ OPUSA (2026-07-21) — pływające żółte wskaźniki nieocenionych zadań otwartych z TODO.md:
+- [ZROBIONE] Po zakończeniu próbnego egzaminu (faza „oceń się") każde zadanie
+  otwarte (selfScore) WYPEŁNIONE (jest wpisany tok rozwiązania w textarea), ale bez
+  przyznanej samooceny, dostaje pływającą żółtą kropkę z numerem zadania po prawej
+  krawędzi (klasa .wskaznik-otwarte, style w style.css; kolory przez nowe zmienne
+  motywu --wskaznik-* — działają w jasnym i ciemnym). Klik kropki przewija do
+  zadania (scrollIntoView center). W trakcie egzaminu kropek nie ma.
+- [ZROBIONE] Pozycjonowanie zależne od scrolla (repozycjonujWskazniki w script.js):
+  środek kropki = środek jej zadania w viewport, zaklamowany do pasa pod paskiem
+  górnym … nad przyciskiem „ukryj"; kropki są rozsuwane (declutter przód/tył), więc
+  gdy zadanie jest poza ekranem, kropka przykleja się do góry lub dołu w zwartej
+  kolumnie. Nasłuch scroll/resize przez requestAnimationFrame.
+- [ZROBIONE] Wspólny przycisk „× ukryj" (#wskazniki-ukryj, prawy dolny róg) chowa
+  wszystkie kropki naraz i kończy fazę. Kropka pojedynczego zadania znika po jego
+  ocenieniu (klik samooceny woła odswiezWskaznikiOtwarte()); gdy zniknie ostatnia,
+  faza się kończy.
+- Faza „oceń się" trzymana w localStorage (KLUCZ_OCENIANIA = matematykazen-ocenianie-
+  <sheet>), więc kropki przetrwają odświeżenie strony aż do ocenienia wszystkich albo
+  „ukryj". Nowy egzamin i „resetuj punktację" kasują tę fazę. Rejestr zadań otwartych
+  (zadaniaOtwarte) zbierany przy renderowaniu; wskaźniki odtwarzane w startSheet po
+  loadExercises (tylko gdy NIE trwa egzamin).
+- PRZY OKAZJI naprawiony zastany bug: przy przywracaniu postępu ustawiane było tylko
+  openTextarea.value, ale NIE stan.open (input nie odpala się przy .value). Przez to
+  po reloadzie stan.open był pusty i kolejny zapis (np. klik samooceny) kasował
+  zapisany tok rozwiązania zadania otwartego. Teraz restore ustawia też stan.open.
+- Zweryfikowane Playwrightem: brak kropek w trakcie egzaminu; po zakończeniu kropki
+  dla wypełnionych nieocenionych zadań (3, 8) i przycisk „ukryj"; pozycja kropki
+  zmienia się przy scrollu (711px→87px, przyklejenie do góry); ocenienie zad 3 usuwa
+  jego kropkę; trwałość po reload; „ukryj" chowa wszystkie i kasuje fazę (po reload 0).
+  Wizualnie sprawdzone w jasnym i ciemnym. Bez błędów w konsoli.
+
 ZROBIONE PRZEZ OPUSA (2026-07-21) — zmienne CSS + dark mode (Etap 1 infrastruktura) z TODO.md:
 - [ZROBIONE] Wprowadzone CSS custom properties na wszystkie kolory (tło, tekst,
   ramki, akcenty, stany poprawne/błędne, badge punktacji, komunikat błędu) w :root

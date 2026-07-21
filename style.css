@@ -88,6 +88,11 @@
     /* Komunikat błędu wczytywania */
     --error-border: #e0b4b4;
     --error-bg: #fdf6f6;
+
+    /* Żółte wskaźniki nieocenionych zadań otwartych (po egzaminie) */
+    --wskaznik-bg: #ffd54a;
+    --wskaznik-text: #4a3800;
+    --wskaznik-border: #e3b937;
 }
 
 /* Ciemna paleta — motyw systemowy (auto), o ile użytkownik nie wymusił jasnego. */
@@ -140,6 +145,10 @@
 
         --error-border: #6a4040;
         --error-bg: #2a1e1e;
+
+        --wskaznik-bg: #c99a1e;
+        --wskaznik-text: #1c1500;
+        --wskaznik-border: #a97f16;
     }
 }
 
@@ -193,6 +202,10 @@ html.theme-dark {
 
     --error-border: #6a4040;
     --error-bg: #2a1e1e;
+
+    --wskaznik-bg: #c99a1e;
+    --wskaznik-text: #1c1500;
+    --wskaznik-border: #a97f16;
 }
 
 body {
@@ -1281,6 +1294,54 @@ body.tryb-egzaminu .fill-in-input.incorrect {
 #egzamin-podsumowanie #egzamin-zamknij {
     display: block;
     margin: 14px auto 0;
+}
+
+/* ===== WSKAŹNIKI NIEOCENIONYCH ZADAŃ OTWARTYCH (po egzaminie) =====
+   Pływające żółte „kropki" po prawej krawędzi, po jednej na wypełnione, ale
+   jeszcze nieocenione zadanie otwarte. Tworzy/pozycjonuje je JS (script.js):
+   każda ma numer zadania, klik przewija do niego, a `top` (środek) jest co
+   scroll wyliczany tak, by kropka trzymała się swojego zadania albo przyklejała
+   do góry/dołu widoku. z-index nad paskiem (10), pod nakładką podsumowania (20). */
+.wskaznik-otwarte {
+    position: fixed;
+    right: 14px;
+    z-index: 15;
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    border: 1px solid var(--wskaznik-border);
+    border-radius: 50%;
+    background-color: var(--wskaznik-bg);
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 1;
+    color: var(--wskaznik-text);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transform: translateY(-50%); /* `top` z JS to środek kropki, nie górna krawędź */
+    transition: top 0.12s ease;
+}
+.wskaznik-otwarte:hover {
+    filter: brightness(0.94);
+}
+/* Wspólny przycisk „ukryj wszystkie" — w prawym dolnym rogu, pod kolumną kropek. */
+#wskazniki-ukryj {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    z-index: 15;
+    display: none;
+    padding: 5px 10px;
+    border: 1px solid var(--border-strong);
+    border-radius: 3px;
+    background-color: var(--bg);
+    font-family: inherit;
+    font-size: 12px;
+    color: var(--text-faint);
+    cursor: pointer;
+}
+#wskazniki-ukryj:hover {
+    color: var(--text);
 }
 
 /* ===== RESPONSYWNOŚĆ (WĄSKIE EKRANY) ===== */
