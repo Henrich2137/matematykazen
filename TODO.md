@@ -11,15 +11,15 @@ NASTAŁA ERA NOWEGO MASTERA BUHAHAHAHAHA
 <h3>DO REALIZACJI</h3>
 Jeżeli nie masz co robić to rób stąd.
 
+
 WYSOKI PRIORYTET:
-- nic (cały poprzedni WYSOKI PRIORYTET zrobiony przez Opusa 2026-07-13 — patrz DONE.md)
+- Przycisk "zakończ egzamin" powinien znajdować się również na pasku, przy zegarze, nie tylko przy stopce.
+- Przycisk "zakończ egzamin" przy stopce powinien mieć margines z góry.
+
 
 
 NISKI PRIORYTET:
 - nic (cały poprzedni NISKI PRIORYTET zrobiony przez Opusa 2026-07-17 — patrz DONE.md)
-
-
-<br>
 
 
 NAJNIŻSZY PRIORYTET, NA POTEM:
