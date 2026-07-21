@@ -101,7 +101,10 @@ if (themeToggle) {
 // kolory odpowiedzi i wpisy wracają do zera jedną, wspólną drogą (świeży render).
 document.getElementById("reset-scores").addEventListener("click", () => {
     if (!confirm("Wyczyścić zapisane odpowiedzi i punkty? Tej operacji nie można cofnąć.")) return;
-    try { localStorage.removeItem(KLUCZ_POSTEPU); } catch (e) {}
+    try {
+        localStorage.removeItem(KLUCZ_POSTEPU);
+        localStorage.removeItem(KLUCZ_OCENIANIA); // reset kasuje też fazę „oceń się"
+    } catch (e) {}
     location.reload();
 });
 
@@ -198,6 +201,7 @@ function startExamPrompt() {
     if (!zgoda) return;
     try {
         localStorage.removeItem(KLUCZ_POSTEPU);
+        localStorage.removeItem(KLUCZ_OCENIANIA); // nowy egzamin kasuje starą fazę „oceń się"
         localStorage.setItem(KLUCZ_EGZAMINU, JSON.stringify({ start: Date.now() }));
     } catch (e) {
         alert("Nie udało się zapisać stanu egzaminu (zablokowane localStorage) — egzamin nie wystartował.");
@@ -249,6 +253,136 @@ function finishExam(czasMinal) {
     okno.querySelector("#egzamin-zamknij").addEventListener("click", () => {
         egzaminPodsumowanie.style.display = "none";
     });
+
+    // Faza „oceń się": pokaż pływające wskaźniki przy zadaniach otwartych, które
+    // uczeń wypełnił, ale których jeszcze nie ocenił.
+    ustawFazeOceniania(true);
+    pokazWskaznikiOtwarte();
+}
+
+/* ===== WSKAŹNIKI NIEOCENIONYCH ZADAŃ OTWARTYCH (po egzaminie) =====
+   Po zakończeniu próbnego egzaminu (faza „oceń się") każde zadanie otwarte,
+   które zostało WYPEŁNIONE (jest wpisany tok rozwiązania), ale nie ma jeszcze
+   przyznanej samooceny, dostaje pływającą żółtą kropkę po prawej stronie.
+   Klik przewija do zadania; kropka znika, gdy zadanie zostanie ocenione
+   (klik samooceny woła odswiezWskaznikiOtwarte()). W trakcie egzaminu ich nie
+   ma. Fazę trzymamy w localStorage (KLUCZ_OCENIANIA), żeby przetrwała
+   odświeżenie strony aż do ocenienia wszystkich albo ręcznego „ukryj".
+   Rejestr zadań otwartych (zadaniaOtwarte) zbieramy przy renderowaniu. */
+const KLUCZ_OCENIANIA = "matematykazen-ocenianie-" + SHEET_ID;
+let wskaznikiEls = [];          // [{ el: <button> w DOM, zadanie: rekord z zadaniaOtwarte }]
+let wskaznikiUkryjBtn = null;
+let wskaznikiRafPending = false;
+
+function czyFazaOceniania() {
+    try { return localStorage.getItem(KLUCZ_OCENIANIA) === "1"; } catch (e) { return false; }
+}
+function ustawFazeOceniania(wlacz) {
+    try {
+        if (wlacz) localStorage.setItem(KLUCZ_OCENIANIA, "1");
+        else localStorage.removeItem(KLUCZ_OCENIANIA);
+    } catch (e) {}
+}
+
+// Zadanie otwarte wypełnione (jest tok rozwiązania), ale bez samooceny.
+function czyNieoceniony(zadanie) {
+    return typeof zadanie.stan.open === "string" && zadanie.stan.open.trim() !== ""
+        && !Number.isInteger(zadanie.stan.self);
+}
+
+function pokazWskaznikiOtwarte() {
+    schowajWskaznikiZDOM(); // idempotentnie — zaczynamy od czysta
+    const oczekujace = zadaniaOtwarte.filter(czyNieoceniony);
+    if (!oczekujace.length) { ustawFazeOceniania(false); return; }
+
+    oczekujace.forEach(zadanie => {
+        const w = document.createElement("button");
+        w.className = "wskaznik-otwarte";
+        w.type = "button";
+        w.textContent = zadanie.numer;
+        w.title = `Zadanie ${zadanie.numer}: wpisana odpowiedź bez oceny — kliknij, aby przejść i ocenić się`;
+        w.addEventListener("click", () => {
+            zadanie.el.scrollIntoView({ behavior: "smooth", block: "center" });
+        });
+        document.body.appendChild(w);
+        wskaznikiEls.push({ el: w, zadanie });
+    });
+
+    if (!wskaznikiUkryjBtn) {
+        wskaznikiUkryjBtn = document.createElement("button");
+        wskaznikiUkryjBtn.id = "wskazniki-ukryj";
+        wskaznikiUkryjBtn.type = "button";
+        wskaznikiUkryjBtn.textContent = "× ukryj";
+        wskaznikiUkryjBtn.title = "Ukryj wszystkie wskaźniki nieocenionych zadań";
+        wskaznikiUkryjBtn.addEventListener("click", ukryjWszystkieWskazniki);
+        document.body.appendChild(wskaznikiUkryjBtn);
+    }
+    wskaznikiUkryjBtn.style.display = "block";
+
+    window.addEventListener("scroll", zaplanujRepozycje, { passive: true });
+    window.addEventListener("resize", zaplanujRepozycje);
+    repozycjonujWskazniki();
+}
+
+function schowajWskaznikiZDOM() {
+    wskaznikiEls.forEach(({ el }) => el.remove());
+    wskaznikiEls = [];
+    if (wskaznikiUkryjBtn) wskaznikiUkryjBtn.style.display = "none";
+    window.removeEventListener("scroll", zaplanujRepozycje);
+    window.removeEventListener("resize", zaplanujRepozycje);
+}
+
+// Po ocenieniu zadania (klik samooceny) usuwamy jego kropkę; gdy nie zostanie
+// żadna — kończymy fazę oceniania.
+function odswiezWskaznikiOtwarte() {
+    if (!wskaznikiEls.length) return;
+    wskaznikiEls = wskaznikiEls.filter(({ el, zadanie }) => {
+        if (czyNieoceniony(zadanie)) return true;
+        el.remove();
+        return false;
+    });
+    if (!wskaznikiEls.length) {
+        schowajWskaznikiZDOM();
+        ustawFazeOceniania(false);
+    } else {
+        repozycjonujWskazniki();
+    }
+}
+
+function ukryjWszystkieWskazniki() {
+    schowajWskaznikiZDOM();
+    ustawFazeOceniania(false);
+}
+
+function zaplanujRepozycje() {
+    if (wskaznikiRafPending) return;
+    wskaznikiRafPending = true;
+    requestAnimationFrame(() => { wskaznikiRafPending = false; repozycjonujWskazniki(); });
+}
+
+// Każdą kropkę ustawiamy na wysokości środka jej zadania (współrzędne viewportu),
+// zaklamowanej do widocznego pasa (pod paskiem górnym … nad przyciskiem „ukryj").
+// Potem rozsuwamy je, żeby się nie nakładały (przód: min. odstęp; tył: docisk do
+// dolnej krawędzi) — standardowy „declutter" etykiet, dzięki któremu przy scrollu
+// kropki albo trzymają się zadań, albo kleją do góry/dołu w zwartej kolumnie.
+function repozycjonujWskazniki() {
+    if (!wskaznikiEls.length) return;
+    const topBar = document.getElementById("top-bar");
+    const polowa = 13; // połowa wysokości kropki (26px)
+    const gora = (topBar ? topBar.getBoundingClientRect().bottom : 0) + 10 + polowa;
+    const dol = window.innerHeight - 44 - polowa; // miejsce na przycisk „ukryj" u dołu
+    const krok = 32;   // min. odstęp między środkami kropek
+    const items = wskaznikiEls.map(({ el, zadanie }) => {
+        const r = zadanie.el.getBoundingClientRect();
+        const srodek = r.top + r.height / 2;
+        return { el, y: Math.min(Math.max(srodek, gora), Math.max(gora, dol)) };
+    });
+    for (let i = 1; i < items.length; i++)
+        if (items[i].y < items[i - 1].y + krok) items[i].y = items[i - 1].y + krok;
+    if (items[items.length - 1].y > dol) items[items.length - 1].y = dol;
+    for (let i = items.length - 2; i >= 0; i--)
+        if (items[i].y > items[i + 1].y - krok) items[i].y = items[i + 1].y - krok;
+    items.forEach(({ el, y }) => { el.style.top = Math.max(gora, y) + "px"; });
 }
 
 // Egzamin w toku (np. po odświeżeniu strony)? Tryb włączamy od razu, zanim
@@ -453,6 +587,11 @@ function markCorrectAnswer(exercise) {
 // Zebrane przy renderowaniu odnośniki do przycisków/paneli "Rozwiązanie"
 // wszystkich zadań — używa ich przycisk "pokaż wszystkie rozwiązania" w pasku.
 const wszystkieRozwiazania = [];
+
+// Rejestr zadań otwartych (selfScore) zbierany przy renderowaniu — używają go
+// pływające wskaźniki nieocenionych zadań po egzaminie. Każdy wpis:
+// { el: element zadania w DOM, stan: obiekt postępu (stan.open / stan.self), numer }.
+const zadaniaOtwarte = [];
 
 // Function to load exercises
 function loadExercises() {
@@ -733,12 +872,17 @@ function loadExercises() {
                     setScore(n);
                     stan.self = n;
                     zapiszPostep();
+                    // Zadanie właśnie ocenione — jego wskaźnik (jeśli był) znika.
+                    odswiezWskaznikiOtwarte();
                 });
                 buttons.push(btn);
                 selfButtons.push(btn);
                 box.appendChild(btn);
             }
             answersContainer.appendChild(box);
+
+            // Do rejestru dla pływających wskaźników „oceń się" po egzaminie.
+            zadaniaOtwarte.push({ el: exerciseClone, stan, numer: index + 1 });
         } else if (type === "fillIn") {
             // Zadanie z polami do uzupełnienia ("...") — uczeń wpisuje odpowiedzi
             // ręcznie, a przycisk "Sprawdź" koloruje ramki pól na zielono/czerwono
@@ -1086,6 +1230,11 @@ function loadExercises() {
             }
             if (typeof zap.open === "string" && openTextarea) {
                 openTextarea.value = zap.open;
+                // Odtwórz też stan w pamięci (input nie odpala się przy ustawianiu
+                // .value): inaczej stan.open byłby pusty po reloadzie — kolejny
+                // zapis (np. klik samooceny) skasowałby zapisany tok rozwiązania,
+                // a wskaźniki „oceń się" nie wiedziałyby, że zadanie jest wypełnione.
+                stan.open = zap.open;
             }
             if (Array.isArray(zap.fill) && fillRows.length) {
                 zap.fill.forEach((tekst, i) => { if (fillRows[i]) fillRows[i].input.value = tekst || ""; });
@@ -1203,6 +1352,9 @@ async function startSheet() {
     // Jeśli czas egzaminu minął, gdy karta była zamknięta — zakończ od razu
     // (tickExam ma warunek na wczytane zadania, teraz już spełniony).
     if (readExamState()) tickExam();
+    // Faza „oceń się" po egzaminie (nie w trakcie egzaminu): odtwórz pływające
+    // wskaźniki nieocenionych zadań otwartych, żeby przetrwały odświeżenie strony.
+    else if (czyFazaOceniania()) pokazWskaznikiOtwarte();
 }
 startSheet();
 
