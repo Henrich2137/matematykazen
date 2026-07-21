@@ -37,14 +37,16 @@ Tutaj będą już skonkretyzowane.
 
 NIE REALIZUJ:
 Nieskonkretyzowane.
+- utworzenie zmiennych css i zrobienie przełącznika na darkmode
+
+- dodanie rozwiązań do matury 2026
+
 
 - (tryb egzaminu) Stwórz flating żółte wskaźniki po prawej stronie które pokazują otwarte zadania, które zostały wypełnione, ale wymagają zaznaczenia liczby punktów po ukończeniu egzaminu. Wskaźniki powinny mieć gdzieś przycisk który wyłącza je wszystkie. Każy z wskaźników powinien znajdować się przy danym zadaniu lub przyklejać się do góry lub dołu strony w zależniści od tego gdzie trzeba przeskrolować.
 
 - zadania otwarte powinny też mieć okienko normalizujące i sprawdzające wpisaną odpowiedź. Do tego można rozpisać i dorobić donich pytania w stylu "Czy masz opisana długość boku BC?" które wynikają z zasad oceniania i ułatiwają ustalenie ilości punktów. przy nich można dać gwiazdkę, że trzeba każdy przypadek sprawdzić indywidualnie i autor strony nie jest egzaminatorem. 
 
-- utworzenie zmiennych css i zrobienie przełącznika na darkmode
 
-- dodanie rozwiązań do matury 2026
 
 - wyciągnięcie tekstu z PDF-ów:
   * matematyka-2025-maj-matura-podstawowa.pdf
@@ -52,22 +54,21 @@ Nieskonkretyzowane.
 
 - do sekcji "oceń się" powinno być dodane kryteria sukcesu dopiero po kliknięciu rozwiązania. Ale jeszcze nie mam pomysłu jak to skomponować aby miało sens.
 
-- dodać w opcjach toggle "pokaż poprawnośc odpowiedzi natychmiast po zaznaczeniu" oraz gdy jest wyłączony to musi być widać
+- dodać w opcjach toggle "pokaż poprawność odpowiedzi natychmiast po zaznaczeniu" oraz gdy jest wyłączony to musi być widać
   * przycisk sprawdź po wybraniu odpowiedzi po prawej stronie, tak aby nie zmieniało wysokości diva/strony. Przycisk po kliknięciu powinien: włączyć kolory ramek w zależności od odpowiedzi takie jakie są obecnie, zniknąć.  
   * przycisk "sprawdź wszystkie odpowiedzi" na dole arkusza oraz w ustawieniach powinien widnieć.
 
 
-
-
 <br>
+
 
 DLA UŻYTKOWNIKA:
 
 - Przerenderować w Manimie ostatni krok zad 2 (zad2/zad2rozw_step6.mp4): klatka końcowa pokazuje 5⁻⁴, a poprawny wynik to 5⁴ (5⁻¹ · 5⁵ = 5⁴). Komentarz pod filmem tymczasowo prostuje błąd.
 
-- Punkt o widżecie zad 1 urwał się w połowie zdania: "opcjonalnie: sprawić aby przesuwanie" — dokończ myśl, to zostanie zrobione (reszta punktu o zad 1 jest już zrealizowana).
 
 <br>
+
 
 INNE NOTATKI:
 
@@ -75,7 +76,7 @@ INNE NOTATKI:
 
 - Stworzyć przycisk "zgłoś błąd w zadaniu" i odpowiedni formularz
 
-- Tryb egzaminu nie powinien być tak "schowany" w opcjach. Przed rozpoczęciem arkusza powinno pytać użytkownika czy chce wejść w tryb ćwiczeniowy czy egzaminu z checkboxem o zapamiętanie wyboru.
+- Tryb egzaminu nie powinien być tak "schowany" w opcjach. Moze pod tytułem zrobić zamiast stałego napisu "tryb ćwiczeniowy" zrobić toggle między dwoma trybami.
 
 - Etap sprawdzania odpowiedzi po trybie egzaminacyjnym. Idealnie powinien istnieć pomiędzy skończeniem egzaminu, a jego wyników pokazaniem wyników egzaminu.
 
@@ -84,3 +85,7 @@ INNE NOTATKI:
 - na telefonie pdfy się nie ładują (tablica i zasady oceniania). Podczas naprawy warto sprawić aby odpalały się one nie w okienku ale wypełniały całą stronę z krzyżykiem w rogu. Jeżeli nie uda się tego naprawić to należy usunąć tę funkcjonalność z wersji mobilnej.
 
 <br><br><br>
+
+DO SPRAWDZENIA PRZEZ HENRICHA.
+Claudzie, możesz tutaj dopisywać rzeczy które mam sprawdzić/przetestować.
+- nic
