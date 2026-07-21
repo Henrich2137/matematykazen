@@ -38,6 +38,8 @@ czyli skonkretyzowane
 NIE REALIZUJ
 czyli nieskonkretyzowane
 
+- Stworzyć przycisk "zgłoś błąd w zadaniu" i odpowiedni formularz
+
 - utworzenie zmiennych css, dodanie Darkmode i zrobienie przełącznika do niego
 
 - dodanie rozwiązań do matury 2026
@@ -60,7 +62,8 @@ czyli nieskonkretyzowane
 <br>
 
 
-DLA UŻYTKOWNIKA:
+DLA HENRICHA:
+- Obczaić analitykę czyli śledzenie ilości i zaangażowania użytkowników (moze da sięjakoś przez githuba)
 
 - Przerenderować w Manimie ostatni krok zad 2 (zad2/zad2rozw_step6.mp4): klatka końcowa pokazuje 5⁻⁴, a poprawny wynik to 5⁴ (5⁻¹ · 5⁵ = 5⁴). Komentarz pod filmem tymczasowo prostuje błąd.
 
@@ -68,17 +71,9 @@ DLA UŻYTKOWNIKA:
 <br>
 
 
-INNE NOTATKI:
-
-- Obczaić analitykę czyli śledzenie ilości i zaangażowania użytkowników (moze da sięjakoś przez githuba)
-
-- Stworzyć przycisk "zgłoś błąd w zadaniu" i odpowiedni formularz
+INNE NOTATKI:s
 
 - Tryb egzaminu nie powinien być tak "schowany" w opcjach. Moze pod tytułem zrobić zamiast stałego napisu "tryb ćwiczeniowy" zrobić toggle między dwoma trybami.
-
-- Etap sprawdzania odpowiedzi po trybie egzaminacyjnym. Idealnie powinien istnieć pomiędzy skończeniem egzaminu, a jego wyników pokazaniem wyników egzaminu.
-
-- analogicznie do boxów z punktacją powinny być do włączenia boxy z opisem typu zadania
 
 - na telefonie pdfy się nie ładują (tablica i zasady oceniania). Podczas naprawy warto sprawić aby odpalały się one nie w okienku ale wypełniały całą stronę z krzyżykiem w rogu. Jeżeli nie uda się tego naprawić to należy usunąć tę funkcjonalność z wersji mobilnej.
 
