@@ -11,12 +11,21 @@ NASTAŁA ERA NOWEGO MASTERA BUHAHAHAHAHA
 <h3>DO REALIZACJI</h3>
 Jeżeli nie masz co robić to rób stąd.
 
-- tryb egzaminu:
-  * Przycisk "zakończ egzamin" powinien znajdować się również na pasku, przy zegarze, nie tylko przy stopce.
-  * Przycisk "zakończ egzamin" przy stopce powinien mieć margines z góry.
-  * Przycisk rozpocznij próbny egzamin powinien znajdować na dole ale tylko w trybie ćiwczeniowym
+- tryb egzaminu — pasek i stopka (doprecyzowane z Henrichem 2026-07-21, patrz też DONE.md po realizacji):
 
-- Spraw aby tytuł egzaminu oraz podtytuł "tryb ćwiczenia"/"tryb egzaminu" oba były nieco niżej
+  * Nowy przycisk "zakończ egzamin" w pasku górnym: w #bar-right, zaraz PO #egzamin-timer (czyli przed #total-score). To DODATKOWY przycisk — istniejący #egzamin-koniec pod ostatnim zadaniem zostaje, nic się nie przenosi.
+    - Styl: ramka jak #toggle-tablica (border: 2px solid #e7e7e7; border-radius: 3px; padding ok. 8px 12px; background #fff; cursor: pointer), BEZ sztywnego min-width (etykieta się nie zmienia, to nie jest toggle).
+    - Widoczność: tylko gdy body ma klasę tryb-egzaminu — ten sam mechanizm co #egzamin-timer (display: none domyślnie, odkrywane regułą `body.tryb-egzaminu #id`).
+    - Zachowanie po kliknięciu: identyczne jak istniejący #egzamin-koniec — ten sam tekst confirm() ("Zakończyć egzamin i zobaczyć wynik?") i to samo wywołanie finishExam(false). Najlepiej podpiąć oba przyciski pod jedną wspólną funkcję/listener, żeby zachowanie nie mogło się kiedyś rozjechać.
+    - Ewentualna wąska szerokość ekranu: jeśli przycisk nie mieści się w pasku poniżej 720px, dodać mu analogiczne zmniejszenie jak #total-score dostaje w tym samym @media (max-width: 720px) (font-size: 13px) — ocenić wizualnie po wdrożeniu.
+
+  * Przycisk #egzamin-koniec (ten w stopce, pod ostatnim zadaniem) ma dostać odstęp od góry: zmienić `margin: 0 auto 80px;` na `margin: 40px auto 80px;`.
+
+  * Przycisk "rozpocznij próbny egzamin" ma DODATKOWO (nie zamiast) pojawić się w stopce arkusza, w tym samym miejscu co #egzamin-koniec (pod #exercises-wrapper), ale widoczny odwrotnie — tylko gdy body NIE ma klasy tryb-egzaminu (czyli w trybie ćwiczeniowym). Wersja w rozwijanym menu "⋯" (obecny #egzamin-start) zostaje bez zmian — to nie jest przeniesienie, chcemy przycisk w obu miejscach.
+    - Styl: identyczny jak #egzamin-koniec w stopce (ta sama ramka, te same 40px góra / 80px dół marginesu).
+    - Zachowanie po kliknięciu: identyczne jak istniejący #egzamin-start (ten sam tekst confirm(), ten sam zapis stanu do localStorage i location.reload()) — wspólna funkcja/listener dla obu przycisków, tak jak wyżej.
+
+- Tytuł arkusza (#exercises-sheet-title) i podtytuł trybu (#exercises-mode-subtitle) mają być nieco niżej w pasku — delikatny nudge, bez zmiany wysokości #top-bar. Dodać `position: relative; top: 5px;` na #bar-center. Jeśli 5px wygląda źle (za mało/za dużo), to jedyna wartość do skorygowania.
 
 
 
@@ -31,17 +40,18 @@ czyli nieskonkretyzowane
 
 - utworzenie zmiennych css, dodanie Darkmode i zrobienie przełącznika do niego
 
+- (tryb egzaminu) Stwórz minimalistyczne flating żółte wskaźniki po prawej stronie które pokazują otwarte zadania, które zostały wypełnione, ale wymagają zaznaczenia liczby punktów po ukończeniu egzaminu. Mają znajdować sięw kolumnieWskaźniki powinny mieć gdzieś przycisk który wyłącza je wszystkie. Każy z wskaźników powinien znajdować się przy danym zadaniu lub przyklejać się do góry lub dołu strony w zależniści od tego gdzie trzeba przeskrolować.
+
 - dodanie rozwiązań do matury 2026
 
-- (tryb egzaminu) Stwórz flating żółte wskaźniki po prawej stronie które pokazują otwarte zadania, które zostały wypełnione, ale wymagają zaznaczenia liczby punktów po ukończeniu egzaminu. Wskaźniki powinny mieć gdzieś przycisk który wyłącza je wszystkie. Każy z wskaźników powinien znajdować się przy danym zadaniu lub przyklejać się do góry lub dołu strony w zależniści od tego gdzie trzeba przeskrolować.
-
 - zadania otwarte powinny też mieć okienko normalizujące i sprawdzające wpisaną odpowiedź. Do tego można rozpisać i dorobić donich pytania w stylu "Czy masz opisana długość boku BC?" które wynikają z zasad oceniania i ułatiwają ustalenie ilości punktów. przy nich można dać gwiazdkę, że trzeba każdy przypadek sprawdzić indywidualnie i autor strony nie jest egzaminatorem. 
+
+- do sekcji "oceń się" powinno być dodane kryteria sukcesu dopiero po kliknięciu rozwiązania. Ale jeszcze nie mam pomysłu jak to skomponować aby miało sens.
 
 - wyciągnięcie tekstu z PDF-ów:
   * matematyka-2025-maj-matura-podstawowa.pdf
   * matematyka-2025-maj-matura-podstawowa-odpowiedzi.pdf
 
-- do sekcji "oceń się" powinno być dodane kryteria sukcesu dopiero po kliknięciu rozwiązania. Ale jeszcze nie mam pomysłu jak to skomponować aby miało sens.
 
 - dodać w opcjach toggle "pokaż poprawność odpowiedzi natychmiast po zaznaczeniu" oraz gdy jest wyłączony to musi być widać
   * przycisk sprawdź po wybraniu odpowiedzi po prawej stronie, tak aby nie zmieniało wysokości diva/strony. Przycisk po kliknięciu powinien: włączyć kolory ramek w zależności od odpowiedzi takie jakie są obecnie, zniknąć.  
