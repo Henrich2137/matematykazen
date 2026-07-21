@@ -11,11 +11,6 @@ NASTAŁA ERA NOWEGO MASTERA BUHAHAHAHAHA
 <h3>DO REALIZACJI</h3>
 Jeżeli nie masz co robić to rób stąd.
 
-- utworzenie zmiennych css, dodanie Darkmode i zrobienie przełącznika do niego (doprecyzowane 2026-07-21). Etap 1 = sama infrastruktura:
-  * Wprowadzić CSS custom properties na kolory (tło, tekst, ramki, akcenty) w :root i przepiąć na nie style.css.
-  * Ciemna paleta pod `@media (prefers-color-scheme: dark)` + nadpisanie klasą na <html>/<body> (żeby przełącznik miał pierwszeństwo nad systemem).
-  * Przełącznik trybu zapamiętywany w localStorage. Umiejscowienie/wygląd przełącznika do uznania Opusa.
-
 - (tryb egzaminu) minimalistyczne pływające żółte wskaźniki nieocenionych zadań otwartych (doprecyzowane 2026-07-21). Kiedy: TYLKO po zakończeniu egzaminu (faza "egzamin zakończony, oceń się"), dla zadań otwartych (selfScore) wypełnionych, ale bez uzupełnionego self-score; znikają po ocenieniu danego zadania. W trakcie egzaminu ich nie ma. Reszta (dokładny wygląd, sticky góra/dół przy scrollu, przycisk wyłączający wszystkie) — do uznania Opusa wg oryginalnego opisu poniżej:
   * Stwórz minimalistyczne flating żółte wskaźniki po prawej stronie które pokazują otwarte zadania, które zostały wypełnione, ale wymagają zaznaczenia liczby punktów po ukończeniu egzaminu. Mają znajdować się w kolumnie. Wskaźniki powinny mieć gdzieś przycisk który wyłącza je wszystkie. Każdy z wskaźników powinien znajdować się przy danym zadaniu lub przyklejać się do góry lub dołu strony w zależności od tego gdzie trzeba przeskrolować.
 
