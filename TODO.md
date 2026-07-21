@@ -25,7 +25,7 @@ WYSOKI PRIORYTET:
 
 
 NISKI PRIORYTET:
-- nic (cały poprzedni NISKI PRIORYTET zrobiony przez Opusa 2026-07-17 — patrz DONE.md)
+- nic
 
 
 NAJNIŻSZY PRIORYTET, NA POTEM:
@@ -87,32 +87,3 @@ INNE NOTATKI:
 - na telefonie pdfy się nie ładują (tablica i zasady oceniania). Podczas naprawy warto sprawić aby odpalały się one nie w okienku ale wypełniały całą stronę z krzyżykiem w rogu. Jeżeli nie uda się tego naprawić to należy usunąć tę funkcjonalność z wersji mobilnej.
 
 <br><br><br>
-
-
-<h3>DO WERYFIKACJI PRZEZ HENRICHA</h3>
-- Tryb egzaminacyjny (zrealizowany 2026-07-06): sprawdzić cały przebieg — start →
-  parę odpowiedzi (ramki powinny być neutralne/niebieskie) → F5 (czy egzamin dalej
-  trwa) → "zakończ egzamin" → podsumowanie → samoocena zadania otwartego.
-  (Automatyczny smoke-test Playwright 2026-07-06 przeszedł cały ten przebieg bez
-  błędów — patrz DONE.md; to tylko na wyczucie/UX zostaje do Ciebie.)
-
-
-DO REALZACJI Dopisane przez SONNETA LUB OPUSA:
-
-SONNET DOPISAŁ:
-- Dokończenie arkusza 2026 (otwórz przez template.html?arkusz=2026-maj; dane w
-  matura/2026-maj/exercises.json — teraz obiekt { meta, exercises }; odpowiedzi i
-  punktacja zweryfikowane 2026-07-06 z kluczem CKE Wersja A + rachunkiem — NIE
-  zmieniaj correctAnswerIndex/blanks/statements/maxScore):
-  * hint + solutionText dla 41 wpisów — przepisz/zredaguj z gotowych rozwiązań w
-    matura/2026-maj/matematyka-2026-maj-matura-podstawowa-odpowiedzi.txt (klucz
-    zawiera pełne rozwiązania zadań otwartych; wzory w KaTeX, konwencje jak w 2024)
-  * obrazki zad 12 (wykres łamanej), 13 (prosta z kątem α), 19 (okrąg A,B,C,D),
-    20 (proste równoległe), 31 (diagramy IVA/IVB — dane TYLKO na obrazku) — wyciąć
-    z matura/2026-maj/matematyka-2026-maj-matura-podstawowa.pdf wzorem zad30
-    (pdftoppm -x/-y/-W/-H). Docelowe ścieżki (już w exercises.json, konwencja media/):
-    matura/2026-maj/media/zadN/zadNrys.png. UWAGA: sesja zdalna nie ma
-    pdftoppm/mutool/gs — tylko lokalnie.
-
-
-
