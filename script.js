@@ -148,7 +148,11 @@ function enableExamMode() {
     if (!egzaminInterval) egzaminInterval = setInterval(tickExam, 1000);
 }
 
-document.getElementById("egzamin-start").addEventListener("click", () => {
+// Start i koniec egzaminu mają po dwa przyciski w różnych miejscach UI
+// (start: menu "⋯" + stopka arkusza; koniec: pasek górny + stopka arkusza).
+// Każda para wisi na jednej wspólnej funkcji, żeby zachowanie nie mogło się
+// kiedyś rozjechać między kopiami.
+function startExamPrompt() {
     const zgoda = confirm(
         "Rozpocząć próbny egzamin?\n\n" +
         "• zapisane odpowiedzi i punkty zostaną wyczyszczone (egzamin startuje na czystym arkuszu),\n" +
@@ -165,10 +169,18 @@ document.getElementById("egzamin-start").addEventListener("click", () => {
         return;
     }
     location.reload(); // świeży render: czysty arkusz + tryb egzaminu od pierwszej klatki
-});
-
-document.getElementById("egzamin-koniec").addEventListener("click", () => {
+}
+function finishExamPrompt() {
     if (confirm("Zakończyć egzamin i zobaczyć wynik?")) finishExam(false);
+}
+
+["egzamin-start", "egzamin-start-stopka"].forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) btn.addEventListener("click", startExamPrompt);
+});
+["egzamin-koniec", "egzamin-koniec-bar"].forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) btn.addEventListener("click", finishExamPrompt);
 });
 
 function finishExam(czasMinal) {

@@ -11,20 +11,6 @@ NASTAŁA ERA NOWEGO MASTERA BUHAHAHAHAHA
 <h3>DO REALIZACJI</h3>
 Jeżeli nie masz co robić to rób stąd.
 
-- tryb egzaminu — pasek i stopka (doprecyzowane z Henrichem 2026-07-21, patrz też DONE.md po realizacji):
-
-  * Nowy przycisk "zakończ egzamin" w pasku górnym: w #bar-right, zaraz PO #egzamin-timer (czyli przed #total-score). To DODATKOWY przycisk — istniejący #egzamin-koniec pod ostatnim zadaniem zostaje, nic się nie przenosi.
-    - Styl: ramka jak #toggle-tablica (border: 2px solid #e7e7e7; border-radius: 3px; padding ok. 8px 12px; background #fff; cursor: pointer), BEZ sztywnego min-width (etykieta się nie zmienia, to nie jest toggle).
-    - Widoczność: tylko gdy body ma klasę tryb-egzaminu — ten sam mechanizm co #egzamin-timer (display: none domyślnie, odkrywane regułą `body.tryb-egzaminu #id`).
-    - Zachowanie po kliknięciu: identyczne jak istniejący #egzamin-koniec — ten sam tekst confirm() ("Zakończyć egzamin i zobaczyć wynik?") i to samo wywołanie finishExam(false). Najlepiej podpiąć oba przyciski pod jedną wspólną funkcję/listener, żeby zachowanie nie mogło się kiedyś rozjechać.
-    - Ewentualna wąska szerokość ekranu: jeśli przycisk nie mieści się w pasku poniżej 720px, dodać mu analogiczne zmniejszenie jak #total-score dostaje w tym samym @media (max-width: 720px) (font-size: 13px) — ocenić wizualnie po wdrożeniu.
-
-  * Przycisk #egzamin-koniec (ten w stopce, pod ostatnim zadaniem) ma dostać odstęp od góry: zmienić `margin: 0 auto 80px;` na `margin: 40px auto 80px;`.
-
-  * Przycisk "rozpocznij próbny egzamin" ma DODATKOWO (nie zamiast) pojawić się w stopce arkusza, w tym samym miejscu co #egzamin-koniec (pod #exercises-wrapper), ale widoczny odwrotnie — tylko gdy body NIE ma klasy tryb-egzaminu (czyli w trybie ćwiczeniowym). Wersja w rozwijanym menu "⋯" (obecny #egzamin-start) zostaje bez zmian — to nie jest przeniesienie, chcemy przycisk w obu miejscach.
-    - Styl: identyczny jak #egzamin-koniec w stopce (ta sama ramka, te same 40px góra / 80px dół marginesu).
-    - Zachowanie po kliknięciu: identyczne jak istniejący #egzamin-start (ten sam tekst confirm(), ten sam zapis stanu do localStorage i location.reload()) — wspólna funkcja/listener dla obu przycisków, tak jak wyżej.
-
 - Tytuł arkusza (#exercises-sheet-title) i podtytuł trybu (#exercises-mode-subtitle) mają być nieco niżej w pasku — delikatny nudge, bez zmiany wysokości #top-bar. Dodać `position: relative; top: 5px;` na #bar-center. Jeśli 5px wygląda źle (za mało/za dużo), to jedyna wartość do skorygowania.
 
 - utworzenie zmiennych css, dodanie Darkmode i zrobienie przełącznika do niego (doprecyzowane 2026-07-21). Etap 1 = sama infrastruktura:

@@ -3,6 +3,29 @@ Nie wczytuj tego pliku domyślnie — tylko gdy potrzebne jest szersze spojrzeni
 rozwiązanie trudniejszego problemu albo sprawdzenie, czy/jak coś już kiedyś rozwiązano.
 (Zasada opisana w CLAUDE.md. Plik zaczął się jako notatki ze smoke testu.)
 
+ZROBIONE PRZEZ OPUSA (2026-07-21) — "tryb egzaminu — pasek i stopka" z TODO.md:
+- [ZROBIONE] Dodatkowy przycisk "zakończ egzamin" w pasku górnym (#egzamin-koniec-bar
+  w template.html, w #bar-right zaraz po #egzamin-timer, przed #total-score). Styl jak
+  #toggle-tablica (border 2px #e7e7e7, radius 3px, padding 8px 12px, bg #fff, cursor
+  pointer) ale BEZ min-width. Widoczny tylko pod body.tryb-egzaminu (domyślnie display:
+  none, odkrywany regułą body.tryb-egzaminu #egzamin-koniec-bar). W @media <=720px dostaje
+  font-size:13px i padding:8px jak #total-score. Istniejący #egzamin-koniec pod ostatnim
+  zadaniem został na miejscu.
+- [ZROBIONE] #egzamin-koniec (stopka) dostał odstęp od góry: margin 0 auto 80px → 40px
+  auto 80px (style.css).
+- [ZROBIONE] Dodatkowy przycisk "rozpocznij próbny egzamin" w stopce arkusza
+  (#egzamin-start-stopka w template.html, tuż obok #egzamin-koniec pod #exercises-wrapper),
+  widoczny odwrotnie — tylko w trybie ćwiczeniowym (znika pod body.tryb-egzaminu). Styl
+  identyczny jak #egzamin-koniec w stopce (ta sama ramka, 40px góra / 80px dół). Wersja
+  w menu "⋯" (#egzamin-start) została bez zmian.
+- Zachowanie: obie pary przycisków wiszą na wspólnych funkcjach w script.js
+  (startExamPrompt / finishExamPrompt), podpiętych pętlą do obu id, żeby kopie nie mogły
+  się kiedyś rozjechać. Zweryfikowane Playwrightem w obu trybach: w ćwiczeniowym widać tylko
+  stopkowy start (total-score widoczny), w egzaminie widać oba "zakończ" + timer (total-score
+  i stopkowy start ukryte); klik "zakończ egzamin" w pasku czyści stan egzaminu i pokazuje
+  podsumowanie (identycznie jak przycisk w stopce). Wizualnie sprawdzony układ paska (1280px
+  i 700px) oraz przyciski w stopce.
+
 ZROBIONE PRZEZ OPUSA (2026-07-17) — NISKI PRIORYTET z TODO.md:
 - [ZROBIONE] Przeciąganie paneli PDF ograniczone do widocznego viewportu
   (makePanelDraggable w script.js). Wcześniej dół/boki były swobodne i pasek
