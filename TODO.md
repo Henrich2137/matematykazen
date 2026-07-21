@@ -6,18 +6,23 @@ Zadania realizuj od góry do dołu.
 
 <br>
 
-NASTAŁA ERA NOWEGO MASTERA BUHAHAHAHAHA
-
 <h3>DO REALIZACJI</h3>
 Jeżeli nie masz co robić to rób stąd.
-
+- nic
 <br>
 
 
 NIE REALIZUJ
 czyli nieskonkretyzowane
+- Naprawić włącznie trybu egzaminu którey działa tylko raz a potem się blokuje.
 
-- Stworzyć przycisk "zgłoś błąd w zadaniu" i odpowiedni formularz
+- Flating  liczby nie 
+
+- Flaotujące żółte bomble z numerami zadań do sprawdzenia
+  * Mają na sobie złe liczby czasem. Była 24 która dotyczyłą 19stki.
+  * przycisk "Ukryj" w lewym dolnym rogu powinien mieć tekst w stylu "Ukryj wskaźniki nieocenionych zadań" i powinien mieć żółty border czy coś
+
+- Stworzyć przycisk "zgłoś błąd w zadaniu" i odpowiedni formularz. Formspree / Getform ale wewnątrz strony (submit przez fetch (AJAX) czy coś) można jeszcze to doprecyzować albo zmienić troche koncepcje.
 
 - dodanie rozwiązań do matury 2026
 
@@ -48,7 +53,7 @@ DLA HENRICHA:
 <br>
 
 
-INNE NOTATKI:s
+INNE NOTATKI:
 
 - Tryb egzaminu nie powinien być tak "schowany" w opcjach. Moze pod tytułem zrobić zamiast stałego napisu "tryb ćwiczeniowy" zrobić toggle między dwoma trybami.
 
@@ -56,6 +61,14 @@ INNE NOTATKI:s
 
 - ZMIANA UI: Wywalić top-bar i przenieśc wszystko na rozwijany pasek boczny po lewej który można łatwo schować, aby widzieć tylko zadania i włączone elementy takie jak tablica, punktacja itd.
 
+- Na telefonie defaltowo:
+  * wyłączone punkty
+  * przyciski Pokaż tablice wzorów itd schowane w trzech kropkach a okna z pdf odpalają się albo na full screen albo otwierają pdf w nowym oknie przeglądrki lub w ogóle w nowej "aplikacji" jeśli tak się da. mogą też odpalać pdf w przeglądarce pdf w tel jeśli to nie z byt skomplkowane
+  * Przycisk pokaż wybrane wzory się nie wyświetla
+
+- Zgłaszanie błędów - Formspree / Getform ale wewnątrz strony (submit przez fetch (AJAX) czy coś)
+- Analityka - GoatCounter
+- W index.html dodać sekcję o autorze i link do patronite
 
 <br><br><br>
 
