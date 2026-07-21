@@ -43,10 +43,12 @@
             </div>
 
             <div id="bar-right">
-                <!-- Timer widoczny tylko w trybie egzaminu (body.tryb-egzaminu
-                     w style.css); #total-score jest wtedy ukryty. Przycisk
-                     "zakończ egzamin" jest na dole arkusza, pod zadaniami. -->
+                <!-- Timer i przycisk "zakończ egzamin" widoczne tylko w trybie
+                     egzaminu (body.tryb-egzaminu w style.css); #total-score jest
+                     wtedy ukryty. Przycisk w pasku to DODATKOWA kopia tego spod
+                     ostatniego zadania (#egzamin-koniec) — oba robią to samo. -->
                 <span id="egzamin-timer" title="Pozostały czas próbnego egzaminu"></span>
+                <button id="egzamin-koniec-bar">zakończ egzamin</button>
                 <span id="total-score">0 / 0 pkt ERROR, coś się nie wczytało</span>
                 <button id="toggle-tablica">▼ Pokaż tablice wzorów</button>
                 <button id="menu-button" title="Więcej opcji">⋯</button>
@@ -131,11 +133,15 @@
     <!-- Exercises will be dynamically added here -->
     <div id="exercises-wrapper"></div>
 
-    <!-- "Zakończ egzamin" — pod ostatnim zadaniem, tam gdzie zdający kończy
-         pracę. Poza #exercises-wrapper, bo zadania są do niego dopisywane
-         przez JS i statyczny przycisk wylądowałby nad nimi. Widoczny tylko
-         w trybie egzaminu (body.tryb-egzaminu w style.css). -->
+    <!-- Stopka arkusza — pod ostatnim zadaniem (poza #exercises-wrapper, bo
+         zadania są do niego dopisywane przez JS i statyczny przycisk
+         wylądowałby nad nimi). Dwa przyciski w tym samym miejscu, widoczne
+         wzajemnie wykluczająco: "zakończ egzamin" tylko w trybie egzaminu,
+         "rozpocznij próbny egzamin" tylko w trybie ćwiczeniowym (reguły
+         body.tryb-egzaminu w style.css). Ten drugi to DODATKOWA kopia przycisku
+         z menu "⋯" (#egzamin-start) — oba robią to samo. -->
     <button id="egzamin-koniec">zakończ egzamin</button>
+    <button id="egzamin-start-stopka">rozpocznij próbny egzamin</button>
 
     <script src="solutionsInteractive.js"></script>
     <script src="script.js"></script>

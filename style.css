@@ -963,10 +963,12 @@ input::-webkit-inner-spin-button {
    działa normalnie pod spodem — tu tylko chowamy wszystko, co zdradza wynik,
    i neutralizujemy kolory poprawności na "zaznaczenie" (niebieska ramka). */
 
-/* Zegar (w pasku) i "zakończ egzamin" (na dole arkusza, pod ostatnim
-   zadaniem) istnieją tylko w trybie egzaminu. */
+/* Zegar oraz "zakończ egzamin" (kopia w pasku i kopia na dole arkusza)
+   istnieją tylko w trybie egzaminu. Odwrotnie: "rozpocznij próbny egzamin"
+   w stopce pokazuje się tylko w trybie ćwiczeniowym (poza egzaminem). */
 #egzamin-timer,
-#egzamin-koniec {
+#egzamin-koniec,
+#egzamin-koniec-bar {
     display: none;
 }
 body.tryb-egzaminu #egzamin-timer {
@@ -982,9 +984,30 @@ body.tryb-egzaminu #egzamin-timer {
     border-color: #d9534f;
     color: #d9534f;
 }
-body.tryb-egzaminu #egzamin-koniec {
+/* "Zakończ egzamin" w pasku: ta sama ramka co #toggle-tablica, ale BEZ
+   sztywnego min-width (etykieta się nie zmienia, to nie jest toggle). */
+body.tryb-egzaminu #egzamin-koniec-bar {
+    display: inline-block;
+    padding: 8px 12px;
+    border: 2px solid #e7e7e7;
+    border-radius: 3px;
+    background-color: #fff;
+    font-family: inherit;
+    white-space: nowrap;
+    text-align: center;
+    color: #111;
+    cursor: pointer;
+}
+body.tryb-egzaminu #egzamin-koniec-bar:hover {
+    border-color: #ccc;
+}
+/* Duże przyciski w stopce arkusza (pod ostatnim zadaniem): "zakończ egzamin"
+   w trybie egzaminu i "rozpocznij próbny egzamin" w trybie ćwiczeniowym mają
+   identyczny wygląd — ta sama ramka i te same marginesy (40px góra / 80px dół). */
+body.tryb-egzaminu #egzamin-koniec,
+#egzamin-start-stopka {
     display: block;
-    margin: 0 auto 80px;
+    margin: 40px auto 80px;
     padding: 10px 24px;
     border: 2px solid #e7e7e7;
     border-radius: 3px;
@@ -995,8 +1018,14 @@ body.tryb-egzaminu #egzamin-koniec {
     color: #111;
     cursor: pointer;
 }
-body.tryb-egzaminu #egzamin-koniec:hover {
+body.tryb-egzaminu #egzamin-koniec:hover,
+#egzamin-start-stopka:hover {
     border-color: #ccc;
+}
+/* W trybie egzaminu stopkowy "rozpocznij próbny egzamin" znika (jest już
+   przycisk "zakończ egzamin" w tym samym miejscu). */
+body.tryb-egzaminu #egzamin-start-stopka {
+    display: none;
 }
 
 /* Wszystko, co zdradza wynik albo pozwala go obejść, znika na czas egzaminu.
@@ -1108,8 +1137,12 @@ body.tryb-egzaminu .fill-in-input.incorrect {
         padding: 8px;
         font-size: 12px;
     }
-    #total-score {
+    #total-score,
+    body.tryb-egzaminu #egzamin-koniec-bar {
         font-size: 13px;
+    }
+    body.tryb-egzaminu #egzamin-koniec-bar {
+        padding: 8px;
     }
     #bar-menu {
         top: 54px;
