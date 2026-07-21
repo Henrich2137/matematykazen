@@ -6,16 +6,21 @@ Zadania realizuj od góry do dołu.
 
 <br>
 
-NASTAŁA ERA NOWEGO MASTERA BUHAHAHAHAHA
-
 <h3>DO REALIZACJI</h3>
 Jeżeli nie masz co robić to rób stąd.
-
+- nic
 <br>
 
 
 NIE REALIZUJ
 czyli nieskonkretyzowane
+- Naprawić włącznie trybu egzaminu którey działa tylko raz a potem się blokuje.
+
+- Flating  liczby nie 
+
+- Flaotujące żółte bomble z numerami zadań do sprawdzenia
+  * Mają na sobie złe liczby czasem. Była 24 która dotyczyłą 19stki.
+  * przycisk "Ukryj" w lewym dolnym rogu powinien mieć tekst w stylu "Ukryj wskaźniki nieocenionych zadań" i powinien mieć żółty border czy coś
 
 - Stworzyć przycisk "zgłoś błąd w zadaniu" i odpowiedni formularz
 
