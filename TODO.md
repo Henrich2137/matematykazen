@@ -11,26 +11,15 @@ NASTAŁA ERA NOWEGO MASTERA BUHAHAHAHAHA
 <h3>DO REALIZACJI</h3>
 Jeżeli nie masz co robić to rób stąd.
 
-
-WYSOKI PRIORYTET:
 - tryb egzaminu:
   * Przycisk "zakończ egzamin" powinien znajdować się również na pasku, przy zegarze, nie tylko przy stopce.
   * Przycisk "zakończ egzamin" przy stopce powinien mieć margines z góry.
   * Przycisk rozpocznij próbny egzamin powinien znajdować na dole ale tylko w trybie ćiwczeniowym
 
-- Spraw aby Tytuł egzaminu oraz podtytuł "tryb ćwiczenia"/"tryb egzaminu" oba były nieco niżej
+- Spraw aby tytuł egzaminu oraz podtytuł "tryb ćwiczenia"/"tryb egzaminu" oba były nieco niżej
 
 
 
-
-NISKI PRIORYTET
-- nic
-
-
-NAJNIŻSZY PRIORYTET, NA POTEM
-czyli skonkretyzowane
-
-- nic
 
 <br>
 
@@ -63,6 +52,7 @@ czyli nieskonkretyzowane
 
 
 DLA HENRICHA:
+
 - Obczaić analitykę czyli śledzenie ilości i zaangażowania użytkowników (moze da sięjakoś przez githuba)
 
 - Przerenderować w Manimie ostatni krok zad 2 (zad2/zad2rozw_step6.mp4): klatka końcowa pokazuje 5⁻⁴, a poprawny wynik to 5⁴ (5⁻¹ · 5⁵ = 5⁴). Komentarz pod filmem tymczasowo prostuje błąd.
