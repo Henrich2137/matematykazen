@@ -14,8 +14,12 @@ Jeżeli nie masz co robić to rób stąd.
 
 WYSOKI PRIORYTET:
 - Przycisk "zakończ egzamin" powinien znajdować się również na pasku, przy zegarze, nie tylko przy stopce.
+
 - Przycisk "zakończ egzamin" przy stopce powinien mieć margines z góry.
 
+- Przycisk rozpocznij próbny egzamin powinien znajdować na dole ale tylko w trybie ćiwczeniowym
+
+- 
 
 
 NISKI PRIORYTET:
@@ -32,6 +36,8 @@ Tutaj będą już skonkretyzowane.
 
 NIE REALIZUJ:
 Nieskonkretyzowane.
+
+- flating żółte wskaźniki pokazujące otwarte zadania które zostały wypełnione ale wymają zaznaczenia liczby punktów po ukończeniu egzaminu
 
 - zadania otwarte powinny też mieć okienko normalizujące i sprawdzające wpisaną odpowiedź. Do tego można rozpisać i dorobić donich pytania w stylu "Czy masz opisana długość boku BC?" które wynikająz zasad oceniania i ułatiwają ustalenie ilości punktów. przy nich można dać gwiazdkę, że trzeba każdy przypadek sprawdzić indywidualnie i autor strony nie jest egzaminatorem. 
 
