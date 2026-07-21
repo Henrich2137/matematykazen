@@ -11,8 +11,6 @@ NASTAŁA ERA NOWEGO MASTERA BUHAHAHAHAHA
 <h3>DO REALIZACJI</h3>
 Jeżeli nie masz co robić to rób stąd.
 
-- Tytuł arkusza (#exercises-sheet-title) i podtytuł trybu (#exercises-mode-subtitle) mają być nieco niżej w pasku — delikatny nudge, bez zmiany wysokości #top-bar. Dodać `position: relative; top: 5px;` na #bar-center. Jeśli 5px wygląda źle (za mało/za dużo), to jedyna wartość do skorygowania.
-
 - utworzenie zmiennych css, dodanie Darkmode i zrobienie przełącznika do niego (doprecyzowane 2026-07-21). Etap 1 = sama infrastruktura:
   * Wprowadzić CSS custom properties na kolory (tło, tekst, ramki, akcenty) w :root i przepiąć na nie style.css.
   * Ciemna paleta pod `@media (prefers-color-scheme: dark)` + nadpisanie klasą na <html>/<body> (żeby przełącznik miał pierwszeństwo nad systemem).

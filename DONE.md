@@ -3,6 +3,13 @@ Nie wczytuj tego pliku domyślnie — tylko gdy potrzebne jest szersze spojrzeni
 rozwiązanie trudniejszego problemu albo sprawdzenie, czy/jak coś już kiedyś rozwiązano.
 (Zasada opisana w CLAUDE.md. Plik zaczął się jako notatki ze smoke testu.)
 
+ZROBIONE PRZEZ OPUSA (2026-07-21) — nudge #bar-center z TODO.md:
+- [ZROBIONE] Tytuł arkusza (#exercises-sheet-title) i podtytuł trybu
+  (#exercises-mode-subtitle) delikatnie niżej w pasku: na #bar-center dodane
+  position: relative; top: 5px; (style.css). Wysokość #top-bar bez zmian
+  (zmierzone Playwrightem: 64px, position=relative/top=5px, tytuł opuszczony
+  o 5px). 5px wizualnie w porządku.
+
 ZROBIONE PRZEZ OPUSA (2026-07-21) — "tryb egzaminu — pasek i stopka" z TODO.md:
 - [ZROBIONE] Dodatkowy przycisk "zakończ egzamin" w pasku górnym (#egzamin-koniec-bar
   w template.html, w #bar-right zaraz po #egzamin-timer, przed #total-score). Styl jak

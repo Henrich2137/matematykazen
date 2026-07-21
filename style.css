@@ -109,6 +109,9 @@ body {
     white-space: nowrap;
     text-overflow: ellipsis;
     pointer-events: none;
+    /* Delikatny nudge tytułu i podtytułu w dół, bez zmiany wysokości #top-bar. */
+    position: relative;
+    top: 5px;
 }
 /* Mały, szarawy podtytuł pod nazwą arkusza — stały wskaźnik trybu
    (ćwiczenie / egzamin), przełączany przez updateModeSubtitle() w script.js. */
