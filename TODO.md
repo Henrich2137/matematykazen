@@ -40,7 +40,7 @@ Nieskonkretyzowane.
 
 - (tryb egzaminu) Stwórz flating żółte wskaźniki po prawej stronie które pokazują otwarte zadania, które zostały wypełnione, ale wymagają zaznaczenia liczby punktów po ukończeniu egzaminu. Wskaźniki powinny mieć gdzieś przycisk który wyłącza je wszystkie. Każy z wskaźników powinien znajdować się przy danym zadaniu lub przyklejać się do góry lub dołu strony w zależniści od tego gdzie trzeba przeskrolować.
 
-- zadania otwarte powinny też mieć okienko normalizujące i sprawdzające wpisaną odpowiedź. Do tego można rozpisać i dorobić donich pytania w stylu "Czy masz opisana długość boku BC?" które wynikająz zasad oceniania i ułatiwają ustalenie ilości punktów. przy nich można dać gwiazdkę, że trzeba każdy przypadek sprawdzić indywidualnie i autor strony nie jest egzaminatorem. 
+- zadania otwarte powinny też mieć okienko normalizujące i sprawdzające wpisaną odpowiedź. Do tego można rozpisać i dorobić donich pytania w stylu "Czy masz opisana długość boku BC?" które wynikają z zasad oceniania i ułatiwają ustalenie ilości punktów. przy nich można dać gwiazdkę, że trzeba każdy przypadek sprawdzić indywidualnie i autor strony nie jest egzaminatorem. 
 
 - utworzenie zmiennych css i zrobienie przełącznika na darkmode
 
@@ -62,8 +62,6 @@ Nieskonkretyzowane.
 <br>
 
 DLA UŻYTKOWNIKA:
-
-- POTESTOWAĆ TO CO POZMIENIAŁ OPUS (ZAPISANE W DONE.md) i ZMERGOWAĆ Z MASTEREM 
 
 - Przerenderować w Manimie ostatni krok zad 2 (zad2/zad2rozw_step6.mp4): klatka końcowa pokazuje 5⁻⁴, a poprawny wynik to 5⁴ (5⁻¹ · 5⁵ = 5⁴). Komentarz pod filmem tymczasowo prostuje błąd.
 
