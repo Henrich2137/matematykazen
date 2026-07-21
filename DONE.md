@@ -3,6 +3,22 @@ Nie wczytuj tego pliku domyślnie — tylko gdy potrzebne jest szersze spojrzeni
 rozwiązanie trudniejszego problemu albo sprawdzenie, czy/jak coś już kiedyś rozwiązano.
 (Zasada opisana w CLAUDE.md. Plik zaczął się jako notatki ze smoke testu.)
 
+ZROBIONE PRZEZ OPUSA (2026-07-21) — poprawki żółtych bombli (zgłoszone przez Henricha) z TODO.md:
+- [ZROBIONE] Złe liczby na kropkach (np. „24" dotyczyła zad 19). Przyczyna: numer
+  brany z index+1, a indeksy w tablicy rozjeżdżają się z numeracją CKE przez zadania
+  nadrzędne (maxScore:0) i wieloczęściowe (kilka wpisów „Zadanie 12/17"). Teraz numer
+  parsowany z treści zadania (.question textContent, regex „Zadanie N"), z fallbackiem
+  do index+1. Zweryfikowane: wypełnione zad otwarte idx 2/23/34 dają kropki 3/19/30
+  (a nie 3/24/35); kropka „19" wskazuje #exercise-23, którego treść to „Zadanie 19".
+- [ZROBIONE] Przycisk „ukryj": tekst zmieniony z „× ukryj" na „✕ Ukryj wskaźniki
+  nieocenionych zadań", przeniesiony do lewego dolnego rogu (kropki są po prawej, więc
+  się nie zasłaniają) i dostał żółtą ramkę (2px var(--wskaznik-border)) wiążącą go
+  wizualnie z kropkami. Kolumnie kropek zdjęto rezerwę na przycisk u dołu prawej (mogą
+  schodzić prawie do dołu). Zweryfikowane wizualnie w jasnym i ciemnym.
+- PRZY OKAZJI naprawiony zastany bug: restore postępu ustawiał tylko openTextarea.value,
+  a nie stan.open — po reloadzie kolejny zapis kasował zapisany tok rozwiązania zadania
+  otwartego. Teraz restore ustawia też stan.open (zrobione już w commicie z wskaźnikami).
+
 ZROBIONE PRZEZ OPUSA (2026-07-21) — pływające żółte wskaźniki nieocenionych zadań otwartych z TODO.md:
 - [ZROBIONE] Po zakończeniu próbnego egzaminu (faza „oceń się") każde zadanie
   otwarte (selfScore) WYPEŁNIONE (jest wpisany tok rozwiązania w textarea), ale bez

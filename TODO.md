@@ -10,10 +10,6 @@ Zadania realizuj od góry do dołu.
 Jeżeli nie masz co robić to rób stąd.
 - Naprawić włącznie trybu egzaminu który działa tylko raz a potem się blokuje.
 
-- Flaotujące żółte bomble z numerami zadań do sprawdzenia
-  * Mają na sobie złe liczby czasem. Była 24 która dotyczyłą 19stki.
-  * przycisk "Ukryj" w lewym dolnym rogu powinien mieć tekst w stylu "Ukryj wskaźniki nieocenionych zadań" i powinien mieć żółty border czy coś
-
 <br>
 
 

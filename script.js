@@ -312,8 +312,8 @@ function pokazWskaznikiOtwarte() {
         wskaznikiUkryjBtn = document.createElement("button");
         wskaznikiUkryjBtn.id = "wskazniki-ukryj";
         wskaznikiUkryjBtn.type = "button";
-        wskaznikiUkryjBtn.textContent = "× ukryj";
-        wskaznikiUkryjBtn.title = "Ukryj wszystkie wskaźniki nieocenionych zadań";
+        wskaznikiUkryjBtn.textContent = "✕ Ukryj wskaźniki nieocenionych zadań";
+        wskaznikiUkryjBtn.title = "Ukryj wszystkie wskaźniki nieocenionych zadań otwartych";
         wskaznikiUkryjBtn.addEventListener("click", ukryjWszystkieWskazniki);
         document.body.appendChild(wskaznikiUkryjBtn);
     }
@@ -370,7 +370,9 @@ function repozycjonujWskazniki() {
     const topBar = document.getElementById("top-bar");
     const polowa = 13; // połowa wysokości kropki (26px)
     const gora = (topBar ? topBar.getBoundingClientRect().bottom : 0) + 10 + polowa;
-    const dol = window.innerHeight - 44 - polowa; // miejsce na przycisk „ukryj" u dołu
+    // Przycisk „ukryj" jest w lewym dolnym rogu, więc prawa kolumna kropek może
+    // schodzić prawie do samego dołu — zostawiamy tylko drobny margines.
+    const dol = window.innerHeight - 12 - polowa;
     const krok = 32;   // min. odstęp między środkami kropek
     const items = wskaznikiEls.map(({ el, zadanie }) => {
         const r = zadanie.el.getBoundingClientRect();
@@ -882,7 +884,13 @@ function loadExercises() {
             answersContainer.appendChild(box);
 
             // Do rejestru dla pływających wskaźników „oceń się" po egzaminie.
-            zadaniaOtwarte.push({ el: exerciseClone, stan, numer: index + 1 });
+            // Numer bierzemy z treści („Zadanie N."), NIE z index+1 — indeksy
+            // w tablicy rozjeżdżają się z numeracją CKE przez zadania nadrzędne
+            // (maxScore: 0) i wieloczęściowe (kilka wpisów „Zadanie 12/17").
+            const qText = (exerciseClone.querySelector(".question")?.textContent) || "";
+            const mNumer = qText.match(/Zadanie\s*(\d+)/i);
+            const numer = mNumer ? mNumer[1] : String(index + 1);
+            zadaniaOtwarte.push({ el: exerciseClone, stan, numer });
         } else if (type === "fillIn") {
             // Zadanie z polami do uzupełnienia ("...") — uczeń wpisuje odpowiedzi
             // ręcznie, a przycisk "Sprawdź" koloruje ramki pól na zielono/czerwono

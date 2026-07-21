@@ -1324,24 +1324,28 @@ body.tryb-egzaminu .fill-in-input.incorrect {
 .wskaznik-otwarte:hover {
     filter: brightness(0.94);
 }
-/* Wspólny przycisk „ukryj wszystkie" — w prawym dolnym rogu, pod kolumną kropek. */
+/* Wspólny przycisk „ukryj wszystkie" — w lewym dolnym rogu (kropki są po prawej,
+   więc się nie zasłaniają). Żółta ramka wiąże go wizualnie z kropkami. */
 #wskazniki-ukryj {
     position: fixed;
-    right: 10px;
+    left: 10px;
     bottom: 10px;
     z-index: 15;
     display: none;
-    padding: 5px 10px;
-    border: 1px solid var(--border-strong);
+    max-width: calc(100vw - 20px);
+    padding: 6px 12px;
+    border: 2px solid var(--wskaznik-border);
     border-radius: 3px;
     background-color: var(--bg);
     font-family: inherit;
-    font-size: 12px;
+    font-size: 13px;
     color: var(--text-faint);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
     cursor: pointer;
 }
 #wskazniki-ukryj:hover {
     color: var(--text);
+    background-color: var(--bg-muted);
 }
 
 /* ===== RESPONSYWNOŚĆ (WĄSKIE EKRANY) ===== */
