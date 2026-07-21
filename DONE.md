@@ -3,6 +3,32 @@ Nie wczytuj tego pliku domyślnie — tylko gdy potrzebne jest szersze spojrzeni
 rozwiązanie trudniejszego problemu albo sprawdzenie, czy/jak coś już kiedyś rozwiązano.
 (Zasada opisana w CLAUDE.md. Plik zaczął się jako notatki ze smoke testu.)
 
+ZROBIONE PRZEZ OPUSA (2026-07-21) — zmienne CSS + dark mode (Etap 1 infrastruktura) z TODO.md:
+- [ZROBIONE] Wprowadzone CSS custom properties na wszystkie kolory (tło, tekst,
+  ramki, akcenty, stany poprawne/błędne, badge punktacji, komunikat błędu) w :root
+  (style.css). Wartości w :root = dokładnie dotychczasowe kolory jasnego motywu,
+  więc jasny wygląda 1:1 jak wcześniej (zweryfikowane computed: body bg
+  rgb(255,255,255), tekst rgb(17,17,17), #total-score rgb(133,133,133)). Cały
+  style.css (~136 użyć) przepięty na var(--...). Canvas ma własne --canvas-bg,
+  które NIE ciemnieje (widżety rysują ciemnym po jasnym — inaczej wykresy
+  zniknęłyby). Landing-cta odwraca kolory przez var(--text)/var(--bg), więc hover
+  działa w obu motywach.
+- [ZROBIONE] Ciemna paleta w dwóch bliźniaczych blokach: @media
+  (prefers-color-scheme: dark) :root:not(.theme-light) (motyw systemowy/auto) oraz
+  html.theme-dark (ręczne wymuszenie — pierwszeństwo nad systemem). Ręczny jasny =
+  html.theme-light (wyłącza regułę systemową przez :not, zostają wartości :root).
+- [ZROBIONE] Przełącznik #theme-toggle w menu „⋯" (template.html) cyklujący
+  auto → jasny → ciemny → auto; wybór ≠ auto zapisywany w localStorage pod
+  GLOBALNYM kluczem matematykazen-motyw (wspólny dla wszystkich arkuszy). Klasę na
+  <html> ustawia mały inline-skrypt w <head> template.html (bez mignięcia motywu /
+  FOUC), logika i etykieta w script.js. Ten sam snippet dodany do index.html, żeby
+  landing honorował zapamiętany motyw (landing nie ma własnego przełącznika — bez
+  zapisu idzie za systemem). Zweryfikowane Playwrightem: cykl stanów, klasy na
+  <html> (theme-light/theme-dark), zapis/kasowanie w localStorage, trwałość po
+  reload bez FOUC, brak błędów w konsoli; wizualnie sprawdzone dark: pasek, treść
+  zadania + KaTeX, błędna odpowiedź (przygaszona czerwona ramka), blok rozwiązania,
+  nakładka podsumowania egzaminu, landing.
+
 ZROBIONE PRZEZ OPUSA (2026-07-21) — nudge #bar-center z TODO.md:
 - [ZROBIONE] Tytuł arkusza (#exercises-sheet-title) i podtytuł trybu
   (#exercises-mode-subtitle) delikatnie niżej w pasku: na #bar-center dodane

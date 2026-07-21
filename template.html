@@ -16,6 +16,20 @@
          startSheet() na dole strony (dokumentacja schematu: ARCHITECTURE.md). -->
     <link rel="stylesheet" href="style.css">
 
+    <!-- Motyw jasny/ciemny: zapamiętany wybór ustawiamy na <html> ZANIM
+         wyrenderuje się strona, żeby nie mignął zły motyw (FOUC). Brak wpisu =
+         "auto" (motyw systemowy z @media). Pełna logika przełącznika jest
+         w script.js (#theme-toggle); tu tylko wczesne odtworzenie stanu. -->
+    <script>
+        (function () {
+            try {
+                var m = localStorage.getItem("matematykazen-motyw");
+                if (m === "ciemny") document.documentElement.classList.add("theme-dark");
+                else if (m === "jasny") document.documentElement.classList.add("theme-light");
+            } catch (e) {}
+        })();
+    </script>
+
     <!-- KaTeX zvendorowany do repo (vendor/katex/) — działa w pełni offline.
          Ładowany synchronicznie (lokalne pliki, bez defer), żeby inline skrypt
          na dole strony mógł od razu wołać renderMathInElement. -->
@@ -61,6 +75,7 @@
          schowane, żeby nie zaśmiecały paska. ID przycisków bez zmian — inline
          skrypt odwołuje się do nich tak samo jak wtedy, gdy były w pasku. -->
     <div id="bar-menu">
+        <button id="theme-toggle">motyw: auto</button>
         <button id="show-all-solutions">pokaż wszystkie rozwiązania</button>
         <button id="score-switch-button">widok punktów: wszystko</button>
         <button id="reset-scores">resetuj punktację</button>
