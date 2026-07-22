@@ -89,33 +89,14 @@ Claudzie, możesz tutaj dopisywać rzeczy które mam sprawdzić/przetestować.
 OPUS DOPISAŁ PODCZAS ROBIENIA CODE-REVIEW:
 (code review gałęzi claude/do-sprawdzenia-yfi2mu, 2026-07-22 — dark mode + podwojone przyciski egzaminu + żółte wskaźniki. Punkty oznaczone [POTWIERDZONE] odtworzyłem realnie w przeglądarce, reszta z czytania kodu.)
 
-NAJPILNIEJSZE — strona kasuje pracę ucznia:
-
-- [POTWIERDZONE] Znika wpisany tok rozwiązania zadania otwartego. W bloku przywracania postępu (script.js ~1224-1251) `stan.open = zap.open` stoi PO `selfButtons[zap.self].click()`, a ten klik woła `zapiszPostep()`, który serializuje zadanie z jeszcze pustym `stan.open`. Test (2024-grudzien, zadanie 30 = indeks 34, seed `{open:"...", self:3}`): po 1. odświeżeniu w localStorage zostaje samo `{"self":3}` (na ekranie tekst jeszcze jest, więc nikt nie zauważy), po 2. odświeżeniu okienko jest puste. Komentarz dopisany w script.js:1241-1244 opisuje dokładnie ten problem — poprawka wylądowała tylko 8 linijek za nisko.
-  * Szerszy wariant tego samego: `zapiszPostep()` zapisuje CAŁĄ tablicę `stanOdpowiedzi`, więc każdy odtwarzający klik utrwala puste stany wszystkich zadań o wyższym indeksie. Traci dane każde zadanie otwarte leżące poniżej ostatniego zadania odtwarzanego kliknięciem.
-  * Naprawa obu naraz: wypełnić `stan` danymi z `zap` ZANIM ruszy blok odtwarzających klików (albo wysłać na textarea `new Event("input")` zamiast przypisywać `.value` + `stan.open` ręcznie).
-
-ŻÓŁTE WSKAŹNIKI — nie działają w głównym scenariuszu:
-
-- [POTWIERDZONE] Wskaźniki nie pokazują się, gdy uczeń liczył na kartce. `czyNieoceniony()` (script.js:288-291) wymaga niepustego `stan.open`, ale okienko na tok rozwiązania jest opcjonalne — etykieta pod zadaniem wprost mówi "Rozwiąż na kartce, porównaj z rozwiązaniem i oceń się". Test: egzamin zakończony bez ani jednego wpisu w textarea → zero kropek, `KLUCZ_OCENIANIA` od razu skasowany, mimo że w 2024-grudzien nieocenionych zostaje 7 zadań otwartych. Czyli funkcja nie odpala się dokładnie w tej sytuacji, dla której powstała.
-
-- [POTWIERDZONE] Wskaźniki gubią zadania wypełnione w trakcie fazy "oceń się". Lista liczona jest raz w `pokazWskaznikiOtwarte()` i może już tylko maleć — handler `input` textarea (script.js:850) nie woła `odswiezWskaznikiOtwarte()`, a ta funkcja wyłącznie filtruje. Test: kropka ["26"] → uczeń dopisuje rozwiązanie do zad. 30 → kropki nadal ["26"] → ocenia zad. 26 → kropki [] i `KLUCZ_OCENIANIA` skasowany na stałe. Zad. 30 zostaje wypełnione i nieocenione, bez kropki, a odświeżenie już fazy nie przywróci.
-
-PRZYCISKI W ZŁYCH MIEJSCACH:
-
-- [POTWIERDZONE] Przycisk "rozpocznij próbny egzamin" widoczny na stronie błędu. `#egzamin-start-stopka` nie dostał domyślnego `display: none` (style.css ~1205), w odróżnieniu od `#egzamin-koniec` i `#egzamin-koniec-bar` z grupy w style.css:1167. Test: `template.html?arkusz=nie-ma-takiego` → pod komunikatem "Błędny link" siedzi duży przycisk startu egzaminu; klik kasuje `matematykazen-postep-null` i startuje egzamin na stronie bez zadań. Widoczny też przez cały czas wczytywania exercises.json.
-
-- [POTWIERDZONE] Na telefonie nowy "zakończ egzamin" w pasku wypycha menu ⋯ poza ekran. `#bar-right` ma `flex-wrap: nowrap`, a breakpointy ≤720px/≤560px zmniejszają nowemu przyciskowi tylko font i padding. Test różnicowy przy 360px w trybie egzaminu: prawa krawędź `#menu-button` = 430px przy oknie 360px; po ukryciu samego `#egzamin-koniec-bar` = 328px, czyli mieści się. (Poziome przepełnienie strony przy 360px istniało już wcześniej — ale to ten przycisk wypycha menu poza widok.)
-
-- [POTWIERDZONE] Przełącznik motywu wygląda inaczej niż reszta menu ⋯. `#theme-toggle` nie został dopisany do listy selektorów w style/sheet.css:103 (`#score-switch-button, #show-all-solutions, #reset-scores, #egzamin-start`), a `#bar-menu button` ustawia tylko layout. Zmierzone: `#theme-toggle` → `border: 2px outset`, tło `rgb(240,240,240)`; sąsiedni `#reset-scores` → `border: 2px solid`, tło białe. Czyli szary systemowy przycisk pośród czterech białych z ramką.
+[Punkty 1-7 z tej sekcji — znikanie wpisanego toku rozwiązania, żółte wskaźniki
+(oba problemy) i cztery poprawki UI (przycisk startu egzaminu na stronie błędu,
+menu ⋯ na telefonie, przełącznik motywu) — naprawione przez Sonneta 2026-07-22
+na gałęzi claude/po-review, zweryfikowane Playwrightem. Szczegóły: DONE/03-biezace.md.]
 
 TRYB EGZAMINU I PAMIĘĆ PRZEGLĄDARKI:
 
-- Prawdopodobna przyczyna punktu "egzamin działa tylko raz a potem się blokuje" z sekcji DO REALIZACJI. Zwykły cykl start → koniec → start sprawdziłem i działa poprawnie, więc to nie ta ścieżka. Natomiast przy DWÓCH kartach tego samego arkusza: karta A kończy egzamin i usuwa `KLUCZ_EGZAMINU`, po czym karta B zostaje na zawsze w `body.tryb-egzaminu` — `finishExam()` wychodzi od razu na `if (!stan) return;` (script.js:227), więc zegar stoi, rozwiązania/punkty są ukryte, a klik "zakończ egzamin" nic nie robi i nie daje żadnego komunikatu. Ratuje tylko ręczne odświeżenie. Warto sprawdzić, czy tak właśnie to u Ciebie wygląda.
-
-- Nieudany start egzaminu i tak kasuje postęp. `startExamPrompt()` (script.js:202-209) najpierw kasuje `KLUCZ_POSTEPU` i `KLUCZ_OCENIANIA`, a dopiero potem zapisuje `KLUCZ_EGZAMINU`. Gdy `setItem` rzuci (pełna pamięć, tryb prywatny), alert mówi "egzamin nie wystartował", ale postęp jest już bezpowrotnie skasowany. Naprawa: odwrócić kolejność — zapis egzaminu pierwszy, kasowanie dopiero po jego sukcesie.
-
-- "Resetuj punktację" nie kasuje trwającego egzaminu. Handler (script.js:102-109) czyści `KLUCZ_POSTEPU` + `KLUCZ_OCENIANIA`, ale nie `KLUCZ_EGZAMINU`. Przy dwóch kartach można kliknąć reset i po przeładowaniu wylądować w trwającym egzaminie na wyczyszczonym arkuszu, z częściowo zużytym zegarem — czego tekst confirm() w ogóle nie zapowiada.
+- Dwie karty tego samego arkusza blokują "zakończ egzamin". Karta A kończy egzamin i usuwa `KLUCZ_EGZAMINU`, po czym karta B zostaje na zawsze w `body.tryb-egzaminu` — `finishExam()` wychodzi od razu na `if (!stan) return;` (script.js), więc zegar stoi, rozwiązania/punkty są ukryte, a klik "zakończ egzamin" nic nie robi i nie daje żadnego komunikatu. Ratuje tylko ręczne odświeżenie. NIE naprawione (2026-07-22, Sonnet) — wymaga większej przebudowy niż drobna poprawka (np. nasłuch zdarzenia `storage`, żeby karta B zauważyła zmianę localStorage z karty A, albo inna architektura synchronizacji stanu między kartami). Dwie mniejsze, powiązane poprawki z tej samej sekcji (nieudany start egzaminu kasujący postęp; "resetuj punktację" niekasujący trwającego egzaminu) zostały już naprawione — patrz DONE/03-biezace.md.
 
 DARK MODE — WYGLĄD:
 
