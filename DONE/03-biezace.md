@@ -23,7 +23,7 @@ ZROBIONE PRZEZ SONNETA (2026-07-22) — podział dużych plików, kroki 1/1b/2 z
   CLAUDE.md zaktualizowany (odsyła do obu plików).
 - Weryfikacja: `node --check` na wszystkich 11 nowych/zmienionych plików JS + walidacja
   JSON obu exercises.json — czysto. `grep -r solutionInteractive` po zmianie zwraca
-  wyłącznie archiwalne DONE TODO/STARY_PRZENIESIONY_DONE.md i `.solution-interactive-
+  wyłącznie archiwalne DONE/STARY_PRZENIESIONY_DONE.md i `.solution-interactive-
   container` (zgodnie z planem). Playwright headless (oba arkusze, `?arkusz=2024-grudzien`
   i `?arkusz=2026-maj`): liczba zadań 35/41 OK, wszystkie 9 widżetów renderują
   `canvas.widget-canvas` po kliknięciu „Rozwiązanie" i reagują na przeciąganie/suwak,
@@ -50,7 +50,8 @@ ZROBIONE PRZEZ SONNETA (2026-07-22) — podział dużych plików, kroki 1/1b/2 z
   tryb egzaminu chowa #total-score i pokazuje #egzamin-timer (exam.css), landing
   .landing-hero wyśrodkowany (landing.css) — wszystko zgodne. Wizualny przegląd
   (jasny/ciemny, ~500px, landing) zostawiony Henrichowi — patrz DO SPRAWDZENIA w TODO.md.
-  Krok 4 zrobiony wcześniej przez Henricha inaczej (katalog „DONE TODO" zamiast „DONE").
+  Krok 4 zrobiony wcześniej przez Henricha inaczej (katalog nazwano „DONE TODO"; od
+  2026-07-22 zmieniony na „DONE").
   Krok 5 (script.js → js/) odłożony, poza zakresem tej sesji.
 
 ZROBIONE PRZEZ OPUSA (2026-07-21) — poprawki żółtych bombli (zgłoszone przez Henricha) z TODO.md:
