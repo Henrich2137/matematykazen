@@ -995,13 +995,14 @@ function loadExercises() {
         solutionTextContainer.innerHTML = exercise.solutionText || "";
 
         // Widżet interaktywny: w danych (JSON) jest tylko NAZWA widżetu (string),
-        // funkcję bierzemy z rejestru WIDZETY zdefiniowanego przy widżetach niżej.
-        if (exercise.solutionInteractive) {
-            const widget = WIDZETY[exercise.solutionInteractive];
+        // funkcję bierzemy z rejestru WIDZETY (widgets/_registry.js, załadowany
+        // przed tym plikiem — patrz kolejność <script> w template.html).
+        if (exercise.solutionWidget) {
+            const widget = WIDZETY[exercise.solutionWidget];
             if (widget) {
                 widget(solutionInteractiveContainer);
             } else {
-                console.warn(`Zadanie ${index + 1}: nieznany widżet "${exercise.solutionInteractive}"`);
+                console.warn(`Zadanie ${index + 1}: nieznany widżet "${exercise.solutionWidget}"`);
             }
         }
 
@@ -1066,7 +1067,7 @@ function loadExercises() {
         // widocznym blokiem jest zbędny (np. gdy rozwiązanie to sam tekst) — zdejmujemy
         // go z ostatniego widocznego bloku.
         const hasText = !!(exercise.solutionText && exercise.solutionText.trim() !== "");
-        const hasInteractive = !!(exercise.solutionInteractive && WIDZETY[exercise.solutionInteractive]);
+        const hasInteractive = !!(exercise.solutionWidget && WIDZETY[exercise.solutionWidget]);
         const hasMore = !!(exercise.solutionTextMore && exercise.solutionTextMore.trim() !== "");
         const solutionBlocks = [
             hasText ? solutionTextContainer : null,

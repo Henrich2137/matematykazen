@@ -938,7 +938,7 @@ canvas {
     background-color: var(--canvas-bg);
 }
 
-/* ===== WIDŻETY INTERAKTYWNE (solutionInteractive) ===== */
+/* ===== WIDŻETY INTERAKTYWNE (solutionWidget) ===== */
 .widget {
     padding-top: 10px;
     text-align: center;
