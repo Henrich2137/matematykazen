@@ -1,6 +1,6 @@
 // script.js — logika strony arkusza: render zadań, tryb egzaminu, podpowiedzi,
 // rozwiązania krok-po-kroku, panele PDF. Wydzielone z matematykazen.html.
-// Ładowane PO solutionsInteractive.js (używa rejestru WIDZETY).
+// Ładowane PO plikach z widgets/ (używa rejestru WIDZETY z widgets/_registry.js).
 
 let totalScore = 0;
 
