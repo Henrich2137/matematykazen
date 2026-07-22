@@ -103,7 +103,8 @@
 #score-switch-button,
 #show-all-solutions,
 #reset-scores,
-#egzamin-start {
+#egzamin-start,
+#wskazniki-tryb-toggle {
     padding: 5px 10px;
     border: 2px solid var(--border);
     background-color: var(--bg);
