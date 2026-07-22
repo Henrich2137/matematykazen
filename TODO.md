@@ -112,14 +112,14 @@ TRYB EGZAMINU I PAMIĘĆ PRZEGLĄDARKI:
 
 DARK MODE — WYGLĄD:
 
-- Obrazki CKE i filmy z Manima świecą na biało w ciemnym motywie. Migracja świadomie przypięła `--canvas-bg: #fff` dla płócien widgetów, ale `.question img` (style.css ~542), obrazki kroków i `<video>` nie dostały żadnej reguły tła/filtra — wszystkie PNG w matura/**/ są nieprzezroczyste białe, więc renderują się jako jaskrawe prostokąty na karcie #1b1b1b.
+- Obrazki CKE i filmy z Manima świecą na biało w ciemnym motywie. Migracja świadomie przypięła `--canvas-bg: #fff` dla płócien widgetów, ale `.question img` (style/sheet.css:293), obrazki kroków i `<video>` nie dostały żadnej reguły tła/filtra — wszystkie PNG w matura/**/ są nieprzezroczyste białe, więc renderują się jako jaskrawe prostokąty na karcie #1b1b1b.
 
 - Dwie zmienne CSS użyte niezgodnie z przeznaczeniem na stronie głównej:
-  * `.landing-footer` (style.css:1151) bierze kolor tekstu z `--border-close` — tokena ramki krzyżyka paneli. Jego ciemna wartość to #666 na tle #1b1b1b, czyli kontrast 3.0:1, poniżej progu WCAG AA 4.5:1 dla tekstu 13px. Powinien iść przez `--text-faint-*`.
-  * `.landing-card` (style.css:1123) bierze ramkę z `--bg-hover` — tokena tła hoveru. Powinna iść przez któryś `--border*`.
+  * `.landing-footer` (style/landing.css:90) bierze kolor tekstu z `--border-close` — tokena ramki krzyżyka paneli. Jego ciemna wartość to #666 na tle #1b1b1b, czyli kontrast 3.0:1, poniżej progu WCAG AA 4.5:1 dla tekstu 13px. Powinien iść przez `--text-faint-*`.
+  * `.landing-card` (style/landing.css:63) bierze ramkę z `--bg-hover` — tokena tła hoveru. Powinna iść przez któryś `--border*`.
   * Skutek uboczny obu: przestrojenie krzyżyka paneli PDF po cichu zmienia wygląd strony głównej, a testowany będzie panel, nie landing.
 
-- Kropki "gumkują" przy scrollowaniu. `.wskaznik-otwarte` ma `transition: top 0.12s ease` (style.css:1322), a `repozycjonujWskazniki()` przepisuje `top` w każdej klatce rAF — tranzycja restartuje się co klatkę i nigdy nie kończy, więc kropki wloką się za zadaniami i drgają jeszcze ~120ms po zatrzymaniu scrolla. Animacja ma sens tylko dla skokowej repozycji po ocenieniu zadania.
+- Kropki "gumkują" przy scrollowaniu. `.wskaznik-otwarte` ma `transition: top 0.12s ease` (style/exam.css:164), a `repozycjonujWskazniki()` przepisuje `top` w każdej klatce rAF — tranzycja restartuje się co klatkę i nigdy nie kończy, więc kropki wloką się za zadaniami i drgają jeszcze ~120ms po zatrzymaniu scrolla. Animacja ma sens tylko dla skokowej repozycji po ocenieniu zadania.
 
 DOKUMENTACJA:
 
