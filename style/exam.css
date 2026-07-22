@@ -5,10 +5,14 @@
 
 /* Zegar oraz "zakończ egzamin" (kopia w pasku i kopia na dole arkusza)
    istnieją tylko w trybie egzaminu. Odwrotnie: "rozpocznij próbny egzamin"
-   w stopce pokazuje się tylko w trybie ćwiczeniowym (poza egzaminem). */
+   w stopce pokazuje się tylko w trybie ćwiczeniowym PO wyrenderowaniu arkusza
+   (klasa body.arkusz-wczytany, dodawana dopiero na końcu loadExercises()) —
+   inaczej ten przycisk siedziałby na stronie błędu (zły ?arkusz=) albo przez
+   cały czas wczytywania exercises.json. */
 #egzamin-timer,
 #egzamin-koniec,
-#egzamin-koniec-bar {
+#egzamin-koniec-bar,
+#egzamin-start-stopka {
     display: none;
 }
 body.tryb-egzaminu #egzamin-timer {
@@ -43,10 +47,13 @@ body.tryb-egzaminu #egzamin-koniec-bar:hover {
 }
 /* Duże przyciski w stopce arkusza (pod ostatnim zadaniem): "zakończ egzamin"
    w trybie egzaminu i "rozpocznij próbny egzamin" w trybie ćwiczeniowym mają
-   identyczny wygląd — ta sama ramka i te same marginesy (40px góra / 80px dół). */
-body.tryb-egzaminu #egzamin-koniec,
+   identyczny wygląd — ta sama ramka i te same marginesy (40px góra / 80px dół).
+   Wygląd jest wspólny, ale widoczność KAŻDEGO sterowana jest osobną regułą
+   niżej — inaczej dzielona reguła display cichcem odkrywa jeden przycisk przy
+   okazji warunku napisanego dla drugiego (tak było wcześniej z tą kombinacją
+   selektorów: #egzamin-start-stopka dostawał display:block bezwarunkowo). */
+#egzamin-koniec,
 #egzamin-start-stopka {
-    display: block;
     margin: 40px auto 80px;
     padding: 10px 24px;
     border: 2px solid var(--border);
@@ -58,14 +65,15 @@ body.tryb-egzaminu #egzamin-koniec,
     color: var(--text);
     cursor: pointer;
 }
-body.tryb-egzaminu #egzamin-koniec:hover,
+#egzamin-koniec:hover,
 #egzamin-start-stopka:hover {
     border-color: var(--border-strong);
 }
-/* W trybie egzaminu stopkowy "rozpocznij próbny egzamin" znika (jest już
-   przycisk "zakończ egzamin" w tym samym miejscu). */
-body.tryb-egzaminu #egzamin-start-stopka {
-    display: none;
+body.tryb-egzaminu #egzamin-koniec {
+    display: block;
+}
+body.arkusz-wczytany:not(.tryb-egzaminu) #egzamin-start-stopka {
+    display: block;
 }
 
 /* Wszystko, co zdradza wynik albo pozwala go obejść, znika na czas egzaminu.

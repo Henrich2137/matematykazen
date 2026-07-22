@@ -1311,6 +1311,12 @@ function loadExercises() {
         // Append the exercise to the wrapper
         exercisesWrapper.appendChild(exerciseClone);
     });
+
+    // Arkusz faktycznie wyrenderowany — dopiero teraz mają sens przyciski
+    // zależne od jego zawartości (np. start egzaminu w stopce, style/exam.css).
+    // Bez tej klasy strona błędu (zły ?arkusz=) albo czas wczytywania
+    // exercises.json pokazywałyby te przyciski na pusto.
+    document.body.classList.add("arkusz-wczytany");
 }
 
 // Wypełnia chrome strony (tytuł karty, meta description, tytuł w pasku, PDF
