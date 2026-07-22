@@ -4,6 +4,71 @@ spojrzenie na projekt, rozwiazanie trudniejszego problemu albo sprawdzenie, czy/
 kiedys rozwiazano. Zasada podzialu i indeks: DONE/README.md.
 Zakres: 2026-07-13 (WYSOKI PRIORYTET) - 2026-07-21. Partia jeszcze niezmergowana do mastera.
 
+ZROBIONE PRZEZ SONNETA (2026-07-22) — naprawy z code-review Opusa (gałąź
+claude/do-sprawdzenia-yfi2mu → claude/po-review), punkty 1-7 sekcji „DO REALZACJI
+Dopisane przez CLAUDA" w TODO.md:
+- [ZROBIONE] [1+2] Znikanie wpisanego toku rozwiązania zadania otwartego po
+  odświeżeniu. Przyczyna: zapiszPostep() serializuje CAŁĄ tablicę stanOdpowiedzi,
+  a odtwarzające kliki (przywracanie postępu) zapisywały ją, gdy zadania o
+  wyższym indeksie miały jeszcze puste {}. Naprawa: cały zapisany stan (zapis.stany)
+  jest teraz kopiowany do stanOdpowiedzi ZANIM ruszą odtwarzające kliki (script.js,
+  zaraz po utworzeniu stanOdpowiedzi) — usunięty też zbędny drugi zapis
+  `stan.open = zap.open` z bloku przywracania. Zweryfikowane Playwrightem: seed
+  stany[34]={open:"DLUGI TEKST",self:3} + DWA przeładowania → textarea i
+  localStorage zachowują "DLUGI TEKST" po obu.
+- [ZROBIONE] [3] Żółte wskaźniki nie pokazywały się dla zadań liczonych na
+  kartce (czyNieoceniony() wymagał niepustego stan.open, a to okienko jest
+  opcjonalne). Dodany przełącznik w menu "⋯" (#wskazniki-tryb-toggle,
+  localStorage matematykazen-tryb-wskaznikow, globalny): domyślny tryb
+  "wszystkie" pokazuje kropkę przy KAŻDYM nieocenionym zadaniu otwartym; tryb
+  "wypelnione" to dawne zachowanie (kropka tylko przy wypełnionym okienku).
+  Zweryfikowane Playwrightem: egzamin zakończony bez wpisania niczego → 7
+  kropek (tyle ile zadań otwartych bez samooceny w 2024-grudzien) i klucz
+  ocenianie ustawiony.
+- [ZROBIONE] [4] Wskaźniki gubiły zadania wypełnione W TRAKCIE fazy „oceń się"
+  (lista liczona raz, mogła tylko maleć). odswiezWskaznikiOtwarte() przelicza
+  teraz cały zestaw od nowa przez pokazWskaznikiOtwarte() (idempotentne) zamiast
+  filtrować; textarea zadania otwartego woła ją też przy wpisywaniu tekstu (nie
+  tylko klik samooceny). Zweryfikowane Playwrightem: wpis w trakcie fazy nie
+  gubi kropek innych zadań, liczba kropek zawsze zgodna ze stanem, faza kończy
+  się dopiero gdy wszystkie zadania otwarte mają samoocenę.
+- [ZROBIONE] [5] Przycisk „rozpocznij próbny egzamin" w stopce
+  (#egzamin-start-stopka) widoczny bezwarunkowo (dzielił regułę CSS z
+  #egzamin-koniec i dostawał display:block bez warunku trybu) — widoczny nawet
+  na stronie „Błędny link" i podczas wczytywania danych; klik kasował postęp i
+  startował egzamin bez zadań. Naprawa: nowa klasa body.arkusz-wczytany,
+  dodawana dopiero na końcu loadExercises(), oraz rozdzielone reguły CSS
+  wyglądu i widoczności w style/exam.css. Zweryfikowane Playwrightem:
+  ?arkusz=nie-ma-takiego → wysokość przycisku 0; poprawny arkusz w trybie
+  ćwiczeniowym → widoczny normalnie.
+- [ZROBIONE] [6] Na telefonie (≤~430px) nowy przycisk „zakończ egzamin" w
+  pasku (#egzamin-koniec-bar) wypychał menu „⋯" poza ekran. Chowany teraz w
+  breakpoincie ≤560px (style/responsive.css) — pełnowymiarowy odpowiednik w
+  stopce arkusza zostaje. Zmierzone Playwrightem przy 360px: prawa krawędź
+  #menu-button z 429px (poza oknem) na 330px (mieści się).
+- [ZROBIONE] [7] #theme-toggle nie był dopisany do wspólnej listy selektorów
+  stylujących przyciski menu „⋯" (style/sheet.css) — dostawał domyślny wygląd
+  przycisku przeglądarki (szare tło, ramka outset) zamiast białego z cienką
+  ramką jak reszta. Dopisany do listy. Zweryfikowane Playwrightem:
+  getComputedStyle #theme-toggle i #reset-scores identyczne (border/tło/kolor).
+- PRZY OKAZJI (sekcja „TRYB EGZAMINU I PAMIĘĆ PRZEGLĄDARKI", oceniono jako
+  małe i bezpieczne poprawki warte zrobienia od razu): (a) nieudany start
+  egzaminu (setItem rzuca przy pełnym/zablokowanym localStorage) i tak kasował
+  zapisany postęp mimo alertu „egzamin nie wystartował" — kolejność zapisu w
+  startExamPrompt() odwrócona, postęp kasuje się dopiero PO udanym zapisie
+  stanu egzaminu; (b) „resetuj punktację" nie czyścił trwającego egzaminu w
+  innej karcie — reset kasuje teraz też KLUCZ_EGZAMINU, a confirm() ostrzega o
+  tym wprost. Problem „dwie karty blokują finishExam" (ten sam opis w
+  TODO.md) wymaga większej przebudowy (nasłuch zdarzenia `storage` albo inna
+  architektura) — zostawiony w TODO.md dla Henricha, NIE naprawiony w tej
+  sesji.
+- Weryfikacja: Playwright headless (arkusz 2024-grudzien, python3 -m http.server),
+  7 scenariuszy a-g z promptu (zachowanie tekstu po 2 reloadach, kropki bez
+  wpisanego tekstu, kropki podczas fazy oceniania, przycisk na stronie błędu,
+  360px w trybie egzaminu, computed style theme-toggle vs reset-scores, pełny
+  cykl egzamin start→koniec→start + zwykłe odpowiedzi ABCD/PF/fillIn) — wszystkie
+  PASS, bez regresji.
+
 ZROBIONE PRZEZ SONNETA (2026-07-22) — podział dużych plików, kroki 1/1b/2 z .claude/plans/czy-my-lisz-e-mam-tingly-hamster.md:
 - [ZROBIONE] Krok 1 (wariant A): solutionsInteractive.js (958 linii, 43 KB) rozbity na
   katalog widgets/ — plik na widżet (widgets/osLiczbowa.js … widgets/prostopadloscian.js,
