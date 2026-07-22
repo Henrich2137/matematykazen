@@ -1,0 +1,100 @@
+/* ===== STRONA GŁÓWNA (index.html) ===== */
+/* Landing dzieli style.css z arkuszem; wszystko poniżej dotyczy tylko
+   body.landing-page. Jedna wąska kolumna, ta sama typografia co arkusz. */
+.landing-page {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 60px 20px 40px;
+}
+.landing-logo {
+    font-size: 40px;
+    margin-bottom: 30px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--text);
+}
+.landing-hero {
+    margin-bottom: 20px;
+    text-align: center;
+}
+.landing-hero h1 {
+    margin: 0 0 20px;
+    font-size: 30px;
+    line-height: 1.3;
+}
+.landing-lede {
+    max-width: 560px;
+    margin: 0 auto 30px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--text-soft);
+}
+.landing-cta {
+    display: inline-block;
+    padding: 14px 28px;
+    border: 2px solid var(--text);
+    border-radius: 3px;
+    font-size: 18px;
+    text-decoration: none;
+    color: var(--text);
+}
+.landing-cta:hover {
+    background-color: var(--text);
+    color: var(--bg);
+}
+.landing-cta-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    color: var(--text-faint);
+}
+.landing-section {
+    margin-top: 70px;
+    text-align: center;
+}
+.landing-section h2 {
+    margin-bottom: 25px;
+    font-size: 22px;
+}
+.landing-cards {
+    display: flex;
+    gap: 20px;
+    text-align: left;
+}
+.landing-card {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid var(--bg-hover);
+}
+.landing-card h3 {
+    margin: 0 0 10px;
+    font-size: 17px;
+}
+.landing-card p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-soft);
+}
+.landing-section-alt p {
+    max-width: 560px;
+    margin: 0 auto 20px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-soft);
+}
+.landing-feedback-link {
+    display: inline-block;
+    color: var(--text-muted-2);
+    text-decoration: underline;
+}
+.landing-footer {
+    margin-top: 70px;
+    font-size: 13px;
+    text-align: center;
+    color: var(--border-close);
+}
+@media (max-width: 640px) {
+    .landing-cards {
+        flex-direction: column;
+    }
+}

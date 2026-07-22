@@ -1,0 +1,807 @@
+/* ===================================================================
+
+   Layout model: a single fixed bar holding a 3-column CSS grid
+   (#bar-container) — #bar-left | #bar-center | #bar-right — with columns
+   `1fr auto 1fr`. Because the two flanking columns are equal fr tracks,
+   #bar-center always lands at the true page centre regardless of how wide
+   the logo / right-group content is, WITHOUT taking it out of flow.
+   Each zone owns its own grid track, so the title can never overlap the
+   logo or the controls; if the window gets too narrow for all three, the
+   center column shrinks first and the title truncates with an ellipsis
+   (min-width: 0 + white-space: nowrap + overflow: hidden + text-overflow:
+   ellipsis on #bar-center) rather than wrapping onto a second line, which
+   would grow #top-bar's height.
+   If you edit this block, update the "Top bar" section in
+   ARCHITECTURE_CSS.md.
+
+   =================================================================== */
+#top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    border-bottom: 1px solid var(--border-strong);
+    background-color: var(--bg);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+#bar-container {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 12px 30px;
+}
+/* Side zones size to their content; each sits in its own grid column and is
+   pushed to the outer edge of that column. */
+#bar-left,
+#bar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#bar-left {
+    justify-content: flex-start;
+}
+#bar-right {
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+}
+#bar-center {
+    min-width: 0;
+    max-width: 100%;
+    justify-self: center;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    pointer-events: none;
+    /* Delikatny nudge tytułu i podtytułu w dół, bez zmiany wysokości #top-bar. */
+    position: relative;
+    top: 5px;
+}
+/* Mały, szarawy podtytuł pod nazwą arkusza — stały wskaźnik trybu
+   (ćwiczenie / egzamin), przełączany przez updateModeSubtitle() w script.js. */
+#exercises-mode-subtitle {
+    margin-top: 2px;
+    font-size: 12px;
+    line-height: 1.2;
+    color: var(--text-faint-3);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Logo jest linkiem do strony głównej (index.html) — wygląda jak zwykły napis. */
+#logo {
+    white-space: nowrap;
+    padding: 10px;
+    color: var(--text);
+    text-decoration: none;
+}
+#logo:hover {
+    text-decoration: underline;
+}
+
+#total-score {
+    padding: 5px 8px;
+    border: 1px solid var(--border);
+    background-color: var(--bg);
+    text-align: center;
+    white-space: nowrap;
+    color: var(--text-faint);
+}
+/* Procent zdobytych punktów obok sumy (tryb ćwiczeniowy). Zielony dopiero od
+   progu zdawalności (30%); cursor: help podpowiada, że po najechaniu jest
+   tooltip "zdałeś" / "nie zdałeś (jeszcze)". */
+.total-percent {
+    margin-left: 4px;
+    cursor: help;
+}
+.total-percent.zdane {
+    color: var(--correct);
+    font-weight: bold;
+}
+#score-switch-button,
+#show-all-solutions,
+#reset-scores,
+#egzamin-start {
+    padding: 5px 10px;
+    border: 2px solid var(--border);
+    background-color: var(--bg);
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    color: var(--text);
+    cursor: pointer;
+}
+
+/* Przycisk ⋯ w pasku i jego okienko "więcej opcji". Okienko jest fixed tuż
+   pod paskiem, przy prawej krawędzi; JS przełącza display na block i chowa
+   je po kliknięciu poza okienkiem. */
+#menu-button {
+    padding: 5px 12px;
+    border: 2px solid var(--border);
+    border-radius: 3px;
+    background-color: var(--bg);
+    font-size: 18px;
+    line-height: 1;
+    color: var(--text);
+    cursor: pointer;
+}
+#bar-menu {
+    position: fixed;
+    top: 62px;
+    right: 30px;
+    z-index: 11;
+    display: none;
+    flex-direction: column;
+    padding: 10px;
+    border: 1px solid var(--border-strong);
+    background-color: var(--bg);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+#bar-menu button {
+    display: block;
+    width: 100%;
+    margin: 4px 0;
+}
+#toggle-tablica,
+#toggle-zasady {
+    /* min-width mieści dłuższą wersję etykiety ("▲ Schowaj tablice wzorów"),
+       więc przycisk nie zmienia szerokości przy przełączaniu na "▼ Pokaż...". */
+    min-width: 200px;
+    padding: 10px 12px;
+    border: 2px solid var(--border);
+    border-radius: 3px;
+    background-color: var(--bg);
+    white-space: nowrap;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text);
+    cursor: pointer;
+}
+
+/* Floating formula-sheet panel — toggled to display:block by the JS.
+   Panel to kontener (pozycja/rozmiar/ramka), a w środku <object> z PDF-em oraz
+   krzyżyk zamykający. JS przełącza display panelu i podmienia sam <object>. */
+#tablica-wzorow-panel,
+#zasady-oceniania-panel {
+    position: fixed;
+    top: 100px;
+    right: 30px;
+    z-index: 9;
+    display: none;
+    width: 28%;
+    height: 80vh;
+    overflow: hidden;
+    border: 1px solid var(--border-strong);
+    background-color: var(--bg);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+/* Zasady oceniania — ten sam panel, tylko przypięty do lewej krawędzi. */
+#zasady-oceniania-panel {
+    right: auto;
+    left: 30px;
+}
+/* Panel jest "odblokowany": górny pasek to uchwyt przesuwania, narożnik
+   prawy-dolny zmienia rozmiar (logika pointer-capture w matematykazen.html).
+   padding-top robi miejsce na pasek, żeby nie zasłaniał PDF-a. */
+.pdf-panel {
+    box-sizing: border-box;
+    padding-top: 46px;
+}
+.panel-uchwyt {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 46px;
+    z-index: 1;
+    padding-left: 14px;
+    border-bottom: 1px solid var(--border-muted);
+    background-color: var(--bg-muted);
+    font-size: 20px;
+    line-height: 46px;
+    text-align: left;
+    color: var(--text-faint-3);
+    cursor: move;
+    touch-action: none;
+    user-select: none;
+}
+.panel-rozmiar {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 22px;
+    height: 22px;
+    z-index: 1;
+    border: 1px solid var(--border-muted);
+    background-color: var(--bg);
+    font-size: 13px;
+    line-height: 22px;
+    text-align: center;
+    color: var(--text-faint-3);
+    cursor: nwse-resize;
+    touch-action: none;
+    user-select: none;
+}
+#tablica-wzorow,
+#zasady-oceniania {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+/* Krzyżyk zamykający w prawym górnym rogu paneli (tablica wzorów / zasady
+   oceniania) — celowo duży i pogrubiony, z ramką i cieniem, żeby nie ginął
+   na tle PDF-a. */
+#tablica-close,
+#zasady-close {
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    z-index: 2; /* nad paskiem-uchwytem panelu */
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 2px solid var(--border-close);
+    border-radius: 3px;
+    background-color: var(--bg);
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 1;
+    color: var(--text);
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+#tablica-close:hover,
+#zasady-close:hover {
+    background-color: var(--bg-hover);
+}
+
+.exercise-container {
+    position: relative;
+    width: 650px;
+    margin: auto;
+    padding: 50px;
+
+    background-color: var(--bg);
+    font-size: 18px;
+    text-align: left;
+}
+
+/* Separator między zadaniami — krótsza (75%) wyśrodkowana kreska zamiast
+   border-bottom na całą szerokość (border-width nie przyjmuje procentów). */
+.exercise-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 75%;
+    border-bottom: 1px solid var(--separator);
+}
+/* Delikatne wcięcie treści zadania od lewej — bez niego tekst kleił się do
+   lewej krawędzi karty i wyglądał na "przeciągnięty w lewo" względem
+   wyśrodkowanych odpowiedzi / przycisków pod spodem. */
+.question {
+    padding-left: 16px;
+}
+/* Grafiki-rysunki w treści zadania jako blok wyśrodkowany — inaczej obrazek
+   wstawiony w linii tekstu (np. zad10) lądował "w środku zdania" i przesunięty
+   w prawo. Obrazki naprawdę inline (np. liczba w zad2) nadpisują to swoim
+   stylem display:inline-block. */
+.question img {
+    display: block;
+    max-width: 100%;
+    margin: 15px auto;
+}
+.exercise-score {
+    position: absolute;
+    top: 48px;
+    right: -120px;
+    /* Zrównanie w pionie z pierwszą linią treści (numerem zadania). Bez tego
+       badge siedział optycznie ~16px za wysoko względem "Zadanie N.". */
+    margin-top: 16px;
+    padding: 5px;
+    border: 1px solid;
+}
+.low-exercise-score {
+    border-color: var(--score-low-border);
+    color: var(--score-low-text);
+}
+.mid-exercise-score {
+    border-color: var(--score-mid-border);
+    color: var(--score-mid-text);
+}
+.high-exercise-score {
+    border-color: var(--score-high-border);
+    color: var(--correct);
+}
+
+/* ===== PRZYCISKI ODPOWIEDZI ===== */
+.button-container {
+    width: 90%;
+    margin: 10px auto 0;
+    text-align: center;
+}
+.button-container button {
+    display: inline-block;
+    /* min-width zamiast sztywnego width: krótkie odpowiedzi (liczby) trzymają
+       równą siatkę, a dłuższy wzór KaTeX (przedziały, ułamki) poszerza swój
+       przycisk zamiast łamać się na dwie linie ("A." nad wzorem). */
+    min-width: 22%;
+    white-space: nowrap;
+    padding: 10px 12px;
+    margin: 8px;
+    /* Przyciski w wierszu wyrównują się do środka w pionie względem siebie,
+       więc litera (A., B., ...) w niższym przycisku ląduje na środku obok
+       wyższych sąsiadów zamiast przyklejać się do dołu. */
+    vertical-align: middle;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background-color: var(--bg);
+    font-family: "STIX Two Math", "Lora", serif;
+    font-size: 18px;
+    text-decoration: none;
+    color: var(--text);
+    cursor: pointer;
+}
+/* Grafiki odpowiedzi (np. zad6) wyrównane do środka, aby litera A./B. obok
+   nich była na środku w osi pionowej, a nie przy dolnej krawędzi obrazka. */
+.button-container button img {
+    vertical-align: middle;
+}
+/* Zaznaczone/ocenione odpowiedzi mają optycznie 2× grubszą ramkę — drugą
+   "warstwę" dokłada wewnętrzny box-shadow w kolorze ramki, więc przycisk
+   nie zmienia rozmiaru (prawdziwe pogrubienie border przesuwałoby layout). */
+.button-container button.correct {
+    border-color: var(--correct-soft);
+    box-shadow: inset 0 0 0 1px var(--correct-soft);
+}
+.button-container button.incorrect {
+    border-color: var(--incorrect-soft);
+    box-shadow: inset 0 0 0 1px var(--incorrect-soft);
+}
+/* multiSelect: zaznaczenie przed skompletowaniem wymaganej liczby odpowiedzi. */
+.button-container button.selected {
+    border-color: var(--accent-blue);
+    box-shadow: inset 0 0 0 1px var(--accent-blue);
+}
+
+/* ===== ZADANIA PRAWDA/FAŁSZ ===== */
+/* Wiersz = treść stwierdzenia + przyciski P i F po prawej. */
+.pf-container {
+    text-align: left;
+}
+.pf-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 10px 0;
+}
+.pf-text {
+    flex: 1;
+}
+.pf-row button {
+    flex: 0 0 44px;
+    width: 44px;
+    padding: 8px 0;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background-color: var(--bg);
+    font-family: "STIX Two Math", "Lora", serif;
+    font-size: 16px;
+    color: var(--text);
+    cursor: pointer;
+}
+.pf-row button.correct {
+    border-color: var(--correct-soft);
+    box-shadow: inset 0 0 0 1px var(--correct-soft);
+}
+.pf-row button.incorrect {
+    border-color: var(--incorrect-soft);
+    box-shadow: inset 0 0 0 1px var(--incorrect-soft);
+}
+
+/* ===== MULTISELECT ===== */
+.multi-select-note {
+    margin: 4px 0 2px;
+    font-size: 14px;
+    color: var(--text-faint-2);
+}
+/* Dłuższe wzory w odpowiedziach (np. zad 12.2) — szersze przyciski, 2-3 w rzędzie. */
+.multi-select-container button {
+    min-width: 30%;
+}
+
+/* ===== ZADANIA Z POLAMI DO UZUPEŁNIENIA (fillIn) ===== */
+.fill-in-container {
+    text-align: left;
+}
+.fill-in-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+.fill-in-label {
+    flex: 1;
+}
+.fill-in-input {
+    width: 130px;
+    padding: 6px 8px;
+    border: 1px solid var(--border-strong);
+    border-radius: 3px;
+    background-color: var(--bg);
+    font-family: "STIX Two Math", "Lora", serif;
+    font-size: 17px;
+    text-align: center;
+}
+.fill-in-input.correct {
+    border-color: var(--correct);
+    box-shadow: inset 0 0 0 1px var(--correct);
+}
+.fill-in-input.incorrect {
+    border-color: var(--incorrect);
+    box-shadow: inset 0 0 0 1px var(--incorrect);
+}
+/* Selektor celowo mocniejszy niż `.button-container button` (kontener odpowiedzi
+   ma obie klasy), inaczej "Sprawdź" dostałby szerokość 22% i inline-block. */
+.fill-in-container button.fill-in-check {
+    display: block;
+    width: auto;
+    margin: 12px auto 0;
+    padding: 8px 22px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background-color: var(--bg);
+    font-family: inherit;
+    font-size: 16px;
+    color: var(--text);
+    cursor: pointer;
+}
+.fill-in-container button.fill-in-check:hover {
+    background-color: var(--bg-muted);
+}
+
+/* ===== ZADANIA OTWARTE: WŁASNA ODPOWIEDŹ / TOK ROZWIĄZANIA ===== */
+/* Textarea, w której uczeń zapisuje rozwiązanie — przydatna zwłaszcza w trybie
+   egzaminu (samoocena schowana), zapis w localStorage do porównania z kluczem
+   po egzaminie. Osobny kontener od .self-score-container (tamten znika na czas
+   egzaminu, textarea zostaje). */
+.open-answer-container {
+    margin-top: 15px;
+    text-align: center;
+}
+.open-answer-label {
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: var(--text-faint-2);
+}
+.open-answer {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-strong);
+    border-radius: 3px;
+    background-color: var(--bg);
+    font-family: inherit;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: left;
+    resize: vertical;
+}
+.open-answer:focus {
+    border-color: var(--accent-blue);
+    outline: none;
+}
+
+/* ===== SAMOOCENA ZADAŃ OTWARTYCH ===== */
+.self-score-container {
+    margin-top: 15px;
+    text-align: center;
+}
+.self-score-label {
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: var(--text-faint-2);
+}
+.self-score-container button {
+    display: inline-block;
+    width: auto;
+    min-width: 62px;
+    padding: 8px 11px;
+    margin: 4px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background-color: var(--bg);
+    font-family: "STIX Two Math", "Lora", serif;
+    font-size: 17px;
+    color: var(--text);
+    cursor: pointer;
+}
+.self-score-container button.selected {
+    border-color: var(--accent-blue);
+    background-color: var(--accent-blue-bg);
+    box-shadow: inset 0 0 0 1px var(--accent-blue);
+}
+
+/* ===== PRZYCISKI TEKSTOWE (podpowiedź / rozwiązanie / wzory) ===== */
+.light-button-container {
+    width: 90%;
+    margin-top: 20px;
+    margin-left: 2%;
+    text-align: center;
+}
+.light-button {
+    display: inline-block;
+    width: 30%;
+    padding: 0;
+    border: none;
+    background: none;
+    font-family: inherit;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text-muted-2);
+    cursor: pointer;
+}
+.light-button:hover {
+    text-decoration: underline;
+}
+
+.hint-container {
+    display: none;
+    margin-top: 20px;
+    padding: 20px;
+}
+.solution-container {
+    display: none;
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid var(--border-subtle);
+}
+.solution-text-container {
+    padding: 30px 0 30px 30px;
+    border-bottom: 2px solid var(--border-subtle);
+}
+.solution-text-container:empty {
+    display: none;
+}
+
+/* NOWE ELEMENTY KTÓRE NIE JESTEM PEWIEN CZY ISTNIEJĄ */
+.solution-text-more-container button {
+    margin: 15px 0;
+}
+/* Treść "Pokaż więcej" domyślnie kleiła się do lewej krawędzi panelu; wcięcie
+   po bokach odsuwa ją od brzegu, przez co siedzi bliżej środka karty. */
+.solution-text-more {
+    padding: 0 40px;
+}
+
+.solution-step-by-step-container {
+    display: none;
+    border-bottom: 2px solid var(--border-subtle);
+    text-align: center;
+}
+.solution-step-by-step-container video {
+    display: block;
+    width: 420px;
+    height: 180px;
+    cursor: pointer;
+}
+/* Kontener filmu kroku — pozwala nałożyć ikonkę ▶ i pasek postępu na film. */
+.step-video {
+    position: relative;
+    display: inline-block;
+    line-height: 0;
+}
+/* Mała ikonka na dole filmu, wyśrodkowana w poziomie; widoczna tylko gdy film
+   jest zatrzymany lub skończony. Zatrzymany w trakcie → dwie pionowe kreski
+   (pauza); skończony → zakręcona strzałka „odtwórz od nowa". */
+.video-overlay-icon {
+    position: absolute;
+    left: 50%;
+    bottom: 8px;
+    transform: translateX(-50%);
+    display: none;
+    width: 12px;
+    height: 14px;
+    pointer-events: none;
+}
+.step-video.paused .video-overlay-icon,
+.step-video.ended .video-overlay-icon {
+    display: block;
+}
+/* Pauza — dwie pionowe kreski (gdy zatrzymany, ale nie na końcu filmu). */
+.step-video.paused:not(.ended) .video-overlay-icon::before,
+.step-video.paused:not(.ended) .video-overlay-icon::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: var(--separator);
+}
+.step-video.paused:not(.ended) .video-overlay-icon::before {
+    left: 0;
+}
+.step-video.paused:not(.ended) .video-overlay-icon::after {
+    right: 0;
+}
+/* Koniec filmu — zakręcona strzałka „odtwórz od nowa". */
+.step-video.ended .video-overlay-icon::before {
+    content: "↺";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    line-height: 1;
+    color: var(--overlay-icon);
+}
+.solution-step-by-step-container img {
+    display: block;
+    max-width: 320px;
+    margin: auto;
+}
+.solution-step-by-step-container:empty {
+    display: none;
+}
+.steps-content {
+    /* Wysokość dobrana tak, by film (180px) + dwie linijki komentarza mieściły
+       się bez zmiany rozmiaru. Dzięki temu przy przełączaniu stepów div ma
+       stałą wysokość, a rośnie dopiero, gdy komentarz przekroczy ~2 linijki. */
+    min-height: 250px;
+    margin: 10px 0;
+    text-align: center;
+}
+/* Rezerwuje miejsce na ~2 linijki podpisu pod krokiem, żeby krótkie i puste
+   komentarze zajmowały tyle samo miejsca i nawigacja nie skakała. */
+.step-comment {
+    display: block;
+    min-height: 2.8em;
+    margin-top: 8px;
+    line-height: 1.4;
+}
+/* Krok bez komentarza dostaje dyskretny wypełniacz-separator zamiast pustki. */
+.step-comment:empty::before {
+    content: "· · ·";
+    color: var(--border-muted);
+    letter-spacing: 4px;
+}
+.steps-nav {
+    margin: 10px 0 30px;
+    text-align: center;
+}
+.solution-interactive-container {
+    padding-bottom: 30px;
+    border-bottom: 2px solid var(--border-subtle);
+    text-align: center;
+}
+.solution-interactive-container:empty {
+    display: none;
+}
+
+/* ===== WYKRESY ===== */
+canvas {
+    margin-top: 10px;
+    background-color: var(--canvas-bg);
+}
+
+/* ===== WIDŻETY INTERAKTYWNE (solutionWidget) ===== */
+.widget {
+    padding-top: 10px;
+    text-align: center;
+}
+.widget-title {
+    margin: 0 20px 4px;
+    font-size: 15px;
+    color: var(--text-muted-2);
+}
+.widget-canvas {
+    max-width: 100%;
+    touch-action: none; /* przeciąganie palcem nie scrolluje strony */
+}
+.widget-controls {
+    margin-top: 6px;
+}
+/* Suwaki w widżetach — globalna reguła input { width: 24px } jest za wąska. */
+.widget input[type=range] {
+    width: 320px;
+    max-width: 90%;
+    border: none;
+}
+.widget input[type=number] {
+    width: 40px;
+}
+/* Zad 1: kolory okienek a i b odpowiadają kolorom elementów na osi —
+   a (zielone) to środek −a, b (niebieskie) to strzałki odległości. */
+.widget input.wg-a {
+    border: 2px solid var(--accent-green);
+}
+.widget input.wg-b {
+    border: 2px solid var(--accent-blue-strong);
+}
+/* Przycisk resetu w kontrolkach widżetu — nie rozciągamy go jak zwykłych
+   .light-button (30% szerokości), tylko trzymamy przy okienkach. */
+.widget .wg-reset {
+    width: auto;
+    margin-left: 14px;
+    font-size: 14px;
+}
+/* Stała wysokość odczytu, żeby widżet nie skakał przy zmianie komunikatu.
+   Dwie linijki: wartości w pierwszej, komentarz ✓/✗ w drugiej (po <br>). */
+.widget-readout {
+    min-height: 3.4em;
+    margin-top: 8px;
+    font-size: 16px;
+}
+.wg-ok {
+    color: var(--correct);
+}
+.wg-zle {
+    color: var(--incorrect);
+}
+.wg-neutral {
+    color: var(--text-faint-2);
+}
+/* Lista wzorów funkcji przedziałami (zad 10) — aktywny przedział podświetlony. */
+.widget-formula-list {
+    display: inline-block;
+    margin-top: 6px;
+    text-align: left;
+}
+.wg-formula {
+    padding: 2px 10px;
+    border-left: 3px solid transparent;
+    color: var(--text-faint-2);
+}
+.wg-formula.active {
+    border-left-color: var(--accent-purple);
+    color: var(--text);
+    font-weight: bold;
+}
+
+/* ===== FORMULARZE ===== */
+input {
+    width: 24px;
+    border: 1px solid var(--border-strong);
+    font-size: 18px;
+    text-align: center;
+}
+
+/* ABY FIREFOX ORAZ CHROME NIE POSIADAŁY STRZAŁEK PRZY INPUCIE LICZBY */
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* ===== FEEDBACK ===== */
+.feedback {
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+/* ===== TABELKI DANYCH W TREŚCI ZADAŃ (np. zad 29) ===== */
+.data-table {
+    margin: 10px auto;
+    border-collapse: collapse;
+}
+.data-table th,
+.data-table td {
+    padding: 6px 12px;
+    border: 1px solid var(--border-strong);
+    font-weight: normal;
+    text-align: center;
+}
+.data-table th {
+    background-color: var(--bg-subtle);
+    text-align: left;
+}
