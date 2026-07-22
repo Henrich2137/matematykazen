@@ -14,7 +14,11 @@
          (patrz SHEET_ID w script.js). Dane zadań i metadane strony (tytuł,
          opis, PDF-y) są w matura/<id>/exercises.json, wczytywane fetchem w
          startSheet() na dole strony (dokumentacja schematu: ARCHITECTURE.md). -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/base.css">
+    <link rel="stylesheet" href="style/sheet.css">
+    <link rel="stylesheet" href="style/landing.css">
+    <link rel="stylesheet" href="style/exam.css">
+    <link rel="stylesheet" href="style/responsive.css">
 
     <!-- Motyw jasny/ciemny: zapamiętany wybór ustawiamy na <html> ZANIM
          wyrenderuje się strona, żeby nie mignął zły motyw (FOUC). Brak wpisu =
@@ -158,7 +162,17 @@
     <button id="egzamin-koniec">zakończ egzamin</button>
     <button id="egzamin-start-stopka">rozpocznij próbny egzamin</button>
 
-    <script src="solutionsInteractive.js"></script>
+    <script src="widgets/_helpers.js"></script>
+    <script src="widgets/osLiczbowa.js"></script>
+    <script src="widgets/procentSkladany.js"></script>
+    <script src="widgets/nierownoscKwadratowa.js"></script>
+    <script src="widgets/funkcjaPrzedzialami.js"></script>
+    <script src="widgets/parabola.js"></script>
+    <script src="widgets/ciagArytmetyczny.js"></script>
+    <script src="widgets/koloTrygonometryczne.js"></script>
+    <script src="widgets/katWpisany.js"></script>
+    <script src="widgets/prostopadloscian.js"></script>
+    <script src="widgets/_registry.js"></script>
     <script src="script.js"></script>
 
 </body>

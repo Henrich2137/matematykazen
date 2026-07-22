@@ -23,7 +23,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 2.</b> <br><br> Klient wpłacił do banku 10 000 zł na lokatę dwuletnią. Po każdym rocznym okresie oszczędzania bank dolicza odsetki w wysokości 6% od kwoty bieżącego kapitału znajdującego się na lokacie – zgodnie z procentem składanym.<br><br>Po dwóch latach oszczędzania łączna wartość doliczonych odsetek na tej lokacie (bez uwzględniania podatków) jest równa",
@@ -41,7 +41,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 3.</b> <br><br> Liczba \\(\\sqrt{5} \\cdot \\sqrt{5}\\) jest równa",
@@ -59,7 +59,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 4.</b> <br><br> Liczba \\(\\log_{8} 4 - \\log_{8} 32\\) jest równa",
@@ -77,7 +77,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 5.</b> <br><br> Oceń prawdziwość poniższych stwierdzeń. Wybierz <b>P</b>, jeśli stwierdzenie jest prawdziwe, albo <b>F</b> – jeśli jest fałszywe.",
@@ -101,7 +101,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 6.</b> <br><br> Wartość wyrażenia \\(x^{2} + 10x + 25\\) dla \\(x = \\sqrt{2} - 5\\) jest równa",
@@ -119,7 +119,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 7.</b> <br><br> Wykaż, że dla każdej liczby całkowitej \\(n\\) liczba \\(7n^{2} + 21n\\) jest podzielna przez \\(14\\).",
@@ -133,7 +133,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 8.</b> <br><br> Dane jest równanie \\[3(x + 3)(x - m)(2x + 4) = 0\\] gdzie \\(x\\) jest niewiadomą, natomiast \\(m\\) jest pewną liczbą rzeczywistą.<br><br>Suma wszystkich rozwiązań tego równania jest równa \\(0\\).<br><br>Liczba \\(m\\) jest równa",
@@ -151,7 +151,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 9.</b> <br><br> Rozwiązaniem równania \\[\\dfrac{x+2}{3x-1} = \\dfrac{2}{5}\\] jest liczba",
@@ -169,7 +169,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 10.</b> <br><br> Rozwiąż nierówność \\[3x^{2} + 4x \\ge 6x + 8\\] Zapisz obliczenia.",
@@ -183,7 +183,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 11.</b> <br><br> Na przedstawienie w pewnym teatrze sprzedawano bilety według poniższego cennika.<br><br><table class=\"data-table\"><tr><th>Rodzaj biletu</th><th>Cena w złotych</th></tr><tr><td>Normalny</td><td>35</td></tr><tr><td>Ulgowy</td><td>25</td></tr></table><br>Na to przedstawienie sprzedano łącznie 200 biletów. Po opłaceniu kosztów związanych z organizacją przedstawienia w wysokości 25% wpływów ze sprzedaży biletów organizatorom pozostało 4665 zł.<br><br>Oblicz liczbę biletów ulgowych sprzedanych na to przedstawienie. Zapisz obliczenia.",
@@ -197,7 +197,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 12.</b> <br><br> Funkcja \\(f\\) jest określona następująco:\\[f(x) = \\begin{cases} x + 2 & \\text{dla } x \\in [-4,\\ 2] \\\\ -x + 5 & \\text{dla } x \\in (2,\\ 5) \\end{cases}\\]Wykres funkcji \\(y = f(x)\\) przedstawiono w kartezjańskim układzie współrzędnych \\((x, y)\\) na rysunku poniżej.<br><br><img src=\"media/zad12/zad12rys.png\" alt=\"TODO: wykres funkcji f łamanej – dodać obraz (rosnący odcinek od (-4,-2) do (2,4), malejący do (5,0)).\">",
@@ -211,7 +211,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 12.1.</b> <br><br> Uzupełnij zdania. Wpisz odpowiednie liczby w wykropkowanych miejscach, aby zdania były prawdziwe.",
@@ -239,7 +239,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 12.2.</b> <br><br> Uzupełnij zdania. Wpisz odpowiednie przedziały w wykropkowanych miejscach, aby zdania były prawdziwe.",
@@ -267,7 +267,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 13.</b> <br><br> Funkcja liniowa \\(f\\) jest określona wzorem \\(f(x) = ax + b\\), gdzie \\(a\\) i \\(b\\) są pewnymi liczbami rzeczywistymi. W kartezjańskim układzie współrzędnych \\((x, y)\\) przedstawiono fragment wykresu funkcji \\(f\\). Każdy z punktów przecięcia wykresu funkcji \\(f\\) z osiami układu współrzędnych ma obie współrzędne całkowite. Wykres funkcji \\(f\\) jest nachylony do osi \\(Ox\\) układu współrzędnych pod kątem o mierze \\(\\alpha\\) (zobacz rysunek).<br><br><img src=\"media/zad13/zad13rys.png\" alt=\"TODO: wykres malejącej funkcji liniowej f z zaznaczonym kątem α do osi Ox – dodać obraz.\">",
@@ -281,7 +281,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 13.1.</b> <br><br> Oceń prawdziwość poniższych stwierdzeń. Wybierz <b>P</b>, jeśli stwierdzenie jest prawdziwe, albo <b>F</b> – jeśli jest fałszywe.",
@@ -305,7 +305,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 13.2.</b> <br><br> Tangens kąta o mierze \\(\\alpha\\) jest równy",
@@ -323,7 +323,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 14.</b> <br><br> W kartezjańskim układzie współrzędnych \\((x, y)\\) wykresem funkcji kwadratowej \\(f\\) jest parabola o wierzchołku w punkcie \\(W = (3, -2)\\). Funkcja kwadratowa \\(g\\) jest określona za pomocą funkcji \\(f\\) wzorem \\(g(x) = f(x + 1)\\). Jednym z miejsc zerowych funkcji \\(g\\) jest liczba \\(0\\).<br><br>Wyznacz wzór funkcji \\(f\\) w postaci ogólnej. Zapisz obliczenia.",
@@ -337,7 +337,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 15.</b> <br><br> Ciąg \\((a_n)\\) jest określony wzorem \\(a_n = 3n + 5\\) dla każdej liczby naturalnej \\(n \\ge 1\\). Trzywyrazowy ciąg \\((a_1, a_9, a_k)\\) jest geometryczny.<br><br>Oblicz \\(k\\). Zapisz obliczenia.",
@@ -351,7 +351,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 16.</b> <br><br> Ciąg arytmetyczny \\((a_n)\\) jest określony dla każdej liczby naturalnej \\(n \\ge 1\\). W tym ciągu \\(a_1 = 1\\) oraz \\(a_5 = 17\\).<br><br>Dziewiąty wyraz ciągu \\((a_n)\\) jest równy",
@@ -369,7 +369,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 17.</b> <br><br> Ciąg geometryczny \\((a_n)\\) jest określony dla każdej liczby naturalnej \\(n \\ge 1\\). Wyrazy trzeci i szósty tego ciągu spełniają warunek \\(a_3 \\cdot a_6 = 18\\).<br><br>Uzupełnij zdanie. Wpisz odpowiednią liczbę w wykropkowanym miejscu, aby zdanie było prawdziwe.",
@@ -391,7 +391,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 18.</b> <br><br> Dany jest trójkąt prostokątny \\(ABC\\), w którym bok \\(AC\\) jest przeciwprostokątną oraz \\(|BC| = 2\\) i \\(|AC| = 2\\sqrt{10}\\). Oznaczmy kąt \\(BCA\\) przez \\(\\gamma\\).<br><br>Sinus kąta \\(\\gamma\\) jest równy",
@@ -409,7 +409,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 19.</b> <br><br> Punkty A, B, C oraz D leżą na okręgu o środku w punkcie O. Punkt B leży na krótszym łuku AC. Kąt CDA ma miarę 50°, a kąt COB ma miarę 30° (zobacz rysunek).<br><br><img src=\"media/zad19/zad19rys.png\" alt=\"TODO: okrąg z punktami A, B, C, D, O i zaznaczonymi kątami CDA=50° oraz COB=30° – dodać obraz.\"><br>Miara kąta ostrego BOA jest równa",
@@ -427,7 +427,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 20.</b> <br><br> Na płaszczyźnie dane są cztery proste: k, l, m oraz n. Proste k oraz l są równoległe. Prosta m przecina proste k oraz l w punktach – odpowiednio – A oraz C. Prosta n przecina proste k oraz l w punktach – odpowiednio – D oraz B. Odcinki AC i BD przecinają się w punkcie O. Ponadto |OA| = 12, |OB| = 6 oraz |OC| = 8 (zobacz rysunek).<br><br><img src=\"media/zad20/zad20rys.png\" alt=\"TODO: dwie proste równoległe k,l przecięte prostymi m,n z zaznaczonymi odcinkami OA=12, OB=6, OC=8 – dodać obraz.\"><br>Odcinek OD ma długość",
@@ -445,7 +445,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 21.</b> <br><br> Dany jest trójkąt \\(KLM\\), w którym \\(|KM| = a\\) oraz \\(|LM| = b\\). Dwusieczna kąta \\(LMK\\) przecina bok \\(KL\\) w punkcie \\(N\\).<br><br>Wykaż, że stosunek pola trójkąta \\(KNM\\) do pola trójkąta \\(NLM\\) jest równy \\(\\dfrac{a}{b}\\).",
@@ -459,7 +459,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 22.</b> <br><br> W okrąg \\(\\mathcal{O}\\) o promieniu \\(9\\sqrt{3}\\) wpisano trójkąt równoboczny \\(\\mathcal{T}\\).<br><br>Uzupełnij zdanie. Wpisz odpowiednią liczbę w wykropkowanym miejscu, aby zdanie było prawdziwe.",
@@ -481,7 +481,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 23.</b> <br><br> Kąt \\(\\alpha\\) jest ostry i spełnia warunek \\[\\dfrac{3\\sin\\alpha + 4\\cos\\alpha}{4\\cos\\alpha} = 6\\]Tangens kąta \\(\\alpha\\) jest równy",
@@ -499,7 +499,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 24.</b> <br><br> W kartezjańskim układzie współrzędnych \\((x, y)\\) punkty \\(A = (0, -3)\\), \\(B = (2, 1)\\) oraz \\(C = (0, 2)\\) są wierzchołkami trójkąta prostokątnego.",
@@ -513,7 +513,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 24.1.</b> <br><br> Pole trójkąta \\(ABC\\) jest równe",
@@ -531,7 +531,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 24.2.</b> <br><br> Środek okręgu opisanego na trójkącie \\(ABC\\) ma współrzędne",
@@ -549,7 +549,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 25.</b> <br><br> W kartezjańskim układzie współrzędnych \\((x, y)\\) dany jest okrąg \\(\\mathcal{O}\\) o środku w punkcie \\(S = (1, -3)\\) i o promieniu \\(5\\).<br><br>Oceń prawdziwość poniższych stwierdzeń. Wybierz <b>P</b>, jeśli stwierdzenie jest prawdziwe, albo <b>F</b> – jeśli jest fałszywe.",
@@ -573,7 +573,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 26.</b> <br><br> W kartezjańskim układzie współrzędnych \\((x, y)\\) dana jest prosta \\(k\\) o równaniu \\(y = -\\dfrac{1}{3}x + 2\\). Prosta \\(l\\) jest równoległa do prostej \\(k\\) i przechodzi przez punkt \\((2, -2)\\).<br><br>Prosta \\(l\\) przecina oś \\(Oy\\) w punkcie",
@@ -591,7 +591,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 27.</b> <br><br> Dany jest ostrosłup prawidłowy czworokątny, w którym przekątna podstawy ma długość \\(8\\sqrt{3}\\). Krawędź boczna tego ostrosłupa jest nachylona do płaszczyzny podstawy pod kątem \\(30°\\).<br><br>Oblicz objętość tego ostrosłupa. Zapisz obliczenia.",
@@ -605,7 +605,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 28.</b> <br><br> Stożek i walec mają równe wysokości. Promień podstawy stożka jest dwa razy większy od promienia podstawy walca.<br><br>Stosunek objętości stożka do objętości walca jest równy",
@@ -623,7 +623,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 29.</b> <br><br> Wszystkich liczb naturalnych trzycyfrowych nieparzystych, w których zapisie dziesiętnym występują tylko cyfry 0, 1, 2, 3, 4, 5, 6 (np.: 321, 555), jest",
@@ -641,7 +641,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 30.</b> <br><br> Dane są dwa zbiory cyfr: \\(X = \\{1, 3, 5, 7, 9\\}\\) oraz \\(Y = \\{0, 2, 4, 6, 8\\}\\). Losujemy jedną cyfrę ze zbioru \\(X\\), a następnie losujemy jedną cyfrę ze zbioru \\(Y\\). Następnie zapisujemy liczbę dwucyfrową w ten sposób, że cyfra wylosowana ze zbioru \\(X\\) jest cyfrą dziesiątek, a cyfra wylosowana ze zbioru \\(Y\\) jest cyfrą jedności tej liczby dwucyfrowej.<br><br>Oblicz prawdopodobieństwo zdarzenia \\(A\\) polegającego na tym, że otrzymana w ten sposób liczba dwucyfrowa będzie podzielna przez \\(6\\). Zapisz obliczenia.",
@@ -655,7 +655,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 31.</b> <br><br> Nauczyciel matematyki po każdym sprawdzianie porównuje wyniki uzyskane przez uczniów dwóch klas: klasy IV A oraz klasy IV B. Na dwóch poniższych diagramach przedstawiono wyniki sprawdzianu ze statystyki, jakie uzyskali uczniowie tych klas. Na osiach poziomych podano oceny, które uzyskali uczniowie tych klas, a na osiach pionowych podano liczbę uczniów, którzy otrzymali daną ocenę.<br><br><img src=\"media/zad31/zad31rys.png\" alt=\"TODO: dwa diagramy słupkowe (klasa IV A, klasa IV B) liczby uczniów wg ocen – dodać obraz, dane nie są dostępne w formie tekstowej.\"><br>Oceń prawdziwość poniższych stwierdzeń. Wybierz <b>P</b>, jeśli stwierdzenie jest prawdziwe, albo <b>F</b> – jeśli jest fałszywe.",
@@ -679,7 +679,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 32.</b> <br><br> Średnia arytmetyczna trzech liczb: \\(a, b, c\\), jest równa \\(2\\). Średnia arytmetyczna czterech liczb: \\(d, e, f, g\\), jest równa \\(5{,}5\\).<br><br>Średnia arytmetyczna siedmiu liczb: \\(a, b, c, d, e, f, g\\), jest równa",
@@ -697,7 +697,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 33.</b> <br><br> W chwili \\(t = 0\\) z poziomu ziemi wyrzucono piłeczkę pionowo do góry. Przyjmijmy, że wysokość \\(h\\), na której znajduje się piłeczka w danej chwili \\(t\\), jest określona wzorem \\[h(t) = -4{,}9t^{2} + 14{,}7t\\] gdzie: czas \\(t\\) jest wyrażony w sekundach (s) i zmienia się od \\(0\\) do chwili pierwszego uderzenia piłeczki o ziemię, a wysokość \\(h\\) jest wyrażona w metrach i jest liczona względem poziomu ziemi.",
@@ -711,7 +711,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 33.1.</b> <br><br> Wyrzucona piłeczka po raz pierwszy uderzy w ziemię w chwili",
@@ -729,7 +729,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 33.2.</b> <br><br> Wyrzucona piłeczka osiągnęła największą wysokość w chwili",
@@ -747,7 +747,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     }
     ]
 }

@@ -1,6 +1,6 @@
 Nowy plik który tworzy Henrich (ja, użytkownik). Podczas Sprawdzania nowej wersji strony utworzonej przez fable (claude/project-improvements-exercises...)
 
-(Zasada: tu są TYLKO otwarte punkty. Zrobione wpisy [DONE]/[ZROBIONE] przenoszone są do DONE.md — patrz CLAUDE.md.)
+(Zasada: tu są TYLKO otwarte punkty. Zrobione wpisy [DONE]/[ZROBIONE] przenoszone są do bieżącego pliku pod DONE/ — patrz DONE/README.md i CLAUDE.md.)
 (Zasada: Drogi LLM, Sonnecie, Opusie, Jeżeli zmieniasz ten plik to wklejaj do odpowiedniej sekcji na dole)
 Zadania realizuj od góry do dołu.
 Zawsze sprawdzaj, testuj czy wprowadzone przez ciebie zmiany działają zanim zrobisz ostatni commit.
@@ -11,13 +11,13 @@ Zawsze sprawdzaj, testuj czy wprowadzone przez ciebie zmiany działają zanim zr
 Jeżeli nie masz co robić to rób stąd.
 - Naprawić włącznie trybu egzaminu który działa tylko raz a potem się blokuje.
 
+- Plan podziału plików (.claude/plans/czy-my-lisz-e-mam-tingly-hamster.md): kroki 1, 1b, 2 i 3 zrobione i zautomatyzowanie zweryfikowane (patrz DONE TODO/03-biezace.md) — zostaje tylko wizualny przegląd kroku 3 przez Henricha (jasny/ciemny motyw, okno ~500px, landing), patrz sekcja „DO SPRAWDZENIA PRZEZ HENRICHA" niżej. Krok 4 zrobiony wcześniej inaczej (katalog nazwano "DONE TODO", nie "DONE"). Krok 5 (script.js → js/) świadomie odłożony, poza zakresem.
+
 <br>
 
 
 NIE REALIZUJ
 czyli nieskonkretyzowane
-
-- Odchudzić i/lub podzielić pliki DONE.md, solutionsInteractive.js, style.css, script.js i inne zbyt duże pliki.
 
 - Stworzyć przycisk "zgłoś błąd w zadaniu" i odpowiedni formularz. Formspree / Getform ale wewnątrz strony (submit przez fetch (AJAX) czy coś) można jeszcze to doprecyzować albo zmienić troche koncepcje.
 
@@ -72,7 +72,14 @@ INNE NOTATKI:
 
 DO SPRAWDZENIA PRZEZ HENRICHA.
 Claudzie, możesz tutaj dopisywać rzeczy które mam sprawdzić/przetestować.
-- nic
+- Krok 3 podziału plików: style.css → style/ (base/sheet/landing/exam/responsive.css).
+  Wszystko co dało się zautomatyzować jest zweryfikowane (node/grep, Playwright: liczba
+  zadań, wszystkie widżety, klik ABCD/PF/fillIn, kaskada — computed styles dla jasny/ciemny
+  motyw, grid #bar-container na 500px i 1280px, tryb egzaminu, landing). Zostaje sam wygląd —
+  otwórz template.html?arkusz=2024-grudzien i sprawdź: jasny i ciemny motyw (⋯ → motyw),
+  okno zwężone do ~500px (pasek, karta zadania, przyciski), oraz index.html (landing). Nie
+  spodziewam się różnic względem starego style.css — to czysty podział plików (diff to
+  potwierdził), ale to jedyna rzecz, której sam nie zweryfikuję.
 
 <br><br><br>
 
@@ -100,7 +107,7 @@ PRZYCISKI W ZŁYCH MIEJSCACH:
 
 - [POTWIERDZONE] Na telefonie nowy "zakończ egzamin" w pasku wypycha menu ⋯ poza ekran. `#bar-right` ma `flex-wrap: nowrap`, a breakpointy ≤720px/≤560px zmniejszają nowemu przyciskowi tylko font i padding. Test różnicowy przy 360px w trybie egzaminu: prawa krawędź `#menu-button` = 430px przy oknie 360px; po ukryciu samego `#egzamin-koniec-bar` = 328px, czyli mieści się. (Poziome przepełnienie strony przy 360px istniało już wcześniej — ale to ten przycisk wypycha menu poza widok.)
 
-- [POTWIERDZONE] Przełącznik motywu wygląda inaczej niż reszta menu ⋯. `#theme-toggle` nie został dopisany do listy selektorów w style.css:352 (`#score-switch-button, #show-all-solutions, #reset-scores, #egzamin-start`), a `#bar-menu button` ustawia tylko layout. Zmierzone: `#theme-toggle` → `border: 2px outset`, tło `rgb(240,240,240)`; sąsiedni `#reset-scores` → `border: 2px solid`, tło białe. Czyli szary systemowy przycisk pośród czterech białych z ramką.
+- [POTWIERDZONE] Przełącznik motywu wygląda inaczej niż reszta menu ⋯. `#theme-toggle` nie został dopisany do listy selektorów w style/sheet.css:103 (`#score-switch-button, #show-all-solutions, #reset-scores, #egzamin-start`), a `#bar-menu button` ustawia tylko layout. Zmierzone: `#theme-toggle` → `border: 2px outset`, tło `rgb(240,240,240)`; sąsiedni `#reset-scores` → `border: 2px solid`, tło białe. Czyli szary systemowy przycisk pośród czterech białych z ramką.
 
 TRYB EGZAMINU I PAMIĘĆ PRZEGLĄDARKI:
 
@@ -112,14 +119,14 @@ TRYB EGZAMINU I PAMIĘĆ PRZEGLĄDARKI:
 
 DARK MODE — WYGLĄD:
 
-- Obrazki CKE i filmy z Manima świecą na biało w ciemnym motywie. Migracja świadomie przypięła `--canvas-bg: #fff` dla płócien widgetów, ale `.question img` (style.css ~542), obrazki kroków i `<video>` nie dostały żadnej reguły tła/filtra — wszystkie PNG w matura/**/ są nieprzezroczyste białe, więc renderują się jako jaskrawe prostokąty na karcie #1b1b1b.
+- Obrazki CKE i filmy z Manima świecą na biało w ciemnym motywie. Migracja świadomie przypięła `--canvas-bg: #fff` dla płócien widgetów, ale `.question img` (style/sheet.css:293), obrazki kroków i `<video>` nie dostały żadnej reguły tła/filtra — wszystkie PNG w matura/**/ są nieprzezroczyste białe, więc renderują się jako jaskrawe prostokąty na karcie #1b1b1b.
 
 - Dwie zmienne CSS użyte niezgodnie z przeznaczeniem na stronie głównej:
-  * `.landing-footer` (style.css:1151) bierze kolor tekstu z `--border-close` — tokena ramki krzyżyka paneli. Jego ciemna wartość to #666 na tle #1b1b1b, czyli kontrast 3.0:1, poniżej progu WCAG AA 4.5:1 dla tekstu 13px. Powinien iść przez `--text-faint-*`.
-  * `.landing-card` (style.css:1123) bierze ramkę z `--bg-hover` — tokena tła hoveru. Powinna iść przez któryś `--border*`.
+  * `.landing-footer` (style/landing.css:90) bierze kolor tekstu z `--border-close` — tokena ramki krzyżyka paneli. Jego ciemna wartość to #666 na tle #1b1b1b, czyli kontrast 3.0:1, poniżej progu WCAG AA 4.5:1 dla tekstu 13px. Powinien iść przez `--text-faint-*`.
+  * `.landing-card` (style/landing.css:63) bierze ramkę z `--bg-hover` — tokena tła hoveru. Powinna iść przez któryś `--border*`.
   * Skutek uboczny obu: przestrojenie krzyżyka paneli PDF po cichu zmienia wygląd strony głównej, a testowany będzie panel, nie landing.
 
-- Kropki "gumkują" przy scrollowaniu. `.wskaznik-otwarte` ma `transition: top 0.12s ease` (style.css:1322), a `repozycjonujWskazniki()` przepisuje `top` w każdej klatce rAF — tranzycja restartuje się co klatkę i nigdy nie kończy, więc kropki wloką się za zadaniami i drgają jeszcze ~120ms po zatrzymaniu scrolla. Animacja ma sens tylko dla skokowej repozycji po ocenieniu zadania.
+- Kropki "gumkują" przy scrollowaniu. `.wskaznik-otwarte` ma `transition: top 0.12s ease` (style/exam.css:164), a `repozycjonujWskazniki()` przepisuje `top` w każdej klatce rAF — tranzycja restartuje się co klatkę i nigdy nie kończy, więc kropki wloką się za zadaniami i drgają jeszcze ~120ms po zatrzymaniu scrolla. Animacja ma sens tylko dla skokowej repozycji po ocenieniu zadania.
 
 DOKUMENTACJA:
 

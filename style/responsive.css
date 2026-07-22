@@ -1,0 +1,120 @@
+/* ===== RESPONSYWNOŚĆ (WĄSKIE EKRANY) ===== */
+/* Strona jest desktop-first (stałe 650px). Poniższe breakpointy nie zmieniają
+   niczego na dużych ekranach — tylko pozwalają arkuszowi zmieścić się na
+   telefonie/tablecie bez poziomego scrolla. */
+
+/* Tytuł arkusza w pasku znika, gdy strefy boczne zostawiają mu za mało miejsca
+   (ellipsis przy ~900px robił się nieczytelny i tak). */
+@media (max-width: 900px) {
+    #exercises-sheet-title,
+    #exercises-mode-subtitle {
+        display: none;
+    }
+}
+
+/* Badge punktów wisi 120px za prawą krawędzią karty (650px + 2×50px padding),
+   więc mieści się dopiero od ~1010px szerokości okna — poniżej wraca do
+   prawego górnego rogu karty, żeby nie robić poziomego scrolla. */
+@media (max-width: 1024px) {
+    .exercise-score {
+        top: 8px;
+        right: 8px;
+        /* W rogu karty badge nie ma się z czym równać w pionie — trzymamy go
+           przy górnej krawędzi (bez margin-top z reguły bazowej). */
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 720px) {
+    /* Pasek: ciaśniejsze odstępy i przyciski bez sztywnej szerokości. */
+    #bar-container {
+        padding: 8px 10px;
+        gap: 6px;
+    }
+    #toggle-tablica,
+    #toggle-zasady {
+        min-width: 0;
+        padding: 8px;
+        font-size: 12px;
+    }
+    #total-score,
+    body.tryb-egzaminu #egzamin-koniec-bar {
+        font-size: 13px;
+    }
+    body.tryb-egzaminu #egzamin-koniec-bar {
+        padding: 8px;
+    }
+    #bar-menu {
+        top: 54px;
+        right: 10px;
+    }
+
+    /* Karta zadania wypełnia ekran zamiast sztywnych 650px + 50px paddingu. */
+    .exercise-container {
+        width: auto;
+        max-width: 650px;
+        padding: 40px 16px;
+    }
+    #exercises-wrapper {
+        padding-top: 80px;
+    }
+
+    /* Media rozwiązań i przyciski odpowiedzi nie wychodzą poza ekran. */
+    .solution-step-by-step-container video {
+        width: 100%;
+        max-width: 420px;
+        height: auto;
+        aspect-ratio: 420 / 180;
+        margin: auto;
+    }
+    .solution-step-by-step-container img {
+        max-width: 100%;
+    }
+    .button-container button {
+        min-width: 38%;
+        margin: 6px 4px;
+    }
+    /* ...ale przyciski P/F zostają małe (44px) — regułę wyżej łapały przez
+       wspólny kontener .button-container. */
+    .pf-row button {
+        min-width: 44px;
+        margin: 0;
+    }
+    .solution-text-more {
+        padding: 0 8px;
+    }
+
+    /* Panele PDF na prawie całą szerokość ekranu. */
+    #tablica-wzorow-panel,
+    #zasady-oceniania-panel {
+        width: 94%;
+        right: 3%;
+    }
+    #zasady-oceniania-panel {
+        right: auto;
+        left: 3%;
+    }
+}
+
+/* Bardzo wąskie ekrany (telefon pionowo): trzy strefy paska nie mieszczą się
+   w jednym rzędzie, więc pasek przechodzi na dwa — logo + zasady u góry,
+   punkty + tablica + ⋯ pod spodem. Tytuł i tak jest już ukryty (breakpoint
+   900px wyżej). */
+@media (max-width: 560px) {
+    #bar-container {
+        grid-template-columns: 1fr;
+    }
+    #bar-center {
+        display: none;
+    }
+    #bar-left,
+    #bar-right {
+        justify-content: center;
+    }
+    #exercises-wrapper {
+        padding-top: 110px;
+    }
+    #bar-menu {
+        top: 92px;
+    }
+}

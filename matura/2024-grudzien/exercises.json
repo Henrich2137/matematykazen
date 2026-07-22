@@ -69,7 +69,7 @@
                 "text": "Suma obu rozwiązań: \\(x_1 + x_2 = -8\\) — to odpowiedź B."
             }
         ],
-        "solutionInteractive": "widgetOsLiczbowa"
+        "solutionWidget": "widgetOsLiczbowa"
     },
     {
         "question": "<b>Zadanie 2.</b> <br><br> Liczba \\(\\left(\\sqrt[5]{5} \\cdot \\dfrac{1}{5}\\right)^{-5}\\) jest równa:",
@@ -118,7 +118,7 @@
                 "text": "\\(5^{-1+5} = 5^{4}\\), czyli odpowiedź A (na końcu filmu błędny zapis \\(5^{-4}\\))."
             }
         ],
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 3.</b> <br><br> Wykaż, że liczba \\(2^{100} + 4^{49} + 16^{24}\\) jest podzielna przez \\(21\\).",
@@ -173,7 +173,7 @@
                 "text": "liczba \\(c \\cdot 21\\) jest podzielna przez 21 (c — cokolwiek całkowitego)"
             }
         ],
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 4.</b> <br><br> Dla każdej dodatniej liczby rzeczywistej \\(x\\) i dla każdej dodatniej liczby rzeczywistej \\(y\\) wartość wyrażenia \\(\\log_{7} x + 6\\log_{7} y\\) jest równa wartości wyrażenia:",
@@ -191,7 +191,7 @@
         "solutionText": "\\(\\log_{7} x + 6\\log_{7} y = \\log_{7} x + \\log_{7} y^{6} = \\boldsymbol{\\log_{7}\\left(xy^{6}\\right)}\\) — odpowiedź <b>D</b>.",
         "solutionTextMore": "Najpierw „chowamy\" 6 do logarytmu: \\(6\\log_{7} y = \\log_{7} y^{6}\\) (własność \\(\\log_a x^{b} = b\\log_a x\\), czytana od prawej). <br><br> Potem sumę logarytmów o tej samej podstawie zamieniamy na logarytm iloczynu: \\(\\log_{7} x + \\log_{7} y^{6} = \\log_{7}\\left(x \\cdot y^{6}\\right)\\).",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 5.</b> <br><br> Pani Aniela wpłaciła do banku kwotę <b>60 000 zł</b> na lokatę dwuletnią. Po każdym rocznym okresie oszczędzania bank doliczał odsetki w wysokości \\(p\\%\\) w skali roku od kwoty bieżącego kapitału znajdującego się na lokacie – zgodnie z procentem składanym. Na koniec okresu oszczędzania kwota na tej lokacie była równa <b> 67 925,76 zł </b> wraz z odsetkami (bez uwzględniania podatków). <br><br> Oprocentowanie lokaty w skali roku było równe:",
@@ -209,7 +209,7 @@
         "solutionText": "Podstawiamy do wzoru na procent składany: \\(60\\,000 \\cdot (1 + p)^{2} = 67\\,925{,}76\\), stąd \\((1 + p)^{2} = 1{,}132096\\), czyli \\(1 + p = 1{,}064\\) i \\(\\boldsymbol{p = 6{,}4\\%}\\) — odpowiedź <b>B</b>.",
         "solutionTextMore": "\\[\\begin{aligned} (1 + p)^{2} &= \\tfrac{67\\,925{,}76}{60\\,000} = 1{,}132096 \\\\ 1 + p &= \\sqrt{1{,}132096} = 1{,}064 \\\\ p &= 0{,}064 = \\boldsymbol{6{,}4\\%} \\end{aligned}\\] Warto zauważyć, że wystarczyło sprawdzić odpowiedzi: \\(60\\,000 \\cdot 1{,}064^{2} = 67\\,925{,}76\\) zł. ✓",
         "solutionStepByStep": null,
-        "solutionInteractive": "widgetProcentSkladany"
+        "solutionWidget": "widgetProcentSkladany"
     },
     {
         "question": "<b>Zadanie 6.</b> <br><br> Dla każdej liczby rzeczywistej \\(x\\) różnej od \\((-1)\\), \\(0\\) oraz \\(1\\) wartość wyrażenia\\[\\frac{x}{x^{2} - 1} : \\frac{3x^{2}}{x + 1}\\]jest równa wartości wyrażenia:",
@@ -227,7 +227,7 @@
         "solutionText": "Zamieniamy dzielenie na mnożenie przez odwrotność i skracamy: \\(\\frac{x}{(x-1)(x+1)} \\cdot \\frac{x+1}{3x^{2}} = \\boldsymbol{\\frac{1}{3x(x-1)} = \\frac{1}{3x^{2}-3x}}\\) — odpowiedź <b>B</b>.",
         "solutionTextMore": "Po kolei: <br><br> 1. Mianownik pierwszego ułamka rozkładamy ze wzoru skróconego mnożenia: \\(x^{2} - 1 = (x - 1)(x + 1)\\). <br><br> 2. Dzielenie zamieniamy na mnożenie przez odwrotność: \\(\\cdot\\ \\frac{x+1}{3x^{2}}\\). <br><br> 3. Skracamy \\((x + 1)\\) oraz jedno \\(x\\): zostaje \\(\\frac{1}{3x(x-1)}\\), czyli po wymnożeniu mianownika \\(\\frac{1}{3x^{2}-3x}\\). <br><br> Założenia \\(x \\ne -1,\\ 0,\\ 1\\) gwarantują, że nic po drodze nie dzieliło przez zero.",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 7.</b> <br><br> Para liczb \\(x = -1\\) i \\(y = 6\\) jest rozwiązaniem układu równań:\\[\\begin{cases} ax + 3y = 20 \\\\ x + by = 5 \\end{cases}\\]gdzie \\(a\\) oraz \\(b\\) są liczbami rzeczywistymi.<br><br>Wartość wyrażenia \\(a \\cdot b\\) jest równa:",
@@ -245,7 +245,7 @@
         "solutionText": "Po podstawieniu \\(x = -1\\), \\(y = 6\\): z pierwszego równania \\(-a + 18 = 20\\), więc \\(\\boldsymbol{a = -2}\\); z drugiego \\(-1 + 6b = 5\\), więc \\(\\boldsymbol{b = 1}\\). Zatem \\(a \\cdot b = \\boldsymbol{-2}\\) — odpowiedź <b>A</b>.",
         "solutionTextMore": "\\[\\begin{aligned} a \\cdot (-1) + 3 \\cdot 6 &= 20 \\\\ -a + 18 &= 20 \\\\ -a &= 2 \\\\ a &= \\boldsymbol{-2} \\end{aligned}\\]\\[\\begin{aligned} (-1) + b \\cdot 6 &= 5 \\\\ 6b &= 6 \\\\ b &= \\boldsymbol{1} \\end{aligned}\\]\\[a \\cdot b = (-2) \\cdot 1 = \\boldsymbol{-2}\\]",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 8.</b> <br><br> Rozwiąż równanie:\\[\\frac{x + 3}{x - 1} = \\frac{x}{2x - 2}\\]Zapisz konieczne założenie i obliczenia.",
@@ -259,7 +259,7 @@
         "solutionText": "Założenie: \\(x \\ne 1\\). Po pomnożeniu obu stron przez \\(2(x - 1)\\) dostajemy \\(2(x + 3) = x\\), czyli \\(\\boldsymbol{x = -6}\\) (należy do dziedziny).",
         "solutionTextMore": "\\(2x - 2 = 2(x - 1)\\), więc dziedzina: \\(x \\ne 1\\).\\[\\frac{x+3}{x-1} = \\frac{x}{2(x-1)} \\quad \\Big/ \\cdot\\ 2(x-1)\\]\\[\\begin{aligned} 2(x + 3) &= x \\\\ 2x + 6 &= x \\\\ x &= \\boldsymbol{-6} \\end{aligned}\\]\\(-6 \\ne 1\\), więc rozwiązaniem równania jest \\(\\boldsymbol{x = -6}\\).",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 9.</b> <br><br> Rozwiąż nierówność:<br>\\(x(x - 6) \\le 7\\)<br>Zapisz obliczenia.",
@@ -273,7 +273,7 @@
         "solutionText": "Po uporządkowaniu: \\(x^{2} - 6x - 7 \\le 0\\). Miejsca zerowe: \\(x = -1\\) i \\(x = 7\\), ramiona paraboli w górę, więc rozwiązaniem jest przedział \\(\\boldsymbol{\\langle -1,\\ 7\\rangle}\\).",
         "solutionTextMore": "\\[x^{2} - 6x - 7 \\le 0\\]\\[\\Delta = 36 + 28 = 64, \\quad \\sqrt{\\Delta} = 8\\]\\[x_1 = \\frac{6 - 8}{2} = -1, \\quad x_2 = \\frac{6 + 8}{2} = 7\\]Współczynnik przy \\(x^{2}\\) jest dodatni → parabola ma ramiona w górę → wartości \\(\\le 0\\) przyjmuje <b>między</b> miejscami zerowymi: \\(\\boldsymbol{x \\in \\langle -1,\\ 7\\rangle}\\).",
         "solutionStepByStep": null,
-        "solutionInteractive": "widgetNierownoscKwadratowa"
+        "solutionWidget": "widgetNierownoscKwadratowa"
     },
     {
         "question": "<b>Zadanie 10.</b> <br><br> Funkcja \\(f\\) jest określona następująco:\\[f(x) = \\begin{cases} 3 & \\text{dla } x \\in (-4,\\ -2\\rangle \\\\ -x + 1 & \\text{dla } x \\in (-2,\\ 2\\rangle \\\\ x - 3 & \\text{dla } x \\in (2,\\ 4\\rangle \\end{cases}\\]Wykres funkcji \\(y = f(x)\\) przedstawiono w kartezjańskim układzie współrzędnych \\((x, y)\\) na rysunku poniżej<img src=\"media/zad10/zad10rys.png\" alt=\"Wykres funkcji f łamanej: odcinek poziomy na wysokości 3 od x=-4 (kółko otwarte) do x=-2, malejący odcinek do (2,-1), rosnący odcinek do (4,1) (kropka pełna).\"> <br>Uzupełnij zdania. Wpisz odpowiednie przedziały w polach, aby zdania były prawdziwe. Przedziały zapisz w postaci np. (-4, 4] lub [-1, 3] (nawias okrągły – koniec przedziału wyłączony, kwadratowy – włączony).",
@@ -313,7 +313,7 @@
         "solutionText": "1. Dziedzina: \\(\\boldsymbol{(-4,\\ 4\\rangle}\\). &nbsp; 2. Zbiór wartości: \\(\\boldsymbol{\\langle -1,\\ 3\\rangle}\\). &nbsp; 3. Wartości ujemne dla \\(\\boldsymbol{x \\in (1,\\ 3)}\\). &nbsp; 4. Największą wartość (3) funkcja przyjmuje dla \\(\\boldsymbol{x \\in (-4,\\ -2\\rangle}\\).",
         "solutionTextMore": "1. Wykres zaczyna się w \\(x = -4\\) (kółko otwarte → \\(-4\\) nie należy) i kończy w \\(x = 4\\) (kropka pełna → \\(4\\) należy): dziedzina \\(\\boldsymbol{(-4,\\ 4\\rangle}\\). <br><br> 2. Najniższy punkt wykresu to \\(y = -1\\) (w \\(x = 2\\)), najwyższy to \\(y = 3\\): zbiór wartości \\(\\boldsymbol{\\langle -1,\\ 3\\rangle}\\). <br><br> 3. Pod osią x wykres jest między \\(x = 1\\) a \\(x = 3\\) (w obu tych punktach \\(f(x) = 0\\), więc ich nie zaliczamy): \\(\\boldsymbol{(1,\\ 3)}\\). <br><br> 4. Wartość 3 (największa) jest przyjmowana na całym poziomym fragmencie: \\(\\boldsymbol{(-4,\\ -2\\rangle}\\).",
         "solutionStepByStep": null,
-        "solutionInteractive": "widgetFunkcjaPrzedzialami"
+        "solutionWidget": "widgetFunkcjaPrzedzialami"
     },
     {
         "question": "<b>Zadanie 11.</b> <br><br> Miejscem zerowym funkcji liniowej \\(f\\) jest liczba \\(2\\), a punkt przecięcia wykresu funkcji \\(f\\) z osią \\(Oy\\) ma współrzędne \\((0,\\ 4)\\).<br><br><img src=\"media/zad11/zad11.png\" alt=\"Wykres malejącej funkcji liniowej f przecinającej oś Oy w punkcie (0,4) i oś Ox w punkcie (2,0).\"> <br>Oceń prawdziwość poniższych stwierdzeń. Wybierz <b>P</b>, jeśli stwierdzenie jest prawdziwe, albo <b>F</b> – jeśli jest fałszywe.",
@@ -337,7 +337,7 @@
         "solutionText": "\\(f(x) = ax + 4\\) i \\(f(2) = 0\\), więc \\(2a + 4 = 0\\), czyli \\(\\boldsymbol{a = -2}\\) (zdanie 1: <b>P</b>). Pole trójkąta: \\(\\frac{1}{2} \\cdot 2 \\cdot 4 = \\boldsymbol{4}\\), a nie 8 (zdanie 2: <b>F</b>).",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 12.</b> <br><br> W kartezjańskim układzie współrzędnych \\((x, y)\\) wykresem funkcji kwadratowej \\(f\\) jest parabola, której wierzchołkiem jest punkt \\((3,\\ 0)\\). Ta parabola przechodzi przez punkt o współrzędnych \\((0,\\ -9)\\).",
@@ -351,7 +351,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 12.1.</b> <br><br> Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>Funkcja \\(f\\) jest malejąca w przedziale:<br>",
@@ -369,7 +369,7 @@
         "solutionText": "Parabola przechodzi przez punkt leżący poniżej wierzchołka, więc ma ramiona skierowane <b>w dół</b>. Taka funkcja rośnie do wierzchołka i maleje od niego, czyli jest malejąca w przedziale \\(\\boldsymbol{\\langle 3,\\ +\\infty)}\\) — odpowiedź <b>D</b>.",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": "widgetParabola"
+        "solutionWidget": "widgetParabola"
     },
     {
         "question": "<b>Zadanie 12.2.</b> <br><br> Wzór funkcji \\(f\\) zapisano w dwóch spośród poniższych odpowiedzi. <b>Wybierz je obie.</b>",
@@ -394,7 +394,7 @@
         "solutionText": "Postać kanoniczna: \\(f(x) = a(x - 3)^{2}\\); z \\(f(0) = -9\\) mamy \\(9a = -9\\), czyli \\(a = -1\\), więc \\(\\boldsymbol{f(x) = -(x - 3)^{2}}\\) (odp. <b>B</b>). Po rozwinięciu: \\(-(x^{2} - 6x + 9) = \\boldsymbol{-x^{2} + 6x - 9}\\) (odp. <b>D</b>).",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 12.3.</b> <br><br> Funkcja kwadratowa \\(g\\) jest określona za pomocą funkcji \\(f\\) następująco: \\(g(x) = f(x) - 1\\). <br><br>Oceń prawdziwość poniższych stwierdzeń. Wybierz <b>P</b>, jeśli stwierdzenie jest prawdziwe, albo <b>F</b> – jeśli jest fałszywe.",
@@ -418,7 +418,7 @@
         "solutionText": "\\(g(x) = -(x - 3)^{2} - 1\\) ma wierzchołek \\((3,\\ -1)\\) i ramiona w dół, więc największa wartość to \\(-1 < 0\\) — funkcja <b>nie ma</b> miejsc zerowych (zdanie 1: <b>F</b>). Przesunięcie pionowe nie zmienia osi symetrii: nadal \\(x = 3\\) (zdanie 2: <b>P</b>).",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 13.</b> <br><br> Funkcja logarytmiczna \\(f\\) jest określona wzorem \\(f(x) = \\log_{6} x\\) dla każdej dodatniej liczby rzeczywistej \\(x\\).<br><br>Oceń prawdziwość poniższych stwierdzeń. Wybierz <b>P</b>, jeśli stwierdzenie jest prawdziwe, albo <b>F</b> – jeśli jest fałszywe.",
@@ -442,7 +442,7 @@
         "solutionText": "\\(f(36) = \\log_{6} 36 = \\boldsymbol{2}\\) (bo \\(6^{2} = 36\\)), a nie 6 — zdanie 1: <b>F</b>. Podstawa \\(6 > 1\\), więc logarytm jest funkcją rosnącą — zdanie 2: <b>P</b>.",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 14.</b> <br><br> Ciąg \\((a_n)\\) jest określony wzorem \\(a_n = 3 \\cdot (-1)^{n} + 10\\) dla każdej liczby naturalnej \\(n \\ge 1\\).<br><br>Oceń prawdziwość poniższych stwierdzeń. Wybierz <b>P</b>, jeśli stwierdzenie jest prawdziwe, albo <b>F</b> – jeśli jest fałszywe.",
@@ -466,7 +466,7 @@
         "solutionText": "Wyrazy to na przemian 7 i 13: \\(\\frac{13}{7} \\ne \\frac{7}{13}\\), więc iloraz nie jest stały — ciąg <b>nie jest</b> geometryczny (zdanie 1: <b>F</b>). Suma ośmiu wyrazów to cztery pary \\((7 + 13)\\): \\(4 \\cdot 20 = \\boldsymbol{80}\\) (zdanie 2: <b>P</b>).",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 15.</b> <br><br> Trzywyrazowy ciąg \\((5m,\\ 4 + 2m,\\ m)\\) jest arytmetyczny, gdy liczba \\(m\\) jest równa:<br>",
@@ -484,7 +484,7 @@
         "solutionText": "Z warunku ciągu arytmetycznego: \\(2(4 + 2m) = 5m + m\\), czyli \\(8 + 4m = 6m\\), stąd \\(\\boldsymbol{m = 4}\\) — odpowiedź <b>D</b>. (Ciąg: 20, 12, 4 — różnica \\(r = -8\\).)",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": "widgetCiagArytmetyczny"
+        "solutionWidget": "widgetCiagArytmetyczny"
     },
     {
         "question": "<b>Zadanie 16.</b> <br><br> Dany jest ciąg geometryczny \\((a_n)\\) określony dla każdej liczby naturalnej \\(n \\ge 1\\), w którym \\(a_2 = \\frac{1}{6}\\) oraz \\(a_3 = \\frac{1}{9}\\).<br><br>Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>Piąty wyraz ciągu \\((a_n)\\) jest równy:",
@@ -502,7 +502,7 @@
         "solutionText": "\\(q = \\frac{a_3}{a_2} = \\frac{1}{9} \\cdot \\frac{6}{1} = \\frac{2}{3}\\). Zatem \\(a_5 = a_3 \\cdot q^{2} = \\frac{1}{9} \\cdot \\frac{4}{9} = \\boldsymbol{\\frac{4}{81}}\\) — odpowiedź <b>C</b>.",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 17.</b> <br><br> Dany jest trójkąt prostokątny ABC, w którym \\(|AC| = \\sqrt{15}\\) i \\(|BC| = 8\\). Na przyprostokątnej AB leży taki punkt D, że \\(|BD| = 6\\) (zobacz rysunek).<br><img src=\"media/zad17/zad17.png\" alt=\"Trójkąt prostokątny ABC z kątem prostym przy A: bok AC ma długość √15, przeciwprostokątna BC ma długość 8, a punkt D leży na boku AB w odległości 6 od B.\">",
@@ -516,7 +516,7 @@
         "solutionText": "",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 17.1.</b> <br><br> Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>Sinus kąta ostrego ABC jest równy:",
@@ -534,7 +534,7 @@
         "solutionText": "Kąt prosty jest przy A, więc przeciwprostokątna to \\(BC = 8\\). Naprzeciw kąta ABC leży przyprostokątna \\(AC = \\sqrt{15}\\), zatem \\(\\sin(\\angle ABC) = \\boldsymbol{\\frac{\\sqrt{15}}{8}}\\) — odpowiedź <b>D</b>.",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 17.2.</b> <br><br> Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>Tangens kąta ostrego ADC jest równy:",
@@ -552,7 +552,7 @@
         "solutionText": "Z Pitagorasa: \\(|AB| = \\sqrt{8^{2} - (\\sqrt{15})^{2}} = \\sqrt{49} = 7\\), więc \\(|AD| = 7 - 6 = 1\\). W trójkącie ACD (prostokątnym przy A): \\(\\operatorname{tg}(\\angle ADC) = \\frac{|AC|}{|AD|} = \\frac{\\sqrt{15}}{1} = \\boldsymbol{\\sqrt{15}}\\) — odpowiedź <b>A</b>.",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 18.</b> <br><br> Kąt o mierze \\(\\alpha\\) jest <u>rozwarty</u> oraz \\(\\sin\\alpha = \\frac{\\sqrt{3}}{4}\\).<br><br>Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>Cosinus kąta o mierze \\(\\alpha\\) jest równy:",
@@ -570,7 +570,7 @@
         "solutionText": "Z jedynki trygonometrycznej: \\(\\cos^{2}\\alpha = 1 - \\frac{3}{16} = \\frac{13}{16}\\), więc \\(\\cos\\alpha = \\pm\\frac{\\sqrt{13}}{4}\\). Kąt jest rozwarty, więc cosinus jest ujemny: \\(\\boldsymbol{\\cos\\alpha = -\\frac{\\sqrt{13}}{4}}\\) — odpowiedź <b>A</b>.",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": "widgetKoloTrygonometryczne"
+        "solutionWidget": "widgetKoloTrygonometryczne"
     },
     {
         "question": "<b>Zadanie 19.</b> <br><br> W trapezie prostokątnym ABCD dłuższa podstawa AB ma długość \\(7{,}5\\). Krótsza przekątna AC ma długość równą \\(6\\) i dzieli trapez na dwa trójkąty prostokątne.<br><br><img src=\"media/zad19/zad19.png\" alt=\"Trapez prostokątny ABCD z podstawą AB długości 7,5 i przekątną AC długości 6, dzielącą trapez na dwa trójkąty prostokątne.\"> <br>Oblicz pole trapezu ABCD. Zapisz obliczenia.",
@@ -584,7 +584,7 @@
         "solutionText": "\\(|BC| = \\sqrt{7{,}5^{2} - 6^{2}} = 4{,}5\\). Z podobieństwa kątów: \\(|AD| = 3{,}6\\) i \\(|DC| = 4{,}8\\). Pole: \\(P = \\frac{1}{2} \\cdot (7{,}5 + 4{,}8) \\cdot 3{,}6 = \\boldsymbol{22{,}14}\\).",
         "solutionTextMore": "1. Trójkąt ABC jest prostokątny przy C: \\(|BC| = \\sqrt{7{,}5^{2} - 6^{2}} = \\sqrt{20{,}25} = 4{,}5\\). <br><br> 2. W tym trójkącie: \\(\\sin(\\angle CAB) = \\frac{4{,}5}{7{,}5} = 0{,}6\\) oraz \\(\\cos(\\angle CAB) = \\frac{6}{7{,}5} = 0{,}8\\). <br><br> 3. \\(DC \\parallel AB\\), więc \\(\\angle DCA = \\angle CAB\\) (kąty naprzemianległe). W trójkącie ACD (prostokątnym przy D): <br> \\(|AD| = |AC| \\cdot \\sin(\\angle DCA) = 6 \\cdot 0{,}6 = 3{,}6\\) (wysokość trapezu), <br> \\(|DC| = |AC| \\cdot \\cos(\\angle DCA) = 6 \\cdot 0{,}8 = 4{,}8\\) (krótsza podstawa). <br><br> 4. \\(P = \\frac{1}{2}(a + b) \\cdot h = \\frac{1}{2}(7{,}5 + 4{,}8) \\cdot 3{,}6 = \\frac{1}{2} \\cdot 12{,}3 \\cdot 3{,}6 = \\boldsymbol{22{,}14}\\).",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 20.</b> <br><br> Dany jest okrąg o środku w punkcie S i promieniu \\(6\\). Miara kąta wpisanego ACB jest równa \\(60^{\\circ}\\).<br><br><img src=\"media/zad20/zad20.png\" alt=\"Okrąg o środku S z kątem wpisanym ACB równym 60°, opartym na łuku AB.\"> <br>Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>Długość łuku AB, na którym oparty jest kąt wpisany ACB, jest równa:",
@@ -602,7 +602,7 @@
         "solutionText": "Kąt środkowy \\(\\angle ASB = 2 \\cdot 60^{\\circ} = 120^{\\circ}\\), czyli \\(\\frac{1}{3}\\) pełnego kąta. Długość łuku: \\(\\frac{1}{3} \\cdot 2\\pi \\cdot 6 = \\boldsymbol{4\\pi}\\) — odpowiedź <b>B</b>.",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": "widgetKatWpisany"
+        "solutionWidget": "widgetKatWpisany"
     },
     {
         "question": "<b>Zadanie 21.</b> <br><br> W kartezjańskim układzie współrzędnych \\((x, y)\\) punkty \\(A = (-2,\\ -1)\\) oraz \\(C = (3,\\ 4)\\) są przeciwległymi wierzchołkami kwadratu ABCD.<br><br>Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>Długość boku kwadratu ABCD jest równa:",
@@ -620,7 +620,7 @@
         "solutionText": "\\(|AC| = \\sqrt{5^{2} + 5^{2}} = 5\\sqrt{2}\\), a bok kwadratu to przekątna podzielona przez \\(\\sqrt{2}\\): \\(\\boldsymbol{a = 5}\\) — odpowiedź <b>A</b>.",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 22.</b> <br><br> W kartezjańskim układzie współrzędnych \\((x, y)\\) dana jest prosta \\(k\\) o równaniu \\(y = -7x + 3\\). Prosta \\(l\\) jest równoległa do prostej \\(k\\) i przecina oś \\(Oy\\) w punkcie \\((0,\\ 6)\\). Punkt o współrzędnych \\((1,\\ p)\\) należy do prostej \\(l\\).<br><br>Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>Liczba \\(p\\) jest równa:",
@@ -638,7 +638,7 @@
         "solutionText": "Prosta l: \\(y = -7x + 6\\), więc \\(p = -7 \\cdot 1 + 6 = \\boldsymbol{-1}\\) — odpowiedź <b>B</b>.",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 23.</b> <br><br> W kartezjańskim układzie współrzędnych \\((x, y)\\) dane są cztery okręgi o równaniach:<br><br>\\(o_1\\colon\\ (x - 1)^{2} + (y - 2)^{2} = 1\\)<br>\\(o_2\\colon\\ (x + 1)^{2} + (y + 2)^{2} = 9\\)<br>\\(o_3\\colon\\ (x - 3)^{2} + (y - 4)^{2} = 4\\)<br>\\(o_4\\colon\\ (x + 3)^{2} + (y + 4)^{2} = 16\\)<br><br>Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>Okręgiem, który nie ma żadnego punktu wspólnego z osiami układu współrzędnych \\((x, y)\\), jest:",
@@ -656,7 +656,7 @@
         "solutionText": "\\(o_3\\) ma środek \\((3,\\ 4)\\) i promień \\(2\\): odległości od osi (3 i 4) są większe od promienia, więc \\(\\boldsymbol{o_3}\\) nie dotyka żadnej z osi — odpowiedź <b>C</b>. (\\(o_1\\) jest styczny do osi \\(Oy\\), \\(o_2\\) i \\(o_4\\) przecinają osie.)",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 24.</b> <br><br> Podstawą ostrosłupa prawidłowego czworokątnego jest kwadrat o boku długości \\(4\\). Ściana boczna tego ostrosłupa jest nachylona do płaszczyzny podstawy pod takim kątem \\(\\alpha\\), że \\(\\operatorname{tg}\\alpha = 3\\).<br><br>Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>Wysokość tego ostrosłupa jest równa:",
@@ -674,7 +674,7 @@
         "solutionText": "\\(\\operatorname{tg}\\alpha = \\frac{H}{a/2}\\), czyli \\(3 = \\frac{H}{2}\\), stąd \\(\\boldsymbol{H = 6}\\) — odpowiedź <b>B</b>.",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 25.</b> <br><br> Długości trzech krawędzi wychodzących z jednego wierzchołka prostopadłościanu są trzema kolejnymi parzystymi liczbami naturalnymi. Najdłuższa krawędź tego prostopadłościanu ma długość \\(p\\).<br><br>Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.<br>Objętość tego prostopadłościanu jest równa:",
@@ -692,7 +692,7 @@
         "solutionText": "\\(V = (p - 4)(p - 2)p = (p^{2} - 6p + 8)p = \\boldsymbol{p^{3} - 6p^{2} + 8p}\\) — odpowiedź <b>D</b>.",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 26.</b> <br><br> Objętość stożka o wysokości \\(2\\) jest równa \\(8\\pi\\). Oblicz miarę kąta rozwarcia tego stożka. Zapisz obliczenia.",
@@ -706,7 +706,7 @@
         "solutionText": "\\(\\frac{1}{3}\\pi r^{2} \\cdot 2 = 8\\pi \\Rightarrow r^{2} = 12 \\Rightarrow r = 2\\sqrt{3}\\). Dalej \\(\\operatorname{tg}\\frac{\\alpha}{2} = \\frac{r}{h} = \\frac{2\\sqrt{3}}{2} = \\sqrt{3}\\), więc \\(\\frac{\\alpha}{2} = 60^{\\circ}\\) i kąt rozwarcia \\(\\boldsymbol{\\alpha = 120^{\\circ}}\\).",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 27.</b> <br><br> Wszystkich liczb naturalnych pięciocyfrowych <u>nieparzystych</u>, w których zapisie dziesiętnym występują wyłącznie cyfry 0, 1, 2, 3 (np. 12303, 11111), jest:",
@@ -724,7 +724,7 @@
         "solutionText": "\\(3 \\cdot 4 \\cdot 4 \\cdot 4 \\cdot 2 = \\boldsymbol{384}\\) — odpowiedź <b>B</b>.",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 28.</b> <br><br> Dane są dwa zbiory: \\(C = \\{1, 2, 3, 4, 5, 6\\}\\) oraz \\(D = \\{7, 8, 9, 10\\}\\). Losujemy jedną liczbę ze zbioru C, a następnie losujemy jedną liczbę ze zbioru D.<br><br>Oblicz prawdopodobieństwo zdarzenia A polegającego na tym, że wylosujemy liczby, których iloczyn będzie podzielny przez 4. Zapisz obliczenia.",
@@ -738,7 +738,7 @@
         "solutionText": "\\(|\\Omega| = 24\\). Sprzyjające: z 8 — każde c (6 par); z 7 i 9 — tylko \\(c = 4\\) (2 pary); z 10 — c parzyste: 2, 4, 6 (3 pary). Razem 11, więc \\(\\boldsymbol{P(A) = \\frac{11}{24}}\\).",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 29.</b> <br><br> Do szkolnego koła czytelniczego należy 50 uczniów. Opiekun koła zebrał dane dotyczące liczby książek przeczytanych przez tych uczniów w listopadzie 2024 roku. W poniższej tabeli przedstawiono wyniki zebrane przez opiekuna.<br><br><table class=\"data-table\"><tr><th>Liczba przeczytanych książek</th><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr><tr><th>Liczba uczniów</th><td>5</td><td>8</td><td>12</td><td>13</td><td>12</td></tr></table><br>Uzupełnij zdania. Wpisz odpowiednie liczby w polach, aby zdania były prawdziwe. Odpowiedzi podaj jako ułamki dziesiętne, np. 6,38 (średnia) oraz 6,5 (mediana).",
@@ -770,7 +770,7 @@
         "solutionText": "1. Średnia: \\(\\frac{4 \\cdot 5 + 5 \\cdot 8 + 6 \\cdot 12 + 7 \\cdot 13 + 8 \\cdot 12}{50} = \\frac{319}{50} = \\boldsymbol{6{,}38}\\). <br> 2. Mediana: 25. wynik to 6, a 26. to 7, więc \\(\\frac{6 + 7}{2} = \\boldsymbol{6{,}5}\\).",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionInteractive": null
+        "solutionWidget": null
     },
     {
         "question": "<b>Zadanie 30.</b> <br><br> Rozważamy wszystkie prostopadłościany ABCDEFGH, w których krawędź AE jest 3 razy dłuższa od krawędzi AB, a suma długości wszystkich dwunastu krawędzi prostopadłościanu jest równa 48 (zobacz rysunek). Niech \\(P(x)\\) oznacza funkcję pola powierzchni całkowitej takiego prostopadłościanu w zależności od długości \\(x\\) krawędzi AB.<br><img src=\"media/zad30/zad30.png\" alt=\"Prostopadłościan ABCDEFGH z krawędzią AB oznaczoną jako x.\" style=\"width:220px;\"> <br>Wyznacz wzór i dziedzinę funkcji P. Oblicz długość \\(x\\) krawędzi AB tego z rozważanych prostopadłościanów, którego pole powierzchni całkowitej jest największe. Zapisz obliczenia.",
@@ -784,7 +784,7 @@
         "solutionText": "Z sumy krawędzi: \\(AD = 12 - 4x\\), stąd \\(\\boldsymbol{P(x) = -26x^{2} + 96x}\\) dla \\(\\boldsymbol{x \\in (0,\\ 3)}\\). Maksimum w wierzchołku: \\(x = \\frac{96}{52} = \\boldsymbol{\\frac{24}{13}}\\).",
         "solutionTextMore": "Krawędzie: \\(AB = x\\), \\(AE = 3x\\), \\(AD = y\\). Suma: \\(4(x + y + 3x) = 48 \\Rightarrow y = 12 - 4x\\); warunek \\(y > 0\\) daje dziedzinę \\(x \\in (0,\\ 3)\\).\\[P(x) = 2xy + 2 \\cdot x \\cdot 3x + 2 \\cdot y \\cdot 3x = 6x^{2} + 8xy = 6x^{2} + 8x(12 - 4x) = \\boldsymbol{-26x^{2} + 96x}\\]Ramiona w dół, więc największa wartość w wierzchołku: \\(x = \\frac{-96}{2 \\cdot (-26)} = \\boldsymbol{\\frac{24}{13}}\\) (należy do dziedziny).",
         "solutionStepByStep": null,
-        "solutionInteractive": "widgetProstopadloscian"
+        "solutionWidget": "widgetProstopadloscian"
     }
     ]
 }
