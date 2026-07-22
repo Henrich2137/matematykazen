@@ -100,10 +100,14 @@ if (themeToggle) {
 // "Resetuj punktację": kasuje zapisany postęp i przeładowuje stronę — punkty,
 // kolory odpowiedzi i wpisy wracają do zera jedną, wspólną drogą (świeży render).
 document.getElementById("reset-scores").addEventListener("click", () => {
-    if (!confirm("Wyczyścić zapisane odpowiedzi i punkty? Tej operacji nie można cofnąć.")) return;
+    if (!confirm(
+        "Wyczyścić zapisane odpowiedzi i punkty? Tej operacji nie można cofnąć.\n\n" +
+        "Jeśli w innej karcie trwa właśnie próbny egzamin na tym arkuszu, zostanie on też zakończony."
+    )) return;
     try {
         localStorage.removeItem(KLUCZ_POSTEPU);
         localStorage.removeItem(KLUCZ_OCENIANIA); // reset kasuje też fazę „oceń się"
+        localStorage.removeItem(KLUCZ_EGZAMINU); // ...i ewentualny trwający egzamin w innej karcie
     } catch (e) {}
     location.reload();
 });
@@ -200,9 +204,12 @@ function startExamPrompt() {
     );
     if (!zgoda) return;
     try {
+        // Zapis stanu egzaminu NAJPIERW: jeśli setItem rzuci (pełne localStorage,
+        // tryb prywatny), zapisany postęp ma zostać nietknięty — inaczej alert
+        // mówiłby "egzamin nie wystartował", a odpowiedzi i tak by już zniknęły.
+        localStorage.setItem(KLUCZ_EGZAMINU, JSON.stringify({ start: Date.now() }));
         localStorage.removeItem(KLUCZ_POSTEPU);
         localStorage.removeItem(KLUCZ_OCENIANIA); // nowy egzamin kasuje starą fazę „oceń się"
-        localStorage.setItem(KLUCZ_EGZAMINU, JSON.stringify({ start: Date.now() }));
     } catch (e) {
         alert("Nie udało się zapisać stanu egzaminu (zablokowane localStorage) — egzamin nie wystartował.");
         return;
