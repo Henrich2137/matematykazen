@@ -633,6 +633,15 @@ function loadExercises() {
     try { zapis = JSON.parse(localStorage.getItem(KLUCZ_POSTEPU)); } catch (e) { zapis = null; }
     if (!zapis || zapis.n !== exercises.length || !Array.isArray(zapis.stany)) zapis = null;
     const stanOdpowiedzi = exercises.map(() => ({}));
+    // Zasiej cały zapisany stan PRZED odtwarzającymi klikami: każdy klik niżej
+    // wywołuje zapiszPostep(), który serializuje CAŁĄ tablicę stanOdpowiedzi —
+    // bez tego zadania o wyższym indeksie (jeszcze nieodtworzone) zostałyby
+    // nadpisane pustym {} i traciłyby zapisany tok rozwiązania po odświeżeniu.
+    if (zapis) {
+        zapis.stany.forEach((zap, i) => {
+            if (zap && stanOdpowiedzi[i]) Object.assign(stanOdpowiedzi[i], zap);
+        });
+    }
     function zapiszPostep() {
         try {
             localStorage.setItem(KLUCZ_POSTEPU, JSON.stringify({ n: exercises.length, stany: stanOdpowiedzi }));
@@ -1238,12 +1247,10 @@ function loadExercises() {
                 selfButtons[zap.self].click();
             }
             if (typeof zap.open === "string" && openTextarea) {
+                // stan.open jest już ustawiony (zasiany z zapisu przed pętlą forEach
+                // wyżej), więc samo ustawienie .value wystarczy — nie trzeba drugi
+                // raz przypisywać stan.open (input i tak się tu nie odpala).
                 openTextarea.value = zap.open;
-                // Odtwórz też stan w pamięci (input nie odpala się przy ustawianiu
-                // .value): inaczej stan.open byłby pusty po reloadzie — kolejny
-                // zapis (np. klik samooceny) skasowałby zapisany tok rozwiązania,
-                // a wskaźniki „oceń się" nie wiedziałyby, że zadanie jest wypełnione.
-                stan.open = zap.open;
             }
             if (Array.isArray(zap.fill) && fillRows.length) {
                 zap.fill.forEach((tekst, i) => { if (fillRows[i]) fillRows[i].input.value = tekst || ""; });
