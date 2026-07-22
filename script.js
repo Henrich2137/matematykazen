@@ -371,21 +371,16 @@ function schowajWskaznikiZDOM() {
     window.removeEventListener("resize", zaplanujRepozycje);
 }
 
-// Po ocenieniu zadania (klik samooceny) usuwamy jego kropkę; gdy nie zostanie
-// żadna — kończymy fazę oceniania.
+// Wywoływane po każdej zmianie mogącej ruszyć zestaw nieocenionych zadań
+// (ocena zadania, wpis w okienku toku rozwiązania). Poza fazą "oceń się" nic
+// nie robi. W trakcie fazy przeliczamy listę OD NOWA (nie tylko usuwamy) —
+// pokazWskaznikiOtwarte() jest idempotentne, więc bezpiecznie odtwarza cały
+// zestaw kropek; dzięki temu wpis w okienku dokłada kropkę, a nie tylko ją
+// zdejmuje. Fazę kończymy dopiero, gdy naprawdę nic nieocenionego nie zostanie
+// (to samo pokazWskaznikiOtwarte() robi przy braku wyniku filtra).
 function odswiezWskaznikiOtwarte() {
-    if (!wskaznikiEls.length) return;
-    wskaznikiEls = wskaznikiEls.filter(({ el, zadanie }) => {
-        if (czyNieoceniony(zadanie)) return true;
-        el.remove();
-        return false;
-    });
-    if (!wskaznikiEls.length) {
-        schowajWskaznikiZDOM();
-        ustawFazeOceniania(false);
-    } else {
-        repozycjonujWskazniki();
-    }
+    if (!czyFazaOceniania()) return;
+    pokazWskaznikiOtwarte();
 }
 
 function ukryjWszystkieWskazniki() {
@@ -898,6 +893,9 @@ function loadExercises() {
             openTextarea.addEventListener("input", () => {
                 stan.open = openTextarea.value;
                 zapiszPostep();
+                // W trybie "tylko wypełnione" wpisanie tekstu w fazie "oceń się"
+                // ma od razu dołożyć kropkę temu zadaniu (poza tą fazą no-op).
+                odswiezWskaznikiOtwarte();
             });
             openBox.appendChild(openTextarea);
             answersContainer.appendChild(openBox);
