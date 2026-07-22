@@ -1,6 +1,6 @@
 Nowy plik który tworzy Henrich (ja, użytkownik). Podczas Sprawdzania nowej wersji strony utworzonej przez fable (claude/project-improvements-exercises...)
 
-(Zasada: tu są TYLKO otwarte punkty. Zrobione wpisy [DONE]/[ZROBIONE] przenoszone są do DONE.md — patrz CLAUDE.md.)
+(Zasada: tu są TYLKO otwarte punkty. Zrobione wpisy [DONE]/[ZROBIONE] przenoszone są do bieżącego pliku pod DONE/ — patrz DONE/README.md i CLAUDE.md.)
 (Zasada: Drogi LLM, Sonnecie, Opusie, Jeżeli zmieniasz ten plik to wklejaj do odpowiedniej sekcji na dole)
 Zadania realizuj od góry do dołu.
 Zawsze sprawdzaj, testuj czy wprowadzone przez ciebie zmiany działają zanim zrobisz ostatni commit.
@@ -17,7 +17,7 @@ Jeżeli nie masz co robić to rób stąd.
 NIE REALIZUJ
 czyli nieskonkretyzowane
 
-- Odchudzić i/lub podzielić pliki DONE.md, solutionsInteractive.js, style.css, script.js i inne zbyt duże pliki.
+- Odchudzić i/lub podzielić pliki solutionsInteractive.js, style.css, script.js i inne zbyt duże pliki. [DONE.md już podzielony na katalog DONE/, patrz DONE/README.md — 2026-07-22]
 
 - Stworzyć przycisk "zgłoś błąd w zadaniu" i odpowiedni formularz. Formspree / Getform ale wewnątrz strony (submit przez fetch (AJAX) czy coś) można jeszcze to doprecyzować albo zmienić troche koncepcje.
 
