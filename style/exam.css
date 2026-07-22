@@ -1,0 +1,191 @@
+/* ===== TRYB EGZAMINACYJNY =====
+   Włączany klasą body.tryb-egzaminu (JS w matematykazen.html). Ocenianie
+   działa normalnie pod spodem — tu tylko chowamy wszystko, co zdradza wynik,
+   i neutralizujemy kolory poprawności na "zaznaczenie" (niebieska ramka). */
+
+/* Zegar oraz "zakończ egzamin" (kopia w pasku i kopia na dole arkusza)
+   istnieją tylko w trybie egzaminu. Odwrotnie: "rozpocznij próbny egzamin"
+   w stopce pokazuje się tylko w trybie ćwiczeniowym (poza egzaminem). */
+#egzamin-timer,
+#egzamin-koniec,
+#egzamin-koniec-bar {
+    display: none;
+}
+body.tryb-egzaminu #egzamin-timer {
+    display: inline-block;
+    padding: 5px 8px;
+    border: 1px solid var(--border);
+    background-color: var(--bg);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums; /* zegar nie "drga" przy zmianie cyfr */
+    color: var(--text-muted);
+}
+#egzamin-timer.malo-czasu {
+    border-color: var(--incorrect);
+    color: var(--incorrect);
+}
+/* "Zakończ egzamin" w pasku: ta sama ramka co #toggle-tablica, ale BEZ
+   sztywnego min-width (etykieta się nie zmienia, to nie jest toggle). */
+body.tryb-egzaminu #egzamin-koniec-bar {
+    display: inline-block;
+    padding: 8px 12px;
+    border: 2px solid var(--border);
+    border-radius: 3px;
+    background-color: var(--bg);
+    font-family: inherit;
+    white-space: nowrap;
+    text-align: center;
+    color: var(--text);
+    cursor: pointer;
+}
+body.tryb-egzaminu #egzamin-koniec-bar:hover {
+    border-color: var(--border-strong);
+}
+/* Duże przyciski w stopce arkusza (pod ostatnim zadaniem): "zakończ egzamin"
+   w trybie egzaminu i "rozpocznij próbny egzamin" w trybie ćwiczeniowym mają
+   identyczny wygląd — ta sama ramka i te same marginesy (40px góra / 80px dół). */
+body.tryb-egzaminu #egzamin-koniec,
+#egzamin-start-stopka {
+    display: block;
+    margin: 40px auto 80px;
+    padding: 10px 24px;
+    border: 2px solid var(--border);
+    border-radius: 3px;
+    background-color: var(--bg);
+    font-family: inherit;
+    font-size: 17px;
+    white-space: nowrap;
+    color: var(--text);
+    cursor: pointer;
+}
+body.tryb-egzaminu #egzamin-koniec:hover,
+#egzamin-start-stopka:hover {
+    border-color: var(--border-strong);
+}
+/* W trybie egzaminu stopkowy "rozpocznij próbny egzamin" znika (jest już
+   przycisk "zakończ egzamin" w tym samym miejscu). */
+body.tryb-egzaminu #egzamin-start-stopka {
+    display: none;
+}
+
+/* Wszystko, co zdradza wynik albo pozwala go obejść, znika na czas egzaminu.
+   !important, bo część z tych elementów ma display ustawiane inline przez JS
+   (np. przełącznik widoku punktów). Cały wiersz light-buttonów (Podpowiedź /
+   Rozwiązanie / Pokaż potrzebne wzory) chowamy razem z kontenerem, żeby nie
+   został pusty odstęp — „Pokaż potrzebne wzory" naprowadzałaby na metodę
+   konkretnego zadania, więc na egzaminie znika. TABLICA wzorów CKE i jej
+   przycisk toggle (#toggle-tablica) celowo ZOSTAJĄ — na maturze też są.
+   Zasady oceniania (#toggle-zasady = klucz odpowiedzi) zostają ukryte. */
+body.tryb-egzaminu .light-button-container,
+body.tryb-egzaminu .self-score-container,
+body.tryb-egzaminu .exercise-score,
+body.tryb-egzaminu #total-score,
+body.tryb-egzaminu #toggle-zasady {
+    display: none !important;
+}
+
+/* Opcje w menu „..." niedozwolone podczas egzaminu (pokaż rozwiązania, widok
+   punktów, reset, start egzaminu) NIE znikają — zostają widoczne, ale
+   wyszarzone i nieklikalne, żeby menu nie było pustą ramką. Atrybut disabled
+   ustawia JS w enableExamMode()/finishExam(); tu tylko wygląd. */
+body.tryb-egzaminu #bar-menu button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* Kliknięta odpowiedź wygląda jak neutralne zaznaczenie (jak .selected),
+   niezależnie od tego, czy jest poprawna — ocena zostaje w JS, kolory
+   wracają dopiero po zakończeniu egzaminu (zdjęcie klasy z body). */
+body.tryb-egzaminu .button-container button.correct,
+body.tryb-egzaminu .button-container button.incorrect,
+body.tryb-egzaminu .pf-row button.correct,
+body.tryb-egzaminu .pf-row button.incorrect {
+    border-color: var(--accent-blue);
+    box-shadow: inset 0 0 0 1px var(--accent-blue);
+}
+body.tryb-egzaminu .fill-in-input.correct,
+body.tryb-egzaminu .fill-in-input.incorrect {
+    border-color: var(--accent-blue);
+    box-shadow: inset 0 0 0 1px var(--accent-blue);
+}
+
+/* Nakładka z podsumowaniem egzaminu (JS przełącza display na flex). */
+#egzamin-podsumowanie {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--overlay-bg);
+}
+#egzamin-podsumowanie .egzamin-okno {
+    max-width: 520px;
+    margin: 0 20px;
+    padding: 26px 34px;
+    border: 1px solid var(--border-window);
+    background-color: var(--bg);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.10);
+    text-align: left;
+    font-size: 17px;
+    line-height: 1.55;
+}
+#egzamin-podsumowanie h3 {
+    margin-top: 0;
+}
+#egzamin-podsumowanie #egzamin-zamknij {
+    display: block;
+    margin: 14px auto 0;
+}
+
+/* ===== WSKAŹNIKI NIEOCENIONYCH ZADAŃ OTWARTYCH (po egzaminie) =====
+   Pływające żółte „kropki" po prawej krawędzi, po jednej na wypełnione, ale
+   jeszcze nieocenione zadanie otwarte. Tworzy/pozycjonuje je JS (script.js):
+   każda ma numer zadania, klik przewija do niego, a `top` (środek) jest co
+   scroll wyliczany tak, by kropka trzymała się swojego zadania albo przyklejała
+   do góry/dołu widoku. z-index nad paskiem (10), pod nakładką podsumowania (20). */
+.wskaznik-otwarte {
+    position: fixed;
+    right: 14px;
+    z-index: 15;
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    border: 1px solid var(--wskaznik-border);
+    border-radius: 50%;
+    background-color: var(--wskaznik-bg);
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 1;
+    color: var(--wskaznik-text);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transform: translateY(-50%); /* `top` z JS to środek kropki, nie górna krawędź */
+    transition: top 0.12s ease;
+}
+.wskaznik-otwarte:hover {
+    filter: brightness(0.94);
+}
+/* Wspólny przycisk „ukryj wszystkie" — w lewym dolnym rogu (kropki są po prawej,
+   więc się nie zasłaniają). Żółta ramka wiąże go wizualnie z kropkami. */
+#wskazniki-ukryj {
+    position: fixed;
+    left: 10px;
+    bottom: 10px;
+    z-index: 15;
+    display: none;
+    max-width: calc(100vw - 20px);
+    padding: 6px 12px;
+    border: 2px solid var(--wskaznik-border);
+    border-radius: 3px;
+    background-color: var(--bg);
+    font-family: inherit;
+    font-size: 13px;
+    color: var(--text-faint);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+}
+#wskazniki-ukryj:hover {
+    color: var(--text);
+    background-color: var(--bg-muted);
+}

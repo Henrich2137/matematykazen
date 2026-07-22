@@ -100,7 +100,7 @@ PRZYCISKI W ZŁYCH MIEJSCACH:
 
 - [POTWIERDZONE] Na telefonie nowy "zakończ egzamin" w pasku wypycha menu ⋯ poza ekran. `#bar-right` ma `flex-wrap: nowrap`, a breakpointy ≤720px/≤560px zmniejszają nowemu przyciskowi tylko font i padding. Test różnicowy przy 360px w trybie egzaminu: prawa krawędź `#menu-button` = 430px przy oknie 360px; po ukryciu samego `#egzamin-koniec-bar` = 328px, czyli mieści się. (Poziome przepełnienie strony przy 360px istniało już wcześniej — ale to ten przycisk wypycha menu poza widok.)
 
-- [POTWIERDZONE] Przełącznik motywu wygląda inaczej niż reszta menu ⋯. `#theme-toggle` nie został dopisany do listy selektorów w style.css:352 (`#score-switch-button, #show-all-solutions, #reset-scores, #egzamin-start`), a `#bar-menu button` ustawia tylko layout. Zmierzone: `#theme-toggle` → `border: 2px outset`, tło `rgb(240,240,240)`; sąsiedni `#reset-scores` → `border: 2px solid`, tło białe. Czyli szary systemowy przycisk pośród czterech białych z ramką.
+- [POTWIERDZONE] Przełącznik motywu wygląda inaczej niż reszta menu ⋯. `#theme-toggle` nie został dopisany do listy selektorów w style/sheet.css:103 (`#score-switch-button, #show-all-solutions, #reset-scores, #egzamin-start`), a `#bar-menu button` ustawia tylko layout. Zmierzone: `#theme-toggle` → `border: 2px outset`, tło `rgb(240,240,240)`; sąsiedni `#reset-scores` → `border: 2px solid`, tło białe. Czyli szary systemowy przycisk pośród czterech białych z ramką.
 
 TRYB EGZAMINU I PAMIĘĆ PRZEGLĄDARKI:
 
