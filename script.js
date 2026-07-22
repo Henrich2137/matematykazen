@@ -284,10 +284,49 @@ function ustawFazeOceniania(wlacz) {
     } catch (e) {}
 }
 
-// Zadanie otwarte wypełnione (jest tok rozwiązania), ale bez samooceny.
+// Tryb pojawiania się wskaźników (ustawienie globalne, wspólne dla wszystkich
+// arkuszy — jak motyw). Okienko na tok rozwiązania jest OPCJONALNE (uczeń może
+// liczyć na kartce), więc domyślnie kropka ma pojawić się przy KAŻDYM zadaniu
+// otwartym bez samooceny — tryb "wypelnione" (dawne zachowanie: kropka tylko,
+// gdy uczeń coś wpisał w okienko) jest do wyboru w menu "⋯" dla tych, którzy
+// wolą kropki tylko przy realnie wypełnionych zadaniach.
+const KLUCZ_TRYBU_WSKAZNIKOW = "matematykazen-tryb-wskaznikow";
+const TRYBY_WSKAZNIKOW = ["wszystkie", "wypelnione"];
+const wskaznikiTrybToggle = document.getElementById("wskazniki-tryb-toggle");
+
+function czytajTrybWskaznikow() {
+    try {
+        const t = localStorage.getItem(KLUCZ_TRYBU_WSKAZNIKOW);
+        if (t === "wypelnione") return t;
+    } catch (e) {}
+    return "wszystkie";
+}
+function applyTrybWskaznikow(tryb) {
+    try { localStorage.setItem(KLUCZ_TRYBU_WSKAZNIKOW, tryb); } catch (e) {}
+    if (wskaznikiTrybToggle) {
+        wskaznikiTrybToggle.textContent = tryb === "wypelnione"
+            ? "wskaźniki „oceń się”: tylko wypełnione"
+            : "wskaźniki „oceń się”: wszystkie zadania";
+    }
+    // Zmiana trybu w trakcie fazy "oceń się" ma być widoczna od razu.
+    if (czyFazaOceniania()) pokazWskaznikiOtwarte();
+}
+applyTrybWskaznikow(czytajTrybWskaznikow());
+if (wskaznikiTrybToggle) {
+    wskaznikiTrybToggle.addEventListener("click", () => {
+        const next = TRYBY_WSKAZNIKOW[(TRYBY_WSKAZNIKOW.indexOf(czytajTrybWskaznikow()) + 1) % TRYBY_WSKAZNIKOW.length];
+        applyTrybWskaznikow(next);
+    });
+}
+
+// Zadanie otwarte bez samooceny — w trybie "wszystkie" to wystarczy; w trybie
+// "wypelnione" dodatkowo wymagamy niepustego toku rozwiązania w okienku.
 function czyNieoceniony(zadanie) {
-    return typeof zadanie.stan.open === "string" && zadanie.stan.open.trim() !== ""
-        && !Number.isInteger(zadanie.stan.self);
+    if (Number.isInteger(zadanie.stan.self)) return false;
+    if (czytajTrybWskaznikow() === "wypelnione") {
+        return typeof zadanie.stan.open === "string" && zadanie.stan.open.trim() !== "";
+    }
+    return true;
 }
 
 function pokazWskaznikiOtwarte() {
