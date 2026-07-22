@@ -38,3 +38,8 @@ No build or test tooling. **Serve the directory with a static file server** (e.g
 
 - All user-facing content and code comments are Polish; keep new content in Polish, direct exam-prep tone.
 - Known media defect: last frame of `matura/2024-grudzien/media/zad2/zad2rozw_step6.mp4` shows 5⁻⁴ instead of 5⁴ — needs an external Manim re-render; the step caption already carries the correction.
+
+
+## User notes
+
+- Ostrzegaj mnie przed włączeniem ciężkiego zadania np subagent-heavy sessions, które ostatnio wciągnęły mi 60% session limit dosyć szybko gdy robiłem code-review ultra
