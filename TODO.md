@@ -77,9 +77,10 @@ Claudzie, możesz tutaj dopisywać rzeczy które mam sprawdzić/przetestować.
 <br><br><br>
 
 
-<h3>DO REALZACJI Dopisane przez SONNETA LUB OPUSA</h3>
+<h3>DO REALZACJI Dopisane przez CLAUDA</h3>
 
-OPUS DOPISAŁ: (code review gałęzi claude/do-sprawdzenia-yfi2mu, 2026-07-22 — dark mode + podwojone przyciski egzaminu + żółte wskaźniki. Punkty oznaczone [POTWIERDZONE] odtworzyłem realnie w przeglądarce, reszta z czytania kodu.)
+OPUS DOPISAŁ PODCZAS ROBIENIA CODE-REVIEW:
+(code review gałęzi claude/do-sprawdzenia-yfi2mu, 2026-07-22 — dark mode + podwojone przyciski egzaminu + żółte wskaźniki. Punkty oznaczone [POTWIERDZONE] odtworzyłem realnie w przeglądarce, reszta z czytania kodu.)
 
 NAJPILNIEJSZE — strona kasuje pracę ucznia:
 
