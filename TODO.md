@@ -3,6 +3,7 @@ Nowy plik który tworzy Henrich (ja, użytkownik). Podczas Sprawdzania nowej wer
 (Zasada: tu są TYLKO otwarte punkty. Zrobione wpisy [DONE]/[ZROBIONE] przenoszone są do DONE.md — patrz CLAUDE.md.)
 (Zasada: Drogi LLM, Sonnecie, Opusie, Jeżeli zmieniasz ten plik to wklejaj do odpowiedniej sekcji na dole)
 Zadania realizuj od góry do dołu.
+Zawsze sprawdzaj, testuj czy wprowadzone przez ciebie zmiany działają zanim zrobisz ostatni commit.
 
 <br>
 
