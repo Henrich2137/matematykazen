@@ -17,6 +17,8 @@ Jeżeli nie masz co robić to rób stąd.
 NIE REALIZUJ
 czyli nieskonkretyzowane
 
+- Odchudzić i/lub podzielić pliki DONE.md, solutionsInteractive.js, style.css, script.js i inne zbyt duże pliki.
+
 - Stworzyć przycisk "zgłoś błąd w zadaniu" i odpowiedni formularz. Formspree / Getform ale wewnątrz strony (submit przez fetch (AJAX) czy coś) można jeszcze to doprecyzować albo zmienić troche koncepcje.
 
 - dodanie rozwiązań do matury 2026
