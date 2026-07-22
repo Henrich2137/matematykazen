@@ -11,7 +11,7 @@ Zawsze sprawdzaj, testuj czy wprowadzone przez ciebie zmiany działają zanim zr
 Jeżeli nie masz co robić to rób stąd.
 - Naprawić włącznie trybu egzaminu który działa tylko raz a potem się blokuje.
 
-- Krok 3 planu podziału plików (.claude/plans/czy-my-lisz-e-mam-tingly-hamster.md): podzielić style.css na katalog style/ (5 plików wg istniejących sekcji `/* ===== ... ===== */`). WSTRZYMANE — czeka na sygnał Henricha, żeby zacząć. Kroki 1, 1b i 2 tego planu (solutionsInteractive.js → widgets/, zmiana solutionInteractive→solutionWidget, wydzielenie ARCHITECTURE_CSS.md) już zrobione i zweryfikowane, patrz DONE TODO/03-biezace.md. Krok 4 zrobiony wcześniej inaczej (katalog nazwano "DONE TODO", nie "DONE"). Krok 5 (script.js → js/) świadomie odłożony.
+- Plan podziału plików (.claude/plans/czy-my-lisz-e-mam-tingly-hamster.md): kroki 1, 1b, 2 i 3 zrobione i zautomatyzowanie zweryfikowane (patrz DONE TODO/03-biezace.md) — zostaje tylko wizualny przegląd kroku 3 przez Henricha (jasny/ciemny motyw, okno ~500px, landing), patrz sekcja „DO SPRAWDZENIA PRZEZ HENRICHA" niżej. Krok 4 zrobiony wcześniej inaczej (katalog nazwano "DONE TODO", nie "DONE"). Krok 5 (script.js → js/) świadomie odłożony, poza zakresem.
 
 <br>
 
@@ -72,7 +72,14 @@ INNE NOTATKI:
 
 DO SPRAWDZENIA PRZEZ HENRICHA.
 Claudzie, możesz tutaj dopisywać rzeczy które mam sprawdzić/przetestować.
-- nic
+- Krok 3 podziału plików: style.css → style/ (base/sheet/landing/exam/responsive.css).
+  Wszystko co dało się zautomatyzować jest zweryfikowane (node/grep, Playwright: liczba
+  zadań, wszystkie widżety, klik ABCD/PF/fillIn, kaskada — computed styles dla jasny/ciemny
+  motyw, grid #bar-container na 500px i 1280px, tryb egzaminu, landing). Zostaje sam wygląd —
+  otwórz template.html?arkusz=2024-grudzien i sprawdź: jasny i ciemny motyw (⋯ → motyw),
+  okno zwężone do ~500px (pasek, karta zadania, przyciski), oraz index.html (landing). Nie
+  spodziewam się różnic względem starego style.css — to czysty podział plików (diff to
+  potwierdził), ale to jedyna rzecz, której sam nie zweryfikuję.
 
 <br><br><br>
 

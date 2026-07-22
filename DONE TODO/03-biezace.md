@@ -29,7 +29,27 @@ ZROBIONE PRZEZ SONNETA (2026-07-22) — podział dużych plików, kroki 1/1b/2 z
   `canvas.widget-canvas` po kliknięciu „Rozwiązanie" i reagują na przeciąganie/suwak,
   klik ABCD/PF/fillIn działa, zero page error / console error (poza znanymi, oczekiwanymi
   404 obrazków 2026-maj opisanymi w ARCHITECTURE.md) / response >= 400.
-- Krok 3 (style.css → style/) świadomie WSTRZYMANY na sygnał Henricha — zobaczy TODO.md.
+- [ZROBIONE] Krok 3: style.css (1470 linii, 60 KB) rozbity na katalog style/ wg
+  istniejących granic `/* ===== ... ===== */` — style/base.css (zmienne CSS, palety
+  jasna/ciemna, KaTeX, reset, 1-249), style/sheet.css (pasek górny, panele PDF, karta
+  zadania, typy odpowiedzi, widżety, tabelki, 250-1057), style/landing.css (`.landing-*`,
+  1058-1158), style/exam.css (tryb egzaminacyjny + wskaźniki nieocenionych, 1159-1350),
+  style/responsive.css (breakpointy 1024/900/720/560, 1351-1470). Czysty przenos —
+  `diff` skonkatenowanych 5 plików ze starym style.css pokazał tylko różnice w białych
+  znakach plus jedną celową poprawkę (odsyłacz „CSS & layout reference w CLAUDE.md" →
+  ARCHITECTURE_CSS.md w komentarzu nad #top-bar). template.html dostał 5 tagów `<link>`
+  w kolejności base→sheet→landing→exam→responsive (kaskada, responsive musi być
+  ostatni); index.html tylko base+landing. Poprawione linki z numerami linii do
+  starego style.css w TODO.md (4 miejsca) na nowe pliki/linie w style/.
+- Weryfikacja kroku 3: `grep href="style.css"` — zero trafień. Playwright: response 200
+  dla wszystkich 5 plików CSS na obu arkuszach i dla base+landing na index.html; ponowny
+  smoke test (35/41 zadań, 9 widżetów, klik ABCD/PF/fillIn) bez regresji. Dodatkowo
+  computed-style sprawdzenie kaskady (bo to jedyne realne ryzyko podziału CSS): jasny
+  motyw body bg rgb(255,255,255), wymuszony ciemny (localStorage) rgb(27,27,27),
+  #bar-container 3 kolumny na 1280px / 1 kolumna na 500px (responsive.css > sheet.css),
+  tryb egzaminu chowa #total-score i pokazuje #egzamin-timer (exam.css), landing
+  .landing-hero wyśrodkowany (landing.css) — wszystko zgodne. Wizualny przegląd
+  (jasny/ciemny, ~500px, landing) zostawiony Henrichowi — patrz DO SPRAWDZENIA w TODO.md.
   Krok 4 zrobiony wcześniej przez Henricha inaczej (katalog „DONE TODO" zamiast „DONE").
   Krok 5 (script.js → js/) odłożony, poza zakresem tej sesji.
 
