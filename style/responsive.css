@@ -117,4 +117,12 @@
     #bar-menu {
         top: 92px;
     }
+
+    /* Poniżej ~430px szerokości "zakończ egzamin" w pasku wypycha menu ⋯ poza
+       ekran (zmierzone: prawa krawędź #menu-button > szerokość okna). Chowamy
+       go na całym tym wąskim zakresie — pełnowymiarowy odpowiednik i tak jest
+       w stopce arkusza (#egzamin-koniec), więc funkcja zostaje dostępna. */
+    body.tryb-egzaminu #egzamin-koniec-bar {
+        display: none;
+    }
 }
