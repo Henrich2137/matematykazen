@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=STIX+Two+Math&display=swap');
+
+/* KaTeX (vendor/katex/): delikatnie mniejszy niż domyślne 1.21em, żeby wzory
+   nie dominowały nad tekstem zadania; blokowe wzory (\[ \]) są wyśrodkowane
+   przez sam KaTeX (.katex-display), zwykły tekst zostaje przy lewej.
+   overflow-x: auto — wzór szerszy niż kolumna (wąskie ekrany) dostaje własny
+   poziomy scroll zamiast rozpychać całą stronę. */
+.katex {
+    font-size: 1.08em;
+}
+.katex-display {
+    margin: 12px 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+/* ===================================================================
+   MOTYW (jasny/ciemny) — zmienne kolorów
+   -------------------------------------------------------------------
+   Wszystkie kolory strony (tło, tekst, ramki, akcenty) idą przez te
+   custom properties. Wartości w :root = jasny motyw (identyczny jak
+   wcześniej). Ciemna paleta jest w DWÓCH bliźniaczych blokach:
+     • @media (prefers-color-scheme: dark) :root:not(.theme-light) — motyw
+       systemowy (auto), gdy użytkownik nie wymusił jasnego,
+     • html.theme-dark — ręczne wymuszenie ciemnego (ma pierwszeństwo nad
+       systemem).
+   Ręczny jasny (html.theme-light) nie potrzebuje własnego bloku: wystarczy,
+   że wyłącza regułę systemową (przez :not(.theme-light)) i zostają wartości
+   z :root. JEŚLI ZMIENIASZ CIEMNĄ PALETĘ — popraw OBA ciemne bloki tak samo.
+   Przełącznik (#theme-toggle w menu „⋯") zapisuje wybór w localStorage
+   (klucz matematykazen-motyw: "jasny"/"ciemny"/brak = auto); klasę na <html>
+   ustawia mały inline-skrypt w <head> template.html (bez mignięcia motywu).
+   =================================================================== */
+:root {
+    color-scheme: light;
+
+    /* Tła / powierzchnie */
+    --bg: #fff;
+    --bg-muted: #f7f7f7;      /* uchwyt panelu, hover „Sprawdź" */
+    --bg-subtle: #fafafa;     /* nagłówek tabeli danych */
+    --bg-code: #f3f3f3;       /* kod inline w komunikacie błędu */
+    --bg-hover: #f0f0f0;      /* hover krzyżyka paneli */
+    --canvas-bg: #fff;        /* NIE ciemnieje — widżety rysują ciemnym po jasnym */
+    --overlay-bg: rgba(255, 255, 255, 0.88); /* nakładka podsumowania egzaminu */
+
+    /* Tekst (od najciemniejszego do najjaśniejszego) */
+    --text: #111;
+    --text-soft: #444;        /* teksty landingu */
+    --text-muted: #555;       /* zegar egzaminu */
+    --text-muted-2: #606060;  /* przyciski tekstowe, tytuły widżetów */
+    --text-faint: #858585;    /* suma punktów, podpisy CTA */
+    --text-faint-2: #909090;  /* etykiety pól, wg-neutral */
+    --text-faint-3: #999;     /* podtytuł trybu, uchwyty paneli */
+
+    /* Ramki */
+    --border: #e7e7e7;        /* domyślna ramka kontrolek */
+    --border-strong: #ccc;    /* pasek, inputy, tabela */
+    --border-subtle: #eee;    /* ramki bloku rozwiązania */
+    --border-muted: #ddd;     /* uchwyt/rozmiar panelu, kropki separatora */
+    --border-close: #aaa;     /* ramka krzyżyka paneli */
+    --border-window: #dcdcdc; /* okno podsumowania egzaminu */
+    --separator: #e0e0e0;     /* kreska między zadaniami, kreski pauzy filmu */
+
+    /* Akcent niebieski (zaznaczenie / focus) */
+    --accent-blue: #9ec9ff;
+    --accent-blue-strong: #4a90d9;
+    --accent-blue-bg: #f2f8ff;
+    --selection-bg: #cce4ff;
+
+    /* Stany poprawne / błędne */
+    --correct: #0AB32F;
+    --correct-soft: #88ff88;
+    --incorrect: #d9534f;
+    --incorrect-soft: #ffaaaa;
+
+    /* Badge punktacji zadania */
+    --score-low-border: #dfdfdf;
+    --score-low-text: #d6d6d6;
+    --score-mid-border: #9bd6a8;
+    --score-mid-text: #86cd97;
+    --score-high-border: #1cce43;
+
+    /* Pozostałe akcenty */
+    --accent-purple: #7a3fa8;   /* aktywny wzór przedziału (widżet) */
+    --accent-green: #2e7d32;    /* okienko „a" widżetu zad. 1 */
+    --overlay-icon: #d1d1d1;    /* strzałka ↺ na końcu filmu */
+
+    /* Komunikat błędu wczytywania */
+    --error-border: #e0b4b4;
+    --error-bg: #fdf6f6;
+
+    /* Żółte wskaźniki nieocenionych zadań otwartych (po egzaminie) */
+    --wskaznik-bg: #ffd54a;
+    --wskaznik-text: #4a3800;
+    --wskaznik-border: #e3b937;
+}
+
+/* Ciemna paleta — motyw systemowy (auto), o ile użytkownik nie wymusił jasnego. */
+@media (prefers-color-scheme: dark) {
+    :root:not(.theme-light) {
+        color-scheme: dark;
+
+        --bg: #1b1b1b;
+        --bg-muted: #262626;
+        --bg-subtle: #222;
+        --bg-code: #2b2b2b;
+        --bg-hover: #303030;
+        --overlay-bg: rgba(20, 20, 20, 0.9);
+
+        --text: #e6e6e6;
+        --text-soft: #c8c8c8;
+        --text-muted: #bcbcbc;
+        --text-muted-2: #b3b3b3;
+        --text-faint: #9a9a9a;
+        --text-faint-2: #8c8c8c;
+        --text-faint-3: #808080;
+
+        --border: #3a3a3a;
+        --border-strong: #4a4a4a;
+        --border-subtle: #2f2f2f;
+        --border-muted: #3a3a3a;
+        --border-close: #666;
+        --border-window: #3a3a3a;
+        --separator: #333;
+
+        --accent-blue: #5a8bc4;
+        --accent-blue-strong: #6ab0ff;
+        --accent-blue-bg: #1e2b3a;
+        --selection-bg: #33506f;
+
+        --correct: #3ccf5a;
+        --correct-soft: #3f7d4a;
+        --incorrect: #e07b76;
+        --incorrect-soft: #8a4a4a;
+
+        --score-low-border: #444;
+        --score-low-text: #666;
+        --score-mid-border: #4a7d57;
+        --score-mid-text: #6fae7d;
+        --score-high-border: #2f9d47;
+
+        --accent-purple: #a97fd0;
+        --accent-green: #4a9d54;
+        --overlay-icon: #555;
+
+        --error-border: #6a4040;
+        --error-bg: #2a1e1e;
+
+        --wskaznik-bg: #c99a1e;
+        --wskaznik-text: #1c1500;
+        --wskaznik-border: #a97f16;
+    }
+}
+
+/* Ciemna paleta — ręczne wymuszenie (ma pierwszeństwo nad systemem).
+   Identyczna z blokiem systemowym powyżej — zmieniasz jeden, zmień drugi. */
+html.theme-dark {
+    color-scheme: dark;
+
+    --bg: #1b1b1b;
+    --bg-muted: #262626;
+    --bg-subtle: #222;
+    --bg-code: #2b2b2b;
+    --bg-hover: #303030;
+    --overlay-bg: rgba(20, 20, 20, 0.9);
+
+    --text: #e6e6e6;
+    --text-soft: #c8c8c8;
+    --text-muted: #bcbcbc;
+    --text-muted-2: #b3b3b3;
+    --text-faint: #9a9a9a;
+    --text-faint-2: #8c8c8c;
+    --text-faint-3: #808080;
+
+    --border: #3a3a3a;
+    --border-strong: #4a4a4a;
+    --border-subtle: #2f2f2f;
+    --border-muted: #3a3a3a;
+    --border-close: #666;
+    --border-window: #3a3a3a;
+    --separator: #333;
+
+    --accent-blue: #5a8bc4;
+    --accent-blue-strong: #6ab0ff;
+    --accent-blue-bg: #1e2b3a;
+    --selection-bg: #33506f;
+
+    --correct: #3ccf5a;
+    --correct-soft: #3f7d4a;
+    --incorrect: #e07b76;
+    --incorrect-soft: #8a4a4a;
+
+    --score-low-border: #444;
+    --score-low-text: #666;
+    --score-mid-border: #4a7d57;
+    --score-mid-text: #6fae7d;
+    --score-high-border: #2f9d47;
+
+    --accent-purple: #a97fd0;
+    --accent-green: #4a9d54;
+    --overlay-icon: #555;
+
+    --error-border: #6a4040;
+    --error-bg: #2a1e1e;
+
+    --wskaznik-bg: #c99a1e;
+    --wskaznik-text: #1c1500;
+    --wskaznik-border: #a97f16;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: "STIX Two Math", "Lora", serif;
+    font-size: 16px;
+    text-align: center;
+}
+
+/* Zaznaczanie tekstu: jasnoniebieskie tło bez zmiany koloru tekstu —
+   spójniejsze z resztą strony niż systemowy granat z białym tekstem. */
+::selection {
+    background-color: var(--selection-bg);
+    color: inherit;
+}
+
+/* Odstęp pod fixed #top-bar — zamiast dawnych <br><br><br><br> w HTML.
+   Przy zmianie wysokości paska wystarczy poprawić ten padding. */
+#exercises-wrapper {
+    padding-top: 100px;
+}
+
+/* Komunikat, gdy fetch("exercises.json") się nie powiedzie (np. strona
+   otwarta z file:// — patrz startSheet() w matematykazen.html). */
+.blad-wczytywania {
+    max-width: 650px;
+    margin: 40px auto;
+    padding: 24px 30px;
+    text-align: left;
+    font-size: 17px;
+    line-height: 1.6;
+    border: 1px solid var(--error-border);
+    background-color: var(--error-bg);
+}
+.blad-wczytywania code {
+    background-color: var(--bg-code);
+    padding: 1px 5px;
+}
