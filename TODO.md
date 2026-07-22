@@ -11,13 +11,13 @@ Zawsze sprawdzaj, testuj czy wprowadzone przez ciebie zmiany działają zanim zr
 Jeżeli nie masz co robić to rób stąd.
 - Naprawić włącznie trybu egzaminu który działa tylko raz a potem się blokuje.
 
+- Krok 3 planu podziału plików (.claude/plans/czy-my-lisz-e-mam-tingly-hamster.md): podzielić style.css na katalog style/ (5 plików wg istniejących sekcji `/* ===== ... ===== */`). WSTRZYMANE — czeka na sygnał Henricha, żeby zacząć. Kroki 1, 1b i 2 tego planu (solutionsInteractive.js → widgets/, zmiana solutionInteractive→solutionWidget, wydzielenie ARCHITECTURE_CSS.md) już zrobione i zweryfikowane, patrz DONE TODO/03-biezace.md. Krok 4 zrobiony wcześniej inaczej (katalog nazwano "DONE TODO", nie "DONE"). Krok 5 (script.js → js/) świadomie odłożony.
+
 <br>
 
 
 NIE REALIZUJ
 czyli nieskonkretyzowane
-
-- Odchudzić i/lub podzielić pliki solutionsInteractive.js, style.css, script.js i inne zbyt duże pliki. [DONE.md już podzielony na katalog DONE/, patrz DONE/README.md — 2026-07-22]
 
 - Stworzyć przycisk "zgłoś błąd w zadaniu" i odpowiedni formularz. Formspree / Getform ale wewnątrz strony (submit przez fetch (AJAX) czy coś) można jeszcze to doprecyzować albo zmienić troche koncepcje.
 

@@ -4,6 +4,35 @@ spojrzenie na projekt, rozwiazanie trudniejszego problemu albo sprawdzenie, czy/
 kiedys rozwiazano. Zasada podzialu i indeks: DONE/README.md.
 Zakres: 2026-07-13 (WYSOKI PRIORYTET) - 2026-07-21. Partia jeszcze niezmergowana do mastera.
 
+ZROBIONE PRZEZ SONNETA (2026-07-22) — podział dużych plików, kroki 1/1b/2 z .claude/plans/czy-my-lisz-e-mam-tingly-hamster.md:
+- [ZROBIONE] Krok 1 (wariant A): solutionsInteractive.js (958 linii, 43 KB) rozbity na
+  katalog widgets/ — plik na widżet (widgets/osLiczbowa.js … widgets/prostopadloscian.js,
+  9 plików), widgets/_helpers.js (wg* helpery + WG_KOLORY) i widgets/_registry.js (rejestr
+  WIDZETY). Ciała funkcji przeniesione 1:1 (czysty przenos, bez zmiany logiki). template.html
+  dostał 11 tagów `<script>` w kolejności _helpers → 9 widżetów → _registry → script.js
+  (zamiast dawnych dwóch: solutionsInteractive.js → script.js) — kolejność wymuszona przez
+  globalny scope (WIDZETY musi widzieć już zdefiniowane funkcje widget*, script.js musi
+  widzieć już zbudowany WIDZETY).
+- [ZROBIONE] Krok 1b: pole danych `solutionInteractive` → `solutionWidget` w obu
+  exercises.json (35 + 41 wystąpień), w script.js (`exercise.solutionInteractive` → 5 miejsc),
+  w ARCHITECTURE.md, CLAUDE.md i komentarzu w style.css. Celowo NIE ruszone: zmienna lokalna
+  `solutionInteractiveContainer` w script.js i klasa CSS `.solution-interactive-container` —
+  to osobna warstwa (nazwa slotu DOM), zgodnie z planem.
+- [ZROBIONE] Krok 2: sekcja „CSS & layout reference" ARCHITECTURE.md (14 KB z 40 KB)
+  wydzielona do nowego ARCHITECTURE_CSS.md; w ARCHITECTURE.md został nagłówek + link.
+  CLAUDE.md zaktualizowany (odsyła do obu plików).
+- Weryfikacja: `node --check` na wszystkich 11 nowych/zmienionych plików JS + walidacja
+  JSON obu exercises.json — czysto. `grep -r solutionInteractive` po zmianie zwraca
+  wyłącznie archiwalne DONE TODO/STARY_PRZENIESIONY_DONE.md i `.solution-interactive-
+  container` (zgodnie z planem). Playwright headless (oba arkusze, `?arkusz=2024-grudzien`
+  i `?arkusz=2026-maj`): liczba zadań 35/41 OK, wszystkie 9 widżetów renderują
+  `canvas.widget-canvas` po kliknięciu „Rozwiązanie" i reagują na przeciąganie/suwak,
+  klik ABCD/PF/fillIn działa, zero page error / console error (poza znanymi, oczekiwanymi
+  404 obrazków 2026-maj opisanymi w ARCHITECTURE.md) / response >= 400.
+- Krok 3 (style.css → style/) świadomie WSTRZYMANY na sygnał Henricha — zobaczy TODO.md.
+  Krok 4 zrobiony wcześniej przez Henricha inaczej (katalog „DONE TODO" zamiast „DONE").
+  Krok 5 (script.js → js/) odłożony, poza zakresem tej sesji.
+
 ZROBIONE PRZEZ OPUSA (2026-07-21) — poprawki żółtych bombli (zgłoszone przez Henricha) z TODO.md:
 - [ZROBIONE] Złe liczby na kropkach (np. „24" dotyczyła zad 19). Przyczyna: numer
   brany z index+1, a indeksy w tablicy rozjeżdżają się z numeracją CKE przez zadania
