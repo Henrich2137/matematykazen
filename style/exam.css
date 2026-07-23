@@ -76,6 +76,37 @@ body.arkusz-wczytany:not(.tryb-egzaminu) #egzamin-start-stopka {
     display: block;
 }
 
+/* „Sprawdź wszystkie odpowiedzi" w stopce arkusza — lżejszy, drugorzędny przycisk
+   nad „rozpocznij próbny egzamin". Widoczny TYLKO w trybie „sprawdź później"
+   (body.reczne-sprawdzanie = natychmiastowa poprawność OFF), po wyrenderowaniu
+   arkusza i poza egzaminem (regułę wykluczenia w trybie egzaminu ma blok wyżej). */
+#sprawdz-wszystkie-stopka {
+    display: none;
+    margin: 40px auto 0;
+    padding: 8px 20px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background-color: var(--bg);
+    font-family: inherit;
+    font-size: 15px;
+    white-space: nowrap;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+#sprawdz-wszystkie-stopka:hover {
+    border-color: var(--border-strong);
+}
+body.reczne-sprawdzanie.arkusz-wczytany:not(.tryb-egzaminu) #sprawdz-wszystkie-stopka {
+    display: block;
+}
+/* Menu ⋯: „sprawdź wszystkie" tylko w trybie „sprawdź później" i poza egzaminem. */
+#sprawdz-wszystkie {
+    display: none;
+}
+body.reczne-sprawdzanie:not(.tryb-egzaminu) #sprawdz-wszystkie {
+    display: block;
+}
+
 /* Wszystko, co zdradza wynik albo pozwala go obejść, znika na czas egzaminu.
    !important, bo część z tych elementów ma display ustawiane inline przez JS
    (np. przełącznik widoku punktów). Cały wiersz light-buttonów (Podpowiedź /
@@ -88,7 +119,9 @@ body.tryb-egzaminu .light-button-container,
 body.tryb-egzaminu .self-score-container,
 body.tryb-egzaminu .exercise-score,
 body.tryb-egzaminu #total-score,
-body.tryb-egzaminu #toggle-zasady {
+body.tryb-egzaminu #toggle-zasady,
+body.tryb-egzaminu .answer-check-floating,
+body.tryb-egzaminu #sprawdz-wszystkie-stopka {
     display: none !important;
 }
 
@@ -147,15 +180,22 @@ body.tryb-egzaminu .fill-in-input.incorrect {
 }
 
 /* ===== WSKAŹNIKI NIEOCENIONYCH ZADAŃ OTWARTYCH (po egzaminie) =====
-   Pływające żółte „kropki" po prawej krawędzi, po jednej na wypełnione, ale
-   jeszcze nieocenione zadanie otwarte. Tworzy/pozycjonuje je JS (script.js):
+   Pływające żółte „kropki" po prawej stronie, po jednej na wypełnione, ale
+   jeszcze nieocenione zadanie otwarte. Tworzy/pozycjonuje je JS (app/indicators.js):
    każda ma numer zadania, klik przewija do niego, a `top` (środek) jest co
    scroll wyliczany tak, by kropka trzymała się swojego zadania albo przyklejała
-   do góry/dołu widoku. z-index nad paskiem (10), pod nakładką podsumowania (20). */
+   do góry/dołu widoku.
+   right: 70px — kolumnę odsunięto od samej krawędzi, żeby nie kolidowała ze
+   scrollbarem ani (na typowych szerokościach) z kolumną punktacji zadań.
+   z-index: 8 — CELOWO NIŻEJ niż panel tablicy wzorów (#tablica-wzorow-panel,
+   z-index 9 w sheet.css), żeby otwarta tablica przykrywała kropki. To automatycznie
+   stawia je też pod paskiem górnym (z-index 10), ale bez znaczenia wizualnego:
+   repozycjonujWskazniki() i tak klamruje każdą kropkę do pasa POD paskiem, więc
+   nigdy się z nim nie stykają. Nakładka podsumowania (z-index 20) jest nad nimi. */
 .wskaznik-otwarte {
     position: fixed;
-    right: 14px;
-    z-index: 15;
+    right: 70px;
+    z-index: 8;
     width: 26px;
     height: 26px;
     padding: 0;
@@ -174,13 +214,18 @@ body.tryb-egzaminu .fill-in-input.incorrect {
 .wskaznik-otwarte:hover {
     filter: brightness(0.94);
 }
-/* Wspólny przycisk „ukryj wszystkie" — w lewym dolnym rogu (kropki są po prawej,
-   więc się nie zasłaniają). Żółta ramka wiąże go wizualnie z kropkami. */
+/* Wspólny przycisk „ukryj wszystkie" — w prawym dolnym rogu, tuż OBOK kolumny
+   kropek, ale odsunięty od niej w lewo (right: 96px > szerokość kolumny kropek
+   przy right: 70px), więc stoi przy nich bez nakładania się. Dzięki temu
+   repozycjonujWskazniki() może wciąż spuszczać kropki blisko samego dołu ekranu
+   (kolumna kropek jest na prawo od przycisku, na innej wysokości poziomej).
+   z-index: 8 — jak kropki: pod panelem tablicy wzorów (9), by tablica go
+   przykrywała. Żółta ramka wiąże go wizualnie z kropkami. */
 #wskazniki-ukryj {
     position: fixed;
-    left: 10px;
+    right: 96px;
     bottom: 10px;
-    z-index: 15;
+    z-index: 8;
     display: none;
     max-width: calc(100vw - 20px);
     padding: 6px 12px;

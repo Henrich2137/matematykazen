@@ -17,7 +17,11 @@ rozwiązanie trudniejszego problemu albo sprawdzenie, czy/jak coś już kiedyś 
 Do szukania używaj najpierw tego indeksu (tagi niżej), potem grepa po konkretnym pliku.
 
 
-== 03-biezace.md — partia OTWARTA (2026-07-13 → 2026-07-21, niezmergowana do mastera) ==
+== 03-biezace.md — partia OTWARTA (2026-07-13 → 2026-07-23, niezmergowana do mastera) ==
+- 2026-07-23 — toggle „natychmiastowa poprawność" + przyciski „sprawdź" / „sprawdź wszystkie"
+  (zadania zamknięte, tryb „sprawdź później")  [ui, silnik, localStorage]
+- 2026-07-23 — pozycja/warstwy wskaźników „oceń się": kolumna dalej od krawędzi, przycisk
+  „Ukryj wskaźniki" w prawym dolnym rogu, z-index pod tablicą wzorów  [ui, css, egzamin]
 - 2026-07-21 — poprawki żółtych bombli: numer zadania z treści, przycisk „ukryj"  [egzamin, ui, bugfix]
 - 2026-07-21 — pływające żółte wskaźniki nieocenionych zadań otwartych  [egzamin, ui, localStorage]
 - 2026-07-21 — zmienne CSS + dark mode (Etap 1: infrastruktura)  [css, motyw]

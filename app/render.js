@@ -3,6 +3,30 @@
 // zapisu/odtworzenia postępu. Podsystem kroków rozwiązania jest w app/steps.js
 // (funkcje renderStep/showStep/podepnijSterowanieWideo wołane z krokiCtx).
 
+// Fabryka przycisku „sprawdź" dla trybu „sprawdź później" (natychmiastowa
+// poprawność OFF). Przycisk jest tworzony LENIWIE (przy pierwszym pokaż) i
+// pozycjonowany absolutnie WZGLĘDEM kontenera odpowiedzi (po jego prawej
+// stronie, patrz .answer-check-floating w sheet.css), więc nie zmienia
+// wysokości zadania ani układu strony. onSprawdz odsłania ocenę zadania.
+function utworzPrzyciskSprawdz(answersContainer, onSprawdz) {
+    let btn = null;
+    return {
+        pokaz() {
+            if (!btn) {
+                btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = "answer-check-floating";
+                btn.textContent = "sprawdź";
+                btn.title = "Sprawdź odpowiedź (odsłoń poprawność)";
+                btn.addEventListener("click", onSprawdz);
+                answersContainer.appendChild(btn);
+            }
+            btn.style.display = "block";
+        },
+        schowaj() { if (btn) btn.style.display = "none"; },
+    };
+}
+
 // Function to load exercises
 function loadExercises() {
     const exercisesWrapper = document.getElementById("exercises-wrapper");
@@ -69,6 +93,11 @@ function loadExercises() {
         const fillRows = [];
         let fillCheck = null;
         let openTextarea = null;   // textarea zadania otwartego (tok rozwiązania)
+        // Ustawiane przez gałęzie zadań zamkniętych (ABCD/PF/multiSelect) na funkcję
+        // odsłaniającą ocenę tego zadania. Używa jej przywracanie postępu, by w
+        // trybie „sprawdź później" odsłonić ocenę tylko tam, gdzie użytkownik już
+        // ją wcześniej odsłonił (klik „sprawdź").
+        let ocenTegoZadania = null;
 
         //in the future we can make something like studentAttempt object that is passed by php after login and maybe chossing certan attempt in acc menu or smth
 
@@ -112,6 +141,29 @@ function loadExercises() {
                 console.warn(`Zadanie ${index + 1}: correctAnswerIndex (${correctIndex}) wykracza poza liczbę odpowiedzi`);
             }
 
+            let sprawdzone = false; // czy ocena (kolor/punkty) jest już odsłonięta
+
+            // Odsłonięcie oceny wybranej odpowiedzi (na podstawie stan.abcd).
+            // Idempotentne: wołane i w trybie natychmiastowym (klik = od razu),
+            // i z przycisku „sprawdź" / „sprawdź wszystkie". Bez zaznaczenia no-op.
+            function ocenAbcd() {
+                if (!Number.isInteger(stan.abcd) || !abcdButtons[stan.abcd]) return;
+                abcdButtons.forEach(b => b.classList.remove("correct", "incorrect", "selected"));
+                if (stan.abcd === correctIndex) {
+                    abcdButtons[stan.abcd].classList.add("correct");
+                    setScore(exercise.maxScore);
+                } else {
+                    // Zła odpowiedź: zawsze 0 / X pkt.
+                    abcdButtons[stan.abcd].classList.add("incorrect");
+                    setScore(0);
+                }
+                sprawdzone = true;
+                stan.sprawdzone = true;
+                sprawdz.schowaj();
+                zapiszPostep();
+            }
+            const sprawdz = utworzPrzyciskSprawdz(answersContainer, ocenAbcd);
+
             exercise.answers.forEach((answer, i) => {
                 const answerButton = document.createElement("button");
                 answerButton.innerHTML = answer;
@@ -130,24 +182,29 @@ function loadExercises() {
                         return;
                     }
 
-                    // Wyczyść stan wszystkich przycisków, potem ustaw stan klikniętego.
-                    answersContainer.querySelectorAll("button").forEach(btn => {
-                        btn.classList.remove("correct", "incorrect");
-                    });
-
-                    if (i === correctIndex) {
-                        answerButton.classList.add("correct");
-                        setScore(exercise.maxScore);
-                    } else {
-                        // Zła odpowiedź: zawsze 0 / X pkt.
-                        answerButton.classList.add("incorrect");
-                        setScore(0);
-                    }
                     stan.abcd = i;
+                    sprawdzone = false;
+                    stan.sprawdzone = false;
+                    if (natychmiastowaOcenaAktywna()) {
+                        ocenAbcd();
+                    } else {
+                        // Tryb „sprawdź później": tylko neutralne zaznaczenie, bez
+                        // odsłaniania poprawności; ocenę odkryje przycisk „sprawdź".
+                        abcdButtons.forEach(b => b.classList.remove("correct", "incorrect", "selected"));
+                        answerButton.classList.add("selected");
+                        sprawdz.pokaz();
+                    }
                     zapiszPostep();
                 });
                 abcdButtons.push(answerButton);
                 answersContainer.appendChild(answerButton);
+            });
+
+            ocenTegoZadania = ocenAbcd;
+            oczekujaceSprawdzenia.push({
+                ocen: ocenAbcd,
+                maZaznaczenie: () => Number.isInteger(stan.abcd),
+                czySprawdzone: () => sprawdzone,
             });
         } else if (type === "PF") {
             // Prawda/Fałsz: każde stwierdzenie dostaje własny wiersz z przyciskami P i F.
@@ -155,6 +212,28 @@ function loadExercises() {
             // zaznaczone i poprawne — jak w arkuszu CKE.
             answersContainer.classList.add("pf-container");
             const chosen = new Array(exercise.statements.length).fill(null);
+            let sprawdzone = false;
+
+            // Odsłonięcie oceny wszystkich wierszy (na podstawie chosen). Punkty
+            // (0 albo maxScore) wpadają tylko, gdy WSZYSTKIE odpowiedzi są
+            // zaznaczone i poprawne — jak w arkuszu CKE. Idempotentne.
+            function ocenPf() {
+                if (chosen.every(c => c === null)) return;
+                pfButtons.forEach((btns, si) => {
+                    btns.forEach(b => b.classList.remove("correct", "incorrect", "selected"));
+                    if (chosen[si] === null) return;
+                    const btn = chosen[si] ? btns[0] : btns[1];
+                    btn.classList.add(chosen[si] === exercise.statements[si].answer ? "correct" : "incorrect");
+                });
+                const answeredAll = chosen.every(c => c !== null);
+                const allCorrect = chosen.every((c, ci) => c === exercise.statements[ci].answer);
+                setScore(answeredAll && allCorrect ? exercise.maxScore : 0);
+                sprawdzone = true;
+                stan.sprawdzone = true;
+                sprawdz.schowaj();
+                zapiszPostep();
+            }
+            const sprawdz = utworzPrzyciskSprawdz(answersContainer, ocenPf);
 
             exercise.statements.forEach((statement, si) => {
                 const row = document.createElement("div");
@@ -171,13 +250,18 @@ function loadExercises() {
                     btn.textContent = caption;
                     btn.addEventListener("click", () => {
                         chosen[si] = value;
-                        buttons.forEach(b => b.classList.remove("correct", "incorrect"));
-                        btn.classList.add(value === statement.answer ? "correct" : "incorrect");
-
-                        const answeredAll = chosen.every(c => c !== null);
-                        const allCorrect = chosen.every((c, ci) => c === exercise.statements[ci].answer);
-                        setScore(answeredAll && allCorrect ? exercise.maxScore : 0);
+                        sprawdzone = false;
+                        stan.sprawdzone = false;
                         stan.pf = [...chosen];
+                        if (natychmiastowaOcenaAktywna()) {
+                            ocenPf();
+                        } else {
+                            // Tryb „sprawdź później": tylko neutralne zaznaczenie
+                            // w tym wierszu, bez odsłaniania poprawności.
+                            buttons.forEach(b => b.classList.remove("correct", "incorrect", "selected"));
+                            btn.classList.add("selected");
+                            sprawdz.pokaz();
+                        }
                         zapiszPostep();
                     });
                     buttons.push(btn);
@@ -186,6 +270,13 @@ function loadExercises() {
                 pfButtons.push(buttons);
 
                 answersContainer.appendChild(row);
+            });
+
+            ocenTegoZadania = ocenPf;
+            oczekujaceSprawdzenia.push({
+                ocen: ocenPf,
+                maZaznaczenie: () => chosen.some(c => c !== null),
+                czySprawdzone: () => sprawdzone,
             });
         } else if (type === "multiSelect") {
             // Wybór kilku odpowiedzi: klik zaznacza (jasnoniebieska ramka), ponowny klik
@@ -197,13 +288,27 @@ function loadExercises() {
             const required = exercise.correctAnswerIndices.length;
             const selected = new Set();
             const buttons = [];
+            let sprawdzone = false;
 
             const note = document.createElement("div");
             note.className = "multi-select-note";
             note.textContent = `Wybierz ${required === 2 ? "dwie odpowiedzi" : required + " odpowiedzi"}.`;
             answersContainer.appendChild(note);
 
-            function refresh() {
+            // Neutralne pokazanie samego zaznaczenia (bez oceny) — tryb „sprawdź później".
+            function pokazZaznaczenie() {
+                buttons.forEach((btn, i) => {
+                    btn.classList.remove("correct", "incorrect", "selected");
+                    if (selected.has(i)) btn.classList.add("selected");
+                });
+            }
+
+            // Odsłonięcie oceny: po skompletowaniu wymaganej liczby odpowiedzi
+            // koloruje trafienia/pudła i przyznaje punkty częściowe (po równo za
+            // trafienie). Przy niepełnym zaznaczeniu tylko pokazuje wybór (0 pkt) —
+            // dokładnie tak jak dawne refresh(), więc w trybie natychmiastowym
+            // zachowanie jest identyczne jak wcześniej.
+            function ocenMulti() {
                 buttons.forEach((btn, i) => {
                     btn.classList.remove("correct", "incorrect", "selected");
                     if (!selected.has(i)) return;
@@ -216,10 +321,17 @@ function loadExercises() {
                 if (selected.size === required) {
                     const hits = [...selected].filter(i => exercise.correctAnswerIndices.includes(i)).length;
                     setScore(Math.round(exercise.maxScore * hits / required));
+                    sprawdzone = true;
+                    stan.sprawdzone = true;
                 } else {
                     setScore(0);
+                    sprawdzone = false;
+                    stan.sprawdzone = false;
                 }
+                sprawdz.schowaj();
+                zapiszPostep();
             }
+            const sprawdz = utworzPrzyciskSprawdz(answersContainer, ocenMulti);
 
             exercise.answers.forEach((answer, i) => {
                 const btn = document.createElement("button");
@@ -237,13 +349,30 @@ function loadExercises() {
                         }
                         selected.add(i);
                     }
-                    refresh();
+                    sprawdzone = false;
+                    stan.sprawdzone = false;
                     stan.multi = [...selected];
+                    if (natychmiastowaOcenaAktywna()) {
+                        ocenMulti();
+                    } else {
+                        // Tryb „sprawdź później": tylko zaznaczenie; „sprawdź"
+                        // pojawia się dopiero po skompletowaniu wyboru.
+                        pokazZaznaczenie();
+                        if (selected.size === required) sprawdz.pokaz();
+                        else sprawdz.schowaj();
+                    }
                     zapiszPostep();
                 });
                 buttons.push(btn);
                 multiButtons.push(btn);
                 answersContainer.appendChild(btn);
+            });
+
+            ocenTegoZadania = ocenMulti;
+            oczekujaceSprawdzenia.push({
+                ocen: ocenMulti,
+                maZaznaczenie: () => selected.size === required,
+                czySprawdzone: () => sprawdzone,
             });
         } else if (type === "open" && exercise.selfScore && exercise.maxScore) {
             // Textarea na własną odpowiedź / tok rozwiązania. OSOBNY kontener
@@ -550,6 +679,12 @@ function loadExercises() {
                 zap.fill.forEach((tekst, i) => { if (fillRows[i]) fillRows[i].input.value = tekst || ""; });
                 if (zap.fill.some(t => t) && fillCheck) fillCheck.click();
             }
+            // Tryb „sprawdź później" (natychmiastowa poprawność OFF): powyższe kliki
+            // odtworzyły tylko ZAZNACZENIE (bez koloru). Jeśli użytkownik przed
+            // odświeżeniem odsłonił ocenę (klik „sprawdź"), odtwórz też odsłonięcie —
+            // inaczej po reloadzie zniknąłby kolor i punkty za to zadanie. W trybie
+            // natychmiastowym klik już ocenił, a ocenTegoZadania jest idempotentne.
+            if (zap.sprawdzone && ocenTegoZadania) ocenTegoZadania();
         }
 
         // Obrazki osadzone w HTML zadania (treść, podpowiedź, rozwiązanie) mają

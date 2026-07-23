@@ -85,6 +85,8 @@
         <button id="reset-scores">resetuj punktację</button>
         <button id="egzamin-start">rozpocznij próbny egzamin</button>
         <button id="wskazniki-tryb-toggle">wskaźniki „oceń się”: wszystkie zadania</button>
+        <button id="natychmiastowa-toggle">pokazuj poprawność od razu: tak</button>
+        <button id="sprawdz-wszystkie">sprawdź wszystkie odpowiedzi</button>
     </div>
 
     <!-- Podsumowanie próbnego egzaminu — nakładka pokazywana przez finishExam().
@@ -162,6 +164,10 @@
          z menu "⋯" (#egzamin-start) — oba robią to samo. -->
     <button id="egzamin-koniec">zakończ egzamin</button>
     <button id="egzamin-start-stopka">rozpocznij próbny egzamin</button>
+    <!-- „Sprawdź wszystkie odpowiedzi" — widoczny tylko w trybie „sprawdź później"
+         (natychmiastowa poprawność OFF; body.reczne-sprawdzanie) i poza egzaminem.
+         Odsłania ocenę wszystkich zadań zamkniętych z zaznaczoną odpowiedzią. -->
+    <button id="sprawdz-wszystkie-stopka">sprawdź wszystkie odpowiedzi</button>
 
     <script src="widgets/_helpers.js"></script>
     <script src="widgets/osLiczbowa.js"></script>
