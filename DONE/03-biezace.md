@@ -4,6 +4,29 @@ spojrzenie na projekt, rozwiazanie trudniejszego problemu albo sprawdzenie, czy/
 kiedys rozwiazano. Zasada podzialu i indeks: DONE/README.md.
 Zakres: 2026-07-13 (WYSOKI PRIORYTET) - 2026-07-21. Partia jeszcze niezmergowana do mastera.
 
+[ZROBIONE] (2026-07-23, Opus) — PODZIAŁ script.js NA app/*.js (wariant C z planu
+"joyful-river"). Stary script.js (1446 linii) rozbity na 9 klasycznych skryptów w
+nowym katalogu app/ (nazwy angielskie, jak style/*.css): state.js (globalne +
+mediaPath/renderMath + rejestry wszystkieRozwiazania/zadaniaOtwarte), theme.js,
+exam.js (tryb egzaminu + timer, wraz z „if readExamState → enableExamMode"),
+indicators.js (wskaźniki „oceń się"), panels.js (panele PDF + openFormulasAtPage),
+answers.js (normalizeAnswer + markCorrectAnswer), steps.js (podsystem kroków —
+renderStep/showStep/podepnijSterowanieWideo wydzielony z loadExercises; wspólny stan
+currentStep/stepSwapToken i refy DOM przekazywane JAWNIE w obiekcie krokiCtx, nie
+kopią wartości), render.js (loadExercises), bootstrap.js (chrome menu ⋯ + startSheet,
+ładowany OSTATNI). template.html: <script src="script.js"> → ciąg app/*.js
+(state pierwszy, bootstrap ostatni), kolejność widgetów bez zmian. Zachowanie ciała
+funkcji bez zmian (czysty wytnij-wklej). Weryfikacja: node --check ×9 OK; Playwright
+headless (2024-grudzien) przeklikane — ABCD/PF/multiSelect/open-self/fillIn (ocena,
+kolory badge'y high/mid/low, suma w pasku), kroki wideo z szybkim ◄/► (brak wyścigu,
+licznik i treść spójne), panel wzorów PDF, motyw jasny/ciemny, widok punktów,
+tryb egzaminu (start/timer/koniec/podsumowanie), przywrócenie postępu po reload;
+0 pageerror, 0 console.error, 0×404. UWAGA — znaleziony pre-existing bug (patrz
+TODO.md, OPUS DOPISAŁ): reload w fazie „oceń się" po egzaminie. W oryginale
+crashował (ReferenceError: zadaniaOtwarte w TDZ — deklaracja poniżej wywołania na
+load); po podziale nie crashuje, ale wskaźniki znikają i faza jest czyszczona.
+Świadomie NIE naprawiane w tym refaktorze (poza zakresem) — zgłoszone do decyzji.
+
 ZWERYFIKOWANE PRZEZ HENRICHA (2026-07-23): przetestowane ręcznie na gałęzi
 claude/do-sprawdzenia-yfi2mu — wszystkie 7 poprawek z code-review Opusa (patrz
 niżej) oraz wizualny przegląd kroku 3 podziału plików (style.css → style/*.css:

@@ -110,3 +110,28 @@ DROBIAZGI (niski priorytet, dziś nieszkodliwe):
 - Numer zadania gubi podnumer (12.1 vs 12.2) (issues/numer-zadania-podnumer.md)
 - Motyw rozjeżdża się między kartami przeglądarki (issues/motyw-rozjezdza-sie-miedzy-kartami.md)
 - Cichy błąd zapisu w ustawFazeOceniania() (issues/ocenianie-cichy-blad-zapisu.md)
+
+
+<h3>DO REALZACJI Dopisane przez OPUSEM</h3>
+
+OPUS DOPISAŁ (2026-07-23, przy podziale script.js → app/*.js):
+
+- Wskaźniki „oceń się" NIE przeżywają odświeżenia strony po egzaminie (faza „oceń
+  się"). Objaw: kończysz próbny egzamin → pojawiają się żółte wskaźniki przy
+  nieocenionych zadaniach otwartych → F5/reload → wskaźniki znikają i faza jest
+  czyszczona (trzeba by zrobić egzamin od nowa, żeby wróciły).
+  * Przyczyna: przy ładowaniu strony `applyTrybWskaznikow()` (app/indicators.js)
+    woła `pokazWskaznikiOtwarte()` ZANIM `loadExercises` wypełni `zadaniaOtwarte`,
+    więc lista nieocenionych jest pusta → `ustawFazeOceniania(false)` gasi fazę,
+    zanim `startSheet()` zdąży ją prawidłowo odtworzyć (app/bootstrap.js, gałąź
+    `else if (czyFazaOceniania()) pokazWskaznikiOtwarte()`).
+  * To bug PRE-ISTNIEJĄCY: w starym script.js ten sam scenariusz w ogóle crashował
+    stronę (ReferenceError — `const zadaniaOtwarte` był deklarowany PONIŻEJ tego
+    wywołania, TDZ), więc zadania się nie renderowały. Po podziale nie ma crasha,
+    ale funkcja „przetrwania odświeżenia" (opisana w komentarzach jako zamierzona)
+    nadal nie działa. Świadomie NIE ruszałem tego w refaktorze (poza zakresem,
+    „bez zmiany zachowania").
+  * Możliwa naprawa (do decyzji Henricha): nie gasić fazy przy load, gdy arkusz
+    nie jest jeszcze wyrenderowany — np. w `pokazWskaznikiOtwarte()` czyścić fazę
+    tylko, gdy `document.body.classList.contains("arkusz-wczytany")`. Wtedy
+    `startSheet()` odtworzy wskaźniki poprawnie po odświeżeniu.
