@@ -9,8 +9,13 @@ Zawsze sprawdzaj, testuj czy wprowadzone przez ciebie zmiany działają zanim zr
 
 <h3>DO REALIZACJI</h3>
 Jeżeli nie masz co robić to rób stąd.
+- wskaźniki zadań do samodzielnej oceny
+  * Przenieść przycisk skrócić nazwę przycisku na "Ukryj wskaźniki" i przenieść go do prawego dolnego rogu. 
+  * Same wskaźniki dopracować tak, aby nie nachodziły na niego tylko zzatrzymywały się troche wyżej jeśli wskazują coś na dole.
+  * Wskaźniki powinny znajdować się bliżej zadań w kolumnie roszke na prawo od kolumny z punktacją.
+  * Powinny znajdować się te warstwe niżej niż tablica wzorów
 
-- Przenieść przycisk skrócić nazwę przycisku na "Ukryj wskaźniki" i przenieść go do prawego dolnego rogu. Same wskaźniki dopracować tak, aby nie nachodziły na niego tylko zzatrzymywały się troche wyżej jeśli wskazują coś na dole.
+- tablica wzorów powinna się automatycznie wyłączać po zakończeniu egzaminu
 
 - Naprawić włącznie trybu egzaminu który działa tylko raz a potem się blokuje.
 
