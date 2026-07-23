@@ -174,7 +174,19 @@
     <script src="widgets/katWpisany.js"></script>
     <script src="widgets/prostopadloscian.js"></script>
     <script src="widgets/_registry.js"></script>
-    <script src="script.js"></script>
+
+    <!-- Logika strony podzielona na app/*.js (klasyczne skrypty, wspólny scope,
+         kolejność ma znaczenie): state.js pierwszy (globalne + mediaPath/renderMath),
+         bootstrap.js OSTATNI (startSheet() woła loadExercises i resztę). -->
+    <script src="app/state.js"></script>
+    <script src="app/theme.js"></script>
+    <script src="app/exam.js"></script>
+    <script src="app/indicators.js"></script>
+    <script src="app/panels.js"></script>
+    <script src="app/answers.js"></script>
+    <script src="app/steps.js"></script>
+    <script src="app/render.js"></script>
+    <script src="app/bootstrap.js"></script>
 
 </body>
 </html>

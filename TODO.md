@@ -1,14 +1,11 @@
-Nowy plik który tworzy Henrich (ja, użytkownik). Podczas Sprawdzania nowej wersji strony utworzonej przez fable (claude/project-improvements-exercises...)
-
-(Zasada: tu są TYLKO otwarte punkty. Zrobione wpisy [DONE]/[ZROBIONE] przenoszone są do bieżącego pliku pod DONE/ — patrz DONE/README.md i CLAUDE.md.)
-(Zasada: Drogi LLM, Sonnecie, Opusie, Jeżeli zmieniasz ten plik to wklejaj do odpowiedniej sekcji na dole)
-Zadania realizuj od góry do dołu.
-Zawsze sprawdzaj, testuj czy wprowadzone przez ciebie zmiany działają zanim zrobisz ostatni commit.
-
-<br>
+Oto plik który tworzy Henrich (ja, użytkownik).
 
 <h3>DO REALIZACJI</h3>
 Jeżeli nie masz co robić to rób stąd.
+
+- Gdy przyciski się nie mieszczą na górnym panelu powinny trafiać do menu. np na telefonie.
+
+- Schować przycisk pokaż tablice wzorów oraz pokaż zasady oceniania do menu. Zostawić przyciski karty wzorów widoczny jeżeli użytkownik korzysta z komputera (albo nie korzysta z telefonu)
 
 - wskaźniki zadań do samodzielnej oceny
   * Przenieść przycisk skrócić nazwę przycisku na "Ukryj wskaźniki" i przenieść go do prawego dolnego rogu. 
@@ -21,18 +18,17 @@ Jeżeli nie masz co robić to rób stąd.
   * Przyciski takie jak rozpocznij próbny egzamin nie powinny być widoczne na stronce z komunikatem błędny link (minor thing)
   * dodać działający toggle "widoczność zegara: włączony/wyłączony" w menu
 
-- Schować przycisk pokaż tablice wzorów oraz pokaż zasady oceniania do menu. Zostawić przyciski karty wzorów widoczny jeżeli użytkownik korzysta z komputera (albo nie korzysta z telefonu)
-
-- gdy przyciski się nie mieszczą na górnym panelu powinny trafiać do menu. np na telefonie.
-
-
-
+- dodać w opcjach toggle "pokaż poprawność odpowiedzi natychmiast po zaznaczeniu" oraz gdy jest wyłączony to musi być widać
+  * przycisk sprawdź po wybraniu odpowiedzi po prawej stronie, tak aby nie zmieniało wysokości diva/strony. Przycisk po kliknięciu powinien: włączyć kolory ramek w zależności od odpowiedzi takie jakie są obecnie, zniknąć.  
+  * przycisk "sprawdź wszystkie odpowiedzi" na dole arkusza oraz w ustawieniach powinien widnieć.
 
 <br>
 
 
 NIE REALIZUJ
 czyli nieskonkretyzowane
+
+- squah grup starych commitów zrobionych automatycznie przez gitdoc
 
 - Stworzyć przycisk "zgłoś błąd w zadaniu" i odpowiedni formularz. Formspree / Getform ale wewnątrz strony (submit przez fetch (AJAX) czy coś) można jeszcze to doprecyzować albo zmienić troche koncepcje.
 
@@ -42,14 +38,6 @@ czyli nieskonkretyzowane
 
 - do sekcji "oceń się" powinno być dodane kryteria sukcesu dopiero po kliknięciu rozwiązania. Ale jeszcze nie mam pomysłu jak to skomponować aby miało sens.
 
-- wyciągnięcie tekstu z PDF-ów:
-  * matematyka-2025-maj-matura-podstawowa.pdf
-  * matematyka-2025-maj-matura-podstawowa-odpowiedzi.pdf
-
-
-- dodać w opcjach toggle "pokaż poprawność odpowiedzi natychmiast po zaznaczeniu" oraz gdy jest wyłączony to musi być widać
-  * przycisk sprawdź po wybraniu odpowiedzi po prawej stronie, tak aby nie zmieniało wysokości diva/strony. Przycisk po kliknięciu powinien: włączyć kolory ramek w zależności od odpowiedzi takie jakie są obecnie, zniknąć.  
-  * przycisk "sprawdź wszystkie odpowiedzi" na dole arkusza oraz w ustawieniach powinien widnieć.
 
 
 <br>
@@ -110,3 +98,13 @@ DROBIAZGI (niski priorytet, dziś nieszkodliwe):
 - Numer zadania gubi podnumer (12.1 vs 12.2) (issues/numer-zadania-podnumer.md)
 - Motyw rozjeżdża się między kartami przeglądarki (issues/motyw-rozjezdza-sie-miedzy-kartami.md)
 - Cichy błąd zapisu w ustawFazeOceniania() (issues/ocenianie-cichy-blad-zapisu.md)
+
+- Wskaźniki „oceń się" znikają po odświeżeniu strony po egzaminie (issues/wskazniki-reload-faza-oceniania.md)
+
+
+ZASADY dla Ciebie Claude:
+- tu są TYLKO otwarte punkty. Zrobione wpisy [DONE]/[ZROBIONE] przenoszone są do bieżącego pliku pod DONE/ — patrz DONE/README.md i CLAUDE.md.)
+- TEN PLIK MA BYĆ SLEEK — krótkie hasła, jedno-dwa zdania na punkt. Żadnych ścian tekstu. Szczegóły (mechanizm, pliki, linie) idą do issues/ albo DONE/, a tu zostaje jedna linijka z odnośnikiem.
+ Drogi Claudzie, jeżeli zmieniasz ten plik to wklejaj do odpowiedniej sekcji na dole
+- Zadania realizuj od góry do dołu.
+- Zawsze sprawdzaj, testuj czy wprowadzone przez ciebie zmiany działają zanim zrobisz ostatni commit.
