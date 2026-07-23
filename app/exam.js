@@ -1,4 +1,4 @@
-// app/egzamin.js — tryb egzaminacyjny (próbny egzamin na czas) + timer.
+// app/exam.js — tryb egzaminacyjny (próbny egzamin na czas) + timer.
 
 /* ===== TRYB EGZAMINACYJNY (próbny egzamin na czas) =====
    Zasada działania: ocenianie i zapis postępu biegną NORMALNIE, tą samą drogą

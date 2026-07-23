@@ -1,4 +1,4 @@
-// app/wskazniki.js — pływające wskaźniki nieocenionych zadań otwartych (po
+// app/indicators.js — pływające wskaźniki nieocenionych zadań otwartych (po
 // egzaminie) + ich repozycjonowanie przy scrollu/resize.
 
 /* ===== WSKAŹNIKI NIEOCENIONYCH ZADAŃ OTWARTYCH (po egzaminie) =====

@@ -1,4 +1,4 @@
-// app/panele.js — pływające panele PDF: tablice wzorów i zasady oceniania
+// app/panels.js — pływające panele PDF: tablice wzorów i zasady oceniania
 // (pokaż/schowaj, przeciąganie, zmiana rozmiaru) + openFormulasAtPage.
 
 // Tablica wzorów: panel (kontener) + <object> z PDF-em w środku. Pokazywanie/

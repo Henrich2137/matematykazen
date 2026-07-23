@@ -1,5 +1,5 @@
-// app/odpowiedzi.js — normalizacja wpisów fillIn i odsłanianie poprawnej
-// odpowiedzi (helpery używane przez app/render.js i app/kroki.js).
+// app/answers.js — normalizacja wpisów fillIn i odsłanianie poprawnej
+// odpowiedzi (helpery używane przez app/render.js i app/steps.js).
 
 // Normalizacja odpowiedzi wpisywanych ręcznie (typ fillIn): bez spacji i bez
 // różnic zapisu — nawiasy przedziałów ⟨ ⟩ oraz klawiaturowe < > sprowadzamy

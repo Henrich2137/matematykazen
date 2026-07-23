@@ -1,4 +1,4 @@
-// app/kroki.js — podsystem rozwiązań krok-po-kroku (film/obraz/tekst).
+// app/steps.js — podsystem rozwiązań krok-po-kroku (film/obraz/tekst).
 // Wydzielony z loadExercises (app/render.js). Funkcje są top-level, a stan
 // wspólny dla showStep i strzałek ◄/► (currentStep, stepSwapToken oraz refy
 // DOM kroków) przekazujemy JAWNIE w obiekcie `ctx` — dzięki temu currentStep/
