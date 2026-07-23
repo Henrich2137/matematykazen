@@ -20,8 +20,14 @@ Jeżeli nie masz co robić to rób stąd.
   * tablica wzorów powinna się automatycznie wyłączać po zakończeniu egzaminu
   * Naprawić włącznie trybu egzaminu który działa tylko raz a potem się blokuje. (to chyba naprawione i można przenieść już)
   * Przyciski takie jak rozpocznij próbny egzamin nie powinny być widoczne na stronce z komunikatem błędny link (minor thing)
+  * dodać działający toggle "widoczność zegara: włączony/wyłączony" w menu
 
 - Schować przycisk pokaż tablice wzorów oraz pokaż zasady oceniania do menu. Zostawić przyciski karty wzorów widoczny jeżeli użytkownik korzysta z komputera (albo nie korzysta z telefonu)
+
+- gdy przyciski się nie mieszczą na górnym panelu powinny trafiać do menu. np na telefonie.
+
+
+
 
 - Plan podziału plików (.claude/plans/czy-my-lisz-e-mam-tingly-hamster.md): kroki 1, 1b, 2 i 3 zrobione i zautomatyzowanie zweryfikowane (patrz DONE/03-biezace.md) — zostaje tylko wizualny przegląd kroku 3 przez Henricha (jasny/ciemny motyw, okno ~500px, landing), patrz sekcja „DO SPRAWDZENIA PRZEZ HENRICHA" niżej. Krok 4 zrobiony wcześniej inaczej (katalog nazwano "DONE TODO"; od 2026-07-22 zmieniony na "DONE"). Krok 5 (script.js → js/) świadomie odłożony, poza zakresem.
 
@@ -63,6 +69,8 @@ DLA HENRICHA:
 
 
 INNE NOTATKI:
+
+- dodać toggle "chowający się panel górny: włączony/wyłączony" (możesz wymyśleć lepszą nazwę), ta opcja ma być domyślnie włączona na telefonie. Top-bar powiniene się chować po scrolowaniu w dół i pojawiać przy skrolowaniu w górę lub gdy pociągnie się z górnej krawędzi.
 
 - Tryb egzaminu nie powinien być tak "schowany" w opcjach. Moze pod tytułem zrobić zamiast stałego napisu "tryb ćwiczeniowy" zrobić toggle między dwoma trybami.
 
