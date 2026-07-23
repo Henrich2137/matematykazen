@@ -89,7 +89,6 @@ INNE NOTATKI:
 
 
 <h3>DO REALZACJI Dopisane przez CLAUDA</h3>
-
 Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz issues/README.md.
 
 TRYB EGZAMINU I PAMIĘĆ PRZEGLĄDARKI:
