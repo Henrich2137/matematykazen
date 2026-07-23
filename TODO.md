@@ -1,6 +1,7 @@
 Nowy plik który tworzy Henrich (ja, użytkownik). Podczas Sprawdzania nowej wersji strony utworzonej przez fable (claude/project-improvements-exercises...)
 
 (Zasada: tu są TYLKO otwarte punkty. Zrobione wpisy [DONE]/[ZROBIONE] przenoszone są do bieżącego pliku pod DONE/ — patrz DONE/README.md i CLAUDE.md.)
+(Zasada: TEN PLIK MA BYĆ SLEEK — krótkie hasła, jedno-dwa zdania na punkt. Żadnych ścian tekstu. Szczegóły (mechanizm, pliki, linie) idą do issues/ albo DONE/, a tu zostaje jedna linijka z odnośnikiem.)
 (Zasada: Drogi LLM, Sonnecie, Opusie, Jeżeli zmieniasz ten plik to wklejaj do odpowiedniej sekcji na dole)
 Zadania realizuj od góry do dołu.
 Zawsze sprawdzaj, testuj czy wprowadzone przez ciebie zmiany działają zanim zrobisz ostatni commit.
@@ -111,27 +112,6 @@ DROBIAZGI (niski priorytet, dziś nieszkodliwe):
 - Motyw rozjeżdża się między kartami przeglądarki (issues/motyw-rozjezdza-sie-miedzy-kartami.md)
 - Cichy błąd zapisu w ustawFazeOceniania() (issues/ocenianie-cichy-blad-zapisu.md)
 
+OPUS DOPISAŁ:
 
-<h3>DO REALZACJI Dopisane przez OPUSEM</h3>
-
-OPUS DOPISAŁ (2026-07-23, przy podziale script.js → app/*.js):
-
-- Wskaźniki „oceń się" NIE przeżywają odświeżenia strony po egzaminie (faza „oceń
-  się"). Objaw: kończysz próbny egzamin → pojawiają się żółte wskaźniki przy
-  nieocenionych zadaniach otwartych → F5/reload → wskaźniki znikają i faza jest
-  czyszczona (trzeba by zrobić egzamin od nowa, żeby wróciły).
-  * Przyczyna: przy ładowaniu strony `applyTrybWskaznikow()` (app/indicators.js)
-    woła `pokazWskaznikiOtwarte()` ZANIM `loadExercises` wypełni `zadaniaOtwarte`,
-    więc lista nieocenionych jest pusta → `ustawFazeOceniania(false)` gasi fazę,
-    zanim `startSheet()` zdąży ją prawidłowo odtworzyć (app/bootstrap.js, gałąź
-    `else if (czyFazaOceniania()) pokazWskaznikiOtwarte()`).
-  * To bug PRE-ISTNIEJĄCY: w starym script.js ten sam scenariusz w ogóle crashował
-    stronę (ReferenceError — `const zadaniaOtwarte` był deklarowany PONIŻEJ tego
-    wywołania, TDZ), więc zadania się nie renderowały. Po podziale nie ma crasha,
-    ale funkcja „przetrwania odświeżenia" (opisana w komentarzach jako zamierzona)
-    nadal nie działa. Świadomie NIE ruszałem tego w refaktorze (poza zakresem,
-    „bez zmiany zachowania").
-  * Możliwa naprawa (do decyzji Henricha): nie gasić fazy przy load, gdy arkusz
-    nie jest jeszcze wyrenderowany — np. w `pokazWskaznikiOtwarte()` czyścić fazę
-    tylko, gdy `document.body.classList.contains("arkusz-wczytany")`. Wtedy
-    `startSheet()` odtworzy wskaźniki poprawnie po odświeżeniu.
+- Wskaźniki „oceń się" znikają po odświeżeniu strony po egzaminie (issues/wskazniki-reload-faza-oceniania.md)
