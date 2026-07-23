@@ -11,6 +11,10 @@ Zawsze sprawdzaj, testuj czy wprowadzone przez ciebie zmiany działają zanim zr
 <h3>DO REALIZACJI</h3>
 Jeżeli nie masz co robić to rób stąd.
 
+- gdy przyciski się nie mieszczą na górnym panelu powinny trafiać do menu. np na telefonie.
+
+- Schować przycisk pokaż tablice wzorów oraz pokaż zasady oceniania do menu. Zostawić przyciski karty wzorów widoczny jeżeli użytkownik korzysta z komputera (albo nie korzysta z telefonu)
+
 - wskaźniki zadań do samodzielnej oceny
   * Przenieść przycisk skrócić nazwę przycisku na "Ukryj wskaźniki" i przenieść go do prawego dolnego rogu. 
   * Same wskaźniki dopracować tak, aby nie nachodziły na niego tylko zzatrzymywały się troche wyżej jeśli wskazują coś na dole.
@@ -22,23 +26,17 @@ Jeżeli nie masz co robić to rób stąd.
   * Przyciski takie jak rozpocznij próbny egzamin nie powinny być widoczne na stronce z komunikatem błędny link (minor thing)
   * dodać działający toggle "widoczność zegara: włączony/wyłączony" w menu
 
-- Schować przycisk pokaż tablice wzorów oraz pokaż zasady oceniania do menu. Zostawić przyciski karty wzorów widoczny jeżeli użytkownik korzysta z komputera (albo nie korzysta z telefonu)
-
-- gdy przyciski się nie mieszczą na górnym panelu powinny trafiać do menu. np na telefonie.
-
 - dodać w opcjach toggle "pokaż poprawność odpowiedzi natychmiast po zaznaczeniu" oraz gdy jest wyłączony to musi być widać
   * przycisk sprawdź po wybraniu odpowiedzi po prawej stronie, tak aby nie zmieniało wysokości diva/strony. Przycisk po kliknięciu powinien: włączyć kolory ramek w zależności od odpowiedzi takie jakie są obecnie, zniknąć.  
   * przycisk "sprawdź wszystkie odpowiedzi" na dole arkusza oraz w ustawieniach powinien widnieć.
-
-- squah grup starych commitów zrobionych automatycznie przez gitdoc 
-
-
 
 <br>
 
 
 NIE REALIZUJ
 czyli nieskonkretyzowane
+
+- squah grup starych commitów zrobionych automatycznie przez gitdoc
 
 - Stworzyć przycisk "zgłoś błąd w zadaniu" i odpowiedni formularz. Formspree / Getform ale wewnątrz strony (submit przez fetch (AJAX) czy coś) można jeszcze to doprecyzować albo zmienić troche koncepcje.
 
