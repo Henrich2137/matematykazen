@@ -3,7 +3,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <h3>DO REALIZACJI</h3>
 Jeżeli nie masz co robić to rób stąd.
 
-- gdy przyciski się nie mieszczą na górnym panelu powinny trafiać do menu. np na telefonie.
+- Gdy przyciski się nie mieszczą na górnym panelu powinny trafiać do menu. np na telefonie.
 
 - Schować przycisk pokaż tablice wzorów oraz pokaż zasady oceniania do menu. Zostawić przyciski karty wzorów widoczny jeżeli użytkownik korzysta z komputera (albo nie korzysta z telefonu)
 
