@@ -8,18 +8,17 @@ Jeżeli nie masz co robić to rób stąd.
 - Schować przycisk pokaż tablice wzorów oraz pokaż zasady oceniania do menu. Zostawić przyciski karty wzorów widoczny jeżeli użytkownik korzysta z komputera (albo nie korzysta z telefonu)
 
 - wskaźniki zadań do samodzielnej oceny
-  * Przenieść przycisk skrócić nazwę przycisku na "Ukryj wskaźniki" i przenieść go do prawego dolnego rogu. 
-  * Same wskaźniki dopracować tak, aby nie nachodziły na niego tylko zzatrzymywały się troche wyżej jeśli wskazują coś na dole.
-  * Wskaźniki powinny znajdować się bliżej zadań w kolumnie roszke na prawo od kolumny z punktacją.
-  * Powinny znajdować się te warstwe niżej niż tablica wzorów
+  * Skrócić nazwę przycisku na "Ukryj wskaźniki" i przenieść go w prawy dolny róg, ale przesunięty w prawo względem kolumny kropek (kropki dalej schodzą blisko dołu jak teraz, przycisk stoi obok, nie nad/pod).
+  * Wskaźniki zostają jako stała kolumna (logika pionowego rozstawiania bez zmian), tylko przesunięta dalej od prawej krawędzi ekranu (right: 14px → ok. 60-80px), żeby nie zasłaniać kolumny punktacji.
+  * Powinny znajdować się warstwę niżej niż tablica wzorów (z-index poniżej panelu #tablica-wzorow-panel).
 
 - tryb egzaminu
   * tablica wzorów powinna się automatycznie wyłączać po zakończeniu egzaminu
   * Przyciski takie jak rozpocznij próbny egzamin nie powinny być widoczne na stronce z komunikatem błędny link (minor thing)
   * dodać działający toggle "widoczność zegara: włączony/wyłączony" w menu
 
-- dodać w opcjach toggle "pokaż poprawność odpowiedzi natychmiast po zaznaczeniu" oraz gdy jest wyłączony to musi być widać
-  * przycisk sprawdź po wybraniu odpowiedzi po prawej stronie, tak aby nie zmieniało wysokości diva/strony. Przycisk po kliknięciu powinien: włączyć kolory ramek w zależności od odpowiedzi takie jakie są obecnie, zniknąć.  
+- dodać w opcjach toggle "pokaż poprawność odpowiedzi natychmiast po zaznaczeniu" (dotyczy tylko zadań zamkniętych, nie fillIn) oraz gdy jest wyłączony to musi być widać
+  * nowy przycisk "sprawdź" po prawej stronie od ramki z odpowiedziami (może wychodzić poza box zadania, ale nie może zasłaniać żółtych kropek wskaźników), tak aby nie zmieniało wysokości diva/strony. Przycisk po kliknięciu powinien: włączyć kolory ramek w zależności od odpowiedzi takie jakie są obecnie, zniknąć.
   * przycisk "sprawdź wszystkie odpowiedzi" na dole arkusza oraz w ustawieniach powinien widnieć.
 
 <br>
