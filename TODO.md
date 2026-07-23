@@ -11,8 +11,6 @@ Zawsze sprawdzaj, testuj czy wprowadzone przez ciebie zmiany działają zanim zr
 <h3>DO REALIZACJI</h3>
 Jeżeli nie masz co robić to rób stąd.
 
-- squah grup starych commitów zrobionych automatycznie przez gitdoc 
-
 - wskaźniki zadań do samodzielnej oceny
   * Przenieść przycisk skrócić nazwę przycisku na "Ukryj wskaźniki" i przenieść go do prawego dolnego rogu. 
   * Same wskaźniki dopracować tak, aby nie nachodziły na niego tylko zzatrzymywały się troche wyżej jeśli wskazują coś na dole.
@@ -32,6 +30,8 @@ Jeżeli nie masz co robić to rób stąd.
   * przycisk sprawdź po wybraniu odpowiedzi po prawej stronie, tak aby nie zmieniało wysokości diva/strony. Przycisk po kliknięciu powinien: włączyć kolory ramek w zależności od odpowiedzi takie jakie są obecnie, zniknąć.  
   * przycisk "sprawdź wszystkie odpowiedzi" na dole arkusza oraz w ustawieniach powinien widnieć.
 
+- squah grup starych commitów zrobionych automatycznie przez gitdoc 
+
 
 
 <br>
@@ -47,7 +47,6 @@ czyli nieskonkretyzowane
 - zadania otwarte powinny też mieć okienko normalizujące i sprawdzające wpisaną odpowiedź. Do tego można rozpisać i dorobić donich pytania w stylu "Czy masz opisana długość boku BC?" które wynikają z zasad oceniania i ułatiwają ustalenie ilości punktów. przy nich można dać gwiazdkę, że trzeba każdy przypadek sprawdzić indywidualnie i autor strony nie jest egzaminatorem. 
 
 - do sekcji "oceń się" powinno być dodane kryteria sukcesu dopiero po kliknięciu rozwiązania. Ale jeszcze nie mam pomysłu jak to skomponować aby miało sens.
-
 
 
 
