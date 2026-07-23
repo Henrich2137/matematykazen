@@ -4,6 +4,45 @@ spojrzenie na projekt, rozwiazanie trudniejszego problemu albo sprawdzenie, czy/
 kiedys rozwiazano. Zasada podzialu i indeks: DONE/README.md.
 Zakres: 2026-07-13 (WYSOKI PRIORYTET) - 2026-07-21. Partia jeszcze niezmergowana do mastera.
 
+[ZROBIONE] (2026-07-23, Opus) — TOGGLE „natychmiastowa poprawność" + przyciski „sprawdź"
+(TODO.md: „dodać w opcjach toggle …"). Nowe ustawienie GLOBALNE (localStorage
+`matematykazen-natychmiastowa-poprawnosc`, bez sufiksu arkusza; state.js:
+czyNatychmiastowaPoprawnosc/natychmiastowaOcenaAktywna + rejestr oczekujaceSprawdzenia).
+Dotyczy TYLKO zadań zamkniętych ABCD/PF/multiSelect (fillIn ma swój „Sprawdź" — nietknięty).
+ON (domyślnie) = klik odpowiedzi od razu koloruje (dawne zachowanie). OFF = klik daje tylko
+neutralne .selected, a po prawej ramki odpowiedzi pojawia się pływający przycisk „sprawdź"
+(render.js: utworzPrzyciskSprawdz — position:absolute względem .answers-container, left:100%,
+nie zmienia wysokości zadania; na ≤900px wraca do flow). Klik „sprawdź" odsłania ocenę i
+znika. Każda gałąź zamknięta ma teraz ocen*(): idempotentne odsłonięcie na podstawie
+zapisanego wyboru; w trybie egzaminu natychmiastowaOcenaAktywna() wymusza ON (kolory i tak
+schowane przez exam.css), więc przycisków „sprawdź" na egzaminie nie ma. Zapis stan.sprawdzone
+w localStorage → po reloadzie odsłonięte zadania zostają pokolorowane i z punktami, a
+zaznaczone-lecz-niesprawdzone wracają jako neutralne z przyciskiem „sprawdź" (bez fałszywych
+punktów). „Sprawdź wszystkie odpowiedzi" w menu ⋯ i w stopce arkusza (bootstrap.js:
+sprawdzWszystkieOdpowiedzi) — odsłania wszystkie zaznaczone-a-niesprawdzone; oba przyciski
+widoczne tylko w trybie OFF (body.reczne-sprawdzanie) i poza egzaminem. Testy Playwright
+(2024-grudzien): ON/OFF ABCD, zmiana wyboru bez kolorowania, „sprawdź" indywidualny, „sprawdź
+wszystkie" na ABCD+PF+multi (3 pending → wszystkie pokolorowane), fillIn nietknięty, brak
+kolizji z egzaminem, reload w obu stanach — wszystko OK.
+
+[ZROBIONE] (2026-07-23, Opus) — POZYCJA/WARSTWY WSKAŹNIKÓW „OCEŃ SIĘ" (TODO.md: „wskaźniki
+zadań do samodzielnej oceny"). (1) Kolumna kropek odsunięta od krawędzi: .wskaznik-otwarte
+right 14px → 70px (nie nachodzi na scrollbar ani na typowych szerokościach na kolumnę
+punktacji). (2) Przycisk „ukryj" przeniesiony z lewego dolnego rogu w prawy dolny róg,
+OBOK kolumny kropek: #wskazniki-ukryj left:10px → right:96px (na lewo od kropek przy
+right:70px, więc bez nakładania — sprawdzone bounding-boxami), bottom:10px bez zmian; logika
+pionowego rozstawiania (declutter + `dol`) w repozycjonujWskazniki() NIETKNIĘTA, kropki dalej
+schodzą blisko dołu. (3) z-index kropek i przycisku 15 → 8: CELOWO poniżej panelu tablicy
+wzorów (#tablica-wzorow-panel z-index 9), więc otwarta tablica przykrywa kropki. UWAGA: TODO
+zakładało panel z-index 11 nad paskiem — realnie panel to 9, „tuż pod paskiem" (top-bar 10,
+udokumentowane w ARCHITECTURE_CSS.md), więc „kropki nad paskiem, pod panelem" jest
+niewykonalne bez ruszania warstw paska/menu; że kropki są też pod paskiem (10) nie ma
+znaczenia wizualnego — declutter i tak klamruje każdą kropkę do pasa POD paskiem. (4) Tekst
+przycisku skrócony na „Ukryj wskaźniki" (indicators.js). Testy Playwright: pełny próbny
+egzamin → faza „oceń się" (7 kropek), brak nakładania przycisk↔kropki, tablica przykrywa
+kropki, scroll/resize dalej repozycjonuje (bug „gumkowania" z issues/ NIE pogłębiony —
+transition bez zmian).
+
 [ZROBIONE] (2026-07-23, Opus) — PODZIAŁ script.js NA app/*.js (wariant C z planu
 "joyful-river"). Stary script.js (1446 linii) rozbity na 9 klasycznych skryptów w
 nowym katalogu app/ (nazwy angielskie, jak style/*.css): state.js (globalne +

@@ -92,7 +92,7 @@ function pokazWskaznikiOtwarte() {
         wskaznikiUkryjBtn = document.createElement("button");
         wskaznikiUkryjBtn.id = "wskazniki-ukryj";
         wskaznikiUkryjBtn.type = "button";
-        wskaznikiUkryjBtn.textContent = "✕ Ukryj wskaźniki nieocenionych zadań";
+        wskaznikiUkryjBtn.textContent = "Ukryj wskaźniki";
         wskaznikiUkryjBtn.title = "Ukryj wszystkie wskaźniki nieocenionych zadań otwartych";
         wskaznikiUkryjBtn.addEventListener("click", ukryjWszystkieWskazniki);
         document.body.appendChild(wskaznikiUkryjBtn);
@@ -145,8 +145,9 @@ function repozycjonujWskazniki() {
     const topBar = document.getElementById("top-bar");
     const polowa = 13; // połowa wysokości kropki (26px)
     const gora = (topBar ? topBar.getBoundingClientRect().bottom : 0) + 10 + polowa;
-    // Przycisk „ukryj" jest w lewym dolnym rogu, więc prawa kolumna kropek może
-    // schodzić prawie do samego dołu — zostawiamy tylko drobny margines.
+    // Przycisk „ukryj" stoi w prawym dolnym rogu OBOK kolumny kropek (odsunięty od
+    // niej w lewo, right: 96px vs right: 70px), więc kropki nie chowają się za nim
+    // i mogą schodzić prawie do samego dołu — zostawiamy tylko drobny margines.
     const dol = window.innerHeight - 12 - polowa;
     const krok = 32;   // min. odstęp między środkami kropek
     const items = wskaznikiEls.map(({ el, zadanie }) => {

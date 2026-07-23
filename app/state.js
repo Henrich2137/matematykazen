@@ -57,3 +57,30 @@ const wszystkieRozwiazania = [];
 // pływające wskaźniki nieocenionych zadań po egzaminie. Każdy wpis:
 // { el: element zadania w DOM, stan: obiekt postępu (stan.open / stan.self), numer }.
 const zadaniaOtwarte = [];
+
+// TRYB „natychmiastowa poprawność" (ustawienie GLOBALNE, wspólne dla wszystkich
+// arkuszy — jak motyw czy tryb wskaźników, dlatego klucz BEZ sufiksu SHEET_ID).
+// Dotyczy tylko zadań ZAMKNIĘTYCH z wyborem z przycisków (ABCD/PF/multiSelect):
+//   ON  (domyślnie) — klik odpowiedzi od razu koloruje ramkę correct/incorrect.
+//   OFF — klik tylko zaznacza (neutralnie); ocena odsłania się dopiero po
+//         kliknięciu osobnego przycisku „sprawdź" przy zadaniu (albo „sprawdź
+//         wszystkie odpowiedzi"). fillIn ma własny przycisk „Sprawdź" i tu go
+//         nie ruszamy.
+const KLUCZ_NATYCHM_POPRAWNOSC = "matematykazen-natychmiastowa-poprawnosc";
+function czyNatychmiastowaPoprawnosc() {
+    // Brak wpisu = domyślnie ON; tylko jawne "0" wyłącza tryb natychmiastowy.
+    try { return localStorage.getItem(KLUCZ_NATYCHM_POPRAWNOSC) !== "0"; } catch (e) { return true; }
+}
+// Czy oceniać od razu przy kliknięciu odpowiedzi. W trybie egzaminu ZAWSZE od
+// razu (ocena i tak liczy się „pod spodem", a kolory/punkty są schowane przez
+// exam.css) — deferowanie „sprawdź" na egzaminie nie ma sensu i by przeszkadzało.
+function natychmiastowaOcenaAktywna() {
+    return czyNatychmiastowaPoprawnosc() || document.body.classList.contains("tryb-egzaminu");
+}
+
+// Rejestr zadań zamkniętych do zbiorczego „sprawdź wszystkie odpowiedzi". Każdy
+// wpis: { ocen, maZaznaczenie, czySprawdzone } — patrz app/render.js (typy
+// ABCD/PF/multiSelect). Przycisk w menu ⋯ i w stopce (app/bootstrap.js)
+// odsłania ocenę wszystkich zadań, które mają zaznaczoną, a jeszcze nieodsłoniętą
+// odpowiedź.
+const oczekujaceSprawdzenia = [];

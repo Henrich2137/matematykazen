@@ -67,6 +67,43 @@ scoreSwitchButton.addEventListener("click", () => {
 
 })
 
+// Toggle „natychmiastowa poprawność" (menu ⋯): ustawienie GLOBALNE (localStorage,
+// bez sufiksu arkusza — patrz app/state.js). ON = klik odpowiedzi zamkniętej od
+// razu koloruje ramkę; OFF = dopiero po kliknięciu „sprawdź". body.reczne-sprawdzanie
+// (dodawane w trybie OFF) odsłania przyciski „sprawdź wszystkie odpowiedzi".
+const natychmiastowaToggle = document.getElementById("natychmiastowa-toggle");
+function odswiezTrybPoprawnosci() {
+    const on = czyNatychmiastowaPoprawnosc();
+    document.body.classList.toggle("reczne-sprawdzanie", !on);
+    if (natychmiastowaToggle) {
+        natychmiastowaToggle.textContent = on
+            ? "pokazuj poprawność od razu: tak"
+            : "pokazuj poprawność od razu: nie";
+    }
+}
+odswiezTrybPoprawnosci();
+if (natychmiastowaToggle) {
+    natychmiastowaToggle.addEventListener("click", () => {
+        const on = czyNatychmiastowaPoprawnosc();
+        try { localStorage.setItem(KLUCZ_NATYCHM_POPRAWNOSC, on ? "0" : "1"); } catch (e) {}
+        odswiezTrybPoprawnosci();
+    });
+}
+
+// „Sprawdź wszystkie odpowiedzi" (menu ⋯ + kopia w stopce arkusza): odsłania
+// ocenę wszystkich zadań zamkniętych, które mają zaznaczoną, a jeszcze
+// nieodsłoniętą odpowiedź (to samo, co ręczne kliknięcie każdego widocznego
+// „sprawdź"). Pomija zadania bez zaznaczenia i już sprawdzone.
+function sprawdzWszystkieOdpowiedzi() {
+    oczekujaceSprawdzenia.forEach(z => {
+        if (z.maZaznaczenie() && !z.czySprawdzone()) z.ocen();
+    });
+}
+["sprawdz-wszystkie", "sprawdz-wszystkie-stopka"].forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) btn.addEventListener("click", sprawdzWszystkieOdpowiedzi);
+});
+
 // Wypełnia chrome strony (tytuł karty, meta description, tytuł w pasku, PDF
 // zasad oceniania, domyślna strona tablicy wzorów) danymi z pola "meta"
 // exercises.json — jedyne miejsce, gdzie template.html dowiaduje się, JAKI
