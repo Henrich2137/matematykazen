@@ -4,6 +4,16 @@ spojrzenie na projekt, rozwiazanie trudniejszego problemu albo sprawdzenie, czy/
 kiedys rozwiazano. Zasada podzialu i indeks: DONE/README.md.
 Zakres: 2026-07-13 (WYSOKI PRIORYTET) - 2026-07-21. Partia jeszcze niezmergowana do mastera.
 
+ZWERYFIKOWANE PRZEZ HENRICHA (2026-07-23): przetestowane ręcznie na gałęzi
+claude/do-sprawdzenia-yfi2mu — wszystkie 7 poprawek z code-review Opusa (patrz
+niżej) oraz wizualny przegląd kroku 3 podziału plików (style.css → style/*.css:
+jasny/ciemny motyw, okno ~500px, landing) — wszystko działa bez zastrzeżeń.
+Usunięto z TODO.md sekcję „DO SPRAWDZENIA PRZEZ HENRICHA" i wpis o kroku 3
+podziału plików. Przy okazji: reset punktacji będąc wyszarzony w trakcie
+egzaminu (w tej samej karcie) to zachowanie uznane za dobre — nie trzeba
+dodatkowego ostrzeżenia confirm() w tym przypadku (dotyczy tylko scenariusza
+z dwiema kartami, patrz nienaprawiony bug w TODO.md).
+
 ZROBIONE PRZEZ SONNETA (2026-07-22) — naprawy z code-review Opusa (gałąź
 claude/do-sprawdzenia-yfi2mu → claude/po-review), punkty 1-7 sekcji „DO REALZACJI
 Dopisane przez CLAUDA" w TODO.md:
