@@ -18,7 +18,6 @@ Jeżeli nie masz co robić to rób stąd.
 
 - tryb egzaminu
   * tablica wzorów powinna się automatycznie wyłączać po zakończeniu egzaminu
-  * Naprawić włącznie trybu egzaminu który działa tylko raz a potem się blokuje. (to chyba naprawione i można przenieść już)
   * Przyciski takie jak rozpocznij próbny egzamin nie powinny być widoczne na stronce z komunikatem błędny link (minor thing)
   * dodać działający toggle "widoczność zegara: włączony/wyłączony" w menu
 
@@ -28,8 +27,6 @@ Jeżeli nie masz co robić to rób stąd.
 
 
 
-
-- Plan podziału plików (.claude/plans/czy-my-lisz-e-mam-tingly-hamster.md): kroki 1, 1b, 2 i 3 zrobione i zautomatyzowanie zweryfikowane (patrz DONE/03-biezace.md) — zostaje tylko wizualny przegląd kroku 3 przez Henricha (jasny/ciemny motyw, okno ~500px, landing), patrz sekcja „DO SPRAWDZENIA PRZEZ HENRICHA" niżej. Krok 4 zrobiony wcześniej inaczej (katalog nazwano "DONE TODO"; od 2026-07-22 zmieniony na "DONE"). Krok 5 (script.js → js/) świadomie odłożony, poza zakresem.
 
 <br>
 
@@ -90,29 +87,7 @@ INNE NOTATKI:
 <br><br><br>
 
 
-DO SPRAWDZENIA PRZEZ HENRICHA.
-Claudzie, możesz tutaj dopisywać rzeczy które mam sprawdzić/przetestować.
-- Krok 3 podziału plików: style.css → style/ (base/sheet/landing/exam/responsive.css).
-  Wszystko co dało się zautomatyzować jest zweryfikowane (node/grep, Playwright: liczba
-  zadań, wszystkie widżety, klik ABCD/PF/fillIn, kaskada — computed styles dla jasny/ciemny
-  motyw, grid #bar-container na 500px i 1280px, tryb egzaminu, landing). Zostaje sam wygląd —
-  otwórz template.html?arkusz=2024-grudzien i sprawdź: jasny i ciemny motyw (⋯ → motyw),
-  okno zwężone do ~500px (pasek, karta zadania, przyciski), oraz index.html (landing). Nie
-  spodziewam się różnic względem starego style.css — to czysty podział plików (diff to
-  potwierdził), ale to jedyna rzecz, której sam nie zweryfikuję.
-
-<br><br><br>
-
-
 <h3>DO REALZACJI Dopisane przez CLAUDA</h3>
-
-OPUS DOPISAŁ PODCZAS ROBIENIA CODE-REVIEW:
-(code review gałęzi claude/do-sprawdzenia-yfi2mu, 2026-07-22 — dark mode + podwojone przyciski egzaminu + żółte wskaźniki. Punkty oznaczone [POTWIERDZONE] odtworzyłem realnie w przeglądarce, reszta z czytania kodu.)
-
-[Punkty 1-7 z tej sekcji — znikanie wpisanego toku rozwiązania, żółte wskaźniki
-(oba problemy) i cztery poprawki UI (przycisk startu egzaminu na stronie błędu,
-menu ⋯ na telefonie, przełącznik motywu) — naprawione przez Sonneta 2026-07-22
-na gałęzi claude/po-review, zweryfikowane Playwrightem. Szczegóły: DONE/03-biezace.md.]
 
 TRYB EGZAMINU I PAMIĘĆ PRZEGLĄDARKI:
 
