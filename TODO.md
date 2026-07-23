@@ -11,6 +11,8 @@ Zawsze sprawdzaj, testuj czy wprowadzone przez ciebie zmiany działają zanim zr
 <h3>DO REALIZACJI</h3>
 Jeżeli nie masz co robić to rób stąd.
 
+- squah grup starych commitów zrobionych automatycznie przez gitdoc 
+
 - wskaźniki zadań do samodzielnej oceny
   * Przenieść przycisk skrócić nazwę przycisku na "Ukryj wskaźniki" i przenieść go do prawego dolnego rogu. 
   * Same wskaźniki dopracować tak, aby nie nachodziły na niego tylko zzatrzymywały się troche wyżej jeśli wskazują coś na dole.
@@ -26,6 +28,9 @@ Jeżeli nie masz co robić to rób stąd.
 
 - gdy przyciski się nie mieszczą na górnym panelu powinny trafiać do menu. np na telefonie.
 
+- dodać w opcjach toggle "pokaż poprawność odpowiedzi natychmiast po zaznaczeniu" oraz gdy jest wyłączony to musi być widać
+  * przycisk sprawdź po wybraniu odpowiedzi po prawej stronie, tak aby nie zmieniało wysokości diva/strony. Przycisk po kliknięciu powinien: włączyć kolory ramek w zależności od odpowiedzi takie jakie są obecnie, zniknąć.  
+  * przycisk "sprawdź wszystkie odpowiedzi" na dole arkusza oraz w ustawieniach powinien widnieć.
 
 
 
@@ -43,14 +48,7 @@ czyli nieskonkretyzowane
 
 - do sekcji "oceń się" powinno być dodane kryteria sukcesu dopiero po kliknięciu rozwiązania. Ale jeszcze nie mam pomysłu jak to skomponować aby miało sens.
 
-- wyciągnięcie tekstu z PDF-ów:
-  * matematyka-2025-maj-matura-podstawowa.pdf
-  * matematyka-2025-maj-matura-podstawowa-odpowiedzi.pdf
 
-
-- dodać w opcjach toggle "pokaż poprawność odpowiedzi natychmiast po zaznaczeniu" oraz gdy jest wyłączony to musi być widać
-  * przycisk sprawdź po wybraniu odpowiedzi po prawej stronie, tak aby nie zmieniało wysokości diva/strony. Przycisk po kliknięciu powinien: włączyć kolory ramek w zależności od odpowiedzi takie jakie są obecnie, zniknąć.  
-  * przycisk "sprawdź wszystkie odpowiedzi" na dole arkusza oraz w ustawieniach powinien widnieć.
 
 
 <br>
