@@ -90,27 +90,24 @@ INNE NOTATKI:
 
 <h3>DO REALZACJI Dopisane przez CLAUDA</h3>
 
+Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz issues/README.md.
+
 TRYB EGZAMINU I PAMIĘĆ PRZEGLĄDARKI:
 
-- Dwie karty tego samego arkusza blokują "zakończ egzamin". Karta A kończy egzamin i usuwa `KLUCZ_EGZAMINU`, po czym karta B zostaje na zawsze w `body.tryb-egzaminu` — `finishExam()` wychodzi od razu na `if (!stan) return;` (script.js), więc zegar stoi, rozwiązania/punkty są ukryte, a klik "zakończ egzamin" nic nie robi i nie daje żadnego komunikatu. Ratuje tylko ręczne odświeżenie. NIE naprawione (2026-07-22, Sonnet) — wymaga większej przebudowy niż drobna poprawka (np. nasłuch zdarzenia `storage`, żeby karta B zauważyła zmianę localStorage z karty A, albo inna architektura synchronizacji stanu między kartami). Dwie mniejsze, powiązane poprawki z tej samej sekcji (nieudany start egzaminu kasujący postęp; "resetuj punktację" niekasujący trwającego egzaminu) zostały już naprawione — patrz DONE/03-biezace.md.
+- Dwie karty tego samego arkusza blokują "zakończ egzamin" (issues/dwie-karty-tryb-egzaminu.md)
 
 DARK MODE — WYGLĄD:
 
-- Obrazki CKE i filmy z Manima świecą na biało w ciemnym motywie. Migracja świadomie przypięła `--canvas-bg: #fff` dla płócien widgetów, ale `.question img` (style/sheet.css:293), obrazki kroków i `<video>` nie dostały żadnej reguły tła/filtra — wszystkie PNG w matura/**/ są nieprzezroczyste białe, więc renderują się jako jaskrawe prostokąty na karcie #1b1b1b.
-
-- Dwie zmienne CSS użyte niezgodnie z przeznaczeniem na stronie głównej:
-  * `.landing-footer` (style/landing.css:90) bierze kolor tekstu z `--border-close` — tokena ramki krzyżyka paneli. Jego ciemna wartość to #666 na tle #1b1b1b, czyli kontrast 3.0:1, poniżej progu WCAG AA 4.5:1 dla tekstu 13px. Powinien iść przez `--text-faint-*`.
-  * `.landing-card` (style/landing.css:63) bierze ramkę z `--bg-hover` — tokena tła hoveru. Powinna iść przez któryś `--border*`.
-  * Skutek uboczny obu: przestrojenie krzyżyka paneli PDF po cichu zmienia wygląd strony głównej, a testowany będzie panel, nie landing.
-
-- Kropki "gumkują" przy scrollowaniu. `.wskaznik-otwarte` ma `transition: top 0.12s ease` (style/exam.css:164), a `repozycjonujWskazniki()` przepisuje `top` w każdej klatce rAF — tranzycja restartuje się co klatkę i nigdy nie kończy, więc kropki wloką się za zadaniami i drgają jeszcze ~120ms po zatrzymaniu scrolla. Animacja ma sens tylko dla skokowej repozycji po ocenieniu zadania.
+- Obrazki CKE i filmy z Manima świecą na biało w ciemnym motywie (issues/dark-mode-obrazki-wideo.md)
+- Dwie zmienne CSS użyte niezgodnie z przeznaczeniem na stronie głównej (issues/dark-mode-css-zmienne-landing.md)
+- Kropki wskaźników "gumkują" przy scrollowaniu (issues/dark-mode-wskazniki-scroll.md)
 
 DOKUMENTACJA:
 
-- ARCHITECTURE.md opisuje tylko połowę tej gałęzi. Dark mode udokumentowany wzorowo, ale sekcja "Exam mode" (ARCHITECTURE.md ~80) nadal opisuje kończenie egzaminu wyłącznie przez `#egzamin-koniec` i wymienia dwa klucze localStorage — brak `#egzamin-koniec-bar`, `#egzamin-start-stopka`, trzeciego klucza `KLUCZ_OCENIANIA` i całej fazy "oceń się" ze wskaźnikami. Lista ID "referenced by the inline JS, so keep the IDs stable" (ARCHITECTURE.md ~97) nie zawiera `#egzamin-koniec-bar` ani `#theme-toggle`, więc ktoś restylujący pasek może je skasować jako niepodpięte.
+- ARCHITECTURE.md opisuje tylko połowę trybu egzaminu (issues/dokumentacja-exam-mode-luka.md)
 
 DROBIAZGI (niski priorytet, dziś nieszkodliwe):
 
-- Numer zadania wyciągany regexem `/Zadanie\s*(\d+)/i` (script.js:891) gubi część po kropce — gdyby kiedyś zadanie 12.1 i 12.2 były otwarte (selfScore), dostałyby dwie identyczne kropki "12" z identycznym tooltipem. Dziś nieosiągalne: w obu arkuszach żadne zadanie otwarte nie ma podnumeru. Docelowo lepsze byłoby pole `numer` w exercises.json (przydałoby się też w console.warn w script.js:695 i :1004, które nadal drukują mylące `index + 1`).
-- Motyw rozjeżdża się między kartami: `readTheme()` czyta localStorage zamiast stanu, który ta karta faktycznie renderuje, i nikt nie słucha zdarzenia `storage`. Dwie karty potrafią pokazywać różny motyw i różne etykiety przycisku.
-- `ustawFazeOceniania()` (script.js:280-285) cicho połyka błędy zapisu — przy zablokowanym localStorage "ukryj wskaźniki" nie utrwala się i kropki wracają po każdym odświeżeniu, bez żadnego komunikatu.
+- Numer zadania gubi podnumer (12.1 vs 12.2) (issues/numer-zadania-podnumer.md)
+- Motyw rozjeżdża się między kartami przeglądarki (issues/motyw-rozjezdza-sie-miedzy-kartami.md)
+- Cichy błąd zapisu w ustawFazeOceniania() (issues/ocenianie-cichy-blad-zapisu.md)
