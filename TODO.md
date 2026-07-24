@@ -1,6 +1,6 @@
 Oto plik który tworzy Henrich (ja, użytkownik).
 
-<h3>DO REALIZACJI</h3>
+DO REALIZACJI
 Jeżeli nie masz co robić to rób stąd.
 
 Dla Sonneta na effort High
