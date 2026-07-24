@@ -2,8 +2,12 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 DO REALIZACJI
 <br> Jeżeli nie masz co robić, to rób stąd.
+
 Do przydzielenia:
 - Przycisk "sprawdź wszystkie odpowiedzi" powinien być szary/nieaktywny w trybie egzaminu
+- W zadaniach otwartych:
+  - Przycisk sprawdź przy ostatecznej odpowiediz  w truybie egzaminu powinien nie być widoczny.
+  - Zamiast checkboxów powinny być przyciski z punktami do każdego zdania typu "Nierówność zapisana w postaci x2−6x−7≤0x2−6x−7≤0" (przykład z zad 9.) Dokładna punktacja jest w zasadach oceniania w pdf i od tego powinna zależeć ilość przycisków.
 
 Dla Sonneta na effort High:
 - zmień tło w trybie ciemnym na odrobine ciemniejsze
