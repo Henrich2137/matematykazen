@@ -9,7 +9,11 @@ Dla Sonneta na effort High:
 - nic
 
 Dla Opusa na effort High:
-- nic
+- Arkusz 2024 (demonstracyjny) nie wczutuje się na telefonie w ogóle.
+- Na telefonie domyślnie:
+  - wyłączone punkty
+  - przyciski „Pokaż tablice wzorów" i „Pokaż zasady oceniania": pdf powinny odpalać się albo na fullscreen, albo otwierać pdf w nowej karcie/oknie przeglądarki. Mogą też odpalać pdf w przeglądarce pdf w telefonie, jeśli to nie jest zbyt skomplikowane.
+-  i/lub dodać toggle tryb testowy, który zmienia czas egzaminu na absurdalnie krótki , abym mógł przetestować koniec egzaminu
 
 <br>
 
@@ -49,14 +53,9 @@ DLA HENRICHA:
 
 INNE NOTATKI:
 
-- Na telefonie pdfy się nie ładują (tablica i zasady oceniania).
+- Na telefonie pdfy się nie ładują (tablica i zasady oceniania). (to nie będzie problem po zmianie na pdf otwierane na zewątrz stronki, jeśli tamto będzie działać to można usunąć ten wpis)
   - Podczas naprawy warto sprawić, aby odpalały się one nie w okienku, ale wypełniały całą stronę z krzyżykiem w rogu.
   - Jeżeli nie uda się tego naprawić, to należy usunąć tę funkcjonalność z wersji mobilnej.
-
-- Na telefonie domyślnie:
-  - wyłączone punkty
-  - przyciski „Pokaż tablice wzorów" i „Pokaż zasady oceniania": pdf powinny odpalać się albo na full screen, albo otwierać pdf w nowej karcie/oknie przeglądarki. Mogą też odpalać pdf w przeglądarce pdf w telefonie, jeśli to nie zbyt skomplikowane.
-
 
 - Tryb egzaminu nie powinien być tak „schowany" w opcjach. Może pod tytułem zrobić zamiast stałego napisu „tryb ćwiczeniowy" toggle między dwoma trybami.
 
@@ -65,9 +64,6 @@ INNE NOTATKI:
   - Albo: Dodać toggle „chowający się panel górny: włączony/wyłączony" (możesz wymyśleć lepszą nazwę).
     - Ta opcja ma być domyślnie włączona na telefonie.
     - Top-bar powinien się chować po scrollowaniu w dół i pojawiać przy scrollowaniu w górę lub gdy pociągnie się z górnej krawędzi.
-
-
-- Zmienić czas egzaminu na absurdalnie krótki i/lub dodać toggle tryb testowy, który to robi, abym mógł przetestować koniec egzaminu
 
 - Pokminić nad kolejnością przycisków w menu
 
