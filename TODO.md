@@ -67,7 +67,7 @@ INNE NOTATKI:
     - Top-bar powinien się chować po scrollowaniu w dół i pojawiać przy scrollowaniu w górę lub gdy pociągnie się z górnej krawędzi.
 
 
-- Zmienić czas egzaminu na absurdalnie krótki i/lub dodał toggle trybu testowego, który to robi, abym mógł przetestować koniec egzaminu
+- Zmienić czas egzaminu na absurdalnie krótki i/lub dodać toggle tryb testowy, który to robi, abym mógł przetestować koniec egzaminu
 
 - Pokminić nad kolejnością przycisków w menu
 
