@@ -9,7 +9,7 @@ Dla Sonneta na effort High:
 - nic
 
 Dla Opusa na effort High:
-- Arkusz 2024 (demonstracyjny) nie wczytuje się na telefonie w ogóle. [SZCZEGÓŁY REPRO OD HENRICHA JESZCZE BRAKUJĄ — dopytać: telefon/przeglądarka, biały ekran czy spinner czy błąd, zrzut ekranu/konsola]
+- Arkusz 2024 (demonstracyjny) nie wczytuje się na telefonie w ogóle (issues/zadania-nie-renderuja-sie-mobile.md — repro: Pixel 7a/GrapheneOS, Firefox i Brave, tylko lista zadań pusta)
 - Na telefonie domyślnie: wyłączone punkty; PDF-y tablicy wzorów/zasad oceniania jako link otwierający w nowej karcie (najprostsze podejście, ustalone z Henrichem); toggle trybu testowego (skrócony czas egzaminu) jako ukryty parametr URL np. `?test-egzamin=1`, nie widoczny w UI.
 - Formularz wspomagający samoocenę zadań otwartych — pełny spec ustalony z Henrichem w issues/formularz-oceniania-otwarte.md (prototyp na 1-2 zadaniach na start).
 - Przepisać sekcję „Exam mode" w ARCHITECTURE.md do poziomu szczegółowości sekcji dark mode (issues/dokumentacja-exam-mode-luka.md) — brakujące elementy Sonnet już dopisał 2026-07-24, zostaje ewentualne pełne przepisanie/restrukturyzacja.
