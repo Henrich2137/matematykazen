@@ -192,7 +192,20 @@ async function startSheet() {
             `<small>(${blad.message})</small>`);
         return;
     }
-    loadExercises();
+    try {
+        loadExercises();
+    } catch (blad) {
+        // loadExercises jest już odporne na błędy pojedynczych zadań, ale gdyby
+        // padło wcześniej (np. brak #exercises-wrapper), nie zostawiamy pustej
+        // strony — pokazujemy komunikat i sygnalizujemy błąd na belce diagnostycznej.
+        console.error("Błąd renderowania arkusza", blad);
+        pokazKomunikat(
+            "<b>Nie udało się wyświetlić zadań.</b><br>" +
+            "Odśwież stronę; jeśli błąd wraca, przekaż autorowi treść komunikatu z czerwonego paska na dole. " +
+            `<small>(${blad && blad.message ? blad.message : blad})</small>`);
+        if (window.__pokazBladStrony) window.__pokazBladStrony(blad, "loadExercises");
+        return;
+    }
     // Jeśli czas egzaminu minął, gdy karta była zamknięta — zakończ od razu
     // (tickExam ma warunek na wczytane zadania, teraz już spełniony).
     if (readExamState()) tickExam();

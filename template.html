@@ -8,6 +8,84 @@
          parametrem ?arkusz=<id>) nadpisuje je w applySheetMeta() (script.js)
          danymi z pola "meta" w matura/<id>/exercises.json. -->
     <meta name="description" content="Interaktywny arkusz maturalny z matematyki: odpowiedzi od ręki, podpowiedzi, rozwiązania krok po kroku i tablica wzorów.">
+
+    <!-- Diagnostyka błędów (ładowana NAJWCZEŚNIEJ, przed resztą skryptów).
+         Gdy którykolwiek skrypt strony rzuci nieobsłużony wyjątek — np. na
+         nietypowej przeglądarce/urządzeniu, gdzie arkusz „nie wczytuje się"
+         (patrz issues/zadania-nie-renderuja-sie-mobile.md) — zamiast pustej,
+         mylącej strony pokazujemy przyklejony na dole komunikat z treścią błędu,
+         łatwy do przesłania autorowi. Skrypt jest samowystarczalny (własne style
+         inline, brak zależności od CSS/JS strony), żeby działał nawet gdy one
+         zawiodą. Udostępnia też window.__pokazBladStrony(err, kontekst), którego
+         używa app/render.js do zgłaszania błędów pojedynczych zadań. -->
+    <script>
+    (function () {
+        var pokazane = 0;
+        function banner() {
+            var b = document.getElementById("__blad-strony");
+            if (b) return b;
+            b = document.createElement("div");
+            b.id = "__blad-strony";
+            b.setAttribute("style", [
+                "position:fixed", "left:0", "right:0", "bottom:0", "z-index:2147483647",
+                "background:#7a1f1f", "color:#fff", "font:13px/1.45 monospace",
+                "padding:10px 40px 10px 12px", "max-height:45vh", "overflow:auto",
+                "box-shadow:0 -2px 10px rgba(0,0,0,.35)", "white-space:pre-wrap",
+                "word-break:break-word"
+            ].join(";"));
+            var x = document.createElement("button");
+            x.textContent = "✕";
+            x.setAttribute("style", "position:absolute;top:6px;right:8px;background:transparent;color:#fff;border:0;font-size:18px;cursor:pointer;line-height:1");
+            x.onclick = function () { b.style.display = "none"; };
+            b.appendChild(x);
+            var t = document.createElement("div");
+            t.id = "__blad-strony-tresc";
+            b.appendChild(t);
+            (document.body || document.documentElement).appendChild(b);
+            return b;
+        }
+        function pokaz(opis) {
+            try {
+                if (pokazane > 8) return; // nie zalewamy ekranu przy lawinie błędów
+                pokazane++;
+                var b = banner();
+                b.style.display = "block";
+                var t = b.querySelector("#__blad-strony-tresc");
+                if (pokazane === 1) {
+                    t.textContent = "⚠ Wystąpił błąd strony (pokaż ten tekst autorowi):\n";
+                }
+                t.textContent += "\n• " + opis;
+            } catch (e) {}
+        }
+        window.__pokazBladStrony = function (err, kontekst) {
+            var opis = (kontekst ? "[" + kontekst + "] " : "") +
+                (err && err.message ? err.message : String(err));
+            if (err && err.stack) opis += "\n  " + String(err.stack).split("\n").slice(0, 3).join("\n  ");
+            pokaz(opis);
+        };
+        window.addEventListener("error", function (e) {
+            // Błąd ładowania ZASOBU (element jako target zdarzenia). Alarmujemy
+            // TYLKO dla <script>, bo brak pliku JS to jedyny zasób, którego awaria
+            // realnie zostawia pustą listę zadań (objaw z issues/…mobile.md).
+            // Świadomie POMIJAMY <link>/<img>/<video>/<object>: część mediów bywa
+            // celowo nieobecna, a nieudany @import (np. fonty Google przy blokadzie
+            // sieci) fałszywie wskazywałby na plik CSS, który wczytał się poprawnie.
+            var el = e.target;
+            if (el && el !== window && el.tagName) {
+                if (el.tagName.toUpperCase() === "SCRIPT") {
+                    pokaz("Nie wczytano skryptu: " + (el.src || "(inline)"));
+                }
+                return;
+            }
+            pokaz((e.message || "błąd") + (e.filename ? "  (" + e.filename + ":" + e.lineno + ")" : ""));
+        }, true);
+        window.addEventListener("unhandledrejection", function (e) {
+            var r = e && e.reason;
+            pokaz("Nieobsłużony błąd async: " + (r && r.message ? r.message : String(r)));
+        });
+    })();
+    </script>
+
     <!-- Prosta ikonka: czarne, poważne „M" (serif, w duchu fontów strony). Jeśli nie pasuje — wystarczy usunąć tę linię (Henrich zrobi własne logo albo zostawi bez ikonki). -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50' y='78' font-size='80' text-anchor='middle' font-family='Georgia,serif' font-weight='bold'>M</text></svg>">
     <!-- Ten sam plik renderuje DOWOLNY arkusz — wybór przez ?arkusz=<id>

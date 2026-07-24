@@ -89,6 +89,9 @@ function loadExercises() {
     }
 
     exercises.forEach((exercise, index) => {
+      // Cała budowa pojedynczego zadania jest w try (zamknięcie na końcu pętli):
+      // pojedyncze wadliwe zadanie nie może zostawić użytkownika z pustą listą.
+      try {
         exercise.earnedScore = 0;
         const stan = stanOdpowiedzi[index];
 
@@ -557,7 +560,16 @@ function loadExercises() {
         if (exercise.solutionWidget) {
             const widget = WIDZETY[exercise.solutionWidget];
             if (widget) {
-                widget(solutionInteractiveContainer);
+                // Widżet buduje canvas/DOM i może paść na nietypowej przeglądarce.
+                // Izolujemy go: awaria widżetu nie może ukryć całego zadania (ani
+                // — przez rozlanie wyjątku — reszty arkusza). Patrz issues/
+                // zadania-nie-renderuja-sie-mobile.md.
+                try {
+                    widget(solutionInteractiveContainer);
+                } catch (bladWidzetu) {
+                    console.error(`Zadanie ${numerZadania(exercise, index)}: widżet "${exercise.solutionWidget}" rzucił wyjątek`, bladWidzetu);
+                    if (window.__pokazBladStrony) window.__pokazBladStrony(bladWidzetu, `widżet ${exercise.solutionWidget} (zad ${numerZadania(exercise, index)})`);
+                }
             } else {
                 console.warn(`Zadanie ${numerZadania(exercise, index)}: nieznany widżet "${exercise.solutionWidget}"`);
             }
@@ -706,14 +718,40 @@ function loadExercises() {
         // KaTeX: renderujemy wzory w całym zbudowanym zadaniu (treść, odpowiedzi,
         // podpowiedź, rozwiązania). Kroki step-by-step renderują się osobno w
         // showStep(), bo ich HTML powstaje dopiero przy przełączaniu kroków.
-        renderMath(exerciseClone);
+        // W try, żeby ewentualny błąd renderowania wzoru nie ukrył zadania —
+        // gorzej wyświetlony wzór jest lepszy niż brak całego zadania.
+        try {
+            renderMath(exerciseClone);
+        } catch (bladKatex) {
+            console.error(`Zadanie ${numerZadania(exercise, index)}: KaTeX rzucił wyjątek`, bladKatex);
+            if (window.__pokazBladStrony) window.__pokazBladStrony(bladKatex, `KaTeX (zad ${numerZadania(exercise, index)})`);
+        }
 
         // Dyskretny link „zgłoś błąd w tym zadaniu" pod zadaniem (app/report.js).
         // Widoczność steruje globalnie klasa body.bez-zglaszania (toggle w menu ⋯).
-        dodajLinkZgloszenia(exerciseClone);
+        try {
+            dodajLinkZgloszenia(exerciseClone);
+        } catch (bladLinku) {
+            console.error(`Zadanie ${numerZadania(exercise, index)}: link zgłoszenia rzucił wyjątek`, bladLinku);
+        }
 
         // Append the exercise to the wrapper
         exercisesWrapper.appendChild(exerciseClone);
+      } catch (bladZadania) {
+        // Ostateczna siatka bezpieczeństwa: gdyby cokolwiek innego w budowaniu
+        // TEGO zadania rzuciło wyjątek, NIE pozwalamy mu wywrócić całej pętli
+        // (co zostawiłoby użytkownika z pustą listą zadań — dokładnie objaw z
+        // issues/zadania-nie-renderuja-sie-mobile.md). Zamiast tego logujemy,
+        // pokazujemy dyskretny placeholder w miejscu zadania i renderujemy dalej.
+        console.error(`Nie udało się zbudować zadania (index ${index})`, bladZadania);
+        if (window.__pokazBladStrony) window.__pokazBladStrony(bladZadania, `render zadania (index ${index})`);
+        try {
+            const placeholder = document.createElement("div");
+            placeholder.className = "exercise-container blad-zadania";
+            placeholder.textContent = `Nie udało się wczytać zadania ${numerZadania(exercise, index)}. Pozostałe zadania działają normalnie.`;
+            exercisesWrapper.appendChild(placeholder);
+        } catch (e) { /* nawet placeholder padł — trudno, lecimy dalej */ }
+      }
     });
 
     // Arkusz faktycznie wyrenderowany — dopiero teraz mają sens przyciski

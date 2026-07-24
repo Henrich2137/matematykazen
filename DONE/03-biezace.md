@@ -4,6 +4,34 @@ spojrzenie na projekt, rozwiazanie trudniejszego problemu albo sprawdzenie, czy/
 kiedys rozwiazano. Zasada podzialu i indeks: DONE/README.md.
 Zakres: 2026-07-13 (WYSOKI PRIORYTET) - 2026-07-21. Partia jeszcze niezmergowana do mastera.
 
+[ZROBIONE] (2026-07-24, Opus) — arkusz nie wczytuje się na telefonie (Pixel 7a/GrapheneOS, Firefox
+i Brave, pusta lista zadań — issues/zadania-nie-renderuja-sie-mobile.md). Objawu NIE udało się
+odtworzyć w emulacji mobilnej Chromium (35/35 zadań renderuje się poprawnie), a silniki Firefox/WebKit
+Playwrighta są w tym środowisku nie do pobrania (sieć zablokowana) — co potwierdza hipotezę z issue,
+że przyczyna jest specyficzna dla silnika/OS-u telefonu, nie samego rozmiaru ekranu. Zamiast zgadywać,
+wdrożono podejście rekomendowane w samym issue (kierunek diagnozy #2) + twarde utwardzenie renderu:
+  1. GLOBALNA BELKA DIAGNOSTYCZNA (template.html, inline w <head>, ładowana NAJWCZEŚNIEJ, bez
+     zależności od CSS/JS strony): window 'error' + 'unhandledrejection' → przyklejony na dole czerwony
+     komunikat z treścią błędu, łatwy do przesłania autorowi. Dzięki temu następnym razem Henrich
+     zobaczy PRAWDZIWY błąd z telefonu zamiast pustej strony. Dla błędów ładowania zasobów alarmujemy
+     TYLKO dla <script> (jedyny zasób, którego brak realnie zostawia pustą listę); świadomie pomijamy
+     <link>/<img>/<video>/<object>, bo nieudany @import fontów Google (blokada sieci na GrapheneOS!)
+     fałszywie wskazywałby na plik CSS, który wczytał się poprawnie — ten fałszywy alarm zauważony i
+     wyeliminowany w testach. Udostępnia window.__pokazBladStrony(err, kontekst).
+  2. UTWARDZENIE loadExercises (app/render.js): każde zadanie budowane w try/catch — pojedyncze wadliwe
+     zadanie NIE wywraca już całej pętli (co było najprawdopodobniejszym mechanizmem „pustej listy": rzut
+     w forEach zatrzymywał render wszystkich pozostałych). Awaria degraduje się do dyskretnego placeholdera
+     „Nie udało się wczytać zadania N. Pozostałe działają normalnie." (.blad-zadania w style/base.css) i
+     render leci dalej. Dodatkowo osobne try/catch wokół wywołania widżetu i renderMath (KaTeX), żeby ich
+     awaria nie ukryła nawet tego jednego zadania. startSheet() (app/bootstrap.js) łapie też całościowy
+     błąd loadExercises i pokazuje komunikat zamiast pustej strony.
+  Zweryfikowane Playwrightem (Chromium, viewport Pixel 5): czysty load = 35/35 zadań, ZERO belki; wstrzyknięty
+  rzut w renderMath = 35/35 nadal renderuje + belka z błędem; wstrzyknięty rzut w cloneNode 3. zadania = 34/35
+  + placeholder zad. 3 + trafna belka; realny nieobsłużony błąd async i odrzucona obietnica po załadowaniu =
+  belka łapie oba. UWAGA dla Henricha: to jest siatka bezpieczeństwa + narzędzie diagnostyczne — gdy złapiesz
+  na telefonie treść czerwonej belki, wklej ją, wskaże konkretny plik/linijkę i dokończymy właściwą przyczynę.
+  [mobile, diagnostyka, render, odpornosc, bugfix]
+
 [ZROBIONE] (2026-07-24, Sonnet) — dwie karty tego samego arkusza blokujące „zakończ egzamin"
 (issues/dwie-karty-tryb-egzaminu.md): dodano nasłuch zdarzenia `storage` w app/exam.js — gdy
 karta A usunie KLUCZ_EGZAMINU (koniec egzaminu), inne otwarte karty tego samego arkusza dostają

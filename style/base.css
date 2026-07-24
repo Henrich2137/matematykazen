@@ -245,3 +245,15 @@ body {
     background-color: var(--bg-code);
     padding: 1px 5px;
 }
+
+/* Placeholder w miejscu pojedynczego zadania, którego nie udało się zbudować
+   (siatka bezpieczeństwa w loadExercises — patrz app/render.js). Reszta arkusza
+   renderuje się normalnie; ten dyskretny komunikat tylko zaznacza lukę. */
+.blad-zadania {
+    color: var(--text-muted, #888);
+    font-size: 15px;
+    font-style: italic;
+    text-align: center;
+    border: 1px dashed var(--error-border);
+    background-color: var(--error-bg);
+}

@@ -18,6 +18,10 @@ Do szukania używaj najpierw tego indeksu (tagi niżej), potem grepa po konkretn
 
 
 == 03-biezace.md — partia OTWARTA (2026-07-13 → 2026-07-24, niezmergowana do mastera) ==
+- 2026-07-24 (Opus) — arkusz nie wczytuje się na telefonie (Pixel 7a/GrapheneOS): nie do odtworzenia
+  w emulacji, więc globalna belka diagnostyczna (window.onerror/rejection, template.html) + utwardzenie
+  loadExercises (per-zadanie try/catch, placeholder .blad-zadania, guardy widżet/KaTeX) — siatka
+  bezpieczeństwa zamiast pustej strony  [mobile, diagnostyka, render, odpornosc, bugfix]
 - 2026-07-24 — „zgłoś błąd w zadaniu": link pod zadaniem + modal → Formspree (AJAX), toggle w
   menu, honeypot + throttling, toast; endpoint Formspree jako placeholder do uzupełnienia
   [ui, formularz, localStorage, antyspam, formspree]
