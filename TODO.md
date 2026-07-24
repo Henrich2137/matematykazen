@@ -10,9 +10,27 @@ Do przydzielenia:
   - Zamiast checkboxów powinny być przyciski z punktami do każdego zdania typu "Nierówność zapisana w postaci x2−6x−7≤0x2−6x−7≤0" (przykład z zad 9.) Dokładna punktacja jest w zasadach oceniania w pdf i od tego powinna zależeć ilość przycisków.
 - Kropki "oceń się" trzeba poprawićlub wyłączyć na telefonach
 - Tło w niektórych widżetach jest białe w motywie darkmode. Należy zmienić kolory na taki które będą się zgadzać z motywem.
+
 Dla Sonneta na effort High:
 - zmień tło w trybie ciemnym na odrobine ciemniejsze
-- Przycisk "sprawdź wszystkie odpowiedzi" powinien też być na końcu arkusza w trybie ćwiczeń
+- Przycisk "sprawdź wszystkie odpowiedzi" powinien też być na końcu arkusza w trybie ćwiczeń 
+
+- Zmień kolejność przycisków w menu oraz ich nazywy na:
+  - Otwórz tablicę wzorów
+  - Otwórz zasady oceniania
+  - Rozpocznij egzamin
+    - Zegar: wł./wył.
+    - Wskaźniki samooceny zad. otwartych: wszystkie/wypełnione/wył.
+  - Zresetuj arkusz (zamiast resetuj punktację)
+  - (małą przerwa na pół przycisku)
+  - Motyw: jasny/ciemny/auto
+  - Punktacja: wł./tylko suma/wył.
+  - Pokaż poprawność odpowiedzi: natychmniast/po kliknięciu "sprawdź"
+  - Przycisk "zgłoś błąd" pod zadaniem: wł./wył.
+  - Pokaż wszystkie rozwiązania
+  - Sprawdź wszystkie odpowiedzi
+
+
 
 Dla Opusa na effort High:
 - nic
