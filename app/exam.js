@@ -186,3 +186,26 @@ function finishExam(czasMinal) {
 if (readExamState()) {
     enableExamMode();
 }
+
+// Ten sam arkusz otwarty w dwóch kartach: karta A kończy egzamin (usuwa
+// KLUCZ_EGZAMINU), karta B o tym nie wie i renderuje UI na podstawie własnej
+// pamięci — "zakończ egzamin" tam cicho nic nie robi (patrz issues/dwie-karty-
+// tryb-egzaminu.md). Zdarzenie "storage" odpala się automatycznie w INNYCH
+// kartach przy zmianie localStorage, więc karta B może się o tym dowiedzieć.
+// Zamiast próbować dorenderować podsumowanie z własnych (mogących się różnić
+// od karty A) danych w pamięci, każemy odświeżyć stronę — po reloadzie karta
+// B wczyta już-zakończony stan tą samą ścieżką co zawsze.
+window.addEventListener("storage", (event) => {
+    if (event.key !== KLUCZ_EGZAMINU) return;
+    if (event.newValue !== null) return; // interesuje nas tylko usunięcie klucza
+    if (!document.body.classList.contains("tryb-egzaminu")) return;
+    if (egzaminInterval) { clearInterval(egzaminInterval); egzaminInterval = null; }
+    const okno = egzaminPodsumowanie.querySelector(".egzamin-okno");
+    okno.innerHTML =
+        `<h3>Egzamin zakończony w innej karcie</h3>` +
+        `<p>Ten arkusz jest otwarty w kilku kartach naraz, a próbny egzamin zakończono w jednej z nich. ` +
+        `Odśwież tę kartę, żeby zobaczyć wynik.</p>` +
+        `<button id="egzamin-odswiez" class="light-button">odśwież stronę</button>`;
+    egzaminPodsumowanie.style.display = "flex";
+    okno.querySelector("#egzamin-odswiez").addEventListener("click", () => location.reload());
+});

@@ -192,7 +192,8 @@ body.tryb-egzaminu .fill-in-input.incorrect {
 #egzamin-podsumowanie h3 {
     margin-top: 0;
 }
-#egzamin-podsumowanie #egzamin-zamknij {
+#egzamin-podsumowanie #egzamin-zamknij,
+#egzamin-podsumowanie #egzamin-odswiez {
     display: block;
     margin: 14px auto 0;
 }
