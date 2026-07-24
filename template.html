@@ -161,7 +161,13 @@
         <button id="show-all-solutions">pokaż wszystkie rozwiązania</button>
         <button id="score-switch-button">widok punktów: wszystko</button>
         <button id="reset-scores">resetuj punktację</button>
+        <!-- Jedno miejsce w menu, dwa stany: poza egzaminem "rozpocznij",
+             w trakcie egzaminu "zakończ" (exam.css przełącza je klasą
+             body.tryb-egzaminu). Na telefonie to JEDYNE dojście do zakończenia
+             egzaminu bez zjeżdżania na sam dół arkusza — pasek górny chowa
+             #egzamin-koniec-bar poniżej 720px (responsive.css). -->
         <button id="egzamin-start">rozpocznij próbny egzamin</button>
+        <button id="egzamin-koniec-menu">zakończ egzamin</button>
         <button id="zegar-toggle">widoczność zegara: włączona</button>
         <button id="wskazniki-tryb-toggle">wskaźniki „oceń się”: wszystkie zadania</button>
         <button id="natychmiastowa-toggle">pokazuj poprawność od razu: tak</button>

@@ -8,14 +8,21 @@
    w stopce i w menu pokazuje się dopiero PO wyrenderowaniu arkusza
    (klasa body.arkusz-wczytany, dodawana dopiero na końcu loadExercises()) —
    inaczej ten przycisk siedziałby na stronie błędu (zły ?arkusz=) albo przez
-   cały czas wczytywania exercises.json. Wersja w menu (#egzamin-start), w
-   odróżnieniu od stopkowej, zostaje widoczna (choć wyszarzona) także W TRAKCIE
-   egzaminu — patrz setExamMenuDisabled() w app/exam.js — więc jej reguła
-   ujawnienia nie ma :not(.tryb-egzaminu). */
+   cały czas wczytywania exercises.json. W menu ten jeden slot ma dwa stany:
+   #egzamin-start poza egzaminem, #egzamin-koniec-menu w jego trakcie. */
 #egzamin-timer,
 #egzamin-koniec,
 #egzamin-koniec-bar,
-#egzamin-start-stopka {
+#egzamin-start-stopka,
+#bar-menu #egzamin-koniec-menu {
+    display: none;
+}
+/* Slot menu w trybie egzaminu: "rozpocznij" ustępuje miejsca "zakończ".
+   Podwójny #id z tego samego powodu co przy #egzamin-start niżej. */
+body.tryb-egzaminu #bar-menu #egzamin-koniec-menu {
+    display: block;
+}
+body.tryb-egzaminu #bar-menu #egzamin-start {
     display: none;
 }
 /* Podwójny #id (#bar-menu #egzamin-start) celowo — samo "#egzamin-start" ma

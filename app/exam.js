@@ -90,6 +90,8 @@ function updateModeSubtitle() {
 // Opcje w menu "..." niedozwolone podczas próbnego egzaminu: zostają widoczne,
 // ale disabled (CSS wyszarza je i blokuje klik) — inaczej po ukryciu menu
 // zostawałoby pustą ramką. Odblokowujemy je z powrotem po zakończeniu egzaminu.
+// (#egzamin-start jest w trakcie egzaminu dodatkowo CHOWANY — jego slot w menu
+// zajmuje wtedy "zakończ egzamin" — ale disabled zostawiamy jako drugą zaporę.)
 const OPCJE_MENU_EGZAMIN = ["show-all-solutions", "score-switch-button", "reset-scores", "egzamin-start"];
 function setExamMenuDisabled(disabled) {
     OPCJE_MENU_EGZAMIN.forEach(id => {
@@ -109,7 +111,7 @@ function enableExamMode() {
 }
 
 // Start i koniec egzaminu mają po dwa przyciski w różnych miejscach UI
-// (start: menu "⋯" + stopka arkusza; koniec: pasek górny + stopka arkusza).
+// (start: menu "⋯" + stopka arkusza; koniec: pasek górny + stopka + menu "⋯").
 // Każda para wisi na jednej wspólnej funkcji, żeby zachowanie nie mogło się
 // kiedyś rozjechać między kopiami.
 function startExamPrompt() {
@@ -142,7 +144,7 @@ function finishExamPrompt() {
     const btn = document.getElementById(id);
     if (btn) btn.addEventListener("click", startExamPrompt);
 });
-["egzamin-koniec", "egzamin-koniec-bar"].forEach(id => {
+["egzamin-koniec", "egzamin-koniec-bar", "egzamin-koniec-menu"].forEach(id => {
     const btn = document.getElementById(id);
     if (btn) btn.addEventListener("click", finishExamPrompt);
 });
