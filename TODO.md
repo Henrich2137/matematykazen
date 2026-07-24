@@ -3,6 +3,10 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <h3>DO REALIZACJI</h3>
 Jeżeli nie masz co robić to rób stąd.
 
+- zmień styl przycisków "pokazuj poprawność od razu: nie" i "sprawdź wszystkie odpowiedzi" tak aby były tak  same jak reszta w menu
+
+- Przesunąć niebieskie przyciski "sprawdź" na troche w dół, tak aby był równo z przyciskami odpowiedzi.
+
 - Gdy przyciski się nie mieszczą na górnym panelu powinny trafiać do menu. np na telefonie.
 
 - Schować przycisk pokaż tablice wzorów oraz pokaż zasady oceniania do menu. Zostawić przyciski karty wzorów widoczny jeżeli użytkownik korzysta z komputera (albo nie korzysta z telefonu)
