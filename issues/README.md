@@ -19,6 +19,3 @@ Zasady:
 - [motyw-rozjezdza-sie-miedzy-kartami.md](motyw-rozjezdza-sie-miedzy-kartami.md) — dark/light mode niespójny między kartami przeglądarki
 - [ocenianie-cichy-blad-zapisu.md](ocenianie-cichy-blad-zapisu.md) — `ustawFazeOceniania()` cicho połyka błędy zapisu do localStorage
 - [wskazniki-reload-faza-oceniania.md](wskazniki-reload-faza-oceniania.md) — wskaźniki „oceń się" znikają po odświeżeniu strony po egzaminie
-- [pasek-przyciski-do-menu.md](pasek-przyciski-do-menu.md) — przyciski tablicy wzorów/zasad oceniania zawsze schowane do menu ⋯
-- [egzamin-zegar-toggle.md](egzamin-zegar-toggle.md) — toggle widoczności zegara w trybie egzaminu
-- [egzamin-tablica-auto-zamkniecie.md](egzamin-tablica-auto-zamkniecie.md) — tablica wzorów ma się wyłączać automatycznie po zakończeniu egzaminu

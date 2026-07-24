@@ -17,6 +17,26 @@ const egzaminTimerSpan = document.getElementById("egzamin-timer");
 const egzaminPodsumowanie = document.getElementById("egzamin-podsumowanie");
 let egzaminInterval = null;
 
+// Toggle „widoczność zegara" (menu ⋯): ukrywa TYLKO span #egzamin-timer — zegar
+// dalej tyka i kończy egzamin po czasie w tle (tickExam), zmienia się jedynie to,
+// czy uczeń go widzi. Ustawienie globalne (KLUCZ_ZEGAR_WIDOCZNY w app/state.js).
+const zegarToggleButton = document.getElementById("zegar-toggle");
+function odswiezWidocznoscZegara() {
+    const widoczny = czyZegarWidoczny();
+    egzaminTimerSpan.classList.toggle("zegar-ukryty", !widoczny);
+    if (zegarToggleButton) {
+        zegarToggleButton.textContent = "widoczność zegara: " + (widoczny ? "włączona" : "wyłączona");
+    }
+}
+odswiezWidocznoscZegara();
+if (zegarToggleButton) {
+    zegarToggleButton.addEventListener("click", () => {
+        const widoczny = czyZegarWidoczny();
+        try { localStorage.setItem(KLUCZ_ZEGAR_WIDOCZNY, widoczny ? "0" : "1"); } catch (e) {}
+        odswiezWidocznoscZegara();
+    });
+}
+
 function readExamState() {
     try {
         const stan = JSON.parse(localStorage.getItem(KLUCZ_EGZAMINU));
@@ -125,6 +145,12 @@ function finishExam(czasMinal) {
     document.body.classList.remove("tryb-egzaminu");
     updateModeSubtitle();
     setExamMenuDisabled(false);
+
+    // Tablica wzorów CKE zostaje dostępna W TRAKCIE egzaminu (jak na prawdziwej
+    // maturze), ale po jego zakończeniu nie ma już powodu trzymać ją otwartą —
+    // chowamy ją razem z resztą ukrytych podczas egzaminu elementów.
+    const tablicaPanel = document.getElementById("tablica-wzorow-panel");
+    if (tablicaPanel && tablicaPanel.style.display === "block") hideFormulasPanel();
 
     // Wynik z zadań zamkniętych (ocenianych automatycznie). Zadania otwarte
     // (selfScore) w egzaminie nie mają jak dostać punktów — samoocena była

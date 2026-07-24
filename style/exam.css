@@ -5,15 +5,28 @@
 
 /* Zegar oraz "zakończ egzamin" (kopia w pasku i kopia na dole arkusza)
    istnieją tylko w trybie egzaminu. Odwrotnie: "rozpocznij próbny egzamin"
-   w stopce pokazuje się tylko w trybie ćwiczeniowym PO wyrenderowaniu arkusza
+   w stopce i w menu pokazuje się dopiero PO wyrenderowaniu arkusza
    (klasa body.arkusz-wczytany, dodawana dopiero na końcu loadExercises()) —
    inaczej ten przycisk siedziałby na stronie błędu (zły ?arkusz=) albo przez
-   cały czas wczytywania exercises.json. */
+   cały czas wczytywania exercises.json. Wersja w menu (#egzamin-start), w
+   odróżnieniu od stopkowej, zostaje widoczna (choć wyszarzona) także W TRAKCIE
+   egzaminu — patrz setExamMenuDisabled() w app/exam.js — więc jej reguła
+   ujawnienia nie ma :not(.tryb-egzaminu). */
 #egzamin-timer,
 #egzamin-koniec,
 #egzamin-koniec-bar,
 #egzamin-start-stopka {
     display: none;
+}
+/* Podwójny #id (#bar-menu #egzamin-start) celowo — samo "#egzamin-start" ma
+   niższą specyficzność niż "#bar-menu button" (sheet.css), które ustawia mu
+   display:block, i przegrywałoby mimo źródłowej kolejności (exam.css ładuje
+   się PO sheet.css, ale specyficzność liczy się pierwsza). */
+#bar-menu #egzamin-start {
+    display: none;
+}
+body.arkusz-wczytany #bar-menu #egzamin-start {
+    display: block;
 }
 body.tryb-egzaminu #egzamin-timer {
     display: inline-block;
@@ -23,6 +36,11 @@ body.tryb-egzaminu #egzamin-timer {
     white-space: nowrap;
     font-variant-numeric: tabular-nums; /* zegar nie "drga" przy zmianie cyfr */
     color: var(--text-muted);
+}
+/* Toggle „widoczność zegara" (menu ⋯): sam zegar tyka i kończy egzamin po
+   czasie dalej w tle (tickExam w app/exam.js) — ta klasa tylko chowa span. */
+body.tryb-egzaminu #egzamin-timer.zegar-ukryty {
+    display: none;
 }
 #egzamin-timer.malo-czasu {
     border-color: var(--incorrect);

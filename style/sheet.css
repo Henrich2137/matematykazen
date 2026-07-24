@@ -105,8 +105,13 @@
 #show-all-solutions,
 #reset-scores,
 #egzamin-start,
+#zegar-toggle,
 #wskazniki-tryb-toggle,
-#zglos-blad-toggle {
+#zglos-blad-toggle,
+#natychmiastowa-toggle,
+#sprawdz-wszystkie,
+#toggle-tablica,
+#toggle-zasady {
     padding: 5px 10px;
     border: 2px solid var(--border);
     background-color: var(--bg);
@@ -146,21 +151,6 @@
     display: block;
     width: 100%;
     margin: 4px 0;
-}
-#toggle-tablica,
-#toggle-zasady {
-    /* min-width mieści dłuższą wersję etykiety ("▲ Schowaj tablice wzorów"),
-       więc przycisk nie zmienia szerokości przy przełączaniu na "▼ Pokaż...". */
-    min-width: 200px;
-    padding: 10px 12px;
-    border: 2px solid var(--border);
-    border-radius: 3px;
-    background-color: var(--bg);
-    white-space: nowrap;
-    text-align: center;
-    text-decoration: none;
-    color: var(--text);
-    cursor: pointer;
 }
 
 /* Floating formula-sheet panel — toggled to display:block by the JS.
@@ -388,7 +378,9 @@
    „na prawo od odpowiedzi" wyszłoby poza ekran) wraca do flow pod odpowiedziami. */
 .button-container .answer-check-floating {
     position: absolute;
-    top: 0;
+    /* +8px = margin górny przycisków odpowiedzi (.button-container button ma
+       margin: 8px), żeby górna krawędź obu wyrównała się w jednej linii. */
+    top: 8px;
     left: calc(100% + 12px);
     z-index: 4;
     min-width: 0;
