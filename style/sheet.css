@@ -106,7 +106,9 @@
 #reset-scores,
 #egzamin-start,
 #wskazniki-tryb-toggle,
-#zglos-blad-toggle {
+#zglos-blad-toggle,
+#natychmiastowa-toggle,
+#sprawdz-wszystkie {
     padding: 5px 10px;
     border: 2px solid var(--border);
     background-color: var(--bg);
