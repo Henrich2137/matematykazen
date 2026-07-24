@@ -13,6 +13,15 @@
     letter-spacing: 0.02em;
     color: var(--text);
 }
+/* Wersja przy logo — drobna i wyszarzona, żeby nie konkurowała z nazwą
+   (odpowiednik #wersja w sheet.css). */
+.landing-wersja {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: 0;
+    font-variant-numeric: tabular-nums;
+}
 .landing-hero {
     margin-bottom: 20px;
     text-align: center;

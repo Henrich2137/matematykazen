@@ -80,6 +80,13 @@
 #logo:hover {
     text-decoration: underline;
 }
+/* Numer wersji obok logo — celowo drobny i wyszarzony, to znacznik wdrożenia,
+   nie element marki. */
+#wersja {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+}
 
 #total-score {
     padding: 5px 8px;
