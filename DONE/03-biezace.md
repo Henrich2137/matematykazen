@@ -4,6 +4,20 @@ spojrzenie na projekt, rozwiazanie trudniejszego problemu albo sprawdzenie, czy/
 kiedys rozwiazano. Zasada podzialu i indeks: DONE/README.md.
 Zakres: 2026-07-13 (WYSOKI PRIORYTET) - 2026-07-21. Partia jeszcze niezmergowana do mastera.
 
+[ZROBIONE] (2026-07-24, Sonnet) — dwie karty tego samego arkusza blokujące „zakończ egzamin"
+(issues/dwie-karty-tryb-egzaminu.md): dodano nasłuch zdarzenia `storage` w app/exam.js — gdy
+karta A usunie KLUCZ_EGZAMINU (koniec egzaminu), inne otwarte karty tego samego arkusza dostają
+zdarzenie `storage` (odpala się tylko w INNYCH kartach), przestają tykać zegar i pokazują nakładkę
+„Egzamin zakończony w innej karcie" z przyciskiem `location.reload()` zamiast próbować dorenderować
+podsumowanie z własnych (mogących się różnić) danych w pamięci. CSS: #egzamin-odswiez dopisany do
+selektora stylującego przycisk w style/exam.css. Zweryfikowane Playwrightem (dwie karty w jednym
+kontekście przeglądarki: start w karcie A → reload karty B → koniec w karcie A → karta B bez
+odświeżenia pokazuje komunikat → klik „odśwież" wyprowadza z trybu egzaminu, 0 błędów JS w konsoli).
+Przy okazji uzupełniono ARCHITECTURE.md (sekcja „Exam mode"): #egzamin-koniec-bar,
+#egzamin-start-stopka, KLUCZ_OCENIANIA, faza „oceń się" i mechanizm synchronizacji między kartami
+(issues/dokumentacja-exam-mode-luka.md — lista „stabilnych ID" wspomniana w issue już nie istnieje
+w pliku, więc ten podpunkt issue jest nieaktualny/pominięty).
+
 [ZROBIONE] (2026-07-24, Sonnet) — 7 POPRAWEK Z „DLA SONNETA NA EFFORT HIGH" (TODO.md), zrealizowane
 po kolei w jednej sesji, node --check na wszystkich zmienionych plikach JS (report.js, indicators.js,
 theme.js, render.js) — build/testów brak w projekcie, dalsza weryfikacja wizualna w przeglądarce
