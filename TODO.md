@@ -40,6 +40,8 @@ DLA HENRICHA:
 
 INNE NOTATKI:
 
+- pokminić nad kolejnością przycisków w menu
+
 - Poprosić claude aby zmienił czas egzaminu na absurdalnie krótki i/lub dodał toggle trybu testowego który to robi abym mógł przetestować koniec egzaminu
 
 - dodać toggle "chowający się panel górny: włączony/wyłączony" (możesz wymyśleć lepszą nazwę), ta opcja ma być domyślnie włączona na telefonie. Top-bar powiniene się chować po scrolowaniu w dół i pojawiać przy skrolowaniu w górę lub gdy pociągnie się z górnej krawędzi.
