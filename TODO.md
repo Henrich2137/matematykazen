@@ -21,14 +21,18 @@ Dla Sonneta na effort High:
   - Rozpocznij egzamin
     - Zegar: wł./wył.
     - Wskaźniki samooceny zad. otwartych: wszystkie/wypełnione/wył.
+  - Sprawdź wszystkie odpowiedzi
+  - Pokaż wszystkie rozwiązania
   - Zresetuj arkusz (zamiast resetuj punktację)
+  
   - (małą przerwa na pół przycisku)
+
   - Motyw: jasny/ciemny/auto
   - Punktacja: wł./tylko suma/wył.
-  - Pokaż poprawność odpowiedzi: natychmniast/po kliknięciu "sprawdź"
+  - Pokaż poprawność odpowiedzi: natychmiast/po kliknięciu "sprawdź"
   - Przycisk "zgłoś błąd" pod zadaniem: wł./wył.
-  - Pokaż wszystkie rozwiązania
-  - Sprawdź wszystkie odpowiedzi
+  
+  
 
 
 
