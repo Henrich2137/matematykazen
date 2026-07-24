@@ -6,7 +6,8 @@ Do przydzielenia:
 - Przycisk "sprawdź wszystkie odpowiedzi" powinien być szary/nieaktywny w trybie egzaminu
 
 Dla Sonneta na effort High:
-- nic
+- Dwie karty tego samego arkusza blokują „zakończ egzamin" (issues/dwie-karty-tryb-egzaminu.md) — sprawdzone 2026-07-24, NADAL nie naprawione
+- ARCHITECTURE.md opisuje tylko połowę trybu egzaminu (issues/dokumentacja-exam-mode-luka.md)
 
 Dla Opusa na effort High:
 - Arkusz 2024 (demonstracyjny) nie wczutuje się na telefonie w ogóle.
@@ -72,15 +73,7 @@ INNE NOTATKI, DO PRZEKMINIENIA:
 <h3>DO REALIZACJI Dopisane przez CLAUDA</h3>
 Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz issues/README.md.
 
-TRYB EGZAMINU I PAMIĘĆ PRZEGLĄDARKI:
-
-- Dwie karty tego samego arkusza blokują „zakończ egzamin" (issues/dwie-karty-tryb-egzaminu.md) — sprawdzone 2026-07-24, NADAL nie naprawione
-
-DOKUMENTACJA:
-
-- ARCHITECTURE.md opisuje tylko połowę trybu egzaminu (issues/dokumentacja-exam-mode-luka.md)
-
-(dark mode CSS-zmienne na landing, wskaźniki po odświeżeniu, cichy błąd zapisu, motyw między kartami i numer-podnumer — przeniesione do „Dla Sonneta na effort High" wyżej, ze skonkretyzowanym kierunkiem naprawy)
+(wszystkie punkty przeniesione do „Dla Sonneta na effort High" wyżej, ze skonkretyzowanym kierunkiem naprawy)
 
 
 ZASADY dla Ciebie Claude:
