@@ -54,8 +54,7 @@ INNE NOTATKI:
 
 - Na telefonie defaltowo:
   * wyłączone punkty
-  * przyciski Pokaż tablice wzorów itd schowane w trzech kropkach a okna z pdf odpalają się albo na full screen albo otwierają pdf w nowym oknie przeglądrki lub w ogóle w nowej "aplikacji" jeśli tak się da. mogą też odpalać pdf w przeglądarce pdf w tel jeśli to nie z byt skomplkowane
-  * Przycisk pokaż wybrane wzory się nie wyświetla
+  * przyciski "Pokaż tablice wzorów" i "Pokaż zasady odeniania": pdf powinny odpalać się albo na full screen albo otwierać pdf w nowej karcie/oknie przeglądrki. Mogą też odpalać pdf w przeglądarce pdf w tel jeśli to nie zbyt skomplkowane.
 
 - Analityka - GoatCounter
 
