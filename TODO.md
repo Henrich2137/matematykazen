@@ -15,6 +15,11 @@ Dla Opusa na effort High:
   - przyciski „Pokaż tablice wzorów" i „Pokaż zasady oceniania": pdf powinny odpalać się albo na fullscreen, albo otwierać pdf w nowej karcie/oknie przeglądarki. Mogą też odpalać pdf w przeglądarce pdf w telefonie, jeśli to nie jest zbyt skomplikowane.
 -  i/lub dodać toggle tryb testowy, który zmienia czas egzaminu na absurdalnie krótki , abym mógł przetestować koniec egzaminu
 
+- Zadania otwarte z serii "oceń się", dodać do nich:
+  - Okienko normalizujące i sprawdzające wpisaną odpowiedź oprócz miejsca na notatki.
+  - Mini-formularz z pytaniami w stylu „Czy masz zapisane, żę długość boku BC to 5cm", które wynikają z zasad oceniania i ułatwiają ustalenie ilości punktów. Może wyglądać to podobnie do zadań otwartych w których uzupełnia się odpowiedzi np przedziałami.
+  - Można dać gwiazdkę, że trzeba każdy przypadek sprawdzić indywidualnie i autor strony nie jest egzaminatorem.
+
 <br>
 
 
@@ -22,16 +27,6 @@ NIE REALIZUJ
 <br> czyli nieskonkretyzowane
 
 - dodanie rozwiązań do matury 2026
-
-- Zadania otwarte powinny też mieć okienko normalizujące i sprawdzające wpisaną odpowiedź.
-  * Do tego można rozpisać i dorobić do nich pytania w stylu „Czy masz opisaną długość boku BC?", które wynikają z zasad oceniania i ułatwiają ustalenie ilości punktów.
-  * Przy nich można dać gwiazdkę, że trzeba każdy przypadek sprawdzić indywidualnie i autor strony nie jest egzaminatorem.
-
-- Do sekcji „oceń się" powinno być dodane kryteria sukcesu dopiero po kliknięciu rozwiązania. Ale jeszcze nie mam pomysłu, jak to skomponować, aby miało sens.
-
-- squash grup starych commitów zrobionych automatycznie przez gitdoc
-
-
 
 <br>
 
@@ -51,9 +46,9 @@ DLA HENRICHA:
 <br>
 
 
-INNE NOTATKI:
+INNE NOTATKI, DO PRZEKMINIENIA:
 
-- Na telefonie pdfy się nie ładują (tablica i zasady oceniania). (to nie będzie problem po zmianie na pdf otwierane na zewątrz stronki, jeśli tamto będzie działać to można usunąć ten wpis)
+- Na telefonie pdfy się nie ładują (tablica i zasady oceniania). (to nie będzie problem po zmianie na pdf otwierane na zewnątrz stronki, jeśli tamto będzie działać to można usunąć ten wpis)
   - Podczas naprawy warto sprawić, aby odpalały się one nie w okienku, ale wypełniały całą stronę z krzyżykiem w rogu.
   - Jeżeli nie uda się tego naprawić, to należy usunąć tę funkcjonalność z wersji mobilnej.
 
@@ -65,11 +60,13 @@ INNE NOTATKI:
     - Ta opcja ma być domyślnie włączona na telefonie.
     - Top-bar powinien się chować po scrollowaniu w dół i pojawiać przy scrollowaniu w górę lub gdy pociągnie się z górnej krawędzi.
 
+- Do sekcji „oceń się" powinno być dodane kryteria sukcesu dopiero po kliknięciu rozwiązania. Ale jeszcze nie mam pomysłu, jak to skomponować, aby miało sens.
+
 - Pokminić nad kolejnością przycisków w menu
 
 - W index.html dodać sekcję o autorze i link do Patronite
 
-<br><br><br>
+<br><br>
 
 
 <h3>DO REALIZACJI Dopisane przez CLAUDA</h3>
