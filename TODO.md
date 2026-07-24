@@ -73,8 +73,6 @@ INNE NOTATKI, DO PRZEKMINIENIA:
 <h3>DO REALIZACJI Dopisane przez CLAUDA</h3>
 Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz issues/README.md.
 
-(wszystkie punkty przeniesione do „Dla Sonneta na effort High" wyżej, ze skonkretyzowanym kierunkiem naprawy)
-
 
 ZASADY dla Ciebie Claude:
 - tu są TYLKO otwarte punkty. Zrobione wpisy [DONE]/[ZROBIONE] przenoszone są do bieżącego pliku pod DONE/ — patrz DONE/README.md i CLAUDE.md.)
