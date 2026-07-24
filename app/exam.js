@@ -17,6 +17,26 @@ const egzaminTimerSpan = document.getElementById("egzamin-timer");
 const egzaminPodsumowanie = document.getElementById("egzamin-podsumowanie");
 let egzaminInterval = null;
 
+// Toggle „widoczność zegara" (menu ⋯): ukrywa TYLKO span #egzamin-timer — zegar
+// dalej tyka i kończy egzamin po czasie w tle (tickExam), zmienia się jedynie to,
+// czy uczeń go widzi. Ustawienie globalne (KLUCZ_ZEGAR_WIDOCZNY w app/state.js).
+const zegarToggleButton = document.getElementById("zegar-toggle");
+function odswiezWidocznoscZegara() {
+    const widoczny = czyZegarWidoczny();
+    egzaminTimerSpan.classList.toggle("zegar-ukryty", !widoczny);
+    if (zegarToggleButton) {
+        zegarToggleButton.textContent = "widoczność zegara: " + (widoczny ? "włączona" : "wyłączona");
+    }
+}
+odswiezWidocznoscZegara();
+if (zegarToggleButton) {
+    zegarToggleButton.addEventListener("click", () => {
+        const widoczny = czyZegarWidoczny();
+        try { localStorage.setItem(KLUCZ_ZEGAR_WIDOCZNY, widoczny ? "0" : "1"); } catch (e) {}
+        odswiezWidocznoscZegara();
+    });
+}
+
 function readExamState() {
     try {
         const stan = JSON.parse(localStorage.getItem(KLUCZ_EGZAMINU));
