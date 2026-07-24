@@ -1,7 +1,7 @@
 Oto plik który tworzy Henrich (ja, użytkownik).
 
 DO REALIZACJI
-Jeżeli nie masz co robić to rób stąd.
+<br> Jeżeli nie masz co robić to rób stąd.
 
 Dla Sonneta na effort High
 (brak — wszystko zrobione, patrz DONE/)
@@ -10,7 +10,7 @@ Dla Sonneta na effort High
 
 
 NIE REALIZUJ
-czyli nieskonkretyzowane
+<br> czyli nieskonkretyzowane
 
 - squah grup starych commitów zrobionych automatycznie przez gitdoc
 
