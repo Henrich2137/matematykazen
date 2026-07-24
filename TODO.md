@@ -9,7 +9,6 @@ Dla Sonneta na effort High:
 - nic
 
 Dla Opusa na effort High:
-- Formularz wspomagający samoocenę zadań otwartych — pełny spec ustalony z Henrichem w issues/formularz-oceniania-otwarte.md (prototyp na 1-2 zadaniach na start).
 - Przepisać sekcję „Exam mode" w ARCHITECTURE.md do poziomu szczegółowości sekcji dark mode (issues/dokumentacja-exam-mode-luka.md) — brakujące elementy Sonnet już dopisał 2026-07-24, zostaje ewentualne pełne przepisanie/restrukturyzacja.
 
 <br>

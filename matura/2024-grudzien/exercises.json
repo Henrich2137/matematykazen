@@ -254,6 +254,16 @@
         "correctAnswerIndex": -1,
         "maxScore": 3,
         "selfScore": true,
+        "finalAnswer": {
+            "label": "Twoja ostateczna odpowiedź (rozwiązanie równania):",
+            "placeholder": "np. x = -6",
+            "accepted": ["x = -6", "-6"]
+        },
+        "gradingCriteria": [
+            "Zapisane założenie (dziedzina): \\(x \\ne 1\\)",
+            "Równanie sprowadzone do postaci bez ułamków, np. \\(2(x + 3) = x\\)",
+            "Obliczony wynik: \\(x = -6\\) (należy do dziedziny)"
+        ],
         "hint": "Zacznij od określenia dziedziny (mianowniki \\(\\ne 0\\)). Zauważ, że \\(2x - 2 = 2(x - 1)\\) — oba mianowniki znikną po pomnożeniu przez \\(2(x - 1)\\).",
         "formulasPage": null,
         "solutionText": "Założenie: \\(x \\ne 1\\). Po pomnożeniu obu stron przez \\(2(x - 1)\\) dostajemy \\(2(x + 3) = x\\), czyli \\(\\boldsymbol{x = -6}\\) (należy do dziedziny).",
@@ -268,6 +278,16 @@
         "correctAnswerIndex": -1,
         "maxScore": 2,
         "selfScore": true,
+        "finalAnswer": {
+            "label": "Twoja ostateczna odpowiedź (zbiór rozwiązań):",
+            "placeholder": "np. ⟨-1, 7⟩",
+            "accepted": ["⟨-1, 7⟩", "<-1, 7>", "[-1, 7]"]
+        },
+        "gradingCriteria": [
+            "Nierówność zapisana w postaci \\(x^{2} - 6x - 7 \\le 0\\)",
+            "Obliczone miejsca zerowe trójmianu: \\(x = -1\\) oraz \\(x = 7\\)",
+            "Zapisany zbiór rozwiązań (przedział domknięty): \\(\\langle -1,\\ 7\\rangle\\)"
+        ],
         "hint": "Przenieś wszystkie wyrazy na jedną stronę, rozwiąż równanie kwadratowe, naszkicuj parabolę i odczytaj, gdzie nierówność jest spełniona.",
         "formulasPage": 7,
         "solutionText": "Po uporządkowaniu: \\(x^{2} - 6x - 7 \\le 0\\). Miejsca zerowe: \\(x = -1\\) i \\(x = 7\\), ramiona paraboli w górę, więc rozwiązaniem jest przedział \\(\\boldsymbol{\\langle -1,\\ 7\\rangle}\\).",

@@ -4,6 +4,34 @@ spojrzenie na projekt, rozwiazanie trudniejszego problemu albo sprawdzenie, czy/
 kiedys rozwiazano. Zasada podzialu i indeks: DONE/README.md.
 Zakres: 2026-07-13 (WYSOKI PRIORYTET) - 2026-07-21. Partia jeszcze niezmergowana do mastera.
 
+[ZROBIONE] (2026-07-24, Opus) — formularz wspomagający samoocenę zadań otwartych, PROTOTYP na zad. 8 i 9
+  arkusza 2024-grudzień (spec: issues/formularz-oceniania-otwarte.md). Trzy elementy:
+  1. POLE „OSTATECZNA ODPOWIEDŹ" — nowe (opcjonalne) pole danych exercise.finalAnswer
+     { label, placeholder, accepted } dla zadań open+selfScore. Render: input + „Sprawdź" w osobnym
+     kontenerze .final-answer-container (app/render.js), oceniany dokładnie jak fillIn przez
+     normalizeAnswer (app/answers.js) — zielony/czerwony, ale BEZ ruszania earnedScore (punkty dalej z
+     samooceny). Kontener CELOWO poza .self-score-container, a .final-answer-input celowo pominięty w
+     neutralizacji kolorów w exam.css — dzięki temu pole i jego ocena są DOSTĘPNE W TRAKCIE EGZAMINU
+     (jedyny automatyczny sygnał poprawności zadań otwartych, zgodnie ze spec). Wpis+kolor trwają w
+     stan.koncowa. Uwaga: normalizeAnswer ujednolica ⟨⟩<>[]→[], ale zostawia nawiasy okrągłe — więc
+     domknięty ⟨-1,7⟩/[-1,7] pasuje, a otwarty (-1,7) NIE (zweryfikowane).
+  2. POMOCNICZA CHECKLISTA — nowe (opcjonalne) pole exercise.gradingCriteria (lista stringów HTML/KaTeX).
+     Render: checkboxy .grading-criteria na górze .self-score-container, nad przyciskami punktów. NIE sumuje
+     punktów automatycznie (uczeń dalej sam wybiera 0..max pkt) — ma tylko ułatwić decyzję. Zaznaczenia w
+     stan.kryteria. W trybie egzaminu schowana razem z resztą samooceny. Kryteria dla zad. 8/9 spisane z
+     oficjalnego klucza CKE (inne arkusze PDF/odp.txt): zad.8 (założenie x≠1, przekształcenie 2(x+3)=x,
+     wynik x=-6); zad.9 (postać x²-6x-7≤0, miejsca zerowe -1 i 7, zbiór ⟨-1,7⟩).
+  3. ZASTRZEŻENIE PRAWNE — raz, ogólnie: .samoocena-disclaimer w stopce arkusza (template.html), nie przy
+     każdym zadaniu — „MatematykaZen nie jest egzaminatorem…".
+  Schemat udokumentowany w ARCHITECTURE.md (finalAnswer, gradingCriteria). Persystencja przez ten sam zapis
+  co reszta (KLUCZ_POSTEPU, stan.koncowa/stan.kryteria), przywracanie na końcu loadExercises. Style w
+  sheet.css (spójne z .fill-in-*/.self-score-*). Zweryfikowane Playwrightem (desktop + tryb egzaminu):
+  2 pola + 2 checklisty + disclaimer; zad8 „-6"→correct, „5"→incorrect, edycja czyści kolor; zad9 warianty
+  domknięte→correct, otwarty→incorrect; reload przywraca wpis+kolor+checkboxy; w egzaminie pole widoczne i
+  koloruje na zielono (rgb 10,179,47, nie niebieski), samoocena+checklista ukryte; KaTeX w kryteriach OK.
+  Reszta zadań otwartych dostanie kryteria/finalAnswer sukcesywnie (do akceptacji Henricha).
+  [zadania-otwarte, samoocena, silnik, schemat, localStorage, egzamin, css]
+
 [ZROBIONE] (2026-07-24, Opus) — trzy usprawnienia „na telefonie" (TODO „Dla Opusa"):
   A. DOMYŚLNIE UKRYTE BADGE'E PUNKTÓW NA TELEFONIE. Nowy helper czyTelefon() (app/state.js,
      matchMedia max-width:720px, czytany na bieżąco). Po wyrenderowaniu zadań na telefonie

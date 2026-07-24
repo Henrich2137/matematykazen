@@ -567,6 +567,109 @@
     box-shadow: inset 0 0 0 1px var(--accent-blue);
 }
 
+/* ===== ZADANIA OTWARTE: POLE „OSTATECZNA ODPOWIEDŹ" (auto-sprawdzane) ===== */
+/* Osobny kontener POZA .self-score-container — dzięki temu (patrz exam.css)
+   pole jest dostępne TAKŻE w trakcie egzaminu jako jedyny automatyczny sygnał
+   poprawności zadań otwartych. Wygląd spójny z .fill-in-*. */
+.final-answer-container {
+    margin-top: 15px;
+    text-align: center;
+}
+.final-answer-label {
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: var(--text-faint-2);
+}
+.final-answer-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.final-answer-input {
+    width: 160px;
+    padding: 6px 8px;
+    border: 1px solid var(--border-strong);
+    border-radius: 3px;
+    background-color: var(--bg);
+    font-family: "STIX Two Math", "Lora", serif;
+    font-size: 17px;
+    text-align: center;
+}
+.final-answer-input.correct {
+    border-color: var(--correct);
+    box-shadow: inset 0 0 0 1px var(--correct);
+}
+.final-answer-input.incorrect {
+    border-color: var(--incorrect);
+    box-shadow: inset 0 0 0 1px var(--incorrect);
+}
+/* Selektor mocniejszy niż `.button-container button` (kontener odpowiedzi ma obie
+   klasy) — inaczej „Sprawdź" dostałby szerokość 22% jak przyciski odpowiedzi. */
+.answers-container button.final-answer-check {
+    display: inline-block;
+    width: auto;
+    margin: 0;
+    padding: 6px 18px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background-color: var(--bg);
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--text);
+    cursor: pointer;
+}
+.answers-container button.final-answer-check:hover {
+    background-color: var(--bg-muted);
+}
+
+/* ===== ZADANIA OTWARTE: POMOCNICZA CHECKLISTA KRYTERIÓW OCENY ===== */
+/* Wewnątrz .self-score-container (chowana w trybie egzaminu). Nie sumuje punktów
+   — tylko ułatwia decyzję samooceny. */
+.grading-criteria {
+    max-width: 520px;
+    margin: 4px auto 14px;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background-color: var(--bg-muted);
+    text-align: left;
+}
+.grading-criteria-intro {
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+.grading-criterion {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 7px 0;
+    font-size: 15px;
+    line-height: 1.4;
+    cursor: pointer;
+}
+.grading-criterion input[type="checkbox"] {
+    margin-top: 3px;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+/* Ogólne zastrzeżenie prawne samooceny — RAZ na stronie (stopka arkusza), nie
+   przy każdym zadaniu. */
+.samoocena-disclaimer {
+    max-width: 650px;
+    margin: 0 auto 60px;
+    padding: 0 20px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-faint);
+    text-align: center;
+}
+
 /* ===== PRZYCISKI TEKSTOWE (podpowiedź / rozwiązanie / wzory) ===== */
 .light-button-container {
     width: 90%;

@@ -104,6 +104,13 @@ function loadExercises() {
         const fillRows = [];
         let fillCheck = null;
         let openTextarea = null;   // textarea zadania otwartego (tok rozwiązania)
+        // Zadania otwarte (selfScore): pole „ostateczna odpowiedź" (auto-sprawdzane,
+        // widoczne też w trakcie egzaminu) i checkboxy pomocniczej checklisty
+        // kryteriów oceny (widoczne po odblokowaniu samooceny). Refy trzymane tu,
+        // bo przywracanie postępu (na końcu pętli) jest poza gałęzią „open".
+        let finalInput = null;
+        let ocenKoncowaOdpowiedz = null;
+        const criteriaBoxes = [];
         // Ustawiane przez gałęzie zadań zamkniętych (ABCD/PF/multiSelect) na funkcję
         // odsłaniającą ocenę tego zadania. Używa jej przywracanie postępu, by w
         // trybie „sprawdź później" odsłonić ocenę tylko tam, gdzie użytkownik już
@@ -414,6 +421,59 @@ function loadExercises() {
             openBox.appendChild(openTextarea);
             answersContainer.appendChild(openBox);
 
+            // POLE „OSTATECZNA ODPOWIEDŹ" (opcjonalne, gdy exercise.finalAnswer istnieje).
+            // Uczeń wpisuje końcowy wynik (np. x = -6), a przycisk „Sprawdź" normalizuje
+            // go i porównuje z listą akceptowanych wariantów tą SAMĄ logiką co fillIn
+            // (normalizeAnswer, app/answers.js). To jedyny AUTOMATYCZNY sygnał
+            // poprawności dla zadań otwartych, więc — inaczej niż checklista i
+            // rozwiązania — pole i jego ocena są DOSTĘPNE TAKŻE W TRAKCIE EGZAMINU
+            // (osobny kontener poza .self-score-container, którą exam.css chowa; klasa
+            // .final-answer-input celowo NIE jest neutralizowana w exam.css). NIE
+            // przyznaje punktów — punkty dalej ustawia samoocena (spec: issues/
+            // formularz-oceniania-otwarte.md).
+            if (exercise.finalAnswer && Array.isArray(exercise.finalAnswer.accepted)) {
+                const fbox = document.createElement("div");
+                fbox.className = "final-answer-container";
+
+                const flabel = document.createElement("div");
+                flabel.className = "final-answer-label";
+                flabel.innerHTML = exercise.finalAnswer.label || "Twoja ostateczna odpowiedź:";
+                fbox.appendChild(flabel);
+
+                const frow = document.createElement("div");
+                frow.className = "final-answer-row";
+
+                finalInput = document.createElement("input");
+                finalInput.type = "text";
+                finalInput.className = "final-answer-input";
+                finalInput.placeholder = exercise.finalAnswer.placeholder || "wpisz wynik";
+                // Edycja kasuje poprzedni kolor, żeby nie kłamał; zapis na bieżąco.
+                finalInput.addEventListener("input", () => {
+                    finalInput.classList.remove("correct", "incorrect");
+                    stan.koncowa = finalInput.value;
+                    zapiszPostep();
+                });
+                frow.appendChild(finalInput);
+
+                ocenKoncowaOdpowiedz = function () {
+                    const wpis = normalizeAnswer(finalInput.value);
+                    const ok = wpis !== "" && exercise.finalAnswer.accepted.some(acc => normalizeAnswer(acc) === wpis);
+                    finalInput.classList.remove("correct", "incorrect");
+                    finalInput.classList.add(ok ? "correct" : "incorrect");
+                    stan.koncowa = finalInput.value;
+                    zapiszPostep();
+                };
+                const finalCheck = document.createElement("button");
+                finalCheck.type = "button";
+                finalCheck.className = "final-answer-check";
+                finalCheck.textContent = "Sprawdź";
+                finalCheck.addEventListener("click", ocenKoncowaOdpowiedz);
+                frow.appendChild(finalCheck);
+
+                fbox.appendChild(frow);
+                answersContainer.appendChild(fbox);
+            }
+
             // Zadanie otwarte z samooceną: uczeń rozwiązuje na kartce, porównuje
             // z rozwiązaniem i sam przyznaje sobie punkty (0..maxScore).
             const box = document.createElement("div");
@@ -423,6 +483,44 @@ function loadExercises() {
             label.className = "self-score-label";
             label.textContent = "Rozwiąż na kartce, porównaj z rozwiązaniem i oceń się:";
             box.appendChild(label);
+
+            // POMOCNICZA CHECKLISTA KRYTERIÓW OCENY (opcjonalna, gdy exercise.gradingCriteria
+            // istnieje). Checkboxy z elementami oficjalnego klucza CKE, za które są punkty —
+            // mają UŁATWIĆ decyzję ucznia, ale NIE sumują punktów automatycznie (uczeń dalej
+            // sam wybiera liczbę punktów przyciskami niżej). Wewnątrz .self-score-container,
+            // więc w trybie egzaminu jest schowana razem z resztą samooceny.
+            if (Array.isArray(exercise.gradingCriteria) && exercise.gradingCriteria.length) {
+                const clBox = document.createElement("div");
+                clBox.className = "grading-criteria";
+
+                const clIntro = document.createElement("div");
+                clIntro.className = "grading-criteria-intro";
+                clIntro.textContent = "Zaznacz, co znalazło się w Twoim rozwiązaniu (to tylko pomoc — punkty przyznajesz samodzielnie):";
+                clBox.appendChild(clIntro);
+
+                exercise.gradingCriteria.forEach((kryterium, ki) => {
+                    const lab = document.createElement("label");
+                    lab.className = "grading-criterion";
+
+                    const cb = document.createElement("input");
+                    cb.type = "checkbox";
+                    cb.addEventListener("change", () => {
+                        if (!Array.isArray(stan.kryteria)) stan.kryteria = [];
+                        stan.kryteria[ki] = cb.checked;
+                        zapiszPostep();
+                    });
+                    criteriaBoxes.push(cb);
+
+                    const span = document.createElement("span");
+                    span.innerHTML = kryterium;
+
+                    lab.appendChild(cb);
+                    lab.appendChild(span);
+                    clBox.appendChild(lab);
+                });
+
+                box.appendChild(clBox);
+            }
 
             const buttons = [];
             for (let n = 0; n <= exercise.maxScore; n++) {
@@ -698,6 +796,17 @@ function loadExercises() {
             if (Array.isArray(zap.fill) && fillRows.length) {
                 zap.fill.forEach((tekst, i) => { if (fillRows[i]) fillRows[i].input.value = tekst || ""; });
                 if (zap.fill.some(t => t) && fillCheck) fillCheck.click();
+            }
+            // Ostateczna odpowiedź zadania otwartego: przywróć wpis i (jeśli był
+            // niepusty) odsłoń jego ocenę tą samą drogą co „Sprawdź" — jak fillIn.
+            if (typeof zap.koncowa === "string" && finalInput) {
+                finalInput.value = zap.koncowa;
+                if (zap.koncowa.trim() !== "" && ocenKoncowaOdpowiedz) ocenKoncowaOdpowiedz();
+            }
+            // Pomocnicza checklista kryteriów: przywróć zaznaczenia (stan.kryteria
+            // jest już zasiane z zapisu, więc ustawiamy tylko widoczny .checked).
+            if (Array.isArray(zap.kryteria) && criteriaBoxes.length) {
+                zap.kryteria.forEach((zazn, ki) => { if (criteriaBoxes[ki]) criteriaBoxes[ki].checked = !!zazn; });
             }
             // Tryb „sprawdź później" (natychmiastowa poprawność OFF): powyższe kliki
             // odtworzyły tylko ZAZNACZENIE (bez koloru). Jeśli użytkownik przed
