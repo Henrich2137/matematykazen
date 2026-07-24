@@ -27,7 +27,9 @@ czyli nieskonkretyzowane
 
 DLA HENRICHA:
 
-- skonfigurować formspree (formularze) — kod „zgłoś błąd" JEST GOTOWY (app/report.js). Zostaje tylko: założyć konto na formspree.io, utworzyć formularz i wkleić jego endpoint (`https://formspree.io/f/xxxxxxxx`) w miejsce stałej `FORMSPREE_ENDPOINT = "TODO-WKLEJ-ENDPOINT-FORMSPREE"` na górze app/report.js. Do tego czasu wysyłka pokazuje komunikat „nie skonfigurowane".
+- skonfigurować formspree (formularze) — kod „zgłoś błąd" JEST GOTOWY (app/report.js). Zostaje tylko: 
+  * założyć konto na formspree.io
+  * utworzyć formularz i wkleić jego endpoint (`https://formspree.io/f/xxxxxxxx`) w miejsce stałej `FORMSPREE_ENDPOINT = "TODO-WKLEJ-ENDPOINT-FORMSPREE"` na górze app/report.js. Do tego czasu wysyłka pokazuje komunikat „nie skonfigurowane".
 
 - Obczaić analitykę czyli śledzenie ilości i zaangażowania użytkowników (moze da sięjakoś przez githuba)
 

@@ -22,11 +22,13 @@ Do szukania używaj najpierw tego indeksu (tagi niżej), potem grepa po konkretn
   menu, honeypot + throttling, toast; endpoint Formspree jako placeholder do uzupełnienia
   [ui, formularz, localStorage, antyspam, formspree]
 - 2026-07-24 — toggle „widoczność zegara" w menu egzaminu (globalny, localStorage)
-  [ui, egzamin, localStorage]
+  [ui, egzamin, localStorage] — sprawdzone przez Henricha
 - 2026-07-24 — „rozpocznij próbny egzamin" w menu ⋯ ukryty przed wczytaniem arkusza
-  (nie pokazuje się już na stronie błędnego linku)  [ui, egzamin, css]
+  (nie pokazuje się już na stronie błędnego linku)  [ui, egzamin, css] — sprawdzone przez
+  Henricha; dopisał do TODO.md drobny punkt (przycisk powinien być zablokowany, nie
+  niewidoczny, na stronie błędu arkusza)
 - 2026-07-24 — tablica wzorów zamyka się automatycznie po zakończeniu egzaminu
-  [ui, egzamin]
+  [ui, egzamin] — sprawdzone przez Henricha
 - 2026-07-24 — #toggle-tablica/#toggle-zasady przeniesione na stałe do menu ⋯ (zamiast
   paska), rozwiązuje też ogólny punkt "przyciski niemieszczące się na pasku do menu"
   [ui, css, pasek]
