@@ -17,6 +17,8 @@ Dla Opusa na effort High:
 
 <br>
 
+DO PRZETESTOWANIA:
+- telefon 2024
 
 DLA HENRICHA:
 
