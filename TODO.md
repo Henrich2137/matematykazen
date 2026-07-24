@@ -8,6 +8,7 @@ Do przydzielenia:
 - W zadaniach otwartych:
   - Przycisk sprawdź przy ostatecznej odpowiediz  w truybie egzaminu powinien nie być widoczny.
   - Zamiast checkboxów powinny być przyciski z punktami do każdego zdania typu "Nierówność zapisana w postaci x2−6x−7≤0x2−6x−7≤0" (przykład z zad 9.) Dokładna punktacja jest w zasadach oceniania w pdf i od tego powinna zależeć ilość przycisków.
+- Kropki "oceń się" trzeba poprawićlub wyłączyć na telefonach
 
 Dla Sonneta na effort High:
 - zmień tło w trybie ciemnym na odrobine ciemniejsze
@@ -24,7 +25,6 @@ Dla Opusa na effort High:
 
 TESTOWANIE HENRICH:
 - telefon 2024 - wczytuje zadania ale wyświetla błąd. ( issues/zadania-nie-renderuja-sie-mobile.md)
-- 
 
 DLA HENRICHA:
 
