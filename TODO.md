@@ -12,8 +12,6 @@ Dla Sonneta na effort High
 NIE REALIZUJ
 <br> czyli nieskonkretyzowane
 
-- squash grup starych commitów zrobionych automatycznie przez gitdoc
-
 - dodanie rozwiązań do matury 2026
 
 - Zadania otwarte powinny też mieć okienko normalizujące i sprawdzające wpisaną odpowiedź.
@@ -21,6 +19,8 @@ NIE REALIZUJ
   * Przy nich można dać gwiazdkę, że trzeba każdy przypadek sprawdzić indywidualnie i autor strony nie jest egzaminatorem.
 
 - Do sekcji „oceń się" powinno być dodane kryteria sukcesu dopiero po kliknięciu rozwiązania. Ale jeszcze nie mam pomysłu, jak to skomponować, aby miało sens.
+
+- squash grup starych commitów zrobionych automatycznie przez gitdoc
 
 
 
@@ -35,34 +35,34 @@ DLA HENRICHA:
 
 - Obczaić analitykę, czyli śledzenie ilości i zaangażowania użytkowników. Warto rozważyć GoatCounter.
 
-- Przerenderować w Manimie ostatni krok zad 2 (zad2/zad2rozw_step6.mp4): klatka końcowa pokazuje 5⁻⁴, a poprawny wynik to 5⁴ (5⁻¹ · 5⁵ = 5⁴). Komentarz pod filmem tymczasowo prostuje błąd.
-
 - Wykminić, jak zrobić grafiki do dark mode, można np. masowo odwrócić kolory i zmienić krzywą tak, aby zamiast czarnego tła był odpowiedni kolor szarego. (Tańszy tymczasowy fix: CSS filter na `.question img`/wideo — patrz issues/dark-mode-obrazki-wideo.md)
+
+- Przerenderować w Manimie ostatni krok zad 2 (zad2/zad2rozw_step6.mp4): klatka końcowa pokazuje 5⁻⁴, a poprawny wynik to 5⁴ (5⁻¹ · 5⁵ = 5⁴). Komentarz pod filmem tymczasowo prostuje błąd.
 
 <br>
 
 
 INNE NOTATKI:
 
-- Pokminić nad kolejnością przycisków w menu
+- Na telefonie pdfy się nie ładują (tablica i zasady oceniania).
+  * Podczas naprawy warto sprawić, aby odpalały się one nie w okienku, ale wypełniały całą stronę z krzyżykiem w rogu.
+  * Jeżeli nie uda się tego naprawić, to należy usunąć tę funkcjonalność z wersji mobilnej.
 
-- Poprosić Claude, aby zmienił czas egzaminu na absurdalnie krótki i/lub dodał toggle trybu testowego, który to robi, abym mógł przetestować koniec egzaminu
+- Na telefonie domyślnie:
+  * wyłączone punkty
+  * przyciski „Pokaż tablice wzorów" i „Pokaż zasady oceniania": pdf powinny odpalać się albo na full screen, albo otwierać pdf w nowej karcie/oknie przeglądarki. Mogą też odpalać pdf w przeglądarce pdf w telefonie, jeśli to nie zbyt skomplikowane.
+
+- ZMIANA UI: Wywalić top-bar i przenieść wszystko na rozwijany pasek boczny po lewej, który można łatwo schować, aby widzieć tylko zadania i włączone elementy takie jak tablica, punktacja itd.
+
+- Tryb egzaminu nie powinien być tak „schowany" w opcjach. Może pod tytułem zrobić zamiast stałego napisu „tryb ćwiczeniowy" toggle między dwoma trybami.
 
 - Dodać toggle „chowający się panel górny: włączony/wyłączony" (możesz wymyśleć lepszą nazwę).
   * Ta opcja ma być domyślnie włączona na telefonie.
   * Top-bar powinien się chować po scrollowaniu w dół i pojawiać przy scrollowaniu w górę lub gdy pociągnie się z górnej krawędzi.
 
-- Tryb egzaminu nie powinien być tak „schowany" w opcjach. Może pod tytułem zrobić zamiast stałego napisu „tryb ćwiczeniowy" toggle między dwoma trybami.
+- Poprosić Claude, aby zmienił czas egzaminu na absurdalnie krótki i/lub dodał toggle trybu testowego, który to robi, abym mógł przetestować koniec egzaminu
 
-- Na telefonie pdfy się nie ładują (tablica i zasady oceniania).
-  * Podczas naprawy warto sprawić, aby odpalały się one nie w okienku, ale wypełniały całą stronę z krzyżykiem w rogu.
-  * Jeżeli nie uda się tego naprawić, to należy usunąć tę funkcjonalność z wersji mobilnej.
-
-- ZMIANA UI: Wywalić top-bar i przenieść wszystko na rozwijany pasek boczny po lewej, który można łatwo schować, aby widzieć tylko zadania i włączone elementy takie jak tablica, punktacja itd.
-
-- Na telefonie domyślnie:
-  * wyłączone punkty
-  * przyciski „Pokaż tablice wzorów" i „Pokaż zasady oceniania": pdf powinny odpalać się albo na full screen, albo otwierać pdf w nowej karcie/oknie przeglądarki. Mogą też odpalać pdf w przeglądarce pdf w telefonie, jeśli to nie zbyt skomplikowane.
+- Pokminić nad kolejnością przycisków w menu
 
 - W index.html dodać sekcję o autorze i link do Patronite
 
@@ -89,11 +89,10 @@ DOKUMENTACJA:
 
 DROBIAZGI (niski priorytet, dziś nieszkodliwe):
 
-- Numer zadania gubi podnumer (12.1 vs 12.2) (issues/numer-zadania-podnumer.md)
-- Motyw rozjeżdża się między kartami przeglądarki (issues/motyw-rozjezdza-sie-miedzy-kartami.md)
-- Cichy błąd zapisu w ustawFazeOceniania() (issues/ocenianie-cichy-blad-zapisu.md)
-
 - Wskaźniki „oceń się" znikają po odświeżeniu strony po egzaminie (issues/wskazniki-reload-faza-oceniania.md)
+- Cichy błąd zapisu w ustawFazeOceniania() (issues/ocenianie-cichy-blad-zapisu.md)
+- Motyw rozjeżdża się między kartami przeglądarki (issues/motyw-rozjezdza-sie-miedzy-kartami.md)
+- Numer zadania gubi podnumer (12.1 vs 12.2) (issues/numer-zadania-podnumer.md)
 
 
 ZASADY dla Ciebie Claude:
