@@ -78,15 +78,6 @@ function natychmiastowaOcenaAktywna() {
     return czyNatychmiastowaPoprawnosc() || document.body.classList.contains("tryb-egzaminu");
 }
 
-// Widoczność zegara próbnego egzaminu (ustawienie GLOBALNE, jak wyżej — bez
-// sufiksu SHEET_ID). Toggle steruje TYLKO widocznością #egzamin-timer — sam
-// zegar dalej tyka i kończy egzamin po czasie w tle (patrz app/exam.js).
-const KLUCZ_ZEGAR_WIDOCZNY = "matematykazen-zegar-widoczny";
-function czyZegarWidoczny() {
-    // Brak wpisu = domyślnie widoczny; tylko jawne "0" wyłącza.
-    try { return localStorage.getItem(KLUCZ_ZEGAR_WIDOCZNY) !== "0"; } catch (e) { return true; }
-}
-
 // Rejestr zadań zamkniętych do zbiorczego „sprawdź wszystkie odpowiedzi". Każdy
 // wpis: { ocen, maZaznaczenie, czySprawdzone } — patrz app/render.js (typy
 // ABCD/PF/multiSelect). Przycisk w menu ⋯ i w stopce (app/bootstrap.js)

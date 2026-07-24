@@ -43,3 +43,8 @@ No build or test tooling. **Serve the directory with a static file server** (e.g
 ## User notes
 
 - Ostrzegaj mnie przed włączeniem ciężkiego zadania np subagent-heavy sessions, które ostatnio wciągnęły mi 60% session limit dosyć szybko gdy robiłem code-review ultra
+
+## Cloud sessions / routines
+
+- Pushuj do najnowszej gałęzi z najnowszymi zmianami — nawet jeśli to jest `master` — zamiast tworzyć nową gałąź.
+- Każdego commita rozpoczynaj prefiksem z nazwą modelu i poziomem wysiłku, który go wykonał, np. `Sonnet High Cloud: ...` lub `Opus Medium Cloud: ...`.

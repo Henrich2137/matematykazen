@@ -4,7 +4,18 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 Jeżeli nie masz co robić to rób stąd.
 
 Dla Sonneta na effort High
-(brak — wszystko zrobione, patrz DONE/)
+- Zmień styl przycisków "pokazuj poprawność od razu: nie" i "sprawdź wszystkie odpowiedzi" tak aby były tak  same jak reszta w menu
+
+- Przesunąć niebieskie przyciski "sprawdź" na troche w dół, tak aby był równo z przyciskami odpowiedzi.
+
+- Gdy przyciski się nie mieszczą na górnym panelu powinny trafiać do menu. np na telefonie.
+
+- Schować przycisk pokaż tablice wzorów oraz pokaż zasady oceniania do menu (zawsze, niezależnie od urządzenia) (issues/pasek-przyciski-do-menu.md)
+
+- tryb egzaminu
+  * tablica wzorów powinna się automatycznie wyłączać po zakończeniu egzaminu (issues/egzamin-tablica-auto-zamkniecie.md)
+  * Przyciski takie jak rozpocznij próbny egzamin nie powinny być widoczne na stronce z komunikatem błędny link (minor thing)
+  * dodać działający toggle "widoczność zegara: włączony/wyłączony" w menu, globalnie w localStorage (issues/egzamin-zegar-toggle.md)
 
 <br>
 

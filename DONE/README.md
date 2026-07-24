@@ -21,18 +21,6 @@ Do szukania używaj najpierw tego indeksu (tagi niżej), potem grepa po konkretn
 - 2026-07-24 — „zgłoś błąd w zadaniu": link pod zadaniem + modal → Formspree (AJAX), toggle w
   menu, honeypot + throttling, toast; endpoint Formspree jako placeholder do uzupełnienia
   [ui, formularz, localStorage, antyspam, formspree]
-- 2026-07-24 — toggle „widoczność zegara" w menu egzaminu (globalny, localStorage)
-  [ui, egzamin, localStorage]
-- 2026-07-24 — „rozpocznij próbny egzamin" w menu ⋯ ukryty przed wczytaniem arkusza
-  (nie pokazuje się już na stronie błędnego linku)  [ui, egzamin, css]
-- 2026-07-24 — tablica wzorów zamyka się automatycznie po zakończeniu egzaminu
-  [ui, egzamin]
-- 2026-07-24 — #toggle-tablica/#toggle-zasady przeniesione na stałe do menu ⋯ (zamiast
-  paska), rozwiązuje też ogólny punkt "przyciski niemieszczące się na pasku do menu"
-  [ui, css, pasek]
-- 2026-07-24 — styl #natychmiastowa-toggle/#sprawdz-wszystkie w menu ⋯ dopasowany do
-  reszty przycisków; przycisk „sprawdź" wyrównany (top: 8px) z górną krawędzią
-  przycisków odpowiedzi  [ui, css]
 - 2026-07-23 — toggle „natychmiastowa poprawność" + przyciski „sprawdź" / „sprawdź wszystkie"
   (zadania zamknięte, tryb „sprawdź później")  [ui, silnik, localStorage]
 - 2026-07-23 — pozycja/warstwy wskaźników „oceń się": kolumna dalej od krawędzi, przycisk

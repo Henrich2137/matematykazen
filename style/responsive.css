@@ -31,6 +31,12 @@
         padding: 8px 10px;
         gap: 6px;
     }
+    #toggle-tablica,
+    #toggle-zasady {
+        min-width: 0;
+        padding: 8px;
+        font-size: 12px;
+    }
     #total-score,
     body.tryb-egzaminu #egzamin-koniec-bar {
         font-size: 13px;
