@@ -22,9 +22,6 @@
 body.tryb-egzaminu #bar-menu #egzamin-koniec-menu {
     display: block;
 }
-body.tryb-egzaminu #bar-menu #egzamin-start {
-    display: none;
-}
 /* Podwójny #id (#bar-menu #egzamin-start) celowo — samo "#egzamin-start" ma
    niższą specyficzność niż "#bar-menu button" (sheet.css), które ustawia mu
    display:block, i przegrywałoby mimo źródłowej kolejności (exam.css ładuje
@@ -34,6 +31,11 @@ body.tryb-egzaminu #bar-menu #egzamin-start {
 }
 body.arkusz-wczytany #bar-menu #egzamin-start {
     display: block;
+}
+/* MUSI stać PO regule .arkusz-wczytany wyżej: obie mają tę samą specyficzność
+   (1 klasa + 2 id), więc o zwycięzcy decyduje kolejność w źródle. */
+body.tryb-egzaminu #bar-menu #egzamin-start {
+    display: none;
 }
 body.tryb-egzaminu #egzamin-timer {
     display: inline-block;
