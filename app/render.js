@@ -700,6 +700,10 @@ function loadExercises() {
         // showStep(), bo ich HTML powstaje dopiero przy przełączaniu kroków.
         renderMath(exerciseClone);
 
+        // Dyskretny link „zgłoś błąd w tym zadaniu" pod zadaniem (app/report.js).
+        // Widoczność steruje globalnie klasa body.bez-zglaszania (toggle w menu ⋯).
+        dodajLinkZgloszenia(exerciseClone);
+
         // Append the exercise to the wrapper
         exercisesWrapper.appendChild(exerciseClone);
     });

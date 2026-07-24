@@ -87,12 +87,54 @@
         <button id="wskazniki-tryb-toggle">wskaźniki „oceń się”: wszystkie zadania</button>
         <button id="natychmiastowa-toggle">pokazuj poprawność od razu: tak</button>
         <button id="sprawdz-wszystkie">sprawdź wszystkie odpowiedzi</button>
+        <button id="zglos-blad-toggle">zgłaszanie błędów: włączone</button>
     </div>
 
     <!-- Podsumowanie próbnego egzaminu — nakładka pokazywana przez finishExam().
          Treść (wynik, procent, czas) wypełnia JS. -->
     <div id="egzamin-podsumowanie">
         <div class="egzamin-okno"></div>
+    </div>
+
+    <!-- Modal „zgłoś błąd w zadaniu" (app/report.js przełącza display na flex).
+         Jeden wspólny modal dla wszystkich zadań — numer zadania i podgląd danych
+         technicznych wypełnia JS przy otwarciu. Wszystkie pola OPCJONALNE. -->
+    <div id="zglos-blad-overlay">
+        <div class="zglos-blad-okno">
+            <button type="button" class="zglos-blad-x" title="Zamknij">✕</button>
+            <h3>Zgłoś błąd w zadaniu</h3>
+            <p class="zglos-blad-kontekst" id="zglos-blad-kontekst"></p>
+            <p class="zglos-blad-info">
+                Wszystkie pola są opcjonalne — samo wysłanie zgłoszenia już nam pomaga.
+                Automatycznie dołączymy numer zadania i podstawowe informacje techniczne
+                (bez danych osobowych).
+            </p>
+            <form id="zglos-blad-form" novalidate>
+                <label class="zglos-blad-label" for="zglos-blad-opis">Opis błędu (opcjonalnie)</label>
+                <textarea id="zglos-blad-opis" name="opis" rows="4"
+                    placeholder="Np. zła odpowiedź, literówka w treści, film się nie odtwarza…"></textarea>
+
+                <label class="zglos-blad-label" for="zglos-blad-email">Twój e-mail (opcjonalnie — jeśli chcesz, żebyśmy mogli odpisać)</label>
+                <input type="email" id="zglos-blad-email" name="email" autocomplete="email" placeholder="np. jan@przyklad.pl">
+
+                <!-- Honeypot: ukryte przed ludźmi (CSS), wypełniają je tylko boty. -->
+                <div class="zglos-blad-hp" aria-hidden="true">
+                    <label>Nie wypełniaj tego pola
+                        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+                    </label>
+                </div>
+
+                <details class="zglos-blad-dane">
+                    <summary>Dane techniczne dołączane automatycznie</summary>
+                    <pre id="zglos-blad-dane-podglad"></pre>
+                </details>
+
+                <div class="zglos-blad-akcje">
+                    <button type="button" class="zglos-blad-anuluj">Anuluj</button>
+                    <button type="submit" class="zglos-blad-wyslij">Wyślij zgłoszenie</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <!-- Panele PDF są "odblokowane": pasek u góry (.panel-uchwyt) służy do
@@ -191,6 +233,7 @@
     <script src="app/panels.js"></script>
     <script src="app/answers.js"></script>
     <script src="app/steps.js"></script>
+    <script src="app/report.js"></script>
     <script src="app/render.js"></script>
     <script src="app/bootstrap.js"></script>
 

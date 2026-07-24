@@ -17,7 +17,10 @@ rozwiązanie trudniejszego problemu albo sprawdzenie, czy/jak coś już kiedyś 
 Do szukania używaj najpierw tego indeksu (tagi niżej), potem grepa po konkretnym pliku.
 
 
-== 03-biezace.md — partia OTWARTA (2026-07-13 → 2026-07-23, niezmergowana do mastera) ==
+== 03-biezace.md — partia OTWARTA (2026-07-13 → 2026-07-24, niezmergowana do mastera) ==
+- 2026-07-24 — „zgłoś błąd w zadaniu": link pod zadaniem + modal → Formspree (AJAX), toggle w
+  menu, honeypot + throttling, toast; endpoint Formspree jako placeholder do uzupełnienia
+  [ui, formularz, localStorage, antyspam, formspree]
 - 2026-07-23 — toggle „natychmiastowa poprawność" + przyciski „sprawdź" / „sprawdź wszystkie"
   (zadania zamknięte, tryb „sprawdź później")  [ui, silnik, localStorage]
 - 2026-07-23 — pozycja/warstwy wskaźników „oceń się": kolumna dalej od krawędzi, przycisk
