@@ -1,6 +1,6 @@
 # Zadania nie renderują się na telefonie (arkusz 2024-grudzień)
 
-**Status:** NIE zdiagnozowane. Repro od Henricha 2026-07-24, do zbadania przez Opusa.
+**Status:** ZDIAGNOZOWANE 2026-07-24 — patrz „Przyczyna" na dole. Fix: `.nojekyll` w rootcie.
 
 ## Repro
 
@@ -65,3 +65,27 @@ Gdy włączyłem na firefoxie na Pixelu 7a zadania się wczytały ale bez przyci
   startSheet@https://henrich2137.github.io/matematykazen/app/bootstrap.js:207:9
 
   "
+## PRZYCZYNA (potwierdzona 2026-07-24)
+
+To **nie był problem telefonu ani mobilnej przeglądarki**. GitHub Pages domyślnie
+przepuszcza repo przez Jekylla, a Jekyll **pomija pliki i katalogi zaczynające się
+od `_`**. Efekt: `widgets/_helpers.js` i `widgets/_registry.js` nigdy nie trafiły
+na opublikowaną stronę.
+
+Sprawdzone przez `curl` na żywo:
+
+| URL | HTTP |
+|---|---|
+| `https://henrich2137.github.io/matematykazen/widgets/_helpers.js` | 404 |
+| `https://henrich2137.github.io/matematykazen/widgets/_registry.js` | 404 |
+| `https://henrich2137.github.io/matematykazen/widgets/osLiczbowa.js` | 200 |
+
+Brak `_registry.js` → `WIDZETY is not defined` → każde zadanie z widżetem
+degraduje się (od commita 33c1740 do placeholdera zamiast wywalać całą listę),
+stąd „zadania bez przycisku rozwiązanie/podpowiedź". Lokalnie
+(`python -m http.server`) wszystko działa, bo tam nie ma Jekylla — dlatego
+objaw wyglądał na mobile-only.
+
+**Fix:** pusty plik `.nojekyll` w rootcie repo (wyłącza przetwarzanie Jekyllem,
+Pages serwuje pliki 1:1). Alternatywa (nieużyta): zmiana nazw na
+`helpers.js`/`registry.js` — `.nojekyll` chroni też przyszłe pliki z `_`.
