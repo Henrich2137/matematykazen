@@ -20,4 +20,3 @@ Zasady:
 - [ocenianie-cichy-blad-zapisu.md](ocenianie-cichy-blad-zapisu.md) — `ustawFazeOceniania()` cicho połyka błędy zapisu do localStorage
 - [wskazniki-reload-faza-oceniania.md](wskazniki-reload-faza-oceniania.md) — wskaźniki „oceń się" znikają po odświeżeniu strony po egzaminie
 - [egzamin-zegar-toggle.md](egzamin-zegar-toggle.md) — toggle widoczności zegara w trybie egzaminu
-- [egzamin-tablica-auto-zamkniecie.md](egzamin-tablica-auto-zamkniecie.md) — tablica wzorów ma się wyłączać automatycznie po zakończeniu egzaminu
