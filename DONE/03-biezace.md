@@ -37,6 +37,15 @@ przez Henricha po wklejeniu prawdziwego endpointu: realna wysyłka i e-mail powi
 Dokumentacja: ARCHITECTURE.md (nowa sekcja „Zgłaszanie błędów"), ARCHITECTURE_CSS.md, CLAUDE.md
 (kolejność ładowania app/*.js).
 
+[ZROBIONE] (2026-07-24, Sonnet) — STYL PRZYCISKÓW MENU + WYRÓWNANIE „SPRAWDŹ" (TODO.md
+„Dla Sonneta"). (1) #natychmiastowa-toggle i #sprawdz-wszystkie brakowały we wspólnym
+selektorze stylującym przyciski #bar-menu (sheet.css ~103-110 obok #theme-toggle itd.) i
+renderowały się jako gołe przyciski przeglądarki — dopisane do tego selektora. (2)
+.button-container .answer-check-floating (pływający przycisk „sprawdź") miał top:0
+względem .answers-container, a przyciski odpowiedzi mają margin-top:8px — przez to
+„sprawdź" wisiał 8px wyżej. Zmiana top:0 → top:8px wyrównuje górne krawędzie (sprawdzone
+bounding-boxami w Playwright, desktop i ≤900px flow-layout).
+
 [ZROBIONE] (2026-07-23, Opus) — TOGGLE „natychmiastowa poprawność" + przyciski „sprawdź"
 (TODO.md: „dodać w opcjach toggle …"). Nowe ustawienie GLOBALNE (localStorage
 `matematykazen-natychmiastowa-poprawnosc`, bez sufiksu arkusza; state.js:
