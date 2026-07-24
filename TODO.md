@@ -18,7 +18,12 @@ Dla Sonneta na effort High
   * dodać działający toggle "widoczność zegara: włączony/wyłączony" w menu, globalnie w localStorage (issues/egzamin-zegar-toggle.md)
 
 Dla Opusa na effort High:
-- Stworzyć przycisk "zgłoś błąd w zadaniu" i odpowiedni formularz. Formspree / Getform ale wewnątrz strony (submit przez fetch (AJAX) czy coś) można jeszcze to doprecyzować albo zmienić troche koncepcje.
+- Stworzyć "zgłoś błąd w zadaniu": dyskretny link tekstowy pod każdym zadaniem + toggle w menu „⋯" do wyłączenia (localStorage, wzorem innych toggle'ów).
+  * Formularz przez Formspree, submit przez fetch/AJAX. Endpoint (`https://formspree.io/f/xxxxxxxx`) dostaniesz od Henricha po założeniu konta — dopytaj się o niego, nie zgaduj.
+  * Auto-dołączone dane (user nic nie wpisuje): numer zadania + arkusz, URL, tryb jasny/ciemny, tryb egzamin/ćwiczenia, user-agent, cała zawartość localStorage.
+  * Wszystkie pola opcjonalne (łącznie z opisem błędu — samo kliknięcie z auto-danymi też ma sens), oprócz e-maila wyraźnie oznaczonego jako opcjonalny; reszta pól bez gwiazdek, chyba że jednak coś wymagane — oznacz to * i napisz wyraźnie.
+  * Antyspam: honeypot + lekki throttling (np. blokada wysyłki częściej niż raz/minutę, zapamiętane w localStorage) — Formspree free tier ma limit 50 zgłoszeń/miesiąc.
+  * Po wysłaniu: krótki toast "Dziękujemy, zgłoszenie wysłane", bez przeładowania strony.
 
 <br>
 
@@ -65,7 +70,6 @@ INNE NOTATKI:
   * przyciski Pokaż tablice wzorów itd schowane w trzech kropkach a okna z pdf odpalają się albo na full screen albo otwierają pdf w nowym oknie przeglądrki lub w ogóle w nowej "aplikacji" jeśli tak się da. mogą też odpalać pdf w przeglądarce pdf w tel jeśli to nie z byt skomplkowane
   * Przycisk pokaż wybrane wzory się nie wyświetla
 
-- Zgłaszanie błędów - Formspree / Getform ale wewnątrz strony (submit przez fetch (AJAX) czy coś)
 - Analityka - GoatCounter
 - W index.html dodać sekcję o autorze i link do patronite
 
