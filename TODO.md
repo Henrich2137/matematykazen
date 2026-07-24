@@ -29,11 +29,11 @@ NIE REALIZUJ
 
 DLA HENRICHA:
 
-- skonfigurować formspree (formularze) — kod „zgłoś błąd" JEST GOTOWY (app/report.js). Zostaje tylko:
+- Skonfigurować formspree (formularze błędów) - kod JS „zgłoś błąd" jest gotowy(app/report.js). Zostaje tylko:
   * założyć konto na formspree.io
   * utworzyć formularz i wkleić jego endpoint (`https://formspree.io/f/xxxxxxxx`) w miejsce stałej `FORMSPREE_ENDPOINT = "TODO-WKLEJ-ENDPOINT-FORMSPREE"` na górze app/report.js. Do tego czasu wysyłka pokazuje komunikat „nie skonfigurowane".
 
-- Obczaić analitykę, czyli śledzenie ilości i zaangażowania użytkowników (może da się jakoś przez githuba)
+- Obczaić analitykę, czyli śledzenie ilości i zaangażowania użytkowników. Warto rozważyć GoatCounter.
 
 - Przerenderować w Manimie ostatni krok zad 2 (zad2/zad2rozw_step6.mp4): klatka końcowa pokazuje 5⁻⁴, a poprawny wynik to 5⁴ (5⁻¹ · 5⁵ = 5⁴). Komentarz pod filmem tymczasowo prostuje błąd.
 
@@ -63,8 +63,6 @@ INNE NOTATKI:
 - Na telefonie domyślnie:
   * wyłączone punkty
   * przyciski „Pokaż tablice wzorów" i „Pokaż zasady oceniania": pdf powinny odpalać się albo na full screen, albo otwierać pdf w nowej karcie/oknie przeglądarki. Mogą też odpalać pdf w przeglądarce pdf w telefonie, jeśli to nie zbyt skomplikowane.
-
-- Analityka - GoatCounter
 
 - W index.html dodać sekcję o autorze i link do Patronite
 
