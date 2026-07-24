@@ -1,7 +1,7 @@
 Oto plik który tworzy Henrich (ja, użytkownik).
 
 DO REALIZACJI
-<br> Jeżeli nie masz co robić to rób stąd.
+<br> Jeżeli nie masz co robić, to rób stąd.
 
 Dla Sonneta na effort High
 (brak — wszystko zrobione, patrz DONE/)
@@ -12,13 +12,15 @@ Dla Sonneta na effort High
 NIE REALIZUJ
 <br> czyli nieskonkretyzowane
 
-- squah grup starych commitów zrobionych automatycznie przez gitdoc
+- squash grup starych commitów zrobionych automatycznie przez gitdoc
 
 - dodanie rozwiązań do matury 2026
 
-- zadania otwarte powinny też mieć okienko normalizujące i sprawdzające wpisaną odpowiedź. Do tego można rozpisać i dorobić donich pytania w stylu "Czy masz opisana długość boku BC?" które wynikają z zasad oceniania i ułatiwają ustalenie ilości punktów. przy nich można dać gwiazdkę, że trzeba każdy przypadek sprawdzić indywidualnie i autor strony nie jest egzaminatorem. 
+- Zadania otwarte powinny też mieć okienko normalizujące i sprawdzające wpisaną odpowiedź.
+  * Do tego można rozpisać i dorobić do nich pytania w stylu „Czy masz opisaną długość boku BC?", które wynikają z zasad oceniania i ułatwiają ustalenie ilości punktów.
+  * Przy nich można dać gwiazdkę, że trzeba każdy przypadek sprawdzić indywidualnie i autor strony nie jest egzaminatorem.
 
-- do sekcji "oceń się" powinno być dodane kryteria sukcesu dopiero po kliknięciu rozwiązania. Ale jeszcze nie mam pomysłu jak to skomponować aby miało sens.
+- Do sekcji „oceń się" powinno być dodane kryteria sukcesu dopiero po kliknięciu rozwiązania. Ale jeszcze nie mam pomysłu, jak to skomponować, aby miało sens.
 
 
 
@@ -27,57 +29,61 @@ NIE REALIZUJ
 
 DLA HENRICHA:
 
-- skonfigurować formspree (formularze) — kod „zgłoś błąd" JEST GOTOWY (app/report.js). Zostaje tylko: 
+- skonfigurować formspree (formularze) — kod „zgłoś błąd" JEST GOTOWY (app/report.js). Zostaje tylko:
   * założyć konto na formspree.io
   * utworzyć formularz i wkleić jego endpoint (`https://formspree.io/f/xxxxxxxx`) w miejsce stałej `FORMSPREE_ENDPOINT = "TODO-WKLEJ-ENDPOINT-FORMSPREE"` na górze app/report.js. Do tego czasu wysyłka pokazuje komunikat „nie skonfigurowane".
 
-- Obczaić analitykę czyli śledzenie ilości i zaangażowania użytkowników (moze da sięjakoś przez githuba)
+- Obczaić analitykę, czyli śledzenie ilości i zaangażowania użytkowników (może da się jakoś przez githuba)
 
 - Przerenderować w Manimie ostatni krok zad 2 (zad2/zad2rozw_step6.mp4): klatka końcowa pokazuje 5⁻⁴, a poprawny wynik to 5⁴ (5⁻¹ · 5⁵ = 5⁴). Komentarz pod filmem tymczasowo prostuje błąd.
 
-- Wykminić jak zrobić grafiki do dark mode, można np masowo odwrócić kolory i zmienić krzywą tak, aby zamiast czarnego tła był odpowiedni kolor szarego. (Tańszy tymczasowy fix: CSS filter na `.question img`/wideo — patrz issues/dark-mode-obrazki-wideo.md)
+- Wykminić, jak zrobić grafiki do dark mode, można np. masowo odwrócić kolory i zmienić krzywą tak, aby zamiast czarnego tła był odpowiedni kolor szarego. (Tańszy tymczasowy fix: CSS filter na `.question img`/wideo — patrz issues/dark-mode-obrazki-wideo.md)
 
 <br>
 
 
 INNE NOTATKI:
 
-- pokminić nad kolejnością przycisków w menu
+- Pokminić nad kolejnością przycisków w menu
 
-- Poprosić claude aby zmienił czas egzaminu na absurdalnie krótki i/lub dodał toggle trybu testowego który to robi abym mógł przetestować koniec egzaminu
+- Poprosić Claude, aby zmienił czas egzaminu na absurdalnie krótki i/lub dodał toggle trybu testowego, który to robi, abym mógł przetestować koniec egzaminu
 
-- dodać toggle "chowający się panel górny: włączony/wyłączony" (możesz wymyśleć lepszą nazwę), ta opcja ma być domyślnie włączona na telefonie. Top-bar powiniene się chować po scrolowaniu w dół i pojawiać przy skrolowaniu w górę lub gdy pociągnie się z górnej krawędzi.
+- Dodać toggle „chowający się panel górny: włączony/wyłączony" (możesz wymyśleć lepszą nazwę).
+  * Ta opcja ma być domyślnie włączona na telefonie.
+  * Top-bar powinien się chować po scrollowaniu w dół i pojawiać przy scrollowaniu w górę lub gdy pociągnie się z górnej krawędzi.
 
-- Tryb egzaminu nie powinien być tak "schowany" w opcjach. Moze pod tytułem zrobić zamiast stałego napisu "tryb ćwiczeniowy" zrobić toggle między dwoma trybami.
+- Tryb egzaminu nie powinien być tak „schowany" w opcjach. Może pod tytułem zrobić zamiast stałego napisu „tryb ćwiczeniowy" toggle między dwoma trybami.
 
-- na telefonie pdfy się nie ładują (tablica i zasady oceniania). Podczas naprawy warto sprawić aby odpalały się one nie w okienku ale wypełniały całą stronę z krzyżykiem w rogu. Jeżeli nie uda się tego naprawić to należy usunąć tę funkcjonalność z wersji mobilnej.
+- Na telefonie pdfy się nie ładują (tablica i zasady oceniania).
+  * Podczas naprawy warto sprawić, aby odpalały się one nie w okienku, ale wypełniały całą stronę z krzyżykiem w rogu.
+  * Jeżeli nie uda się tego naprawić, to należy usunąć tę funkcjonalność z wersji mobilnej.
 
-- ZMIANA UI: Wywalić top-bar i przenieśc wszystko na rozwijany pasek boczny po lewej który można łatwo schować, aby widzieć tylko zadania i włączone elementy takie jak tablica, punktacja itd.
+- ZMIANA UI: Wywalić top-bar i przenieść wszystko na rozwijany pasek boczny po lewej, który można łatwo schować, aby widzieć tylko zadania i włączone elementy takie jak tablica, punktacja itd.
 
-- Na telefonie defaltowo:
+- Na telefonie domyślnie:
   * wyłączone punkty
-  * przyciski "Pokaż tablice wzorów" i "Pokaż zasady odeniania": pdf powinny odpalać się albo na full screen albo otwierać pdf w nowej karcie/oknie przeglądrki. Mogą też odpalać pdf w przeglądarce pdf w tel jeśli to nie zbyt skomplkowane.
+  * przyciski „Pokaż tablice wzorów" i „Pokaż zasady oceniania": pdf powinny odpalać się albo na full screen, albo otwierać pdf w nowej karcie/oknie przeglądarki. Mogą też odpalać pdf w przeglądarce pdf w telefonie, jeśli to nie zbyt skomplikowane.
 
 - Analityka - GoatCounter
 
-- W index.html dodać sekcję o autorze i link do patronite
+- W index.html dodać sekcję o autorze i link do Patronite
 
-- przycisk rozpocznij próbny egzamin powiniene być zablokowany a nie niewidoczny na stronie z błędem arkusz (minor thing)
+- Przycisk „rozpocznij próbny egzamin" powinien być zablokowany, a nie niewidoczny na stronie z błędem arkusza (minor thing)
 
 <br><br><br>
 
 
-<h3>DO REALZACJI Dopisane przez CLAUDA</h3>
+<h3>DO REALIZACJI Dopisane przez CLAUDA</h3>
 Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz issues/README.md.
 
 TRYB EGZAMINU I PAMIĘĆ PRZEGLĄDARKI:
 
-- Dwie karty tego samego arkusza blokują "zakończ egzamin" (issues/dwie-karty-tryb-egzaminu.md) — sprawdzone 2026-07-24, NADAL nie naprawione
+- Dwie karty tego samego arkusza blokują „zakończ egzamin" (issues/dwie-karty-tryb-egzaminu.md) — sprawdzone 2026-07-24, NADAL nie naprawione
 
 DARK MODE — WYGLĄD:
 
 - Dwie zmienne CSS użyte niezgodnie z przeznaczeniem na stronie głównej (issues/dark-mode-css-zmienne-landing.md)
-- Kropki wskaźników "gumkują" przy scrollowaniu (issues/dark-mode-wskazniki-scroll.md)
+- Kropki wskaźników „gumkują" przy scrollowaniu (issues/dark-mode-wskazniki-scroll.md)
 
 DOKUMENTACJA:
 
