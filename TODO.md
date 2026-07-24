@@ -5,7 +5,6 @@ Jeżeli nie masz co robić to rób stąd.
 
 Dla Sonneta na effort High
 - tryb egzaminu
-  * Przyciski takie jak rozpocznij próbny egzamin nie powinny być widoczne na stronce z komunikatem błędny link (minor thing)
   * dodać działający toggle "widoczność zegara: włączony/wyłączony" w menu, globalnie w localStorage (issues/egzamin-zegar-toggle.md)
 
 <br>
