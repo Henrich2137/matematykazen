@@ -10,7 +10,7 @@ Dla Sonneta
 
 - Gdy przyciski się nie mieszczą na górnym panelu powinny trafiać do menu. np na telefonie.
 
-- Schować przycisk pokaż tablice wzorów oraz pokaż zasady oceniania do menu. Zostawić przyciski karty wzorów widoczny jeżeli użytkownik korzysta z komputera (albo nie korzysta z telefonu)
+- Schować przycisk pokaż tablice wzorów oraz pokaż zasady oceniania do menu.
 
 - tryb egzaminu
   * tablica wzorów powinna się automatycznie wyłączać po zakończeniu egzaminu
