@@ -4,6 +4,39 @@ spojrzenie na projekt, rozwiazanie trudniejszego problemu albo sprawdzenie, czy/
 kiedys rozwiazano. Zasada podzialu i indeks: DONE/README.md.
 Zakres: 2026-07-13 (WYSOKI PRIORYTET) - 2026-07-21. Partia jeszcze niezmergowana do mastera.
 
+[ZROBIONE] (2026-07-24, Opus) — „ZGŁOŚ BŁĄD W ZADANIU" (TODO.md, „Dla Opusa na effort High").
+Nowy plik app/report.js (ładowany w template.html tuż PRZED render.js, bo loadExercises woła
+z niego dodajLinkZgloszenia). Pod każdym zadaniem dyskretny link tekstowy .report-error-link
+(„zgłoś błąd w tym zadaniu", numer zadania z treści przez /Zadanie (\d+)/, jak wskaźniki
+„oceń się"). Klik otwiera JEDEN wspólny modal (#zglos-blad-overlay, statyczny w template.html,
+styl jak #egzamin-podsumowanie; JS wypełnia numer zadania i podgląd danych). Toggle w menu ⋯
+(#zglos-blad-toggle) — globalny (localStorage matematykazen-zglaszanie-bledow, bez sufiksu
+arkusza, tylko „0" wyłącza; wzorem #natychmiastowa-toggle), chowa linki przez body.bez-zglaszania.
+Wysyłka do Formspree fetchem (AJAX, bez reloadu). BLOKER: FORMSPREE_ENDPOINT na górze report.js
+to PLACEHOLDER „TODO-WKLEJ-ENDPOINT-FORMSPREE" — Henrich musi założyć konto na formspree.io i
+wkleić adres https://formspree.io/f/xxxxxxxx; do tego czasu submit pokazuje jasny toast „nie
+skonfigurowane" (regex na endpoint), NIE ustawia throttlingu. Wszystkie pola OPCJONALNE (opis +
+e-mail, oba oznaczone „(opcjonalnie)"), pusty submit z samymi auto-danymi też działa. Auto-dane
+(user nic nie wpisuje): numer zadania, SHEET_ID, location.href, efektywny motyw (aktualnyMotyw:
+rozróżnia ręczny jasny/ciemny od auto i co auto realnie znaczy), tryb egzamin/ćwiczenia,
+navigator.userAgent, cała zawartość localStorage (JSON.stringify wszystkich kluczy) — pokazane
+w rozwijanym <details> dla transparentności. Antyspam: honeypot input[name=_gotcha] (natywny w
+Formspree), ukryty off-screen przez CSS (.zglos-blad-hp left:-9999px, NIE display:none, żeby
+boty go wypełniały) — wypełniony = udajemy sukces i nic nie wysyłamy; + throttling raz/min
+(matematykazen-zglos-ostatnia, chroni limit 50/mies. free tier), znacznik ustawiany tylko gdy
+żądanie DOTARŁO do serwera (nie przy błędzie sieci ani placeholderze). Toast (.zglos-toast,
+zielona ramka --correct = sukces „Dziękujemy, zgłoszenie wysłane", czerwona --incorrect = błąd)
+— osobne komunikaty dla res.ok, non-ok (np. 429 = limit), błędu sieci, throttlingu i placeholdera;
+nigdy cicha porażka. Cały nowy CSS (sekcja na dole style/sheet.css) używa WYŁĄCZNIE zmiennych z
+base.css → jasny i ciemny motyw działają automatycznie. Testy Playwright (2024-grudzien, 28
+asercji): link pod każdym zadaniem, modal, auto-dane, honeypot off-screen + wypełniony,
+placeholder-submit, Escape, toggle+persist+reload, throttling, dark mode (kolor z var), tryb
+egzaminu (link działa, tryb w danych), oraz z zamockowanym endpointem: POST z właściwymi polami
++ toast sukcesu + throttle set, oraz 429 → toast błędu, modal zostaje otwarty. Do zweryfikowania
+przez Henricha po wklejeniu prawdziwego endpointu: realna wysyłka i e-mail powiadomienia.
+Dokumentacja: ARCHITECTURE.md (nowa sekcja „Zgłaszanie błędów"), ARCHITECTURE_CSS.md, CLAUDE.md
+(kolejność ładowania app/*.js).
+
 [ZROBIONE] (2026-07-23, Opus) — TOGGLE „natychmiastowa poprawność" + przyciski „sprawdź"
 (TODO.md: „dodać w opcjach toggle …"). Nowe ustawienie GLOBALNE (localStorage
 `matematykazen-natychmiastowa-poprawnosc`, bez sufiksu arkusza; state.js:

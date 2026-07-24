@@ -105,7 +105,8 @@
 #show-all-solutions,
 #reset-scores,
 #egzamin-start,
-#wskazniki-tryb-toggle {
+#wskazniki-tryb-toggle,
+#zglos-blad-toggle {
     padding: 5px 10px;
     border: 2px solid var(--border);
     background-color: var(--bg);
@@ -852,4 +853,219 @@ input::-webkit-inner-spin-button {
 .data-table th {
     background-color: var(--bg-subtle);
     text-align: left;
+}
+
+/* ===== ZGŁASZANIE BŁĘDÓW W ZADANIU =====
+   Dyskretny link pod zadaniem + modal z formularzem (app/report.js). Wszystkie
+   kolory idą przez zmienne z base.css, więc jasny/ciemny motyw działa bez zmian.
+   Toggle w menu „⋯" (#zglos-blad-toggle) dodaje body.bez-zglaszania, która chowa
+   wszystkie linki. */
+
+/* Link „zgłoś błąd w tym zadaniu" — tekstowy, wzorem badge'a .exercise-score
+   trzyma się przygaszonej kolorystyki, żeby nie odciągał uwagi od zadania. */
+.report-error-link {
+    display: block;
+    margin-top: 24px;
+    padding: 0;
+    border: none;
+    background: none;
+    font-family: inherit;
+    font-size: 13px;
+    color: var(--text-faint);
+    cursor: pointer;
+}
+.report-error-link:hover {
+    color: var(--text-muted);
+    text-decoration: underline;
+}
+/* Globalne wyłączenie linku (toggle w menu ⋯). */
+body.bez-zglaszania .report-error-link {
+    display: none;
+}
+
+/* Nakładka modala — bliźniacza do #egzamin-podsumowanie (JS przełącza display
+   na flex). */
+#zglos-blad-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 21; /* nad nakładką podsumowania egzaminu (20) */
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--overlay-bg);
+    padding: 20px;
+    box-sizing: border-box;
+}
+.zglos-blad-okno {
+    position: relative;
+    width: 520px;
+    max-width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 26px 34px;
+    border: 1px solid var(--border-window);
+    background-color: var(--bg);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.10);
+    text-align: left;
+    font-size: 16px;
+    line-height: 1.55;
+    box-sizing: border-box;
+}
+.zglos-blad-okno h3 {
+    margin: 0 40px 4px 0; /* miejsce na krzyżyk w prawym górnym rogu */
+}
+/* Krzyżyk zamykający — jak w panelach PDF, ale mniejszy (modal, nie okno). */
+.zglos-blad-x {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 1px solid var(--border-close);
+    border-radius: 3px;
+    background-color: var(--bg);
+    font-size: 16px;
+    line-height: 1;
+    color: var(--text-muted-2);
+    cursor: pointer;
+}
+.zglos-blad-x:hover {
+    background-color: var(--bg-hover);
+}
+.zglos-blad-kontekst {
+    margin: 0 0 10px;
+    font-size: 14px;
+    color: var(--text-faint);
+}
+.zglos-blad-info {
+    margin: 0 0 16px;
+    font-size: 14px;
+    color: var(--text-muted-2);
+}
+.zglos-blad-label {
+    display: block;
+    margin: 12px 0 4px;
+    font-size: 14px;
+    color: var(--text-muted-2);
+}
+/* Pola formularza — jawne width:100%, bo globalna reguła `input { width: 24px }`
+   inaczej ściska pole e-mail do niczego (ten sam problem, co .fill-in-input). */
+.zglos-blad-okno textarea,
+.zglos-blad-okno input[type="email"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 10px;
+    border: 1px solid var(--border-strong);
+    border-radius: 3px;
+    background-color: var(--bg);
+    font-family: inherit;
+    font-size: 15px;
+    text-align: left; /* nadpisuje globalne `input { text-align: center }` */
+    color: var(--text);
+}
+.zglos-blad-okno textarea {
+    resize: vertical;
+    min-height: 70px;
+}
+.zglos-blad-okno textarea:focus,
+.zglos-blad-okno input[type="email"]:focus {
+    outline: none;
+    border-color: var(--accent-blue-strong);
+}
+/* Honeypot: obecny w DOM, ale poza ekranem — ludzie go nie widzą, boty wypełnią. */
+.zglos-blad-hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+/* Rozwijany podgląd danych technicznych (transparentność). */
+.zglos-blad-dane {
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--text-faint);
+}
+.zglos-blad-dane summary {
+    cursor: pointer;
+}
+.zglos-blad-dane pre {
+    max-height: 180px;
+    margin: 8px 0 0;
+    overflow: auto;
+    padding: 8px 10px;
+    border: 1px solid var(--border-subtle);
+    background-color: var(--bg-code);
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--text-muted-2);
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+.zglos-blad-akcje {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+/* „Anuluj" — lekki tekstowy przycisk; „Wyślij" — obwiedziony, wzorem
+   #egzamin-koniec-bar (ta sama ramka/padding). */
+.zglos-blad-anuluj {
+    padding: 8px 14px;
+    border: none;
+    background: none;
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--text-muted-2);
+    cursor: pointer;
+}
+.zglos-blad-anuluj:hover {
+    text-decoration: underline;
+}
+.zglos-blad-wyslij {
+    padding: 8px 16px;
+    border: 2px solid var(--border);
+    border-radius: 3px;
+    background-color: var(--bg);
+    font-family: inherit;
+    font-size: 15px;
+    white-space: nowrap;
+    color: var(--text);
+    cursor: pointer;
+}
+.zglos-blad-wyslij:hover {
+    border-color: var(--border-strong);
+}
+.zglos-blad-wyslij:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+/* Toast po wysłaniu — na dole ekranu, pojawia się i znika przez opacity.
+   Sukces w zielonej ramce (--correct), błąd w czerwonej (--incorrect). */
+.zglos-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    z-index: 22;
+    max-width: calc(100vw - 40px);
+    padding: 12px 20px;
+    border: 1px solid var(--correct);
+    border-radius: 4px;
+    background-color: var(--bg);
+    font-size: 15px;
+    color: var(--text);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+    transform: translate(-50%, 12px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.zglos-toast.zglos-toast-widoczny {
+    transform: translate(-50%, 0);
+    opacity: 1;
+}
+.zglos-toast-blad {
+    border-color: var(--incorrect);
 }

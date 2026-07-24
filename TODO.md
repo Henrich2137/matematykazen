@@ -17,16 +17,6 @@ Dla Sonneta na effort High
   * Przyciski takie jak rozpocznij próbny egzamin nie powinny być widoczne na stronce z komunikatem błędny link (minor thing)
   * dodać działający toggle "widoczność zegara: włączony/wyłączony" w menu, globalnie w localStorage (issues/egzamin-zegar-toggle.md)
 
-Dla Opusa na effort High:
-- Stworzyć "zgłoś błąd w zadaniu": dyskretny link tekstowy pod każdym zadaniem + toggle w menu „⋯" do wyłączenia (localStorage, wzorem innych toggle'ów).
-  * Formularz przez Formspree, submit przez fetch/AJAX. Endpoint (`https://formspree.io/f/xxxxxxxx`) dostaniesz od Henricha po założeniu konta — dopytaj się o niego, nie zgaduj.
-  * Auto-dołączone dane (user nic nie wpisuje): numer zadania + arkusz, URL, tryb jasny/ciemny, tryb egzamin/ćwiczenia, user-agent, cała zawartość localStorage.
-  * Wszystkie pola opcjonalne (łącznie z opisem błędu — samo kliknięcie z auto-danymi też ma sens), oprócz e-maila wyraźnie oznaczonego jako opcjonalny; reszta pól bez gwiazdek, chyba że jednak coś wymagane — oznacz to * i napisz wyraźnie.
-  * Antyspam: honeypot + lekki throttling (np. blokada wysyłki częściej niż raz/minutę, zapamiętane w localStorage) — Formspree free tier ma limit 50 zgłoszeń/miesiąc.
-  * Po wysłaniu: krótki toast "Dziękujemy, zgłoszenie wysłane", bez przeładowania strony.
-  * Fallback przy błędzie/limicie Formspree (np. limit 50/mies. wyczerpany, brak neta): pokaż jasny komunikat błędu zamiast cichej porażki.
-  * Nowy link/toast/toggle mają korzystać z istniejących zmiennych CSS z base.css (jasny/ciemny motyw) — żadnych nowych hardkodowanych kolorów.
-
 <br>
 
 
@@ -48,7 +38,7 @@ czyli nieskonkretyzowane
 
 DLA HENRICHA:
 
-- skonfigurować formspree (formularze)
+- skonfigurować formspree (formularze) — kod „zgłoś błąd" JEST GOTOWY (app/report.js). Zostaje tylko: założyć konto na formspree.io, utworzyć formularz i wkleić jego endpoint (`https://formspree.io/f/xxxxxxxx`) w miejsce stałej `FORMSPREE_ENDPOINT = "TODO-WKLEJ-ENDPOINT-FORMSPREE"` na górze app/report.js. Do tego czasu wysyłka pokazuje komunikat „nie skonfigurowane".
 
 - Obczaić analitykę czyli śledzenie ilości i zaangażowania użytkowników (moze da sięjakoś przez githuba)
 
