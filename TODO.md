@@ -24,6 +24,8 @@ Dla Opusa na effort High:
   * Wszystkie pola opcjonalne (łącznie z opisem błędu — samo kliknięcie z auto-danymi też ma sens), oprócz e-maila wyraźnie oznaczonego jako opcjonalny; reszta pól bez gwiazdek, chyba że jednak coś wymagane — oznacz to * i napisz wyraźnie.
   * Antyspam: honeypot + lekki throttling (np. blokada wysyłki częściej niż raz/minutę, zapamiętane w localStorage) — Formspree free tier ma limit 50 zgłoszeń/miesiąc.
   * Po wysłaniu: krótki toast "Dziękujemy, zgłoszenie wysłane", bez przeładowania strony.
+  * Fallback przy błędzie/limicie Formspree (np. limit 50/mies. wyczerpany, brak neta): pokaż jasny komunikat błędu zamiast cichej porażki.
+  * Nowy link/toast/toggle mają korzystać z istniejących zmiennych CSS z base.css (jasny/ciemny motyw) — żadnych nowych hardkodowanych kolorów.
 
 <br>
 
@@ -45,6 +47,8 @@ czyli nieskonkretyzowane
 
 
 DLA HENRICHA:
+
+- skonfigurowaćformularze formspree=
 
 - Obczaić analitykę czyli śledzenie ilości i zaangażowania użytkowników (moze da sięjakoś przez githuba)
 
