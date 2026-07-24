@@ -37,6 +37,62 @@ przez Henricha po wklejeniu prawdziwego endpointu: realna wysyłka i e-mail powi
 Dokumentacja: ARCHITECTURE.md (nowa sekcja „Zgłaszanie błędów"), ARCHITECTURE_CSS.md, CLAUDE.md
 (kolejność ładowania app/*.js).
 
+[ZROBIONE] (2026-07-24, Sonnet) — TOGGLE „WIDOCZNOŚĆ ZEGARA" W MENU EGZAMINU (TODO.md
+„Dla Sonneta" → tryb egzaminu; issues/egzamin-zegar-toggle.md, teraz usunięty). Nowy
+przycisk `#zegar-toggle` w `#bar-menu` (template.html), wzorowany 1:1 na
+`#natychmiastowa-toggle`: `KLUCZ_ZEGAR_WIDOCZNY` + `czyZegarWidoczny()` w app/state.js
+(GLOBALNE ustawienie w localStorage, bez sufiksu SHEET_ID — brak wpisu = domyślnie
+widoczny, tylko jawne "0" wyłącza). `odswiezWidocznoscZegara()` w app/exam.js przełącza
+klasę `.zegar-ukryty` na `#egzamin-timer` i etykietę przycisku; wołana raz na starcie i po
+kliknięciu. CSS: `body.tryb-egzaminu #egzamin-timer.zegar-ukryty { display: none; }`
+(exam.css) — sam zegar (tickExam) dalej tyka i kończy egzamin po czasie w tle, toggle
+zmienia tylko widoczność spana. W odróżnieniu od reszty opcji menu (`OPCJE_MENU_EGZAMIN`),
+`#zegar-toggle` NIE jest blokowany w trakcie egzaminu — to jedyny sensowny moment na jego
+użycie. Sprawdzone Playwright: etykieta przed/po starcie egzaminu, toggle chowa/pokazuje
+`#egzamin-timer` (computed display), zegar dalej tyka (tekst zmienia się mimo ukrycia),
+ustawienie przetrwało reload strony.
+
+[ZROBIONE] (2026-07-24, Sonnet) — „ROZPOCZNIJ PRÓBNY EGZAMIN" W MENU UKRYTY PRZED
+WCZYTANIEM ARKUSZA (TODO.md „Dla Sonneta" → tryb egzaminu, „minor thing"). Kopia przycisku
+w stopce (`#egzamin-start-stopka`) już była gated przez `body.arkusz-wczytany`, ale wersja
+w menu ⋯ (`#egzamin-start`) nie — pokazywała się nawet na stronie „Błędny link" (zły
+`?arkusz=`). Dodano w exam.css `#bar-menu #egzamin-start { display: none; }` + `body.
+arkusz-wczytany #bar-menu #egzamin-start { display: block; }`. Podwójny `#id` w selektorze
+celowy: samo `#egzamin-start` ma niższą specyficzność niż `#bar-menu button` (sheet.css,
+`display: block`) i przegrywało mimo że exam.css ładuje się później — specyficzność liczy
+się przed kolejnością źródłową. Przycisk zostaje widoczny (wyszarzony) W TRAKCIE egzaminu,
+tak jak wcześniej (setExamMenuDisabled() w app/exam.js) — reguła ujawnienia nie ma
+`:not(.tryb-egzaminu)`. Sprawdzone Playwright: strona błędnego linku (menu bez przycisku),
+normalny arkusz (przycisk widoczny), w trakcie egzaminu (widoczny, disabled=true).
+
+[ZROBIONE] (2026-07-24, Sonnet) — TABLICA WZORÓW ZAMYKA SIĘ AUTOMATYCZNIE PO EGZAMINIE
+(TODO.md „Dla Sonneta" → tryb egzaminu; issues/egzamin-tablica-auto-zamkniecie.md, teraz
+usunięty). Panel `#tablica-wzorow-panel` zostawał otwarty (i przycisk z etykietą „▲
+Schowaj…") także w fazie „oceń się" po zakończeniu egzaminu, mimo że sam tryb egzaminu
+się kończył. `finishExam()` (app/exam.js) dostał, tuż po zdjęciu klasy
+`body.tryb-egzaminu`, sprawdzenie `tablicaPanel.style.display === "block"` i wywołanie
+`hideFormulasPanel()` (z app/panels.js — mimo że panels.js ładuje się PO exam.js,
+finishExam() wykonuje się dopiero po kliknięciu użytkownika, długo po tym jak wszystkie
+skrypty się już załadowały, więc funkcja jest dostępna). Sprawdzone Playwright: start
+egzaminu → otwarcie tablicy z menu → „zakończ egzamin” → panel `display:none`, a etykieta
+przycisku wraca do „▼ Pokaż tablice wzorów” (nie tylko display, cały stan przez
+hideFormulasPanel, nie ręczny reset style.display).
+
+[ZROBIONE] (2026-07-24, Sonnet) — #toggle-tablica/#toggle-zasady NA STAŁE W MENU ⋯
+(TODO.md „Dla Sonneta"; issues/pasek-przyciski-do-menu.md, teraz usunięty). Oba przyciski
+przeniesione z #bar-left/#bar-right (template.html) do #bar-menu, zawsze — bez różnicy
+desktop/telefon, bez media query. app/panels.js odwołuje się do nich przez
+getElementById, więc przeniesienie w DOM nie wymagało zmian w JS. CSS: dopisane do
+wspólnego selektora przycisków menu (sheet.css, obok #theme-toggle itd.), usunięta stara
+reguła #toggle-tablica/#toggle-zasady z min-width:200px (zbędna — #bar-menu button ma
+width:100%) oraz odpowiadający jej reset w responsive.css (@720px). To zastępuje też
+ogólniejszy punkt „przyciski niemieszczące się na pasku trafiają do menu" — po tej
+zmianie na pasku zostały tylko tytuł/wynik/⋯, które się zawsze mieszczą. Sprawdzone
+Playwright na desktop (1280px) i telefonie (400px): pasek bez zbędnych przycisków, menu
+otwiera oba toggle'e ze spójnym stylem, kliknięcie „pokaż tablice wzorów" z menu nadal
+otwiera panel PDF. Zaktualizowano ARCHITECTURE_CSS.md (opis #bar-left/#bar-right/#bar-menu,
+usunięte nieaktualne wzmianki o min-width:200px).
+
 [ZROBIONE] (2026-07-24, Sonnet) — STYL PRZYCISKÓW MENU + WYRÓWNANIE „SPRAWDŹ" (TODO.md
 „Dla Sonneta"). (1) #natychmiastowa-toggle i #sprawdz-wszystkie brakowały we wspólnym
 selektorze stylującym przyciski #bar-menu (sheet.css ~103-110 obok #theme-toggle itd.) i

@@ -4,8 +4,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 Jeżeli nie masz co robić to rób stąd.
 
 Dla Sonneta na effort High
-- tryb egzaminu
-  * dodać działający toggle "widoczność zegara: włączony/wyłączony" w menu, globalnie w localStorage (issues/egzamin-zegar-toggle.md)
+(brak — wszystko zrobione, patrz DONE/)
 
 <br>
 
