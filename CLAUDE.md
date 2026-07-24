@@ -48,3 +48,4 @@ No build or test tooling. **Serve the directory with a static file server** (e.g
 
 - Pushuj do najnowszej gałęzi z najnowszymi zmianami — nawet jeśli to jest `master` — zamiast tworzyć nową gałąź. Można to pominąć tylko jeśli użytkownik wyraźnie zażyczy sobie inaczej w prompcie.
 - Każdego commita rozpoczynaj prefiksem z nazwą modelu i poziomem wysiłku, który go wykonał, np. `Sonnet High Cloud: ...` lub `Opus Medium Cloud: ...`.
+- Nie zaglądaj do brancha `backup-przed-squash-gitdoc` (lokalnie ani `origin/`) — to tylko archiwalny backup sprzed squasha autozapisów gitdoc. Wyjątek: gdy chcesz sprawdzić bardzo szczegółową historię automatycznych commitów generowanych przez gitdoca.
