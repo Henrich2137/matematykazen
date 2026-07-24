@@ -10,6 +10,7 @@ Dla Sonneta na effort High
 - przycisk "zgłąś błąd w zadaniu" powinien:
   * mieć tekst "zgłąś błąd"
   * być na środku, a nie po lewej
+- Kropki wskaźników „gumkują" przy scrollowaniu — wyłączyć `transition` na `.wskaznik-otwarte` (style/exam.css:230) na czas aktywnego scrolla (klasa dodawana/zdejmowana w repozycjonujWskazniki(), app/indicators.js) i przywracać go po zatrzymaniu scrolla; szczegóły w issues/dark-mode-wskazniki-scroll.md
 
 Dla Opusa na effort High:
 - nic
@@ -89,7 +90,6 @@ TRYB EGZAMINU I PAMIĘĆ PRZEGLĄDARKI:
 DARK MODE — WYGLĄD:
 
 - Dwie zmienne CSS użyte niezgodnie z przeznaczeniem na stronie głównej (issues/dark-mode-css-zmienne-landing.md)
-- Kropki wskaźników „gumkują" przy scrollowaniu (issues/dark-mode-wskazniki-scroll.md)
 
 DOKUMENTACJA:
 
