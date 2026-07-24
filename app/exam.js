@@ -126,6 +126,12 @@ function finishExam(czasMinal) {
     updateModeSubtitle();
     setExamMenuDisabled(false);
 
+    // Tablica wzorów CKE zostaje dostępna W TRAKCIE egzaminu (jak na prawdziwej
+    // maturze), ale po jego zakończeniu nie ma już powodu trzymać ją otwartą —
+    // chowamy ją razem z resztą ukrytych podczas egzaminu elementów.
+    const tablicaPanel = document.getElementById("tablica-wzorow-panel");
+    if (tablicaPanel && tablicaPanel.style.display === "block") hideFormulasPanel();
+
     // Wynik z zadań zamkniętych (ocenianych automatycznie). Zadania otwarte
     // (selfScore) w egzaminie nie mają jak dostać punktów — samoocena była
     // schowana — więc rozliczamy je osobno, po egzaminie.
