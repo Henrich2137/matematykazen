@@ -4,6 +4,41 @@ spojrzenie na projekt, rozwiazanie trudniejszego problemu albo sprawdzenie, czy/
 kiedys rozwiazano. Zasada podzialu i indeks: DONE/README.md.
 Zakres: 2026-07-13 (WYSOKI PRIORYTET) - 2026-07-21. Partia jeszcze niezmergowana do mastera.
 
+[ZROBIONE] (2026-07-24, Sonnet) — 7 POPRAWEK Z „DLA SONNETA NA EFFORT HIGH" (TODO.md), zrealizowane
+po kolei w jednej sesji, node --check na wszystkich zmienionych plikach JS (report.js, indicators.js,
+theme.js, render.js) — build/testów brak w projekcie, dalsza weryfikacja wizualna w przeglądarce
+zalecana Henrichowi:
+1. Link „zgłoś błąd w tym zadaniu” → tekst skrócony do „zgłoś błąd” (app/report.js) i wyśrodkowany
+   (text-align: center na .report-error-link, style/sheet.css).
+2. Landing CSS: .landing-card border → var(--border) (było var(--bg-hover), token hover-tła nie do
+   ramek); .landing-footer color → var(--text-faint) (było var(--border-close), 3.0:1 w dark mode,
+   poniżej WCAG AA) [css, kontrast, landing] — issues/dark-mode-css-zmienne-landing.md.
+3. Kropki wskaźników „oceń się” gumkowały przy scrollu — transition: top restartował się co klatkę
+   rAF w repozycjonujWskazniki(). Nowa klasa body.wskazniki-scroll-aktywny (style/exam.css) wyłącza
+   transition na czas aktywnego scrolla; dodaje/zdejmuje ją app/indicators.js (oznaczScrollAktywny(),
+   debounce 150ms po ostatnim scroll evencie, celowo bez scrollend dla zgodności przeglądarek)
+   [css, egzamin, scroll] — issues/dark-mode-wskazniki-scroll.md.
+4. Cichy błąd zapisu w ustawFazeOceniania() (app/indicators.js) — catch teraz woła
+   pokazZglosToast("nie udało się zapisać ustawienia", true) zamiast połykać błąd localStorage
+   [localStorage, ui] — issues/ocenianie-cichy-blad-zapisu.md.
+5. Wskaźniki „oceń się” znikały po odświeżeniu strony w trakcie fazy oceniania — pokazWskaznikiOtwarte()
+   gasiło fazę zanim zadaniaOtwarte zdążyło się wypełnić przy starcie strony (lista pusta na starcie).
+   Teraz gasi fazę tylko gdy body.arkusz-wczytany (klasa z app/render.js) — inaczej zwraca bez gaszenia,
+   a startSheet() odtwarza wskaźniki poprawnie po renderze [egzamin, bugfix] —
+   issues/wskazniki-reload-faza-oceniania.md.
+6. Motyw jasny/ciemny rozjeżdżał się między kartami przeglądarki tej samej strony — app/theme.js
+   nasłuchuje teraz window "storage" (KLUCZ_MOTYWU) i przy zmianie w innej karcie woła
+   applyTheme(readTheme()) [motyw, cross-tab] — issues/motyw-rozjezdza-sie-miedzy-kartami.md. Zakres
+   celowo zawężony do motywu (bez ogólnego cross-tab helpera) — analogiczny problem dla trybu
+   egzaminu (issues/dwie-karty-tryb-egzaminu.md) NIE ruszony.
+7. Numer zadania gubił podnumer (12.1 vs 12.2 → oba „12”) — regex w app/render.js zmieniony z
+   /Zadanie\s*(\d+)/i na /Zadanie\s*([\d.]+)/i (łapie pełny numer z podnumerem). Dodana funkcja
+   numerZadania(exercise, index), użyta też w dwóch console.warn (correctAnswerIndex poza zakresem,
+   nieznany widżet), które wcześniej mylnie drukowały index+1 zamiast prawdziwego numeru CKE.
+   Sprawdzone: nic w app/indicators.js ani app/report.js nie zakłada, że numer jest liczbą całkowitą
+   (używany wyłącznie do wyświetlania) — bez zmian w exercises.json [bugfix, regex] —
+   issues/numer-zadania-podnumer.md.
+
 [ZROBIONE] (2026-07-24, Opus) — „ZGŁOŚ BŁĄD W ZADANIU" (TODO.md, „Dla Opusa na effort High").
 Nowy plik app/report.js (ładowany w template.html tuż PRZED render.js, bo loadExercises woła
 z niego dodajLinkZgloszenia). Pod każdym zadaniem dyskretny link tekstowy .report-error-link

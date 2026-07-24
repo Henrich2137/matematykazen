@@ -5,14 +5,8 @@ DO REALIZACJI
 Do przydzielenia:
 - Przycisk "sprawdź wszystkie odpowiedzi" powinien być szary/nieaktywny w trybie egzaminu
 
-Dla Sonneta na effort High
-1. Przycisk "zgłoś błąd" → tekst "zgłoś błąd" (app/report.js:243) i wyśrodkować (`text-align: center` na `.report-error-link`, style/sheet.css:858)
-2. Landing CSS używa złych zmiennych (kontrast WCAG) — `.landing-footer` (style/landing.css:90) → `var(--text-faint)` zamiast `--border-close`; `.landing-card` (style/landing.css:63) → `border: 1px solid var(--border)` zamiast `--bg-hover`. Szczegóły: issues/dark-mode-css-zmienne-landing.md
-3. Kropki wskaźników „gumkują" przy scrollowaniu — wyłączyć `transition` na `.wskaznik-otwarte` (style/exam.css:213) na czas aktywnego scrolla (klasa dodawana/zdejmowana w app/indicators.js, debounce ~150ms po ostatnim scroll evencie, bez `scrollend`) i przywracać go po zatrzymaniu scrolla; szczegóły w issues/dark-mode-wskazniki-scroll.md
-4. Cichy błąd zapisu w `ustawFazeOceniania()` (app/indicators.js:21-26) — w catch wywołać `pokazZglosToast("nie udało się zapisać ustawienia", true)` (istniejący toast z app/report.js). Szczegóły: issues/ocenianie-cichy-blad-zapisu.md
-5. Wskaźniki „oceń się" znikają po odświeżeniu po egzaminie — `pokazWskaznikiOtwarte()` (app/indicators.js:73-76) nie powinno gasić fazy, gdy arkusz jeszcze nie wyrenderowany; strażnik `document.body.classList.contains("arkusz-wczytany")` (klasa z app/render.js:715). Szczegóły: issues/wskazniki-reload-faza-oceniania.md
-6. Motyw rozjeżdża się między kartami — dodać w app/theme.js nasłuch `window.addEventListener("storage", ...)`: przy zmianie `KLUCZ_MOTYWU` w innej karcie wywołać `applyTheme(readTheme())`. Tylko to (bez ogólnego cross-tab helpera). Szczegóły: issues/motyw-rozjezdza-sie-miedzy-kartami.md
-7. [niski priorytet, dziś nieszkodliwe] Numer zadania gubi podnumer (12.1 vs 12.2) — zmienić regex w app/render.js:440 na `/Zadanie\s*([\d.]+)/i`; sprawdzić, czy nic nie zakłada, że `numer` jest liczbą całkowitą. Dane w exercises.json są poprawne (podnumerowane zadania mają `type: "fillIn"`, nie wchodzą dziś do `zadaniaOtwarte`) — to łatka regexu, nie poprawka danych. Szczegóły: issues/numer-zadania-podnumer.md
+Dla Sonneta na effort High:
+- nic (7 punktów zrobione 2026-07-24 — patrz DONE/03-biezace.md)
 
 Dla Opusa na effort High:
 - nic
