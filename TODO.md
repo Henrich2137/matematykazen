@@ -48,7 +48,7 @@ czyli nieskonkretyzowane
 
 DLA HENRICHA:
 
-- skonfigurowaćformularze formspree=
+- skonfigurować formspree (formularze)
 
 - Obczaić analitykę czyli śledzenie ilości i zaangażowania użytkowników (moze da sięjakoś przez githuba)
 
