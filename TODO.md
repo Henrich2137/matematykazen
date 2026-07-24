@@ -33,12 +33,14 @@ DLA HENRICHA:
 
 - Przerenderować w Manimie ostatni krok zad 2 (zad2/zad2rozw_step6.mp4): klatka końcowa pokazuje 5⁻⁴, a poprawny wynik to 5⁴ (5⁻¹ · 5⁵ = 5⁴). Komentarz pod filmem tymczasowo prostuje błąd.
 
-- Wykminić jak zrobić grafiki do dark mode, można np masowo odwrócić kolory i zmienić krzywą tak, aby zamiast czarnego tła był odpowiedni kolor szarego.
+- Wykminić jak zrobić grafiki do dark mode, można np masowo odwrócić kolory i zmienić krzywą tak, aby zamiast czarnego tła był odpowiedni kolor szarego. (Tańszy tymczasowy fix: CSS filter na `.question img`/wideo — patrz issues/dark-mode-obrazki-wideo.md)
 
 <br>
 
 
 INNE NOTATKI:
+
+- Poprosić claude aby zmienił czas egzaminu na absurdalnie krótki i/lub dodał toggle trybu testowego który to robi abym mógł przetestować koniec egzaminu
 
 - dodać toggle "chowający się panel górny: włączony/wyłączony" (możesz wymyśleć lepszą nazwę), ta opcja ma być domyślnie włączona na telefonie. Top-bar powiniene się chować po scrolowaniu w dół i pojawiać przy skrolowaniu w górę lub gdy pociągnie się z górnej krawędzi.
 
@@ -64,11 +66,10 @@ Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz is
 
 TRYB EGZAMINU I PAMIĘĆ PRZEGLĄDARKI:
 
-- Dwie karty tego samego arkusza blokują "zakończ egzamin" (issues/dwie-karty-tryb-egzaminu.md) (to np chyba zrobione)
+- Dwie karty tego samego arkusza blokują "zakończ egzamin" (issues/dwie-karty-tryb-egzaminu.md) — sprawdzone 2026-07-24, NADAL nie naprawione
 
 DARK MODE — WYGLĄD:
 
-- Obrazki CKE i filmy z Manima świecą na biało w ciemnym motywie (issues/dark-mode-obrazki-wideo.md)
 - Dwie zmienne CSS użyte niezgodnie z przeznaczeniem na stronie głównej (issues/dark-mode-css-zmienne-landing.md)
 - Kropki wskaźników "gumkują" przy scrollowaniu (issues/dark-mode-wskazniki-scroll.md)
 
