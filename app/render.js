@@ -31,7 +31,7 @@ function utworzPrzyciskSprawdz(answersContainer, onSprawdz) {
 // z fallbackiem na index+1 — używane w komunikatach console.warn poniżej, żeby
 // wskazywały prawdziwy numer CKE, a nie indeks w tablicy exercises.
 function numerZadania(exercise, index) {
-    const m = (exercise.question || "").match(/Zadanie\s*([\d.]+)/i);
+    const m = (exercise.question || "").match(/Zadanie\s*(\d+(?:\.\d+)?)/i);
     return m ? m[1] : String(index + 1);
 }
 
@@ -445,7 +445,7 @@ function loadExercises() {
             // w tablicy rozjeżdżają się z numeracją CKE przez zadania nadrzędne
             // (maxScore: 0) i wieloczęściowe (kilka wpisów „Zadanie 12/17").
             const qText = (exerciseClone.querySelector(".question")?.textContent) || "";
-            const mNumer = qText.match(/Zadanie\s*([\d.]+)/i);
+            const mNumer = qText.match(/Zadanie\s*(\d+(?:\.\d+)?)/i);
             const numer = mNumer ? mNumer[1] : String(index + 1);
             zadaniaOtwarte.push({ el: exerciseClone, stan, numer });
         } else if (type === "fillIn") {
