@@ -6,7 +6,7 @@ Do przydzielenia:
 - Przycisk "sprawdź wszystkie odpowiedzi" powinien być szary/nieaktywny w trybie egzaminu
 
 Dla Sonneta na effort High:
-- nic (7 punktów zrobione 2026-07-24 — patrz DONE/03-biezace.md)
+- nic
 
 Dla Opusa na effort High:
 - nic
