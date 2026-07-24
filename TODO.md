@@ -50,28 +50,28 @@ DLA HENRICHA:
 INNE NOTATKI:
 
 - Na telefonie pdfy się nie ładują (tablica i zasady oceniania).
-  * Podczas naprawy warto sprawić, aby odpalały się one nie w okienku, ale wypełniały całą stronę z krzyżykiem w rogu.
-  * Jeżeli nie uda się tego naprawić, to należy usunąć tę funkcjonalność z wersji mobilnej.
+  - Podczas naprawy warto sprawić, aby odpalały się one nie w okienku, ale wypełniały całą stronę z krzyżykiem w rogu.
+  - Jeżeli nie uda się tego naprawić, to należy usunąć tę funkcjonalność z wersji mobilnej.
 
 - Na telefonie domyślnie:
-  * wyłączone punkty
-  * przyciski „Pokaż tablice wzorów" i „Pokaż zasady oceniania": pdf powinny odpalać się albo na full screen, albo otwierać pdf w nowej karcie/oknie przeglądarki. Mogą też odpalać pdf w przeglądarce pdf w telefonie, jeśli to nie zbyt skomplikowane.
+  - wyłączone punkty
+  - przyciski „Pokaż tablice wzorów" i „Pokaż zasady oceniania": pdf powinny odpalać się albo na full screen, albo otwierać pdf w nowej karcie/oknie przeglądarki. Mogą też odpalać pdf w przeglądarce pdf w telefonie, jeśli to nie zbyt skomplikowane.
 
-- ZMIANA UI: Wywalić top-bar i przenieść wszystko na rozwijany pasek boczny po lewej, który można łatwo schować, aby widzieć tylko zadania i włączone elementy takie jak tablica, punktacja itd.
 
 - Tryb egzaminu nie powinien być tak „schowany" w opcjach. Może pod tytułem zrobić zamiast stałego napisu „tryb ćwiczeniowy" toggle między dwoma trybami.
 
-- Dodać toggle „chowający się panel górny: włączony/wyłączony" (możesz wymyśleć lepszą nazwę).
-  * Ta opcja ma być domyślnie włączona na telefonie.
-  * Top-bar powinien się chować po scrollowaniu w dół i pojawiać przy scrollowaniu w górę lub gdy pociągnie się z górnej krawędzi.
+- Propozycje zmiany UI:
+  - Albo: Wywalić top-bar i przenieść wszystko na rozwijany pasek boczny po lewej, który można łatwo schować, aby widzieć tylko zadania i włączone elementy takie jak tablica, punktacja itd.
+  - Albo: Dodać toggle „chowający się panel górny: włączony/wyłączony" (możesz wymyśleć lepszą nazwę).
+    - Ta opcja ma być domyślnie włączona na telefonie.
+    - Top-bar powinien się chować po scrollowaniu w dół i pojawiać przy scrollowaniu w górę lub gdy pociągnie się z górnej krawędzi.
 
-- Poprosić Claude, aby zmienił czas egzaminu na absurdalnie krótki i/lub dodał toggle trybu testowego, który to robi, abym mógł przetestować koniec egzaminu
+
+- Zmienić czas egzaminu na absurdalnie krótki i/lub dodał toggle trybu testowego, który to robi, abym mógł przetestować koniec egzaminu
 
 - Pokminić nad kolejnością przycisków w menu
 
 - W index.html dodać sekcję o autorze i link do Patronite
-
-- Przycisk „rozpocznij próbny egzamin" powinien być zablokowany, a nie niewidoczny na stronie z błędem arkusza (minor thing)
 
 <br><br><br>
 
