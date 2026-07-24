@@ -9,17 +9,9 @@ Dla Sonneta na effort High:
 - nic
 
 Dla Opusa na effort High:
-- Arkusz 2024 (demonstracyjny) nie wczutuje się na telefonie w ogóle.
-- Na telefonie domyślnie:
-  - wyłączone punkty
-  - przyciski „Pokaż tablice wzorów" i „Pokaż zasady oceniania": pdf powinny odpalać się albo na fullscreen, albo otwierać pdf w nowej karcie/oknie przeglądarki. Mogą też odpalać pdf w przeglądarce pdf w telefonie, jeśli to nie jest zbyt skomplikowane.
--  i/lub dodać toggle tryb testowy, który zmienia czas egzaminu na absurdalnie krótki , abym mógł przetestować koniec egzaminu
-
-- Zadania otwarte z serii "oceń się", dodać do nich:
-  - Okienko normalizujące i sprawdzające wpisaną odpowiedź oprócz miejsca na notatki.
-  - Mini-formularz z pytaniami w stylu „Czy masz zapisane, żę długość boku BC to 5cm", które wynikają z zasad oceniania i ułatwiają ustalenie ilości punktów. Może wyglądać to podobnie do zadań otwartych w których uzupełnia się odpowiedzi np przedziałami.
-  - Można dać gwiazdkę, że trzeba każdy przypadek sprawdzić indywidualnie i autor strony nie jest egzaminatorem.
-
+- Arkusz 2024 (demonstracyjny) nie wczytuje się na telefonie w ogóle. [SZCZEGÓŁY REPRO OD HENRICHA JESZCZE BRAKUJĄ — dopytać: telefon/przeglądarka, biały ekran czy spinner czy błąd, zrzut ekranu/konsola]
+- Na telefonie domyślnie: wyłączone punkty; PDF-y tablicy wzorów/zasad oceniania jako link otwierający w nowej karcie (najprostsze podejście, ustalone z Henrichem); toggle trybu testowego (skrócony czas egzaminu) jako ukryty parametr URL np. `?test-egzamin=1`, nie widoczny w UI.
+- Formularz wspomagający samoocenę zadań otwartych — pełny spec ustalony z Henrichem w issues/formularz-oceniania-otwarte.md (prototyp na 1-2 zadaniach na start).
 - Przepisać sekcję „Exam mode" w ARCHITECTURE.md do poziomu szczegółowości sekcji dark mode (issues/dokumentacja-exam-mode-luka.md) — brakujące elementy Sonnet już dopisał 2026-07-24, zostaje ewentualne pełne przepisanie/restrukturyzacja.
 
 <br>

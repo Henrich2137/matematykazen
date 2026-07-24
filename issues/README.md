@@ -19,3 +19,4 @@ Zasady:
 - [motyw-rozjezdza-sie-miedzy-kartami.md](motyw-rozjezdza-sie-miedzy-kartami.md) — dark/light mode niespójny między kartami przeglądarki
 - [ocenianie-cichy-blad-zapisu.md](ocenianie-cichy-blad-zapisu.md) — `ustawFazeOceniania()` cicho połyka błędy zapisu do localStorage
 - [wskazniki-reload-faza-oceniania.md](wskazniki-reload-faza-oceniania.md) — wskaźniki „oceń się" znikają po odświeżeniu strony po egzaminie
+- [formularz-oceniania-otwarte.md](formularz-oceniania-otwarte.md) — formularz wspomagający samoocenę zadań otwartych (nowy feature, spec ustalony z Henrichem)
