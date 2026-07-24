@@ -14,6 +14,7 @@ const KLUCZ_OCENIANIA = "matematykazen-ocenianie-" + SHEET_ID;
 let wskaznikiEls = [];          // [{ el: <button> w DOM, zadanie: rekord z zadaniaOtwarte }]
 let wskaznikiUkryjBtn = null;
 let wskaznikiRafPending = false;
+let wskaznikiScrollTimer = null;
 
 function czyFazaOceniania() {
     try { return localStorage.getItem(KLUCZ_OCENIANIA) === "1"; } catch (e) { return false; }
@@ -22,7 +23,9 @@ function ustawFazeOceniania(wlacz) {
     try {
         if (wlacz) localStorage.setItem(KLUCZ_OCENIANIA, "1");
         else localStorage.removeItem(KLUCZ_OCENIANIA);
-    } catch (e) {}
+    } catch (e) {
+        pokazZglosToast("nie udało się zapisać ustawienia", true);
+    }
 }
 
 // Tryb pojawiania się wskaźników (ustawienie globalne, wspólne dla wszystkich
@@ -73,7 +76,15 @@ function czyNieoceniony(zadanie) {
 function pokazWskaznikiOtwarte() {
     schowajWskaznikiZDOM(); // idempotentnie — zaczynamy od czysta
     const oczekujace = zadaniaOtwarte.filter(czyNieoceniony);
-    if (!oczekujace.length) { ustawFazeOceniania(false); return; }
+    if (!oczekujace.length) {
+        // Wołane też przy starcie strony, ZANIM loadExercises wypełni
+        // zadaniaOtwarte — wtedy lista jest pusta, ale to nie znaczy, że
+        // naprawdę nic nie zostało do oceny. Gasimy fazę tylko, gdy arkusz
+        // jest już wyrenderowany (klasa z app/render.js), inaczej startSheet()
+        // odtworzy wskaźniki poprawnie po renderze.
+        if (document.body.classList.contains("arkusz-wczytany")) ustawFazeOceniania(false);
+        return;
+    }
 
     oczekujace.forEach(zadanie => {
         const w = document.createElement("button");
@@ -100,6 +111,7 @@ function pokazWskaznikiOtwarte() {
     wskaznikiUkryjBtn.style.display = "block";
 
     window.addEventListener("scroll", zaplanujRepozycje, { passive: true });
+    window.addEventListener("scroll", oznaczScrollAktywny, { passive: true });
     window.addEventListener("resize", zaplanujRepozycje);
     repozycjonujWskazniki();
 }
@@ -109,7 +121,22 @@ function schowajWskaznikiZDOM() {
     wskaznikiEls = [];
     if (wskaznikiUkryjBtn) wskaznikiUkryjBtn.style.display = "none";
     window.removeEventListener("scroll", zaplanujRepozycje);
+    window.removeEventListener("scroll", oznaczScrollAktywny);
     window.removeEventListener("resize", zaplanujRepozycje);
+    clearTimeout(wskaznikiScrollTimer);
+    document.body.classList.remove("wskazniki-scroll-aktywny");
+}
+
+// Podczas aktywnego scrolla wyłączamy `transition: top` na kropkach (inaczej
+// tranzycja restartuje się co klatkę rAF-pętli repozycjonującej i kropki
+// "gumkują" za zadaniami) — celowo debounce timerem, nie `scrollend`, dla
+// szerszej zgodności przeglądarek.
+function oznaczScrollAktywny() {
+    document.body.classList.add("wskazniki-scroll-aktywny");
+    clearTimeout(wskaznikiScrollTimer);
+    wskaznikiScrollTimer = setTimeout(() => {
+        document.body.classList.remove("wskazniki-scroll-aktywny");
+    }, 150);
 }
 
 // Wywoływane po każdej zmianie mogącej ruszyć zestaw nieocenionych zadań

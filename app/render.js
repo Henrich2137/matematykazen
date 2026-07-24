@@ -437,7 +437,7 @@ function loadExercises() {
             // w tablicy rozjeżdżają się z numeracją CKE przez zadania nadrzędne
             // (maxScore: 0) i wieloczęściowe (kilka wpisów „Zadanie 12/17").
             const qText = (exerciseClone.querySelector(".question")?.textContent) || "";
-            const mNumer = qText.match(/Zadanie\s*(\d+)/i);
+            const mNumer = qText.match(/Zadanie\s*([\d.]+)/i);
             const numer = mNumer ? mNumer[1] : String(index + 1);
             zadaniaOtwarte.push({ el: exerciseClone, stan, numer });
         } else if (type === "fillIn") {

@@ -34,3 +34,8 @@ if (themeToggle) {
         applyTheme(next);
     });
 }
+// Zmiana motywu w innej karcie (ten sam KLUCZ_MOTYWU w localStorage) ma się
+// od razu odzwierciedlić tutaj — inaczej karty rozjeżdżają się aż do reloadu.
+window.addEventListener("storage", e => {
+    if (e.key === KLUCZ_MOTYWU) applyTheme(readTheme());
+});
