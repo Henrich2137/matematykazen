@@ -58,7 +58,10 @@ INNE NOTATKI:
   * Przycisk pokaż wybrane wzory się nie wyświetla
 
 - Analityka - GoatCounter
+
 - W index.html dodać sekcję o autorze i link do patronite
+
+- przycisk rozpocznij próbny egzamin powiniene być zablokowany a nie niewidoczny na stronie z błędem arkusz (minor thing)
 
 <br><br><br>
 
