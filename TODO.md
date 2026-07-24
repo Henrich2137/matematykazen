@@ -3,7 +3,8 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <h3>DO REALIZACJI</h3>
 Jeżeli nie masz co robić to rób stąd.
 
-- zmień styl przycisków "pokazuj poprawność od razu: nie" i "sprawdź wszystkie odpowiedzi" tak aby były tak  same jak reszta w menu
+Dla Sonneta
+- Zmień styl przycisków "pokazuj poprawność od razu: nie" i "sprawdź wszystkie odpowiedzi" tak aby były tak  same jak reszta w menu
 
 - Przesunąć niebieskie przyciski "sprawdź" na troche w dół, tak aby był równo z przyciskami odpowiedzi.
 
@@ -15,6 +16,9 @@ Jeżeli nie masz co robić to rób stąd.
   * tablica wzorów powinna się automatycznie wyłączać po zakończeniu egzaminu
   * Przyciski takie jak rozpocznij próbny egzamin nie powinny być widoczne na stronce z komunikatem błędny link (minor thing)
   * dodać działający toggle "widoczność zegara: włączony/wyłączony" w menu
+
+Dla Opusa:
+- nic
 
 <br>
 
