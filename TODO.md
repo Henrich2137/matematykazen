@@ -20,6 +20,8 @@ Dla Opusa na effort High:
   - Mini-formularz z pytaniami w stylu „Czy masz zapisane, żę długość boku BC to 5cm", które wynikają z zasad oceniania i ułatwiają ustalenie ilości punktów. Może wyglądać to podobnie do zadań otwartych w których uzupełnia się odpowiedzi np przedziałami.
   - Można dać gwiazdkę, że trzeba każdy przypadek sprawdzić indywidualnie i autor strony nie jest egzaminatorem.
 
+- Przepisać sekcję „Exam mode" w ARCHITECTURE.md do poziomu szczegółowości sekcji dark mode (issues/dokumentacja-exam-mode-luka.md) — brakujące elementy Sonnet już dopisał 2026-07-24, zostaje ewentualne pełne przepisanie/restrukturyzacja.
+
 <br>
 
 
