@@ -26,3 +26,42 @@
 
 - `app/state.js` — `startSheet()`, `mediaPath()`, `fetch` danych arkusza.
 - `app/render.js` — `loadExercises()`.
+
+##HENRICH DOPISUJE:
+Gdy włączyłem na firefoxie na Pixelu 7a zadania się wczytały ale bez przycisku "rozwiązanie" oraz bez "podpowiedź". Na dole wyświetlił się taki komunikat:
+"
+
+⚠ Wystąpił błąd strony (pokaż ten tekst autorowi):
+
+• Nie wczytano skryptu: https://henrich2137.github.io/matematykazen/widgets/_helpers.js
+• Nie wczytano skryptu: https://henrich2137.github.io/matematykazen/widgets/_registry.js
+• [render zadania (index 0)] WIDZETY is not defined
+  loadExercises/<@https://henrich2137.github.io/matematykazen/app/render.js:659:28
+  loadExercises@https://henrich2137.github.io/matematykazen/app/render.js:91:15
+  startSheet@https://henrich2137.github.io/matematykazen/app/bootstrap.js:207:9
+• [render zadania (index 4)] WIDZETY is not defined
+  loadExercises/<@https://henrich2137.github.io/matematykazen/app/render.js:659:28
+  loadExercises@https://henrich2137.github.io/matematykazen/app/render.js:91:15
+  startSheet@https://henrich2137.github.io/matematykazen/app/bootstrap.js:207:9
+• [render zadania (index 8)] WIDZETY is not defined
+  loadExercises/<@https://henrich2137.github.io/matematykazen/app/render.js:659:28
+  loadExercises@https://henrich2137.github.io/matematykazen/app/render.js:91:15
+  startSheet@https://henrich2137.github.io/matematykazen/app/bootstrap.js:207:9
+• [render zadania (index 9)] WIDZETY is not defined
+  loadExercises/<@https://henrich2137.github.io/matematykazen/app/render.js:659:28
+  loadExercises@https://henrich2137.github.io/matematykazen/app/render.js:91:15
+  startSheet@https://henrich2137.github.io/matematykazen/app/bootstrap.js:207:9
+• [render zadania (index 12)] WIDZETY is not defined
+  loadExercises/<@https://henrich2137.github.io/matematykazen/app/render.js:659:28
+  loadExercises@https://henrich2137.github.io/matematykazen/app/render.js:91:15
+  startSheet@https://henrich2137.github.io/matematykazen/app/bootstrap.js:207:9
+• [render zadania (index 17)] WIDZETY is not defined
+  loadExercises/<@https://henrich2137.github.io/matematykazen/app/render.js:659:28
+  loadExercises@https://henrich2137.github.io/matematykazen/app/render.js:91:15
+  startSheet@https://henrich2137.github.io/matematykazen/app/bootstrap.js:207:9
+• [render zadania (index 22)] WIDZETY is not defined
+  loadExercises/<@https://henrich2137.github.io/matematykazen/app/render.js:659:28
+  loadExercises@https://henrich2137.github.io/matematykazen/app/render.js:91:15
+  startSheet@https://henrich2137.github.io/matematykazen/app/bootstrap.js:207:9
+
+  "
