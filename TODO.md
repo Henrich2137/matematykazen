@@ -4,7 +4,6 @@ DO REALIZACJI
 <br> Jeżeli nie masz co robić, to rób stąd.
 Do przydzielenia:
 - Przycisk "sprawdź wszystkie odpowiedzi" powinien być szary/nieaktywny w trybie egzaminu
-- 
 
 Dla Sonneta na effort High
 - przycisk "zgłąś błąd w zadaniu" powinien:
