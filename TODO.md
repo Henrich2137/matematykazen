@@ -9,7 +9,7 @@ Dla Sonneta na effort High:
 - nic
 
 Dla Opusa na effort High:
-- Przepisać sekcję „Exam mode" w ARCHITECTURE.md do poziomu szczegółowości sekcji dark mode (issues/dokumentacja-exam-mode-luka.md) — brakujące elementy Sonnet już dopisał 2026-07-24, zostaje ewentualne pełne przepisanie/restrukturyzacja.
+- nic
 
 <br>
 

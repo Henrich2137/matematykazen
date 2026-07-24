@@ -4,6 +4,23 @@ spojrzenie na projekt, rozwiazanie trudniejszego problemu albo sprawdzenie, czy/
 kiedys rozwiazano. Zasada podzialu i indeks: DONE/README.md.
 Zakres: 2026-07-13 (WYSOKI PRIORYTET) - 2026-07-21. Partia jeszcze niezmergowana do mastera.
 
+[ZROBIONE] (2026-07-24, Opus) — pełne przepisanie/restrukturyzacja sekcji „Exam mode" w ARCHITECTURE.md do
+  poziomu szczegółowości sekcji dark mode (issues/dokumentacja-exam-mode-luka.md). Zamiast trzech gęstych
+  akapitów — 8 zatytułowanych podsekcji (Design principle / State & persistence / Start-end controls /
+  Timer / Finishing & summary / „oceń się" phase / Mode subtitle / Multi-tab sync). Zaktualizowane
+  odwołania do plików po splitcie (app/exam.js, app/indicators.js, app/state.js, style/exam.css zamiast
+  „style.css"/inline JS). Dopisane elementy, które pojawiły się w kodzie: ukryty parametr ?test-egzamin=1
+  (skrócenie czasu do 1 min), stała CZAS_EGZAMINU_MS/MIN, setExamMenuDisabled (opcje menu disabled, nie
+  ukryte), kolejność zapisu kluczy przy starcie, hideFormulasPanel przy końcu, dostępność pola „ostateczna
+  odpowiedź" i textarey toku rozwiązania W TRAKCIE egzaminu (kontrast z ukrytą samooceną/checklistą).
+  Wszystkie fakty zweryfikowane z kodem (exam.css lista display:none, setExamMenuDisabled, readExamState,
+  tickExam guard, storage-sync). Przy okazji: druga część issue (dopisać #egzamin-koniec-bar, #theme-toggle
+  do listy „stabilnych ID") — lista NIE zniknęła (jak sądził Sonnet), tylko przeniosła się do
+  ARCHITECTURE_CSS.md; uzupełniona o wszystkie realnie podpięte przez JS ID paska i menu (exam-timer/
+  koniec-bar, theme-toggle, egzamin-start, zegar/wskazniki/natychmiastowa-toggle, sprawdz-wszystkie,
+  zglos-blad-toggle, exercises-mode-subtitle) + poprawiony opis #bar-right (zawiera też kontrolki egzaminu).
+  [dokumentacja, egzamin]
+
 [ZROBIONE] (2026-07-24, Opus) — formularz wspomagający samoocenę zadań otwartych, PROTOTYP na zad. 8 i 9
   arkusza 2024-grudzień (spec: issues/formularz-oceniania-otwarte.md). Trzy elementy:
   1. POLE „OSTATECZNA ODPOWIEDŹ" — nowe (opcjonalne) pole danych exercise.finalAnswer

@@ -18,6 +18,9 @@ Do szukania używaj najpierw tego indeksu (tagi niżej), potem grepa po konkretn
 
 
 == 03-biezace.md — partia OTWARTA (2026-07-13 → 2026-07-24, niezmergowana do mastera) ==
+- 2026-07-24 (Opus) — przepisanie sekcji „Exam mode" w ARCHITECTURE.md (8 zatytułowanych podsekcji, poziom
+  jak dark mode; dopisane ?test-egzamin=1, final-answer w egzaminie, setExamMenuDisabled) + uzupełnienie
+  listy „stabilnych ID" paska/menu w ARCHITECTURE_CSS.md  [dokumentacja, egzamin]
 - 2026-07-24 (Opus) — formularz samooceny zadań otwartych (prototyp zad. 8/9): pole „ostateczna odpowiedź"
   (exercise.finalAnswer, auto-sprawdzane jak fillIn, widoczne w egzaminie), pomocnicza checklista kryteriów
   CKE (exercise.gradingCriteria, nie sumuje punktów), ogólne zastrzeżenie w stopce  [zadania-otwarte,
