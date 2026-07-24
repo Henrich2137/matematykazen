@@ -865,6 +865,7 @@ input::-webkit-inner-spin-button {
     font-size: 13px;
     color: var(--text-faint);
     cursor: pointer;
+    text-align: center;
 }
 .report-error-link:hover {
     color: var(--text-muted);
