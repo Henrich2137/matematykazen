@@ -108,7 +108,9 @@
 #wskazniki-tryb-toggle,
 #zglos-blad-toggle,
 #natychmiastowa-toggle,
-#sprawdz-wszystkie {
+#sprawdz-wszystkie,
+#toggle-tablica,
+#toggle-zasady {
     padding: 5px 10px;
     border: 2px solid var(--border);
     background-color: var(--bg);
@@ -148,21 +150,6 @@
     display: block;
     width: 100%;
     margin: 4px 0;
-}
-#toggle-tablica,
-#toggle-zasady {
-    /* min-width mieści dłuższą wersję etykiety ("▲ Schowaj tablice wzorów"),
-       więc przycisk nie zmienia szerokości przy przełączaniu na "▼ Pokaż...". */
-    min-width: 200px;
-    padding: 10px 12px;
-    border: 2px solid var(--border);
-    border-radius: 3px;
-    background-color: var(--bg);
-    white-space: nowrap;
-    text-align: center;
-    text-decoration: none;
-    color: var(--text);
-    cursor: pointer;
 }
 
 /* Floating formula-sheet panel — toggled to display:block by the JS.
