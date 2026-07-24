@@ -3,7 +3,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <h3>DO REALIZACJI</h3>
 Jeżeli nie masz co robić to rób stąd.
 
-Dla Sonneta
+Dla Sonneta na effort High
 - Zmień styl przycisków "pokazuj poprawność od razu: nie" i "sprawdź wszystkie odpowiedzi" tak aby były tak  same jak reszta w menu
 
 - Przesunąć niebieskie przyciski "sprawdź" na troche w dół, tak aby był równo z przyciskami odpowiedzi.
@@ -17,8 +17,8 @@ Dla Sonneta
   * Przyciski takie jak rozpocznij próbny egzamin nie powinny być widoczne na stronce z komunikatem błędny link (minor thing)
   * dodać działający toggle "widoczność zegara: włączony/wyłączony" w menu, globalnie w localStorage (issues/egzamin-zegar-toggle.md)
 
-Dla Opusa:
-- nic
+Dla Opusa na effort High:
+- Stworzyć przycisk "zgłoś błąd w zadaniu" i odpowiedni formularz. Formspree / Getform ale wewnątrz strony (submit przez fetch (AJAX) czy coś) można jeszcze to doprecyzować albo zmienić troche koncepcje.
 
 <br>
 
@@ -27,8 +27,6 @@ NIE REALIZUJ
 czyli nieskonkretyzowane
 
 - squah grup starych commitów zrobionych automatycznie przez gitdoc
-
-- Stworzyć przycisk "zgłoś błąd w zadaniu" i odpowiedni formularz. Formspree / Getform ale wewnątrz strony (submit przez fetch (AJAX) czy coś) można jeszcze to doprecyzować albo zmienić troche koncepcje.
 
 - dodanie rozwiązań do matury 2026
 
