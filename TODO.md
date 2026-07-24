@@ -5,11 +5,8 @@ DO REALIZACJI
 Do przydzielenia:
 - Przycisk "sprawdź wszystkie odpowiedzi" powinien być szary/nieaktywny w trybie egzaminu
 
-Dla Sonneta na effort High
-- przycisk "zgłąś błąd w zadaniu" powinien:
-  * mieć tekst "zgłąś błąd"
-  * być na środku, a nie po lewej
-- Kropki wskaźników „gumkują" przy scrollowaniu — wyłączyć `transition` na `.wskaznik-otwarte` (style/exam.css:230) na czas aktywnego scrolla (klasa dodawana/zdejmowana w repozycjonujWskazniki(), app/indicators.js) i przywracać go po zatrzymaniu scrolla; szczegóły w issues/dark-mode-wskazniki-scroll.md
+Dla Sonneta na effort High:
+- nic
 
 Dla Opusa na effort High:
 - nic
@@ -53,28 +50,28 @@ DLA HENRICHA:
 INNE NOTATKI:
 
 - Na telefonie pdfy się nie ładują (tablica i zasady oceniania).
-  * Podczas naprawy warto sprawić, aby odpalały się one nie w okienku, ale wypełniały całą stronę z krzyżykiem w rogu.
-  * Jeżeli nie uda się tego naprawić, to należy usunąć tę funkcjonalność z wersji mobilnej.
+  - Podczas naprawy warto sprawić, aby odpalały się one nie w okienku, ale wypełniały całą stronę z krzyżykiem w rogu.
+  - Jeżeli nie uda się tego naprawić, to należy usunąć tę funkcjonalność z wersji mobilnej.
 
 - Na telefonie domyślnie:
-  * wyłączone punkty
-  * przyciski „Pokaż tablice wzorów" i „Pokaż zasady oceniania": pdf powinny odpalać się albo na full screen, albo otwierać pdf w nowej karcie/oknie przeglądarki. Mogą też odpalać pdf w przeglądarce pdf w telefonie, jeśli to nie zbyt skomplikowane.
+  - wyłączone punkty
+  - przyciski „Pokaż tablice wzorów" i „Pokaż zasady oceniania": pdf powinny odpalać się albo na full screen, albo otwierać pdf w nowej karcie/oknie przeglądarki. Mogą też odpalać pdf w przeglądarce pdf w telefonie, jeśli to nie zbyt skomplikowane.
 
-- ZMIANA UI: Wywalić top-bar i przenieść wszystko na rozwijany pasek boczny po lewej, który można łatwo schować, aby widzieć tylko zadania i włączone elementy takie jak tablica, punktacja itd.
 
 - Tryb egzaminu nie powinien być tak „schowany" w opcjach. Może pod tytułem zrobić zamiast stałego napisu „tryb ćwiczeniowy" toggle między dwoma trybami.
 
-- Dodać toggle „chowający się panel górny: włączony/wyłączony" (możesz wymyśleć lepszą nazwę).
-  * Ta opcja ma być domyślnie włączona na telefonie.
-  * Top-bar powinien się chować po scrollowaniu w dół i pojawiać przy scrollowaniu w górę lub gdy pociągnie się z górnej krawędzi.
+- Propozycje zmiany UI:
+  - Albo: Wywalić top-bar i przenieść wszystko na rozwijany pasek boczny po lewej, który można łatwo schować, aby widzieć tylko zadania i włączone elementy takie jak tablica, punktacja itd.
+  - Albo: Dodać toggle „chowający się panel górny: włączony/wyłączony" (możesz wymyśleć lepszą nazwę).
+    - Ta opcja ma być domyślnie włączona na telefonie.
+    - Top-bar powinien się chować po scrollowaniu w dół i pojawiać przy scrollowaniu w górę lub gdy pociągnie się z górnej krawędzi.
 
-- Poprosić Claude, aby zmienił czas egzaminu na absurdalnie krótki i/lub dodał toggle trybu testowego, który to robi, abym mógł przetestować koniec egzaminu
+
+- Zmienić czas egzaminu na absurdalnie krótki i/lub dodać toggle tryb testowy, który to robi, abym mógł przetestować koniec egzaminu
 
 - Pokminić nad kolejnością przycisków w menu
 
 - W index.html dodać sekcję o autorze i link do Patronite
-
-- Przycisk „rozpocznij próbny egzamin" powinien być zablokowany, a nie niewidoczny na stronie z błędem arkusza (minor thing)
 
 <br><br><br>
 
@@ -86,20 +83,11 @@ TRYB EGZAMINU I PAMIĘĆ PRZEGLĄDARKI:
 
 - Dwie karty tego samego arkusza blokują „zakończ egzamin" (issues/dwie-karty-tryb-egzaminu.md) — sprawdzone 2026-07-24, NADAL nie naprawione
 
-DARK MODE — WYGLĄD:
-
-- Dwie zmienne CSS użyte niezgodnie z przeznaczeniem na stronie głównej (issues/dark-mode-css-zmienne-landing.md)
-
 DOKUMENTACJA:
 
 - ARCHITECTURE.md opisuje tylko połowę trybu egzaminu (issues/dokumentacja-exam-mode-luka.md)
 
-DROBIAZGI (niski priorytet, dziś nieszkodliwe):
-
-- Wskaźniki „oceń się" znikają po odświeżeniu strony po egzaminie (issues/wskazniki-reload-faza-oceniania.md)
-- Cichy błąd zapisu w ustawFazeOceniania() (issues/ocenianie-cichy-blad-zapisu.md)
-- Motyw rozjeżdża się między kartami przeglądarki (issues/motyw-rozjezdza-sie-miedzy-kartami.md)
-- Numer zadania gubi podnumer (12.1 vs 12.2) (issues/numer-zadania-podnumer.md)
+(dark mode CSS-zmienne na landing, wskaźniki po odświeżeniu, cichy błąd zapisu, motyw między kartami i numer-podnumer — przeniesione do „Dla Sonneta na effort High" wyżej, ze skonkretyzowanym kierunkiem naprawy)
 
 
 ZASADY dla Ciebie Claude:

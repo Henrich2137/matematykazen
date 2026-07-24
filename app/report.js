@@ -240,7 +240,7 @@ function dodajLinkZgloszenia(exerciseClone) {
     const link = document.createElement("button");
     link.type = "button";
     link.className = "report-error-link";
-    link.textContent = "zgłoś błąd w tym zadaniu";
+    link.textContent = "zgłoś błąd";
     link.title = "Zgłoś błąd w tym zadaniu (zła odpowiedź, literówka, problem z filmem…)";
     link.addEventListener("click", () => otworzModalZgloszenia(numer));
     exerciseClone.appendChild(link);

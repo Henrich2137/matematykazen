@@ -229,6 +229,12 @@ body.tryb-egzaminu .fill-in-input.incorrect {
     transform: translateY(-50%); /* `top` z JS to środek kropki, nie górna krawędź */
     transition: top 0.12s ease;
 }
+/* Wyłącza tranzycję `top` podczas aktywnego scrolla (klasa dodawana/zdejmowana
+   w app/indicators.js, debounce ~150ms) — inaczej rAF-pętla repozycjonująca
+   restartuje tranzycję co klatkę i kropki "gumkują" za zadaniami. */
+body.wskazniki-scroll-aktywny .wskaznik-otwarte {
+    transition: none;
+}
 .wskaznik-otwarte:hover {
     filter: brightness(0.94);
 }

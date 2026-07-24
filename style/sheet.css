@@ -857,6 +857,7 @@ input::-webkit-inner-spin-button {
    trzyma się przygaszonej kolorystyki, żeby nie odciągał uwagi od zadania. */
 .report-error-link {
     display: block;
+    width: 100%;
     margin-top: 24px;
     padding: 0;
     border: none;
@@ -865,6 +866,7 @@ input::-webkit-inner-spin-button {
     font-size: 13px;
     color: var(--text-faint);
     cursor: pointer;
+    text-align: center;
 }
 .report-error-link:hover {
     color: var(--text-muted);

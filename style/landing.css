@@ -63,7 +63,7 @@
 .landing-card {
     flex: 1;
     padding: 20px;
-    border: 1px solid var(--bg-hover);
+    border: 1px solid var(--border);
 }
 .landing-card h3 {
     margin: 0 0 10px;
@@ -91,7 +91,7 @@
     margin-top: 70px;
     font-size: 13px;
     text-align: center;
-    color: var(--border-close);
+    color: var(--text-faint);
 }
 @media (max-width: 640px) {
     .landing-cards {

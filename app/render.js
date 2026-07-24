@@ -27,6 +27,14 @@ function utworzPrzyciskSprawdz(answersContainer, onSprawdz) {
     };
 }
 
+// Numer zadania z treści („Zadanie N." lub „Zadanie N.M" dla podnumerowanych),
+// z fallbackiem na index+1 — używane w komunikatach console.warn poniżej, żeby
+// wskazywały prawdziwy numer CKE, a nie indeks w tablicy exercises.
+function numerZadania(exercise, index) {
+    const m = (exercise.question || "").match(/Zadanie\s*(\d+(?:\.\d+)?)/i);
+    return m ? m[1] : String(index + 1);
+}
+
 // Function to load exercises
 function loadExercises() {
     const exercisesWrapper = document.getElementById("exercises-wrapper");
@@ -138,7 +146,7 @@ function loadExercises() {
             // -1 lub brak pola = zadanie jeszcze niewypełnione -> tryb "?".
             const correctIndex = Number.isInteger(exercise.correctAnswerIndex) ? exercise.correctAnswerIndex : -1;
             if (correctIndex >= exercise.answers.length) {
-                console.warn(`Zadanie ${index + 1}: correctAnswerIndex (${correctIndex}) wykracza poza liczbę odpowiedzi`);
+                console.warn(`Zadanie ${numerZadania(exercise, index)}: correctAnswerIndex (${correctIndex}) wykracza poza liczbę odpowiedzi`);
             }
 
             let sprawdzone = false; // czy ocena (kolor/punkty) jest już odsłonięta
@@ -437,7 +445,7 @@ function loadExercises() {
             // w tablicy rozjeżdżają się z numeracją CKE przez zadania nadrzędne
             // (maxScore: 0) i wieloczęściowe (kilka wpisów „Zadanie 12/17").
             const qText = (exerciseClone.querySelector(".question")?.textContent) || "";
-            const mNumer = qText.match(/Zadanie\s*(\d+)/i);
+            const mNumer = qText.match(/Zadanie\s*(\d+(?:\.\d+)?)/i);
             const numer = mNumer ? mNumer[1] : String(index + 1);
             zadaniaOtwarte.push({ el: exerciseClone, stan, numer });
         } else if (type === "fillIn") {
@@ -551,7 +559,7 @@ function loadExercises() {
             if (widget) {
                 widget(solutionInteractiveContainer);
             } else {
-                console.warn(`Zadanie ${index + 1}: nieznany widżet "${exercise.solutionWidget}"`);
+                console.warn(`Zadanie ${numerZadania(exercise, index)}: nieznany widżet "${exercise.solutionWidget}"`);
             }
         }
 
