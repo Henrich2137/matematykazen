@@ -6,7 +6,8 @@ Do przydzielenia:
 - Przycisk "sprawdź wszystkie odpowiedzi" powinien być szary/nieaktywny w trybie egzaminu
 
 Dla Sonneta na effort High:
-- zmień tło w trybie ciemnym na odrobine ciemniejsze 
+- zmień tło w trybie ciemnym na odrobine ciemniejsze
+- Przycisk "sprawdź wszystkie odpowiedzi" powinien też być na końcu arkusza w trybie ćwiczeń
 
 Dla Opusa na effort High:
 - nic
