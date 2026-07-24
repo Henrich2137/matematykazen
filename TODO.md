@@ -24,9 +24,7 @@ Dla Sonneta na effort High:
   - Sprawdź wszystkie odpowiedzi
   - Pokaż wszystkie rozwiązania
   - Zresetuj arkusz (zamiast resetuj punktację)
-  
-  - (małą przerwa na pół przycisku)
-
+  - ------------- (małą przerwa na pół przycisku)
   - Motyw: jasny/ciemny/auto
   - Punktacja: wł./tylko suma/wył.
   - Pokaż poprawność odpowiedzi: natychmiast/po kliknięciu "sprawdź"
