@@ -18,7 +18,8 @@ Dla Opusa na effort High:
 <br>
 
 DO PRZETESTOWANIA:
-- telefon 2024
+- telefon 2024 - wczytuje zadania ale wyświetla błąd. ( issues/zadania-nie-renderuja-sie-mobile.md)
+- 
 
 DLA HENRICHA:
 
