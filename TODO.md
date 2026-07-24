@@ -9,7 +9,7 @@ Do przydzielenia:
   - Przycisk sprawdź przy ostatecznej odpowiediz  w trybie egzaminu powinien nie być widoczny.
   - Zamiast checkboxów powinny być przyciski z punktami do każdego zdania typu "Nierówność zapisana w postaci x2−6x−7≤0x2−6x−7≤0" (przykład z zad 9.) Dokładna punktacja jest w zasadach oceniania w pdf i od tego powinna zależeć ilość przycisków.
 - Kropki "oceń się" trzeba poprawićlub wyłączyć na telefonach
-
+- Tło w niektórych widżetach jest białe w motywie darkmode. Należy zmienić kolory na taki które będą się zgadzać z motywem.
 Dla Sonneta na effort High:
 - zmień tło w trybie ciemnym na odrobine ciemniejsze
 - Przycisk "sprawdź wszystkie odpowiedzi" powinien też być na końcu arkusza w trybie ćwiczeń
