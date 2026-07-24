@@ -3,18 +3,29 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <h3>DO REALIZACJI</h3>
 Jeżeli nie masz co robić to rób stąd.
 
-- zmień styl przycisków "pokazuj poprawność od razu: nie" i "sprawdź wszystkie odpowiedzi" tak aby były tak  same jak reszta w menu
+Dla Sonneta na effort High
+- Zmień styl przycisków "pokazuj poprawność od razu: nie" i "sprawdź wszystkie odpowiedzi" tak aby były tak  same jak reszta w menu
 
 - Przesunąć niebieskie przyciski "sprawdź" na troche w dół, tak aby był równo z przyciskami odpowiedzi.
 
 - Gdy przyciski się nie mieszczą na górnym panelu powinny trafiać do menu. np na telefonie.
 
-- Schować przycisk pokaż tablice wzorów oraz pokaż zasady oceniania do menu. Zostawić przyciski karty wzorów widoczny jeżeli użytkownik korzysta z komputera (albo nie korzysta z telefonu)
+- Schować przycisk pokaż tablice wzorów oraz pokaż zasady oceniania do menu (zawsze, niezależnie od urządzenia) (issues/pasek-przyciski-do-menu.md)
 
 - tryb egzaminu
-  * tablica wzorów powinna się automatycznie wyłączać po zakończeniu egzaminu
+  * tablica wzorów powinna się automatycznie wyłączać po zakończeniu egzaminu (issues/egzamin-tablica-auto-zamkniecie.md)
   * Przyciski takie jak rozpocznij próbny egzamin nie powinny być widoczne na stronce z komunikatem błędny link (minor thing)
-  * dodać działający toggle "widoczność zegara: włączony/wyłączony" w menu
+  * dodać działający toggle "widoczność zegara: włączony/wyłączony" w menu, globalnie w localStorage (issues/egzamin-zegar-toggle.md)
+
+Dla Opusa na effort High:
+- Stworzyć "zgłoś błąd w zadaniu": dyskretny link tekstowy pod każdym zadaniem + toggle w menu „⋯" do wyłączenia (localStorage, wzorem innych toggle'ów).
+  * Formularz przez Formspree, submit przez fetch/AJAX. Endpoint (`https://formspree.io/f/xxxxxxxx`) dostaniesz od Henricha po założeniu konta — dopytaj się o niego, nie zgaduj.
+  * Auto-dołączone dane (user nic nie wpisuje): numer zadania + arkusz, URL, tryb jasny/ciemny, tryb egzamin/ćwiczenia, user-agent, cała zawartość localStorage.
+  * Wszystkie pola opcjonalne (łącznie z opisem błędu — samo kliknięcie z auto-danymi też ma sens), oprócz e-maila wyraźnie oznaczonego jako opcjonalny; reszta pól bez gwiazdek, chyba że jednak coś wymagane — oznacz to * i napisz wyraźnie.
+  * Antyspam: honeypot + lekki throttling (np. blokada wysyłki częściej niż raz/minutę, zapamiętane w localStorage) — Formspree free tier ma limit 50 zgłoszeń/miesiąc.
+  * Po wysłaniu: krótki toast "Dziękujemy, zgłoszenie wysłane", bez przeładowania strony.
+  * Fallback przy błędzie/limicie Formspree (np. limit 50/mies. wyczerpany, brak neta): pokaż jasny komunikat błędu zamiast cichej porażki.
+  * Nowy link/toast/toggle mają korzystać z istniejących zmiennych CSS z base.css (jasny/ciemny motyw) — żadnych nowych hardkodowanych kolorów.
 
 <br>
 
@@ -23,8 +34,6 @@ NIE REALIZUJ
 czyli nieskonkretyzowane
 
 - squah grup starych commitów zrobionych automatycznie przez gitdoc
-
-- Stworzyć przycisk "zgłoś błąd w zadaniu" i odpowiedni formularz. Formspree / Getform ale wewnątrz strony (submit przez fetch (AJAX) czy coś) można jeszcze to doprecyzować albo zmienić troche koncepcje.
 
 - dodanie rozwiązań do matury 2026
 
@@ -38,6 +47,8 @@ czyli nieskonkretyzowane
 
 
 DLA HENRICHA:
+
+- skonfigurowaćformularze formspree=
 
 - Obczaić analitykę czyli śledzenie ilości i zaangażowania użytkowników (moze da sięjakoś przez githuba)
 
@@ -63,7 +74,6 @@ INNE NOTATKI:
   * przyciski Pokaż tablice wzorów itd schowane w trzech kropkach a okna z pdf odpalają się albo na full screen albo otwierają pdf w nowym oknie przeglądrki lub w ogóle w nowej "aplikacji" jeśli tak się da. mogą też odpalać pdf w przeglądarce pdf w tel jeśli to nie z byt skomplkowane
   * Przycisk pokaż wybrane wzory się nie wyświetla
 
-- Zgłaszanie błędów - Formspree / Getform ale wewnątrz strony (submit przez fetch (AJAX) czy coś)
 - Analityka - GoatCounter
 - W index.html dodać sekcję o autorze i link do patronite
 
