@@ -4,10 +4,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 Jeżeli nie masz co robić to rób stąd.
 
 Dla Sonneta na effort High
-- Gdy przyciski się nie mieszczą na górnym panelu powinny trafiać do menu. np na telefonie.
-
-- Schować przycisk pokaż tablice wzorów oraz pokaż zasady oceniania do menu (zawsze, niezależnie od urządzenia) (issues/pasek-przyciski-do-menu.md)
-
 - tryb egzaminu
   * tablica wzorów powinna się automatycznie wyłączać po zakończeniu egzaminu (issues/egzamin-tablica-auto-zamkniecie.md)
   * Przyciski takie jak rozpocznij próbny egzamin nie powinny być widoczne na stronce z komunikatem błędny link (minor thing)
