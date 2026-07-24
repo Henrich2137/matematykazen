@@ -6,7 +6,7 @@ DO REALIZACJI
 Do przydzielenia:
 - Przycisk "sprawdź wszystkie odpowiedzi" powinien być szary/nieaktywny w trybie egzaminu
 - W zadaniach otwartych:
-  - Przycisk sprawdź przy ostatecznej odpowiediz  w truybie egzaminu powinien nie być widoczny.
+  - Przycisk sprawdź przy ostatecznej odpowiediz  w trybie egzaminu powinien nie być widoczny.
   - Zamiast checkboxów powinny być przyciski z punktami do każdego zdania typu "Nierówność zapisana w postaci x2−6x−7≤0x2−6x−7≤0" (przykład z zad 9.) Dokładna punktacja jest w zasadach oceniania w pdf i od tego powinna zależeć ilość przycisków.
 - Kropki "oceń się" trzeba poprawićlub wyłączyć na telefonach
 
@@ -75,3 +75,6 @@ ZASADY dla Ciebie Claude:
 - TEN PLIK MA BYĆ SLEEK — krótkie hasła, jedno-dwa zdania na punkt. Żadnych ścian tekstu. Szczegóły (mechanizm, pliki, linie) idą do issues/ albo DONE/, a tu zostaje jedna linijka z odnośnikiem.
  Drogi Claudzie, jeżeli zmieniasz ten plik to wklejaj do odpowiedniej sekcji na dole
 - Zawsze sprawdzaj, testuj czy wprowadzone przez ciebie zmiany działają zanim zrobisz ostatni commit.
+
+SONNET DOPISAŁ:
+- Uzupełnić `formulasPage` w 2024-grudzień — brakuje w zad. 7, 8, 10, 11, 12, 20 (6 z 35), więc nie mają przycisku „Pokaż potrzebne wzory". Do decyzji merytorycznej: część pewnie faktycznie nie wymaga tablic, ale zad. 8 (otwarte) warto sprawdzić.
