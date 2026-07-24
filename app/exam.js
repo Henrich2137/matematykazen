@@ -11,7 +11,17 @@
    więc odświeżenie strony nie przerywa egzaminu, a zwykły zapis postępu
    (KLUCZ_POSTEPU) działa bez zmian. */
 const KLUCZ_EGZAMINU = "matematykazen-egzamin-" + SHEET_ID;
-const CZAS_EGZAMINU_MS = 170 * 60 * 1000; // 170 minut, jak na maturze podstawowej
+// Czas egzaminu: 170 minut jak na maturze podstawowej. UKRYTY tryb testowy:
+// z parametrem URL ?test-egzamin=1 (niewidoczny w UI, do szybkiego testowania
+// całego przepływu egzaminu łącznie z auto-końcem po czasie) czas skraca się
+// do 1 minuty. Parametr czytamy raz przy starcie skryptu.
+const CZAS_EGZAMINU_MS = (function () {
+    try {
+        if (new URLSearchParams(location.search).get("test-egzamin")) return 60 * 1000;
+    } catch (e) {}
+    return 170 * 60 * 1000;
+})();
+const CZAS_EGZAMINU_MIN = Math.round(CZAS_EGZAMINU_MS / 60000);
 
 const egzaminTimerSpan = document.getElementById("egzamin-timer");
 const egzaminPodsumowanie = document.getElementById("egzamin-podsumowanie");
@@ -108,7 +118,7 @@ function startExamPrompt() {
         "• zapisane odpowiedzi i punkty zostaną wyczyszczone (egzamin startuje na czystym arkuszu),\n" +
         "• podpowiedzi, rozwiązania i punktacja będą ukryte do końca egzaminu,\n" +
         "• tablice wzorów CKE zostają dostępne — jak na prawdziwej maturze,\n" +
-        "• czas: 170 minut."
+        `• czas: ${CZAS_EGZAMINU_MIN} min.`
     );
     if (!zgoda) return;
     try {

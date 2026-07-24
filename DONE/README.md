@@ -18,6 +18,9 @@ Do szukania używaj najpierw tego indeksu (tagi niżej), potem grepa po konkretn
 
 
 == 03-biezace.md — partia OTWARTA (2026-07-13 → 2026-07-24, niezmergowana do mastera) ==
+- 2026-07-24 (Opus) — trzy usprawnienia „na telefonie": domyślnie ukryte badge'e punktów (czyTelefon,
+  score-view „tylko suma"); PDF-y tablicy/zasad/„potrzebne wzory" w nowej karcie zamiast panelu <object>
+  (window.open); ukryty tryb testowy egzaminu ?test-egzamin=1 → 1 min  [mobile, ui, egzamin, pdf-panele]
 - 2026-07-24 (Opus) — arkusz nie wczytuje się na telefonie (Pixel 7a/GrapheneOS): nie do odtworzenia
   w emulacji, więc globalna belka diagnostyczna (window.onerror/rejection, template.html) + utwardzenie
   loadExercises (per-zadanie try/catch, placeholder .blad-zadania, guardy widżet/KaTeX) — siatka

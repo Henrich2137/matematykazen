@@ -67,6 +67,17 @@ scoreSwitchButton.addEventListener("click", () => {
 
 })
 
+// Na TELEFONIE domyślnie chowamy badge'e punktów przy zadaniach — na wąskim
+// ekranie zaśmiecają kartę, a bieżąca suma i tak jest w pasku. To tylko wartość
+// DOMYŚLNA: użytkownik dalej może cyklicznie przełączać widok (wszystko → tylko
+// suma → nic) tym samym przyciskiem #score-switch-button. Ustawiamy stan „tylko
+// suma" po wyrenderowaniu zadań (badge'e muszą już istnieć). Na desktopie no-op.
+function zastosujDomyslnyWidokPunktowMobile() {
+    if (!czyTelefon()) return;
+    scoreSwitchButton.innerHTML = "widok punktów: tylko suma";
+    document.querySelectorAll(".exercise-score").forEach(el => { el.style.display = "none"; });
+}
+
 // Toggle „natychmiastowa poprawność" (menu ⋯): ustawienie GLOBALNE (localStorage,
 // bez sufiksu arkusza — patrz app/state.js). ON = klik odpowiedzi zamkniętej od
 // razu koloruje ramkę; OFF = dopiero po kliknięciu „sprawdź". body.reczne-sprawdzanie
@@ -194,6 +205,7 @@ async function startSheet() {
     }
     try {
         loadExercises();
+        zastosujDomyslnyWidokPunktowMobile();
     } catch (blad) {
         // loadExercises jest już odporne na błędy pojedynczych zadań, ale gdyby
         // padło wcześniej (np. brak #exercises-wrapper), nie zostawiamy pustej

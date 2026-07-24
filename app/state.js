@@ -33,6 +33,17 @@ function mediaPath(src) {
 // (zapis/odczyt), przycisk "resetuj punktację" (menu ⋯) i start egzaminu.
 const KLUCZ_POSTEPU = "matematykazen-postep-" + SHEET_ID;
 
+// Czy jesteśmy na wąskim ekranie (telefon)? Próg 720px pokrywa się z głównym
+// breakpointem „telefonu" w style/responsive.css (karta na całą szerokość,
+// panele PDF 94%). Czytane na bieżąco (nie raz przy starcie), żeby obrót
+// ekranu / zmiana rozmiaru okna były uwzględniane. Używane m.in. do:
+//  • domyślnego ukrycia badge'y punktów na telefonie (app/bootstrap.js),
+//  • otwierania PDF-ów tablicy/zasad w nowej karcie zamiast w panelu <object>,
+//    którego Android i tak nie renderuje (app/panels.js).
+function czyTelefon() {
+    try { return window.matchMedia("(max-width: 720px)").matches; } catch (e) { return false; }
+}
+
 // KaTeX: renderuje zapisy \( ... \) (inline) i \[ ... \] (blokowe) wewnątrz
 // podanego elementu. Guard na window.renderMathInElement — gdyby vendor/katex/
 // nie wczytał się (np. uszkodzony plik), strona ma dalej działać, tylko z

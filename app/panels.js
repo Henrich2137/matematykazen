@@ -1,12 +1,26 @@
 // app/panels.js — pływające panele PDF: tablice wzorów i zasady oceniania
 // (pokaż/schowaj, przeciąganie, zmiana rozmiaru) + openFormulasAtPage.
 
+// Na telefonie panele PDF (<object>) i tak się nie renderują (Android nie
+// osadza PDF-a), a przeciąganie/rozmiar nie mają sensu — więc zamiast panelu
+// otwieramy PDF w NOWEJ KARCIE przeglądarki (podejście ustalone z Henrichem).
+// noopener: bezpieczeństwo; nowa karta nie dostaje referencji do window.opener.
+function otworzPdfWNowejKarcie(url) {
+    if (url) window.open(url, "_blank", "noopener");
+}
+
 // Tablica wzorów: panel (kontener) + <object> z PDF-em w środku. Pokazywanie/
 // chowanie działa na panelu, a etykieta przycisku w pasku jest z tym zsynchronizowana.
 const tablicaPanel = document.getElementById("tablica-wzorow-panel");
 const toggleTablicaButton = document.getElementById("toggle-tablica");
 
 function showFormulasPanel() {
+    // Na telefonie zamiast panelu — PDF w nowej karcie (patrz otworzPdfWNowejKarcie).
+    if (czyTelefon()) {
+        const tablica = document.getElementById("tablica-wzorow");
+        otworzPdfWNowejKarcie((tablica && tablica.getAttribute("data")) || TABLICE_PDF);
+        return;
+    }
     tablicaPanel.style.display = "block";
     toggleTablicaButton.textContent = "▲ Schowaj tablice wzorów";
 }
@@ -16,6 +30,11 @@ function hideFormulasPanel() {
 }
 
 toggleTablicaButton.addEventListener("click", function() {
+    // Telefon: zawsze „otwórz w nowej karcie" (panel nie działa) — bez toggla.
+    if (czyTelefon()) {
+        showFormulasPanel();
+        return;
+    }
     const ukryta = tablicaPanel.style.display === "none" || tablicaPanel.style.display === "";
     if (ukryta) {
         showFormulasPanel();
@@ -33,6 +52,12 @@ const zasadyPanel = document.getElementById("zasady-oceniania-panel");
 const toggleZasadyButton = document.getElementById("toggle-zasady");
 
 function showGradingRules() {
+    // Telefon: PDF zasad oceniania w nowej karcie zamiast panelu <object>.
+    if (czyTelefon()) {
+        const zasady = document.getElementById("zasady-oceniania");
+        otworzPdfWNowejKarcie(zasady && zasady.getAttribute("data"));
+        return;
+    }
     zasadyPanel.style.display = "block";
     toggleZasadyButton.textContent = "▲ Schowaj zasady oceniania";
 }
@@ -42,6 +67,10 @@ function hideGradingRules() {
 }
 
 toggleZasadyButton.addEventListener("click", function() {
+    if (czyTelefon()) {
+        showGradingRules();
+        return;
+    }
     const ukryte = zasadyPanel.style.display === "none" || zasadyPanel.style.display === "";
     if (ukryte) {
         showGradingRules();
@@ -113,6 +142,13 @@ makePanelDraggable(tablicaPanel);
 makePanelDraggable(zasadyPanel);
 
 function openFormulasAtPage(numerStrony) {
+    // Telefon: otwórz PDF z tablicami wzorów na właściwej stronie w nowej karcie
+    // (panel <object> nie działa na Androidzie).
+    if (czyTelefon()) {
+        otworzPdfWNowejKarcie(`${TABLICE_PDF}#page=${numerStrony}&toolbar=0`);
+        return;
+    }
+
     const tablica = document.getElementById("tablica-wzorow");
 
     // Tworzymy nowy <object> zamiast tylko zmieniać `data` (przeglądarkowy

@@ -4,6 +4,30 @@ spojrzenie na projekt, rozwiazanie trudniejszego problemu albo sprawdzenie, czy/
 kiedys rozwiazano. Zasada podzialu i indeks: DONE/README.md.
 Zakres: 2026-07-13 (WYSOKI PRIORYTET) - 2026-07-21. Partia jeszcze niezmergowana do mastera.
 
+[ZROBIONE] (2026-07-24, Opus) — trzy usprawnienia „na telefonie" (TODO „Dla Opusa"):
+  A. DOMYŚLNIE UKRYTE BADGE'E PUNKTÓW NA TELEFONIE. Nowy helper czyTelefon() (app/state.js,
+     matchMedia max-width:720px, czytany na bieżąco). Po wyrenderowaniu zadań na telefonie
+     ustawiamy widok punktów na „tylko suma" (badge'e .exercise-score ukryte, bieżąca suma w pasku
+     zostaje) — app/bootstrap.js zastosujDomyslnyWidokPunktowMobile(). To tylko wartość DOMYŚLNA:
+     przycisk #score-switch-button dalej cyklicznie przełącza wszystko→tylko suma→nic. Interpretacja
+     „wyłączone punkty" = ukryte badge'e przy zadaniach (mniej bałaganu na wąskiej karcie), suma
+     zostaje; jeśli Henrich wolałby ukrywać też sumę — trywialna zmiana na stan „nic". Desktop bez zmian.
+  B. PDF-Y W NOWEJ KARCIE NA TELEFONIE (podejście ustalone z Henrichem — panel <object> i tak nie
+     renderuje PDF na Androidzie). app/panels.js: na telefonie #toggle-tablica, #toggle-zasady oraz
+     per-zadaniowe „Pokaż potrzebne wzory" (openFormulasAtPage) otwierają PDF przez
+     window.open(url,"_blank","noopener") zamiast panelu; tablica z właściwą stroną (#page=N), zasady
+     z data ustawionego przez applySheetMeta. Desktop bez zmian (panel przeciągany jak dotąd).
+  C. UKRYTY TRYB TESTOWY EGZAMINU. app/exam.js: parametr URL ?test-egzamin=1 (niewidoczny w UI)
+     skraca czas egzaminu ze 170 min do 1 min — do szybkiego testu całego przepływu (łącznie z
+     auto-końcem po czasie). Bez parametru czas bez zmian. Tekst confirmu startu pokazuje realny czas
+     (CZAS_EGZAMINU_MIN) zamiast zaszytego „170 minut".
+  Zweryfikowane Playwrightem (viewport Pixel 5 vs desktop): telefon = 0 widocznych badge'y + suma w
+  pasku + cykl przełącznika działa (→„nic" chowa sumę); #toggle-tablica → nowa karta
+  wybrane_wzory_matematyczne.pdf#page=10, panel zostaje ukryty; #toggle-zasady → nowa karta z PDF
+  odpowiedzi; „Pokaż potrzebne wzory" zad.1 → nowa karta #page=4; desktop = 34 badge'e widoczne,
+  panel otwiera się na block, zero nowych kart; ?test-egzamin=1 → CZAS_EGZAMINU_MS=60000, bez
+  parametru 10200000 (170 min).  [mobile, ui, egzamin, pdf-panele, css]
+
 [ZROBIONE] (2026-07-24, Opus) — arkusz nie wczytuje się na telefonie (Pixel 7a/GrapheneOS, Firefox
 i Brave, pusta lista zadań — issues/zadania-nie-renderuja-sie-mobile.md). Objawu NIE udało się
 odtworzyć w emulacji mobilnej Chromium (35/35 zadań renderuje się poprawnie), a silniki Firefox/WebKit
