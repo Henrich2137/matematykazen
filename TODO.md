@@ -10,12 +10,12 @@ Dla Sonneta
 
 - Gdy przyciski się nie mieszczą na górnym panelu powinny trafiać do menu. np na telefonie.
 
-- Schować przycisk pokaż tablice wzorów oraz pokaż zasady oceniania do menu.
+- Schować przycisk pokaż tablice wzorów oraz pokaż zasady oceniania do menu (zawsze, niezależnie od urządzenia) (issues/pasek-przyciski-do-menu.md)
 
 - tryb egzaminu
-  * tablica wzorów powinna się automatycznie wyłączać po zakończeniu egzaminu
+  * tablica wzorów powinna się automatycznie wyłączać po zakończeniu egzaminu (issues/egzamin-tablica-auto-zamkniecie.md)
   * Przyciski takie jak rozpocznij próbny egzamin nie powinny być widoczne na stronce z komunikatem błędny link (minor thing)
-  * dodać działający toggle "widoczność zegara: włączony/wyłączony" w menu
+  * dodać działający toggle "widoczność zegara: włączony/wyłączony" w menu, globalnie w localStorage (issues/egzamin-zegar-toggle.md)
 
 Dla Opusa:
 - nic
