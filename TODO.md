@@ -64,7 +64,7 @@ Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz is
 
 TRYB EGZAMINU I PAMIĘĆ PRZEGLĄDARKI:
 
-- Dwie karty tego samego arkusza blokują "zakończ egzamin" (issues/dwie-karty-tryb-egzaminu.md)
+- Dwie karty tego samego arkusza blokują "zakończ egzamin" (issues/dwie-karty-tryb-egzaminu.md) (to np chyba zrobione)
 
 DARK MODE — WYGLĄD:
 
