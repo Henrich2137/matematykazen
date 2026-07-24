@@ -37,6 +37,11 @@ body.tryb-egzaminu #egzamin-timer {
     font-variant-numeric: tabular-nums; /* zegar nie "drga" przy zmianie cyfr */
     color: var(--text-muted);
 }
+/* Toggle „widoczność zegara" (menu ⋯): sam zegar tyka i kończy egzamin po
+   czasie dalej w tle (tickExam w app/exam.js) — ta klasa tylko chowa span. */
+body.tryb-egzaminu #egzamin-timer.zegar-ukryty {
+    display: none;
+}
 #egzamin-timer.malo-czasu {
     border-color: var(--incorrect);
     color: var(--incorrect);
