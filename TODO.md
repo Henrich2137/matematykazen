@@ -24,10 +24,6 @@ Dla Opusa na effort High:
 <br>
 
 
-NIE REALIZUJ
-<br> czyli nieskonkretyzowane
-
-- dodanie rozwiązań do matury 2026
 
 <br>
 
@@ -48,6 +44,8 @@ DLA HENRICHA:
 
 
 INNE NOTATKI, DO PRZEKMINIENIA:
+
+- dodanie rozwiązań do matury 2026
 
 - Na telefonie pdfy się nie ładują (tablica i zasady oceniania). (to nie będzie problem po zmianie na pdf otwierane na zewnątrz stronki, jeśli tamto będzie działać to można usunąć ten wpis)
   - Podczas naprawy warto sprawić, aby odpalały się one nie w okienku, ale wypełniały całą stronę z krzyżykiem w rogu.
