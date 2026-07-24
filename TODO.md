@@ -2,9 +2,17 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 DO REALIZACJI
 <br> Jeżeli nie masz co robić, to rób stąd.
+Do przydzielenia:
+- Przycisk "sprawdź wszystkie odpowiedzi" powinien być szary/nieaktywny w trybie egzaminu
+- 
 
 Dla Sonneta na effort High
-(brak — wszystko zrobione, patrz DONE/)
+- przycisk "zgłąś błąd w zadaniu" powinien:
+  * mieć tekst "zgłąś błąd"
+  * być na środku, a nie po lewej
+
+Dla Opusa na effort High:
+- nic
 
 <br>
 
