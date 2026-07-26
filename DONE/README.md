@@ -18,12 +18,27 @@ Do szukania używaj najpierw tego indeksu (tagi niżej), potem grepa po konkretn
 
 
 == 03-biezace.md — partia OTWARTA (2026-07-13 → 2026-07-26, niezmergowana do mastera) ==
+- 2026-07-26 (Opus) — limity długości opisu zgłoszenia: MIN 3 / MAX 2000 znaków liczone po trim(),
+  egzekwowane dwukrotnie (maxlength w HTML + bladOpisu() w JS, bo maxlength omija się programowo),
+  licznik „n / 2000" czerwieniejący powyżej 90%; komunikat błędu aktualizuje się na bieżąco przy pisaniu.
+  Uwaga: gitdoc wypchnął na produkcję wersję przerwaną w połowie („zgLicznik is not defined")
+  [formularz, walidacja, antyspam, ux, produkcja]
+- 2026-07-26 (Opus) — BUGFIX: odpowiedzUcznia/odpowiedzPoprawna wysyłały zlepek „A. 545^{4}54", bo KaTeX
+  renderuje wzór w dwóch warstwach, a .textContent skleja obie. Nowa funkcja tekstOdpowiedzi() czyta
+  surowy LaTeX z <annotation>, pracując na klonie węzła. Wykryte na prawdziwym zgłoszeniu z produkcji
+  [formularz, katex, bugfix, produkcja]
 - 2026-07-26 (Opus High) — przebudowa formularza „zgłoś błąd": opis OBOWIĄZKOWY (disabled + komunikat
   role="alert" + focus), modal → BLOK INLINE w karcie zadania nad [Podpowiedź][Rozwiązanie] (jeden węzeł
   przenoszony przez insertBefore, więc zero refaktoru ID), 8 pigułek kategorii z wyborem wielokrotnym
   (idą też do _subject), nowe dane auto z DOM karty (odpowiedź ucznia/poprawna, krok rozwiązania, ekran);
   świadomie BEZ SDK @formspree/ajax z CDN (offline-first). 40/40 testów Playwright
   [formularz, formspree, ui, walidacja, mobile, a11y]
+- 2026-07-26 (Sonnet Medium) — sesja 1 „Dla Sonneta": ciemniejsze tło dark mode (--bg #141414); kropki
+  „oceń się" ukryte pod 480px; „sprawdź wszystkie odpowiedzi" w egzaminie wyszarzone zamiast display:none;
+  przycisk „Sprawdź" przy odpowiedzi ostatecznej ukryty w egzaminie; tytuł arkusza z paska do
+  #sheet-title-heading nad pierwszym zadaniem  [css, motyw, mobile, egzamin, ui]
+- 2026-07-26 (Sonnet) — wklejony prawdziwy endpoint Formspree (xvzedgjg) zamiast placeholdera
+  [formspree, formularz]
 - 2026-07-24 (Opus) — przepisanie sekcji „Exam mode" w ARCHITECTURE.md (8 zatytułowanych podsekcji, poziom
   jak dark mode; dopisane ?test-egzamin=1, final-answer w egzaminie, setExamMenuDisabled) + uzupełnienie
   listy „stabilnych ID" paska/menu w ARCHITECTURE_CSS.md  [dokumentacja, egzamin]
