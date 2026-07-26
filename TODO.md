@@ -6,16 +6,6 @@ DO REALIZACJI
 Do przydzielenia:
 - W zadaniach otwartych: zamiast checkboxów powinny być przyciski z punktami do każdego zdania typu "Nierówność zapisana w postaci x2−6x−7≤0x2−6x−7≤0" (przykład z zad 9.) Dokładna punktacja jest w zasadach oceniania w pdf i od tego powinna zależeć ilość przycisków. (czeka na decyzję merytoryczną Henricha o punktacji za poszczególne przyciski, potem do przydzielenia modelowi)
 
-Dla Sonneta na effort Medium (sesja 1 — dziś, drobne mechaniczne zmiany, ten sam obszar plików co do tej pory):
-- Zmień tło w trybie ciemnym na odrobinę ciemniejsze
-- Tło w niektórych widżetach jest białe w motywie darkmode. Należy zmienić kolory na taki które będą się zgadzać z motywem.
-- Kropki "oceń się" trzeba poprawić lub wyłączyć na telefonach
-- Przycisk "sprawdź wszystkie odpowiedzi" powinien być szary/nieaktywny w trybie egzaminu
-- W zadaniach otwartych: przycisk sprawdź przy ostatecznej odpowiedzi w trybie egzaminu powinien nie być widoczny.
-- Przycisk "sprawdź wszystkie odpowiedzi" powinien też być na końcu arkusza w trybie ćwiczeń
-- Przenieś tytuł arkusza nad pierwsze zadanie, powyżej renderu wszystkich zadań.
-- Dodać dodatkowy przycisk zmiany motywu na stronie głównej index.html
-
 Dla Sonneta na effort High (sesja 2 — osobno, redesign górnego paska/menu, wymaga wizualnej iteracji i testów w przeglądarce):
 - Przenieś przycisk menu tak aby był obok logo i rozwijał sidebar. Może zamiast ... mieć strzałkę w dół/w lewą
 - Zmień kolejność przycisków w menu oraz ich nazwy na:
