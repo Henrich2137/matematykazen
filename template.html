@@ -123,37 +123,28 @@
 
 </head>
 <body>
-    <div id="top-bar">
-        <div id="bar-container">
+    <!-- Chrome strony: dwa PŁYWAJĄCE klastry w górnych rogach, bez wspólnego
+         paska (dawny #top-bar zlikwidowany 2026-07-26 — patrz sekcja „Górne
+         narożniki" w ARCHITECTURE_CSS.md). Każdy element ma WŁASNE tło („pigułka"),
+         bo bez paska przejeżdża nad treścią zadania przy scrollowaniu. -->
+    <div id="naroznik-lewy">
+        <!-- Numer wersji podbijany ręcznie przy każdym wdrożeniu
+             (v0.01 → v0.02 → …), żeby po odświeżeniu na telefonie było
+             widać, czy strona wczytała już nową wersję. Ta sama wartość
+             musi być w .landing-logo w index.html. -->
+        <a id="logo" href="index.html"><b>Matematyka Zen</b> <span id="wersja">v0.05</span></a>
+    </div>
 
-            <div id="bar-left">
-                <!-- Numer wersji podbijany ręcznie przy każdym wdrożeniu
-                     (v0.01 → v0.02 → …), żeby po odświeżeniu na telefonie było
-                     widać, czy strona wczytała już nową wersję. Ta sama wartość
-                     musi być w .landing-logo w index.html. -->
-                <a id="logo" href="index.html"><b>Matematyka Zen</b> <span id="wersja">v0.04</span></a>
-            </div>
-
-            <div id="bar-center">
-                <!-- Zawsze widoczny wskaźnik trybu; JS (updateModeSubtitle)
-                     przełącza go na "tryb egzaminu" pod body.tryb-egzaminu.
-                     Tytuł arkusza jest teraz nad pierwszym zadaniem (#sheet-title-heading
-                     w #exercises-wrapper niżej), nie w pasku. -->
-                <div id="exercises-mode-subtitle">tryb ćwiczenia</div>
-            </div>
-
-            <div id="bar-right">
-                <!-- Timer i przycisk "zakończ egzamin" widoczne tylko w trybie
-                     egzaminu (body.tryb-egzaminu w style.css); #total-score jest
-                     wtedy ukryty. Przycisk w pasku to DODATKOWA kopia tego spod
-                     ostatniego zadania (#egzamin-koniec) — oba robią to samo. -->
-                <span id="egzamin-timer" title="Pozostały czas próbnego egzaminu"></span>
-                <button id="egzamin-koniec-bar">zakończ egzamin</button>
-                <span id="total-score">0 / 0 pkt</span>
-                <button id="menu-button" title="Więcej opcji">⋯</button>
-            </div>
-
-        </div>
+    <div id="naroznik-prawy">
+        <!-- Timer i przycisk "zakończ egzamin" widoczne tylko w trybie
+             egzaminu (body.tryb-egzaminu w style/exam.css); #total-score jest
+             wtedy ukryty (jego widok zdradzałby wynik). Przycisk tutaj to
+             DODATKOWA kopia tego spod ostatniego zadania (#egzamin-koniec) —
+             oba robią to samo. -->
+        <span id="egzamin-timer" title="Pozostały czas próbnego egzaminu"></span>
+        <span id="total-score">0 / 0 pkt</span>
+        <button id="egzamin-koniec-bar">zakończ egzamin</button>
+        <button id="menu-button" title="Więcej opcji">⋯</button>
     </div>
 
     <!-- Okienko "więcej opcji" (przycisk ⋯ w pasku): rzadziej używane akcje
@@ -323,6 +314,20 @@
          dzieckiem — nad wszystkimi zadaniami). Treść wypełnia applySheetMeta(). -->
     <div id="exercises-wrapper">
         <h1 id="sheet-title-heading" class="sheet-title-heading"></h1>
+        <!-- Przełącznik trybu ćwiczenia/egzamin — zastąpił bierny napis „tryb
+             ćwiczenia" ze środka dawnego #top-bara. ŚWIADOMIE nie jest fixed:
+             scrolluje się z treścią, bo za „zawsze widoczny" stan egzaminu
+             odpowiada zegar w prawym narożniku, a to jest punkt WEJŚCIA, nie HUD.
+             Stan (klasa .aktywny + aria-pressed) ustawia wyłącznie
+             updateModeSwitch() w app/exam.js na podstawie body.tryb-egzaminu —
+             klik tylko woła startExamPrompt()/finishExamPrompt(), więc anulowanie
+             confirm() nie zostawia przełącznika w złym stanie.
+             Ukryty do wyrenderowania arkusza (body.arkusz-wczytany), żeby nie
+             oferował startu egzaminu na stronie błędnego ?arkusz=. -->
+        <div id="tryb-przelacznik" role="group" aria-label="Tryb pracy z arkuszem">
+            <button type="button" id="tryb-cwiczenia" aria-pressed="true">ćwiczenia</button>
+            <button type="button" id="tryb-egzamin" aria-pressed="false">egzamin</button>
+        </div>
     </div>
 
     <!-- Stopka arkusza — pod ostatnim zadaniem (poza #exercises-wrapper, bo

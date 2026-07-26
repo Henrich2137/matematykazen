@@ -169,9 +169,12 @@ function zaplanujRepozycje() {
 // kropki albo trzymają się zadań, albo kleją do góry/dołu w zwartej kolumnie.
 function repozycjonujWskazniki() {
     if (!wskaznikiEls.length) return;
-    const topBar = document.getElementById("top-bar");
+    // Górna granica pasa: pod prawym klastrem pigułek (zegar/suma/„zakończ") —
+    // kropki są w tej samej, prawej kolumnie ekranu, więc to jedyny element
+    // chrome'u, pod który mogłyby się wsunąć. Dawniej liczone z #top-bara.
+    const klasterPrawy = document.getElementById("naroznik-prawy");
     const polowa = 13; // połowa wysokości kropki (26px)
-    const gora = (topBar ? topBar.getBoundingClientRect().bottom : 0) + 10 + polowa;
+    const gora = (klasterPrawy ? klasterPrawy.getBoundingClientRect().bottom : 0) + 10 + polowa;
     // Przycisk „ukryj" stoi w prawym dolnym rogu OBOK kolumny kropek (odsunięty od
     // niej w lewo, right: 96px vs right: 70px), więc kropki nie chowają się za nim
     // i mogą schodzić prawie do samego dołu — zostawiamy tylko drobny margines.

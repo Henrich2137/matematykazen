@@ -77,14 +77,40 @@ function tickExam() {
     }
 }
 
-// Podtytuł trybu w pasku: stały element UI pokazujący, czy trwa zwykłe
-// ćwiczenie czy próbny egzamin. Źródłem prawdy jest klasa body.tryb-egzaminu,
-// więc wołamy to zawsze po jej dodaniu/zdjęciu.
-function updateModeSubtitle() {
-    const el = document.getElementById("exercises-mode-subtitle");
-    if (el) el.textContent = document.body.classList.contains("tryb-egzaminu")
-        ? "tryb egzaminu"
-        : "tryb ćwiczenia";
+/* ===== PRZEŁĄCZNIK TRYBU (ćwiczenia / egzamin) =====
+   Segmented control pod tytułem arkusza (#tryb-przelacznik w template.html) —
+   następca biernego podtytułu ze środka dawnego #top-bara. Ta funkcja jest
+   JEDYNYM miejscem, które pisze jego stan wizualny; źródłem prawdy zostaje
+   klasa body.tryb-egzaminu, więc wołamy ją zawsze po jej dodaniu/zdjęciu.
+   Dzięki temu klik w połówkę NIE musi nic podświetlać na zapas — a anulowanie
+   confirm() nie zostawia przełącznika w stanie, w którym nic nie jest. */
+const trybCwiczeniaBtn = document.getElementById("tryb-cwiczenia");
+const trybEgzaminBtn = document.getElementById("tryb-egzamin");
+
+function updateModeSwitch() {
+    const egzamin = document.body.classList.contains("tryb-egzaminu");
+    [[trybCwiczeniaBtn, !egzamin], [trybEgzaminBtn, egzamin]].forEach(([btn, aktywny]) => {
+        if (!btn) return;
+        btn.classList.toggle("aktywny", aktywny);
+        btn.setAttribute("aria-pressed", aktywny ? "true" : "false");
+    });
+}
+updateModeSwitch(); // stan początkowy (klasa mogła już wejść przy odtworzeniu egzaminu)
+
+// Klik w NIEAKTYWNĄ połówkę = to samo, co pozycja w panelu bocznym. Oba prompty
+// mają confirm(), więc przełączenie nie dzieje się natychmiast — celowo, egzamin
+// nie może wystartować przypadkiem. Połówka „ćwiczenia" NIE jest blokowana
+// w trakcie egzaminu (to jedyne wyjście z egzaminu obok #egzamin-koniec), więc
+// świadomie nie ma jej na liście OPCJE_MENU_EGZAMIN.
+if (trybCwiczeniaBtn) {
+    trybCwiczeniaBtn.addEventListener("click", () => {
+        if (document.body.classList.contains("tryb-egzaminu")) finishExamPrompt();
+    });
+}
+if (trybEgzaminBtn) {
+    trybEgzaminBtn.addEventListener("click", () => {
+        if (!document.body.classList.contains("tryb-egzaminu")) startExamPrompt();
+    });
 }
 
 // Opcje w menu "..." niedozwolone podczas próbnego egzaminu: zostają widoczne,
@@ -104,7 +130,7 @@ function setExamMenuDisabled(disabled) {
 
 function enableExamMode() {
     document.body.classList.add("tryb-egzaminu");
-    updateModeSubtitle();
+    updateModeSwitch();
     setExamMenuDisabled(true);
     tickExam();
     if (!egzaminInterval) egzaminInterval = setInterval(tickExam, 1000);
@@ -155,7 +181,7 @@ function finishExam(czasMinal) {
     try { localStorage.removeItem(KLUCZ_EGZAMINU); } catch (e) {}
     if (egzaminInterval) { clearInterval(egzaminInterval); egzaminInterval = null; }
     document.body.classList.remove("tryb-egzaminu");
-    updateModeSubtitle();
+    updateModeSwitch();
     setExamMenuDisabled(false);
 
     // Tablica wzorów CKE zostaje dostępna W TRAKCIE egzaminu (jak na prawdziwej

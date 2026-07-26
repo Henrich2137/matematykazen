@@ -3,15 +3,6 @@
    niczego na dużych ekranach — tylko pozwalają arkuszowi zmieścić się na
    telefonie/tablecie bez poziomego scrolla. */
 
-/* Podtytuł trybu w pasku znika, gdy strefa środkowa zostaje za wąska
-   (ellipsis przy ~900px robił się nieczytelny i tak). Tytuł arkusza już tu nie
-   mieszka (patrz .sheet-title-heading w sheet.css) — jest nad zadaniami. */
-@media (max-width: 900px) {
-    #exercises-mode-subtitle {
-        display: none;
-    }
-}
-
 /* Badge punktów wisi 120px za prawą krawędzią karty (650px + 2×50px padding),
    więc mieści się dopiero od ~1010px szerokości okna — poniżej wraca do
    prawego górnego rogu karty, żeby nie robić poziomego scrolla. */
@@ -26,21 +17,30 @@
 }
 
 @media (max-width: 720px) {
-    /* Pasek: ciaśniejsze odstępy i przyciski bez sztywnej szerokości. */
-    #bar-container {
-        padding: 8px 10px;
+    /* Narożniki bliżej krawędzi i ciaśniejsze pigułki — na wąskim ekranie oba
+       klastry muszą zmieścić się w jednym rzędzie (patrz breakpoint 560px). */
+    #naroznik-lewy,
+    #naroznik-prawy {
+        top: 10px;
+    }
+    #naroznik-lewy {
+        left: 8px;
+    }
+    #naroznik-prawy {
+        right: 8px;
         gap: 6px;
     }
     #total-score,
-    body.tryb-egzaminu #egzamin-koniec-bar {
-        font-size: 13px;
+    #egzamin-timer,
+    #naroznik-prawy button {
+        padding: 6px 9px;
     }
-    body.tryb-egzaminu #egzamin-koniec-bar {
-        padding: 8px;
+    #logo {
+        padding: 6px 8px;
     }
     #bar-menu {
-        top: 54px;
-        right: 10px;
+        top: 48px;
+        right: 8px;
     }
 
     /* Karta zadania wypełnia ekran zamiast sztywnych 650px + 50px paddingu. */
@@ -50,7 +50,7 @@
         padding: 40px 16px;
     }
     #exercises-wrapper {
-        padding-top: 80px;
+        padding-top: 56px;
     }
 
     /* Media rozwiązań i przyciski odpowiedzi nie wychodzą poza ekran. */
@@ -116,34 +116,28 @@
     }
 }
 
-/* Bardzo wąskie ekrany (telefon pionowo): trzy strefy paska nie mieszczą się
-   w jednym rzędzie, więc pasek przechodzi na dwa — logo + zasady u góry,
-   punkty + tablica + ⋯ pod spodem. Tytuł i tak jest już ukryty (breakpoint
-   900px wyżej). */
+/* Bardzo wąskie ekrany (telefon pionowo): oba narożniki dzielą jeden rząd, więc
+   prawy klaster (w egzaminie: zegar + „zakończ") może się nie zmieścić obok logo.
+   Zamiast CHOWAĆ „zakończ egzamin" (tak było za czasów #top-bara) pozwalamy
+   klastrowi ZAWINĄĆ się na drugi rząd — funkcja zostaje pod ręką, a nie tylko
+   w stopce arkusza. Limit szerokości zostawia miejsce na logo ze strzałką. */
 @media (max-width: 560px) {
-    #bar-container {
-        grid-template-columns: 1fr;
+    #naroznik-lewy {
+        max-width: calc(100vw - 16px);
     }
-    #bar-center {
-        display: none;
+    #naroznik-prawy {
+        flex-wrap: wrap;
+        max-width: calc(100vw - 200px);
     }
-    #bar-left,
-    #bar-right {
-        justify-content: center;
+    #logo {
+        font-size: 14px;
     }
-    #exercises-wrapper {
-        padding-top: 110px;
+    /* Zawinięty klaster ma dwa rzędy pigułek, więc treść startuje niżej. */
+    body.tryb-egzaminu #exercises-wrapper {
+        padding-top: 92px;
     }
     #bar-menu {
-        top: 92px;
-    }
-
-    /* Poniżej ~430px szerokości "zakończ egzamin" w pasku wypycha menu ⋯ poza
-       ekran (zmierzone: prawa krawędź #menu-button > szerokość okna). Chowamy
-       go na całym tym wąskim zakresie — pełnowymiarowy odpowiednik i tak jest
-       w stopce arkusza (#egzamin-koniec), więc funkcja zostaje dostępna. */
-    body.tryb-egzaminu #egzamin-koniec-bar {
-        display: none;
+        top: 48px;
     }
 
     /* Pływające kropki „oceń się" (style/exam.css .wskaznik-otwarte) mają stałą

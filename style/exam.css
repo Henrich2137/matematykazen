@@ -37,12 +37,11 @@ body.arkusz-wczytany #bar-menu #egzamin-start {
 body.tryb-egzaminu #bar-menu #egzamin-start {
     display: none;
 }
+/* Zegar i „zakończ egzamin" w prawym narożniku: wygląd „pigułki" (tło, ramka,
+   border-radius, font) bierze się ze wspólnej reguły w style/sheet.css — tutaj
+   tylko widoczność i to, co je od siebie różni. */
 body.tryb-egzaminu #egzamin-timer {
     display: inline-block;
-    padding: 5px 8px;
-    border: 1px solid var(--border);
-    background-color: var(--bg);
-    white-space: nowrap;
     font-variant-numeric: tabular-nums; /* zegar nie "drga" przy zmianie cyfr */
     color: var(--text-muted);
 }
@@ -55,22 +54,10 @@ body.tryb-egzaminu #egzamin-timer.zegar-ukryty {
     border-color: var(--incorrect);
     color: var(--incorrect);
 }
-/* "Zakończ egzamin" w pasku: ta sama ramka co #toggle-tablica, ale BEZ
-   sztywnego min-width (etykieta się nie zmienia, to nie jest toggle). */
+/* „Zakończ egzamin" w prawym narożniku — pigułka jak zegar i suma (wygląd
+   z style/sheet.css); tu tylko odsłonięcie w trybie egzaminu. */
 body.tryb-egzaminu #egzamin-koniec-bar {
     display: inline-block;
-    padding: 8px 12px;
-    border: 2px solid var(--border);
-    border-radius: 3px;
-    background-color: var(--bg);
-    font-family: inherit;
-    white-space: nowrap;
-    text-align: center;
-    color: var(--text);
-    cursor: pointer;
-}
-body.tryb-egzaminu #egzamin-koniec-bar:hover {
-    border-color: var(--border-strong);
 }
 /* Duże przyciski w stopce arkusza (pod ostatnim zadaniem): "zakończ egzamin"
    w trybie egzaminu i "rozpocznij próbny egzamin" w trybie ćwiczeniowym mają

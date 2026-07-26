@@ -223,10 +223,13 @@ body {
     color: inherit;
 }
 
-/* Odstęp pod fixed #top-bar — zamiast dawnych <br><br><br><br> w HTML.
-   Przy zmianie wysokości paska wystarczy poprawić ten padding. */
+/* Odstęp na pływające narożniki (#naroznik-lewy / #naroznik-prawy) — nie ma już
+   paska na całą szerokość, ale pigułki nadal zajmują górę ekranu, więc tytuł
+   arkusza musi startować pod nimi. Pigułka kończy się na ~45px (top 16px +
+   ~29px wysokości), resztę zostawiamy jako oddech.
+   Przy zmianie `top`/wysokości pigułek popraw też nadpisania w style/responsive.css. */
 #exercises-wrapper {
-    padding-top: 100px;
+    padding-top: 66px;
 }
 
 /* Komunikat, gdy fetch("exercises.json") się nie powiedzie (np. strona
