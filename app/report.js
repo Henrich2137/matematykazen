@@ -6,13 +6,6 @@
 // Ładowany PRZED app/render.js — loadExercises() woła dodajLinkZgloszenia()
 // przy budowaniu każdego zadania (klasyczne skrypty, wspólny scope).
 
-// ============================================================================
-// UWAGA (BLOKER): endpoint Formspree jeszcze NIE ISTNIEJE. Henrich musi założyć
-// konto na formspree.io, utworzyć formularz i wkleić tu jego adres, postaci
-// "https://formspree.io/f/xxxxxxxx". Do tego czasu przycisk „Wyślij" pokazuje
-// czytelny komunikat „nie skonfigurowano" zamiast cichej porażki albo mylącego
-// błędu sieci (patrz warunek na placeholder w obsłudze submit niżej).
-// ============================================================================
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/xvzedgjg";
 
 // Ustawienia GLOBALNE (wspólne dla wszystkich arkuszy — jak motyw czy tryb

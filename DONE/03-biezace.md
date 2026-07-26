@@ -4,6 +4,10 @@ spojrzenie na projekt, rozwiazanie trudniejszego problemu albo sprawdzenie, czy/
 kiedys rozwiazano. Zasada podzialu i indeks: DONE/README.md.
 Zakres: 2026-07-13 (WYSOKI PRIORYTET) - 2026-07-21. Partia jeszcze niezmergowana do mastera.
 
+[ZROBIONE] (2026-07-26, Sonnet) — Henrich założył konto na formspree.io i wkleił endpoint
+  (https://formspree.io/f/xvzedgjg) w app/report.js — usunięty przestarzały komentarz-bloker
+  o „endpoint jeszcze nie istnieje"  [formspree, formularz]
+
 [ZROBIONE] (2026-07-26, Sonnet Medium) — sesja 1 z TODO.md „Dla Sonneta": (1) ciemniejsze tło dark mode
   (--bg: #1b1b1b → #141414, base.css); (2) kropki „oceń się" (.wskaznik-otwarte, #wskazniki-ukryj) ukryte
   pod 480px (responsive.css) — pozycje liczone pod desktop kolidowały na wąskich telefonach (Henrich:
