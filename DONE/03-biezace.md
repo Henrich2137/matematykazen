@@ -4,6 +4,23 @@ spojrzenie na projekt, rozwiazanie trudniejszego problemu albo sprawdzenie, czy/
 kiedys rozwiazano. Zasada podzialu i indeks: DONE/README.md.
 Zakres: 2026-07-13 (WYSOKI PRIORYTET) - 2026-07-26. Partia jeszcze niezmergowana do mastera.
 
+[ZROBIONE] (2026-07-26, Opus) — limity długości opisu w formularzu zgłoszeń: MIN 3 / MAX 2000 znaków,
+  liczone PO trim() (spacje ani nie spełniają minimum, ani nie zjadają limitu). Powód: test Henricha
+  wysłał opis o długości kilkudziesięciu kB, co zaśmieca skrzynkę i payload Formspree. Implementacja:
+  bladOpisu() to jedno źródło prawdy (zwraca komunikat dla pusty/za krótki/za długi albo "" gdy OK) —
+  wyprowadzone są z niego zarówno stan przycisku, jak i tekst komunikatu. Górny limit egzekwowany
+  DWA razy: maxlength="2000" na textarei (przeglądarka nie pozwoli wpisać ani wkleić więcej) ORAZ
+  w bladOpisu(), bo maxlength trywialnie omija się programowo — trzymać atrybut HTML zgodny ze stałą
+  OPIS_MAX. Doszedł licznik #zglos-blad-licznik („123 / 2000", tabular-nums, czerwony powyżej 90%,
+  aria-hidden bo czytnik dostaje limit przez role="alert"). Przy okazji poprawka UX: widoczny komunikat
+  AKTUALIZUJE się przy pisaniu, a nie tylko znika — po jednym znaku „bez tego nie wiemy, czego szukać"
+  zmienia się na „opis jest za krótki" (wcześniej wisiał nieaktualny tekst).
+  UWAGA — ta zmiana była w trakcie sesji przerwana w połowie i gitdoc zdążył WYPCHNĄĆ na produkcję
+  wersję z `zgLicznik is not defined` (PAGEERROR przy każdym znaku, choć wysyłka nadal działała).
+  Nauka: przy autoPush "onCommit" każda niedokończona edycja jest natychmiast na żywo.
+  Zweryfikowane: 17/17 testów limitów + 41/41 regresji + 11/11 KaTeX, zrzuty w obu motywach
+  [formularz, walidacja, antyspam, ux, produkcja]
+
 [ZROBIONE] (2026-07-26, Opus) — BUGFIX do wpisu poniżej, wykryty przez Henricha na PRAWDZIWYM zgłoszeniu
   z produkcji (zad. 2): pola odpowiedzUcznia/odpowiedzPoprawna wysyłały zlepek „A. 545^{4}54" zamiast
   „A. 5^{4}". Przyczyna: KaTeX renderuje każdy wzór w DWÓCH warstwach naraz — ukrytej .katex-mathml
