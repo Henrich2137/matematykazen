@@ -5,12 +5,13 @@ DO REALIZACJI
 
 Do przydzielenia:
 
-- odwrócone kolory wybranego przycisku w przełączniuku ćwiczenia / egzamin na górze arkusza powinny byćnieco lżejsze. W darkmodzie ciemniejsze tło, a w jasnym motywie jaśniejsze.
-- zmienić kolor okien pdf na ciemniejszy w darkmodzie, tak aby nie odstawał tak bardzo od reszty. Można też zmienić jego cały styl na podobny do tego co ma panel boczny.
+- Odwrócone kolory wybranego przycisku w przełączniuku ćwiczenia / egzamin na górze arkusza powinny byćnieco lżejsze. W darkmodzie ciemniejsze tło, a w jasnym motywie jaśniejsze.
 
-- pionowa linia sidebara po jego prawej powinna być przesunięta w prawo. Jej dolny koniec powinien się też kończyć przed dolną granicą ekranu.
+- Zmienić kolor okien pdf na ciemniejszy w darkmodzie, tak aby nie odstawał tak bardzo od reszty. Można też zmienić jego cały styl na podobny do tego co ma panel boczny.
 
-- na komputerze przycisk sidebar-toggle powinien być przesunięty lekko w lewo i minimalnie w górę. Będzie się wtedy lepiej się komponował z otwartym sidebarem oraz logo
+- Pionowa linia sidebara po jego prawej powinna być przesunięta w prawo. Jej dolny koniec powinien się też kończyć przed dolną granicą ekranu.
+
+- Na komputerze przycisk sidebar-toggle powinien być przesunięty lekko w lewo i minimalnie w górę. Będzie się wtedy lepiej się komponował z otwartym sidebarem oraz logo
 
 - W zadaniach otwartych: zamiast checkboxów powinny być przyciski z punktami do każdego zdania typu "Nierówność zapisana w postaci x2−6x−7≤0x2−6x−7≤0" (przykład z zad 9.) Dokładna punktacja jest w zasadach oceniania w pdf i od tego powinna zależeć ilość przycisków. (czeka na decyzję merytoryczną Henricha o punktacji za poszczególne przyciski, potem do przydzielenia modelowi)
 
@@ -18,7 +19,7 @@ Do przydzielenia:
 
 - Tło w niektórych widżetach jest białe w motywie darkmode. Należy zmienić kolory na taki które będą się zgadzać z motywem.
 
-- Tylko w trybie ćwiczeń przycisk "sprawdź wszystkie odpowiedzi" powinien znajdować się na dole arkusza, obok "rozpocznij egzamin". Ma zostać też w menu (i tu, i tu). W trybie egzaminu na dole arkusza ma być niewidoczny (nie tylko wyszarzony jak w menu).
+- W trybie ćwiczeń przycisk "sprawdź wszystkie odpowiedzi" powinien znajdować się na dole arkusza, obok "rozpocznij egzamin". Ma zostać też w menu (i tu, i tu). W trybie egzaminu na dole arkusza ma być niewidoczny (nie tylko wyszarzony jak w menu).
 
 
 <br>
