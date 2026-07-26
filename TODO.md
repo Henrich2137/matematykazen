@@ -5,10 +5,12 @@ DO REALIZACJI
 
 Do przydzielenia:
 - W zadaniach otwartych: zamiast checkboxów powinny być przyciski z punktami do każdego zdania typu "Nierówność zapisana w postaci x2−6x−7≤0x2−6x−7≤0" (przykład z zad 9.) Dokładna punktacja jest w zasadach oceniania w pdf i od tego powinna zależeć ilość przycisków. (czeka na decyzję merytoryczną Henricha o punktacji za poszczególne przyciski, potem do przydzielenia modelowi)
+- w zadaniach z oknem z ostateczną odpowiedzią (jak 8 czy 9), po zrobieniu egzaminu ostateczna odpowiedź powinna się samodzielnie sprawdzić.
 
 Dla Sonneta na effort High (sesja 2 — osobno, redesign górnego paska/menu, wymaga wizualnej iteracji i testów w przeglądarce):
 - Przenieś przycisk menu tak aby był obok logo i rozwijał sidebar. Może zamiast ... mieć strzałkę w dół/w lewą
-- Zmień kolejność przycisków w menu oraz ich nazwy na:
+- Stwórz sidebar który będzie rozwijał się po lewej stronie i będzie się rozwijał za pomoicą przycisku umieszczonego zaraz po prawej od loga. Zmień kolejność przycisków w menu oraz ich nazwy na:
+  - Tytuł arkusza
   - Otwórz tablicę wzorów
   - Otwórz zasady oceniania
   - Rozpocznij egzamin
