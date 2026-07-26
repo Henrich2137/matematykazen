@@ -25,13 +25,18 @@ function applyTheme(motyw) {
         if (motyw === "auto") localStorage.removeItem(KLUCZ_MOTYWU);
         else localStorage.setItem(KLUCZ_MOTYWU, motyw);
     } catch (e) {}
-    if (themeToggle) themeToggle.textContent = "motyw: " + motyw;
+    // Wartość w panelu bocznym (ustawWartosc pisze do .wartosc + data-stan;
+    // NIE do textContent, żeby nie skasować ikony — patrz app/state.js).
+    ustawWartosc(themeToggle, motyw);
 }
 applyTheme(readTheme()); // zsynchronizuj etykietę ze stanem z <head>
 if (themeToggle) {
+    // Motyw to WYJĄTEK od konwencji „klik ujmuje o stopień": nie jest skalą
+    // więcej/mniej, więc nie ma „lewego wyłączenia" — zostaje kolejność z MOTYWY
+    // i cykl w PRAWO (data-kierunek="prawo" w template.html). Kolejność musi się
+    // zgadzać z data-stany, bo z niej biorą się kropki i podgląd po najechaniu.
     themeToggle.addEventListener("click", () => {
-        const next = MOTYWY[(MOTYWY.indexOf(readTheme()) + 1) % MOTYWY.length];
-        applyTheme(next);
+        applyTheme(nastepnyStan(themeToggle) || MOTYWY[0]);
     });
 }
 // Zmiana motywu w innej karcie (ten sam KLUCZ_MOTYWU w localStorage) ma się

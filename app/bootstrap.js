@@ -1,27 +1,86 @@
 // app/bootstrap.js — punkt wejścia strony (startSheet + komunikaty błędów +
-// applySheetMeta) oraz chrome paska/menu „⋯" (menu, reset, widok punktów,
-// pokaż wszystkie rozwiązania). Ładowany OSTATNI z bloku app/*, bo startSheet()
-// woła loadExercises() i wiele funkcji zdefiniowanych w pozostałych plikach.
+// applySheetMeta) oraz chrome panelu bocznego (otwieranie/zamykanie, reset,
+// punktacja, pokaż wszystkie rozwiązania). Ładowany OSTATNI z bloku app/*, bo
+// startSheet() woła loadExercises() i wiele funkcji z pozostałych plików.
 
-// Okienko "więcej opcji" (⋯): pokaż/schowaj po kliknięciu przycisku,
-// zamknij po kliknięciu gdziekolwiek poza okienkiem.
-const menuButton = document.getElementById("menu-button");
-const barMenu = document.getElementById("bar-menu");
-menuButton.addEventListener("click", (e) => {
-    e.stopPropagation();
-    barMenu.style.display = barMenu.style.display === "block" ? "none" : "block";
-});
-document.addEventListener("click", (e) => {
-    if (barMenu.style.display === "block" && !barMenu.contains(e.target)) {
-        barMenu.style.display = "none";
+/* ===== PANEL BOCZNY (#sidebar) =====
+   Otwiera i zamyka JEDNA strzałka przy logo (#sidebar-toggle), dodatkowo Esc.
+   Stan NIE jest zapamiętywany między odświeżeniami — świadomie: panel jest do
+   sporadycznych akcji, nie do stałego trzymania otwartym.
+
+   PRÓG 1300px („panel zasłania treść") steruje trzema rzeczami naraz, żeby nie
+   mnożyć niezależnych warunków — na wąskim laptopie panel zasłania zadanie
+   dokładnie tak samo jak na telefonie, więc warunek jest spięty z progiem,
+   a nie z czyTelefon():
+     • przyciemnienie treści     — CSS (style/responsive.css),
+     • zamykanie klikiem w arkusz — CSS (pointer-events na przyciemnieniu),
+     • zamykanie po kliknięciu AKCJI — tutaj, w JS.
+   Kliknięcie USTAWIENIA nie zamyka panelu na żadnej szerokości: cykl klika się
+   po kilka razy pod rząd (wszystko → tylko suma → wył.), więc zamykanie po
+   każdym stopniu zmuszałoby do otwierania panelu od nowa. */
+const PROG_SIDEBAR_NAKLADA = 1300;
+const sidebar = document.getElementById("sidebar");
+const sidebarToggle = document.getElementById("sidebar-toggle");
+const sidebarPrzyciemnienie = document.getElementById("sidebar-przyciemnienie");
+
+function sidebarNaklada() {
+    try {
+        return window.matchMedia(`(max-width: ${PROG_SIDEBAR_NAKLADA - 1}px)`).matches;
+    } catch (e) { return true; }
+}
+function czySidebarOtwarty() {
+    return document.body.classList.contains("sidebar-otwarty");
+}
+function otworzSidebar() {
+    document.body.classList.add("sidebar-otwarty");
+    if (sidebarToggle) {
+        sidebarToggle.setAttribute("aria-expanded", "true");
+        sidebarToggle.setAttribute("aria-label", "Zamknij menu");
     }
+    // Fokus na pierwszą WIDOCZNĄ pozycję (część jest chowana zależnie od trybu).
+    // Świadomie BEZ focus trapu: panel nie jest modalem, ma się dać wyjść Tabem
+    // do treści arkusza.
+    const pierwsza = sidebar && Array.from(sidebar.querySelectorAll("button"))
+        .find(b => !b.disabled && b.offsetParent !== null);
+    if (pierwsza) pierwsza.focus();
+}
+// wrocFokus: Esc oddaje fokus strzałce — inaczej fokus zostaje w zamkniętym
+// (visibility: hidden) panelu i Tab startuje z nieoczywistego miejsca.
+function zamknijSidebar(wrocFokus) {
+    document.body.classList.remove("sidebar-otwarty");
+    if (sidebarToggle) {
+        sidebarToggle.setAttribute("aria-expanded", "false");
+        sidebarToggle.setAttribute("aria-label", "Otwórz menu");
+        if (wrocFokus) sidebarToggle.focus();
+    }
+}
+if (sidebarToggle) {
+    sidebarToggle.addEventListener("click", () => {
+        if (czySidebarOtwarty()) zamknijSidebar(false);
+        else otworzSidebar();
+    });
+}
+if (sidebarPrzyciemnienie) {
+    // Klikalne tylko poniżej progu (pointer-events z CSS), więc bez warunku w JS.
+    sidebarPrzyciemnienie.addEventListener("click", () => zamknijSidebar(false));
+}
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && czySidebarOtwarty()) zamknijSidebar(true);
 });
+if (sidebar) {
+    // Delegacja na kontenerze: własny handler przycisku odpala się PIERWSZY
+    // (bąbelkowanie), więc akcja zawsze wykonuje się przed zamknięciem panelu.
+    sidebar.addEventListener("click", (e) => {
+        if (e.target.closest(".sidebar-akcja") && sidebarNaklada()) zamknijSidebar(false);
+    });
+}
 
-// "Resetuj punktację": kasuje zapisany postęp i przeładowuje stronę — punkty,
+// "Zresetuj arkusz": kasuje zapisany postęp i przeładowuje stronę — punkty,
 // kolory odpowiedzi i wpisy wracają do zera jedną, wspólną drogą (świeży render).
 document.getElementById("reset-scores").addEventListener("click", () => {
     if (!confirm(
-        "Wyczyścić zapisane odpowiedzi i punkty? Tej operacji nie można cofnąć.\n\n" +
+        "Zresetować arkusz? Zapisane odpowiedzi i punkty zostaną wyczyszczone, " +
+        "a tej operacji nie można cofnąć.\n\n" +
         "Jeśli w innej karcie trwa właśnie próbny egzamin na tym arkuszu, zostanie on też zakończony."
     )) return;
     try {
@@ -32,71 +91,67 @@ document.getElementById("reset-scores").addEventListener("click", () => {
     location.reload();
 });
 
-// Przełącznik widoku punktów (menu „⋯"): wszystko → tylko suma → nic → ...
+/* Ustawienie „Punktacja" w panelu bocznym: wszystko → tylko suma → wył. → ...
+   Trzy stany, dwa niezależne elementy:
+     wszystko   — badge przy każdym zadaniu + suma w narożniku,
+     tylko suma — bez badge'y, suma zostaje,
+     wył.       — jedno i drugie schowane.
+   Kolejność i kierunek cyklu (w LEWO, czyli „ujmuje o stopień") biorą się
+   z data-stany/data-kierunek w template.html — patrz nastepnyStan() w state.js.
+   Dawniej ten cykl rozpoznawał stan przez porównanie innerHTML przycisku ze
+   stringiem; z ikoną i kropkami w środku było to nie do utrzymania, więc
+   jedynym źródłem prawdy jest teraz data-stan. */
 const scoreSwitchButton = document.getElementById("score-switch-button");
 
-
-scoreSwitchButton.addEventListener("click", () => {
-
-    //potem można to podmienić na switch(scoreSwitchButton.innerHTML){}
-    if(scoreSwitchButton.innerHTML == "widok punktów: wszystko"){
-
-        scoreSwitchButton.innerHTML="widok punktów: tylko suma"
-
-        const elements = document.getElementsByClassName('exercise-score');
-        for (let el of elements) {
-            el.style.display = "none";
-        }
-    }else if(scoreSwitchButton.innerHTML == "widok punktów: tylko suma"){
-
-        scoreSwitchButton.innerHTML="widok punktów: nic"
-
-        document.getElementById('total-score').style.display = "none";
-
-    }else{
-        scoreSwitchButton.innerHTML="widok punktów: wszystko"
-
-        document.getElementById('total-score').style.display = "block";
-        const elements = document.getElementsByClassName('exercise-score');
-        for (let el of elements) {
-            el.style.display = "block";
-        }
-
-
-    }
-
-})
-
-// Na TELEFONIE domyślnie chowamy badge'e punktów przy zadaniach — na wąskim
-// ekranie zaśmiecają kartę, a bieżąca suma i tak jest w pasku. To tylko wartość
-// DOMYŚLNA: użytkownik dalej może cyklicznie przełączać widok (wszystko → tylko
-// suma → nic) tym samym przyciskiem #score-switch-button. Ustawiamy stan „tylko
-// suma" po wyrenderowaniu zadań (badge'e muszą już istnieć). Na desktopie no-op.
-function zastosujDomyslnyWidokPunktowMobile() {
-    if (!czyTelefon()) return;
-    scoreSwitchButton.innerHTML = "widok punktów: tylko suma";
-    document.querySelectorAll(".exercise-score").forEach(el => { el.style.display = "none"; });
+function zastosujWidokPunktow(stan) {
+    const pokazBadge = stan === "wszystko";
+    const pokazSume = stan !== "wył.";
+    document.querySelectorAll(".exercise-score").forEach(el => {
+        el.style.display = pokazBadge ? "block" : "none";
+    });
+    const suma = document.getElementById("total-score");
+    // Uwaga: w trybie egzaminu exam.css chowa #total-score przez !important,
+    // więc ten inline display go nie odsłoni — i dobrze.
+    if (suma) suma.style.display = pokazSume ? "block" : "none";
+    ustawWartosc(scoreSwitchButton, stan);
 }
 
-// Toggle „natychmiastowa poprawność" (menu ⋯): ustawienie GLOBALNE (localStorage,
-// bez sufiksu arkusza — patrz app/state.js). ON = klik odpowiedzi zamkniętej od
-// razu koloruje ramkę; OFF = dopiero po kliknięciu „sprawdź". body.reczne-sprawdzanie
-// (dodawane w trybie OFF) odsłania przyciski „sprawdź wszystkie odpowiedzi".
+if (scoreSwitchButton) {
+    ustawWartosc(scoreSwitchButton, scoreSwitchButton.dataset.stan); // kropki + podgląd na starcie
+    scoreSwitchButton.addEventListener("click", () => {
+        zastosujWidokPunktow(nastepnyStan(scoreSwitchButton));
+    });
+}
+
+// Na TELEFONIE domyślnie chowamy badge'e punktów przy zadaniach — na wąskim
+// ekranie zaśmiecają kartę, a bieżąca suma i tak jest w narożniku. To tylko
+// wartość DOMYŚLNA: użytkownik dalej może cyklicznie przełączać widok tym samym
+// ustawieniem „Punktacja". Ustawiamy stan „tylko suma" po wyrenderowaniu zadań
+// (badge'e muszą już istnieć). Na desktopie no-op.
+function zastosujDomyslnyWidokPunktowMobile() {
+    if (!czyTelefon()) return;
+    zastosujWidokPunktow("tylko suma");
+}
+
+// Ustawienie „Poprawność odpowiedzi" (panel boczny): GLOBALNE (localStorage,
+// bez sufiksu arkusza — patrz app/state.js). „natychmiast" = klik odpowiedzi
+// zamkniętej od razu koloruje ramkę; „po „sprawdź"" = dopiero po kliknięciu
+// przycisku. body.reczne-sprawdzanie (w tym drugim trybie) odsłania przyciski
+// „sprawdź wszystkie odpowiedzi".
 const natychmiastowaToggle = document.getElementById("natychmiastowa-toggle");
+const WARTOSC_NATYCHMIAST = "natychmiast";
 function odswiezTrybPoprawnosci() {
     const on = czyNatychmiastowaPoprawnosc();
     document.body.classList.toggle("reczne-sprawdzanie", !on);
-    if (natychmiastowaToggle) {
-        natychmiastowaToggle.textContent = on
-            ? "pokazuj poprawność od razu: tak"
-            : "pokazuj poprawność od razu: nie";
-    }
+    ustawWartosc(natychmiastowaToggle, on ? WARTOSC_NATYCHMIAST : "po „sprawdź”");
 }
 odswiezTrybPoprawnosci();
 if (natychmiastowaToggle) {
     natychmiastowaToggle.addEventListener("click", () => {
-        const on = czyNatychmiastowaPoprawnosc();
-        try { localStorage.setItem(KLUCZ_NATYCHM_POPRAWNOSC, on ? "0" : "1"); } catch (e) {}
+        const nast = nastepnyStan(natychmiastowaToggle);
+        try {
+            localStorage.setItem(KLUCZ_NATYCHM_POPRAWNOSC, nast === WARTOSC_NATYCHMIAST ? "1" : "0");
+        } catch (e) {}
         odswiezTrybPoprawnosci();
     });
 }
@@ -128,6 +183,9 @@ function applySheetMeta(meta) {
     }
     const tytulEl = document.getElementById("sheet-title-heading");
     if (tytulEl && meta.sheetTitle) tytulEl.textContent = meta.sheetTitle;
+    // Nagłówek panelu bocznego — ten sam tekst co <h1> nad pierwszym zadaniem.
+    const sidebarTytul = document.getElementById("sidebar-tytul");
+    if (sidebarTytul && meta.sheetTitle) sidebarTytul.textContent = meta.sheetTitle;
     if (meta.zasadyPdf) {
         // zasadyPdf jest ścieżką względną do folderu arkusza (jak media),
         // więc idzie przez mediaPath. encodeURI na wypadek spacji w nazwie.
@@ -227,9 +285,10 @@ async function startSheet() {
 }
 startSheet();
 
-// "Pokaż/schowaj wszystkie rozwiązania": przełącznik w pasku. Otwiera lub
-// zamyka panel rozwiązania każdego zadania klikając jego własny przycisk
-// (ta sama ścieżka co ręczne klikanie — kroki, filmy itd. działają normalnie).
+// „Pokaż/schowaj wszystkie rozwiązania": AKCJA w panelu bocznym (nie ustawienie
+// — nie ma wartości ani kropek, zmienia się sam czasownik). Otwiera lub zamyka
+// panel rozwiązania każdego zadania klikając jego własny przycisk (ta sama
+// ścieżka co ręczne klikanie — kroki, filmy itd. działają normalnie).
 // Pomijamy zadania będące już w docelowym stanie, więc ręcznie otwarte
 // rozwiązania nie "mrugają" i nie zamykają się przy "pokaż wszystkie".
 const showAllButton = document.getElementById("show-all-solutions");
@@ -241,7 +300,9 @@ showAllButton.addEventListener("click", () => {
         const otwarty = panel.style.display === "block";
         if (otwarty !== wszystkieOtwarte) przycisk.click();
     });
-    showAllButton.textContent = wszystkieOtwarte
-        ? "schowaj wszystkie rozwiązania"
-        : "pokaż wszystkie rozwiązania";
+    // ustawEtykiete, nie textContent całego przycisku — inaczej zapis skasowałby
+    // ikonę SVG (patrz komentarz przy ustawEtykiete w app/state.js).
+    ustawEtykiete(showAllButton, wszystkieOtwarte
+        ? "Schowaj wszystkie rozwiązania"
+        : "Pokaż wszystkie rozwiązania");
 });
