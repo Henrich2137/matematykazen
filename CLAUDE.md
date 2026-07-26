@@ -30,6 +30,13 @@ Plus `vendor/katex/` — KaTeX vendored for fully offline math rendering (don't 
 
 **Done items do not stay in TODO.md.** When an item is completed, move it (marked `[DONE]`/`[ZROBIONE]` with the date and a short note on how it was solved) into the **current** file under [DONE/](DONE/) — see [DONE/README.md](DONE/README.md) for which file is current and the split rule (one file per merged partia, not per calendar period) — and delete it from TODO.md, so TODO.md stays short and cheap to load. **Do not read files under DONE/ by default** — open one only when you genuinely need project history: a broader view of the project, debugging a harder problem, or checking whether/how something was already solved before. Start from `DONE/README.md`'s tagged index rather than opening files blind. (Older names `todo1DONE.md`/`todo2.md`/`todo3.md`/`todo.md`/`todoDONE.md`/`TODODONE.md`/root `DONE.md` no longer exist — their content was merged/renamed/split into TODO.md and `DONE/`.)
 
+## Git / gitdoc
+
+Henrich's VS Code has the **gitdoc** extension enabled globally (`C:\Users\<user>\AppData\Roaming\Code\User\settings.json`), with **`gitdoc.autoPush: "onCommit"`**: gitdoc auto-commits on every save (timestamp-only messages, no prefix) and **immediately pushes each one to `origin`** — this bypasses the "confirm before push" rule for those commits specifically, because they're not something the assistant initiated. Also set: `autoPull: "onPush"`, `pullOnOpen: true`, `commitOnClose: true`. Practical effects to expect:
+- `git log` on this repo routinely shows a run of bare-timestamp commits between two "real" (prefixed, authored) commits — these are gitdoc, not the assistant, even during an assistant session (e.g. Henrich editing TODO.md in the editor mid-session).
+- Before squashing a range of commits for the assistant's own work, check `git show --stat` on each one — don't assume every commit in the range is the assistant's; a gitdoc auto-commit from Henrich's own edits can land in the middle of the range (happened 2026-07-26, see `DONE/03-biezace.md`).
+- Because autoPush is immediate, treat any commit as **already on `origin`** unless proven otherwise — there is no local-only staging window to rely on.
+
 ## Running / previewing
 
 No build or test tooling. **Serve the directory with a static file server** (e.g. `npx serve`, `python -m http.server`) — since the exercises.json migration the exam page loads its data with `fetch`, which does not work over `file://` (the page then shows a message explaining exactly this; index.html alone still opens fine from a file). No linter/test suite — verify changes by opening the page and clicking through the exercise(s) you touched.
