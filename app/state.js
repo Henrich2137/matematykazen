@@ -44,6 +44,74 @@ function czyTelefon() {
     try { return window.matchMedia("(max-width: 720px)").matches; } catch (e) { return false; }
 }
 
+/* ===== POZYCJE PANELU BOCZNEGO (#sidebar) — pisanie etykiet i wartości =====
+   Każdy wiersz panelu ma w środku ikonę SVG, <span class="etykieta">, a wiersze
+   typu „ustawienie" dodatkowo <span class="wartosc"> i kropki stanu. Dlatego
+   ŻADEN plik app/*.js nie może już pisać do `textContent` całego przycisku —
+   pierwszy taki zapis skasowałby ikonę razem z resztą. Zamiast tego:
+     • ustawEtykiete(btn, tekst)   — dla AKCJI, które zmieniają czasownik
+                                     („Otwórz…" ↔ „Schowaj…"),
+     • ustawWartosc(btn, wartosc)  — dla USTAWIEŃ: przestawia data-stan (jedyne
+                                     źródło prawdy o pozycji w cyklu), tekst
+                                     wartości, kropki i podgląd next-state.
+
+   Cykl stanów jest opisany DEKLARATYWNIE w atrybutach przycisku w template.html:
+     data-stany   — pełna lista etykiet, od lewej do prawej. Konwencja: skrajnie
+                    LEWO = wyłączone, skrajnie PRAWO = „wszystko" (kropki czytają
+                    się jak skala: ●○○ = wył., ○○● = pełnia).
+     data-kierunek — "lewo" (domyślnie: klik UJMUJE o stopień, bo domyślny stan
+                    siedzi na prawym końcu) albo "prawo" dla Motywu, który nie
+                    jest skalą „więcej/mniej" i zostaje przy kolejności z kodu.
+   Dzięki temu kropki, podgląd po najechaniu i sam cykl nie mogą się rozjechać —
+   wszystkie trzy czytają tę samą listę. */
+function ustawEtykiete(btn, tekst) {
+    if (!btn) return;
+    const el = btn.querySelector(".etykieta");
+    if (el) el.textContent = tekst;
+    else btn.textContent = tekst; // panel jeszcze bez ikon (albo inny kontener)
+}
+
+function stanyPrzycisku(btn) {
+    return (btn.dataset.stany || "").split(",").filter(s => s !== "");
+}
+
+// Stan, na który przeskoczy NAJBLIŻSZY klik — używany i przez sam cykl,
+// i przez podgląd „auto → jasny" po najechaniu myszą.
+function nastepnyStan(btn) {
+    if (!btn) return null;
+    const stany = stanyPrzycisku(btn);
+    if (!stany.length) return null;
+    const i = stany.indexOf(btn.dataset.stan || "");
+    if (i < 0) return stany[stany.length - 1]; // nieznany stan → wracamy na pełnię
+    const krok = btn.dataset.kierunek === "prawo" ? 1 : -1;
+    return stany[(i + krok + stany.length) % stany.length];
+}
+
+function ustawWartosc(btn, wartosc) {
+    if (!btn) return;
+    btn.dataset.stan = wartosc;
+    const w = btn.querySelector(".wartosc");
+    if (w) w.textContent = wartosc;
+    const podglad = btn.querySelector(".wartosc-podglad");
+    if (podglad) {
+        const nast = nastepnyStan(btn);
+        podglad.textContent = nast ? `${wartosc} → ${nast}` : wartosc;
+    }
+    // Kropki stanu: generowane z data-stany, nigdy nie wpisywane ręcznie w HTML.
+    // Na telefonie to ONE rozwiązują cykl — bez nich tapnięcie jest klikaniem
+    // w ciemno (podgląd po najechaniu tam się nie stosuje).
+    const kropki = btn.querySelector(".kropki");
+    if (!kropki) return;
+    const stany = stanyPrzycisku(btn);
+    const aktywny = stany.indexOf(wartosc);
+    kropki.textContent = "";
+    stany.forEach((_, i) => {
+        const k = document.createElement("span");
+        k.className = i === aktywny ? "kropka kropka-aktywna" : "kropka";
+        kropki.appendChild(k);
+    });
+}
+
 // KaTeX: renderuje zapisy \( ... \) (inline) i \[ ... \] (blokowe) wewnątrz
 // podanego elementu. Guard na window.renderMathInElement — gdyby vendor/katex/
 // nie wczytał się (np. uszkodzony plik), strona ma dalej działać, tylko z

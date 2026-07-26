@@ -106,57 +106,236 @@
     color: var(--correct);
     font-weight: bold;
 }
-#theme-toggle,
-#score-switch-button,
-#show-all-solutions,
-#reset-scores,
-#egzamin-start,
-#zegar-toggle,
-#wskazniki-tryb-toggle,
-#zglos-blad-toggle,
-#natychmiastowa-toggle,
-#sprawdz-wszystkie,
-#toggle-tablica,
-#toggle-zasady {
-    padding: 5px 10px;
-    border: 2px solid var(--border);
+/* ===================================================================
+
+   PANEL BOCZNY (#sidebar) — następca okienka „⋯" (#bar-menu, usunięte 2026-07-27)
+
+   Wysuwana NAKŁADKA po lewej: arkusz się nie rusza (żadnego transform ani
+   zwężania kolumny zadań), animujemy wyłącznie `transform` panelu — `left`
+   i `width` wymuszałyby layout na każdej klatce.
+
+   Warstwy: karty/treść 1–4, .wskaznik-otwarte 8, panele PDF 9, narożniki 10,
+   przyciemnienie 11, #sidebar 12, podsumowanie egzaminu 20, toast zgłoszeń 22.
+   Panel MUSI być nad panelami PDF — dlatego 12, a nie 10.
+
+   Zamknięty panel ma `visibility: hidden`, żeby Tab NIE wchodził w jego
+   przyciski; samo translateX(-100%) ich nie wyklucza. Tranzycja `visibility`
+   trzyma go widocznym przez czas wysuwania i gasi dopiero na końcu.
+   Panel zaczyna się PONIŻEJ narożników (top: 56px), żeby logo i strzałka
+   zostały widoczne i klikalne nad nim — tą samą strzałką się zamyka.
+
+   Dwa typy pozycji (patrz komentarz w template.html): .sidebar-akcja (czasownik)
+   i .sidebar-ustawienie (rzeczownik + wartość + kropki). Wiersz ustawienia jest
+   GRIDEM `20px 1fr auto auto` — nie flexem z margin-left:auto — żeby wartości
+   wyrównały się w pionie między wierszami.
+   Jeśli edytujesz ten blok, popraw sekcję „Panel boczny" w ARCHITECTURE_CSS.md.
+
+   =================================================================== */
+#sidebar-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pigulka);
     background-color: var(--bg);
-    text-align: center;
-    text-decoration: none;
-    white-space: nowrap;
-    color: var(--text);
+    color: var(--text-faint);
     cursor: pointer;
+    transition: transform 180ms cubic-bezier(0.2, 0.7, 0.3, 1), color 120ms ease;
+}
+#sidebar-toggle:hover {
+    border-color: var(--border-strong);
+    color: var(--text);
+}
+/* Otwarty panel → strzałka obraca się o 180° (◀ ↔ ▶), tą samą krzywą
+   i w tym samym czasie co wysuwanie, żeby szły w parze. */
+body.sidebar-otwarty #sidebar-toggle {
+    transform: rotate(180deg);
 }
 
-/* Przycisk ⋯ w pasku i jego okienko "więcej opcji". Okienko jest fixed tuż
-   pod paskiem, przy prawej krawędzi; JS przełącza display na block i chowa
-   je po kliknięciu poza okienkiem. */
-#menu-button {
-    padding: 5px 12px;
-    border: 2px solid var(--border);
-    border-radius: 3px;
-    background-color: var(--bg);
-    font-size: 18px;
-    line-height: 1;
-    color: var(--text);
-    cursor: pointer;
-}
-#bar-menu {
+#sidebar-przyciemnienie {
     position: fixed;
-    top: 62px;
-    right: 30px;
+    inset: 0;
     z-index: 11;
-    display: none;
-    flex-direction: column;
-    padding: 10px;
-    border: 1px solid var(--border-strong);
-    background-color: var(--bg);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.25);
+    /* Domyślnie NIEaktywne: powyżej progu 1300px panel mieści się w marginesie
+       i niczego nie zasłania, więc nie ma czego przygaszać ani zamykać klikiem.
+       Reguła odsłaniająca to jest w style/responsive.css. */
+    pointer-events: none;
+    transition: opacity 180ms cubic-bezier(0.2, 0.7, 0.3, 1);
 }
-#bar-menu button {
-    display: block;
+
+#sidebar {
+    position: fixed;
+    top: 56px;
+    bottom: 0;
+    left: 0;
+    z-index: 12;
+    box-sizing: border-box;
+    width: 260px;
+    padding: 14px;
+    overflow-y: auto;
+    border-right: 1px solid var(--border-strong);
+    background-color: var(--bg);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    text-align: left;
+    visibility: hidden;
+    transform: translateX(-100%);
+    transition: transform 180ms cubic-bezier(0.2, 0.7, 0.3, 1), visibility 180ms;
+}
+body.sidebar-otwarty #sidebar {
+    visibility: visible;
+    transform: translateX(0);
+}
+
+#sidebar-tytul {
+    margin: 0 0 10px;
+    padding: 0 6px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--text);
+}
+#sidebar-tytul:empty {
+    display: none;
+}
+
+.sidebar-kreska {
+    height: 1px;
+    margin: 8px 0;
+    background-color: var(--separator);
+}
+
+/* Wspólny szkielet obu typów wiersza. */
+.sidebar-akcja,
+.sidebar-ustawienie {
+    box-sizing: border-box;
     width: 100%;
-    margin: 4px 0;
+    padding: 0 6px;
+    border: 0;
+    border-radius: var(--radius-pigulka);
+    background-color: transparent;
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 120ms ease;
+}
+.sidebar-akcja:hover:not(:disabled),
+.sidebar-ustawienie:hover:not(:disabled) {
+    background-color: var(--bg-muted);
+}
+
+.sidebar-akcja {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 40px;
+    font-size: 13px;
+    color: var(--text);
+}
+
+.sidebar-ustawienie {
+    display: grid;
+    grid-template-columns: 20px 1fr auto auto;
+    align-items: center;
+    gap: 10px;
+    height: 40px;
+    font-size: 13px;
+    /* Etykieta szara, wartość ciemna i półgruba — świadomie BEZ koloru akcentu:
+       --accent-blue-strong znaczy już „Twój wybór w zadaniu" (ABCD, widżety),
+       a zielony/czerwony to poprawność; kolor w menu konkurowałby ze znaczeniem
+       z treści. Kontrast działa w obu motywach bez nowych zmiennych. */
+    color: var(--text-faint-2);
+}
+.sidebar-ustawienie .etykieta {
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.sidebar-ustawienie .wartosc,
+.sidebar-ustawienie .wartosc-podglad {
+    white-space: nowrap;
+    color: var(--text);
+    font-weight: 600;
+}
+.sidebar-ustawienie .wartosc-podglad {
+    display: none;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-faint);
+}
+/* Podgląd „auto → jasny" po najechaniu — TYLKO na wskaźnikach z hoverem.
+   Na dotyku ta reguła w ogóle się nie stosuje, dlatego o stanie informują
+   przede wszystkim wartość i kropki. */
+@media (hover: hover) {
+    .sidebar-ustawienie:hover:not(:disabled) .wartosc {
+        display: none;
+    }
+    .sidebar-ustawienie:hover:not(:disabled) .wartosc-podglad {
+        display: inline;
+    }
+}
+
+/* Kropki stanu (○○●) — ile stanów ma przełącznik i który jest aktywny.
+   Generowane z data-stany przez ustawWartosc() (app/state.js). */
+.sidebar-ustawienie .kropki {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+.sidebar-ustawienie .kropka {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: var(--border-muted);
+}
+.sidebar-ustawienie .kropka-aktywna {
+    background-color: var(--text);
+}
+
+/* Sub-opcje egzaminu (Zegar, Wskaźniki samooceny): wcięte pod ikoną pozycji
+   nadrzędnej, mniejszy font, lżejsza ikona — wcięcie ma być widać także wtedy,
+   gdy etykieta jest krótka. To NIE osobny typ kontrolki, tylko ten sam wzorzec. */
+.sidebar-ustawienie.sidebar-sub {
+    height: 34px;
+    padding-left: 30px;
+    font-size: 12px;
+}
+.sidebar-ustawienie.sidebar-sub .sidebar-ikona {
+    opacity: 0.7;
+}
+
+/* Ikony: kreskowe, dziedziczą kolor tekstu wiersza (akcja → --text,
+   ustawienie → --text-faint-2 z reguły wyżej). Wspólne atrybuty trzymamy
+   w CSS, nie w każdym <svg> osobno. */
+.sidebar-ikona {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Użytkownik prosi o brak animacji → panel ma pojawiać się OD RAZU, a nie
+   „szybciej". 0.01ms zamiast `none`, żeby zdarzenia transitionend (gdyby
+   kiedyś doszły) nadal się odpalały. */
+@media (prefers-reduced-motion: reduce) {
+    #sidebar,
+    #sidebar-toggle,
+    #sidebar-przyciemnienie,
+    .sidebar-akcja,
+    .sidebar-ustawienie,
+    #tryb-przelacznik button {
+        transition-duration: 0.01ms;
+    }
 }
 
 /* Floating formula-sheet panel — toggled to display:block by the JS.

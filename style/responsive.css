@@ -3,6 +3,22 @@
    niczego na dużych ekranach — tylko pozwalają arkuszowi zmieścić się na
    telefonie/tablecie bez poziomego scrolla. */
 
+/* ===== PRÓG „PANEL BOCZNY ZASŁANIA TREŚĆ" (1300px) =====
+   Karta zadania ma 650px + 2×50px paddingu = 750px (style/sheet.css .exercise-container).
+   Przy panelu 260px + 16px odstępu margines po lewej wystarcza od
+   (750/2 + 276) × 2 ≈ 1300px. Powyżej tego panel siedzi w marginesie i NICZEGO
+   nie zasłania — więc nie ma czego przygaszać ani przed czym schodzić z drogi:
+   brak przyciemnienia, klik w arkusz nie zamyka, klik w akcję też nie
+   (warunek w JS: sidebarNaklada() w app/bootstrap.js — ten SAM próg).
+   Poniżej progu panel nachodzi na kartę: dochodzi lekkie przyciemnienie
+   i zamykanie kliknięciem w arkusz. */
+@media (max-width: 1299px) {
+    body.sidebar-otwarty #sidebar-przyciemnienie {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
 /* Badge punktów wisi 120px za prawą krawędzią karty (650px + 2×50px padding),
    więc mieści się dopiero od ~1010px szerokości okna — poniżej wraca do
    prawego górnego rogu karty, żeby nie robić poziomego scrolla. */
@@ -43,9 +59,8 @@
         min-width: 0;
         padding: 6px 8px;
     }
-    #bar-menu {
+    #sidebar {
         top: 48px;
-        right: 8px;
     }
 
     /* Karta zadania wypełnia ekran zamiast sztywnych 650px + 50px paddingu. */
@@ -147,8 +162,11 @@
     body.tryb-egzaminu #exercises-wrapper {
         padding-top: 92px;
     }
-    #bar-menu {
-        top: 48px;
+    /* Panel na pełną szerokość: 260px na 360-px ekranie i tak zasłania wszystko,
+       a pełna szerokość daje czytelne, łatwe do trafienia palcem pozycje. */
+    #sidebar {
+        width: 100%;
+        border-right: 0;
     }
 
     /* Pływające kropki „oceń się" (style/exam.css .wskaznik-otwarte) mają stałą

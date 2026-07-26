@@ -133,6 +133,13 @@
              widać, czy strona wczytała już nową wersję. Ta sama wartość
              musi być w .landing-logo w index.html. -->
         <a id="logo" href="index.html"><b>Matematyka Zen</b> <span id="wersja">v0.05</span></a>
+        <!-- Strzałka otwierająca panel boczny — następca przycisku „⋯". Ten sam
+             przycisk zamyka (obraca się o 180°); JS przestawia aria-expanded
+             i aria-label. -->
+        <button id="sidebar-toggle" type="button" aria-expanded="false"
+                aria-controls="sidebar" aria-label="Otwórz menu" title="Menu arkusza">
+            <svg class="sidebar-ikona" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+        </button>
     </div>
 
     <div id="naroznik-prawy">
@@ -147,32 +154,121 @@
              w responsive.css) — dzięki temu cały prawy klaster mieści się w JEDNYM
              rzędzie obok logo przy 360px. Żaden JS nie czyta tej etykiety. -->
         <button id="egzamin-koniec-bar">zakończ<span class="tylko-szeroko"> egzamin</span></button>
-        <button id="menu-button" title="Więcej opcji">⋯</button>
     </div>
 
-    <!-- Okienko "więcej opcji" (przycisk ⋯ w pasku): rzadziej używane akcje
-         schowane, żeby nie zaśmiecały paska. ID przycisków bez zmian — inline
-         skrypt odwołuje się do nich tak samo jak wtedy, gdy były w pasku. -->
-    <div id="bar-menu">
-        <button id="toggle-tablica">▼ Pokaż tablice wzorów</button>
-        <button id="toggle-zasady">▼ Pokaż zasady oceniania</button>
-        <button id="theme-toggle">motyw: auto</button>
-        <button id="show-all-solutions">pokaż wszystkie rozwiązania</button>
-        <button id="score-switch-button">widok punktów: wszystko</button>
-        <button id="reset-scores">resetuj punktację</button>
-        <!-- Jedno miejsce w menu, dwa stany: poza egzaminem "rozpocznij",
-             w trakcie egzaminu "zakończ" (exam.css przełącza je klasą
+    <!-- Przyciemnienie treści pod otwartym panelem. Widoczne i klikalne TYLKO
+         poniżej progu 1300px (style/responsive.css), bo dopiero tam panel realnie
+         zasłania kartę zadania. Powyżej progu ma pointer-events: none, więc klik
+         w arkusz NIE zamyka panelu — bez żadnego warunku w JS. -->
+    <div id="sidebar-przyciemnienie"></div>
+
+    <!-- PANEL BOCZNY — następca okienka „⋯" (#bar-menu, usunięte 2026-07-27).
+         Nakładka: arkusz się NIE rusza (żadnego transform/zwężania kolumny).
+         Dwa typy pozycji, odróżnione stylem, nie przerwą:
+           • .sidebar-akcja     — czasownik, zwykły przycisk (hover z tłem),
+           • .sidebar-ustawienie — rzeczownik + aktualna wartość + kropki stanu,
+             klikany w cyklu opisanym w data-stany/data-kierunek (patrz
+             ustawWartosc()/nastepnyStan() w app/state.js).
+         ŻADNE ID nie zmieniło się przy przenosinach z #bar-menu — cała logika
+         w app/*.js woła getElementById, więc zmiana ID cicho psuje funkcję.
+         Ikony to inline SVG (kreskowe, stroke: currentColor) — zero plików,
+         działa offline, dziedziczą kolor motywu. -->
+    <nav id="sidebar" aria-label="Menu arkusza">
+        <!-- Nagłówek to tytuł arkusza z meta.sheetTitle (applySheetMeta),
+             ten sam tekst co #sheet-title-heading. NIE jest przyciskiem. -->
+        <h2 id="sidebar-tytul"></h2>
+
+        <button id="toggle-tablica" type="button" class="sidebar-akcja">
+            <svg class="sidebar-ikona" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V5l14 14H5z"/><path d="M9 19v-2.5M13 19v-2.5"/></svg>
+            <span class="etykieta">Otwórz tablicę wzorów</span>
+        </button>
+        <button id="toggle-zasady" type="button" class="sidebar-akcja">
+            <svg class="sidebar-ikona" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l5 5v13H6z"/><path d="M9 9h4M9 12h3"/><path d="M9 16.5l2 2 4-4.5"/></svg>
+            <span class="etykieta">Otwórz zasady oceniania</span>
+        </button>
+
+        <!-- Jedno miejsce w panelu, dwa stany: poza egzaminem „Rozpocznij",
+             w trakcie egzaminu „Zakończ" (style/exam.css przełącza je klasą
              body.tryb-egzaminu). Na telefonie to JEDYNE dojście do zakończenia
-             egzaminu bez zjeżdżania na sam dół arkusza — pasek górny chowa
-             #egzamin-koniec-bar poniżej 720px (responsive.css). -->
-        <button id="egzamin-start">rozpocznij próbny egzamin</button>
-        <button id="egzamin-koniec-menu">zakończ egzamin</button>
-        <button id="zegar-toggle">widoczność zegara: włączona</button>
-        <button id="wskazniki-tryb-toggle">wskaźniki „oceń się”: wszystkie zadania</button>
-        <button id="natychmiastowa-toggle">pokazuj poprawność od razu: tak</button>
-        <button id="sprawdz-wszystkie">sprawdź wszystkie odpowiedzi</button>
-        <button id="zglos-blad-toggle">zgłaszanie błędów: włączone</button>
-    </div>
+             egzaminu bez zjeżdżania na sam dół arkusza. -->
+        <button id="egzamin-start" type="button" class="sidebar-akcja">
+            <svg class="sidebar-ikona" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M10 8.5l5.5 3.5L10 15.5z"/></svg>
+            <span class="etykieta">Rozpocznij egzamin</span>
+        </button>
+        <button id="egzamin-koniec-menu" type="button" class="sidebar-akcja">
+            <svg class="sidebar-ikona" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><rect x="9.3" y="9.3" width="5.4" height="5.4" rx="1"/></svg>
+            <span class="etykieta">Zakończ egzamin</span>
+        </button>
+
+        <!-- Sub-opcje egzaminu: ZAWSZE widoczne, wcięte, mniejszym fontem — nie
+             zwijają się. Ten sam wzorzec kontrolki co ustawienia niżej. -->
+        <button id="zegar-toggle" type="button" class="sidebar-ustawienie sidebar-sub"
+                data-stany="wył.,na wierzchu" data-stan="na wierzchu">
+            <svg class="sidebar-ikona" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3.5 2"/></svg>
+            <span class="etykieta">Zegar</span>
+            <span class="wartosc" aria-live="polite">na wierzchu</span>
+            <span class="wartosc-podglad" aria-hidden="true"></span>
+            <span class="kropki" aria-hidden="true"></span>
+        </button>
+        <button id="wskazniki-tryb-toggle" type="button" class="sidebar-ustawienie sidebar-sub"
+                data-stany="wył.,wypełnione,wszystkie" data-stan="wszystkie">
+            <svg class="sidebar-ikona" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.6" fill="currentColor" stroke="none"/></svg>
+            <span class="etykieta">Wskaźniki samooceny</span>
+            <span class="wartosc" aria-live="polite">wszystkie</span>
+            <span class="wartosc-podglad" aria-hidden="true"></span>
+            <span class="kropki" aria-hidden="true"></span>
+        </button>
+
+        <button id="sprawdz-wszystkie" type="button" class="sidebar-akcja">
+            <svg class="sidebar-ikona" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l4.5 4.5L19.5 6.5"/></svg>
+            <span class="etykieta">Sprawdź wszystkie odpowiedzi</span>
+        </button>
+        <button id="show-all-solutions" type="button" class="sidebar-akcja">
+            <svg class="sidebar-ikona" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg>
+            <span class="etykieta">Pokaż wszystkie rozwiązania</span>
+        </button>
+        <button id="reset-scores" type="button" class="sidebar-akcja">
+            <svg class="sidebar-ikona" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 5v5.5H9"/><path d="M4.6 15a8 8 0 1 0 1.4-8.6L3.5 10.5"/></svg>
+            <span class="etykieta">Zresetuj arkusz</span>
+        </button>
+
+        <!-- Akcje / ustawienia rozdziela cienka kreska, bez nagłówka sekcji
+             i bez pustej przerwy. -->
+        <div class="sidebar-kreska"></div>
+
+        <button id="theme-toggle" type="button" class="sidebar-ustawienie"
+                data-stany="auto,jasny,ciemny" data-stan="auto" data-kierunek="prawo">
+            <svg class="sidebar-ikona" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 0 0 17z" fill="currentColor" stroke="none"/></svg>
+            <span class="etykieta">Motyw</span>
+            <span class="wartosc" aria-live="polite">auto</span>
+            <span class="wartosc-podglad" aria-hidden="true"></span>
+            <span class="kropki" aria-hidden="true"></span>
+        </button>
+        <button id="score-switch-button" type="button" class="sidebar-ustawienie"
+                data-stany="wył.,tylko suma,wszystko" data-stan="wszystko">
+            <svg class="sidebar-ikona" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 20V11M12 20V4.5M17.5 20v-6.5"/></svg>
+            <span class="etykieta">Punktacja</span>
+            <span class="wartosc" aria-live="polite">wszystko</span>
+            <span class="wartosc-podglad" aria-hidden="true"></span>
+            <span class="kropki" aria-hidden="true"></span>
+        </button>
+        <button id="natychmiastowa-toggle" type="button" class="sidebar-ustawienie"
+                data-stany="po „sprawdź”,natychmiast" data-stan="natychmiast">
+            <svg class="sidebar-ikona" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 3L5.5 13.5h5l-1 7.5L18.5 10h-5.5z"/></svg>
+            <span class="etykieta">Poprawność odpowiedzi</span>
+            <span class="wartosc" aria-live="polite">natychmiast</span>
+            <span class="wartosc-podglad" aria-hidden="true"></span>
+            <span class="kropki" aria-hidden="true"></span>
+        </button>
+        <button id="zglos-blad-toggle" type="button" class="sidebar-ustawienie"
+                data-stany="wył.,wł." data-stan="wł.">
+            <svg class="sidebar-ikona" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5l8.5 15H3.5z"/><path d="M12 10v4.2"/><circle cx="12" cy="17" r=".7" fill="currentColor" stroke="none"/></svg>
+            <span class="etykieta">Zgłoś błąd pod zadaniem</span>
+            <span class="wartosc" aria-live="polite">wł.</span>
+            <span class="wartosc-podglad" aria-hidden="true"></span>
+            <span class="kropki" aria-hidden="true"></span>
+        </button>
+    </nav>
 
     <!-- Podsumowanie próbnego egzaminu — nakładka pokazywana przez finishExam().
          Treść (wynik, procent, czas) wypełnia JS. -->

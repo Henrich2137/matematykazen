@@ -3,38 +3,41 @@
    działa normalnie pod spodem — tu tylko chowamy wszystko, co zdradza wynik,
    i neutralizujemy kolory poprawności na "zaznaczenie" (niebieska ramka). */
 
-/* Zegar oraz "zakończ egzamin" (kopia w pasku i kopia na dole arkusza)
-   istnieją tylko w trybie egzaminu. Odwrotnie: "rozpocznij próbny egzamin"
-   w stopce i w menu pokazuje się dopiero PO wyrenderowaniu arkusza
+/* Zegar oraz "zakończ egzamin" (pigułka w narożniku i kopia na dole arkusza)
+   istnieją tylko w trybie egzaminu. Odwrotnie: "rozpocznij egzamin"
+   w stopce i w panelu bocznym pokazuje się dopiero PO wyrenderowaniu arkusza
    (klasa body.arkusz-wczytany, dodawana dopiero na końcu loadExercises()) —
    inaczej ten przycisk siedziałby na stronie błędu (zły ?arkusz=) albo przez
-   cały czas wczytywania exercises.json. W menu ten jeden slot ma dwa stany:
+   cały czas wczytywania exercises.json. W panelu ten jeden slot ma dwa stany:
    #egzamin-start poza egzaminem, #egzamin-koniec-menu w jego trakcie. */
 #egzamin-timer,
 #egzamin-koniec,
 #egzamin-koniec-bar,
 #egzamin-start-stopka,
-#bar-menu #egzamin-koniec-menu {
+#sidebar #egzamin-koniec-menu {
     display: none;
 }
-/* Slot menu w trybie egzaminu: "rozpocznij" ustępuje miejsca "zakończ".
+/* Slot panelu w trybie egzaminu: "rozpocznij" ustępuje miejsca "zakończ".
+   `flex`, bo taki jest wiersz .sidebar-akcja (sheet.css).
    Podwójny #id z tego samego powodu co przy #egzamin-start niżej. */
-body.tryb-egzaminu #bar-menu #egzamin-koniec-menu {
-    display: block;
+body.tryb-egzaminu #sidebar #egzamin-koniec-menu {
+    display: flex;
 }
-/* Podwójny #id (#bar-menu #egzamin-start) celowo — samo "#egzamin-start" ma
-   niższą specyficzność niż "#bar-menu button" (sheet.css), które ustawia mu
-   display:block, i przegrywałoby mimo źródłowej kolejności (exam.css ładuje
-   się PO sheet.css, ale specyficzność liczy się pierwsza). */
-#bar-menu #egzamin-start {
+/* Podwójny #id (#sidebar #egzamin-start) celowo — samo "#egzamin-start" (1 id)
+   przegrywa z ".sidebar-akcja" tylko na kolejności, ale z ".sidebar-akcja"
+   wewnątrz reguł o wyższej specyficzności już nie; trzymamy tu wzorzec
+   #sidebar #id (2 id), żeby te przełączenia nie zależały od kolejności
+   w źródle między plikami (exam.css ładuje się PO sheet.css, ale specyficzność
+   liczy się pierwsza). Dawniej te selektory celowały w #bar-menu. */
+#sidebar #egzamin-start {
     display: none;
 }
-body.arkusz-wczytany #bar-menu #egzamin-start {
-    display: block;
+body.arkusz-wczytany #sidebar #egzamin-start {
+    display: flex;
 }
 /* MUSI stać PO regule .arkusz-wczytany wyżej: obie mają tę samą specyficzność
    (1 klasa + 2 id), więc o zwycięzcy decyduje kolejność w źródle. */
-body.tryb-egzaminu #bar-menu #egzamin-start {
+body.tryb-egzaminu #sidebar #egzamin-start {
     display: none;
 }
 /* Zegar i „zakończ egzamin" w prawym narożniku: wygląd „pigułki" (tło, ramka,
@@ -115,13 +118,14 @@ body.arkusz-wczytany:not(.tryb-egzaminu) #egzamin-start-stopka {
 body.reczne-sprawdzanie.arkusz-wczytany #sprawdz-wszystkie-stopka {
     display: block;
 }
-/* Menu ⋯: „sprawdź wszystkie" tylko w trybie „sprawdź później" (widoczny też
-   w trakcie egzaminu, ale wyszarzony — patrz komentarz przy #sprawdz-wszystkie-stopka). */
+/* Panel boczny: „Sprawdź wszystkie odpowiedzi" tylko w trybie „sprawdź później"
+   (widoczny też w trakcie egzaminu, ale wyszarzony — patrz komentarz przy
+   #sprawdz-wszystkie-stopka). `flex`, bo taki jest wiersz .sidebar-akcja. */
 #sprawdz-wszystkie {
     display: none;
 }
 body.reczne-sprawdzanie #sprawdz-wszystkie {
-    display: block;
+    display: flex;
 }
 
 /* Wszystko, co zdradza wynik albo pozwala go obejść, znika na czas egzaminu.
@@ -141,11 +145,11 @@ body.tryb-egzaminu .answer-check-floating {
     display: none !important;
 }
 
-/* Opcje w menu „..." niedozwolone podczas egzaminu (pokaż rozwiązania, widok
-   punktów, reset, start egzaminu) NIE znikają — zostają widoczne, ale
-   wyszarzone i nieklikalne, żeby menu nie było pustą ramką. Atrybut disabled
+/* Pozycje panelu bocznego niedozwolone podczas egzaminu (pokaż rozwiązania,
+   punktacja, reset, start egzaminu) NIE znikają — zostają widoczne, ale
+   wyszarzone i nieklikalne, żeby panel nie był pustą ramką. Atrybut disabled
    ustawia JS w enableExamMode()/finishExam(); tu tylko wygląd. */
-body.tryb-egzaminu #bar-menu button:disabled,
+body.tryb-egzaminu #sidebar button:disabled,
 body.tryb-egzaminu #sprawdz-wszystkie-stopka:disabled {
     opacity: 0.4;
     cursor: not-allowed;
