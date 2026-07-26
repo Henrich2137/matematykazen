@@ -36,8 +36,7 @@ Sesja 2:
   - Punktacja: wł./tylko suma/wył.
   - Pokaż poprawność odpowiedzi: natychmiast/po kliknięciu "sprawdź"
   - Przycisk "zgłoś błąd" pod zadaniem: wł./wył.
-
-
+- Spraw, aby powyższe elementy interface-a były w miare spójne z resztą, ale, żeby przy tym wyglądały modern, dodaj animacje, jeśli jesteś w stanie to możesz nawet dodać ikony lub dodać miejsca na ikony, a w sekcji Dopisane przez CLAUDE opisać mi jakie ikony mam przygotować.
 <br>
 
 
