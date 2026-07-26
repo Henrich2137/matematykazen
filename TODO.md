@@ -11,12 +11,16 @@ Do przydzielenia:
 
 Dla Sonneta na effort High (sesja 2 — osobno, redesign górnego paska/menu, wymaga wizualnej iteracji i testów w przeglądarce):
 - Przenieś przycisk menu tak aby był obok logo i rozwijał sidebar. Może zamiast ... mieć strzałkę w dół/w lewą
-- Stwórz sidebar który będzie rozwijał się po lewej stronie i będzie się rozwijał za pomoicą przycisku umieszczonego zaraz po prawej od loga. Zmień kolejność przycisków w menu oraz ich nazwy na:
-  - Tytuł arkusza
+
+
+Dla Opusa na effort High:
+- Obecny top-bar ma zniknąć. Zegar wraz z punktacją mająbyć być samodzielnym elementami warstwę wyżej niż arkusz ale niżej niż Tablica wzorów i zasady oceniania. Powinny znajdować się obok siebiew w prawym górnym rogu.
+- Stwórz sidebar lewej stronie który będzie się rozwijał za pomocą przycisku strzałeczki (w lewo i w prawo) umieszczonego zaraz po prawej od logo. Zmień kolejność przycisków w menu oraz ich nazwy na:
+  - Tytuł arkusza (on nie ma być przyciskiem)
   - Otwórz tablicę wzorów
   - Otwórz zasady oceniania
   - Rozpocznij egzamin
-    - Zegar: wł./wył.
+    - Zegar: na wierzchu w menu / wył.
     - Wskaźniki samooceny zad. otwartych: wszystkie/wypełnione/wył.
   - Sprawdź wszystkie odpowiedzi
   - Pokaż wszystkie rozwiązania
@@ -27,9 +31,6 @@ Dla Sonneta na effort High (sesja 2 — osobno, redesign górnego paska/menu, wy
   - Pokaż poprawność odpowiedzi: natychmiast/po kliknięciu "sprawdź"
   - Przycisk "zgłoś błąd" pod zadaniem: wł./wył.
 
-
-Dla Opusa na effort High:
-- nic
 
 <br>
 
@@ -56,8 +57,12 @@ DLA HENRICHA:
 
 
 INNE NOTATKI, DO PRZEKMINIENIA:
-- na telefonie wskaźniki "oceń się" jeżeli mają być niewidzialne to powinny
+- wskaźniki "oceń się" na telefonie powinny być:
+  - ALBO: niewidzialne, wtedy opcja w menu powinna być szara z wybranym
+  - ALBO: widoczne przyklejone do prawej strony z lekkim marginesem. powinny też być odpowiednio małe aby nie zasłaniały treści.
+
 - Przekminić i dodać zasadę dotyczącą tłumaczenia mi (Henrichowi) rzeczy (jak mam przeprowadzić test, jak wygląda projekt itd.)
+
 - dodanie rozwiązań do matury 2026
 
 - Na telefonie pdfy się nie ładują (tablica i zasady oceniania). (to nie będzie problem po zmianie na pdf otwierane na zewnątrz stronki, jeśli tamto będzie działać to można usunąć ten wpis)
