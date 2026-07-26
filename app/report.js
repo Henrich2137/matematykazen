@@ -45,14 +45,69 @@ if (zglosBladToggle) {
     });
 }
 
-// ===== MODAL FORMULARZA =====
+// ===== FORMULARZ (blok inline w karcie zadania) =====
+// Formularz istnieje w JEDNEJ kopii w template.html, a przy otwarciu jest
+// PRZENOSZONY (insertBefore przenosi węzeł, nie kopiuje) do karty klikniętego
+// zadania — dzięki temu uczeń widzi treść zadania, opisując błąd, a ID
+// pozostają unikalne i cały kod poniżej może korzystać z getElementById.
 const zgOverlay = document.getElementById("zglos-blad-overlay");
 const zgForm = document.getElementById("zglos-blad-form");
 const zgKontekst = document.getElementById("zglos-blad-kontekst");
 const zgOpis = document.getElementById("zglos-blad-opis");
 const zgEmail = document.getElementById("zglos-blad-email");
 const zgDanePodglad = document.getElementById("zglos-blad-dane-podglad");
+const zgKategorie = document.getElementById("zglos-blad-kategorie");
+const zgBlad = document.getElementById("zglos-blad-blad");
+const zgWyslij = zgForm ? zgForm.querySelector(".zglos-blad-wyslij") : null;
 let zgAktualnyNumer = null; // numer zadania, którego dotyczy otwarte zgłoszenie
+let zgAktualnaKarta = null; // karta zadania, w której stoi teraz formularz
+
+// ===== KATEGORIE (pigułki, wybór WIELOKROTNY, opcjonalne) =====
+// Wielokrotny wybór jest tańszy niż jednokrotny: sam toggle na klikniętym
+// przycisku, bez odznaczania rodzeństwa. Klasa .selected daje ten sam wygląd
+// co neutralnie zaznaczona odpowiedź ABCD (style/sheet.css).
+if (zgKategorie) {
+    zgKategorie.addEventListener("click", (e) => {
+        const pigulka = e.target.closest("button[data-kategoria]");
+        if (pigulka) pigulka.classList.toggle("selected");
+    });
+}
+function zebraneKategorie() {
+    if (!zgKategorie) return [];
+    return Array.from(zgKategorie.querySelectorAll("button.selected"))
+        .map(b => b.dataset.kategoria);
+}
+function wyczyscKategorie() {
+    if (!zgKategorie) return;
+    zgKategorie.querySelectorAll("button.selected").forEach(b => b.classList.remove("selected"));
+}
+
+// ===== WALIDACJA OPISU (pole OBOWIĄZKOWE) =====
+// Trzy sygnały naraz (ustalone z Henrichem): wyszarzony przycisk „Wyślij",
+// komunikat pod polem i focus. trim() jest istotny — same spacje to pusty opis.
+function czyOpisWypelniony() {
+    return !!(zgOpis && zgOpis.value.trim() !== "");
+}
+function wyczyscBladOpisu() {
+    if (zgBlad) zgBlad.textContent = "";
+    if (zgOpis) zgOpis.classList.remove("zglos-blad-pole-blad");
+}
+function pokazBladOpisu() {
+    if (zgBlad) zgBlad.textContent = "Opisz krótko, co jest nie tak — bez tego nie wiemy, czego szukać.";
+    if (zgOpis) {
+        zgOpis.classList.add("zglos-blad-pole-blad");
+        zgOpis.focus();
+    }
+}
+function odswiezPrzyciskWyslij() {
+    if (zgWyslij) zgWyslij.disabled = !czyOpisWypelniony();
+}
+if (zgOpis) {
+    zgOpis.addEventListener("input", () => {
+        odswiezPrzyciskWyslij();
+        if (czyOpisWypelniony()) wyczyscBladOpisu();
+    });
+}
 
 // Efektywny motyw do dołączenia w danych: rozróżniamy ręczny wybór od „auto"
 // (i doprecyzowujemy, co auto oznacza na tym systemie), żeby zgłoszenie mówiło,
@@ -80,6 +135,66 @@ function zbierzLocalStorage() {
     return out;
 }
 
+// Co uczeń zaznaczył/wpisał — czytane wprost z DOM karty zadania. Wyciągamy to
+// JAWNIE (a nie tylko w zrzucie localStorage), żeby dało się przeczytać w mailu
+// bez grzebania w JSON-ie. Obsługujemy trzy kształty odpowiedzi z render.js:
+// przyciski ABCD/PF/multiSelect, pola „uzupełnij" (.fill-in-input) i pole
+// odpowiedzi ostatecznej (.final-answer-input).
+function odpowiedzUcznia(karta) {
+    if (!karta) return "nieznana";
+    const czesci = [];
+
+    const przyciski = karta.querySelectorAll(
+        ".answers-container button.selected, .answers-container button.correct, .answers-container button.incorrect"
+    );
+    przyciski.forEach(b => czesci.push(b.textContent.trim()));
+
+    karta.querySelectorAll(".fill-in-row").forEach(row => {
+        const etykieta = row.querySelector(".fill-in-label");
+        const pole = row.querySelector(".fill-in-input");
+        if (pole && pole.value.trim() !== "") {
+            czesci.push(`${etykieta ? etykieta.textContent.trim() + " " : ""}${pole.value.trim()}`);
+        }
+    });
+
+    const finalne = karta.querySelector(".final-answer-input");
+    if (finalne && finalne.value.trim() !== "") czesci.push(`odp. ostateczna: ${finalne.value.trim()}`);
+
+    return czesci.length ? czesci.join(" | ") : "brak odpowiedzi";
+}
+
+// Poprawna odpowiedź jest w DOM od początku, oznaczona klasą .hiddenCorrect
+// (patrz markCorrectAnswer w app/answers.js) — dla zadań przyciskowych.
+function odpowiedzPoprawna(karta) {
+    if (!karta) return "nieznana";
+    const btn = karta.querySelector(".answers-container button.hiddenCorrect");
+    return btn ? btn.textContent.trim() : "nie dotyczy / nieoznaczona w DOM";
+}
+
+// Który krok rozwiązania był na ekranie. Licznik „3 / 7" i tak jest renderowany
+// przez showStep (app/steps.js), więc czytamy go z DOM — obiekt ctx ze steps.js
+// jest lokalny per zadanie i nieosiągalny stąd.
+function krokRozwiazania(karta) {
+    if (!karta) return "brak";
+    const solutionOtwarte = karta.querySelector(".solution-container");
+    const licznik = karta.querySelector(".step-counter");
+    if (!licznik || !licznik.textContent.trim()) return "brak kroków";
+    const widoczne = solutionOtwarte && solutionOtwarte.style.display !== "none";
+    return `${licznik.textContent.trim()}${widoczne ? "" : " (rozwiązanie zamknięte)"}`;
+}
+
+// Wymiary ekranu — przy zgłoszeniach o rozjechany układ userAgent nie wystarcza.
+function daneEkranu() {
+    try {
+        return {
+            okno: `${window.innerWidth}×${window.innerHeight}`,
+            ekran: `${screen.width}×${screen.height}`,
+            dpr: window.devicePixelRatio,
+            orientacja: window.innerWidth >= window.innerHeight ? "pozioma" : "pionowa",
+        };
+    } catch (e) { return { blad: "brak dostępu do wymiarów ekranu" }; }
+}
+
 // Dane dołączane automatycznie (użytkownik NIC z tego nie wpisuje ręcznie).
 function zbierzDaneAuto() {
     return {
@@ -88,34 +203,71 @@ function zbierzDaneAuto() {
         url: location.href,
         motyw: aktualnyMotyw(),
         tryb: document.body.classList.contains("tryb-egzaminu") ? "egzamin" : "ćwiczenia",
+        odpowiedzUcznia: odpowiedzUcznia(zgAktualnaKarta),
+        odpowiedzPoprawna: odpowiedzPoprawna(zgAktualnaKarta),
+        krokRozwiazania: krokRozwiazania(zgAktualnaKarta),
+        ekran: daneEkranu(),
         userAgent: navigator.userAgent,
         localStorage: zbierzLocalStorage(),
     };
 }
 
-function otworzModalZgloszenia(numer) {
+function czyFormularzOtwarty() {
+    return !!zgOverlay && zgOverlay.style.display !== "none" && zgOverlay.style.display !== "";
+}
+
+// Otwiera formularz W KARCIE danego zadania. Ponowny klik przy TYM SAMYM
+// zadaniu zwija formularz (toggle, jak „Podpowiedź"); klik przy innym zadaniu
+// przenosi go tam. Za każdym otwarciem czyścimy pola, żeby opis zaczęty przy
+// zad. 7 nie poszedł przypadkiem jako zgłoszenie do zad. 9.
+function otworzModalZgloszenia(numer, karta) {
     if (!zgOverlay) return;
+
+    if (czyFormularzOtwarty() && zgAktualnaKarta === karta) {
+        zamknijModalZgloszenia();
+        return;
+    }
+
     zgAktualnyNumer = numer;
+    zgAktualnaKarta = karta || null;
+
+    // Reset stanu z poprzedniego zgłoszenia.
+    if (zgForm) zgForm.reset();
+    wyczyscKategorie();
+    wyczyscBladOpisu();
+    odswiezPrzyciskWyslij();
+
     if (zgKontekst) zgKontekst.textContent = `Zadanie ${numer} — arkusz „${SHEET_ID}”.`;
     // Podgląd danych technicznych (transparentność — użytkownik widzi, co pójdzie).
+    // Liczony PO ustawieniu zgAktualnaKarta, bo czyta odpowiedzi z tej karty.
     if (zgDanePodglad) zgDanePodglad.textContent = JSON.stringify(zbierzDaneAuto(), null, 2);
-    zgOverlay.style.display = "flex";
+
+    // Przeniesienie węzła do karty zadania: nad rząd [Podpowiedź][Rozwiązanie],
+    // czyli tuż pod odpowiedziami. insertBefore PRZENOSI (nie kopiuje), więc
+    // w dokumencie nadal jest dokładnie jeden #zglos-blad-overlay.
+    if (karta) {
+        const kotwica = karta.querySelector(".light-button-container");
+        if (kotwica) karta.insertBefore(zgOverlay, kotwica);
+        else karta.appendChild(zgOverlay);
+    }
+
+    zgOverlay.style.display = "block";
     if (zgOpis) setTimeout(() => zgOpis.focus(), 0);
 }
+
 function zamknijModalZgloszenia() {
     if (zgOverlay) zgOverlay.style.display = "none";
+    zgAktualnaKarta = null;
 }
 
 if (zgOverlay) {
-    // Klik w tło (poza oknem) zamyka — jak nakładka podsumowania egzaminu.
-    zgOverlay.addEventListener("click", (e) => {
-        if (e.target === zgOverlay) zamknijModalZgloszenia();
-    });
+    // Formularz stoi teraz W treści strony, więc nie ma tła do kliknięcia —
+    // zamykają go „Anuluj", „✕" i Escape.
     zgOverlay.querySelectorAll(".zglos-blad-anuluj, .zglos-blad-x").forEach(b => {
         b.addEventListener("click", zamknijModalZgloszenia);
     });
     document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && zgOverlay.style.display === "flex") zamknijModalZgloszenia();
+        if (e.key === "Escape" && czyFormularzOtwarty()) zamknijModalZgloszenia();
     });
 }
 
@@ -142,6 +294,15 @@ function pokazZglosToast(wiadomosc, czyBlad) {
 if (zgForm) {
     zgForm.addEventListener("submit", async (e) => {
         e.preventDefault();
+
+        // Opis jest OBOWIĄZKOWY. Przycisk „Wyślij" i tak jest wtedy wyszarzony,
+        // ale walidujemy też tutaj — przez requestSubmit()/Enter da się ominąć
+        // disabled, a i tak nie chcemy marnować limitu na puste zgłoszenie.
+        if (!czyOpisWypelniony()) {
+            pokazBladOpisu();
+            odswiezPrzyciskWyslij();
+            return;
+        }
 
         // Honeypot: pole ukryte przed ludźmi (CSS), wypełniają je tylko boty.
         // Wypełnione → udajemy sukces i NIC nie wysyłamy (nie zdradzamy botowi
@@ -170,23 +331,34 @@ if (zgForm) {
             return;
         }
 
-        const przyciskWyslij = zgForm.querySelector(".zglos-blad-wyslij");
-        if (przyciskWyslij) { przyciskWyslij.disabled = true; przyciskWyslij.textContent = "Wysyłanie…"; }
+        // Blokada na czas wysyłki (Formspree AJAX: przycisk nieaktywny do końca
+        // żądania). Po zakończeniu NIE odblokowujemy na sztywno — o stanie
+        // decyduje odswiezPrzyciskWyslij(), bo pusty opis ma go trzymać szarym.
+        if (zgWyslij) { zgWyslij.disabled = true; zgWyslij.textContent = "Wysyłanie…"; }
 
         const auto = zbierzDaneAuto();
-        // Formspree dostaje płaski obiekt pól (localStorage jako string JSON, żeby
-        // nie zgubić struktury); _subject ustawia temat maila powiadomienia.
+        const kategorie = zebraneKategorie();
+        const kategorieTekst = kategorie.length ? kategorie.join(", ") : "bez kategorii";
+        // Formspree dostaje płaski obiekt pól (localStorage i ekran jako string
+        // JSON, żeby nie zgubić struktury); _subject ustawia temat maila
+        // powiadomienia — kategorie idą w temat, żeby dało się triażować
+        // zgłoszenia z samej listy wiadomości w skrzynce.
         const payload = {
-            opis: zgOpis ? zgOpis.value : "",
+            opis: zgOpis ? zgOpis.value.trim() : "",
+            kategorie: kategorieTekst,
             email: zgEmail ? zgEmail.value : "",
             zadanie: auto.zadanie,
             arkusz: auto.arkusz,
             url: auto.url,
             motyw: auto.motyw,
             tryb: auto.tryb,
+            odpowiedzUcznia: auto.odpowiedzUcznia,
+            odpowiedzPoprawna: auto.odpowiedzPoprawna,
+            krokRozwiazania: auto.krokRozwiazania,
+            ekran: JSON.stringify(auto.ekran),
             userAgent: auto.userAgent,
             localStorage: JSON.stringify(auto.localStorage),
-            _subject: `MatematykaZen — zgłoszenie błędu: zad. ${auto.zadanie} (${auto.arkusz})`,
+            _subject: `MatematykaZen — zad. ${auto.zadanie} (${auto.arkusz}): ${kategorieTekst}`,
         };
 
         let odpowiedz = null;
@@ -198,8 +370,10 @@ if (zgForm) {
             });
         } catch (blad) {
             // Sieć padła — żądanie NIE dotarło do Formspree, więc nie ustawiamy
-            // throttlingu (użytkownik może spróbować od razu).
-            if (przyciskWyslij) { przyciskWyslij.disabled = false; przyciskWyslij.textContent = "Wyślij zgłoszenie"; }
+            // throttlingu (użytkownik może spróbować od razu). Opis został
+            // wpisany, więc przycisk wraca do stanu aktywnego.
+            if (zgWyslij) zgWyslij.textContent = "Wyślij zgłoszenie";
+            odswiezPrzyciskWyslij();
             pokazZglosToast("Brak połączenia — nie udało się wysłać zgłoszenia. Sprawdź internet i spróbuj ponownie.", true);
             return;
         }
@@ -207,10 +381,12 @@ if (zgForm) {
         // Żądanie dotarło do serwera (ok albo nie) — liczymy je do throttlingu,
         // żeby chronić miesięczny limit Formspree.
         try { localStorage.setItem(KLUCZ_ZGLOS_THROTTLE, String(teraz)); } catch (e) {}
-        if (przyciskWyslij) { przyciskWyslij.disabled = false; przyciskWyslij.textContent = "Wyślij zgłoszenie"; }
+        if (zgWyslij) zgWyslij.textContent = "Wyślij zgłoszenie";
 
         if (odpowiedz.ok) {
             zgForm.reset();
+            wyczyscKategorie();
+            wyczyscBladOpisu();
             zamknijModalZgloszenia();
             pokazZglosToast("Dziękujemy, zgłoszenie wysłane.", false);
         } else {
@@ -228,13 +404,18 @@ if (zgForm) {
 // globalnie klasa body.bez-zglaszania (CSS), więc tu tworzymy link zawsze.
 function dodajLinkZgloszenia(exerciseClone) {
     const qText = (exerciseClone.querySelector(".question")?.textContent) || "";
-    const m = qText.match(/Zadanie\s*(\d+)/i);
-    const numer = m ? m[1] : "?";
+    // [\d.]+ zamiast \d+ — łapie też podnumery ("12.1", "12.2"), tak jak
+    // numerZadania() w app/render.js. Kropka kończąca zdanie („Zadanie 12.")
+    // jest ucinana niżej, żeby numer nie wyglądał jak „12.".
+    const m = qText.match(/Zadanie\s*([\d.]+)/i);
+    const numer = m ? m[1].replace(/\.$/, "") : "?";
     const link = document.createElement("button");
     link.type = "button";
     link.className = "report-error-link";
     link.textContent = "zgłoś błąd";
     link.title = "Zgłoś błąd w tym zadaniu (zła odpowiedź, literówka, problem z filmem…)";
-    link.addEventListener("click", () => otworzModalZgloszenia(numer));
+    // Karta zadania idzie dalej, bo formularz jest do niej PRZENOSZONY, a dane
+    // automatyczne (odpowiedź ucznia, krok rozwiązania) czytamy z jej DOM.
+    link.addEventListener("click", () => otworzModalZgloszenia(numer, exerciseClone));
     exerciseClone.appendChild(link);
 }

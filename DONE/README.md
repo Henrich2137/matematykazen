@@ -17,7 +17,13 @@ rozwiązanie trudniejszego problemu albo sprawdzenie, czy/jak coś już kiedyś 
 Do szukania używaj najpierw tego indeksu (tagi niżej), potem grepa po konkretnym pliku.
 
 
-== 03-biezace.md — partia OTWARTA (2026-07-13 → 2026-07-24, niezmergowana do mastera) ==
+== 03-biezace.md — partia OTWARTA (2026-07-13 → 2026-07-26, niezmergowana do mastera) ==
+- 2026-07-26 (Opus High) — przebudowa formularza „zgłoś błąd": opis OBOWIĄZKOWY (disabled + komunikat
+  role="alert" + focus), modal → BLOK INLINE w karcie zadania nad [Podpowiedź][Rozwiązanie] (jeden węzeł
+  przenoszony przez insertBefore, więc zero refaktoru ID), 8 pigułek kategorii z wyborem wielokrotnym
+  (idą też do _subject), nowe dane auto z DOM karty (odpowiedź ucznia/poprawna, krok rozwiązania, ekran);
+  świadomie BEZ SDK @formspree/ajax z CDN (offline-first). 40/40 testów Playwright
+  [formularz, formspree, ui, walidacja, mobile, a11y]
 - 2026-07-24 (Opus) — przepisanie sekcji „Exam mode" w ARCHITECTURE.md (8 zatytułowanych podsekcji, poziom
   jak dark mode; dopisane ?test-egzamin=1, final-answer w egzaminie, setExamMenuDisabled) + uzupełnienie
   listy „stabilnych ID" paska/menu w ARCHITECTURE_CSS.md  [dokumentacja, egzamin]

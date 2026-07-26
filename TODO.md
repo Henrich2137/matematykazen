@@ -19,11 +19,6 @@ Dla Sonneta na effort High (sesja 2 — osobno, redesign górnego paska/menu, wy
 
 Dla Opusa na effort High:
 
-Sesja 1:
-- Zmienić Opis z opcjonalnego na obowiązkowy i usunąć dopisek (opcjonalny). Nie dopisuwać "(obowiązkowy)". Sprawić aby nie pozwalał wysłać błędu jeśli się nie uzupełni nic.
-- Formularz zgłoś błąd powinien rozwijać się w podobnym miejscu co rozwiązanie i podpowiedź ale nad nimi. Tak aby uczeń mógł łatwo podejrzeć potencjalny błąd w treści zadania.
-
-
 Sesja 2:
 - Obecny top-bar ma zniknąć. Zegar, suma punktów oraz przycisk zakończ egzamin mają być być samodzielnym elementami warstwę wyżej niż arkusz ale niżej niż tablica wzorów i zasady oceniania. Powinny znajdować się obok siebie w prawym górnym rogu. Podobnie jak jest teraz tylko bez "..." i bez top-bar-a.
 - Stwórz sidebar lewej stronie który będzie się rozwijał za pomocą przycisku strzałeczki (w lewo i w prawo) umieszczonego zaraz po prawej od logo. Zmień kolejność przycisków w menu oraz ich nazwy na:
@@ -106,3 +101,8 @@ ZASADY dla Ciebie Claude:
 SONNET DOPISAŁ:
 - Uzupełnić `formulasPage` w 2024-grudzień — brakuje w zad. 7, 8, 10, 11, 12, 20 (6 z 35), więc nie mają przycisku „Pokaż potrzebne wzory". Do decyzji merytorycznej: część pewnie faktycznie nie wymaga tablic, ale zad. 8 (otwarte) warto sprawdzić.
 - Tryb testowy dla zgłaszania błędów (app/report.js): przycisk „Wyślij zgłoszenie" zamieniony na „Wyślij zgłoszenie lokalnie" (np. pod `?test-zgloszenie=1`, wzorem `?test-egzamin=1`), który loguje payload do konsoli/localStorage zamiast robić fetch do Formspree — żeby testować całą ścieżkę (walidacja, honeypot, throttling, toast) bez zużywania miesięcznego limitu 50 zgłoszeń.
+
+OPUS DOPISAŁ:
+- `#top-bar` powoduje 13 px poziomego scrolla przy szerokości 360 px (pasek ma 373 px). Defekt zastany, potwierdzony pomiarem — niezwiązany z formularzem zgłoszeń, ale wart naprawy przy okazji redesignu paska (Sesja 2), bo cała strona daje się przesuwać w bok.
+- Formularz zgłoszenia na telefonie jest wysoki: 8 pigułek kategorii idzie po jednej na wiersz (~340 px), więc obowiązkowe pole opisu jest daleko w dole. Do rozważenia: dwie pigułki w rzędzie, skrócone nazwy albo opis nad kategoriami.
+- Link „zgłoś błąd" jest na samym dole karty, a formularz otwiera się nad przyciskami Podpowiedź/Rozwiązanie — czyli powyżej miejsca kliknięcia. Działa, ale warto sprawdzić na żywo, czy ten skok nie dezorientuje; ewentualnie doscrollować formularz do widoku po otwarciu.

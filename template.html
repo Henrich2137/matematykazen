@@ -131,7 +131,7 @@
                      (v0.01 → v0.02 → …), żeby po odświeżeniu na telefonie było
                      widać, czy strona wczytała już nową wersję. Ta sama wartość
                      musi być w .landing-logo w index.html. -->
-                <a id="logo" href="index.html"><b>Matematyka Zen</b> <span id="wersja">v0.02</span></a>
+                <a id="logo" href="index.html"><b>Matematyka Zen</b> <span id="wersja">v0.03</span></a>
             </div>
 
             <div id="bar-center">
@@ -186,28 +186,51 @@
         <div class="egzamin-okno"></div>
     </div>
 
-    <!-- Modal „zgłoś błąd w zadaniu" (app/report.js przełącza display na flex).
-         Jeden wspólny modal dla wszystkich zadań — numer zadania i podgląd danych
-         technicznych wypełnia JS przy otwarciu. Wszystkie pola OPCJONALNE. -->
+    <!-- Formularz „zgłoś błąd w zadaniu". JEDEN wspólny blok dla wszystkich zadań:
+         app/report.js PRZENOSI go (insertBefore — przenosi węzeł, nie kopiuje) do
+         karty klikniętego zadania, nad rząd [Podpowiedź][Rozwiązanie], żeby uczeń
+         widział treść zadania podczas opisywania błędu. Dzięki przenoszeniu ID
+         pozostają unikalne i cała logika w report.js działa na getElementById.
+         Numer zadania, pigułki i podgląd danych wypełnia JS przy otwarciu.
+         Opis jest OBOWIĄZKOWY, e-mail i kategorie opcjonalne. -->
     <div id="zglos-blad-overlay">
         <div class="zglos-blad-okno">
             <button type="button" class="zglos-blad-x" title="Zamknij">✕</button>
             <h3>Zgłoś błąd w zadaniu</h3>
             <p class="zglos-blad-kontekst" id="zglos-blad-kontekst"></p>
             <p class="zglos-blad-info">
-                Wszystkie pola są opcjonalne — samo wysłanie zgłoszenia już nam pomaga.
-                Automatycznie dołączymy numer zadania i podstawowe informacje techniczne
-                (bez danych osobowych).
+                Opisz krótko, co jest nie tak. Automatycznie dołączymy numer zadania
+                i podstawowe informacje techniczne (bez danych osobowych).
             </p>
             <form id="zglos-blad-form" novalidate>
-                <label class="zglos-blad-label" for="zglos-blad-opis">Opis błędu (opcjonalnie)</label>
-                <textarea id="zglos-blad-opis" name="opis" rows="4"
+                <!-- Kategorie: zwykłe <button type="button"> z przełączaną klasą
+                     .selected — ten sam wygląd co przyciski odpowiedzi ABCD, które
+                     uczeń już zna. Wybór WIELOKROTNY i opcjonalny; wartość bierzemy
+                     z data-kategoria (patrz zebraneKategorie() w app/report.js). -->
+                <span class="zglos-blad-label">Czego dotyczy błąd? (opcjonalnie, możesz wybrać kilka)</span>
+                <div class="zglos-blad-kategorie" id="zglos-blad-kategorie">
+                    <button type="button" data-kategoria="treść zadania">Błąd w treści zadania</button>
+                    <button type="button" data-kategoria="zła prawidłowa odpowiedź">„Prawidłowa odpowiedź” jest nieprawidłowa</button>
+                    <button type="button" data-kategoria="rozwiązanie">Błąd w rozwiązaniu</button>
+                    <button type="button" data-kategoria="podpowiedź">Błąd w podpowiedzi</button>
+                    <button type="button" data-kategoria="film">Film: błąd lub nie działa</button>
+                    <button type="button" data-kategoria="obrazek">Problem z obrazkiem</button>
+                    <button type="button" data-kategoria="widżet">Widżet nie działa</button>
+                    <button type="button" data-kategoria="inne">Inne</button>
+                </div>
+
+                <!-- Opis OBOWIĄZKOWY. Celowo BEZ dopisku „(obowiązkowy)" w etykiecie
+                     — sygnalizują to wyszarzony przycisk i komunikat .zglos-blad-blad. -->
+                <label class="zglos-blad-label" for="zglos-blad-opis">Opis błędu</label>
+                <textarea id="zglos-blad-opis" name="opis" rows="4" required
                     placeholder="Np. zła odpowiedź, literówka w treści, film się nie odtwarza…"></textarea>
+                <p class="zglos-blad-blad" id="zglos-blad-blad" role="alert"></p>
 
                 <label class="zglos-blad-label" for="zglos-blad-email">Twój e-mail (opcjonalnie — jeśli chcesz, żebyśmy mogli odpisać)</label>
                 <input type="email" id="zglos-blad-email" name="email" autocomplete="email" placeholder="np. jan@przyklad.pl">
 
-                <!-- Honeypot: ukryte przed ludźmi (CSS), wypełniają je tylko boty. -->
+                <!-- Honeypot: ukryte przed ludźmi (CSS), wypełniają je tylko boty.
+                     Nazwa _gotcha to natywny honeypot Formspree. -->
                 <div class="zglos-blad-hp" aria-hidden="true">
                     <label>Nie wypełniaj tego pola
                         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off">
@@ -221,7 +244,8 @@
 
                 <div class="zglos-blad-akcje">
                     <button type="button" class="zglos-blad-anuluj">Anuluj</button>
-                    <button type="submit" class="zglos-blad-wyslij">Wyślij zgłoszenie</button>
+                    <!-- disabled na starcie: odblokowuje je dopiero niepusty opis. -->
+                    <button type="submit" class="zglos-blad-wyslij" disabled>Wyślij zgłoszenie</button>
                 </div>
             </form>
         </div>
