@@ -53,6 +53,7 @@ DLA HENRICHA:
 
 INNE NOTATKI, DO PRZEKMINIENIA:
 
+- Przekminić i dodać zasadę dotyczącą tłumaczenia mi (Henrichowi) rzeczy (jak mam przeprowadzić test, jak wygląda projekt itd.)
 - dodanie rozwiązań do matury 2026
 
 - Na telefonie pdfy się nie ładują (tablica i zasady oceniania). (to nie będzie problem po zmianie na pdf otwierane na zewnątrz stronki, jeśli tamto będzie działać to można usunąć ten wpis)
