@@ -32,14 +32,18 @@ Szczegóły techniczne w issues/sidebar-nawigacji.md + issues/likwidacja-top-bar
   - Sprawdź wszystkie odpowiedzi
   - Pokaż wszystkie rozwiązania
   - Zresetuj arkusz (zamiast „resetuj punktację" — działanie bez zmian, sama nazwa)
-  - ------------- (mała przerwa na pół przycisku, poniżej przyciski z serii )
+  - ------------- (cienka kreska, poniżej ustawienia)
   - Motyw: jasny/ciemny/auto
   - Punktacja: wł./tylko suma/wył.
-  - Pokaż poprawność odpowiedzi: natychmiast/po kliknięciu "sprawdź"
-  - Przycisk "zgłoś błąd" pod zadaniem: wł./wył.
+  - Poprawność odpowiedzi: natychmiast/po kliknięciu "sprawdź"
+  - Zgłoś błąd pod zadaniem: wł./wył.
   (sub-opcje zegara i wskaźników zawsze widoczne, wcięte pod „Rozpocznij egzamin")
 
-- Wygląd: spójny z resztą strony, ale nowocześniejszy — płynne wysuwanie panelu, obracająca się strzałka, wyraźne grupy. Ikony robię sam jako inline SVG (kreskowe, dziedziczą kolor motywu) — nie musisz nic przygotowywać.
+- Dwa typy pozycji, odróżnione stylem zamiast przerwy. Akcje („Otwórz tablicę", „Zresetuj arkusz") to czasowniki — zwykłe przyciski z hoverem. Ustawienia to rzeczownik + aktualna wartość po prawej, klikane w cyklu jak dziś. Etykieta szara, wartość ciemna i półgruba — bez koloru akcentu, bo niebieski znaczy już „Twój wybór w zadaniu", a zielony/czerwony to poprawność.
+
+- Przy każdym ustawieniu kropki stanu (●○○) — widać, ile jest stanów i który jest aktywny. Bez tego cykl na telefonie jest klikaniem w ciemno (podpowiedź po najechaniu myszą tam nie działa; na komputerze dochodzi jako bonus). Etykiety ustawień skrócone, bo w panelu jest ~200 px na tekst.
+
+- Wygląd: spójny z resztą strony, ale nowocześniejszy — płynne wysuwanie panelu, obracająca się strzałka. Ikony robię sam jako inline SVG (kreskowe, dziedziczą kolor motywu) — nie musisz nic przygotowywać.
 <br>
 
 

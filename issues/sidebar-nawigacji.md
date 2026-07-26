@@ -49,16 +49,16 @@ Progi wpisać do `style/responsive.css` (ładowany OSTATNI — kolejność kaska
   📐  Otwórz tablicę wzorów
   📋  Otwórz zasady oceniania
   ▶   Rozpocznij egzamin            ← w trakcie egzaminu: „Zakończ egzamin"
-        · Zegar: na wierzchu / wył.
-        · Wskaźniki samooceny zad. otwartych: wszystkie / wypełnione / wył.
+        Zegar               na wierzchu ●○
+        Wskaźniki samooceny   wszystkie ●○○
   ✓   Sprawdź wszystkie odpowiedzi
   👁   Pokaż wszystkie rozwiązania
   ↺   Zresetuj arkusz
-  ─────────────────────────────    ← przerwa ~pół wysokości przycisku
-  ◐   Motyw: jasny / ciemny / auto
-  #   Punktacja: wł. / tylko suma / wył.
-  ⚡  Pokaż poprawność odpowiedzi: natychmiast / po kliknięciu „sprawdź"
-  ⚠  Przycisk „zgłoś błąd" pod zadaniem: wł. / wył.
+  ─────────────────────────────    ← cienka kreska 1 px, BEZ nagłówka sekcji
+  ◐   Motyw                     auto ●○○
+  #   Punktacja             wszystko ●○○
+  ⚡  Poprawność odpowiedzi natychmiast ●○
+  ⚠  Zgłoś błąd pod zadaniem     wł. ●○
 ```
 
 - Sub-opcje zegara i wskaźników są **zawsze widoczne**, wcięte, mniejszym fontem — nie zwijają się.
@@ -111,8 +111,46 @@ przed wczytaniem arkusza i przełączanie start/koniec przestanie działać.
   nie do całego przycisku).
 - `wskaźniki „oceń się"` → `Wskaźniki samooceny zad. otwartych` (`app/indicators.js`).
 
-**Wzorzec dla wszystkich toggle'ów z ikoną**: `<button><svg…/><span class="etykieta">…</span></button>`,
-a JS pisze do `.etykieta`, nie do przycisku. Inaczej pierwszy `textContent = …` skasuje ikonę.
+## Dwa typy pozycji (ustalone 2026-07-26)
+
+Panel ma ~260 px, minus padding i ikona zostaje **~200 px na tekst** (≈30 znaków przy 13 px) —
+dlatego segmented control z trzema podpisami odpada, a etykiety ustawień są SKRÓCONE
+(„Poprawność odpowiedzi", nie „Pokaż poprawność odpowiedzi: natychmiast / po kliknięciu…").
+
+### Akcja — czasownik, klikalny przycisk
+
+`[ikona] Otwórz tablicę wzorów` — pełna szerokość, hover z tłem `--bg-muted`, tekst w `--text`.
+
+### Ustawienie — rzeczownik + aktualny stan, cykl
+
+```html
+<button id="theme-toggle" class="sidebar-ustawienie"
+        data-stan="auto" data-stany="jasny,ciemny,auto">
+  <svg …/><span class="etykieta">Motyw</span>
+  <span class="wartosc">auto</span><span class="kropki" aria-hidden="true"></span>
+</button>
+```
+
+- **Kolor**: żadnego akcentu. Etykieta `--text-faint-2`, wartość `--text` + `font-weight: 600`.
+  Świadoma decyzja: `--accent-blue-strong` (#4a90d9) znaczy już „Twój wybór w zadaniu"
+  (ABCD, widżety), a zielony/czerwony to poprawność — kolor w menu konkurowałby ze znaczeniem
+  z treści. Dodatkowo kontrast działa w obu motywach bez dobierania nowych zmiennych.
+- **Kropki stanu** (`●○○`) po prawej: ile stanów ma przełącznik i który jest aktywny.
+  Generowane z `data-stany`, nie wpisywane ręcznie. `aria-hidden` — dla czytnika ekranu
+  wystarczy tekst wartości (dodać `aria-live="polite"` na `.wartosc`).
+  To ONE rozwiązują cykl na telefonie: bez nich tapnięcie jest klikaniem w ciemno.
+- **Hover-podgląd tylko na desktopie**: pod `@media (hover: hover)` po najechaniu wartość
+  pokazuje `auto → jasny`. Na dotyku ta reguła w ogóle się nie stosuje.
+- Ten sam wzorzec dla sub-opcji egzaminu (Zegar — 2 stany, Wskaźniki — 3), tylko mniejszy
+  font i wcięcie. Nie robić z nich osobnego typu kontrolki.
+- **Separacja akcji od ustawień**: cienka kreska 1 px (`--separator`), bez nagłówka sekcji
+  i bez pustej przerwy.
+
+**Wzorzec dla wszystkich toggle'ów z ikoną**: JS pisze do `.wartosc` (i przestawia `data-stan`),
+NIGDY do `textContent` całego przycisku — inaczej pierwszy zapis skasuje ikonę, etykietę i kropki.
+Dotyczy to `bootstrap.js:42–57` (dziś porównuje `innerHTML` ze stringiem), `bootstrap.js:90`,
+`bootstrap.js:244`, `theme.js`, `exam.js` (zegar), `indicators.js`, `report.js`.
+`data-stan` jest jedynym źródłem prawdy o pozycji w cyklu.
 
 ## Ikony
 
@@ -130,4 +168,7 @@ Emoji w szkicu wyżej to tylko oznaczenia — w kodzie mają być SVG.
 - [ ] Arkusz nie drgnie ani o piksel przy otwieraniu (sprawdzić pozycję pierwszej karty).
 - [ ] Tryb egzaminu: pozycja przełącza się na „Zakończ egzamin", wyszarzenia z `exam.css` działają.
 - [ ] Motyw ciemny: panel, ikony i separator mają kontrast (nie białe tło).
+- [ ] Każde ustawienie pokazuje wartość i kropki stanu; kropki zgadzają się z `data-stany`.
+- [ ] Po pełnym cyklu (klik × liczba stanów) etykieta, ikona i kropki są nienaruszone.
+- [ ] Na telefonie (brak hovera) wartość i kropki nadal informują o stanie.
 - [ ] Test na 360 px i 1920 px (Playwright + `python -m http.server`).
