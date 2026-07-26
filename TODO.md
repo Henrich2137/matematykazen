@@ -14,7 +14,7 @@ Dla Sonneta na effort High (sesja 2 — osobno, redesign górnego paska/menu, wy
 
 
 Dla Opusa na effort High:
-- Obecny top-bar ma zniknąć. Zegar wraz z punktacją mająbyć być samodzielnym elementami warstwę wyżej niż arkusz ale niżej niż Tablica wzorów i zasady oceniania. Powinny znajdować się obok siebiew w prawym górnym rogu.
+- Obecny top-bar ma zniknąć. Zegar, suma punktów oraz przycisk zakończ egzamin mają być być samodzielnym elementami warstwę wyżej niż arkusz ale niżej niż tablica wzorów i zasady oceniania. Powinny znajdować się obok siebie w prawym górnym rogu. Podobnie jak jest teraz tylko bez "..." i bez top-bar-a.
 - Stwórz sidebar lewej stronie który będzie się rozwijał za pomocą przycisku strzałeczki (w lewo i w prawo) umieszczonego zaraz po prawej od logo. Zmień kolejność przycisków w menu oraz ich nazwy na:
   - Tytuł arkusza (on nie ma być przyciskiem)
   - Otwórz tablicę wzorów
