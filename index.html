@@ -25,12 +25,14 @@
     <title>Matematyka Zen — matura podstawowa bez rozpraszaczy</title>
 </head>
 <body class="landing-page">
-    
+
+    <button id="landing-theme-toggle" class="landing-theme-toggle" type="button">motyw: auto</button>
+
     <header class="landing-hero">
 
         <br><br><!--zamiast tych <br> mozna dać jakiś style czy coś zebybył margin idk-->
         <!-- Wersja podbijana ręcznie przy wdrożeniu — trzymać zgodnie z #wersja w template.html. -->
-        <div class="landing-logo">Matematyka Zen <span class="landing-wersja">v0.01</span></div>
+        <div class="landing-logo">Matematyka Zen <span class="landing-wersja">v0.02</span></div>
         <br><br>
         
         <!--  <h1>Matura podstawowa z matematyki, bez rozpraszaczy</h1>  -->
@@ -87,5 +89,44 @@
         <p>Matematyka Zen — projekt w fazie walidacji pomysłu.</p>
     </footer>
     -->
+
+    <!-- Przełącznik motywu — sam cykl auto → jasny → ciemny (ten sam klucz
+         localStorage i te same trzy stany co #theme-toggle w app/theme.js).
+         Osobna, samowystarczalna kopia: index.html celowo nie ładuje app/*.js
+         (patrz CLAUDE.md — landing ma zostać pure static HTML). -->
+    <script>
+        (function () {
+            var KLUCZ_MOTYWU = "matematykazen-motyw";
+            var MOTYWY = ["auto", "jasny", "ciemny"];
+            var btn = document.getElementById("landing-theme-toggle");
+            if (!btn) return;
+
+            function readTheme() {
+                try {
+                    var m = localStorage.getItem(KLUCZ_MOTYWU);
+                    if (m === "jasny" || m === "ciemny") return m;
+                } catch (e) {}
+                return "auto";
+            }
+            function applyTheme(motyw) {
+                var html = document.documentElement;
+                html.classList.toggle("theme-light", motyw === "jasny");
+                html.classList.toggle("theme-dark", motyw === "ciemny");
+                try {
+                    if (motyw === "auto") localStorage.removeItem(KLUCZ_MOTYWU);
+                    else localStorage.setItem(KLUCZ_MOTYWU, motyw);
+                } catch (e) {}
+                btn.textContent = "motyw: " + motyw;
+            }
+            applyTheme(readTheme());
+            btn.addEventListener("click", function () {
+                var next = MOTYWY[(MOTYWY.indexOf(readTheme()) + 1) % MOTYWY.length];
+                applyTheme(next);
+            });
+            window.addEventListener("storage", function (e) {
+                if (e.key === KLUCZ_MOTYWU) applyTheme(readTheme());
+            });
+        })();
+    </script>
 </body>
 </html>

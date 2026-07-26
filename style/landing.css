@@ -26,6 +26,28 @@
     margin-bottom: 20px;
     text-align: center;
 }
+/* Przełącznik motywu (jasny/ciemny/auto) — jedyny element chrome na landingu,
+   więc zamiast menu „⋯" (jak w template.html) jest to pojedynczy, dyskretny
+   przycisk w rogu. Logika cyklu jest w inline-skrypcie na dole index.html
+   (ten sam klucz localStorage co #theme-toggle w arkuszu, więc wybór jest
+   wspólny dla całej strony). */
+.landing-theme-toggle {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    padding: 6px 12px;
+    border: 1px solid var(--border-strong);
+    border-radius: 3px;
+    background-color: var(--bg);
+    font-family: inherit;
+    font-size: 13px;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+.landing-theme-toggle:hover {
+    border-color: var(--text);
+    color: var(--text);
+}
 .landing-hero h1 {
     margin: 0 0 20px;
     font-size: 30px;
