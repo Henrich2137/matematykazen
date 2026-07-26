@@ -5,6 +5,7 @@ DO REALIZACJI
 
 Do przydzielenia:
 
+- odwrócone kolory wybranego przycisku w przełączniuku ćwiczenia / egzamin na górze arkusza powinny byćnieco lżejsze. W darkmodzie ciemniejsze tło, a w jasnym motywie jaśniejsze.
 - zmienić kolor okien pdf na ciemniejszy w darkmodzie, tak aby nie odstawał tak bardzo od reszty. Można też zmienić jego cały styl na podobny do tego co ma panel boczny.
 
 - pionowa linia sidebara po jego prawej powinna być przesunięta w prawo. Jej dolny koniec powinien się też kończyć przed dolną granicą ekranu.
