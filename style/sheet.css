@@ -988,8 +988,17 @@ input::-webkit-inner-spin-button {
 }
 
 /* ===== TABELKI DANYCH W TREŚCI ZADAŃ (np. zad 29) ===== */
+/* Tabela danych w treści zadania. `display: block` + `overflow-x: auto` (ten sam
+   zabieg co przy .katex-display w base.css) daje jej WŁASNY poziomy scroll, gdy
+   nie mieści się w karcie — bez tego szeroka tabela rozpycha całą stronę.
+   Zmierzone: tabela w zad. 33 dawała 12px poziomego scrolla przy 360px.
+   `width: fit-content` trzyma `margin: auto` centrowanie, dopóki tabela się mieści. */
 .data-table {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
     margin: 10px auto;
+    overflow-x: auto;
     border-collapse: collapse;
 }
 .data-table th,
