@@ -55,7 +55,7 @@ DLA HENRICHA:
 
 
 INNE NOTATKI, DO PRZEKMINIENIA:
-- na telefonie wskaźniki "oceń się" jeżeli mająbyćniewidzialne to powinny
+- na telefonie wskaźniki "oceń się" jeżeli mają być niewidzialne to powinny
 - Przekminić i dodać zasadę dotyczącą tłumaczenia mi (Henrichowi) rzeczy (jak mam przeprowadzić test, jak wygląda projekt itd.)
 - dodanie rozwiązań do matury 2026
 
