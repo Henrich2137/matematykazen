@@ -495,6 +495,7 @@ body.sidebar-otwarty #sidebar {
     margin: 15px auto;
 }
 .exercise-score {
+    /*  Henrich: te cztery linijki przekleiłem z total-score aby było spójniej */
     box-sizing: border-box;
     padding: 6px 12px;
     border: 1px solid var(--border);
@@ -506,7 +507,8 @@ body.sidebar-otwarty #sidebar {
     /* Zrównanie w pionie z pierwszą linią treści (numerem zadania). Bez tego
        badge siedział optycznie ~16px za wysoko względem "Zadanie N.". */
     margin-top: 16px;
-    /*padding: 5px;
+    /* Henrich: no a tutaj zakomentowałem, żeby nie kolidowały ze sobą
+    padding: 5px;
     border: 1px solid;
     */
     }
