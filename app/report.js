@@ -135,6 +135,30 @@ function zbierzLocalStorage() {
     return out;
 }
 
+// Tekst elementu w formie czytelnej w mailu ze zgłoszeniem.
+//
+// UWAGA na KaTeX: renderuje każdy wzór w DWÓCH warstwach naraz — ukrytym
+// MathML-u (dla czytników ekranu, razem z surowym LaTeX-em w <annotation>)
+// i widocznym HTML-u. Samo .textContent zlepia obie w bełkot: przycisk
+// „A. 5⁴" z zad. 2 dawał „A. 545^{4}54". Bierzemy więc surowy LaTeX
+// z <annotation>, bo jest jednoznaczny — warstwa wizualna spłaszcza 5⁴ do
+// nierozróżnialnego „54". Fallbackiem jest warstwa wizualna, gdyby kiedyś
+// zabrakło anotacji.
+//
+// Pracujemy na KLONIE: podmiany nie mogą ruszyć żywego DOM-u strony.
+function tekstOdpowiedzi(el) {
+    if (!el) return "";
+    const kopia = el.cloneNode(true);
+    kopia.querySelectorAll(".katex").forEach(k => {
+        if (!k.parentNode) return; // zagnieżdżony .katex już odpięty przy zewnętrznym
+        const anotacja = k.querySelector('annotation[encoding="application/x-tex"]');
+        const wizualna = k.querySelector(".katex-html");
+        const tekst = anotacja ? anotacja.textContent : (wizualna ? wizualna.textContent : "");
+        k.parentNode.replaceChild(document.createTextNode(tekst), k);
+    });
+    return kopia.textContent.replace(/\s+/g, " ").trim();
+}
+
 // Co uczeń zaznaczył/wpisał — czytane wprost z DOM karty zadania. Wyciągamy to
 // JAWNIE (a nie tylko w zrzucie localStorage), żeby dało się przeczytać w mailu
 // bez grzebania w JSON-ie. Obsługujemy trzy kształty odpowiedzi z render.js:
@@ -147,13 +171,15 @@ function odpowiedzUcznia(karta) {
     const przyciski = karta.querySelectorAll(
         ".answers-container button.selected, .answers-container button.correct, .answers-container button.incorrect"
     );
-    przyciski.forEach(b => czesci.push(b.textContent.trim()));
+    przyciski.forEach(b => czesci.push(tekstOdpowiedzi(b)));
 
     karta.querySelectorAll(".fill-in-row").forEach(row => {
         const etykieta = row.querySelector(".fill-in-label");
         const pole = row.querySelector(".fill-in-input");
         if (pole && pole.value.trim() !== "") {
-            czesci.push(`${etykieta ? etykieta.textContent.trim() + " " : ""}${pole.value.trim()}`);
+            // Etykieta pola też bywa wzorem KaTeX (np. „zbiorem rozwiązań jest \(x\in\)").
+            const opisPola = etykieta ? tekstOdpowiedzi(etykieta) : "";
+            czesci.push(`${opisPola ? opisPola + " " : ""}${pole.value.trim()}`);
         }
     });
 
@@ -168,7 +194,7 @@ function odpowiedzUcznia(karta) {
 function odpowiedzPoprawna(karta) {
     if (!karta) return "nieznana";
     const btn = karta.querySelector(".answers-container button.hiddenCorrect");
-    return btn ? btn.textContent.trim() : "nie dotyczy / nieoznaczona w DOM";
+    return btn ? tekstOdpowiedzi(btn) : "nie dotyczy / nieoznaczona w DOM";
 }
 
 // Który krok rozwiązania był na ekranie. Licznik „3 / 7" i tak jest renderowany
