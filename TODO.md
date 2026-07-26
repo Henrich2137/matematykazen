@@ -22,6 +22,7 @@ Szczegóły techniczne w issues/sidebar-nawigacji.md + issues/likwidacja-top-bar
 
 - Kolejność i nazwy pozycji w panelu:
   - Tytuł arkusza (nagłówek, nie przycisk)
+  - tryb ćwiczenie / tryb egzaminu
   - Otwórz tablicę wzorów
   - Otwórz zasady oceniania
   - Rozpocznij egzamin
