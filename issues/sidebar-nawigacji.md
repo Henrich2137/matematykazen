@@ -62,6 +62,10 @@ Progi wpisać do `style/responsive.css` (ładowany OSTATNI — kolejność kaska
 ```
 
 - Sub-opcje zegara i wskaźników są **zawsze widoczne**, wcięte, mniejszym fontem — nie zwijają się.
+- **Nie dodawać do panelu wskaźnika ani przełącznika trybu** ćwiczenia/egzamin — świadoma decyzja
+  (2026-07-26): przełącznik żyje pod tytułem arkusza, patrz „Przełącznik trybu"
+  w [likwidacja-top-bara.md](likwidacja-top-bara.md). W panelu jest tylko akcja
+  „Rozpocznij / Zakończ egzamin", żeby nie było dwóch wejść do tego samego stanu.
 - Nagłówek panelu bierze tytuł z `applySheetMeta()` (`app/bootstrap.js:122`), tego samego pola co
   `#sheet-title-heading`.
 

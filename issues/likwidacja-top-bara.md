@@ -32,9 +32,8 @@ osobnego issue nie ma; po tej zmianie znika razem z paskiem.
   (własne tło `var(--bg)`, ramka, `border-radius`) — nie jeden wspólny kontener wizualny.
   - poza egzaminem: **tylko `#total-score`**,
   - w egzaminie: `#egzamin-timer` + `#total-score` + `#egzamin-koniec-bar` obok siebie.
-- `#bar-center` (`#exercises-mode-subtitle`, „tryb ćwiczenia") **znika bez zamiennika** —
-  tytuł arkusza jest już w nagłówku sidebara i nad pierwszym zadaniem (`#sheet-title-heading`).
-  Sprawdzić `updateModeSubtitle()` w `app/exam.js` — albo usunąć, albo zostawić element ukryty.
+- `#bar-center` znika, ale wskaźnik trybu **nie** — przenosi się i zmienia w przełącznik
+  (patrz „Przełącznik trybu" niżej).
 - `#menu-button` (`⋯`) znika — zastępuje go strzałka przy logo (patrz drugi issue).
 
 ## Warstwy
@@ -47,6 +46,42 @@ Uwaga: `#zasady-oceniania-panel` jest przypięty do **lewej** krawędzi (`left: 
 `top: 100px`, `style/sheet.css:171+`) — czyli dokładnie tam, gdzie wychodzi sidebar.
 Sidebar (z-index 12) ma go przykrywać, ale warto sprawdzić, czy uchwyt przesuwania panelu
 nie zostaje pod spodem w połowie widoczny.
+
+## Przełącznik trybu (ćwiczenia / egzamin)
+
+Ustalone 2026-07-26. Dzisiejszy `#exercises-mode-subtitle` to bierny napis w środku paska
+(`app/exam.js:83` — `updateModeSubtitle()` przepisuje go z klasy `body.tryb-egzaminu`).
+Zamiast znikać razem z paskiem, staje się **segmented control pod tytułem arkusza**:
+
+```
+              Matura grudzień 2024          ← #sheet-title-heading (template.html:325)
+           ┌────────────┬─────────┐
+           │ ćwiczenia  │ egzamin │         ← nowy #tryb-przelacznik
+           └────────────┴─────────┘
+             ▲ aktywny
+```
+
+- Miejsce: `#exercises-wrapper`, zaraz po `<h1 id="sheet-title-heading">`. Element statyczny
+  w `template.html` — `loadExercises()` dokleja zadania NA KONIEC wrappera, więc nagłówek
+  i przełącznik zostają pierwszymi dziećmi (ten sam mechanizm co dziś dla `<h1>`).
+- **Świadomie nie jest `position: fixed`** — scrolluje się z treścią. Za „zawsze widoczny"
+  stan egzaminu odpowiada zegar w prawym klastrze; przełącznik jest punktem wejścia, nie HUD-em.
+- Kliknięcie nieaktywnej połówki = te same funkcje co przyciski w panelu:
+  `startExamPrompt()` / `finishExamPrompt()` (`app/exam.js:117` i `:139`). Oba mają `confirm()`,
+  więc przełącznik nie zadziała natychmiast — to celowe, egzamin nie może wystartować przypadkiem.
+  Po anulowaniu dialogu przełącznik musi wrócić do stanu poprzedniego (nie zostawiać
+  „egzamin" podświetlonego).
+- Stan czytany z `body.tryb-egzaminu` — `updateModeSubtitle()` zostaje, tylko przestawia
+  klasę `.aktywny` na połówkach zamiast pisać `textContent`. Nazwę funkcji można zostawić
+  albo zmienić na `updateModeSwitch()` — wołana jest w `enableExamMode()` i `finishExam()`.
+- To realizuje wpis z sekcji „do przekminienia": *tryb egzaminu nie powinien być tak schowany
+  w opcjach* — po zmianie ten wpis można usunąć z TODO.md.
+- W panelu bocznym **nie** ma osobnego wskaźnika trybu — tylko pozycja
+  „Rozpocznij / Zakończ egzamin" (patrz [sidebar-nawigacji.md](sidebar-nawigacji.md)).
+- Uwaga na `setExamMenuDisabled()` (`app/exam.js:99`): lista `OPCJE_MENU_EGZAMIN` blokuje
+  m.in. `egzamin-start`. Przełącznik jest osobnym elementem — jego połówka „ćwiczenia"
+  w trakcie egzaminu **nie** ma być zablokowana (to jedyne wyjście z egzaminu obok
+  `#egzamin-koniec`), więc nie dopisywać go do tej listy.
 
 ## Odstęp na górze
 
@@ -76,4 +111,6 @@ pływające pigułki nadal zajmują górę ekranu. Wartości do przejrzenia raze
 - [ ] Pigułki i logo są czytelne nad treścią zadania przy scrollowaniu (mają własne tło).
 - [ ] Klaster nadal jest nad panelami PDF (tak jak dziś pasek), a sidebar nad wszystkim.
 - [ ] Widok punktów „tylko suma"/„nic" nadal chowa właściwe elementy.
+- [ ] Przełącznik trybu pod tytułem: pokazuje właściwy stan po odświeżeniu w trakcie egzaminu,
+      startuje i kończy egzamin, a anulowanie `confirm()` nie zostawia go w złym stanie.
 - [ ] ARCHITECTURE_CSS.md zaktualizowany.

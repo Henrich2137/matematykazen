@@ -20,9 +20,10 @@ Szczegóły techniczne w issues/sidebar-nawigacji.md + issues/likwidacja-top-bar
 
 - Panel boczny po lewej, otwierany i zamykany tą samą strzałką (plus Esc). Arkusz się nie rusza, a na komputerze nie jest niczym zasłaniany — panel mieści się w marginesie. Na wąskim ekranie nachodzi na zadania: wtedy lekko je przygasza i zamyka się kliknięciem w arkusz. Otwiera się nad oknami z PDF-ami.
 
+- Przełącznik „ćwiczenia / egzamin" ląduje POD TYTUŁEM ARKUSZA nad pierwszym zadaniem (nie w panelu — panel bywa zwinięty, a trwający egzamin musi być widać zawsze). Zastępuje dzisiejszy napis „tryb ćwiczenia" ze środka paska. W panelu zostaje zwykła pozycja „Rozpocznij / Zakończ egzamin" — bez osobnego wskaźnika trybu, żeby nie było dwóch wejść do tego samego.
+
 - Kolejność i nazwy pozycji w panelu:
   - Tytuł arkusza (nagłówek, nie przycisk)
-  - tryb ćwiczenie / tryb egzaminu
   - Otwórz tablicę wzorów
   - Otwórz zasady oceniania
   - Rozpocznij egzamin
@@ -31,7 +32,7 @@ Szczegóły techniczne w issues/sidebar-nawigacji.md + issues/likwidacja-top-bar
   - Sprawdź wszystkie odpowiedzi
   - Pokaż wszystkie rozwiązania
   - Zresetuj arkusz (zamiast „resetuj punktację" — działanie bez zmian, sama nazwa)
-  - ------------- (mała przerwa na pół przycisku)
+  - ------------- (mała przerwa na pół przycisku, poniżej przyciski z serii )
   - Motyw: jasny/ciemny/auto
   - Punktacja: wł./tylko suma/wył.
   - Pokaż poprawność odpowiedzi: natychmiast/po kliknięciu "sprawdź"
@@ -72,7 +73,7 @@ INNE NOTATKI, DO PRZEKMINIENIA:
   - Podczas naprawy warto sprawić, aby odpalały się one nie w okienku, ale wypełniały całą stronę z krzyżykiem w rogu.
   - Jeżeli nie uda się tego naprawić, to należy usunąć tę funkcjonalność z wersji mobilnej.
 
-- Tryb egzaminu nie powinien być tak „schowany" w opcjach. Może pod tytułem zrobić zamiast stałego napisu „tryb ćwiczeniowy" toggle między dwoma trybami.
+- Tryb egzaminu nie powinien być tak „schowany" w opcjach. Może pod tytułem zrobić zamiast stałego napisu „tryb ćwiczeniowy" toggle między dwoma trybami. (→ wchodzi w Sesję 2, spec w issues/likwidacja-top-bara.md — po zrobieniu skasuj ten punkt)
 
 - Propozycje zmiany UI:
   - Albo: Wywalić top-bar i przenieść wszystko na rozwijany pasek boczny po lewej, który można łatwo schować, aby widzieć tylko zadania i włączone elementy takie jak tablica, punktacja itd.
