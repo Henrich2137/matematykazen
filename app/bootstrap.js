@@ -40,9 +40,16 @@ function otworzSidebar() {
     // Fokus na pierwszą WIDOCZNĄ pozycję (część jest chowana zależnie od trybu).
     // Świadomie BEZ focus trapu: panel nie jest modalem, ma się dać wyjść Tabem
     // do treści arkusza.
-    const pierwsza = sidebar && Array.from(sidebar.querySelectorAll("button"))
-        .find(b => !b.disabled && b.offsetParent !== null);
-    if (pierwsza) pierwsza.focus();
+    // requestAnimationFrame jest KONIECZNE: zamknięty panel ma visibility: hidden,
+    // a elementu z visibility: hidden nie da się zafokusować. Klasa dopiero co
+    // wylądowała na <body>, więc bez odczekania jednej klatki (przeliczenie stylu)
+    // focus() cicho nic nie robi i fokus zostaje na strzałce.
+    requestAnimationFrame(() => {
+        if (!czySidebarOtwarty() || !sidebar) return; // zamknięty w międzyczasie
+        const pierwsza = Array.from(sidebar.querySelectorAll("button"))
+            .find(b => !b.disabled && b.offsetParent !== null);
+        if (pierwsza) pierwsza.focus();
+    });
 }
 // wrocFokus: Esc oddaje fokus strzałce — inaczej fokus zostaje w zamkniętym
 // (visibility: hidden) panelu i Tab startuje z nieoczywistego miejsca.
