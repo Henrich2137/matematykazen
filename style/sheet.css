@@ -183,13 +183,21 @@ body.sidebar-otwarty #sidebar-toggle {
     background-color: var(--bg);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
     text-align: left;
+    /* visibility (nie tylko translateX) — inaczej Tab wchodziłby w przyciski
+       zamkniętego panelu. Przełączana z ZEROWYM czasem, ale z opóźnieniem:
+       przy ZAMYKANIU 180ms (panel zostaje widoczny na czas wsuwania), przy
+       OTWIERANIU 0s w regule niżej — tak, żeby stała się `visible` w tej samej
+       klatce, w której dochodzi klasa. Zwykłe `visibility 180ms` tego nie robi:
+       w klatce zmiany klasy postęp tranzycji to 0, więc wartość jest jeszcze
+       `hidden` i otworzSidebar() nie miałby czego zafokusować. */
     visibility: hidden;
     transform: translateX(-100%);
-    transition: transform 180ms cubic-bezier(0.2, 0.7, 0.3, 1), visibility 180ms;
+    transition: transform 180ms cubic-bezier(0.2, 0.7, 0.3, 1), visibility 0s linear 180ms;
 }
 body.sidebar-otwarty #sidebar {
     visibility: visible;
     transform: translateX(0);
+    transition: transform 180ms cubic-bezier(0.2, 0.7, 0.3, 1), visibility 0s linear 0s;
 }
 
 #sidebar-tytul {
@@ -326,15 +334,18 @@ body.sidebar-otwarty #sidebar {
 
 /* Użytkownik prosi o brak animacji → panel ma pojawiać się OD RAZU, a nie
    „szybciej". 0.01ms zamiast `none`, żeby zdarzenia transitionend (gdyby
-   kiedyś doszły) nadal się odpalały. */
+   kiedyś doszły) nadal się odpalały. Zerujemy też transition-delay, inaczej
+   zamknięty panel zostawałby `visible` przez 180ms po wsunięciu. */
 @media (prefers-reduced-motion: reduce) {
     #sidebar,
     #sidebar-toggle,
     #sidebar-przyciemnienie,
     .sidebar-akcja,
     .sidebar-ustawienie,
-    #tryb-przelacznik button {
+    #tryb-przelacznik button,
+    body.sidebar-otwarty #sidebar {
         transition-duration: 0.01ms;
+        transition-delay: 0s;
     }
 }
 
