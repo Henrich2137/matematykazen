@@ -4,7 +4,7 @@ DO REALIZACJI
 <br> Jeżeli nie masz co robić, to rób stąd.
 
 Do przydzielenia:
-- Zmienić Opis z opcjonalnego na obowiązkowy i usunąć dopisek (opcjonalny). Nie dopisuwać "(obowiązkowy)". Sprawić aby nie pozwalał wysłać błędu jeśli się nie uzupełni nic.
+
 
 - W zadaniach otwartych: zamiast checkboxów powinny być przyciski z punktami do każdego zdania typu "Nierówność zapisana w postaci x2−6x−7≤0x2−6x−7≤0" (przykład z zad 9.) Dokładna punktacja jest w zasadach oceniania w pdf i od tego powinna zależeć ilość przycisków. (czeka na decyzję merytoryczną Henricha o punktacji za poszczególne przyciski, potem do przydzielenia modelowi)
 - w zadaniach z oknem z ostateczną odpowiedzią (jak 8 czy 9), po zrobieniu egzaminu ostateczna odpowiedź powinna się samodzielnie sprawdzić.
@@ -16,6 +16,13 @@ Dla Sonneta na effort High (sesja 2 — osobno, redesign górnego paska/menu, wy
 
 
 Dla Opusa na effort High:
+
+Sesja 1:
+- Zmienić Opis z opcjonalnego na obowiązkowy i usunąć dopisek (opcjonalny). Nie dopisuwać "(obowiązkowy)". Sprawić aby nie pozwalał wysłać błędu jeśli się nie uzupełni nic.
+- Formularz zgłoś błąd powinien rozwijać się w podobnym miejscu co rozwiązanie i podpowiedź ale nad nimi. Tak aby uczeń mógł łatwo podejrzeć potencjalny błąd w treści zadania.
+
+
+Sesja 2:
 - Obecny top-bar ma zniknąć. Zegar, suma punktów oraz przycisk zakończ egzamin mają być być samodzielnym elementami warstwę wyżej niż arkusz ale niżej niż tablica wzorów i zasady oceniania. Powinny znajdować się obok siebie w prawym górnym rogu. Podobnie jak jest teraz tylko bez "..." i bez top-bar-a.
 - Stwórz sidebar lewej stronie który będzie się rozwijał za pomocą przycisku strzałeczki (w lewo i w prawo) umieszczonego zaraz po prawej od logo. Zmień kolejność przycisków w menu oraz ich nazwy na:
   - Tytuł arkusza (on nie ma być przyciskiem)
