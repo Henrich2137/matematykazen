@@ -93,6 +93,12 @@
     --wskaznik-bg: #ffd54a;
     --wskaznik-text: #4a3800;
     --wskaznik-border: #e3b937;
+
+    /* Zaokrąglenie „pigułek" chrome'u (logo, suma/zegar/„zakończ" w narożnikach,
+       przełącznik trybu, wiersze panelu bocznego). Reszta strony jeździ na 3px,
+       więc trzymamy to blisko — pełne 999px wyglądało obco. Jedno miejsce do
+       podkręcenia, jeśli kiedyś ma być bardziej/mniej okrągło. */
+    --radius-pigulka: 6px;
 }
 
 /* Ciemna paleta — motyw systemowy (auto), o ile użytkownik nie wymusił jasnego. */

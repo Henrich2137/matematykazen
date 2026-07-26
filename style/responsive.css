@@ -35,7 +35,12 @@
     #naroznik-prawy button {
         padding: 6px 9px;
     }
+    /* Na telefonie logo wraca do szerokości treści — stałe 200px zjadałoby ponad
+       połowę ekranu i wypychało prawy klaster na drugi rząd. Prostokąt tła jest
+       tam i tak niepotrzebny: panele PDF na telefonie otwierają się w nowej
+       karcie, nie jako przeciągane okno (app/panels.js). */
     #logo {
+        min-width: 0;
         padding: 6px 8px;
     }
     #bar-menu {

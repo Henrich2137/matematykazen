@@ -47,7 +47,7 @@
     box-sizing: border-box;
     padding: 6px 12px;
     border: 1px solid var(--border);
-    border-radius: 999px;
+    border-radius: var(--radius-pigulka);
     background-color: var(--bg);
     font-family: inherit;
     font-size: 13px;
@@ -64,12 +64,18 @@
 }
 
 /* Logo jest linkiem do strony głównej (index.html) — wygląda jak zwykły napis.
-   Dostaje tło (bez ramki), żeby zostało czytelne nad przewijaną treścią. */
+   Dostaje tło (bez ramki), żeby zostało czytelne nad przewijaną treścią.
+   Stała szerokość 200px (nie „tyle, ile tekstu"): panele PDF przejeżdżają POD
+   logo (z-index 9 < 10), więc jego prostokąt tła ma być przewidywalny, a nie
+   zmieniać się z długością numeru wersji. Na telefonie zdejmowane w responsive.css. */
 #logo {
+    box-sizing: border-box;
+    min-width: 200px;
     padding: 6px 10px;
-    border-radius: 999px;
+    border-radius: var(--radius-pigulka);
     background-color: var(--bg);
     white-space: nowrap;
+    text-align: left;
     color: var(--text);
     text-decoration: none;
 }
@@ -854,7 +860,7 @@
     margin: 10px auto 0;
     overflow: hidden;
     border: 1px solid var(--border-strong);
-    border-radius: 999px;
+    border-radius: var(--radius-pigulka);
 }
 body.arkusz-wczytany #tryb-przelacznik {
     display: flex;

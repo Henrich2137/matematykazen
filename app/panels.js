@@ -92,13 +92,14 @@ function makePanelDraggable(panel) {
         const dx = e.clientX - r.left;
         const dy = e.clientY - r.top;
         // Pasek uchwytu (a więc "chwyt" panelu) musi zostać w widocznym
-        // viewportcie, żeby nie dało się go zgubić: u góry nie chowa się pod
-        // pigułkami w narożnikach, u dołu nie zjeżdża pod dolną krawędź ekranu
-        // (za pasek zadań Windows), a w bok zostaje zawsze min. kawałek do złapania.
-        // Liczone przy KAŻDYM chwycie (nie raz przy starcie) — narożniki zmieniają
-        // wysokość, np. gdy prawy klaster zawija się na drugi rząd na telefonie.
-        const naroznik = document.getElementById("naroznik-lewy");
-        const minTop = naroznik ? naroznik.getBoundingClientRect().bottom : 0;
+        // viewportcie, żeby nie dało się go zgubić: u dołu nie zjeżdża pod dolną
+        // krawędź ekranu (za pasek zadań Windows), a w bok zostaje zawsze min.
+        // kawałek do złapania. U góry ogranicza go WYŁĄCZNIE krawędź strony
+        // (minTop = 0) — decyzja Henricha 2026-07-27: panel może wjechać na
+        // wysokość logo i przejechać pod nim (logo ma z-index 10, panele 9, więc
+        // panel schowa się POD prostokątem tła logo, a nie zasłoni go). Dawniej
+        // klamp szedł od dolnej krawędzi #top-bara, którego już nie ma.
+        const minTop = 0;
         const uchwytH = uchwyt.offsetHeight || 46;
         const minWidoczne = 60; // ile px panelu musi zostać na ekranie w poziomie
         uchwyt.setPointerCapture(e.pointerId);
