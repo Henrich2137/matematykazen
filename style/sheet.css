@@ -250,7 +250,10 @@ body.sidebar-otwarty #sidebar {
     display: grid;
     grid-template-columns: 20px 1fr auto auto;
     align-items: center;
-    gap: 10px;
+    /* Ciaśniej niż w akcjach (8px vs 10px): wiersz ustawienia ma cztery kolumny,
+       a w 260px panelu na etykietę zostaje wtedy ~10px więcej — akurat tyle,
+       żeby „Wskaźniki samooceny" i „Poprawność odpowiedzi" nie ucinały się. */
+    gap: 8px;
     height: 40px;
     font-size: 13px;
     /* Etykieta szara, wartość ciemna i półgruba — świadomie BEZ koloru akcentu:
@@ -265,8 +268,11 @@ body.sidebar-otwarty #sidebar {
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+/* Wartość o stopień mniejsza od etykiety — jest półgruba, więc dalej dominuje
+   wzrokowo, a oddaje etykiecie kilka pikseli w ciasnym wierszu. */
 .sidebar-ustawienie .wartosc,
 .sidebar-ustawienie .wartosc-podglad {
+    font-size: 12px;
     white-space: nowrap;
     color: var(--text);
     font-weight: 600;
@@ -311,8 +317,12 @@ body.sidebar-otwarty #sidebar {
    gdy etykieta jest krótka. To NIE osobny typ kontrolki, tylko ten sam wzorzec. */
 .sidebar-ustawienie.sidebar-sub {
     height: 34px;
-    padding-left: 30px;
+    padding-left: 26px;
     font-size: 12px;
+}
+.sidebar-ustawienie.sidebar-sub .wartosc,
+.sidebar-ustawienie.sidebar-sub .wartosc-podglad {
+    font-size: 11px;
 }
 .sidebar-ustawienie.sidebar-sub .sidebar-ikona {
     opacity: 0.7;
