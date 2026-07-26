@@ -10,6 +10,7 @@ Do przydzielenia:
   - Zamiast checkboxów powinny być przyciski z punktami do każdego zdania typu "Nierówność zapisana w postaci x2−6x−7≤0x2−6x−7≤0" (przykład z zad 9.) Dokładna punktacja jest w zasadach oceniania w pdf i od tego powinna zależeć ilość przycisków.
 - Kropki "oceń się" trzeba poprawićlub wyłączyć na telefonach
 - Tło w niektórych widżetach jest białe w motywie darkmode. Należy zmienić kolory na taki które będą się zgadzać z motywem.
+- Dodadać dodatkowy przycisk zmiany motywu na stronie głównej index.html
 
 Dla Sonneta na effort High:
 - zmień tło w trybie ciemnym na odrobine ciemniejsze
