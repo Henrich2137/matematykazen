@@ -13,16 +13,15 @@ Do przydzielenia:
 
 - Tylko w trybie ćwiczeń przycisk "sprawdź wszystkie odpowiedzi" powinien znajdować się na dole arkusza, obok "rozpocznij egzamin". Ma zostać też w menu (i tu, i tu). W trybie egzaminu na dole arkusza ma być niewidoczny (nie tylko wyszarzony jak w menu).
 
-Dla Sonneta na effort High (sesja 2 — osobno, redesign górnego paska/menu, wymaga wizualnej iteracji i testów w przeglądarce):
-- Przenieś przycisk menu tak aby był obok logo i rozwijał sidebar. Może zamiast ... mieć strzałkę w dół/w lewą
+SESJA 2 — redesign chrome (Opus High, LOKALNIE, nie cloud: potrzebna iteracja wizualna).
+Szczegóły techniczne w issues/sidebar-nawigacji.md + issues/likwidacja-top-bara.md — tu tylko UX.
 
+- Górny pasek znika. W lewym górnym rogu zostaje samo logo + strzałka rozwijająca panel boczny, w prawym — sama suma punktów (w trakcie egzaminu obok niej zegar i „zakończ egzamin"). Bez wspólnego paska, bez „⋯", bez podtytułu „tryb ćwiczenia".
 
-Dla Opusa na effort High:
+- Panel boczny po lewej, otwierany i zamykany tą samą strzałką (plus Esc). Arkusz się nie rusza, a na komputerze nie jest niczym zasłaniany — panel mieści się w marginesie. Na wąskim ekranie nachodzi na zadania: wtedy lekko je przygasza i zamyka się kliknięciem w arkusz. Otwiera się nad oknami z PDF-ami.
 
-Sesja 2:
-- Obecny top-bar ma zniknąć. Zegar, suma punktów oraz przycisk zakończ egzamin mają być być samodzielnym elementami warstwę wyżej niż arkusz ale niżej niż tablica wzorów i zasady oceniania. Powinny znajdować się obok siebie w prawym górnym rogu. Podobnie jak jest teraz tylko bez "..." i bez top-bar-a.
-- Stwórz sidebar lewej stronie który będzie się rozwijał za pomocą przycisku strzałeczki (w lewo i w prawo) umieszczonego zaraz po prawej od logo. Zmień kolejność przycisków w menu oraz ich nazwy na:
-  - Tytuł arkusza (on nie ma być przyciskiem)
+- Kolejność i nazwy pozycji w panelu:
+  - Tytuł arkusza (nagłówek, nie przycisk)
   - Otwórz tablicę wzorów
   - Otwórz zasady oceniania
   - Rozpocznij egzamin
@@ -30,13 +29,15 @@ Sesja 2:
     - Wskaźniki samooceny zad. otwartych: wszystkie/wypełnione/wył.
   - Sprawdź wszystkie odpowiedzi
   - Pokaż wszystkie rozwiązania
-  - Zresetuj arkusz (zamiast resetuj punktację)
-  - ------------- (małą przerwa na pół przycisku)
+  - Zresetuj arkusz (zamiast „resetuj punktację" — działanie bez zmian, sama nazwa)
+  - ------------- (mała przerwa na pół przycisku)
   - Motyw: jasny/ciemny/auto
   - Punktacja: wł./tylko suma/wył.
   - Pokaż poprawność odpowiedzi: natychmiast/po kliknięciu "sprawdź"
   - Przycisk "zgłoś błąd" pod zadaniem: wł./wył.
-- Spraw, aby powyższe elementy interface-a były w miare spójne z resztą, ale, żeby przy tym wyglądały modern, dodaj animacje, jeśli jesteś w stanie to możesz nawet dodać ikony lub dodać miejsca na ikony, a w sekcji Dopisane przez CLAUDE opisać mi jakie ikony mam przygotować.
+  (sub-opcje zegara i wskaźników zawsze widoczne, wcięte pod „Rozpocznij egzamin")
+
+- Wygląd: spójny z resztą strony, ale nowocześniejszy — płynne wysuwanie panelu, obracająca się strzałka, wyraźne grupy. Ikony robię sam jako inline SVG (kreskowe, dziedziczą kolor motywu) — nie musisz nic przygotowywać.
 <br>
 
 
@@ -95,7 +96,7 @@ SONNET DOPISAŁ:
 
 - Tryb testowy dla zgłaszania błędów (app/report.js): przycisk „Wyślij zgłoszenie" zamieniony na „Wyślij zgłoszenie lokalnie" (np. pod `?test-zgloszenie=1`, wzorem `?test-egzamin=1`), który loguje payload do konsoli/localStorage zamiast robić fetch do Formspree — żeby testować całą ścieżkę (walidacja, honeypot, throttling, toast) bez zużywania miesięcznego limitu 50 zgłoszeń.
 
-- `#top-bar` powoduje 13 px poziomego scrolla przy szerokości 360 px (pasek ma 373 px). Defekt zastany, potwierdzony pomiarem — niezwiązany z formularzem zgłoszeń, ale wart naprawy przy okazji redesignu paska (Sesja 2), bo cała strona daje się przesuwać w bok.
+- `#top-bar` powoduje 13 px poziomego scrolla przy szerokości 360 px (pasek ma 373 px). Defekt zastany, potwierdzony pomiarem — znika razem z paskiem w Sesji 2, wpisany jako kryterium akceptacji w issues/likwidacja-top-bara.md.
 
 - Formularz zgłoszenia na telefonie jest wysoki: 8 pigułek kategorii idzie po jednej na wiersz (~340 px), więc obowiązkowe pole opisu jest daleko w dole. Do rozważenia: dwie pigułki w rzędzie, skrócone nazwy albo opis nad kategoriami.
 

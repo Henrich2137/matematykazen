@@ -21,3 +21,5 @@ Zasady:
 - [wskazniki-reload-faza-oceniania.md](wskazniki-reload-faza-oceniania.md) — wskaźniki „oceń się" znikają po odświeżeniu strony po egzaminie
 - [formularz-oceniania-otwarte.md](formularz-oceniania-otwarte.md) — formularz wspomagający samoocenę zadań otwartych (nowy feature, spec ustalony z Henrichem)
 - [zadania-nie-renderuja-sie-mobile.md](zadania-nie-renderuja-sie-mobile.md) — zadania nie renderują się na telefonie (Pixel 7a/GrapheneOS, Firefox i Brave)
+- [sidebar-nawigacji.md](sidebar-nawigacji.md) — panel boczny zamiast okienka „⋯" (Sesja 2, spec ustalony)
+- [likwidacja-top-bara.md](likwidacja-top-bara.md) — koniec `#top-bar`, pływające logo i pigułki w rogach (Sesja 2, spec ustalony)
