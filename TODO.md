@@ -15,10 +15,12 @@ Dla Sonneta na effort High:
 - zmień tło w trybie ciemnym na odrobine ciemniejsze
 - Przycisk "sprawdź wszystkie odpowiedzi" powinien też być na końcu arkusza w trybie ćwiczeń 
 
+- Przenieś tytuł arkusza nad pierwsze zadanie, powyżej renderu wszystkich  zadań.
+- przenieś przycisk menu tak abyu był obok logo i rozwijał sidebar. Może zamiast ... mieć strałke w dół/w lęwą
 - Zmień kolejność przycisków w menu oraz ich nazywy na:
   - Otwórz tablicę wzorów
   - Otwórz zasady oceniania
-  - Rozpocznij egzamin
+  - Rozpocznij egzaminzz
     - Zegar: wł./wył.
     - Wskaźniki samooceny zad. otwartych: wszystkie/wypełnione/wył.
   - Sprawdź wszystkie odpowiedzi
