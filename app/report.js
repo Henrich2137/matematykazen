@@ -45,14 +45,69 @@ if (zglosBladToggle) {
     });
 }
 
-// ===== MODAL FORMULARZA =====
+// ===== FORMULARZ (blok inline w karcie zadania) =====
+// Formularz istnieje w JEDNEJ kopii w template.html, a przy otwarciu jest
+// PRZENOSZONY (insertBefore przenosi węzeł, nie kopiuje) do karty klikniętego
+// zadania — dzięki temu uczeń widzi treść zadania, opisując błąd, a ID
+// pozostają unikalne i cały kod poniżej może korzystać z getElementById.
 const zgOverlay = document.getElementById("zglos-blad-overlay");
 const zgForm = document.getElementById("zglos-blad-form");
 const zgKontekst = document.getElementById("zglos-blad-kontekst");
 const zgOpis = document.getElementById("zglos-blad-opis");
 const zgEmail = document.getElementById("zglos-blad-email");
 const zgDanePodglad = document.getElementById("zglos-blad-dane-podglad");
+const zgKategorie = document.getElementById("zglos-blad-kategorie");
+const zgBlad = document.getElementById("zglos-blad-blad");
+const zgWyslij = zgForm ? zgForm.querySelector(".zglos-blad-wyslij") : null;
 let zgAktualnyNumer = null; // numer zadania, którego dotyczy otwarte zgłoszenie
+let zgAktualnaKarta = null; // karta zadania, w której stoi teraz formularz
+
+// ===== KATEGORIE (pigułki, wybór WIELOKROTNY, opcjonalne) =====
+// Wielokrotny wybór jest tańszy niż jednokrotny: sam toggle na klikniętym
+// przycisku, bez odznaczania rodzeństwa. Klasa .selected daje ten sam wygląd
+// co neutralnie zaznaczona odpowiedź ABCD (style/sheet.css).
+if (zgKategorie) {
+    zgKategorie.addEventListener("click", (e) => {
+        const pigulka = e.target.closest("button[data-kategoria]");
+        if (pigulka) pigulka.classList.toggle("selected");
+    });
+}
+function zebraneKategorie() {
+    if (!zgKategorie) return [];
+    return Array.from(zgKategorie.querySelectorAll("button.selected"))
+        .map(b => b.dataset.kategoria);
+}
+function wyczyscKategorie() {
+    if (!zgKategorie) return;
+    zgKategorie.querySelectorAll("button.selected").forEach(b => b.classList.remove("selected"));
+}
+
+// ===== WALIDACJA OPISU (pole OBOWIĄZKOWE) =====
+// Trzy sygnały naraz (ustalone z Henrichem): wyszarzony przycisk „Wyślij",
+// komunikat pod polem i focus. trim() jest istotny — same spacje to pusty opis.
+function czyOpisWypelniony() {
+    return !!(zgOpis && zgOpis.value.trim() !== "");
+}
+function wyczyscBladOpisu() {
+    if (zgBlad) zgBlad.textContent = "";
+    if (zgOpis) zgOpis.classList.remove("zglos-blad-pole-blad");
+}
+function pokazBladOpisu() {
+    if (zgBlad) zgBlad.textContent = "Opisz krótko, co jest nie tak — bez tego nie wiemy, czego szukać.";
+    if (zgOpis) {
+        zgOpis.classList.add("zglos-blad-pole-blad");
+        zgOpis.focus();
+    }
+}
+function odswiezPrzyciskWyslij() {
+    if (zgWyslij) zgWyslij.disabled = !czyOpisWypelniony();
+}
+if (zgOpis) {
+    zgOpis.addEventListener("input", () => {
+        odswiezPrzyciskWyslij();
+        if (czyOpisWypelniony()) wyczyscBladOpisu();
+    });
+}
 
 // Efektywny motyw do dołączenia w danych: rozróżniamy ręczny wybór od „auto"
 // (i doprecyzowujemy, co auto oznacza na tym systemie), żeby zgłoszenie mówiło,
