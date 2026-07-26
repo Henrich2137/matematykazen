@@ -36,7 +36,7 @@ Szczegóły techniczne w issues/sidebar-nawigacji.md + issues/likwidacja-top-bar
   - Motyw: jasny/ciemny/auto
   - Punktacja: wł./tylko suma/wył.
   - Poprawność odpowiedzi: natychmiast/po kliknięciu "sprawdź"
-  - Zgłoś błąd pod zadaniem: wł./wył.
+  - Przyciski "zgłoś błąd" pod zadaniami: wł./wył.
   (sub-opcje zegara i wskaźników zawsze widoczne, wcięte pod „Rozpocznij egzamin")
 
 - Dwa typy pozycji, odróżnione stylem zamiast przerwy. Akcje („Otwórz tablicę", „Zresetuj arkusz") to czasowniki — zwykłe przyciski z hoverem. Ustawienia to rzeczownik + aktualna wartość po prawej, klikane w cyklu jak dziś. Etykieta szara, wartość ciemna i półgruba — bez koloru akcentu, bo niebieski znaczy już „Twój wybór w zadaniu", a zielony/czerwony to poprawność.
