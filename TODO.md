@@ -12,12 +12,6 @@ Do przydzielenia:
 - Tło w niektórych widżetach jest białe w motywie darkmode. Należy zmienić kolory na taki które będą się zgadzać z motywem.
 - Dodadać dodatkowy przycisk zmiany motywu na stronie głównej index.html
 
-Dla Sonneta na effort High:
-- zmień tło w trybie ciemnym na odrobine ciemniejsze
-- Przycisk "sprawdź wszystkie odpowiedzi" powinien też być na końcu arkusza w trybie ćwiczeń 
-
-- Przenieś tytuł arkusza nad pierwsze zadanie, powyżej renderu wszystkich  zadań.
-- przenieś przycisk menu tak abyu był obok logo i rozwijał sidebar. Może zamiast ... mieć strałke w dół/w lęwą
 - Zmień kolejność przycisków w menu oraz ich nazywy na:
   - Otwórz tablicę wzorów
   - Otwórz zasady oceniania
@@ -32,6 +26,13 @@ Dla Sonneta na effort High:
   - Punktacja: wł./tylko suma/wył.
   - Pokaż poprawność odpowiedzi: natychmiast/po kliknięciu "sprawdź"
   - Przycisk "zgłoś błąd" pod zadaniem: wł./wył.
+
+Dla Sonneta na effort High:
+- Zmień tło w trybie ciemnym na odrobine ciemniejsze
+- Przycisk "sprawdź wszystkie odpowiedzi" powinien też być na końcu arkusza w trybie ćwiczeń 
+- Przenieś tytuł arkusza nad pierwsze zadanie, powyżej renderu wszystkich  zadań.
+- Przenieś przycisk menu tak abyu był obok logo i rozwijał sidebar. Może zamiast ... mieć strałke w dół/w lęwą
+
   
   
 
