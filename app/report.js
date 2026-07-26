@@ -82,22 +82,53 @@ function wyczyscKategorie() {
     zgKategorie.querySelectorAll("button.selected").forEach(b => b.classList.remove("selected"));
 }
 
-// ===== WALIDACJA OPISU (pole OBOWIĄZKOWE) =====
+// ===== WALIDACJA OPISU (pole OBOWIĄZKOWE, z limitem długości) =====
 // Trzy sygnały naraz (ustalone z Henrichem): wyszarzony przycisk „Wyślij",
 // komunikat pod polem i focus. trim() jest istotny — same spacje to pusty opis.
+//
+// Limity liczone są PO trim(), więc spacje nie nabijają długości:
+//   • MIN 3 znaki — odsiewa przypadkowe „a"/„." bez żadnej treści,
+//   • MAX 2000 znaków — z zapasem starcza na dokładny opis błędu (~350 słów);
+//     bez limitu jedno zgłoszenie potrafiło mieć kilkadziesiąt kB (test
+//     Henricha 2026-07-26), co zaśmieca skrzynkę i payload Formspree.
+// Górny limit jest też twardo w atrybucie maxlength textarei (przeglądarka nie
+// pozwoli wpisać ani wkleić więcej), ale sprawdzamy go również tutaj, bo
+// maxlength da się ominąć programowo.
+const OPIS_MIN = 3;
+const OPIS_MAX = 2000;
+
+function dlugoscOpisu() {
+    return zgOpis ? zgOpis.value.trim().length : 0;
+}
+// Zwraca komunikat o błędzie albo "" gdy opis jest w porządku.
+function bladOpisu() {
+    const n = dlugoscOpisu();
+    if (n === 0) return "Opisz krótko, co jest nie tak — bez tego nie wiemy, czego szukać.";
+    if (n < OPIS_MIN) return `Opis jest za krótki — napisz przynajmniej ${OPIS_MIN} znaki.`;
+    if (n > OPIS_MAX) return `Opis jest za długi — zmieść się w ${OPIS_MAX} znakach (masz ${n}).`;
+    return "";
+}
 function czyOpisWypelniony() {
-    return !!(zgOpis && zgOpis.value.trim() !== "");
+    return bladOpisu() === "";
 }
 function wyczyscBladOpisu() {
     if (zgBlad) zgBlad.textContent = "";
     if (zgOpis) zgOpis.classList.remove("zglos-blad-pole-blad");
 }
 function pokazBladOpisu() {
-    if (zgBlad) zgBlad.textContent = "Opisz krótko, co jest nie tak — bez tego nie wiemy, czego szukać.";
+    if (zgBlad) zgBlad.textContent = bladOpisu();
     if (zgOpis) {
         zgOpis.classList.add("zglos-blad-pole-blad");
         zgOpis.focus();
     }
+}
+// Licznik „123 / 2000" pod polem — ostrzega ostatnie 10% limitu, żeby nikt nie
+// pisał długiego opisu w nieświadomości, że zaraz się utnie.
+function odswiezLicznikOpisu() {
+    if (!zgLicznik) return;
+    const n = dlugoscOpisu();
+    zgLicznik.textContent = `${n} / ${OPIS_MAX}`;
+    zgLicznik.classList.toggle("zglos-blad-licznik-blisko", n > OPIS_MAX * 0.9);
 }
 function odswiezPrzyciskWyslij() {
     if (zgWyslij) zgWyslij.disabled = !czyOpisWypelniony();
@@ -105,6 +136,7 @@ function odswiezPrzyciskWyslij() {
 if (zgOpis) {
     zgOpis.addEventListener("input", () => {
         odswiezPrzyciskWyslij();
+        odswiezLicznikOpisu();
         if (czyOpisWypelniony()) wyczyscBladOpisu();
     });
 }
