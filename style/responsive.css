@@ -132,7 +132,13 @@
     #logo {
         font-size: 14px;
     }
-    /* Zawinięty klaster ma dwa rzędy pigułek, więc treść startuje niżej. */
+    /* „zakończ egzamin" → „zakończ": bez tego skrótu prawy klaster nie mieści
+       się obok logo przy 360px i zawija na drugi rząd. */
+    #egzamin-koniec-bar .tylko-szeroko {
+        display: none;
+    }
+    /* Gdyby klaster jednak zawinął się na dwa rzędy (dłuższe etykiety, większy
+       font systemowy), treść startuje niżej — zamiast wjechać pod pigułki. */
     body.tryb-egzaminu #exercises-wrapper {
         padding-top: 92px;
     }
