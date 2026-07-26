@@ -37,6 +37,12 @@ Henrich's VS Code has the **gitdoc** extension enabled globally (`C:\Users\<user
 - Before squashing a range of commits for the assistant's own work, check `git show --stat` on each one — don't assume every commit in the range is the assistant's; a gitdoc auto-commit from Henrich's own edits can land in the middle of the range (happened 2026-07-26, see `DONE/03-biezace.md`).
 - Because autoPush is immediate, treat any commit as **already on `origin`** unless proven otherwise — there is no local-only staging window to rely on.
 
+Verified against the installed extension (`vsls-contrib.gitdoc-0.2.3`, VS Code 1.130.0) on 2026-07-26, in case the commit cadence is ever tuned:
+- **`gitdoc.autoCommitDelay` (default 30000 ms) is a debounce, not an interval** (`out/watcher.js`: `debounce(() => commit(repo), autoCommitDelay)`, timer reset on every repo-state change). Raising it to e.g. 20 min means "commit 20 min after the *last* edit", not "commit every 20 min" — during continuous editing nothing is committed at all until you pause (or close VS Code, which `commitOnClose` catches).
+- The debounced function is cached per repository object in a `commitMap` that is never cleared, so **a changed `autoCommitDelay` only takes effect after `Developer: Reload Window`**, not on settings save.
+- There is **no "commit every N saves"** option — the only knobs are `autoCommitDelay`, `filePattern` (which files trigger a commit), `excludeBranches`, and fully manual mode (`gitdoc.enabled: false` + the `GitDoc: Commit` command).
+- `gitdoc.pushMode` defaults to **`"forcePush"`** — worth knowing before diagnosing any odd `origin` history.
+
 ## Running / previewing
 
 No build or test tooling. **Serve the directory with a static file server** (e.g. `npx serve`, `python -m http.server`) — since the exercises.json migration the exam page loads its data with `fetch`, which does not work over `file://` (the page then shows a message explaining exactly this; index.html alone still opens fine from a file). No linter/test suite — verify changes by opening the page and clicking through the exercise(s) you touched.
