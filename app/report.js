@@ -13,7 +13,7 @@
 // czytelny komunikat „nie skonfigurowano" zamiast cichej porażki albo mylącego
 // błędu sieci (patrz warunek na placeholder w obsłudze submit niżej).
 // ============================================================================
-const FORMSPREE_ENDPOINT = "TODO-WKLEJ-ENDPOINT-FORMSPREE";
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/xvzedgjg";
 
 // Ustawienia GLOBALNE (wspólne dla wszystkich arkuszy — jak motyw czy tryb
 // wskaźników), więc klucze BEZ sufiksu SHEET_ID:
