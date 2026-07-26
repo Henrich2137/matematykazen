@@ -41,7 +41,7 @@ Szczegóły techniczne w issues/sidebar-nawigacji.md + issues/likwidacja-top-bar
 
 - Dwa typy pozycji, odróżnione stylem zamiast przerwy. Akcje („Otwórz tablicę", „Zresetuj arkusz") to czasowniki — zwykłe przyciski z hoverem. Ustawienia to rzeczownik + aktualna wartość po prawej, klikane w cyklu jak dziś. Etykieta szara, wartość ciemna i półgruba — bez koloru akcentu, bo niebieski znaczy już „Twój wybór w zadaniu", a zielony/czerwony to poprawność.
 
-- Przy każdym ustawieniu kropki stanu (●○○) — widać, ile jest stanów i który jest aktywny. Bez tego cykl na telefonie jest klikaniem w ciemno (podpowiedź po najechaniu myszą tam nie działa; na komputerze dochodzi jako bonus). Etykiety ustawień skrócone, bo w panelu jest ~200 px na tekst.
+- Przy każdym ustawieniu kropki stanu — widać, ile jest stanów i który jest aktywny. Czytają się jak skala: skrajnie prawa kropka = włączone/wszystko (○○●), skrajnie lewa = wyłączone (●○○). Klik ujmuje o stopień, a kolejny po skrajnym przywraca pełnię. Bez tego cykl na telefonie jest klikaniem w ciemno (podpowiedź po najechaniu myszą tam nie działa; na komputerze dochodzi jako bonus). Etykiety ustawień skrócone, bo w panelu jest ~200 px na tekst.
 
 - Wygląd: spójny z resztą strony, ale nowocześniejszy — płynne wysuwanie panelu, obracająca się strzałka. Ikony robię sam jako inline SVG (kreskowe, dziedziczą kolor motywu) — nie musisz nic przygotowywać.
 <br>
