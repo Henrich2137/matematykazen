@@ -5,6 +5,8 @@ DO REALIZACJI
 
 Do przydzielenia:
 
+- na komputerze przycisk sidebar-toggle powinien być przesunięty lekko w lewo i minimalnie w górę. Będzie się wtedy lepiej się komponował z otwartym sidebarem oraz logo
+
 - W zadaniach otwartych: zamiast checkboxów powinny być przyciski z punktami do każdego zdania typu "Nierówność zapisana w postaci x2−6x−7≤0x2−6x−7≤0" (przykład z zad 9.) Dokładna punktacja jest w zasadach oceniania w pdf i od tego powinna zależeć ilość przycisków. (czeka na decyzję merytoryczną Henricha o punktacji za poszczególne przyciski, potem do przydzielenia modelowi)
 
 - w zadaniach z oknem z ostateczną odpowiedzią (jak 8 czy 9), po zrobieniu egzaminu ostateczna odpowiedź powinna się samodzielnie sprawdzić.
