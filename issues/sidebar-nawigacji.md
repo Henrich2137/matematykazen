@@ -28,6 +28,52 @@ Zastępujemy je wysuwanym panelem bocznym po LEWEJ, otwieranym strzałką tuż o
   Sidebar → **`z-index: 12`**, przyciemnienie → 11. Podsumowanie egzaminu i toast zostają nad nim.
 - **Stan otwarcia nie jest zapamiętywany** między odświeżeniami — domyślnie zamknięty.
   (Świadomie: panel jest do sporadycznych akcji, nie do stałego trzymania.)
+- **Kliknięcie AKCJI zamyka panel, kliknięcie USTAWIENIA — nie.** Akcja ma skutek na arkuszu
+  (otwarty PDF, odsłonięte rozwiązania), więc panel schodzi z drogi; ustawienie klika się
+  cyklicznie po kilka razy, więc zamykanie po każdym kliknięciu byłoby wrogie.
+  Wyjątki bez znaczenia: „Zresetuj arkusz" i „Rozpocznij egzamin" i tak robią `location.reload()`.
+  *(To jedyna decyzja w tym pliku, której Henrich nie zatwierdzał wprost — przyjęta jako
+  oczywista; jeśli ma być inaczej, wystarczy zmienić tę linijkę.)*
+
+### Wymiary i typografia
+
+| Element | Wartość |
+|---|---|
+| Szerokość panelu | 260 px (poniżej 560 px: `100%`) |
+| Padding panelu | 14 px |
+| Wysokość wiersza akcji | 40 px |
+| Wysokość wiersza ustawienia | 40 px (sub-opcje egzaminu: 34 px) |
+| Font pozycji | 13 px (sub-opcje: 12 px) |
+| Ikona | render 20×20, `gap` 10 px do etykiety |
+| Wcięcie sub-opcji | 30 px od lewej (pod ikoną pozycji nadrzędnej) |
+| Tło panelu | `--bg`, ramka `--border-strong` po prawej krawędzi, cień `0 4px 16px rgba(0,0,0,.12)` |
+
+Wiersz ustawienia to `display: grid` z kolumnami `20px 1fr auto auto` (ikona | etykieta |
+wartość | kropki) — nie flex z `margin-left: auto`, żeby wartości wyrównały się w pionie
+między wierszami.
+
+### Animacje
+
+- Wysuwanie panelu: `transform: translateX(-100%)` → `0`, **180 ms**, `cubic-bezier(.2,.7,.3,1)`.
+  Animować `transform`, NIE `left`/`width` (te wymuszają layout na każdej klatce).
+- Strzałka: `rotate(180deg)`, ta sama długość i krzywa, żeby szła w parze z panelem.
+- Przyciemnienie (tylko poniżej progu): `opacity` 0 → 1, 180 ms.
+- Hover wiersza: `background-color` 120 ms.
+- Zmiana wartości ustawienia: bez animacji ruchu — tylko kropki dostają 120 ms `opacity`.
+  Wartości nie przesuwać, bo skacze cała kolumna.
+- **`@media (prefers-reduced-motion: reduce)` — wszystkie powyższe do `0.01ms`.** Panel ma
+  wtedy pojawiać się od razu, nie „szybciej".
+
+### Klawiatura i czytniki ekranu
+
+- Strzałka: `<button aria-expanded="false" aria-controls="sidebar" aria-label="Otwórz menu">`
+  — JS przestawia `aria-expanded` i `aria-label` („Zamknij menu").
+- `Esc` zamyka panel **i wraca fokusem na strzałkę** (inaczej fokus zostaje w zamkniętym panelu).
+- Po otwarciu fokus idzie na pierwszą pozycję panelu.
+- **Bez focus trapu** — panel nie jest modalem, można z niego wyjść Tabem do treści.
+  Zamknięty panel musi mieć `visibility: hidden` albo `display: none`, żeby jego przyciski
+  nie łapały się na Tab (samo `translateX(-100%)` ich nie wyklucza).
+- Nagłówek panelu (tytuł arkusza) jako `<h2>`, nie `<div>`.
 
 ### Próg „panel zasłania treść"
 
@@ -100,16 +146,22 @@ przed wczytaniem arkusza i przełączanie start/koniec przestanie działać.
 - `resetuj punktację` → **`Zresetuj arkusz`**. Zakres działania BEZ ZMIAN (kasuje `KLUCZ_POSTEPU`,
   `KLUCZ_OCENIANIA`, `KLUCZ_EGZAMINU` + reload). Tekst `confirm()` w `app/bootstrap.js:23`
   dopasować do nowej nazwy.
-- `widok punktów: …` → **`Punktacja: wł. / tylko suma / wył.`** — uwaga, `bootstrap.js:42–57`
-  porównuje `innerHTML` przycisku ze stringiem, żeby wiedzieć, w którym stanie jest.
-  Przy zmianie tekstu **trzeba przepisać ten cykl na `data-stan`** (i tak jest kruchy, a z ikoną
-  w środku przycisku `innerHTML` przestanie się zgadzać całkowicie).
-- `pokazuj poprawność od razu: tak/nie` → `Pokaż poprawność odpowiedzi: natychmiast / po kliknięciu „sprawdź"`
-  (`bootstrap.js:90–92`).
+- `widok punktów: …` → etykieta **`Punktacja`** + wartość `wszystko` / `tylko suma` / `wył.`
+  — uwaga, `bootstrap.js:42–57` porównuje `innerHTML` przycisku ze stringiem, żeby wiedzieć,
+  w którym stanie jest. Przy zmianie tekstu **trzeba przepisać ten cykl na `data-stan`**
+  (i tak jest kruchy, a z ikoną w środku przycisku `innerHTML` przestanie się zgadzać całkowicie).
+- `pokazuj poprawność od razu: tak/nie` → etykieta **`Poprawność odpowiedzi`** + wartość
+  `natychmiast` / `po „sprawdź"` (`bootstrap.js:90–92`). Etykieta skrócona, bo w panelu jest
+  ~200 px na tekst — pełne zdanie z listy w TODO.md się nie mieści.
 - `pokaż wszystkie rozwiązania` → `Pokaż wszystkie rozwiązania` / `Schowaj wszystkie rozwiązania`
   (`bootstrap.js:244` ustawia `textContent` — z ikoną trzeba pisać do wewnętrznego `<span>`,
-  nie do całego przycisku).
-- `wskaźniki „oceń się"` → `Wskaźniki samooceny zad. otwartych` (`app/indicators.js`).
+  nie do całego przycisku). To AKCJA, nie ustawienie — bez wartości i bez kropek,
+  zmienia się sam czasownik.
+- `wskaźniki „oceń się"` → etykieta **`Wskaźniki samooceny`** + wartość `wszystkie` /
+  `wypełnione` / `wył.` (`app/indicators.js`). Pełne „zad. otwartych" nie mieści się w wierszu;
+  kontekst daje wcięcie pod egzaminem.
+- `zgłaszanie błędów: włączone` → etykieta **`Zgłoś błąd pod zadaniem`** + wartość `wł.` / `wył.`
+- `widoczność zegara: włączona` → etykieta **`Zegar`** + wartość `na wierzchu` / `wył.`
 
 ## Dwa typy pozycji (ustalone 2026-07-26)
 
@@ -124,10 +176,11 @@ dlatego segmented control z trzema podpisami odpada, a etykiety ustawień są SK
 ### Ustawienie — rzeczownik + aktualny stan, cykl
 
 ```html
-<button id="theme-toggle" class="sidebar-ustawienie"
-        data-stan="auto" data-stany="jasny,ciemny,auto">
-  <svg …/><span class="etykieta">Motyw</span>
-  <span class="wartosc">auto</span><span class="kropki" aria-hidden="true"></span>
+<button id="score-switch-button" class="sidebar-ustawienie"
+        data-stan="wszystko" data-stany="wył.,tylko suma,wszystko">
+  <svg …/><span class="etykieta">Punktacja</span>
+  <span class="wartosc" aria-live="polite">wszystko</span>
+  <span class="kropki" aria-hidden="true"></span>
 </button>
 ```
 
@@ -135,10 +188,11 @@ dlatego segmented control z trzema podpisami odpada, a etykiety ustawień są SK
   Świadoma decyzja: `--accent-blue-strong` (#4a90d9) znaczy już „Twój wybór w zadaniu"
   (ABCD, widżety), a zielony/czerwony to poprawność — kolor w menu konkurowałby ze znaczeniem
   z treści. Dodatkowo kontrast działa w obu motywach bez dobierania nowych zmiennych.
-- **Kropki stanu** (`●○○`) po prawej: ile stanów ma przełącznik i który jest aktywny.
+- **Kropki stanu** (`○○●`) po prawej: ile stanów ma przełącznik i który jest aktywny.
   Generowane z `data-stany`, nie wpisywane ręcznie. `aria-hidden` — dla czytnika ekranu
   wystarczy tekst wartości (dodać `aria-live="polite"` na `.wartosc`).
   To ONE rozwiązują cykl na telefonie: bez nich tapnięcie jest klikaniem w ciemno.
+  Rozmiar ~5 px, odstęp 3 px; aktywna w `--text`, nieaktywne w `--border-muted`.
 - **Hover-podgląd tylko na desktopie**: pod `@media (hover: hover)` po najechaniu wartość
   pokazuje `auto → jasny`. Na dotyku ta reguła w ogóle się nie stosuje.
 - **Kolejność stanów — zgodna z konwencją przełącznika**: skrajnie LEWO = wyłączone,
@@ -176,13 +230,48 @@ Dotyczy to `bootstrap.js:42–57` (dziś porównuje `innerHTML` ze stringiem), `
 
 ## Ikony
 
-Inline SVG w `template.html` (kreskowe, `stroke: currentColor`, `stroke-width: 1.5`, viewBox 24×24,
-render 20×20) — zero plików, działa offline, dziedziczy kolor motywu. Henrich nic nie przygotowuje.
-Emoji w szkicu wyżej to tylko oznaczenia — w kodzie mają być SVG.
+Inline SVG w `template.html` (kreskowe, `stroke: currentColor`, `stroke-width: 1.5`,
+`fill: none`, `stroke-linecap: round`, viewBox 24×24, render 20×20) — zero plików, działa
+offline, dziedziczy kolor motywu. **Henrich nic nie przygotowuje** — rysuje je model.
+Emoji w szkicu wyżej to tylko oznaczenia miejsca.
+
+| Pozycja | Ikona do narysowania |
+|---|---|
+| Strzałka panelu | szewron `‹` (obraca się o 180° po otwarciu) |
+| Otwórz tablicę wzorów | ekierka / trójkąt z podziałką |
+| Otwórz zasady oceniania | kartka z liniami i „ptaszkiem" |
+| Rozpocznij egzamin | trójkąt play w kółku |
+| Zakończ egzamin | kwadrat stop w kółku (ten sam obrys, inne wnętrze) |
+| Zegar | tarcza ze wskazówkami |
+| Wskaźniki samooceny | kółko z kropką w środku (jak dzisiejsze wskaźniki) |
+| Sprawdź wszystkie odpowiedzi | ptaszek |
+| Pokaż wszystkie rozwiązania | oko |
+| Zresetuj arkusz | strzałka zawracająca (↺) |
+| Motyw | kółko wypełnione w połowie (◐) |
+| Punktacja | `#` albo trzy słupki |
+| Poprawność odpowiedzi | błyskawica |
+| Zgłoś błąd pod zadaniem | trójkąt z wykrzyknikiem |
+
+Ikony sub-opcji (Zegar, Wskaźniki) rysować **lżej** — te same 20×20, ale `opacity: .7`,
+żeby wcięcie było widać też wtedy, gdy etykieta jest krótka.
+
+Ikona akcji dziedziczy `--text`; ikona ustawienia — `--text-faint-2`, jak jego etykieta.
+
+## Sprzątanie
+
+- `#bar-menu` **usunąć z DOM**, nie ukrywać CSS-em — inaczej zostają duplikaty ID.
+- `#menu-button` (`⋯`) usunąć razem z obsługą w `app/bootstrap.js:8–18`
+  (toggle + zamykanie kliknięciem poza okienkiem).
+- Reguły `#bar-menu` w `style/sheet.css:145–162`, `style/exam.css:17–40`
+  i `style/responsive.css:41,137` — przepisać na `#sidebar` albo skasować.
 
 ## Kryteria akceptacji
 
 - [ ] Żadne ID przycisku się nie zmieniło; wszystkie 13 funkcji działa jak przed zmianą.
+- [ ] `#bar-menu` i `#menu-button` nie istnieją w DOM ani w CSS.
+- [ ] Klik w akcję zamyka panel; klik w ustawienie zostawia go otwartym.
+- [ ] Tab nie wchodzi w przyciski zamkniętego panelu; `Esc` oddaje fokus strzałce.
+- [ ] `prefers-reduced-motion: reduce` wyłącza animacje wysuwania i obrotu strzałki.
 - [ ] Panel otwiera się i zamyka tą samą strzałką; `Esc` zamyka.
 - [ ] ≥1300 px: panel nie dotyka karty zadania, brak przyciemnienia, klik w zadanie nie zamyka.
 - [ ] <1300 px: przyciemnienie + klik w arkusz zamyka.

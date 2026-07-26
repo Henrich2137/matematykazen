@@ -3,6 +3,17 @@
 Status: do zrobienia. Spec ustalony z Henrichem 2026-07-26 (Sesja 2).
 Robione RAZEM z [sidebar-nawigacji.md](sidebar-nawigacji.md).
 
+**Kolejność pracy: ten plik PIERWSZY.** Panel boczny potrzebuje strzałki obok logo, a logo
+dopiero tutaj przestaje być częścią paska — odwrotna kolejność znaczy dwukrotne przepisywanie
+tych samych reguł. Po każdym z trzech etapów (pasek → panel → ikony i animacje) pokazać
+Henrichowi efekt, zanim ruszy następny.
+
+Testowanie: `python -m http.server`, strona pod
+`http://localhost:8000/template.html?arkusz=2024-grudzien` (fetch nie działa z `file://`).
+Sprawdzić 360 px, 1280 px i 1920 px oraz oba motywy. Tryb egzaminu bez czekania 170 minut:
+`…?arkusz=2024-grudzien&test-egzamin=1` skraca egzamin do 1 minuty (`app/exam.js:20`),
+więc automatyczne zakończenie też da się obejrzeć.
+
 ## Czego dotyczy
 
 `#top-bar` (`template.html` ~128–158, `style/sheet.css` 1–130) to `position: fixed` pasek na całą
@@ -35,6 +46,23 @@ osobnego issue nie ma; po tej zmianie znika razem z paskiem.
 - `#bar-center` znika, ale wskaźnik trybu **nie** — przenosi się i zmienia w przełącznik
   (patrz „Przełącznik trybu" niżej).
 - `#menu-button` (`⋯`) znika — zastępuje go strzałka przy logo (patrz drugi issue).
+
+### Wymiary
+
+| Element | Wartość |
+|---|---|
+| Odsunięcie od krawędzi | `top: 16px`, `left`/`right: 20px` (poniżej 720 px: 10px / 8px) |
+| Pigułka | `padding: 6px 12px`, `border-radius: 999px`, tło `--bg`, ramka `--border` |
+| Odstęp między pigułkami | `gap: 8px` |
+| Font pigułki | 13 px (dziś 13 px na wąskim — `responsive.css:34`) |
+| Logo | bez zmian (`sheet.css:74`), tylko traci kontener paska |
+
+Pigułki **muszą mieć własne tło** — bez paska przejeżdżają nad treścią zadania przy
+scrollowaniu i bez tła zlałyby się z tekstem. To jedyny powód, dla którego w ogóle są
+„pigułkami", a nie gołym tekstem.
+
+Numer wersji przy logo podbić `v0.04` → **`v0.05`** w `template.html` i `index.html`
+(ta sama wartość w obu — patrz `.landing-logo`).
 
 ## Warstwy
 
@@ -83,6 +111,18 @@ Zamiast znikać razem z paskiem, staje się **segmented control pod tytułem ark
   w trakcie egzaminu **nie** ma być zablokowana (to jedyne wyjście z egzaminu obok
   `#egzamin-koniec`), więc nie dopisywać go do tej listy.
 
+### Wygląd przełącznika
+
+- Dwie połówki w jednym obrysie, `border-radius: 999px`, ramka `--border-strong`,
+  font 13 px, `padding: 5px 14px` na połówkę. Wyśrodkowany pod `<h1>`, `margin: 10px auto 0`.
+- Aktywna połówka: tło `--text`, tekst `--bg` (inwersja) — czytelne w obu motywach bez
+  dobierania koloru akcentu, spójnie z decyzją o braku akcentu w panelu.
+- Przejście tła aktywnej połówki 150 ms; pod `prefers-reduced-motion` wyłączone.
+- Semantyka: `role="group"` + dwa `<button>` z `aria-pressed`. Nie `<input type=radio>` —
+  kliknięcie nie przełącza stanu od razu, tylko otwiera `confirm()`.
+- Element może zachować ID `#exercises-mode-subtitle` albo dostać `#tryb-przelacznik` —
+  jeśli zmieniasz, popraw `updateModeSubtitle()` (`app/exam.js:83`), bo tylko tam jest używane.
+
 ## Odstęp na górze
 
 `#exercises-wrapper { padding-top: 100px }` (`style/base.css:226`) istnieje wyłącznie po to,
@@ -113,4 +153,12 @@ pływające pigułki nadal zajmują górę ekranu. Wartości do przejrzenia raze
 - [ ] Widok punktów „tylko suma"/„nic" nadal chowa właściwe elementy.
 - [ ] Przełącznik trybu pod tytułem: pokazuje właściwy stan po odświeżeniu w trakcie egzaminu,
       startuje i kończy egzamin, a anulowanie `confirm()` nie zostawia go w złym stanie.
-- [ ] ARCHITECTURE_CSS.md zaktualizowany.
+- [ ] ARCHITECTURE_CSS.md zaktualizowany (sekcja „Top bar" opisuje dziś nieistniejącą siatkę).
+- [ ] Numer wersji podbity na v0.05 w `template.html` i `index.html`.
+
+## Po zrobieniu
+
+Przenieść oba punkty do bieżącego pliku w `DONE/` (patrz `DONE/README.md`), usunąć ten plik
+i `sidebar-nawigacji.md` z `issues/` razem z ich wpisami w `issues/README.md`, wyciąć sekcję
+„SESJA 2" z `TODO.md` oraz punkt „Tryb egzaminu nie powinien być tak schowany w opcjach"
+z sekcji „INNE NOTATKI" (zrealizowany przełącznikiem trybu).
