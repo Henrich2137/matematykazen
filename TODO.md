@@ -4,12 +4,15 @@ DO REALIZACJI
 <br> Jeżeli nie masz co robić, to rób stąd.
 
 Do przydzielenia:
+- Weź spojrzej na tą całą stronę i zrób mnóstwo małych poprawek które będą sprawiały, że wszystko będzie bardziej spójne i dopasowane. Styl w jakim jest boczny panel mi się podoba. Oto przykłady rzeczy które wymagają poprawy, popraw je i im podobne:
+  - Przycisk sprawdź wszystkie odpowiedzi jest dziwnie oddzielony i mniejszy.  
 
-- Odwrócone kolory wybranego przycisku w przełączniuku ćwiczenia / egzamin na górze arkusza powinny byćnieco lżejsze. W darkmodzie ciemniejsze tło, a w jasnym motywie jaśniejsze.
+  - Odwrócone kolory wybranego przycisku w przełączniuku ćwiczenia / egzamin na górze arkusza powinny byćnieco lżejsze. W darkmodzie ciemniejsze tło, a w jasnym motywie jaśniejsze.
 
-- Zmienić kolor okien pdf na ciemniejszy w darkmodzie, tak aby nie odstawał tak bardzo od reszty. Można też zmienić jego cały styl na podobny do tego co ma panel boczny.
+  - Zmienić kolor okien pdf na ciemniejszy w darkmodzie, tak aby nie odstawał tak bardzo od reszty. Można też zmienić jego cały styl na podobny do tego co ma panel boczny.
 
-- Pionowa linia sidebara po jego prawej powinna być przesunięta w prawo. Jej dolny koniec powinien się też kończyć przed dolną granicą ekranu.
+  - Pionowa linia sidebara po jego prawej powinna być przesunięta w prawo. Jej dolny koniec powinien się też kończyć przed dolną granicą ekranu.
+
 
 - Na komputerze przycisk sidebar-toggle powinien być przesunięty lekko w lewo i minimalnie w górę. Będzie się wtedy lepiej się komponował z otwartym sidebarem oraz logo
 
