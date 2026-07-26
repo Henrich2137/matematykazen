@@ -495,15 +495,21 @@ body.sidebar-otwarty #sidebar {
     margin: 15px auto;
 }
 .exercise-score {
+    box-sizing: border-box;
+    padding: 6px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pigulka);
+
     position: absolute;
     top: 48px;
     right: -120px;
     /* Zrównanie w pionie z pierwszą linią treści (numerem zadania). Bez tego
        badge siedział optycznie ~16px za wysoko względem "Zadanie N.". */
     margin-top: 16px;
-    padding: 5px;
+    /*padding: 5px;
     border: 1px solid;
-}
+    */
+    }
 .low-exercise-score {
     border-color: var(--score-low-border);
     color: var(--score-low-text);
