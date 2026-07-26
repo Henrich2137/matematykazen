@@ -34,6 +34,15 @@ DLA HENRICHA:
 
 
 INNE NOTATKI, DO PRZEKMINIENIA:
+
+- Strona na telefonie wygląda jakby była przybliżona (troche jakby na komputerze naklikać Ctrl + = albo Ctrl + ScrollUP) ale może to jest tylko u mnie.
+
+- Przycisk "Sprawdź wszystkie odpowiedzi"
+  - Powinien być cały czas widoczny. Gdy "Poprawność" jest ustawiona na 'po "sprawdź"' to powinien się uaktyniać, a gdy "natychmiast" to być szary, nieaktywny. Nie chcę aby menu skakało po przełączaniu "Poprawność"
+  - Opcjonalnie: powiniowinien być umieszczony jako podpunkt pod "Poprawność"
+
+- W trybie egzaminy "Punktacja" powinna pokazywać wył. ale pod spodem pamiętać to co było ustawione w ćwiczeniach. Nie powinno być widać punktów na egzaminie 
+
 - wskaźniki "oceń się" na telefonie powinny być:
   - ALBO: niewidzialne, wtedy opcja w menu powinna być szara z wybranym
   - ALBO: widoczne przyklejone do prawej strony z lekkim marginesem. powinny też być odpowiednio małe aby nie zasłaniały treści.
