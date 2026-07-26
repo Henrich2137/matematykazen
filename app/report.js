@@ -23,24 +23,24 @@ function czyZglaszanieWlaczone() {
     try { return localStorage.getItem(KLUCZ_ZGLASZANIE) !== "0"; } catch (e) { return true; }
 }
 
-// ===== TOGGLE W MENU „⋯" (globalny włącznik linku) =====
-// Widoczność samych linków steruje klasą body.bez-zglaszania (CSS chowa wtedy
-// wszystkie .report-error-link) — wzorem body.reczne-sprawdzanie itd.
+// ===== USTAWIENIE „Zgłoś błąd pod zadaniem" (panel boczny) =====
+// Globalny włącznik linku. Widoczność samych linków steruje klasą
+// body.bez-zglaszania (CSS chowa wtedy wszystkie .report-error-link) — wzorem
+// body.reczne-sprawdzanie itd.
 const zglosBladToggle = document.getElementById("zglos-blad-toggle");
+const WARTOSC_ZGLASZANIE_ON = "wł.";
 function odswiezTrybZglaszania() {
     const on = czyZglaszanieWlaczone();
     document.body.classList.toggle("bez-zglaszania", !on);
-    if (zglosBladToggle) {
-        zglosBladToggle.textContent = on
-            ? "zgłaszanie błędów: włączone"
-            : "zgłaszanie błędów: wyłączone";
-    }
+    ustawWartosc(zglosBladToggle, on ? WARTOSC_ZGLASZANIE_ON : "wył.");
 }
 odswiezTrybZglaszania();
 if (zglosBladToggle) {
     zglosBladToggle.addEventListener("click", () => {
-        const on = czyZglaszanieWlaczone();
-        try { localStorage.setItem(KLUCZ_ZGLASZANIE, on ? "0" : "1"); } catch (e) {}
+        const nast = nastepnyStan(zglosBladToggle);
+        try {
+            localStorage.setItem(KLUCZ_ZGLASZANIE, nast === WARTOSC_ZGLASZANIE_ON ? "1" : "0");
+        } catch (e) {}
         odswiezTrybZglaszania();
     });
 }

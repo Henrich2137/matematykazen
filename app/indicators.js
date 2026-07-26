@@ -28,38 +28,42 @@ function ustawFazeOceniania(wlacz) {
     }
 }
 
-// Tryb pojawiania się wskaźników (ustawienie globalne, wspólne dla wszystkich
-// arkuszy — jak motyw). Okienko na tok rozwiązania jest OPCJONALNE (uczeń może
-// liczyć na kartce), więc domyślnie kropka ma pojawić się przy KAŻDYM zadaniu
-// otwartym bez samooceny — tryb "wypelnione" (dawne zachowanie: kropka tylko,
-// gdy uczeń coś wpisał w okienko) jest do wyboru w menu "⋯" dla tych, którzy
-// wolą kropki tylko przy realnie wypełnionych zadaniach.
+/* Ustawienie „Wskaźniki samooceny" (panel boczny, sub-opcja pod egzaminem).
+   Globalne, wspólne dla wszystkich arkuszy — jak motyw. Trzy stany:
+     "wszystkie"  (domyślny) — kropka przy KAŻDYM zadaniu otwartym bez samooceny.
+                  Okienko na tok rozwiązania jest OPCJONALNE (uczeń może liczyć
+                  na kartce), więc brak wpisu nie znaczy „nie rozwiązał".
+     "wypelnione" — dawne zachowanie: kropka tylko, gdy coś wpisał w okienko.
+     "wyl"        — kropek nie ma wcale (dodane 2026-07-27; wcześniej jedynym
+                  wyjściem było „Ukryj wskaźniki", które KOŃCZYŁO fazę „oceń się").
+   W localStorage trzymamy te ASCII-owe identyfikatory (stara wartość
+   "wypelnione" zostaje zgodna), a w panelu pokazujemy etykiety z data-stany. */
 const KLUCZ_TRYBU_WSKAZNIKOW = "matematykazen-tryb-wskaznikow";
-const TRYBY_WSKAZNIKOW = ["wszystkie", "wypelnione"];
+const TRYBY_WSKAZNIKOW = ["wyl", "wypelnione", "wszystkie"];
+// Etykieta w panelu ↔ identyfikator w localStorage. Kolejność wartości musi się
+// zgadzać z data-stany przycisku (stamtąd biorą się kropki i podgląd hovera).
+const ETYKIETY_WSKAZNIKOW = { wyl: "wył.", wypelnione: "wypełnione", wszystkie: "wszystkie" };
 const wskaznikiTrybToggle = document.getElementById("wskazniki-tryb-toggle");
 
 function czytajTrybWskaznikow() {
     try {
         const t = localStorage.getItem(KLUCZ_TRYBU_WSKAZNIKOW);
-        if (t === "wypelnione") return t;
+        if (TRYBY_WSKAZNIKOW.includes(t)) return t;
     } catch (e) {}
     return "wszystkie";
 }
 function applyTrybWskaznikow(tryb) {
     try { localStorage.setItem(KLUCZ_TRYBU_WSKAZNIKOW, tryb); } catch (e) {}
-    if (wskaznikiTrybToggle) {
-        wskaznikiTrybToggle.textContent = tryb === "wypelnione"
-            ? "wskaźniki „oceń się”: tylko wypełnione"
-            : "wskaźniki „oceń się”: wszystkie zadania";
-    }
+    ustawWartosc(wskaznikiTrybToggle, ETYKIETY_WSKAZNIKOW[tryb]);
     // Zmiana trybu w trakcie fazy "oceń się" ma być widoczna od razu.
     if (czyFazaOceniania()) pokazWskaznikiOtwarte();
 }
 applyTrybWskaznikow(czytajTrybWskaznikow());
 if (wskaznikiTrybToggle) {
     wskaznikiTrybToggle.addEventListener("click", () => {
-        const next = TRYBY_WSKAZNIKOW[(TRYBY_WSKAZNIKOW.indexOf(czytajTrybWskaznikow()) + 1) % TRYBY_WSKAZNIKOW.length];
-        applyTrybWskaznikow(next);
+        const etykieta = nastepnyStan(wskaznikiTrybToggle);
+        const tryb = TRYBY_WSKAZNIKOW.find(t => ETYKIETY_WSKAZNIKOW[t] === etykieta) || "wszystkie";
+        applyTrybWskaznikow(tryb);
     });
 }
 
@@ -75,6 +79,9 @@ function czyNieoceniony(zadanie) {
 
 function pokazWskaznikiOtwarte() {
     schowajWskaznikiZDOM(); // idempotentnie — zaczynamy od czysta
+    // Tryb „wył.": kropek nie rysujemy, ale fazy „oceń się" NIE gasimy — inaczej
+    // przełączenie z powrotem na „wszystkie" nie miałoby czego przywrócić.
+    if (czytajTrybWskaznikow() === "wyl") return;
     const oczekujace = zadaniaOtwarte.filter(czyNieoceniony);
     if (!oczekujace.length) {
         // Wołane też przy starcie strony, ZANIM loadExercises wypełni

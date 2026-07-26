@@ -1012,8 +1012,8 @@ body.sidebar-otwarty #sidebar {
     display: none;
 }
 
-/* Tytuł arkusza nad pierwszym zadaniem (przeniesiony z paska — patrz #bar-center
-   w template.html). :empty ukrywa go, dopóki applySheetMeta() (bootstrap.js) go
+/* Tytuł arkusza nad pierwszym zadaniem (dawniej w środku #top-bara).
+   :empty ukrywa go, dopóki applySheetMeta() (bootstrap.js) go
    nie wypełni — inaczej pusty <h1> zostawiałby odstęp przed pierwszym zadaniem. */
 .sheet-title-heading {
     margin: 0 0 20px;

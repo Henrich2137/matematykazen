@@ -115,11 +115,13 @@ if (trybEgzaminBtn) {
     });
 }
 
-// Opcje w menu "..." niedozwolone podczas próbnego egzaminu: zostają widoczne,
-// ale disabled (CSS wyszarza je i blokuje klik) — inaczej po ukryciu menu
-// zostawałoby pustą ramką. Odblokowujemy je z powrotem po zakończeniu egzaminu.
-// (#egzamin-start jest w trakcie egzaminu dodatkowo CHOWANY — jego slot w menu
-// zajmuje wtedy "zakończ egzamin" — ale disabled zostawiamy jako drugą zaporę.)
+// Pozycje panelu bocznego niedozwolone podczas próbnego egzaminu: zostają
+// widoczne, ale disabled (CSS wyszarza je i blokuje klik) — inaczej po ukryciu
+// panel zostawałby pustą ramką. Odblokowujemy je z powrotem po zakończeniu
+// egzaminu. (#egzamin-start jest w trakcie egzaminu dodatkowo CHOWANY — jego slot
+// zajmuje wtedy "Zakończ egzamin" — ale disabled zostawiamy jako drugą zaporę.)
+// Połówki #tryb-przelacznik świadomie NIE są na tej liście: „ćwiczenia" to
+// jedyne wyjście z egzaminu obok #egzamin-koniec.
 const OPCJE_MENU_EGZAMIN = ["show-all-solutions", "score-switch-button", "reset-scores", "egzamin-start", "sprawdz-wszystkie", "sprawdz-wszystkie-stopka"];
 function setExamMenuDisabled(disabled) {
     OPCJE_MENU_EGZAMIN.forEach(id => {

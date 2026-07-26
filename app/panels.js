@@ -10,7 +10,10 @@ function otworzPdfWNowejKarcie(url) {
 }
 
 // Tablica wzorów: panel (kontener) + <object> z PDF-em w środku. Pokazywanie/
-// chowanie działa na panelu, a etykieta przycisku w pasku jest z tym zsynchronizowana.
+// chowanie działa na panelu, a etykieta pozycji w panelu bocznym jest z tym
+// zsynchronizowana. UWAGA: etykietę zmieniamy przez ustawEtykiete() (pisze do
+// wewnętrznego <span class="etykieta">), NIE przez textContent całego przycisku
+// — ten skasowałby ikonę SVG. Patrz komentarz w app/state.js.
 const tablicaPanel = document.getElementById("tablica-wzorow-panel");
 const toggleTablicaButton = document.getElementById("toggle-tablica");
 
@@ -22,11 +25,11 @@ function showFormulasPanel() {
         return;
     }
     tablicaPanel.style.display = "block";
-    toggleTablicaButton.textContent = "▲ Schowaj tablice wzorów";
+    ustawEtykiete(toggleTablicaButton, "Schowaj tablicę wzorów");
 }
 function hideFormulasPanel() {
     tablicaPanel.style.display = "none";
-    toggleTablicaButton.textContent = "▼ Pokaż tablice wzorów";
+    ustawEtykiete(toggleTablicaButton, "Otwórz tablicę wzorów");
 }
 
 toggleTablicaButton.addEventListener("click", function() {
@@ -59,11 +62,11 @@ function showGradingRules() {
         return;
     }
     zasadyPanel.style.display = "block";
-    toggleZasadyButton.textContent = "▲ Schowaj zasady oceniania";
+    ustawEtykiete(toggleZasadyButton, "Schowaj zasady oceniania");
 }
 function hideGradingRules() {
     zasadyPanel.style.display = "none";
-    toggleZasadyButton.textContent = "▼ Pokaż zasady oceniania";
+    ustawEtykiete(toggleZasadyButton, "Otwórz zasady oceniania");
 }
 
 toggleZasadyButton.addEventListener("click", function() {

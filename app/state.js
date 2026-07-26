@@ -13,7 +13,8 @@ let exercises = [];
 // Identyfikacja arkusza: wybierana parametrem URL ?arkusz=<id>, gdzie <id> to
 // nazwa folderu pod matura/ (np. "2024-grudzien"). Ten sam id: klucz do fetch
 // exercises.json, sufiks kluczy localStorage i (patrz startSheet()) zawartość
-// bar-menu/tytułu. BEZ domyślnego fallbacku — brak/pusty/nieznany ?arkusz=
+// tytułów (nagłówek arkusza + nagłówek panelu). BEZ domyślnego fallbacku —
+// brak/pusty/nieznany ?arkusz=
 // kończy się komunikatem "błędny link" (startSheet()), nie cichym arkuszem.
 const SHEET_ID = new URLSearchParams(location.search).get("arkusz");
 // wybrane_wzory_matematyczne.pdf leży w rootcie obok template.html (jedynego
