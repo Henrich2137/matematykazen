@@ -211,9 +211,14 @@
             <span class="kropki" aria-hidden="true"></span>
         </button>
         <button id="wskazniki-tryb-toggle" type="button" class="sidebar-ustawienie sidebar-sub"
+                title="Wskaźniki samooceny zadań otwartych — pływające kropki po egzaminie"
                 data-stany="wył.,wypełnione,wszystkie" data-stan="wszystkie">
             <svg class="sidebar-ikona" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.6" fill="currentColor" stroke="none"/></svg>
-            <span class="etykieta">Wskaźniki samooceny</span>
+            <!-- Etykieta skrócona do „Wskaźniki" (spec mówił „Wskaźniki samooceny"):
+                 w 260px panelu na tekst zostaje ~85px, bo wiersz dzieli szerokość
+                 z wartością i kropkami. Kontekst daje wcięcie pod „Rozpocznij
+                 egzamin" i sąsiedztwo „Zegara"; pełne zdanie jest w title. -->
+            <span class="etykieta">Wskaźniki</span>
             <span class="wartosc" aria-live="polite">wszystkie</span>
             <span class="wartosc-podglad" aria-hidden="true"></span>
             <span class="kropki" aria-hidden="true"></span>
@@ -253,9 +258,12 @@
             <span class="kropki" aria-hidden="true"></span>
         </button>
         <button id="natychmiastowa-toggle" type="button" class="sidebar-ustawienie"
+                title="Kiedy pokazywać poprawność odpowiedzi w zadaniach zamkniętych"
                 data-stany="po „sprawdź”,natychmiast" data-stan="natychmiast">
             <svg class="sidebar-ikona" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 3L5.5 13.5h5l-1 7.5L18.5 10h-5.5z"/></svg>
-            <span class="etykieta">Poprawność odpowiedzi</span>
+            <!-- Skrócone z „Poprawność odpowiedzi" — patrz komentarz przy #wskazniki-tryb-toggle.
+                 Sama wartość („natychmiast" / „po „sprawdź"") dopowiada, o co chodzi. -->
+            <span class="etykieta">Poprawność</span>
             <span class="wartosc" aria-live="polite">natychmiast</span>
             <span class="wartosc-podglad" aria-hidden="true"></span>
             <span class="kropki" aria-hidden="true"></span>
