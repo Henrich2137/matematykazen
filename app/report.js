@@ -138,7 +138,14 @@ if (zgOpis) {
     zgOpis.addEventListener("input", () => {
         odswiezPrzyciskWyslij();
         odswiezLicznikOpisu();
-        if (czyOpisWypelniony()) wyczyscBladOpisu();
+        // Widoczny komunikat aktualizujemy NA BIEŻĄCO, a nie tylko kasujemy:
+        // po wpisaniu jednego znaku „bez tego nie wiemy, czego szukać" byłoby
+        // już nieprawdą — ma się zmienić na „opis jest za krótki".
+        if (zgBlad && zgBlad.textContent !== "") {
+            const blad = bladOpisu();
+            if (blad === "") wyczyscBladOpisu();
+            else zgBlad.textContent = blad;
+        }
     });
 }
 odswiezLicznikOpisu(); // stan początkowy „0 / 2000" jeszcze przed otwarciem
