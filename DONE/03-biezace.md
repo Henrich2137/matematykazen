@@ -5,23 +5,26 @@ kiedys rozwiazano. Zasada podzialu i indeks: DONE/README.md.
 Zakres: 2026-07-13 (WYSOKI PRIORYTET) - 2026-07-21. Partia jeszcze niezmergowana do mastera.
 
 [ZROBIONE] (2026-07-26, Sonnet Medium) — sesja 1 z TODO.md „Dla Sonneta": (1) ciemniejsze tło dark mode
-  (--bg: #1b1b1b → #141414, base.css); (2) obramowanie .widget-canvas (border+radius) — ramuje celowo białe
-  tło widżetów (--canvas-bg) jako kartkę zamiast rażącego prostokąta w dark mode; (3) kropki „oceń się"
-  (.wskaznik-otwarte, #wskazniki-ukryj) ukryte pod 480px (responsive.css) — pozycje liczone pod desktop
-  kolidowały na wąskich telefonach; (4) „sprawdź wszystkie odpowiedzi" (#sprawdz-wszystkie +
-  -stopka) w trybie egzaminu: z display:none na widoczny+disabled/wyszarzony, spójnie z resztą
-  OPCJE_MENU_EGZAMIN (app/exam.js, style/exam.css); (5) przycisk „Sprawdź" przy polu „ostateczna
-  odpowiedź" (.final-answer-check) ukryty w trybie egzaminu — samo pole zostaje dostępne do wpisania
-  wyniku, ale kolorowa ocena już nie zdradza poprawności mid-exam; (6) tytuł arkusza przeniesiony z paska
-  (#exercises-sheet-title) do #sheet-title-heading (<h1>, pierwsze dziecko #exercises-wrapper) — teraz
-  nad pierwszym zadaniem, zawsze widoczny (nie znika już pod 900px); (7) przycisk zmiany motywu na
-  index.html (#landing-theme-toggle, samodzielny inline-skrypt, ten sam klucz localStorage co
-  #theme-toggle w arkuszu — index.html celowo nie ładuje app/*.js). Punkt „przycisk sprawdź wszystkie na
-  końcu arkusza w trybie ćwiczeń" z TODO.md okazał się JUŻ zaimplementowany (#sprawdz-wszystkie-stopka,
-  bootstrap.js) — bez zmian kodu. Zweryfikowane Playwrightem (node --check + headless Chromium: landing
-  theme cycle, dark bg, widget-canvas style, tytuł nad zadaniami, sprawdz-wszystkie grayed w egzaminie,
-  final-answer-check hidden, mobile dots hidden) i node --check na zmienionych JS. ARCHITECTURE.md/
-  ARCHITECTURE_CSS.md zaktualizowane w tym samym zestawie zmian. Wersja przy logo v0.01 → v0.02.
+  (--bg: #1b1b1b → #141414, base.css); (2) kropki „oceń się" (.wskaznik-otwarte, #wskazniki-ukryj) ukryte
+  pod 480px (responsive.css) — pozycje liczone pod desktop kolidowały na wąskich telefonach (Henrich:
+  po tej zmianie w ogóle ich nie widać na telefonie — zostaje tak na razie, do przemyślenia później);
+  (3) „sprawdź wszystkie odpowiedzi" (#sprawdz-wszystkie + -stopka) w trybie egzaminu: z display:none na
+  widoczny+disabled/wyszarzony, spójnie z resztą OPCJE_MENU_EGZAMIN (app/exam.js, style/exam.css);
+  (4) przycisk „Sprawdź" przy polu „ostateczna odpowiedź" (.final-answer-check) ukryty w trybie egzaminu —
+  samo pole zostaje dostępne do wpisania wyniku, ale kolorowa ocena już nie zdradza poprawności mid-exam;
+  (5) tytuł arkusza przeniesiony z paska (#exercises-sheet-title) do #sheet-title-heading (<h1>, pierwsze
+  dziecko #exercises-wrapper) — teraz nad pierwszym zadaniem, zawsze widoczny (nie znika już pod 900px);
+  (6) przycisk zmiany motywu na index.html (#landing-theme-toggle, samodzielny inline-skrypt, ten sam
+  klucz localStorage co #theme-toggle w arkuszu — index.html celowo nie ładuje app/*.js). Punkt „przycisk
+  sprawdź wszystkie na końcu arkusza w trybie ćwiczeń" z TODO.md okazał się JUŻ zaimplementowany
+  (#sprawdz-wszystkie-stopka, bootstrap.js) — bez zmian kodu. PRÓBA obramowania .widget-canvas (border+
+  radius) w dark mode ZOSTAŁA COFNIĘTA po feedbacku Henricha („bezsensowna zmiana, albo zostaw jak było,
+  albo napraw naprawdę") — punkt „tło widżetów białe w dark mode" wrócił do TODO.md, bo naprawa wymaga
+  przerobienia kolorów rysowania w WG_KOLORY (widgets/_helpers.js), nie samego obramowania. Zweryfikowane
+  Playwrightem (node --check + headless Chromium: landing theme cycle, dark bg, tytuł nad zadaniami,
+  sprawdz-wszystkie grayed w egzaminie, final-answer-check hidden, mobile dots hidden) i node --check na
+  zmienionych JS. ARCHITECTURE.md/ARCHITECTURE_CSS.md zaktualizowane w tym samym zestawie zmian. Wersja
+  przy logo v0.01 → v0.02.
   [ui, css, egzamin, dark-mode, mobile, dokumentacja]
 
 [ZROBIONE] (2026-07-24, Opus) — pełne przepisanie/restrukturyzacja sekcji „Exam mode" w ARCHITECTURE.md do
