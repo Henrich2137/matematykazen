@@ -58,6 +58,7 @@ const zgEmail = document.getElementById("zglos-blad-email");
 const zgDanePodglad = document.getElementById("zglos-blad-dane-podglad");
 const zgKategorie = document.getElementById("zglos-blad-kategorie");
 const zgBlad = document.getElementById("zglos-blad-blad");
+const zgLicznik = document.getElementById("zglos-blad-licznik");
 const zgWyslij = zgForm ? zgForm.querySelector(".zglos-blad-wyslij") : null;
 let zgAktualnyNumer = null; // numer zadania, którego dotyczy otwarte zgłoszenie
 let zgAktualnaKarta = null; // karta zadania, w której stoi teraz formularz
@@ -140,6 +141,7 @@ if (zgOpis) {
         if (czyOpisWypelniony()) wyczyscBladOpisu();
     });
 }
+odswiezLicznikOpisu(); // stan początkowy „0 / 2000" jeszcze przed otwarciem
 
 // Efektywny motyw do dołączenia w danych: rozróżniamy ręczny wybór od „auto"
 // (i doprecyzowujemy, co auto oznacza na tym systemie), żeby zgłoszenie mówiło,
@@ -294,6 +296,7 @@ function otworzModalZgloszenia(numer, karta) {
     wyczyscKategorie();
     wyczyscBladOpisu();
     odswiezPrzyciskWyslij();
+    odswiezLicznikOpisu();
 
     if (zgKontekst) zgKontekst.textContent = `Zadanie ${numer} — arkusz „${SHEET_ID}”.`;
     // Podgląd danych technicznych (transparentność — użytkownik widzi, co pójdzie).
@@ -445,6 +448,7 @@ if (zgForm) {
             zgForm.reset();
             wyczyscKategorie();
             wyczyscBladOpisu();
+            odswiezLicznikOpisu();
             zamknijModalZgloszenia();
             pokazZglosToast("Dziękujemy, zgłoszenie wysłane.", false);
         } else {

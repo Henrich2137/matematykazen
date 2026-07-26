@@ -222,9 +222,19 @@
                 <!-- Opis OBOWIĄZKOWY. Celowo BEZ dopisku „(obowiązkowy)" w etykiecie
                      — sygnalizują to wyszarzony przycisk i komunikat .zglos-blad-blad. -->
                 <label class="zglos-blad-label" for="zglos-blad-opis">Opis błędu</label>
+                <!-- maxlength = twardy limit po stronie przeglądarki (nie da się
+                     wpisać ani wkleić więcej); OPIS_MIN/OPIS_MAX w app/report.js
+                     sprawdzają to jeszcze raz, bo maxlength da się ominąć programowo.
+                     Trzymaj obie wartości zgodne z tamtymi stałymi. -->
                 <textarea id="zglos-blad-opis" name="opis" rows="4" required
+                    minlength="3" maxlength="2000"
                     placeholder="Np. zła odpowiedź, literówka w treści, film się nie odtwarza…"></textarea>
-                <p class="zglos-blad-blad" id="zglos-blad-blad" role="alert"></p>
+                <div class="zglos-blad-pod-polem">
+                    <p class="zglos-blad-blad" id="zglos-blad-blad" role="alert"></p>
+                    <!-- aria-hidden: licznik to informacja wizualna; czytnik ekranu
+                         dostaje komunikat o limicie z .zglos-blad-blad (role="alert"). -->
+                    <span class="zglos-blad-licznik" id="zglos-blad-licznik" aria-hidden="true"></span>
+                </div>
 
                 <label class="zglos-blad-label" for="zglos-blad-email">Twój e-mail (opcjonalnie — jeśli chcesz, żebyśmy mogli odpisać)</label>
                 <input type="email" id="zglos-blad-email" name="email" autocomplete="email" placeholder="np. jan@przyklad.pl">

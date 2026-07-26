@@ -1128,14 +1128,36 @@ body.bez-zglaszania .report-error-link {
     border-color: var(--incorrect);
     box-shadow: inset 0 0 0 1px var(--incorrect);
 }
+/* Rząd pod textareą: komunikat błędu z lewej, licznik znaków z prawej.
+   align-items: flex-start, bo komunikat bywa dwuliniowy na wąskim ekranie,
+   a licznik ma wtedy zostać przy górnej krawędzi. */
+.zglos-blad-pod-polem {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 6px;
+}
 .zglos-blad-blad {
-    margin: 6px 0 0;
+    margin: 0;
     font-size: 14px;
     color: var(--incorrect);
 }
 /* Pusty komunikat nie ma zajmować miejsca w układzie. */
 .zglos-blad-blad:empty {
     display: none;
+}
+/* Licznik „123 / 2000" — margin-left:auto dosuwa go do prawej także wtedy,
+   gdy komunikat błędu jest pusty i schowany (:empty). */
+.zglos-blad-licznik {
+    margin-left: auto;
+    flex-shrink: 0;
+    font-size: 13px;
+    font-variant-numeric: tabular-nums; /* liczby nie „skaczą" przy pisaniu */
+    color: var(--text-faint);
+}
+/* Ostatnie 10% limitu — ostrzeżenie, zanim tekst zacznie się ucinać. */
+.zglos-blad-licznik-blisko {
+    color: var(--incorrect);
 }
 /* Honeypot: obecny w DOM, ale poza ekranem — ludzie go nie widzą, boty wypełnią. */
 .zglos-blad-hp {
