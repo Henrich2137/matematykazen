@@ -4,27 +4,17 @@ spojrzenie na projekt, rozwiazanie trudniejszego problemu albo sprawdzenie, czy/
 kiedys rozwiazano. Zasada podzialu i indeks: DONE/README.md.
 Zakres: 2026-07-13 (WYSOKI PRIORYTET) - 2026-07-26. Partia jeszcze niezmergowana do mastera.
 
-[ZROBIONE] (2026-07-26, Opus High) — sesja 1 z TODO.md „Dla Opusa": przebudowa formularza „zgłoś błąd".
-  (1) Opis z opcjonalnego na OBOWIĄZKOWY — trzy sygnały naraz (przycisk „Wyślij" startuje disabled,
-  odblokowuje go dopiero niepusty trim(); komunikat #zglos-blad-blad z role="alert" + czerwona ramka
-  .zglos-blad-pole-blad; focus wraca do pola). Walidacja jest też w handlerze submit, bo requestSubmit()
-  i Enter omijają disabled. Etykieta BEZ dopisku „(obowiązkowy)" — zgodnie z prośbą Henricha.
-  (2) Modal → BLOK INLINE w karcie zadania, nad rzędem [Podpowiedź][Rozwiązanie], żeby uczeń widział
-  treść zadania podczas opisywania błędu. Kluczowa sztuczka: insertBefore PRZENOSI węzeł, więc jeden
-  #zglos-blad-overlay wędruje do klikniętej karty — ID zostają unikalne i cały kod na getElementById
-  działa bez refaktoru. Toggle przy tym samym zadaniu zwija; przy innym przenosi i CZYŚCI pola.
-  Zniknął klik-w-tło (nie ma tła), został Anuluj/✕/Escape.
-  (3) Nowe: 8 pigułek kategorii (wybór wielokrotny, opcjonalne, reuse wyglądu przycisków ABCD) — idą
-  do payloadu i do _subject, żeby dało się triażować skrzynkę z listy maili.
-  (4) Nowe dane auto czytane z DOM karty (bez zmian w render.js/steps.js): odpowiedzUcznia,
-  odpowiedzPoprawna (.hiddenCorrect), krokRozwiazania (.step-counter), ekran (viewport/DPR/orientacja).
-  (5) Przy okazji: regex numeru zadania w report.js ujednolicony z numerZadania() z render.js
-  (/Zadanie\s*([\d.]+)/i) — łapie podnumery 12.1/12.2.
-  Świadoma decyzja: NIE użyto SDK @formspree/ajax z unpkg.com — łamie offline-first (KaTeX jest
-  dlatego vendorowany) i nie ma tu npm/bundlera; ręczny fetch to i tak udokumentowana ścieżka AJAX
-  Formspree. Zweryfikowane Playwrightem: 40/40 testów (przenoszenie węzła, walidacja, wielokrotny
-  wybór, payload, Escape, telefon 360px, oba motywy, zero błędów konsoli).
-  [formularz, formspree, ui, walidacja, mobile, a11y]
+[ZROBIONE] (2026-07-26, Opus) — BUGFIX do wpisu poniżej, wykryty przez Henricha na PRAWDZIWYM zgłoszeniu
+  z produkcji (zad. 2): pola odpowiedzUcznia/odpowiedzPoprawna wysyłały zlepek „A. 545^{4}54" zamiast
+  „A. 5^{4}". Przyczyna: KaTeX renderuje każdy wzór w DWÓCH warstwach naraz — ukrytej .katex-mathml
+  (MathML + surowy LaTeX w <annotation>) i widocznej .katex-html — więc samo .textContent skleja obie.
+  Naprawa: nowa funkcja tekstOdpowiedzi(el) w app/report.js; klonuje węzeł (żywy DOM strony NIETKNIĘTY)
+  i podmienia każdy .katex na treść <annotation encoding="application/x-tex">. Świadomie bierzemy surowy
+  LaTeX, a nie warstwę wizualną, bo ta spłaszcza 5⁴ do nierozróżnialnego „54". Objęte też etykiety pól
+  fillIn (bywają wzorami). UWAGA na przyszłość: każdy odczyt tekstu z elementu, który może zawierać
+  KaTeX, musi iść przez tekstOdpowiedzi() — samo .textContent daje bełkot. Zweryfikowane: 11/11 testów
+  naprawy (w tym kontrola, że 455 wzorów na stronie nadal żyje i HTML przycisku jest bit-w-bit ten sam)
+  + 40/40 regresji  [formularz, katex, bugfix, produkcja]
 
 [ZROBIONE] (2026-07-26, Opus High) — sesja 1 z TODO.md „Dla Opusa": przebudowa formularza „zgłoś błąd".
   (1) Opis z opcjonalnego na OBOWIĄZKOWY — trzy sygnały naraz (przycisk „Wyślij" startuje disabled,
