@@ -18,7 +18,7 @@ Szczegóły techniczne w issues/sidebar-nawigacji.md + issues/likwidacja-top-bar
 
 - Górny pasek znika. W lewym górnym rogu zostaje samo logo + strzałka rozwijająca panel boczny, w prawym — sama suma punktów (w trakcie egzaminu obok niej zegar i „zakończ egzamin"). Bez wspólnego paska, bez „⋯", bez podtytułu „tryb ćwiczenia".
 
-- Panel boczny po lewej, otwierany i zamykany tą samą strzałką (plus Esc). Arkusz się nie rusza, a na komputerze nie jest niczym zasłaniany — panel mieści się w marginesie. Na wąskim ekranie nachodzi na zadania: wtedy lekko je przygasza i zamyka się kliknięciem w arkusz. Otwiera się nad oknami z PDF-ami.
+- Panel boczny po lewej, otwierany i zamykany tą samą strzałką (plus Esc). Arkusz się nie rusza, a na komputerze nie jest niczym zasłaniany — panel mieści się w marginesie. Na wąskim ekranie nachodzi na zadania: wtedy lekko je przygasza, zamyka się kliknięciem w arkusz i schodzi z drogi po kliknięciu akcji (np. „Otwórz tablicę"). Na szerokim zostaje otwarty, bo nic nie zasłania. Ustawienia (klikane w cyklu) nigdy go nie zamykają. Otwiera się nad oknami z PDF-ami.
 
 - Przełącznik „ćwiczenia / egzamin" ląduje POD TYTUŁEM ARKUSZA nad pierwszym zadaniem (nie w panelu — panel bywa zwinięty, a trwający egzamin musi być widać zawsze). Zastępuje dzisiejszy napis „tryb ćwiczenia" ze środka paska. W panelu zostaje zwykła pozycja „Rozpocznij / Zakończ egzamin" — bez osobnego wskaźnika trybu, żeby nie było dwóch wejść do tego samego.
 

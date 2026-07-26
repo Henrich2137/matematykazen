@@ -28,12 +28,17 @@ Zastępujemy je wysuwanym panelem bocznym po LEWEJ, otwieranym strzałką tuż o
   Sidebar → **`z-index: 12`**, przyciemnienie → 11. Podsumowanie egzaminu i toast zostają nad nim.
 - **Stan otwarcia nie jest zapamiętywany** między odświeżeniami — domyślnie zamknięty.
   (Świadomie: panel jest do sporadycznych akcji, nie do stałego trzymania.)
-- **Kliknięcie AKCJI zamyka panel, kliknięcie USTAWIENIA — nie.** Akcja ma skutek na arkuszu
-  (otwarty PDF, odsłonięte rozwiązania), więc panel schodzi z drogi; ustawienie klika się
-  cyklicznie po kilka razy, więc zamykanie po każdym kliknięciu byłoby wrogie.
-  Wyjątki bez znaczenia: „Zresetuj arkusz" i „Rozpocznij egzamin" i tak robią `location.reload()`.
-  *(To jedyna decyzja w tym pliku, której Henrich nie zatwierdzał wprost — przyjęta jako
-  oczywista; jeśli ma być inaczej, wystarczy zmienić tę linijkę.)*
+- **Kliknięcie akcji zamyka panel TYLKO wtedy, gdy panel zasłania treść** (poniżej progu
+  1300 px — ten sam warunek co przyciemnienie i zamykanie klikiem w arkusz). Powyżej progu
+  panel zostaje otwarty po każdym kliknięciu, bo niczego nie zasłania i nie ma przed czym
+  schodzić z drogi. Decyzja Henricha 2026-07-26 („klik w akcję zamyka panel tylko na telefonie");
+  spięte z progiem, a nie z `czyTelefon()`, żeby nie mnożyć niezależnych warunków — na wąskim
+  laptopie panel zasłania zadanie dokładnie tak samo jak na telefonie.
+- **Kliknięcie ustawienia nigdy nie zamyka panelu**, na żadnej szerokości. Cykl klika się
+  po kilka razy pod rząd (`wszystko` → `tylko suma` → `wył.`), więc zamykanie po każdym
+  stopniu zmuszałoby do otwierania panelu od nowa.
+- Wyjątki bez znaczenia dla obu reguł: „Zresetuj arkusz" i „Rozpocznij egzamin"
+  i tak robią `location.reload()`.
 
 ### Wymiary i typografia
 
@@ -269,7 +274,7 @@ Ikona akcji dziedziczy `--text`; ikona ustawienia — `--text-faint-2`, jak jego
 
 - [ ] Żadne ID przycisku się nie zmieniło; wszystkie 13 funkcji działa jak przed zmianą.
 - [ ] `#bar-menu` i `#menu-button` nie istnieją w DOM ani w CSS.
-- [ ] Klik w akcję zamyka panel; klik w ustawienie zostawia go otwartym.
+- [ ] <1300 px: klik w akcję zamyka panel. ≥1300 px: nie zamyka. Ustawienie nigdy nie zamyka.
 - [ ] Tab nie wchodzi w przyciski zamkniętego panelu; `Esc` oddaje fokus strzałce.
 - [ ] `prefers-reduced-motion: reduce` wyłącza animacje wysuwania i obrotu strzałki.
 - [ ] Panel otwiera się i zamyka tą samą strzałką; `Esc` zamyka.
