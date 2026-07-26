@@ -5,6 +5,8 @@ DO REALIZACJI
 
 Do przydzielenia:
 
+- zmienić kolor okien pdf na ciemniejszy w darkmodzie, tak aby nie odstawał tak bardzo od reszty. Można też zmienić jego cały styl na podobny do tego co ma panel boczny.
+
 - pionowa linia sidebara po jego prawej powinna być przesunięta w prawo. Jej dolny koniec powinien się też kończyć przed dolną granicą ekranu.
 
 - na komputerze przycisk sidebar-toggle powinien być przesunięty lekko w lewo i minimalnie w górę. Będzie się wtedy lepiej się komponował z otwartym sidebarem oraz logo
