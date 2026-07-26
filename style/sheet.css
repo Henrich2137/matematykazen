@@ -1069,6 +1069,8 @@ body.sidebar-otwarty #sidebar {
     overflow: hidden;
     border: 1px solid var(--border-strong);
     border-radius: var(--radius-pigulka);
+    margin-top: 50px; /* Dodane przez Henricha */
+    margin-bottom: 40px; /* Dodane przez Henricha */
 }
 body.arkusz-wczytany #tryb-przelacznik {
     display: flex;
