@@ -331,8 +331,10 @@ if (zgForm) {
             return;
         }
 
-        const przyciskWyslij = zgForm.querySelector(".zglos-blad-wyslij");
-        if (przyciskWyslij) { przyciskWyslij.disabled = true; przyciskWyslij.textContent = "Wysyłanie…"; }
+        // Blokada na czas wysyłki (Formspree AJAX: przycisk nieaktywny do końca
+        // żądania). Po zakończeniu NIE odblokowujemy na sztywno — o stanie
+        // decyduje odswiezPrzyciskWyslij(), bo pusty opis ma go trzymać szarym.
+        if (zgWyslij) { zgWyslij.disabled = true; zgWyslij.textContent = "Wysyłanie…"; }
 
         const auto = zbierzDaneAuto();
         const kategorie = zebraneKategorie();
@@ -368,8 +370,10 @@ if (zgForm) {
             });
         } catch (blad) {
             // Sieć padła — żądanie NIE dotarło do Formspree, więc nie ustawiamy
-            // throttlingu (użytkownik może spróbować od razu).
-            if (przyciskWyslij) { przyciskWyslij.disabled = false; przyciskWyslij.textContent = "Wyślij zgłoszenie"; }
+            // throttlingu (użytkownik może spróbować od razu). Opis został
+            // wpisany, więc przycisk wraca do stanu aktywnego.
+            if (zgWyslij) zgWyslij.textContent = "Wyślij zgłoszenie";
+            odswiezPrzyciskWyslij();
             pokazZglosToast("Brak połączenia — nie udało się wysłać zgłoszenia. Sprawdź internet i spróbuj ponownie.", true);
             return;
         }
@@ -377,10 +381,12 @@ if (zgForm) {
         // Żądanie dotarło do serwera (ok albo nie) — liczymy je do throttlingu,
         // żeby chronić miesięczny limit Formspree.
         try { localStorage.setItem(KLUCZ_ZGLOS_THROTTLE, String(teraz)); } catch (e) {}
-        if (przyciskWyslij) { przyciskWyslij.disabled = false; przyciskWyslij.textContent = "Wyślij zgłoszenie"; }
+        if (zgWyslij) zgWyslij.textContent = "Wyślij zgłoszenie";
 
         if (odpowiedz.ok) {
             zgForm.reset();
+            wyczyscKategorie();
+            wyczyscBladOpisu();
             zamknijModalZgloszenia();
             pokazZglosToast("Dziękujemy, zgłoszenie wysłane.", false);
         } else {
@@ -398,13 +404,18 @@ if (zgForm) {
 // globalnie klasa body.bez-zglaszania (CSS), więc tu tworzymy link zawsze.
 function dodajLinkZgloszenia(exerciseClone) {
     const qText = (exerciseClone.querySelector(".question")?.textContent) || "";
-    const m = qText.match(/Zadanie\s*(\d+)/i);
-    const numer = m ? m[1] : "?";
+    // [\d.]+ zamiast \d+ — łapie też podnumery ("12.1", "12.2"), tak jak
+    // numerZadania() w app/render.js. Kropka kończąca zdanie („Zadanie 12.")
+    // jest ucinana niżej, żeby numer nie wyglądał jak „12.".
+    const m = qText.match(/Zadanie\s*([\d.]+)/i);
+    const numer = m ? m[1].replace(/\.$/, "") : "?";
     const link = document.createElement("button");
     link.type = "button";
     link.className = "report-error-link";
     link.textContent = "zgłoś błąd";
     link.title = "Zgłoś błąd w tym zadaniu (zła odpowiedź, literówka, problem z filmem…)";
-    link.addEventListener("click", () => otworzModalZgloszenia(numer));
+    // Karta zadania idzie dalej, bo formularz jest do niej PRZENOSZONY, a dane
+    // automatyczne (odpowiedź ucznia, krok rozwiązania) czytamy z jej DOM.
+    link.addEventListener("click", () => otworzModalZgloszenia(numer, exerciseClone));
     exerciseClone.appendChild(link);
 }

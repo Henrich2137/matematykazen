@@ -972,10 +972,14 @@ input::-webkit-inner-spin-button {
 }
 
 /* ===== ZGŁASZANIE BŁĘDÓW W ZADANIU =====
-   Dyskretny link pod zadaniem + modal z formularzem (app/report.js). Wszystkie
-   kolory idą przez zmienne z base.css, więc jasny/ciemny motyw działa bez zmian.
-   Toggle w menu „⋯" (#zglos-blad-toggle) dodaje body.bez-zglaszania, która chowa
-   wszystkie linki. */
+   Dyskretny link pod zadaniem + formularz rozwijany W KARCIE zadania
+   (app/report.js przenosi jeden wspólny #zglos-blad-overlay do klikniętej
+   karty, nad rząd [Podpowiedź][Rozwiązanie]). To NIE jest już modal — nie ma
+   przyciemnionego tła ani position:fixed, żeby treść zadania została widoczna
+   podczas opisywania błędu (zwłaszcza na telefonie). Wszystkie kolory idą przez
+   zmienne z base.css, więc jasny/ciemny motyw działa bez zmian. Toggle w menu
+   „⋯" (#zglos-blad-toggle) dodaje body.bez-zglaszania, która chowa wszystkie
+   linki. */
 
 /* Link „zgłoś błąd w tym zadaniu" — tekstowy, wzorem badge'a .exercise-score
    trzyma się przygaszonej kolorystyki, żeby nie odciągał uwagi od zadania. */
@@ -1001,29 +1005,22 @@ body.bez-zglaszania .report-error-link {
     display: none;
 }
 
-/* Nakładka modala — bliźniacza do #egzamin-podsumowanie (JS przełącza display
-   na flex). */
+/* Kontener formularza — zwykły blok w przepływie karty zadania (JS przełącza
+   display na block). Bez position/z-index/tła: to element treści, nie nakładka. */
 #zglos-blad-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 21; /* nad nakładką podsumowania egzaminu (20) */
     display: none;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--overlay-bg);
-    padding: 20px;
-    box-sizing: border-box;
+    margin: 16px 0;
 }
+/* Właściwe „okno" formularza. Pozostaje position:relative, bo krzyżyk ✕ jest
+   pozycjonowany względem niego. Bez max-height — blok rośnie w treści strony,
+   a scrolluje się cała strona (na telefonie to znacznie wygodniejsze niż
+   wewnętrzny scroll w okienku). */
 .zglos-blad-okno {
     position: relative;
-    width: 520px;
-    max-width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
-    padding: 26px 34px;
+    width: 100%;
+    padding: 20px 22px;
     border: 1px solid var(--border-window);
-    background-color: var(--bg);
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.10);
+    background-color: var(--bg-muted);
     text-align: left;
     font-size: 16px;
     line-height: 1.55;
@@ -1067,6 +1064,37 @@ body.bez-zglaszania .report-error-link {
     font-size: 14px;
     color: var(--text-muted-2);
 }
+/* Pigułki kategorii — wybór WIELOKROTNY (app/report.js przełącza .selected na
+   klikniętej). Wygląd celowo taki sam jak przycisków odpowiedzi ABCD, żeby
+   uczeń rozpoznał interakcję; zaznaczenie = niebieska ramka jak .selected
+   w .button-container. Flex-wrap, bo na telefonie muszą się zawijać. */
+.zglos-blad-kategorie {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+.zglos-blad-kategorie button {
+    padding: 7px 12px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background-color: var(--bg);
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.3;
+    text-align: left;
+    color: var(--text);
+    cursor: pointer;
+}
+.zglos-blad-kategorie button:hover {
+    border-color: var(--border-strong);
+}
+/* Ten sam sposób zaznaczenia co w .button-container button.selected: druga
+   „warstwa" ramki przez inset box-shadow, żeby przycisk nie zmieniał rozmiaru. */
+.zglos-blad-kategorie button.selected {
+    border-color: var(--accent-blue);
+    box-shadow: inset 0 0 0 1px var(--accent-blue);
+}
 /* Pola formularza — jawne width:100%, bo globalna reguła `input { width: 24px }`
    inaczej ściska pole e-mail do niczego (ten sam problem, co .fill-in-input). */
 .zglos-blad-okno textarea,
@@ -1090,6 +1118,24 @@ body.bez-zglaszania .report-error-link {
 .zglos-blad-okno input[type="email"]:focus {
     outline: none;
     border-color: var(--accent-blue-strong);
+}
+/* Opis jest obowiązkowy — pusty przy próbie wysyłki dostaje czerwoną ramkę
+   i komunikat pod spodem (role="alert"). Oba znikają po wpisaniu pierwszego
+   znaku (app/report.js). Ramka błędu musi bić regułę :focus, bo pole dostaje
+   wtedy focus — stąd kolejność i dodatkowy selektor z :focus. */
+.zglos-blad-okno textarea.zglos-blad-pole-blad,
+.zglos-blad-okno textarea.zglos-blad-pole-blad:focus {
+    border-color: var(--incorrect);
+    box-shadow: inset 0 0 0 1px var(--incorrect);
+}
+.zglos-blad-blad {
+    margin: 6px 0 0;
+    font-size: 14px;
+    color: var(--incorrect);
+}
+/* Pusty komunikat nie ma zajmować miejsca w układzie. */
+.zglos-blad-blad:empty {
+    display: none;
 }
 /* Honeypot: obecny w DOM, ale poza ekranem — ludzie go nie widzą, boty wypełnią. */
 .zglos-blad-hp {
@@ -1155,9 +1201,13 @@ body.bez-zglaszania .report-error-link {
 .zglos-blad-wyslij:hover {
     border-color: var(--border-strong);
 }
+/* Wyszarzony, dopóki opis jest pusty (odswiezPrzyciskWyslij w app/report.js). */
 .zglos-blad-wyslij:disabled {
     opacity: 0.5;
     cursor: default;
+}
+.zglos-blad-wyslij:disabled:hover {
+    border-color: var(--border); /* bez reakcji na hover, gdy nieaktywny */
 }
 
 /* Toast po wysłaniu — na dole ekranu, pojawia się i znika przez opacity.

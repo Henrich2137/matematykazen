@@ -88,6 +88,32 @@
         right: auto;
         left: 3%;
     }
+
+    /* Formularz „zgłoś błąd" (blok w karcie zadania) — ciaśniejszy padding,
+       żeby na wąskim ekranie zostało miejsce na treść pól. */
+    .zglos-blad-okno {
+        padding: 16px 14px;
+    }
+    .zglos-blad-okno h3 {
+        font-size: 18px;
+        margin-right: 44px; /* krzyżyk ✕ */
+    }
+    /* Pigułki kategorii na pełną szerokość rzędu, po jednej/dwie — nazwy są
+       długie („Prawidłowa odpowiedź jest nieprawidłowa"), więc na telefonie
+       lepiej czytają się jako lista niż jako poszatkowana siatka. */
+    .zglos-blad-kategorie button {
+        flex: 1 1 100%;
+        text-align: center;
+    }
+    /* Akcje na pełną szerokość — łatwiej trafić palcem niż w mały przycisk
+       dosunięty do prawej krawędzi. */
+    .zglos-blad-akcje {
+        flex-direction: column-reverse; /* „Wyślij" u góry, pod kciukiem */
+        gap: 8px;
+    }
+    .zglos-blad-akcje button {
+        width: 100%;
+    }
 }
 
 /* Bardzo wąskie ekrany (telefon pionowo): trzy strefy paska nie mieszczą się
