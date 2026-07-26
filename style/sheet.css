@@ -834,6 +834,20 @@
     display: none;
 }
 
+/* Tytuł arkusza nad pierwszym zadaniem (przeniesiony z paska — patrz #bar-center
+   w template.html). :empty ukrywa go, dopóki applySheetMeta() (bootstrap.js) go
+   nie wypełni — inaczej pusty <h1> zostawiałby odstęp przed pierwszym zadaniem. */
+.sheet-title-heading {
+    margin: 0 0 20px;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text);
+    text-align: center;
+}
+.sheet-title-heading:empty {
+    display: none;
+}
+
 /* ===== WYKRESY ===== */
 canvas {
     margin-top: 10px;
@@ -853,6 +867,11 @@ canvas {
 .widget-canvas {
     max-width: 100%;
     touch-action: none; /* przeciąganie palcem nie scrolluje strony */
+    /* Canvas rysuje ciemnym atramentem na jasnym tle (--canvas-bg celowo NIE
+       ciemnieje, patrz base.css) — w dark mode ramka odgradza tę jasną
+       „kartkę" od ciemnego tła strony, żeby nie wyglądała jak usterka. */
+    border: 1px solid var(--border);
+    border-radius: 6px;
 }
 .widget-controls {
     margin-top: 6px;

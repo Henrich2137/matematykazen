@@ -424,13 +424,12 @@ function loadExercises() {
             // POLE „OSTATECZNA ODPOWIEDŹ" (opcjonalne, gdy exercise.finalAnswer istnieje).
             // Uczeń wpisuje końcowy wynik (np. x = -6), a przycisk „Sprawdź" normalizuje
             // go i porównuje z listą akceptowanych wariantów tą SAMĄ logiką co fillIn
-            // (normalizeAnswer, app/answers.js). To jedyny AUTOMATYCZNY sygnał
-            // poprawności dla zadań otwartych, więc — inaczej niż checklista i
-            // rozwiązania — pole i jego ocena są DOSTĘPNE TAKŻE W TRAKCIE EGZAMINU
-            // (osobny kontener poza .self-score-container, którą exam.css chowa; klasa
-            // .final-answer-input celowo NIE jest neutralizowana w exam.css). NIE
-            // przyznaje punktów — punkty dalej ustawia samoocena (spec: issues/
-            // formularz-oceniania-otwarte.md).
+            // (normalizeAnswer, app/answers.js). Samo POLE jest DOSTĘPNE TAKŻE W TRAKCIE
+            // EGZAMINU, żeby uczeń miał gdzie zapisać wynik (osobny kontener poza
+            // .self-score-container, którą exam.css chowa) — ale przycisk „Sprawdź"
+            // (.final-answer-check) exam.css w trakcie egzaminu CHOWA, bo jego kolorowa
+            // ocena zdradzałaby poprawność. NIE przyznaje punktów — punkty dalej ustawia
+            // samoocena (spec: issues/formularz-oceniania-otwarte.md).
             if (exercise.finalAnswer && Array.isArray(exercise.finalAnswer.accepted)) {
                 const fbox = document.createElement("div");
                 fbox.className = "final-answer-container";

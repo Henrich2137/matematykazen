@@ -126,7 +126,7 @@ function applySheetMeta(meta) {
         const opis = document.querySelector('meta[name="description"]');
         if (opis) opis.setAttribute("content", meta.metaDescription);
     }
-    const tytulEl = document.getElementById("exercises-sheet-title");
+    const tytulEl = document.getElementById("sheet-title-heading");
     if (tytulEl && meta.sheetTitle) tytulEl.textContent = meta.sheetTitle;
     if (meta.zasadyPdf) {
         // zasadyPdf jest ścieżką względną do folderu arkusza (jak media),

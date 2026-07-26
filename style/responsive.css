@@ -3,10 +3,10 @@
    niczego na dużych ekranach — tylko pozwalają arkuszowi zmieścić się na
    telefonie/tablecie bez poziomego scrolla. */
 
-/* Tytuł arkusza w pasku znika, gdy strefy boczne zostawiają mu za mało miejsca
-   (ellipsis przy ~900px robił się nieczytelny i tak). */
+/* Podtytuł trybu w pasku znika, gdy strefa środkowa zostaje za wąska
+   (ellipsis przy ~900px robił się nieczytelny i tak). Tytuł arkusza już tu nie
+   mieszka (patrz .sheet-title-heading w sheet.css) — jest nad zadaniami. */
 @media (max-width: 900px) {
-    #exercises-sheet-title,
     #exercises-mode-subtitle {
         display: none;
     }
@@ -118,5 +118,15 @@
        w stopce arkusza (#egzamin-koniec), więc funkcja zostaje dostępna. */
     body.tryb-egzaminu #egzamin-koniec-bar {
         display: none;
+    }
+
+    /* Pływające kropki „oceń się" (style/exam.css .wskaznik-otwarte) mają stałą
+       pozycję (right: 70/96px) liczoną z myślą o desktopie — na wąskim telefonie
+       potrafią nachodzić na treść karty. Prościej i pewniej wyłączyć je tutaj niż
+       dorabiać osobną, niesprawdzoną logikę pozycjonowania na małych ekranach —
+       samoocena każdego zadania otwartego działa normalnie bez nich. */
+    .wskaznik-otwarte,
+    #wskazniki-ukryj {
+        display: none !important;
     }
 }

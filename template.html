@@ -135,9 +135,10 @@
             </div>
 
             <div id="bar-center">
-                <div id="exercises-sheet-title"></div>
                 <!-- Zawsze widoczny wskaźnik trybu; JS (updateModeSubtitle)
-                     przełącza go na "tryb egzaminu" pod body.tryb-egzaminu. -->
+                     przełącza go na "tryb egzaminu" pod body.tryb-egzaminu.
+                     Tytuł arkusza jest teraz nad pierwszym zadaniem (#sheet-title-heading
+                     w #exercises-wrapper niżej), nie w pasku. -->
                 <div id="exercises-mode-subtitle">tryb ćwiczenia</div>
             </div>
 
@@ -283,8 +284,12 @@
 
     </div>
 
-    <!-- Exercises will be dynamically added here -->
-    <div id="exercises-wrapper"></div>
+    <!-- Exercises will be dynamically added here (appendChild w loadExercises
+         zawsze dokleja NA KONIEC, więc ten statyczny nagłówek zostaje pierwszym
+         dzieckiem — nad wszystkimi zadaniami). Treść wypełnia applySheetMeta(). -->
+    <div id="exercises-wrapper">
+        <h1 id="sheet-title-heading" class="sheet-title-heading"></h1>
+    </div>
 
     <!-- Stopka arkusza — pod ostatnim zadaniem (poza #exercises-wrapper, bo
          zadania są do niego dopisywane przez JS i statyczny przycisk

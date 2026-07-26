@@ -106,7 +106,9 @@ body.arkusz-wczytany:not(.tryb-egzaminu) #egzamin-start-stopka {
 /* „Sprawdź wszystkie odpowiedzi" w stopce arkusza — lżejszy, drugorzędny przycisk
    nad „rozpocznij próbny egzamin". Widoczny TYLKO w trybie „sprawdź później"
    (body.reczne-sprawdzanie = natychmiastowa poprawność OFF), po wyrenderowaniu
-   arkusza i poza egzaminem (regułę wykluczenia w trybie egzaminu ma blok wyżej). */
+   arkusza. W trybie egzaminu ZOSTAJE widoczny, ale wyszarzony/nieklikalny (jak
+   reszta OPCJE_MENU_EGZAMIN w app/exam.js) — odsłonięcie oceny podczas egzaminu
+   zdradzałoby wynik, ale znikający przycisk mylił, jakby zniknęła sama funkcja. */
 #sprawdz-wszystkie-stopka {
     display: none;
     margin: 40px auto 0;
@@ -123,14 +125,15 @@ body.arkusz-wczytany:not(.tryb-egzaminu) #egzamin-start-stopka {
 #sprawdz-wszystkie-stopka:hover {
     border-color: var(--border-strong);
 }
-body.reczne-sprawdzanie.arkusz-wczytany:not(.tryb-egzaminu) #sprawdz-wszystkie-stopka {
+body.reczne-sprawdzanie.arkusz-wczytany #sprawdz-wszystkie-stopka {
     display: block;
 }
-/* Menu ⋯: „sprawdź wszystkie" tylko w trybie „sprawdź później" i poza egzaminem. */
+/* Menu ⋯: „sprawdź wszystkie" tylko w trybie „sprawdź później" (widoczny też
+   w trakcie egzaminu, ale wyszarzony — patrz komentarz przy #sprawdz-wszystkie-stopka). */
 #sprawdz-wszystkie {
     display: none;
 }
-body.reczne-sprawdzanie:not(.tryb-egzaminu) #sprawdz-wszystkie {
+body.reczne-sprawdzanie #sprawdz-wszystkie {
     display: block;
 }
 
@@ -147,8 +150,7 @@ body.tryb-egzaminu .self-score-container,
 body.tryb-egzaminu .exercise-score,
 body.tryb-egzaminu #total-score,
 body.tryb-egzaminu #toggle-zasady,
-body.tryb-egzaminu .answer-check-floating,
-body.tryb-egzaminu #sprawdz-wszystkie-stopka {
+body.tryb-egzaminu .answer-check-floating {
     display: none !important;
 }
 
@@ -156,7 +158,8 @@ body.tryb-egzaminu #sprawdz-wszystkie-stopka {
    punktów, reset, start egzaminu) NIE znikają — zostają widoczne, ale
    wyszarzone i nieklikalne, żeby menu nie było pustą ramką. Atrybut disabled
    ustawia JS w enableExamMode()/finishExam(); tu tylko wygląd. */
-body.tryb-egzaminu #bar-menu button:disabled {
+body.tryb-egzaminu #bar-menu button:disabled,
+body.tryb-egzaminu #sprawdz-wszystkie-stopka:disabled {
     opacity: 0.4;
     cursor: not-allowed;
 }
@@ -175,6 +178,14 @@ body.tryb-egzaminu .fill-in-input.correct,
 body.tryb-egzaminu .fill-in-input.incorrect {
     border-color: var(--accent-blue);
     box-shadow: inset 0 0 0 1px var(--accent-blue);
+}
+
+/* Pole „ostateczna odpowiedź" (zadania otwarte) zostaje dostępne w trakcie
+   egzaminu do wpisania wyniku (patrz komentarz w app/render.js), ale sam
+   przycisk „Sprawdź" znika — jego kolorowa ocena zdradzałaby poprawność
+   podczas egzaminu, tak jak każde inne natychmiastowe potwierdzenie wyniku. */
+body.tryb-egzaminu .final-answer-check {
+    display: none;
 }
 
 /* Nakładka z podsumowaniem egzaminu (JS przełącza display na flex). */

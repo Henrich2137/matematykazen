@@ -92,7 +92,7 @@ function updateModeSubtitle() {
 // zostawałoby pustą ramką. Odblokowujemy je z powrotem po zakończeniu egzaminu.
 // (#egzamin-start jest w trakcie egzaminu dodatkowo CHOWANY — jego slot w menu
 // zajmuje wtedy "zakończ egzamin" — ale disabled zostawiamy jako drugą zaporę.)
-const OPCJE_MENU_EGZAMIN = ["show-all-solutions", "score-switch-button", "reset-scores", "egzamin-start"];
+const OPCJE_MENU_EGZAMIN = ["show-all-solutions", "score-switch-button", "reset-scores", "egzamin-start", "sprawdz-wszystkie", "sprawdz-wszystkie-stopka"];
 function setExamMenuDisabled(disabled) {
     OPCJE_MENU_EGZAMIN.forEach(id => {
         const btn = document.getElementById(id);
