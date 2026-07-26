@@ -1,3 +1,81 @@
+[ZROBIONE 2026-07-27] (Opus High, lokalnie) SESJA 2 — redesign chrome: koniec #top-bara + panel boczny
+zamiast okienka „⋯". Jedna zmiana layoutu w dwóch etapach; spec był w issues/likwidacja-top-bara.md
+i issues/sidebar-nawigacji.md (oba pliki usunięte razem z wpisami w issues/README.md).
+
+ETAP 1 — likwidacja paska:
+- #top-bar, #bar-container i #bar-left/center/right USUNIĘTE z DOM i CSS. Zamiast nich dwa niezależne
+  pływające klastry position: fixed, z-index 10 (tyle, ile miał pasek): #naroznik-lewy (logo + strzałka
+  panelu) i #naroznik-prawy (pigułki #egzamin-timer | #total-score | #egzamin-koniec-bar). Wspólna reguła
+  „pigułki" w sheet.css — tło var(--bg) jest FUNKCJONALNE, nie dekoracyjne: bez paska te elementy
+  przejeżdżają nad treścią zadania przy scrollowaniu.
+- #exercises-mode-subtitle (bierny napis „tryb ćwiczenia") → #tryb-przelacznik: segmented control pod
+  tytułem arkusza, druga pozycja w #exercises-wrapper. Świadomie NIE fixed. updateModeSubtitle() →
+  updateModeSwitch() i jest JEDYNYM pisarzem jego stanu (.aktywny + aria-pressed) — klik tylko woła
+  startExamPrompt()/finishExamPrompt(), więc anulowanie confirm() nie zostawia go w złym stanie.
+  Realizuje wpis „tryb egzaminu nie powinien być tak schowany w opcjach" (usunięty z TODO.md).
+- padding-top #exercises-wrapper: 100 → 66px (56px @720; 92px @560 tylko w egzaminie, gdyby prawy
+  klaster zawinął się na drugi rząd). „zakończ egzamin" skraca się do „zakończ" pod 560px
+  (span .tylko-szeroko), żeby cały prawy klaster zmieścił się obok logo przy 360px.
+- POPRAWKA DIAGNOZY: 13px poziomego scrolla przy 360px NIE brało się z #top-bara (wpis Sonneta w TODO.md).
+  Po usunięciu paska strona nadal mierzyła 372px — winowajcą była table.data-table w zad. 33. Dostała
+  własny display: block + width: fit-content + overflow-x: auto (jak .katex-display). Po tym 360 = 360.
+
+ETAP 2 — panel boczny (#sidebar):
+- #bar-menu i #menu-button usunięte z DOM i CSS (nie ukryte — inaczej duplikaty ID). Panel to nakładka
+  position: fixed, 260px, z-index 12 (NAD panelami PDF, 9), top: 56px, żeby logo i strzałka zostały
+  widoczne i klikalne nad nim. Arkusz nie rusza się ani o piksel (zmierzone: karta left=345px
+  przed i po otwarciu). Animowany wyłącznie transform, 180ms cubic-bezier(.2,.7,.3,1).
+- Wszystkie 13 ID przeniesione BEZ ZMIAN. Dwa typy wiersza: .sidebar-akcja (flex, czasownik)
+  i .sidebar-ustawienie (grid 20px 1fr auto auto: ikona | etykieta | wartość | kropki — grid, nie flex
+  z margin-left:auto, żeby wartości wyrównały się w pionie). Cienka .sidebar-kreska rozdziela akcje
+  od ustawień. 15 ikon jako inline SVG (wspólne atrybuty w CSS, nie na każdym <svg> osobno).
+- Cykl stanów jest DEKLARATYWNY w data-stany/data-kierunek, a data-stan to jedyne źródło prawdy.
+  Nowe helpery w app/state.js: ustawEtykiete / ustawWartosc / nastepnyStan / stanyPrzycisku — z jednej
+  listy biorą się cykl, kropki stanu ORAZ podgląd „auto → jasny" po najechaniu (@media (hover: hover)),
+  więc nie mogą się rozjechać. Przepisane: bootstrap.js (score-switch rozpoznawał stan przez
+  porównanie innerHTML ze stringiem — z ikoną nie do utrzymania), theme.js, exam.js (zegar),
+  indicators.js, report.js, panels.js (textContent → ustawEtykiete, inaczej pierwszy zapis kasuje ikonę).
+- Próg 1300px steruje trzema rzeczami naraz (spięty z szerokością, nie z czyTelefon() — wąski laptop
+  zasłania zadanie tak samo jak telefon): przyciemnienie, zamykanie klikiem w arkusz i zamykanie po
+  kliknięciu AKCJI. Pierwsze dwa czysto w CSS (pointer-events na przyciemnieniu), więc tylko trzecie
+  czyta sidebarNaklada() w JS. Kliknięcie USTAWIENIA nie zamyka panelu na żadnej szerokości.
+- exam.css: selektory #bar-menu #egzamin-start / #egzamin-koniec-menu przepisane na #sidebar (+ display
+  block → flex, bo taki jest wiersz akcji); to samo dla #sprawdz-wszystkie i reguły :disabled.
+- Wskaźniki samooceny mają TRZECI stan „wył." (wcześniej tylko wszystkie/wypełnione). Kluczowe:
+  w trybie „wył." pokazWskaznikiOtwarte() wychodzi wcześnie BEZ ustawFazeOceniania(false) — inaczej
+  powrót na „wszystkie" nie miałby czego przywrócić.
+- GOTCHA (kosztowała jeden cykl debugowania): zamknięty panel MUSI mieć visibility: hidden, żeby Tab
+  nie wchodził w jego przyciski, ale zwykłe `transition: visibility 180ms` trzyma wartość `hidden`
+  w tej samej klatce, w której dochodzi klasa — otworzSidebar() nie miał wtedy czego zafokusować
+  (nie pomagało nawet requestAnimationFrame). Rozwiązanie: opóźnienie, nie czas trwania:
+  `visibility 0s linear 180ms` w regule bazowej i `visibility 0s linear 0s` w regule otwartej.
+  prefers-reduced-motion zeruje też transition-delay, inaczej zamknięty panel zostaje `visible` 180ms.
+- ETYKIETY: spec zakładał „~200px na tekst" w 260px panelu, co pomijało kolumny wartości i kropek —
+  realnie zostaje ~85-100px. „Wskaźniki samooceny" → „Wskaźniki", „Poprawność odpowiedzi" →
+  „Poprawność" (pełne zdanie w title), .wartosc 12px. Sprawdzone przez przeklikanie WSZYSTKICH stanów
+  każdego ustawienia i porównanie etykieta.scrollWidth vs clientWidth.
+
+DECYZJE HENRICHA W TRAKCIE (2026-07-27):
+- Suma punktów ZOSTAJE ukryta w trybie egzaminu, mimo że szkic w issue pokazywał ją obok zegara —
+  widoczna suma zdradzałaby poprawność odpowiedzi albo wskazywała cały czas 0.
+- Panele PDF mogą wjechać na wysokość logo: klamp `top` zszedł z dolnej krawędzi paska do 0 (tylko
+  krawędź strony). #logo dostało stałe min-width: 200px (bez ramki) — panel przejeżdża POD nim
+  (logo z-index 10, panele 9), więc prostokąt tła musi być przewidywalny, a nie zależeć od długości
+  numeru wersji. Pod 720px min-width zdjęte (na telefonie PDF-y i tak idą w nową kartę).
+- Zaokrąglenie pigułek 999px → nowa zmienna --radius-pigulka: 6px (reszta strony jeździ na 3px,
+  pełna pigułka wyglądała obco). Jedno miejsce do podkręcenia.
+
+TESTY: 12 testów etapu 1 + 31 testów etapu 2 (Playwright headless + python -m http.server), wszystkie
+przechodzą, zero błędów JS/konsoli. Pokryte: brak #top-bara/#bar-menu/#menu-button w DOM, obecność
+wszystkich 13 ID w #sidebar, ikona w każdym wierszu, kropki zgodne z data-stany, pełne cykle wszystkich
+6 ustawień z kierunkiem, nienaruszalność ikony/etykiety/kropek po pełnym cyklu, fokus po otwarciu,
+Esc + powrót fokusu na strzałkę, arkusz nie drga, zachowanie po obu stronach progu 1300px, warstwy
+sidebar > PDF, tryb egzaminu (slot start/koniec, wyszarzenia, „ćwiczenia" niezablokowane, koniec
+z panelu), brak poziomego scrolla na 360/1280/1920 w obu motywach.
+NIESPRAWDZONE: prawdziwy telefon (Henrich obejrzał 360px — „wydaje się ok") i renderowanie PDF-ów
+w <object> (headless ich nie rysuje; przeciąganie uchwytu sprawdzone pomiarem top=0).
+[css, ui, pasek, sidebar, egzamin, a11y, ikony, responsywnosc, refaktor]
+
 BIEZACA PARTIA ZROBIONYCH PUNKTOW TODO (otwarta). Tu trafiaja wpisy [DONE]/[ZROBIONE]
 przenoszone z TODO.md. Nie wczytuj tego pliku domyslnie - tylko gdy potrzebne jest szersze
 spojrzenie na projekt, rozwiazanie trudniejszego problemu albo sprawdzenie, czy/jak cos juz

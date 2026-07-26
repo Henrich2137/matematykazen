@@ -17,7 +17,12 @@ rozwiązanie trudniejszego problemu albo sprawdzenie, czy/jak coś już kiedyś 
 Do szukania używaj najpierw tego indeksu (tagi niżej), potem grepa po konkretnym pliku.
 
 
-== 03-biezace.md — partia OTWARTA (2026-07-13 → 2026-07-26, niezmergowana do mastera) ==
+== 03-biezace.md — partia OTWARTA (2026-07-13 → 2026-07-27, niezmergowana do mastera) ==
+- 2026-07-27 (Opus High) — SESJA 2, redesign chrome: #top-bar zlikwidowany (pływające logo + pigułki
+  w narożnikach), przełącznik trybu ćwiczenia/egzamin pod tytułem arkusza, panel boczny #sidebar zamiast
+  okienka „⋯” (13 pozycji bez zmiany ID, akcje vs ustawienia, cykl na data-stan + kropki stanu, ikony SVG,
+  próg 1300px); naprawiony poziomy scroll 360px (winna była .data-table w zad. 33, nie pasek)
+  [css, ui, pasek, sidebar, egzamin, a11y, ikony, responsywnosc, refaktor]
 - 2026-07-26 (Opus) — limity długości opisu zgłoszenia: MIN 3 / MAX 2000 znaków liczone po trim(),
   egzekwowane dwukrotnie (maxlength w HTML + bladOpisu() w JS, bo maxlength omija się programowo),
   licznik „n / 2000" czerwieniejący powyżej 90%; komunikat błędu aktualizuje się na bieżąco przy pisaniu.
