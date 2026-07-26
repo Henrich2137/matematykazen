@@ -141,6 +141,22 @@ dlatego segmented control z trzema podpisami odpada, a etykiety ustawień są SK
   To ONE rozwiązują cykl na telefonie: bez nich tapnięcie jest klikaniem w ciemno.
 - **Hover-podgląd tylko na desktopie**: pod `@media (hover: hover)` po najechaniu wartość
   pokazuje `auto → jasny`. Na dotyku ta reguła w ogóle się nie stosuje.
+- **Kolejność stanów — jedna zasada dla wszystkich**: lewo = stan domyślny (najbogatszy),
+  kolejne kliknięcia idą w prawo, ostatni = wyłączone. Kropka wędruje zawsze w prawo i zawija
+  na początek. Dzięki temu pierwsza kropka zawsze znaczy „tak jak było na starcie".
+  Konwencja przełącznika ON/OFF (lewo = off) tu NIE obowiązuje — to cykl, nie suwak.
+
+  | Ustawienie | `data-stany` |
+  |---|---|
+  | Motyw | `auto,jasny,ciemny` (tak jak dziś `MOTYWY` w `app/theme.js:10`) |
+  | Punktacja | `wszystko,tylko suma,wył.` |
+  | Poprawność odpowiedzi | `natychmiast,po „sprawdź"` |
+  | Zgłoś błąd pod zadaniem | `wł.,wył.` |
+  | Zegar | `na wierzchu,wył.` |
+  | Wskaźniki samooceny | `wszystkie,wypełnione,wył.` |
+
+  Motyw jest wyjątkiem od „więcej → mniej" (nie jest skalą) — rządzi nim samo „domyślny pierwszy".
+  TODO.md ma w tym miejscu zapisane „jasny/ciemny/auto"; obowiązuje kolejność z kodu.
 - Ten sam wzorzec dla sub-opcji egzaminu (Zegar — 2 stany, Wskaźniki — 3), tylko mniejszy
   font i wcięcie. Nie robić z nich osobnego typu kontrolki.
 - **Separacja akcji od ustawień**: cienka kreska 1 px (`--separator`), bez nagłówka sekcji
