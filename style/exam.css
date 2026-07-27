@@ -62,19 +62,22 @@ body.tryb-egzaminu #egzamin-timer.zegar-ukryty {
 body.tryb-egzaminu #egzamin-koniec-bar {
     display: inline-block;
 }
-/* Duże przyciski w stopce arkusza (pod ostatnim zadaniem): "zakończ egzamin"
-   w trybie egzaminu i "rozpocznij próbny egzamin" w trybie ćwiczeniowym mają
-   identyczny wygląd — ta sama ramka i te same marginesy (40px góra / 80px dół).
+/* Duże przyciski w stopce arkusza (pod ostatnim zadaniem) — JEDNA rodzina:
+   „sprawdź wszystkie odpowiedzi", „rozpocznij próbny egzamin" i „zakończ
+   egzamin" mają ten sam rozmiar, padding i promień. Hierarchię niesie kolor
+   TEKSTU i ramki, nie rozmiar: do 2026-07-27 „sprawdź wszystkie" był o dwa
+   punkty mniejszy (15px vs 17px), z cieńszą ramką i innym paddingiem, więc
+   czytał się jak przycisk z innej strony (zgłoszenie Henricha).
    Wygląd jest wspólny, ale widoczność KAŻDEGO sterowana jest osobną regułą
    niżej — inaczej dzielona reguła display cichcem odkrywa jeden przycisk przy
    okazji warunku napisanego dla drugiego (tak było wcześniej z tą kombinacją
    selektorów: #egzamin-start-stopka dostawał display:block bezwarunkowo). */
 #egzamin-koniec,
-#egzamin-start-stopka {
-    margin: 40px auto 80px;
+#egzamin-start-stopka,
+#sprawdz-wszystkie-stopka {
     padding: 10px 24px;
-    border: 2px solid var(--border);
-    border-radius: 3px;
+    border: var(--border-kontrolka) solid var(--border);
+    border-radius: var(--radius-kontrolka);
     background-color: var(--bg);
     font-family: inherit;
     font-size: 17px;
@@ -83,7 +86,8 @@ body.tryb-egzaminu #egzamin-koniec-bar {
     cursor: pointer;
 }
 #egzamin-koniec:hover,
-#egzamin-start-stopka:hover {
+#egzamin-start-stopka:hover,
+#sprawdz-wszystkie-stopka:hover {
     border-color: var(--border-strong);
 }
 body.tryb-egzaminu #egzamin-koniec {
@@ -93,8 +97,9 @@ body.arkusz-wczytany:not(.tryb-egzaminu) #egzamin-start-stopka {
     display: block;
 }
 
-/* „Sprawdź wszystkie odpowiedzi" w stopce arkusza — lżejszy, drugorzędny przycisk
-   nad „rozpocznij próbny egzamin". Widoczny TYLKO w trybie „sprawdź później"
+/* „Sprawdź wszystkie odpowiedzi" w stopce arkusza — drugorzędny (przygaszony
+   tekst), NAD parą egzaminacyjną: lżejsza akcja wyżej, cięższa niżej — taka
+   jest też kolejność w template.html. Widoczny TYLKO w trybie „sprawdź później"
    (body.reczne-sprawdzanie = natychmiastowa poprawność OFF), po wyrenderowaniu
    arkusza. W trybie egzaminu ZOSTAJE widoczny, ale wyszarzony/nieklikalny (jak
    reszta OPCJE_MENU_EGZAMIN w app/exam.js) — odsłonięcie oceny podczas egzaminu
@@ -102,21 +107,27 @@ body.arkusz-wczytany:not(.tryb-egzaminu) #egzamin-start-stopka {
 #sprawdz-wszystkie-stopka {
     display: none;
     margin: 40px auto 0;
-    padding: 8px 20px;
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    background-color: var(--bg);
-    font-family: inherit;
-    font-size: 15px;
-    white-space: nowrap;
     color: var(--text-muted);
-    cursor: pointer;
-}
-#sprawdz-wszystkie-stopka:hover {
-    border-color: var(--border-strong);
 }
 body.reczne-sprawdzanie.arkusz-wczytany #sprawdz-wszystkie-stopka {
     display: block;
+}
+
+/* Odstępy stopki: 40px nad pierwszym przyciskiem, 16px między przyciskami,
+   80px pod ostatnim (przed disclaimerem samooceny). Dawniej „rozpocznij" miał
+   `40px auto 80px`, a „sprawdź" `40px auto 0`: po skolapsowaniu marginesów
+   robiło się 80px pustki MIĘDZY przyciskami i 0px pod dolnym, więc „sprawdź"
+   był odklejony od pary i przyklejony do disclaimera. */
+#egzamin-koniec,
+#egzamin-start-stopka {
+    margin: 16px auto 80px;
+}
+/* Gdy „sprawdź wszystkie" jest ukryty (poprawność „natychmiast"), przycisk
+   egzaminu zostaje w stopce sam i potrzebuje pełnego odstępu od ostatniego
+   zadania — inaczej 16px przyklejałoby go do kreski pod kartą. */
+body:not(.reczne-sprawdzanie) #egzamin-koniec,
+body:not(.reczne-sprawdzanie) #egzamin-start-stopka {
+    margin-top: 40px;
 }
 /* Panel boczny: „Sprawdź wszystkie odpowiedzi" tylko w trybie „sprawdź później"
    (widoczny też w trakcie egzaminu, ale wyszarzony — patrz komentarz przy
@@ -266,7 +277,7 @@ body.wskazniki-scroll-aktywny .wskaznik-otwarte {
     max-width: calc(100vw - 20px);
     padding: 6px 12px;
     border: 2px solid var(--wskaznik-border);
-    border-radius: 3px;
+    border-radius: var(--radius-kontrolka);
     background-color: var(--bg);
     font-family: inherit;
     font-size: 13px;

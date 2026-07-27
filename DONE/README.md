@@ -18,6 +18,11 @@ Do szukania używaj najpierw tego indeksu (tagi niżej), potem grepa po konkretn
 
 
 == 03-biezace.md — partia OTWARTA (2026-07-13 → 2026-07-27, niezmergowana do mastera) ==
+- 2026-07-27 (Opus High) — SPÓJNOŚĆ UI, sesja 1: warstwa tokenów kształtu w base.css (--radius-kontrolka,
+  --border-kontrolka, --shadow-panel, --segment-bg) + 6 punktów Henricha (jedna rodzina przycisków stopki,
+  lżejszy aktywny segment przełącznika, panele PDF w stylu sidebara, #sidebar-linia zamiast border-right,
+  docisk strzałki panelu, landing na tokenach); wsad dla sesji 2 w issues/ui-spojnosc-etap2.md
+  [css, ui, tokeny, sidebar, pdf-panele, landing, motyw]
 - 2026-07-27 (Opus High) — SESJA 2, redesign chrome: #top-bar zlikwidowany (pływające logo + pigułki
   w narożnikach), przełącznik trybu ćwiczenia/egzamin pod tytułem arkusza, panel boczny #sidebar zamiast
   okienka „⋯” (13 pozycji bez zmiany ID, akcje vs ustawienia, cykl na data-stan + kropki stanu, ikony SVG,

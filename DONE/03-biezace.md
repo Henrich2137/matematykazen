@@ -1,3 +1,48 @@
+[ZROBIONE 2026-07-27] (Opus High, lokalnie) SPÓJNOŚĆ UI, SESJA 1 — warstwa tokenów kształtu + 6 punktów
+Henricha. Spec i pułapki były w issues/ui-spojnosc-etap1.md (plik usunięty); wsad dla sesji 2 (Sonnet High)
+został zapisany w issues/ui-spojnosc-etap2.md. Weryfikacja: Playwright, zrzuty light/dark × 1440/1280/390
+× stany (ćwiczenia, egzamin, sidebar, panel PDF, stopka, landing) + smoke test klikowy, zero błędów konsoli.
+
+DIAGNOZA: to nie było 6 osobnych bugów. Strona miała trzy niezależne promienie (6px pigułek, twarde 3px
+kontrolek, 4px toasta), dwie grubości ramki i pięć rozmiarów fontu w samym chrome — każda „mała poprawka"
+utrwalała rozjazd. Najpierw tokeny, potem punkty.
+
+TOKENY (style/base.css): --radius-kontrolka (6px, równy --radius-pigulka — 16 twardych 3px/4px podmienione
+w sheet/exam/landing), --border-kontrolka (1px; 2px zostało tylko tam, gdzie NIESIE znaczenie: .wg-a/.wg-b),
+--shadow-panel (mniejszy i słabszy niż dawny cień sidebara — prośba Henricha; jedyny token kształtu z inną
+wartością w dark, bo cień na ciemnym tle nie pracuje → dopisany w OBU bliźniaczych blokach),
+--segment-bg/--segment-text.
+
+PUNKTY:
+1+6 (były w TODO jako dwa, to jeden problem) — stopka arkusza: „sprawdź wszystkie odpowiedzi" miał 15px /
+  8px 20px / border 1px, sąsiad 17px / 10px 24px / border 2px. Teraz JEDNA rodzina trzech przycisków
+  (17px, 10px 24px, 1px, --radius-kontrolka); hierarchia przez kolor tekstu (--text-muted vs --text),
+  nie przez rozmiar. Odstępy: zmierzone 80px MIĘDZY przyciskami (skolapsowane 80+40) i 0px pod dolnym —
+  stąd „dziwnie oddzielony". Teraz 40 nad / 16 między / 80 pod, a przy poprawności „natychmiast"
+  (przycisk „sprawdź" ukryty) body:not(.reczne-sprawdzanie) przywraca 40px nad przyciskiem egzaminu.
+  Kolejność w DOM odwrócona: lżejsza akcja NAD parą egzaminacyjną (komentarz w exam.css od dawna twierdził,
+  że tak jest — nie było).
+2 — #tryb-przelacznik: pełna inwersja (tło --text) → miękkie wypełnienie --segment-bg + font-weight 600.
+  W light #e9e9e9, w dark #303030. Wybór wariantu Henrich zostawił modelowi „na zrzutach".
+  Posprzątane dwa nadpisujące się `margin`y (50px/40px zostają, jedna deklaracja).
+3 — panele PDF: obudowa jak sidebar (ramka --border-strong, --radius-kontrolka, --shadow-panel), pasek-uchwyt
+  z szarej płachty --bg-muted na --bg + kreska --separator, typografia jak #sidebar-tytul (14px/600, 46→40px),
+  krzyżyk 40px/2px/z cieniem → wzorzec .zglos-blad-x (32px, 1px, bez cienia). Kartka PDF zostaje biała
+  (decyzja Henricha). panels.js czyta wysokość uchwytu z DOM, więc zmiana była bezpieczna.
+4 — pionowa kreska sidebara: nowy #sidebar-linia (fixed, top 72px, bottom 40px, left 276px), border-right
+  zdjęty. Border nie dał się ani odsunąć, ani skrócić (jedzie z treścią przy overflow-y: auto), a #sidebar::after
+  z position: fixed też nie — #sidebar ma transform, czyli jest containing blockiem dla fixed, i overflow by go
+  uciął. Pod 720px top 64px, pod 560px display: none.
+5 — #sidebar-toggle: docisk margin-left: -4px / margin-top: -2px, ZEROWANY pod 720px. Musiał iść przez
+  margin, nie transform — body.sidebar-otwarty ustawia rotate(180deg) i nadpisałoby translate (sprawdzone
+  testem: po otwarciu transform to nadal czysty matrix(-1,0,0,-1,...)).
+
+LANDING (Henrich objął go zakresem): .landing-cta z 2px --text + inwersji na hover → 1px --border-strong
++ hover na kolorze ramki i --bg-muted (w dark świecił mocniej niż cokolwiek na arkuszu); .landing-card
+dostała --radius-kontrolka (ostatni prostokąt z ostrymi narożnikami). Wersja podbita v0.05 → v0.06.
+Zaktualizowane: ARCHITECTURE_CSS.md (tokeny kształtu, panel boczny + kreska, panele PDF, stopka arkusza,
+przełącznik, landing, breakpointy — plus poprawiona nieścisłość: wskaźniki „oceń się" chowa 560px, nie 480px).
+
 [ZROBIONE 2026-07-27] (Opus High, lokalnie) SESJA 2 — redesign chrome: koniec #top-bara + panel boczny
 zamiast okienka „⋯". Jedna zmiana layoutu w dwóch etapach; spec był w issues/likwidacja-top-bara.md
 i issues/sidebar-nawigacji.md (oba pliki usunięte razem z wpisami w issues/README.md).

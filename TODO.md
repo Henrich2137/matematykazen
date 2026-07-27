@@ -4,17 +4,11 @@ DO REALIZACJI
 <br> Jeżeli nie masz co robić, to rób stąd.
 
 Do przydzielenia:
-- Weź spojrzej na tą całą stronę i zrób mnóstwo małych poprawek które będą sprawiały, że wszystko będzie bardziej spójne i dopasowane. Styl w jakim jest boczny panel mi się podoba. Oto przykłady rzeczy które wymagają poprawy, popraw je i im podobne:
-  - Przycisk sprawdź wszystkie odpowiedzi jest dziwnie oddzielony i mniejszy.  
+- nic
 
-  - Odwrócone kolory wybranego przycisku w przełączniuku ćwiczenia / egzamin na górze arkusza powinny byćnieco lżejsze. W darkmodzie ciemniejsze tło, a w jasnym motywie jaśniejsze.
-
-  - Zmienić kolor okien pdf na ciemniejszy w darkmodzie, tak aby nie odstawał tak bardzo od reszty. Można też zmienić jego cały styl na podobny do tego co ma panel boczny.
-
-  - Pionowa linia sidebara po jego prawej powinna być przesunięta w prawo. Jej dolny koniec powinien się też kończyć przed dolną granicą ekranu.
-
-
-- Na komputerze przycisk sidebar-toggle powinien być przesunięty lekko w lewo i minimalnie w górę. Będzie się wtedy lepiej się komponował z otwartym sidebarem oraz logo
+SONNET HIGH:
+- Spójność UI, sesja 2: 11 drobnic z audytu sesji 1 (skala rozmiarów kontrolek, brak :hover na odpowiedziach, .light-button 30%, samoocena na telefonie, cienie/ramki poza tokenami, odstępy). Szczegóły i metoda: issues/ui-spojnosc-etap2.md
+  - Sesja 1 [ZROBIONE 2026-07-27]: tokeny kształtu + 6 moich punktów — patrz DONE/03-biezace.md. Do sprawdzenia na żywo (v0.06): stopka arkusza, aktywny segment przełącznika w obu motywach, panele PDF, kreska i strzałka sidebara.
 
 - W zadaniach otwartych: zamiast checkboxów powinny być przyciski z punktami do każdego zdania typu "Nierówność zapisana w postaci x2−6x−7≤0x2−6x−7≤0" (przykład z zad 9.) Dokładna punktacja jest w zasadach oceniania w pdf i od tego powinna zależeć ilość przycisków. (czeka na decyzję merytoryczną Henricha o punktacji za poszczególne przyciski, potem do przydzielenia modelowi)
 
@@ -22,7 +16,8 @@ Do przydzielenia:
 
 - Tło w niektórych widżetach jest białe w motywie darkmode. Należy zmienić kolory na taki które będą się zgadzać z motywem.
 
-- W trybie ćwiczeń przycisk "sprawdź wszystkie odpowiedzi" powinien znajdować się na dole arkusza, obok "rozpocznij egzamin". Ma zostać też w menu (i tu, i tu). W trybie egzaminu na dole arkusza ma być niewidoczny (nie tylko wyszarzony jak w menu).
+
+- [ZROBIONE] W trybie ćwiczeń przycisk "sprawdź wszystkie odpowiedzi" powinien znajdować się na dole arkusza, obok "rozpocznij egzamin". Ma zostać też w menu (i tu, i tu). W trybie egzaminu na dole arkusza ma być niewidoczny (nie tylko wyszarzony jak w menu).
 
 
 <br>

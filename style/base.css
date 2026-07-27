@@ -94,11 +94,35 @@
     --wskaznik-text: #4a3800;
     --wskaznik-border: #e3b937;
 
-    /* Zaokrąglenie „pigułek" chrome'u (logo, suma/zegar/„zakończ" w narożnikach,
-       przełącznik trybu, wiersze panelu bocznego). Reszta strony jeździ na 3px,
-       więc trzymamy to blisko — pełne 999px wyglądało obco. Jedno miejsce do
-       podkręcenia, jeśli kiedyś ma być bardziej/mniej okrągło. */
+    /* ===== TOKENY KSZTAŁTU KONTROLEK (2026-07-27) =====
+       Wcześniej strona miała trzy niezależne promienie (6px pigułek, twarde 3px
+       przycisków/paneli, 4px toasta) i dwie grubości ramki — każda „mała
+       poprawka" utrwalała rozjazd. Teraz JEDNA wartość na obie rodziny:
+       --radius-pigulka to chrome (logo, suma/zegar, przełącznik trybu, wiersze
+       panelu bocznego), --radius-kontrolka to wszystko klikalne w treści
+       (przyciski odpowiedzi, pola, przyciski stopki, panele PDF).
+       Trzymamy je równe — rozdzielamy tylko wtedy, gdy naprawdę mają się różnić. */
     --radius-pigulka: 6px;
+    --radius-kontrolka: 6px;
+
+    /* Domyślna grubość ramki kontrolki. 2px zostaje tylko tam, gdzie NIESIE
+       znaczenie (obwódki wartości w widżetach, CTA landingu). */
+    --border-kontrolka: 1px;
+
+    /* Wspólny cień pływających paneli (panel boczny, panele PDF, toast).
+       Henrich 2026-07-27: ma być MNIEJSZY i SŁABSZY niż dawne
+       `0 4px 16px rgba(0,0,0,.12)` sidebara — panel ma leżeć blisko strony,
+       nie unosić się nad nią. */
+    --shadow-panel: 0 2px 10px rgba(0, 0, 0, 0.07);
+
+    /* Aktywny segment przełącznika trybu (ćwiczenia/egzamin). Dawniej pełna
+       inwersja (tło --text): w jasnym motywie czarny prostokąt, w ciemnym
+       prawie biały — za mocno na drobną kontrolkę pod tytułem. Teraz miękkie
+       wypełnienie: w jasnym JAŚNIEJSZE od czerni, w ciemnym CIEMNIEJSZE od
+       bieli, tekst zostaje w --text (kontrast z treści, nie z inwersji).
+       Nośnikiem stanu jest tło + font-weight, nie odwrócenie kolorów. */
+    --segment-bg: #e9e9e9;
+    --segment-text: #111;
 }
 
 /* Ciemna paleta — motyw systemowy (auto), o ile użytkownik nie wymusił jasnego. */
@@ -155,6 +179,14 @@
         --wskaznik-bg: #c99a1e;
         --wskaznik-text: #1c1500;
         --wskaznik-border: #a97f16;
+
+        /* Cień na ciemnym tle prawie nie pracuje — ta sama geometria, mocniejsza
+           nieprzezroczystość. Promienie i grubość ramki są wspólne (z :root). */
+        --shadow-panel: 0 2px 10px rgba(0, 0, 0, 0.35);
+
+        /* Aktywny segment: CIEMNIEJSZY od bieli (dawniej tło --text ≈ #e6e6e6). */
+        --segment-bg: #303030;
+        --segment-text: #e6e6e6;
     }
 }
 
@@ -212,6 +244,14 @@ html.theme-dark {
     --wskaznik-bg: #c99a1e;
     --wskaznik-text: #1c1500;
     --wskaznik-border: #a97f16;
+
+    /* Cień na ciemnym tle prawie nie pracuje — ta sama geometria, mocniejsza
+       nieprzezroczystość. Promienie i grubość ramki są wspólne (z :root). */
+    --shadow-panel: 0 2px 10px rgba(0, 0, 0, 0.35);
+
+    /* Aktywny segment: CIEMNIEJSZY od bieli (dawniej tło --text ≈ #e6e6e6). */
+    --segment-bg: #303030;
+    --segment-text: #e6e6e6;
 }
 
 body {

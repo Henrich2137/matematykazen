@@ -62,6 +62,16 @@
     #sidebar {
         top: 48px;
     }
+    /* Kreska panelu jedzie razem z nim (panel startuje wyżej: 48px + 16px oddechu). */
+    #sidebar-linia {
+        top: 64px;
+    }
+    /* Docisk strzałki do logo jest wyliczony dla szerokiego narożnika; tutaj
+       narożnik i tak jest ciaśniejszy (top: 10px, left: 8px), więc bez przesunięcia. */
+    #sidebar-toggle {
+        margin-left: 0;
+        margin-top: 0;
+    }
 
     /* Karta zadania wypełnia ekran zamiast sztywnych 650px + 50px paddingu. */
     .exercise-container {
@@ -166,7 +176,10 @@
        a pełna szerokość daje czytelne, łatwe do trafienia palcem pozycje. */
     #sidebar {
         width: 100%;
-        border-right: 0;
+    }
+    /* Panel zajmuje całą szerokość, więc nie ma czego oddzielać od treści. */
+    #sidebar-linia {
+        display: none;
     }
 
     /* Pływające kropki „oceń się" (style/exam.css .wskaznik-otwarte) mają stałą

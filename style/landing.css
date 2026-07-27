@@ -37,7 +37,7 @@
     right: 16px;
     padding: 6px 12px;
     border: 1px solid var(--border-strong);
-    border-radius: 3px;
+    border-radius: var(--radius-kontrolka);
     background-color: var(--bg);
     font-family: inherit;
     font-size: 13px;
@@ -60,18 +60,24 @@
     line-height: 1.6;
     color: var(--text-soft);
 }
+/* CTA landingu — ta sama rodzina co duże przyciski stopki arkusza: ramka
+   1px (--border-kontrolka), promień --radius-kontrolka, hover przez kolor ramki.
+   Do 2026-07-27 miał ramkę 2px w kolorze --text i hover na pełnej inwersji, więc
+   w ciemnym motywie świecił mocniej niż cokolwiek na arkuszu. Waga wizualna
+   zostaje w rozmiarze (18px, padding 14/28), nie w grubości obwódki. */
 .landing-cta {
     display: inline-block;
     padding: 14px 28px;
-    border: 2px solid var(--text);
-    border-radius: 3px;
+    border: var(--border-kontrolka) solid var(--border-strong);
+    border-radius: var(--radius-kontrolka);
     font-size: 18px;
     text-decoration: none;
     color: var(--text);
 }
 .landing-cta:hover {
-    background-color: var(--text);
-    color: var(--bg);
+    border-color: var(--text);
+    background-color: var(--bg-muted);
+    color: var(--text);
 }
 .landing-cta-sub {
     margin-top: 12px;
@@ -91,10 +97,13 @@
     gap: 20px;
     text-align: left;
 }
+/* Karty landingu miały ostre narożniki, gdy cała reszta strony jeździ na
+   --radius-kontrolka — jedyny powód był historyczny. */
 .landing-card {
     flex: 1;
     padding: 20px;
-    border: 1px solid var(--border);
+    border: var(--border-kontrolka) solid var(--border);
+    border-radius: var(--radius-kontrolka);
 }
 .landing-card h3 {
     margin: 0 0 10px;

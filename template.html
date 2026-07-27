@@ -132,7 +132,7 @@
              (v0.01 → v0.02 → …), żeby po odświeżeniu na telefonie było
              widać, czy strona wczytała już nową wersję. Ta sama wartość
              musi być w .landing-logo w index.html. -->
-        <a id="logo" href="index.html"><b>Matematyka Zen</b> <span id="wersja">v0.05</span></a>
+        <a id="logo" href="index.html"><b>Matematyka Zen</b> <span id="wersja">v0.06</span></a>
         <!-- Strzałka otwierająca panel boczny — następca przycisku „⋯". Ten sam
              przycisk zamyka (obraca się o 180°); JS przestawia aria-expanded
              i aria-label. -->
@@ -161,6 +161,14 @@
          zasłania kartę zadania. Powyżej progu ma pointer-events: none, więc klik
          w arkusz NIE zamyka panelu — bez żadnego warunku w JS. -->
     <div id="sidebar-przyciemnienie"></div>
+
+    <!-- Pionowa kreska po prawej stronie panelu bocznego. Osobny element, a nie
+         `border-right` panelu ani jego pseudo-element: kreska ma być odsunięta od
+         panelu i kończyć się nad dolną krawędzią ekranu, a border przewijałby się
+         z treścią panelu (#sidebar ma overflow-y: auto). Pełne uzasadnienie przy
+         #sidebar-linia w style/sheet.css. Żaden JS jej nie dotyka — widoczność
+         wynika z klasy body.sidebar-otwarty. -->
+    <div id="sidebar-linia" aria-hidden="true"></div>
 
     <!-- PANEL BOCZNY — następca okienka „⋯" (#bar-menu, usunięte 2026-07-27).
          Nakładka: arkusz się NIE rusza (żadnego transform/zwężania kolumny).
@@ -439,17 +447,21 @@
 
     <!-- Stopka arkusza — pod ostatnim zadaniem (poza #exercises-wrapper, bo
          zadania są do niego dopisywane przez JS i statyczny przycisk
-         wylądowałby nad nimi). Dwa przyciski w tym samym miejscu, widoczne
+         wylądowałby nad nimi). Kolejność: najpierw lżejsza akcja („sprawdź
+         wszystkie odpowiedzi"), pod nią cięższa — para egzaminacyjna widoczna
          wzajemnie wykluczająco: "zakończ egzamin" tylko w trybie egzaminu,
          "rozpocznij próbny egzamin" tylko w trybie ćwiczeniowym (reguły
-         body.tryb-egzaminu w style.css). Ten drugi to DODATKOWA kopia przycisku
-         z menu "⋯" (#egzamin-start) — oba robią to samo. -->
-    <button id="egzamin-koniec">zakończ egzamin</button>
-    <button id="egzamin-start-stopka">rozpocznij próbny egzamin</button>
+         body.tryb-egzaminu w style/exam.css). Wszystkie trzy mają ten sam
+         wygląd — hierarchię niesie kolor tekstu, nie rozmiar.
+         „Rozpocznij" to DODATKOWA kopia przycisku z panelu bocznego
+         (#egzamin-start) — oba robią to samo. -->
     <!-- „Sprawdź wszystkie odpowiedzi" — widoczny tylko w trybie „sprawdź później"
-         (natychmiastowa poprawność OFF; body.reczne-sprawdzanie) i poza egzaminem.
+         (natychmiastowa poprawność OFF; body.reczne-sprawdzanie); w trybie
+         egzaminu zostaje, ale wyszarzony.
          Odsłania ocenę wszystkich zadań zamkniętych z zaznaczoną odpowiedzią. -->
     <button id="sprawdz-wszystkie-stopka">sprawdź wszystkie odpowiedzi</button>
+    <button id="egzamin-koniec">zakończ egzamin</button>
+    <button id="egzamin-start-stopka">rozpocznij próbny egzamin</button>
 
     <!-- Ogólne zastrzeżenie samooceny — RAZ, w stopce arkusza (nie przy każdym
          zadaniu). Dotyczy pola „ostateczna odpowiedź" i checklisty kryteriów przy
