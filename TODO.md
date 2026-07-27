@@ -22,8 +22,9 @@ Do przydzielenia:
 
 - Tło w niektórych widżetach jest białe w motywie darkmode. Należy zmienić kolory na taki które będą się zgadzać z motywem.
 
-- przycisk zgłoś błąd powinien wyglądać podobnie do light buttonów
+- Przycisk zgłoś błąd powinien wyglądać podobnie do light buttonów
 
+- Przesunięcie w lewo powinno zwijać panel boczny (tylko na telefonie)
 
 <br
 
