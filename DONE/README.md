@@ -21,7 +21,9 @@ Do szukania używaj najpierw tego indeksu (tagi niżej), potem grepa po konkretn
 - 2026-07-27 (Sonnet High) — „sprawdź wszystkie odpowiedzi": fillIn i finalAnswer dopisane do rejestru
   oczekujaceSprawdzenia (ocena wydzielona do ocenFillIn(), bez duplikacji logiki), bonus — finalAnswer
   auto-sprawdzany po zakończeniu egzaminu, komunikat „sprawdzono ✓"/„brak zaznaczonych odpowiedzi" obok
-  obu kopii przycisku (aria-live, tokeny --correct/--text-faint, mobile fallback) — v0.08
+  obu kopii przycisku (aria-live, tokeny --correct/--text-faint, mobile fallback) — v0.08. Poprawka tego
+  samego dnia po live-teście Henricha: mobilny fallback komunikatu w stopce wciągał go do flow i dokładał
+  fantomowe ~6px pod przyciskiem nawet gdy pusty — naprawione, zostaje position: absolute
   [silnik, ui, egzamin, a11y, css]
 - 2026-07-27 (Opus High) — trzy drobnice po przeglądzie sesji 1 przez Henricha (v0.07): cień zdjęty
   z #sidebara (panele PDF i toast zostają), ciemniejszy tekst „sprawdź wszystkie" w stopce,

@@ -130,13 +130,23 @@
        więc jego prawa połowa + komunikat regularnie przekraczają wąski ekran
        (dokładnie mechanizm z "Known layout gotchas" w ARCHITECTURE_CSS.md —
        poziomy scroll przy 360px, tam winna była .data-table, tu byłby ten
-       komunikat). Tutaj wraca do zwykłego flow, pod przyciskiem, wycentrowany. */
+       komunikat). Tutaj przesuwamy go POD przycisk, wycentrowany w poziomie —
+       ALE ZOSTAJE position: absolute (tylko left/top/transform się zmieniają).
+       Pierwsza wersja (2026-07-27) przełączała na position: static; display:
+       block — to wciągnęło komunikat z powrotem do flow WRAPPERA
+       (#sprawdz-wszystkie-stopka-wrap), więc nawet PUSTY/niewidoczny (opacity: 0,
+       .przygaszony bez treści) dokładał ~6px wysokości pod przyciskiem przez
+       swój margin-top + line-height pustej linii — stopka wyglądała na "za
+       grubą" na stałe, nie tylko po kliknięciu (zgłoszone przez Henricha).
+       Zostając poza flow, komunikat zajmuje miejsce TYLKO wizualnie, nigdy nie
+       zmienia wysokości wrappera. */
     .sprawdz-status-stopka {
-        position: static;
-        display: block;
-        transform: none;
+        left: 50%;
+        top: 100%;
+        transform: translateX(-50%);
         margin-top: 6px;
         text-align: center;
+        max-width: calc(100vw - 32px);
     }
 
     /* Formularz „zgłoś błąd" (blok w karcie zadania) — ciaśniejszy padding,
