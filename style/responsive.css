@@ -73,6 +73,12 @@
         margin-top: 0;
     }
 
+    /* Tytuł arkusza wraca na pełną szerokość kolumny — 32% z desktopu (sheet.css)
+       zostawiłoby na telefonie po dwa słowa w linii. */
+    .sheet-title-heading {
+        max-width: none;
+    }
+
     /* Karta zadania wypełnia ekran zamiast sztywnych 650px + 50px paddingu. */
     .exercise-container {
         width: auto;

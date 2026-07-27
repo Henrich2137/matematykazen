@@ -34,7 +34,7 @@ Plus `vendor/katex/` — KaTeX vendored for fully offline math rendering (don't 
 
 Henrich's VS Code has the **gitdoc** extension enabled globally (`C:\Users\<user>\AppData\Roaming\Code\User\settings.json`), with **`gitdoc.autoPush: "onCommit"`**: gitdoc auto-commits on every save (timestamp-only messages, no prefix) and **immediately pushes each one to `origin`** — this bypasses the "confirm before push" rule for those commits specifically, because they're not something the assistant initiated. Also set: `autoPull: "onPush"`, `pullOnOpen: true`, `commitOnClose: true`. Practical effects to expect:
 - `git log` on this repo routinely shows a run of bare-timestamp commits between two "real" (prefixed, authored) commits — these are gitdoc, not the assistant, even during an assistant session (e.g. Henrich editing TODO.md in the editor mid-session).
-- Before squashing a range of commits for the assistant's own work, check `git show --stat` on each one — don't assume every commit in the range is the assistant's; a gitdoc auto-commit from Henrich's own edits can land in the middle of the range (happened 2026-07-26, see `DONE/03-biezace.md`).
+- Before squashing a range of commits for the assistant's own work, check `git show --stat` on each one — don't assume every commit in the range is the assistant's; a gitdoc auto-commit from Henrich's own edits can land in the middle of the range (happened 2026-07-26, see `DONE/03-2026-07-27.md`).
 - Because autoPush is immediate, treat any commit as **already on `origin`** unless proven otherwise — there is no local-only staging window to rely on.
 
 Verified against the installed extension (`vsls-contrib.gitdoc-0.2.3`, VS Code 1.130.0) on 2026-07-26, in case the commit cadence is ever tuned:

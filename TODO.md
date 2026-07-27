@@ -4,11 +4,13 @@ DO REALIZACJI
 <br> Jeżeli nie masz co robić, to rób stąd.
 
 Do przydzielenia:
-- nic
 
 SONNET HIGH:
+- „Sprawdź wszystkie odpowiedzi": (a) nie sprawdza zadań z okienkiem na odpowiedź — zad. 29 (fillIn) i zad. 8/9 (ostateczna odpowiedź) nie są w rejestrze `oczekujaceSprawdzenia`; (b) brak komunikatu „sprawdzono ✓" obok obu przycisków. Spec: issues/sprawdz-wszystkie-pola-i-komunikat.md
+  - Domyka przy okazji wpis „ostateczna odpowiedź sprawdza się sama po egzaminie" (niżej) — jeśli zrobione, usuń tamten punkt.
+
 - Spójność UI, sesja 2: 11 drobnic z audytu sesji 1 (skala rozmiarów kontrolek, brak :hover na odpowiedziach, .light-button 30%, samoocena na telefonie, cienie/ramki poza tokenami, odstępy). Szczegóły i metoda: issues/ui-spojnosc-etap2.md
-  - Sesja 1 [ZROBIONE 2026-07-27]: tokeny kształtu + 6 moich punktów — patrz DONE/03-biezace.md. Do sprawdzenia na żywo (v0.06): stopka arkusza, aktywny segment przełącznika w obu motywach, panele PDF, kreska i strzałka sidebara.
+  - Sesja 1 [ZROBIONE 2026-07-27] + 3 Twoje drobnice (cienie sidebara, ciemniejszy tekst przycisku stopki, tytuł 32%) — patrz DONE/03-2026-07-27.md i DONE/04-biezace.md. Do sprawdzenia na żywo (v0.07): stopka, przełącznik w obu motywach, panele PDF, kreska i strzałka sidebara, tytuł arkusza na telefonie.
 
 - W zadaniach otwartych: zamiast checkboxów powinny być przyciski z punktami do każdego zdania typu "Nierówność zapisana w postaci x2−6x−7≤0x2−6x−7≤0" (przykład z zad 9.) Dokładna punktacja jest w zasadach oceniania w pdf i od tego powinna zależeć ilość przycisków. (czeka na decyzję merytoryczną Henricha o punktacji za poszczególne przyciski, potem do przydzielenia modelowi)
 
@@ -39,6 +41,8 @@ DLA HENRICHA:
 
 
 INNE NOTATKI, DO PRZEKMINIENIA:
+
+- Czy zmiena wielkości okienka PDF w każdym rogu i krawędzi byłaby skomplikowana do implementacji
 
 - Strona na telefonie wygląda jakby była przybliżona (troche jakby na komputerze naklikać Ctrl + = albo Ctrl + ScrollUP) ale może to jest tylko u mnie.
 

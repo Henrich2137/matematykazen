@@ -21,4 +21,5 @@ Zasady:
 - [wskazniki-reload-faza-oceniania.md](wskazniki-reload-faza-oceniania.md) — wskaźniki „oceń się" znikają po odświeżeniu strony po egzaminie
 - [formularz-oceniania-otwarte.md](formularz-oceniania-otwarte.md) — formularz wspomagający samoocenę zadań otwartych (nowy feature, spec ustalony z Henrichem)
 - [ui-spojnosc-etap2.md](ui-spojnosc-etap2.md) — spójność UI, sesja 2: reszta drobnic z audytu (dla Sonneta High)
+- [sprawdz-wszystkie-pola-i-komunikat.md](sprawdz-wszystkie-pola-i-komunikat.md) — „sprawdź wszystkie" pomija pola tekstowe (zad. 29, 8, 9) i nie potwierdza kliknięcia
 - [zadania-nie-renderuja-sie-mobile.md](zadania-nie-renderuja-sie-mobile.md) — zadania nie renderują się na telefonie (Pixel 7a/GrapheneOS, Firefox i Brave)

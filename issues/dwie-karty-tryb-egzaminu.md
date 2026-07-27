@@ -22,7 +22,7 @@ Stan trybu egzaminu trzymany jest tylko w localStorage; karty nie nasłuchują z
 
 ## Powiązane, już naprawione
 
-Dwie mniejsze poprawki z tej samej okolicy zostały już zrobione — patrz `DONE/03-biezace.md`:
+Dwie mniejsze poprawki z tej samej okolicy zostały już zrobione — patrz `DONE/03-2026-07-27.md`:
 - nieudany start egzaminu kasujący postęp,
 - "resetuj punktację" niekasujące trwającego egzaminu.
 

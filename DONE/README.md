@@ -17,7 +17,13 @@ rozwiązanie trudniejszego problemu albo sprawdzenie, czy/jak coś już kiedyś 
 Do szukania używaj najpierw tego indeksu (tagi niżej), potem grepa po konkretnym pliku.
 
 
-== 03-biezace.md — partia OTWARTA (2026-07-13 → 2026-07-27, niezmergowana do mastera) ==
+== 04-biezace.md — partia OTWARTA (2026-07-27 → ?) ==
+- 2026-07-27 (Opus High) — trzy drobnice po przeglądzie sesji 1 przez Henricha (v0.07): cień zdjęty
+  z #sidebara (panele PDF i toast zostają), ciemniejszy tekst „sprawdź wszystkie" w stopce,
+  .sheet-title-heading zwężony do 32% z zawijaniem (pełna szerokość na telefonie)
+  [css, ui, sidebar, stopka, tytul]
+
+== 03-2026-07-27.md — partia ZAMKNIĘTA (2026-07-13 → 2026-07-27, niezmergowana do mastera) ==
 - 2026-07-27 (Opus High) — SPÓJNOŚĆ UI, sesja 1: warstwa tokenów kształtu w base.css (--radius-kontrolka,
   --border-kontrolka, --shadow-panel, --segment-bg) + 6 punktów Henricha (jedna rodzina przycisków stopki,
   lżejszy aktywny segment przełącznika, panele PDF w stylu sidebara, #sidebar-linia zamiast border-right,

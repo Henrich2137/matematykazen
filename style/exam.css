@@ -107,7 +107,9 @@ body.arkusz-wczytany:not(.tryb-egzaminu) #egzamin-start-stopka {
 #sprawdz-wszystkie-stopka {
     display: none;
     margin: 40px auto 0;
-    color: var(--text-muted);
+    /* Tekst w pełnym --text, jak w przycisku egzaminu (Henrich 2026-07-27:
+       przygaszony --text-muted odstawał od sąsiada). Oba przyciski stopki są
+       teraz identyczne — o kolejności czytania decyduje pozycja, nie kontrast. */
 }
 body.reczne-sprawdzanie.arkusz-wczytany #sprawdz-wszystkie-stopka {
     display: block;

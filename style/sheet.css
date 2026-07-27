@@ -191,7 +191,11 @@ body.sidebar-otwarty #sidebar-toggle {
        border jeździłby razem z zawartością panelu przy scrollu, nie dałby się
        skrócić od dołu ani odsunąć od krawędzi. */
     background-color: var(--bg);
-    box-shadow: var(--shadow-panel);
+    /* BEZ cienia (Henrich 2026-07-27: „wywal te cienie, nie współgrają z logiem
+       ani z kreską"). Panel jest przypięty do krawędzi ekranu i ma własną
+       pionową kreskę (#sidebar-linia) — cień dublował tę granicę i podnosił
+       panel nad stronę, choć wizualnie jest jej częścią. Panele PDF i toast
+       cień ZOSTAWIAJĄ: te pływają nad treścią i nie mają żadnej kreski. */
     text-align: left;
     /* visibility (nie tylko translateX) — inaczej Tab wchodziłby w przyciski
        zamkniętego panelu. Przełączana z ZEROWYM czasem, ale z opóźnieniem:
@@ -1095,7 +1099,13 @@ body.sidebar-otwarty #sidebar-linia {
    :empty ukrywa go, dopóki applySheetMeta() (bootstrap.js) go
    nie wypełni — inaczej pusty <h1> zostawiałby odstęp przed pierwszym zadaniem. */
 .sheet-title-heading {
-    margin: 0 0 20px;
+    /* Węższa kolumna niż cała strona (Henrich 2026-07-27): pełna szerokość
+       ciągnęła tytuł CKE w jedną długą linię przez cały ekran. 32% ≈ 460px przy
+       1440px, więc typowy tytuł zawija się na 2–3 wyśrodkowane linie.
+       Ograniczenie zdejmowane na telefonie (style/responsive.css) — 32% z 390px
+       zostawiłoby po dwa słowa w linii. */
+    max-width: 32%;
+    margin: 0 auto 20px;
     font-size: 24px;
     font-weight: 600;
     color: var(--text);
