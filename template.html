@@ -73,6 +73,10 @@
             var el = e.target;
             if (el && el !== window && el.tagName) {
                 if (el.tagName.toUpperCase() === "SCRIPT") {
+                    // GoatCounter (gc.zgo.at) to opcjonalna analityka, nagminnie
+                    // blokowana przez adblocki/Privacy Badger — jej brak jest
+                    // nieszkodliwy i nie powinien straszyć banerem błędu.
+                    if (el.src && el.src.indexOf("gc.zgo.at") !== -1) return;
                     pokaz("Nie wczytano skryptu: " + (el.src || "(inline)"));
                 }
                 return;
