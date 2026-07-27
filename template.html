@@ -132,7 +132,7 @@
              (v0.01 → v0.02 → …), żeby po odświeżeniu na telefonie było
              widać, czy strona wczytała już nową wersję. Ta sama wartość
              musi być w .landing-logo w index.html. -->
-        <a id="logo" href="index.html"><b>Matematyka Zen</b> <span id="wersja">v0.07</span></a>
+        <a id="logo" href="index.html"><b>Matematyka Zen</b> <span id="wersja">v0.08</span></a>
         <!-- Strzałka otwierająca panel boczny — następca przycisku „⋯". Ten sam
              przycisk zamyka (obraca się o 180°); JS przestawia aria-expanded
              i aria-label. -->
@@ -235,6 +235,13 @@
         <button id="sprawdz-wszystkie" type="button" class="sidebar-akcja">
             <svg class="sidebar-ikona" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l4.5 4.5L19.5 6.5"/></svg>
             <span class="etykieta">Sprawdź wszystkie odpowiedzi</span>
+            <!-- Potwierdzenie kliknięcia (issues/sprawdz-wszystkie-pola-i-komunikat.md):
+                 260px nie mieści zdania obok etykiety, więc tu tylko ✓ przy prawej
+                 krawędzi wiersza (margin-left: auto w sheet.css); prawdziwy tekst
+                 idzie do aria-label, żeby czytnik ekranu ogłosił sensowny komunikat,
+                 nie sam glif. role="status"+aria-live w HTML na stałe (nie dopisywane
+                 JS-em), żeby zmiana treści była zawsze wychwycona. -->
+            <span id="sprawdz-wszystkie-status-sidebar" class="sprawdz-status-sidebar" role="status" aria-live="polite"></span>
         </button>
         <button id="show-all-solutions" type="button" class="sidebar-akcja">
             <svg class="sidebar-ikona" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg>
@@ -459,7 +466,17 @@
          (natychmiastowa poprawność OFF; body.reczne-sprawdzanie); w trybie
          egzaminu zostaje, ale wyszarzony.
          Odsłania ocenę wszystkich zadań zamkniętych z zaznaczoną odpowiedzią. -->
-    <button id="sprawdz-wszystkie-stopka">sprawdź wszystkie odpowiedzi</button>
+    <!-- Wrapper TYLKO po to, żeby komunikat obok przycisku (position: absolute
+         w exam.css, jak .answer-check-floating) miał punkt odniesienia bez
+         przesuwania samego przycisku — widoczność/margines nadal na #sprawdz-
+         -wszystkie-stopka-wrap (przeniesione z samego przycisku), reszta wyglądu
+         przycisku (padding/ramka/kolor) zostaje we wspólnej regule z resztą
+         stopki. role="status"+aria-live na stałe w HTML, żeby zmiana treści
+         zawsze była wychwycona czytnikiem ekranu. -->
+    <div id="sprawdz-wszystkie-stopka-wrap">
+        <button id="sprawdz-wszystkie-stopka">sprawdź wszystkie odpowiedzi</button>
+        <span id="sprawdz-wszystkie-status-stopka" class="sprawdz-status-stopka" role="status" aria-live="polite"></span>
+    </div>
     <button id="egzamin-koniec">zakończ egzamin</button>
     <button id="egzamin-start-stopka">rozpocznij próbny egzamin</button>
 

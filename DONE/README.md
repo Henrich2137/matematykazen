@@ -18,6 +18,11 @@ Do szukania używaj najpierw tego indeksu (tagi niżej), potem grepa po konkretn
 
 
 == 04-biezace.md — partia OTWARTA (2026-07-27 → ?) ==
+- 2026-07-27 (Sonnet High) — „sprawdź wszystkie odpowiedzi": fillIn i finalAnswer dopisane do rejestru
+  oczekujaceSprawdzenia (ocena wydzielona do ocenFillIn(), bez duplikacji logiki), bonus — finalAnswer
+  auto-sprawdzany po zakończeniu egzaminu, komunikat „sprawdzono ✓"/„brak zaznaczonych odpowiedzi" obok
+  obu kopii przycisku (aria-live, tokeny --correct/--text-faint, mobile fallback) — v0.08
+  [silnik, ui, egzamin, a11y, css]
 - 2026-07-27 (Opus High) — trzy drobnice po przeglądzie sesji 1 przez Henricha (v0.07): cień zdjęty
   z #sidebara (panele PDF i toast zostają), ciemniejszy tekst „sprawdź wszystkie" w stopce,
   .sheet-title-heading zwężony do 32% z zawijaniem (pełna szerokość na telefonie)

@@ -194,6 +194,17 @@ function finishExam(czasMinal) {
     const tablicaPanel = document.getElementById("tablica-wzorow-panel");
     if (tablicaPanel && tablicaPanel.style.display === "block") hideFormulasPanel();
 
+    // Bonus: pola "ostateczna odpowiedź" (finalAnswer) sprawdzają się same po
+    // zakończeniu egzaminu — uczeń miał gdzie wpisać wynik podczas egzaminu
+    // (pole zostaje widoczne), ale przycisk "Sprawdź" był ukryty (exam.css),
+    // więc ocena czeka do teraz. Filtrujemy po typ: "finalAnswer", żeby przy
+    // okazji NIE odsłonić zadań zamkniętych, których uczeń nie zdążył/nie chciał
+    // sprawdzić — to zrobi dopiero "sprawdź wszystkie odpowiedzi" po powrocie
+    // do trybu ćwiczeń.
+    oczekujaceSprawdzenia.forEach(z => {
+        if (z.typ === "finalAnswer" && z.maZaznaczenie() && !z.czySprawdzone()) z.ocen();
+    });
+
     // Wynik z zadań zamkniętych (ocenianych automatycznie). Zadania otwarte
     // (selfScore) w egzaminie nie mają jak dostać punktów — samoocena była
     // schowana — więc rozliczamy je osobno, po egzaminie.

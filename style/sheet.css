@@ -285,6 +285,30 @@ body.sidebar-otwarty #sidebar-linia {
     color: var(--text);
 }
 
+/* Potwierdzenie kliknięcia "Sprawdź wszystkie odpowiedzi" (issues/sprawdz-
+   wszystkie-pola-i-komunikat.md). 260px nie mieści zdania obok etykiety, więc
+   tylko ✓ przy prawej krawędzi wiersza — margin-left: auto działa bo
+   .sidebar-akcja wyżej jest flex. Prawdziwy tekst dla czytnika ekranu idzie do
+   aria-label (JS), nie do textContent — glif "✓" sam w sobie nic nie znaczy.
+   Znika po ~2,5s (JS toggluje .widoczny); kolejny klik resetuje licznik.
+   Kolor tylko przez tokeny: --correct / --text-faint (przygaszony = "nic nie
+   było zaznaczone", żeby "sprawdzono" nie kłamało) — dark mode działa sam. */
+.sprawdz-status-sidebar {
+    margin-left: auto;
+    flex-shrink: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--correct);
+    opacity: 0;
+    transition: opacity 400ms ease;
+}
+.sprawdz-status-sidebar.widoczny {
+    opacity: 1;
+}
+.sprawdz-status-sidebar.przygaszony {
+    color: var(--text-faint);
+}
+
 .sidebar-ustawienie {
     display: grid;
     grid-template-columns: 20px 1fr auto auto;
@@ -393,7 +417,9 @@ body.sidebar-otwarty #sidebar-linia {
     .sidebar-akcja,
     .sidebar-ustawienie,
     #tryb-przelacznik button,
-    body.sidebar-otwarty #sidebar {
+    body.sidebar-otwarty #sidebar,
+    .sprawdz-status-sidebar,
+    .sprawdz-status-stopka {
         transition-duration: 0.01ms;
         transition-delay: 0s;
     }

@@ -471,6 +471,17 @@ function loadExercises() {
 
                 fbox.appendChild(frow);
                 answersContainer.appendChild(fbox);
+
+                // Rejestracja w "sprawdź wszystkie odpowiedzi" — jak fillIn wyżej.
+                // typ: "finalAnswer" oznacza wpis dla bonusu w app/exam.js: finishExam()
+                // po zakończeniu egzaminu sprawdza TYLKO te wpisy (nie odsłania przy
+                // okazji zadań zamkniętych, których uczeń nie chciał jeszcze sprawdzać).
+                oczekujaceSprawdzenia.push({
+                    ocen: ocenKoncowaOdpowiedz,
+                    maZaznaczenie: () => finalInput.value.trim() !== "",
+                    czySprawdzone: () => finalInput.classList.contains("correct") || finalInput.classList.contains("incorrect"),
+                    typ: "finalAnswer",
+                });
             }
 
             // Zadanie otwarte z samooceną: uczeń rozwiązuje na kartce, porównuje
@@ -578,10 +589,10 @@ function loadExercises() {
                 fillRows.push({ blank, input });
             });
 
-            fillCheck = document.createElement("button");
-            fillCheck.className = "fill-in-check";
-            fillCheck.textContent = "Sprawdź";
-            fillCheck.addEventListener("click", () => {
+            // Ocena wszystkich pól naraz — wydzielona nazwaną funkcją, żeby przycisk
+            // "Sprawdź" i "sprawdź wszystkie odpowiedzi" (oczekujaceSprawdzenia niżej)
+            // wołały dokładnie tę samą logikę, bez duplikowania normalizacji/punktacji.
+            function ocenFillIn() {
                 let trafienia = 0;
                 fillRows.forEach(({ blank, input }) => {
                     const wpis = normalizeAnswer(input.value);
@@ -593,8 +604,26 @@ function loadExercises() {
                 setScore(Math.round(exercise.maxScore * trafienia / fillRows.length));
                 stan.fill = fillRows.map(r => r.input.value);
                 zapiszPostep();
-            });
+            }
+
+            fillCheck = document.createElement("button");
+            fillCheck.className = "fill-in-check";
+            fillCheck.textContent = "Sprawdź";
+            fillCheck.addEventListener("click", ocenFillIn);
             answersContainer.appendChild(fillCheck);
+
+            // Rejestracja w "sprawdź wszystkie odpowiedzi" (jak ABCD/PF/multiSelect
+            // wyżej). czySprawdzone CZYTA DOM (klasę pierwszego pola), nie flagę —
+            // edycja pola kasuje jej klasę correct/incorrect (listener "input" wyżej),
+            // więc zadanie musi znów wyjść jako niesprawdzone bez osobnego stanu do
+            // synchronizowania. Ocena ustawia klasy wszystkim polom naraz, więc
+            // wystarczy sprawdzić pierwsze.
+            oczekujaceSprawdzenia.push({
+                ocen: ocenFillIn,
+                maZaznaczenie: () => fillRows.some(r => r.input.value.trim() !== ""),
+                czySprawdzone: () => fillRows.length > 0 &&
+                    (fillRows[0].input.classList.contains("correct") || fillRows[0].input.classList.contains("incorrect")),
+            });
         }
 
         // Set score. Zadanie nadrzędne (maxScore: 0, np. wspólny wstęp Zadania 12/17)

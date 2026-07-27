@@ -125,6 +125,20 @@
         left: 3%;
     }
 
+    /* Komunikat "sprawdzono ✓" w stopce (style/exam.css) jest domyślnie
+       position: absolute NA PRAWO od przycisku — przycisk jest wycentrowany,
+       więc jego prawa połowa + komunikat regularnie przekraczają wąski ekran
+       (dokładnie mechanizm z "Known layout gotchas" w ARCHITECTURE_CSS.md —
+       poziomy scroll przy 360px, tam winna była .data-table, tu byłby ten
+       komunikat). Tutaj wraca do zwykłego flow, pod przyciskiem, wycentrowany. */
+    .sprawdz-status-stopka {
+        position: static;
+        display: block;
+        transform: none;
+        margin-top: 6px;
+        text-align: center;
+    }
+
     /* Formularz „zgłoś błąd" (blok w karcie zadania) — ciaśniejszy padding,
        żeby na wąskim ekranie zostało miejsce na treść pól. */
     .zglos-blad-okno {

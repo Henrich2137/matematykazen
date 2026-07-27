@@ -163,18 +163,67 @@ if (natychmiastowaToggle) {
     });
 }
 
-// „Sprawdź wszystkie odpowiedzi" (menu ⋯ + kopia w stopce arkusza): odsłania
-// ocenę wszystkich zadań zamkniętych, które mają zaznaczoną, a jeszcze
-// nieodsłoniętą odpowiedź (to samo, co ręczne kliknięcie każdego widocznego
-// „sprawdź"). Pomija zadania bez zaznaczenia i już sprawdzone.
+// „Sprawdź wszystkie odpowiedzi" (panel boczny + kopia w stopce arkusza):
+// odsłania ocenę wszystkich zadań (ABCD/PF/multiSelect/fillIn/finalAnswer —
+// patrz rejestracje w oczekujaceSprawdzenia w app/render.js), które mają
+// zaznaczoną, a jeszcze nieodsłoniętą odpowiedź (to samo, co ręczne kliknięcie
+// każdego widocznego „sprawdź"). Pomija zadania bez zaznaczenia i już sprawdzone.
 function sprawdzWszystkieOdpowiedzi() {
     oczekujaceSprawdzenia.forEach(z => {
         if (z.maZaznaczenie() && !z.czySprawdzone()) z.ocen();
     });
+    // Czy jest cokolwiek zaznaczone (czyli oceniona odpowiedź, czy to teraz, czy
+    // wcześniej) — to decyduje o kolorze komunikatu niżej, NIE to, czy ten klik
+    // akurat coś nowego ocenił: jeśli wszystko było już sprawdzone wcześniej,
+    // "sprawdzono ✓" wciąż jest prawdziwe, a "brak zaznaczonych odpowiedzi"
+    // byłoby kłamstwem.
+    return oczekujaceSprawdzenia.some(z => z.maZaznaczenie());
 }
+
+// Potwierdzenie kliknięcia (issues/sprawdz-wszystkie-pola-i-komunikat.md, punkt
+// 2): dziś klik nie dawał żadnej informacji zwrotnej — przy pustym arkuszu
+// wyglądało jak zepsuty przycisk. Osobny timer na stopkę i panel, bo to dwa
+// niezależne elementy DOM (klik w jeden nie gasi komunikatu przy drugim).
+let sprawdzStatusStopkaTimer = null;
+let sprawdzStatusSidebarTimer = null;
+
+// Wspólna mechanika pokazania/zgaszenia jednego komunikatu: wypełnia treść,
+// koloruje przez klasę (token --correct / --text-faint w CSS, nie inline
+// kolor), i planuje zniknięcie po ~2,5s. Kolejny klik czyści poprzedni timer,
+// więc licznik zniknięcia się resetuje zamiast się nakładać.
+function pokazStatusSprawdzania(el, poprzedniTimer, sukces, tekst, ariaLabel) {
+    if (!el) return poprzedniTimer;
+    if (poprzedniTimer) clearTimeout(poprzedniTimer);
+    el.textContent = tekst;
+    if (ariaLabel !== undefined) el.setAttribute("aria-label", ariaLabel);
+    el.classList.toggle("przygaszony", !sukces);
+    el.classList.add("widoczny");
+    return setTimeout(() => el.classList.remove("widoczny"), 2500);
+}
+
+const sprawdzStatusStopka = document.getElementById("sprawdz-wszystkie-status-stopka");
+const sprawdzStatusSidebar = document.getElementById("sprawdz-wszystkie-status-sidebar");
+
 ["sprawdz-wszystkie", "sprawdz-wszystkie-stopka"].forEach(id => {
     const btn = document.getElementById(id);
-    if (btn) btn.addEventListener("click", sprawdzWszystkieOdpowiedzi);
+    if (!btn) return;
+    btn.addEventListener("click", () => {
+        const sukces = sprawdzWszystkieOdpowiedzi();
+        if (id === "sprawdz-wszystkie-stopka") {
+            sprawdzStatusStopkaTimer = pokazStatusSprawdzania(
+                sprawdzStatusStopka, sprawdzStatusStopkaTimer, sukces,
+                sukces ? "sprawdzono ✓" : "brak zaznaczonych odpowiedzi"
+            );
+        } else {
+            // Panel boczny: 260px nie mieści zdania obok etykiety (patrz
+            // style/sheet.css), więc widoczny jest tylko glif "✓" — prawdziwy
+            // tekst dla czytnika ekranu idzie do aria-label.
+            sprawdzStatusSidebarTimer = pokazStatusSprawdzania(
+                sprawdzStatusSidebar, sprawdzStatusSidebarTimer, sukces, "✓",
+                sukces ? "sprawdzono" : "brak zaznaczonych odpowiedzi"
+            );
+        }
+    });
 });
 
 // Wypełnia chrome strony (tytuł karty, meta description, tytuł w pasku, PDF

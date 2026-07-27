@@ -103,17 +103,54 @@ body.arkusz-wczytany:not(.tryb-egzaminu) #egzamin-start-stopka {
    (body.reczne-sprawdzanie = natychmiastowa poprawność OFF), po wyrenderowaniu
    arkusza. W trybie egzaminu ZOSTAJE widoczny, ale wyszarzony/nieklikalny (jak
    reszta OPCJE_MENU_EGZAMIN w app/exam.js) — odsłonięcie oceny podczas egzaminu
-   zdradzałoby wynik, ale znikający przycisk mylił, jakby zniknęła sama funkcja. */
-#sprawdz-wszystkie-stopka {
+   zdradzałoby wynik, ale znikający przycisk mylił, jakby zniknęła sama funkcja.
+   Widoczność/margines siedzą na WRAPPERZE (#sprawdz-wszystkie-stopka-wrap), nie
+   na samym przycisku — potrzebny jest punkt odniesienia (position: relative) dla
+   komunikatu "sprawdzono ✓" obok, który inaczej przesuwałby przycisk w flow.
+   `display: inline-block` na wrapperze (nie `block`) zachowuje shrink-to-fit
+   center przez `text-align: center` na body — tak jak wcześniej robił to sam
+   <button> (formularzowe kontrolki są shrink-to-fit nawet z display:block, ale
+   zwykły <div> by się rozciągnął na całą szerokość i margin:auto nic by nie dał). */
+#sprawdz-wszystkie-stopka-wrap {
     display: none;
+    position: relative;
+}
+body.reczne-sprawdzanie.arkusz-wczytany #sprawdz-wszystkie-stopka-wrap {
+    display: inline-block;
     margin: 40px auto 0;
+}
+#sprawdz-wszystkie-stopka {
     /* Tekst w pełnym --text, jak w przycisku egzaminu (Henrich 2026-07-27:
        przygaszony --text-muted odstawał od sąsiada). Oba przyciski stopki są
        teraz identyczne — o kolejności czytania decyduje pozycja, nie kontrast. */
 }
-body.reczne-sprawdzanie.arkusz-wczytany #sprawdz-wszystkie-stopka {
-    display: block;
+
+/* Komunikat "sprawdzono ✓" obok przycisku stopki. Poza flow (absolute względem
+   #sprawdz-wszystkie-stopka-wrap wyżej), jak .answer-check-floating — nigdy nie
+   przesuwa przycisku. Znika sam po ~2,5s (JS dokłada/zdejmuje .widoczny);
+   kolejny klik resetuje licznik (patrz sprawdzWszystkieOdpowiedzi w bootstrap.js).
+   Kolor tylko przez tokeny: --correct (sprawdzono) / --text-faint (nic do
+   sprawdzenia — inaczej "sprawdzono ✓" kłamałoby), więc dark mode działa sam. */
+.sprawdz-status-stopka {
+    position: absolute;
+    left: calc(100% + 14px);
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    font-size: 13px;
+    color: var(--correct);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 400ms ease;
 }
+.sprawdz-status-stopka.widoczny {
+    opacity: 1;
+}
+.sprawdz-status-stopka.przygaszony {
+    color: var(--text-faint);
+}
+/* Mobile fallback (pod 720px, "obok" w prawo urwałoby się poza viewportem) jest
+   w style/responsive.css, jak wszystkie breakpointy — patrz tam. */
 
 /* Odstępy stopki: 40px nad pierwszym przyciskiem, 16px między przyciskami,
    80px pod ostatnim (przed disclaimerem samooceny). Dawniej „rozpocznij" miał
