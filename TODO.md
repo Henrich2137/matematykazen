@@ -27,11 +27,15 @@ Do przydzielenia:
 
 - Przycisk zgłoś błąd powinien wyglądać podobnie do light buttonów
 
+- Punktacja przy zadaniach może być przesunięta troszeczke w lewo, bliżej zadań.
+
 - Menu / Panel boczny:
   - Swipe/Przesunięcie w lewo powinno zwijać panel boczny (tylko na telefonie)
   - Przełączniki w stylu Motyw, Poprawność itd. są zbyt blade i wyglądają na nieaktywne/zablokowane
   - w trybie egzaminu Poprawność powinna być tak samo nieaktywna/zablokowana ja Punktacja
   - stan przełączników (np. ciemny, jasny, wł., wył., wszystko itd.) chyba jest napisany zbyt tłustą czcionką czy coś. Wyrazy wadają się nieostre, mają jakby bleeding/bloom effect.
+
+  
 
 Sonnet High:
 - Spójność UI, sesja 2 (jeszcze NIE zrobione, ciąg dalszy sesji 1 [ZROBIONE 2026-07-27]). Szczegóły: issues/ui-spojnosc-etap2.md
