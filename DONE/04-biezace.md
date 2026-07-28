@@ -1,5 +1,12 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz DONE/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-07-28] Analityka: GoatCounter wpięty w template.html i index.html
+(`data-goatcounter="https://henrich.goatcounter.com/count"`), błąd ładowania skryptu wyciszony
+w belce diagnostycznej (adblock/Privacy Badger często go blokują — to nieszkodliwe, nie powinno
+straszyć banerem błędu). Potwierdzone przez Henricha na żywo w panelu goatcounter.com — dzisiejsze
+odwiedziny się liczą. Do pamiętania przy czytaniu statystyk: część ruchu z adblockami nie zostanie
+zliczona, więc realne liczby są wyższe niż panel pokazuje. [analityka, goatcounter]
+
 [ZROBIONE 2026-07-28] Zadania nie renderowały się na telefonie (arkusz 2024-grudzień) — potwierdzone
 przez Henricha na żywo, że fix z 2026-07-24 (`.nojekyll` w rootcie, patrz issues/zadania-nie-renderuja-sie-mobile.md)
 faktycznie działa na urządzeniu. [mobile, bugfix, github-pages]
