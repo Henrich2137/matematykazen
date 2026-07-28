@@ -20,7 +20,6 @@
         "selfScore": false,
         "hint": "Z wartości bezwzględnej czyli |takich nawiasów| zawsze wyjdzie wartość nieujemna, czyli: \\(|7| = 7\\) oraz \\(|-7| = 7\\). Co więc musi stać zamiast x aby wychodziło podobnie jak w tych przykładach?",
         "formulasPage": 4,
-        "formulasY": 706,
         "solutionText": "",
         "solutionTextMore": "po opuszczeniu nawiasów są dwie możliwości: \\[1.\\quad \\begin{aligned} x + 4 &= 7 \\\\ x &= 7 - 4 \\\\ x &= \\boldsymbol{3} \\end{aligned}\\]\\[2.\\quad \\begin{aligned} x + 4 &= -7 \\\\ x &= -7 - 4 \\\\ x &= \\boldsymbol{-11} \\end{aligned}\\]\\[3 + (-11) = \\boldsymbol{-8}\\] czyli odp B.<br><br>",
         "solutionStepByStep": [
@@ -85,7 +84,6 @@
         "selfScore": false,
         "hint": "Stopień pierwiastka jest jak mianownik w wykładniku, a \\(\\frac{1}{5} = 5^{-1}\\). Wykładnik \\(-5\\) możesz włączyć do nawiasu (do każdego z czynników) i takie tam.",
         "formulasPage": 5,
-        "formulasY": 590,
         "solutionText": null,
         "solutionTextMore": "Krok po kroku: \\(\\sqrt[5]{5} = 5^{1/5}\\), \\(\\ \\frac{1}{5} = 5^{-1}\\)\\[\\left(5^{1/5} \\cdot 5^{-1}\\right)^{-5} = \\left(5^{1/5 - 1}\\right)^{-5} = \\left(5^{-4/5}\\right)^{-5} = 5^{(-4/5)\\cdot(-5)} = \\boldsymbol{5^{4}}\\] czyli odp. A.",
         "solutionStepByStep": [
@@ -131,7 +129,6 @@
         "selfScore": true,
         "hint": "Żeby wykazać podzielność przez <b>21</b>, będziemy rozkładać tę liczbę na czynniki, czyli wyciągać coś przed nawias aby powstało: \\(\\ldots \\cdot 21\\)",
         "formulasPage": 5,
-        "formulasY": 535,
         "solutionText": "Wszystkie składniki zapisujemy jako potęgi dwójki i wyciągamy najmniejszą z nich przed nawias — w nawiasie zostaje <b>21</b>.",
         "solutionTextMore": "\\[\\begin{aligned} 2^{100} + 4^{49} + 16^{24} &= 2^{100} + 2^{98} + 2^{96} \\\\ &= 2^{96} \\cdot (2^{4} + 2^{2} + 1) \\\\ &= 2^{96} \\cdot (16 + 4 + 1) = \\boldsymbol{2^{96} \\cdot 21} \\end{aligned}\\] ta liczba jest podzielna przez <b>21</b>, co należało wykazać.",
         "solutionStepByStep": [
