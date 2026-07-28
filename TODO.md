@@ -97,7 +97,7 @@ INNE NOTATKI, DO PRZEKMINIENIA:
 <br><br>
 
 
-<h3>DOPISANE PRZEZ CLAUDA</h3>
+DOPISANE PRZEZ CLAUDA
 Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz issues/README.md.
 
 SONNET DOPISAŁ:
@@ -107,10 +107,8 @@ SONNET DOPISAŁ:
 
 - Formularz zgłoszenia na telefonie jest wysoki: 8 pigułek kategorii idzie po jednej na wiersz (~340 px), więc obowiązkowe pole opisu jest daleko w dole. Do rozważenia: dwie pigułki w rzędzie, skrócone nazwy albo opis nad kategoriami.
 
-- Link „zgłoś błąd" jest na samym dole karty, a formularz otwiera się nad przyciskami Podpowiedź/Rozwiązanie — czyli powyżej miejsca kliknięcia. Działa, ale warto sprawdzić na żywo, czy ten skok nie dezorientuje; ewentualnie doscrollować formularz do widoku po otwarciu.
 
-
-ZASADY dla Ciebie Claude:
+ZASADY DLA CLAUDE-A:
 
 - tu są TYLKO otwarte punkty. Zrobione wpisy [DONE]/[ZROBIONE] przenoszone są do bieżącego pliku pod DONE/ — patrz DONE/README.md i CLAUDE.md.)
 

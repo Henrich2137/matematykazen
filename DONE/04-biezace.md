@@ -1,5 +1,9 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz DONE/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-07-28] Skok formularza „zgłoś błąd" (link na dole karty, formularz otwiera się wyżej,
+nad Podpowiedź/Rozwiązanie) — sprawdzone, zachowanie takie samo na desktop i mobile (DOM insertBefore
+bez media query), Henrich zaakceptował, bez zmian. [formularz, ui]
+
 [ZROBIONE 2026-07-28] Analityka: GoatCounter wpięty w template.html i index.html
 (`data-goatcounter="https://henrich.goatcounter.com/count"`), błąd ładowania skryptu wyciszony
 w belce diagnostycznej (adblock/Privacy Badger często go blokują — to nieszkodliwe, nie powinno
