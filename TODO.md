@@ -3,10 +3,11 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 DO REALIZACJI
 <br> Jeżeli nie masz co robić, to rób stąd.
 
+- nic
 
 
 NIE REALIZUJ
-<br> Na potem
+
 - Panel boczny: „Sprawdź wszystkie odpowiedzi" (#sprawdz-wszystkie) znika/pojawia się przy przełączaniu
   „Poprawność odpowiedzi" (natychmiast ↔ po „sprawdź") — panel przez to „skacze". Ma być zawsze widoczny:
   aktywny w „po sprawdź", wyszarzony/disabled w „natychmiast" — tak jak już jest zrobione w trybie
@@ -19,7 +20,9 @@ SONNET HIGH:
 - Spójność UI, sesja 2: 11 drobnic z audytu sesji 1 (skala rozmiarów kontrolek, brak :hover na odpowiedziach, .light-button 30%, samoocena na telefonie, cienie/ramki poza tokenami, odstępy). Szczegóły i metoda: issues/ui-spojnosc-etap2.md
   - Sesja 1 [ZROBIONE 2026-07-27] + 3 Twoje drobnice (cienie sidebara, ciemniejszy tekst przycisku stopki, tytuł 32%) — patrz DONE/03-2026-07-27.md i DONE/04-biezace.md. Do sprawdzenia na żywo (v0.07): stopka, przełącznik w obu motywach, panele PDF, kreska i strzałka sidebara, tytuł arkusza na telefonie.
 
-Do przydzielenia:
+
+DO PRZYDZIELENIA:
+
 - Zadania otwarte, naliczanie punktów:
   - zamiast checkboxów powinny być przyciski z punktami do każdego zdania typu "Nierówność zapisana w postaci x2−6x−7≤0x2−6x−7≤0" (przykład z zad 9.) Dokładna punktacja jest w zasadach oceniania w pdf i od tego powinna zależeć ilość przycisków. (czeka na decyzję merytoryczną Henricha o punktacji za poszczególne przyciski, potem do przydzielenia modelowi)
   - ostateczna odpowiedź w zadaniach takich jak 8. i 9. po sprawdzeniu powinny być przyznane punkty użytkownikowi i automatycznie zaznaczony przycisk punktów
