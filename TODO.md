@@ -3,6 +3,10 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 DO REALIZACJI
 <br> Jeżeli nie masz co robić, to rób stąd.
 
+
+
+NIE REALIZUJ
+<br> Na potem
 - Panel boczny: „Sprawdź wszystkie odpowiedzi" (#sprawdz-wszystkie) znika/pojawia się przy przełączaniu
   „Poprawność odpowiedzi" (natychmiast ↔ po „sprawdź") — panel przez to „skacze". Ma być zawsze widoczny:
   aktywny w „po sprawdź", wyszarzony/disabled w „natychmiast" — tak jak już jest zrobione w trybie
@@ -26,8 +30,7 @@ Do przydzielenia:
 
 - Przesunięcie w lewo powinno zwijać panel boczny (tylko na telefonie)
 
-<br
-
+<br>
 
 TESTOWANIE HENRICH:
 - telefon 2024 - wczytuje zadania ale wyświetla błąd. (issues/zadania-nie-renderuja-sie-mobile.md)
