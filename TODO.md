@@ -3,7 +3,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 DO REALIZACJI
 <br> Jeżeli nie masz co robić, to rób stąd.
 
-- Uzupełnić `formulasPage` (Pokaż potrzebne wzory) w 2024-grudzień — brakuje w zad. 7, 8, 10, 11, 12, 20 (6 z 35), więc nie mają przycisku „Pokaż potrzebne wzory". Do decyzji merytorycznej: część pewnie faktycznie nie wymaga tablic, ale zad. 8 (otwarte) warto sprawdzić.
+- Uzupełnić `formulasPage` ("Pokaż potrzebne wzory") w 2024-grudzień. Brakuje w zad. 7, 8, 10, 11, 12, 20 (6 z 35). Do decyzji merytorycznej: część pewnie faktycznie nie wymaga tablic, ale zad. 8 (otwarte) warto sprawdzić.
 
 
 
@@ -31,7 +31,7 @@ Do przydzielenia:
   - Swipe/Przesunięcie w lewo powinno zwijać panel boczny (tylko na telefonie)
   - Przełączniki w stylu Motyw, Poprawność itd. są zbyt blade i wyglądają na nieaktywne/zablokowane
   - w trybie egzaminu Poprawność powinna być tak samo nieaktywna/zablokowana ja Punktacja
-
+  - stan przełączników (np. ciemny, jasny, wł., wył, wszystko itd.) chyba jest napisany zbyt tłustą czcionką, wyrazy wadają się nieostr, jakby bleeding effect
 
 Sonnet High:
 - Spójność UI, sesja 2 (jeszcze NIE zrobione, ciąg dalszy sesji 1 [ZROBIONE 2026-07-27]). Szczegóły: issues/ui-spojnosc-etap2.md
