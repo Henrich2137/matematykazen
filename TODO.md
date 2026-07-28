@@ -17,8 +17,29 @@ NIE REALIZUJ
 
 
 Sonnet High:
-- Spójność UI, sesja 2: 11 drobnic z audytu sesji 1 (skala rozmiarów kontrolek, brak :hover na odpowiedziach, .light-button 30%, samoocena na telefonie, cienie/ramki poza tokenami, odstępy). Szczegóły i metoda: issues/ui-spojnosc-etap2.md
-  - Sesja 1 [ZROBIONE 2026-07-27] + 3 Twoje drobnice (cienie sidebara, ciemniejszy tekst przycisku stopki, tytuł 32%) — patrz DONE/03-2026-07-27.md i DONE/04-biezace.md. Do sprawdzenia na żywo (v0.07): stopka, przełącznik w obu motywach, panele PDF, kreska i strzałka sidebara, tytuł arkusza na telefonie.
+Spójność UI, sesja 2 (jeszcze NIE zrobione — sprawdzone 2026-07-28, kod bez zmian od sesji 1). Sesja 1 była [ZROBIONE 2026-07-27], to jest jej ciąg dalszy. Każdy punkt niżej ma dokładniejszy opis (plik/linia/mechanizm) w issues/ui-spojnosc-etap2.md:
+
+- W treści zadania są 4 różne rozmiary fontu na jednej karcie (odpowiedzi 18px, samoocena/pola 17px, textarea 16px) i różne paddingi. Ujednolicić do 2-3 stałych rozmiarów.
+
+- Przyciski odpowiedzi (ABCD, prawda/fałsz, punkty samooceny) nie podświetlają się przy najechaniu myszką — reszta strony (pigułki, sidebar) tak. Dodać obramowanie przy hover.
+
+- W różnych miejscach hover działa inaczej: raz przez ramkę (narożniki, panele), raz przez tło (sidebar). Ustalić jeden wzorzec i się go trzymać.
+
+- Przyciski „Podpowiedź / Rozwiązanie / Pokaż potrzebne wzory" mają sztywną szerokość 30% każdy — na telefonie (390px) trzeci się łamie na 3 linie i wiersz wygląda krzywo.
+
+- Na telefonie 5 przycisków samooceny „0-4 pkt" układa się nierówno: 2 + 2 + 1 z samotnym ostatnim na środku. Zrobić równą siatkę.
+
+- Okienko podsumowania egzaminu i kropki wskaźników mają cień wpisany na sztywno zamiast użyć wspólnego tokenu — jeśli ma zostać mocniejszy cień niż reszta, nazwać go (`--shadow-modal`) zamiast wpisywać wartość w miejscu.
+
+- Dwa miejsca nadal mają ramkę 2px zamiast standardowej 1px: przycisk „ukryj wskaźniki" i dolna linia pod rozwiązaniem krok po kroku. (W widżetach 2px zostaje celowo, tam koduje kolor.)
+
+- Okienko podsumowania egzaminu jako jedyna „karta" na stronie ma ostre rogi zamiast zaokrąglonych jak wszędzie indziej.
+
+- Marginesy w pasku/stopce/sekcjach to dziś przypadkowy zestaw wartości (10/16/20/40/50/60/70/80px) bez żadnej skali. Sprawdzić czy da się to ułożyć w spójny rytm — ale TYLKO po porównaniu zrzutów przed/po, bo to najbardziej widoczna wizualnie zmiana z całej listy.
+
+- Karta zadania (całe zadanie na stronie) jest bez ramki i zaokrąglonych rogów, a wszystko dookoła po sesji 1 już jest zaokrąglone — sprawdzić czy przez to nie wygląda jak obcy element. Zmiana czysto kosmetyczna i odwracalna, decyzja należy do mnie (Henrich).
+
+- Strona główna (landing) i sam arkusz mają różne rozmiary czcionek dla podobnych elementów (np. przycisk CTA 18px, nagłówek karty 17px, treść arkusza 16px) — ujednolicić. Przy okazji sprawdzić kontrast kolorów (WCAG) w zmiennych landingu, patrz issues/dark-mode-css-zmienne-landing.md.
 
 
 Do przydzielenia:
