@@ -73,7 +73,7 @@ INNE NOTATKI, DO PRZEKMINIENIA:
   - Powinien być cały czas widoczny. Gdy "Poprawność" jest ustawiona na 'po "sprawdź"' to powinien się uaktyniać, a gdy "natychmiast" to być szary, nieaktywny. Nie chcę aby menu skakało po przełączaniu "Poprawność"
   - Opcjonalnie: powiniowinien być umieszczony jako podpunkt pod "Poprawność"
 
-- W trybie egzaminy "Punktacja" powinna pokazywać wył. ale pod spodem pamiętać to co było ustawione w ćwiczeniach. Nie powinno być widać punktów na egzaminie 
+- W trybie egzaminu "Punktacja" powinna pokazywać wył. ale pod spodem pamiętać to co było ustawione w ćwiczeniach. Nie powinno być widać punktów na egzaminie 
 
 - wskaźniki "oceń się" na telefonie powinny być:
   - ALBO: niewidzialne, wtedy opcja w menu powinna być szara z wybranym
