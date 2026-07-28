@@ -2,6 +2,10 @@
 
 Strony **11–14** tablicy.
 
+> **Rysunki:** [9.1] (trójkąt prostokątny), [9.2] (kąt w układzie współrzędnych) i [9.3]
+> (wykresy \(\sin\), \(\cos\), \(\operatorname{tg}\)) mają w PDF-ie rysunki — tutaj zastąpione
+> legendą oznaczeń. Po sam rysunek: `../wybrane_wzory_matematyczne.pdf`, s. 11–12.
+
 ## [9.1] Definicje funkcji trygonometrycznych kąta ostrego w trójkącie prostokątnym — s. 11, środek
 
 Oznaczenia: trójkąt prostokątny o kącie prostym przy wierzchołku \(C\) i kącie ostrym \(\alpha\) przy wierzchołku \(A\); \(a\) — przyprostokątna leżąca naprzeciw kąta \(\alpha\); \(b\) — przyprostokątna przyległa do kąta \(\alpha\); \(c\) — przeciwprostokątna.
@@ -21,6 +25,10 @@ gdzie:
 ## [9.3] Wykresy funkcji trygonometrycznych — s. 12, góra/środek
 
 Trzy wykresy w układzie współrzędnych, w zakresie od \(-\pi\) do \(2\pi\): \(y = \sin x\), \(y = \cos x\) oraz \(y = \operatorname{tg} x\).
+
+> **Tu treścią jest sam rysunek** — w tablicy nie ma przy nim żadnego wzoru, więc transkrypt
+> nie ma czego przenieść. Jeśli potrzebujesz przebiegu wykresu (miejsca zerowe, ekstrema,
+> asymptoty tangensa), otwórz `../wybrane_wzory_matematyczne.pdf` na s. 12.
 
 ## [9.4] Związki między funkcjami trygonometrycznymi tego samego kąta — s. 12, dół
 

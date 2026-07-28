@@ -20,8 +20,9 @@ Wykresem funkcji kwadratowej jest parabola o wierzchołku w punkcie \(W = (p, q)
 
 Gdy \(a < 0\), to ramiona paraboli skierowane są ku dołowi. Gdy \(a > 0\), to ramiona paraboli skierowane są ku górze.
 
-> Rysunek obok: dwa wykresy \(y = ax^2\) w układzie współrzędnych — dla \(a < 0\)
-> ramionami w dół, dla \(a > 0\) ramionami w górę; na obu osiach zaznaczona jednostka \(1\).
+> Rysunek obok (w PDF-ie, s. 8): dwa wykresy \(y = ax^2\) w układzie współrzędnych — dla
+> \(a < 0\) ramionami w dół, dla \(a > 0\) ramionami w górę; na obu osiach zaznaczona
+> jednostka \(1\). Sam rysunek nie wnosi wzoru, więc do liczenia wystarcza opis powyżej.
 
 ## [7.4] Miejsca zerowe a wyróżnik — s. 8, środek/dół
 

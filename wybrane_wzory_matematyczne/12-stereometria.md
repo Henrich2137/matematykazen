@@ -2,6 +2,12 @@
 
 Strony **26–28** tablicy (sekcja zaczyna się w środku s. 26, kończy na górze s. 28).
 
+> **Rysunki:** każda bryła ma w PDF-ie rysunek z oznaczeniami wierzchołków i wysokości —
+> tutaj go nie ma. Wzory są samowystarczalne, ale gdy potrzebujesz zobaczyć, jak oznaczono
+> krawędzie czy kąt nachylenia, otwórz `../wybrane_wzory_matematyczne.pdf` na s. 26–28.
+> Dotyczy to też [12.1] (twierdzenie o trzech prostych prostopadłych), gdzie rysunek
+> pokazuje wzajemne położenie prostych \(k\), \(l\), \(m\) i płaszczyzny.
+
 ## [12.0] Oznaczenia — s. 26, dół
 
 Obowiązują w całej sekcji:

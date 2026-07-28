@@ -35,7 +35,23 @@ patrz DONE/04-biezace.md):**
 - Przy każdym wzorze pozycja na stronie (`góra` / `środek` / `dół`) — do szybkiego odnalezienia go wzrokiem w PDF-ie.
 - Opisy słowne zachowane z oryginału CKE. Wtrącenia własne (nie z tablicy) są w cytatach `>`.
 - Przy figurach geometrycznych zamiast rysunku podana jest **legenda oznaczeń** — co znaczy każdy symbol we wzorze.
-- **Pominięta:** sekcja 17 (tablica wartości funkcji trygonometrycznych, s. 34) — kilkaset odczytów, które model i tak zna; w razie potrzeby dokładnych wartości → s. 34 PDF-a. Najpotrzebniejsze kąty (0°, 30°, 45°, 60°, 90°) są w [9.5].
+- **Nie wszystko z PDF-a tu jest** — patrz sekcja „Czego tu NIE MA" poniżej. Zanim uznasz, że tablica czegoś nie zawiera, sprawdź tę listę.
+
+## Czego tu NIE MA — kiedy otworzyć PDF
+
+Transkrypt pokrywa **cały tekst i wszystkie wzory** ze stron 4–33 (każdy punkt „•" z oryginału).
+Trzy rzeczy zostały świadomie pominięte — jeśli potrzebujesz którejś z nich, otwórz
+`../wybrane_wzory_matematyczne.pdf` na wskazanej stronie:
+
+| Czego brak | Gdzie w PDF | Dlaczego pominięte |
+|---|---|---|
+| **Rysunki i wykresy** (figury geometryczne, wykresy funkcji, bryły) | s. 8, 11, 12, 15–28 | Transkrypt jest tekstowy. Zamiast rysunku podana jest **legenda oznaczeń** — co znaczy każdy symbol we wzorze. Do policzenia wzoru to wystarcza; do zrozumienia konfiguracji („który kąt jest oparty na którym łuku") — nie. Wzory z rysunkiem mają dopisek `Rysunek: PDF s. N`. |
+| **Tablica wartości funkcji trygonometrycznych** (sekcja 17) | s. 34 | Kilkaset odczytów `sin`/`cos`/`tg` co 1°, których model i tak zna z pamięci. Kąty typowe dla matury (0°, 30°, 45°, 60°, 90°) są w [9.5]. |
+| Okładka, zespół redakcyjny, spis treści, adresy OKE | s. 1–3, 35–36 | Brak treści matematycznej. |
+
+**Nic poza tym nie zostało pominięte.** Kompletność sprawdzona 2026-07-28 przez wypisanie
+wszystkich punktów „•" i nagłówków sekcji z PDF-a (strony 4–34) i porównanie ich jeden do
+jednego z ID w transkrypcie.
 
 ## Sekcje
 
