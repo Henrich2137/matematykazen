@@ -45,13 +45,13 @@ Sonnet High:
   - Karta zadania bez ramki/zaokrąglenia, reszta strony już zaokrąglona — decyzja Henricha
   - Landing i arkusz mają różne rozmiary fontu dla podobnych elementów + do sprawdzenia kontrast WCAG (issues/dark-mode-css-zmienne-landing.md)
 
-
+<br>
 
 TESTOWANIE HENRICH:
 
 - telefon 2024 - wczytuje zadania ale wyświetla błąd. (issues/zadania-nie-renderuja-sie-mobile.md)
 
-
+<br>
 
 DLA HENRICHA:
 
@@ -61,7 +61,7 @@ DLA HENRICHA:
 
 - Przerenderować w Manimie ostatni krok zad 2 (zad2/zad2rozw_step6.mp4): klatka końcowa pokazuje 5⁻⁴, a poprawny wynik to 5⁴ (5⁻¹ · 5⁵ = 5⁴). Komentarz pod filmem tymczasowo prostuje błąd.
 
-
+<br>
 
 INNE NOTATKI, DO PRZEKMINIENIA:
 - "Wskaźniki" (oceń się):
