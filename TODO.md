@@ -97,7 +97,7 @@ INNE NOTATKI, DO PRZEKMINIENIA:
 <br><br>
 
 
-<h3>DO REALIZACJI Dopisane przez CLAUDA</h3>
+<h3>DOPISANE PRZEZ CLAUDA</h3>
 Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz issues/README.md.
 
 SONNET DOPISAŁ:
