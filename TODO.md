@@ -12,6 +12,12 @@ NIE REALIZUJ
 
 Do przydzielenia:
 
+- Tło w niektórych widżetach jest białe w motywie darkmode. Należy zmienić kolory na taki które będą się zgadzać z motywem.
+
+- Przycisk zgłoś błąd powinien wyglądać podobnie do light buttonów
+
+- Punktacja przy zadaniach może być przesunięta troszeczke w lewo, bliżej zadań.
+
 - Panel boczny: „Sprawdź wszystkie odpowiedzi" (#sprawdz-wszystkie) znika/pojawia się przy przełączaniu
   „Poprawność odpowiedzi" (natychmiast ↔ po „sprawdź") — panel przez to „skacze". Ma być zawsze widoczny:
   aktywny w „po sprawdź", wyszarzony/disabled w „natychmiast" — tak jak już jest zrobione w trybie
@@ -23,19 +29,12 @@ Do przydzielenia:
   - zamiast checkboxów powinny być przyciski z punktami do każdego zdania typu "Nierówność zapisana w postaci x2−6x−7≤0x2−6x−7≤0" (przykład z zad 9.) Dokładna punktacja jest w zasadach oceniania w pdf i od tego powinna zależeć ilość przycisków. (czeka na decyzję merytoryczną Henricha o punktacji za poszczególne przyciski, potem do przydzielenia modelowi)
   - ostateczna odpowiedź w zadaniach takich jak 8. i 9. po sprawdzeniu powinny być przyznane punkty użytkownikowi i automatycznie zaznaczony przycisk punktów
 
-- Tło w niektórych widżetach jest białe w motywie darkmode. Należy zmienić kolory na taki które będą się zgadzać z motywem.
-
-- Przycisk zgłoś błąd powinien wyglądać podobnie do light buttonów
-
-- Punktacja przy zadaniach może być przesunięta troszeczke w lewo, bliżej zadań.
-
 - Menu / Panel boczny:
   - Swipe/Przesunięcie w lewo powinno zwijać panel boczny (tylko na telefonie)
   - Przełączniki w stylu Motyw, Poprawność itd. są zbyt blade i wyglądają na nieaktywne/zablokowane
   - w trybie egzaminu Poprawność powinna być tak samo nieaktywna/zablokowana ja Punktacja
   - stan przełączników (np. ciemny, jasny, wł., wył., wszystko itd.) chyba jest napisany zbyt tłustą czcionką czy coś. Wyrazy wadają się nieostre, mają jakby bleeding/bloom effect.
 
-  
 
 Sonnet High:
 - Spójność UI, sesja 2 (jeszcze NIE zrobione, ciąg dalszy sesji 1 [ZROBIONE 2026-07-27]). Szczegóły: issues/ui-spojnosc-etap2.md
