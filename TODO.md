@@ -97,6 +97,8 @@ INNE NOTATKI, DO PRZEKMINIENIA:
 
 - dodanie rozwiązań do matury 2026
 
+\[|x| = \begin{cases} x & \text{dla } x \ge 0 \\ -x & \text{dla } x < 0 \end{cases}\]
+
 - Do sekcji „oceń się" powinno być dodane kryteria sukcesu dopiero po kliknięciu rozwiązania. Ale jeszcze nie mam pomysłu, jak to skomponować, aby miało sens.
 
 - W index.html dodać sekcję o autorze i link do Patronite
