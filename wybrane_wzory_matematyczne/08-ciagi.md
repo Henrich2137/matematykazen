@@ -1,6 +1,6 @@
 # 8. Ciągi
 
-Strony **9–11** tablicy (granice [8.10] są na górze s. 11, tuż przed sekcją 9).
+Strony **9–11** tablicy (granice [8.11] są na górze s. 11, tuż przed sekcją 9).
 
 ## [8.1] Ciąg arytmetyczny — \(n\)-ty wyraz — s. 9, środek
 
@@ -62,7 +62,15 @@ Jeżeli ponadto \(b_n \ne 0\) dla \(n \ge 1\) oraz \(b \ne 0\), to ciąg \(\left
 
 Jeżeli wyrazy ciągów \((a_n)\), \((b_n)\) i \((c_n)\), określonych dla \(n \ge 1\), spełniają nierówność \(a_n \le b_n \le c_n\) dla \(n \ge 1\), a ciągi \((a_n)\) i \((c_n)\) są zbieżne do wspólnej granicy \(\lim\limits_{n \to \infty} a_n = \lim\limits_{n \to \infty} c_n = g\), to ciąg \((b_n)\) jest zbieżny, a ponadto \(\lim\limits_{n \to \infty} b_n = g\).
 
-## [8.10] Wybrane granice — s. 11, góra
+## [8.10] Procent składany — s. 10, dół
+
+Jeżeli kapitał początkowy \(K_0\) złożymy na okres \(n\) lat na lokacie bankowej, której oprocentowanie wynosi \(p\%\) w skali rocznej, a kapitalizacja odsetek następuje po upływie każdego roku trwania lokaty, to kapitał końcowy \(K_n\) jest określony wzorem:
+
+\[K_n = K_0 \cdot \left(1 + \frac{p}{100}\right)^n\]
+
+> Dopisane 2026-07-28 — brakowało tego wzoru w pierwszym transkrypcie (pominięty przy przepisywaniu PDF-a); zweryfikowane wizualnie na s. 10 PDF-a.
+
+## [8.11] Wybrane granice — s. 11, góra
 
 \[\lim_{n \to \infty} \left( 1 + \frac{1}{n} \right)^n = e\]
 

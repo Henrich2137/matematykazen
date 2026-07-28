@@ -19,11 +19,11 @@ patrz DONE/04-biezace.md):**
   polecenia, która wymaga innego wzoru.
 - Jeśli zadanie ma podzadania (`Zadanie N.1`, `N.2`, ...), sprawdź czy `formulasPage` intro
   (`Zadanie N.`) nie jest zbędne — czasem cała treść merytoryczna i tak jest w podzadaniach.
-- Granice stron bywają mylące na styku sekcji/wzorów (np. wzór na `aₙ = a₁·qⁿ⁻¹` ciągu
-  geometrycznego jest w tym transkrypcie na str. 9 dół, ale Henrich potwierdził że w prawdziwym
-  PDF-ie "procent składany" — który używa dokładnie tej postaci — jest opisany na str. 10 dół;
-  transkrypt `08-ciagi.md` może mieć w tym miejscu lukę/błąd numeracji, **nie ufaj mu ślepo przy
-  granicach stron 9/10** dopóki ktoś tego nie zweryfikuje względem PDF-a).
+- "Wygląda jak ten sam wzór" ≠ "jest tym samym wzorem" — n-ty wyraz ciągu geometrycznego
+  `aₙ = a₁·qⁿ⁻¹` (str. 9, [8.4]) i procent składany `Kₙ = K₀·(1+p/100)ⁿ` (str. 10, [8.10])
+  są matematycznie tej samej postaci, ale w PDF-ie CKE to dwa **osobne, oddzielnie wypisane**
+  wzory na dwóch różnych stronach — nie zakładaj, że jeden pokrywa drugi tylko dlatego, że
+  wyglądają podobnie po podstawieniu `q = 1+p/100`.
 - Jedno zadanie często wymaga wzorów z **więcej niż jednej** strony (np. Pitagoras + pole
   trapezu) — `formulasPage` na razie przyjmuje tylko jedną liczbę (patrz TODO.md, plan zmiany
   na `formulasPages`), więc wybierz stronę z wzorem **kluczowym/końcowym** dla rozwiązania,
@@ -89,7 +89,8 @@ zakresem sekcji.
 | ciąg geometryczny — wyraz, suma | [8.4], [8.5] | 9 |
 | trzy liczby tworzą ciąg (warunek) | [8.3], [8.6] | 9, 10 |
 | suma szeregu geometrycznego, \(|q|<1\) | [8.7] | 10 |
-| granica ciągu | [8.8], [8.10] | 10, 11 |
+| procent składany, kapitalizacja odsetek, lokata | [8.10] | 10 |
+| granica ciągu | [8.8], [8.11] | 10, 11 |
 | sinus / cosinus / tangens w trójkącie prostokątnym | [9.1] | 11 |
 | jedynka trygonometryczna | [9.4] | 12 |
 | wartości \(\sin 30°\), \(\cos 45°\) itp. | [9.5] | 13 |
