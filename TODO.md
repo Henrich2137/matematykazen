@@ -3,7 +3,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 DO REALIZACJI
 <br> Jeżeli nie masz co robić, to rób stąd.
 
-- nic
+- Uzupełnić `formulasPage` (Pokaż potrzebne wzory) w 2024-grudzień — brakuje w zad. 7, 8, 10, 11, 12, 20 (6 z 35), więc nie mają przycisku „Pokaż potrzebne wzory". Do decyzji merytorycznej: część pewnie faktycznie nie wymaga tablic, ale zad. 8 (otwarte) warto sprawdzić.
 
 
 
@@ -27,7 +27,10 @@ Do przydzielenia:
 
 - Przycisk zgłoś błąd powinien wyglądać podobnie do light buttonów
 
-- Przesunięcie w lewo powinno zwijać panel boczny (tylko na telefonie)
+- Menu / Panel boczny:
+  - Swipe/Przesunięcie w lewo powinno zwijać panel boczny (tylko na telefonie)
+  - Przełączniki w stylu Motyw, Poprawność itd. są zbyt blade i wyglądają na nieaktywne/zablokowane
+  - w trybie egzaminu Poprawność powinna być tak samo nieaktywna/zablokowana ja Punktacja
 
 
 Sonnet High:
@@ -73,8 +76,6 @@ INNE NOTATKI, DO PRZEKMINIENIA:
   - Powinien być cały czas widoczny. Gdy "Poprawność" jest ustawiona na 'po "sprawdź"' to powinien się uaktyniać, a gdy "natychmiast" to być szary, nieaktywny. Nie chcę aby menu skakało po przełączaniu "Poprawność"
   - Opcjonalnie: powiniowinien być umieszczony jako podpunkt pod "Poprawność"
 
-- W trybie egzaminu "Punktacja" powinna pokazywać wył. ale pod spodem pamiętać to co było ustawione w ćwiczeniach. Nie powinno być widać punktów na egzaminie 
-
 - wskaźniki "oceń się" na telefonie powinny być:
   - ALBO: niewidzialne, wtedy opcja w menu powinna być szara z wybranym
   - ALBO: widoczne przyklejone do prawej strony z lekkim marginesem. powinny też być odpowiednio małe aby nie zasłaniały treści.
@@ -95,7 +96,6 @@ DOPISANE PRZEZ CLAUDA
 Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz issues/README.md.
 
 SONNET DOPISAŁ:
-- Uzupełnić `formulasPage` w 2024-grudzień — brakuje w zad. 7, 8, 10, 11, 12, 20 (6 z 35), więc nie mają przycisku „Pokaż potrzebne wzory". Do decyzji merytorycznej: część pewnie faktycznie nie wymaga tablic, ale zad. 8 (otwarte) warto sprawdzić.
 
 - Tryb testowy dla zgłaszania błędów (app/report.js): przycisk „Wyślij zgłoszenie" zamieniony na „Wyślij zgłoszenie lokalnie" (np. pod `?test-zgloszenie=1`, wzorem `?test-egzamin=1`), który loguje payload do konsoli/localStorage zamiast robić fetch do Formspree — żeby testować całą ścieżkę (walidacja, honeypot, throttling, toast) bez zużywania miesięcznego limitu 50 zgłoszeń.
 
