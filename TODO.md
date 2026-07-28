@@ -69,7 +69,8 @@ DLA HENRICHA:
 
 INNE NOTATKI, DO PRZEKMINIENIA:
 - "Pokaż potrzebne wzory" powinien mieć możliwośc wyboru wielu podpunktów?, kropek?, a formulasPage w zadaniach powinien sięzmienić na formulasPages. Powinno być wiele lokacji wzorów do przywołania pod jednym zadaniem.
-  - Zad 11. dopisać str 16
+  - Zad 11. dopisać str 16 (2024-grudzień, pole trójkąta [10.4])
+  - Zad 17. dopisać str 18 (2024-grudzień, podzadania 17.1/17.2 mają już str 11)
 
 - "Wskaźniki" (oceń się):
   - Przycisk "Wskaźniki" powinien się nazywać "Wskaźniki zad. do oceny" lub coś w tym stylu, samo wskaźniki mało mówi. 
