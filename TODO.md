@@ -18,6 +18,7 @@ NIE REALIZUJ
 
 Sonnet High:
 - Spójność UI, sesja 2 (jeszcze NIE zrobione, ciąg dalszy sesji 1 [ZROBIONE 2026-07-27]). Szczegóły: issues/ui-spojnosc-etap2.md
+  - Sesja 1 [ZROBIONE 2026-07-27] + 3 Twoje drobnice (cienie sidebara, ciemniejszy tekst przycisku stopki, tytuł 32%) — patrz DONE/03-2026-07-27.md i DONE/04-biezace.md. Do sprawdzenia na żywo (v0.07): stopka, przełącznik w obu motywach, panele PDF, kreska i strzałka sidebara, tytuł arkusza na telefonie.
   - 4 różne rozmiary fontu na karcie zadania — ujednolicić
   - Przyciski odpowiedzi (ABCD, P/F, punkty) bez podświetlenia na hover
   - Dwa różne style hover w menu (ramka vs tło) — wybrać jeden
