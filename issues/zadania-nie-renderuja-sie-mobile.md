@@ -1,6 +1,7 @@
 # Zadania nie renderują się na telefonie (arkusz 2024-grudzień)
 
-**Status:** ZDIAGNOZOWANE 2026-07-24 — patrz „Przyczyna" na dole. Fix: `.nojekyll` w rootcie.
+**Status:** ROZWIĄZANE, potwierdzone przez Henricha na żywo na telefonie 2026-07-28 —
+`.nojekyll` naprawił problem, zadania wczytują się poprawnie. Patrz „Przyczyna" na dole.
 
 ## Repro
 

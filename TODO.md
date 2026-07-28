@@ -49,8 +49,6 @@ Sonnet High:
 
 TESTOWANIE HENRICH:
 
-- telefon 2024 - wczytuje zadania ale wyświetla błąd. (issues/zadania-nie-renderuja-sie-mobile.md)
-
 <br>
 
 DLA HENRICHA:
