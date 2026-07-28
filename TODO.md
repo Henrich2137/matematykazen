@@ -68,7 +68,7 @@ DLA HENRICHA:
 <br>
 
 INNE NOTATKI, DO PRZEKMINIENIA:
-- "Pokaż potrzebne wzory" powinien mieć możliwośc wyboru wielu podpunktów?, kropek?, a formulasPage w zadaniach powinien sięzmienić na formulasPages. Powinno być wiele lokacji wzorów do przywołania pod jednym zadaniem. (2024-grudzień, formulasPage już zweryfikowane dla całego arkusza — patrz DONE)
+- "Pokaż potrzebne wzory" powinien mieć możliwośc wyboru wielu podpunktów?, kropek?, a formulasPage w zadaniach powinien sięzmienić na formulasPages. Powinno być wiele lokacji wzorów do przywołania pod jednym zadaniem. 
   - Zad 9. dopisać str 7 (wyróżnik Δ, obok już wpisanej str 8 ze wzorem na x1,x2)
   - Zad 11. dopisać str 16 (pole trójkąta [10.4])
   - Zad 17. dopisać str 18 (podzadania 17.1/17.2 mają już str 11)
