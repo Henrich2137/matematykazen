@@ -12,6 +12,8 @@ NIE REALIZUJ
 
 Do przydzielenia:
 
+- Okno typu "Zaznacz co masz w rozwiązaniu" (np w zad 9.) powinno być jakoś schowane bo podpowiada, spoiluje uczniowi na starcie co ma zrobić.
+
 - Tło w niektórych widżetach jest białe w motywie darkmode. Należy zmienić kolory na taki które będą się zgadzać z motywem.
 
 - Przycisk zgłoś błąd powinien wyglądać podobnie do light buttonów
