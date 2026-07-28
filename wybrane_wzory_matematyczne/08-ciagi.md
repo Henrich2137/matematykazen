@@ -1,6 +1,6 @@
 # 8. Ciągi
 
-Strony **9–10** tablicy.
+Strony **9–11** tablicy (granice [8.10] są na górze s. 11, tuż przed sekcją 9).
 
 ## [8.1] Ciąg arytmetyczny — \(n\)-ty wyraz — s. 9, środek
 
@@ -61,3 +61,17 @@ Jeżeli ponadto \(b_n \ne 0\) dla \(n \ge 1\) oraz \(b \ne 0\), to ciąg \(\left
 ## [8.9] Twierdzenie o trzech ciągach — s. 10, dół
 
 Jeżeli wyrazy ciągów \((a_n)\), \((b_n)\) i \((c_n)\), określonych dla \(n \ge 1\), spełniają nierówność \(a_n \le b_n \le c_n\) dla \(n \ge 1\), a ciągi \((a_n)\) i \((c_n)\) są zbieżne do wspólnej granicy \(\lim\limits_{n \to \infty} a_n = \lim\limits_{n \to \infty} c_n = g\), to ciąg \((b_n)\) jest zbieżny, a ponadto \(\lim\limits_{n \to \infty} b_n = g\).
+
+## [8.10] Wybrane granice — s. 11, góra
+
+\[\lim_{n \to \infty} \left( 1 + \frac{1}{n} \right)^n = e\]
+
+\[\lim_{n \to \infty} \sqrt[n]{n} = 1\]
+
+\[\lim_{n \to \infty} \sqrt[n]{a} = 1 \quad \text{dla każdego } a > 0\]
+
+\[\lim_{n \to \infty} q^n = 0 \quad \text{dla każdego } q \in (-1, 1)\]
+
+\[\lim_{n \to \infty} \frac{1}{n^k} = 0 \quad \text{dla każdego } k > 0\]
+
+\[\lim_{n \to \infty} n^k = +\infty \quad \text{dla każdego } k > 0\]
