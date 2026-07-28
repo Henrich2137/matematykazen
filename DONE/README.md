@@ -18,6 +18,17 @@ Do szukania używaj najpierw tego indeksu (tagi niżej), potem grepa po konkretn
 
 
 == 04-biezace.md — partia OTWARTA (2026-07-27 → ?) ==
+- 2026-07-28 (Sonnet High) — `formulasPage` zweryfikowane dla całego arkusza 2024-grudzień (35 zadań)
+  na podstawie transkryptu wybrane_wzory_matematyczne/ (nie PDF-a): uzupełnione 6 brakujących
+  (zad. 7, 8, 10, 11, 12, 17 — z czego 7/8/10/12 świadomie zostają bez strony, bo nie wymagają
+  tablic) oraz poprawionych 8 błędnych/zdezaktualizowanych (zad. 5→zostaje 10 wg Henricha —
+  możliwa luka w transkrypcie 08-ciagi.md, „procent składany" nie ma tam osobnego wzoru mimo że
+  Henrich potwierdza jego istnienie na dole str. 10 w prawdziwym PDF-ie; zad. 9→8; zad. 12.1-12.3→8
+  zamiast 7 — wierzchołek/postać kanoniczna są na str. 8, nie na str. 7 z wyróżnikiem; zad. 16→9;
+  zad. 19→17 — podobieństwo trójkątów, nie Pitagoras; zad. 24→11 — to zadanie liczy wysokość z
+  tangensa, nie objętość ostrosłupa; zad. 30→8). Metoda ustalona po korektach Henricha: strona
+  formulasPage musi odpowiadać wzorowi FAKTYCZNIE użytemu w solutionText/hint, nie samemu tematowi
+  zadania — patrz notatka w wybrane_wzory_matematyczne/INDEX.md  [tresc, formulasPage, weryfikacja]
 - 2026-07-27 (Sonnet High) — „sprawdź wszystkie odpowiedzi": fillIn i finalAnswer dopisane do rejestru
   oczekujaceSprawdzenia (ocena wydzielona do ocenFillIn(), bez duplikacji logiki), bonus — finalAnswer
   auto-sprawdzany po zakończeniu egzaminu, komunikat „sprawdzono ✓"/„brak zaznaczonych odpowiedzi" obok

@@ -7,6 +7,28 @@ model ładował tylko potrzebny fragment zamiast całych 31 stron.
 podany przy każdym wzorze to strona PDF-a — ta sama, którą wpisuje się w
 `formulasPage` w `exercises.json` (numeracja drukowana = fizyczna, bez przesunięcia).
 
+**Przy ustalaniu `formulasPage` dla konkretnego zadania (nauka z błędów Sonneta, 2026-07-28,
+patrz DONE/04-biezace.md):**
+- Nie zgaduj strony z samego **tematu** zadania (np. "to stereometria więc str. 27") — sprawdź,
+  jakiego wzoru **faktycznie** używa `hint`/`solutionText`/`solutionTextMore`. Zadanie może
+  brzmieć jak dział X, a rozwiązanie po drodze używać tylko podstawowej definicji z działu Y
+  (np. zad. 24 z 2024-grudzień: "kąt nachylenia ściany ostrosłupa" brzmi jak stereometria,
+  ale liczy się go zwykłym `tg α` z trygonometrii [9.1], bez żadnego wzoru na objętość).
+- Czytaj **pełną** treść zadania, nie tylko pierwsze zdanie (`question` bywa długie, z
+  podpunktami/wieloma pytaniami w jednym obiekcie) — inaczej łatwo przeoczyć drugą połowę
+  polecenia, która wymaga innego wzoru.
+- Jeśli zadanie ma podzadania (`Zadanie N.1`, `N.2`, ...), sprawdź czy `formulasPage` intro
+  (`Zadanie N.`) nie jest zbędne — czasem cała treść merytoryczna i tak jest w podzadaniach.
+- Granice stron bywają mylące na styku sekcji/wzorów (np. wzór na `aₙ = a₁·qⁿ⁻¹` ciągu
+  geometrycznego jest w tym transkrypcie na str. 9 dół, ale Henrich potwierdził że w prawdziwym
+  PDF-ie "procent składany" — który używa dokładnie tej postaci — jest opisany na str. 10 dół;
+  transkrypt `08-ciagi.md` może mieć w tym miejscu lukę/błąd numeracji, **nie ufaj mu ślepo przy
+  granicach stron 9/10** dopóki ktoś tego nie zweryfikuje względem PDF-a).
+- Jedno zadanie często wymaga wzorów z **więcej niż jednej** strony (np. Pitagoras + pole
+  trapezu) — `formulasPage` na razie przyjmuje tylko jedną liczbę (patrz TODO.md, plan zmiany
+  na `formulasPages`), więc wybierz stronę z wzorem **kluczowym/końcowym** dla rozwiązania,
+  a resztę dopisz do TODO.md jako punkt do uzupełnienia po wdrożeniu wielu stron.
+
 **Konwencje:**
 - Wzory w KaTeX, w tej samej konwencji co `exercises.json`: `\( ... \)` inline, `\[ ... \]` w osobnej linii — da się je kopiować do zadań bez przepisywania (pamiętaj tylko o podwojeniu `\` przy wklejaniu do JSON-a).
 - ID w postaci `[sekcja.numer]`, np. `[2.6]`. Odwołania między wzorami przez to ID.

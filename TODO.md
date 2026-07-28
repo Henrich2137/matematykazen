@@ -3,8 +3,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 DO REALIZACJI
 <br> Jeżeli nie masz co robić, to rób stąd.
 
-- Uzupełnić `formulasPage` ("Pokaż potrzebne wzory") w 2024-grudzień. Brakuje w zad. 7, 8, 10, 11, 12, 20 (6 z 35). Do decyzji merytorycznej: część pewnie faktycznie nie wymaga tablic, ale zad. 8 (otwarte) warto sprawdzić.
-
 
 
 NIE REALIZUJ
@@ -70,9 +68,13 @@ DLA HENRICHA:
 <br>
 
 INNE NOTATKI, DO PRZEKMINIENIA:
-- "Pokaż potrzebne wzory" powinien mieć możliwośc wyboru wielu podpunktów?, kropek?, a formulasPage w zadaniach powinien sięzmienić na formulasPages. Powinno być wiele lokacji wzorów do przywołania pod jednym zadaniem.
-  - Zad 11. dopisać str 16 (2024-grudzień, pole trójkąta [10.4])
-  - Zad 17. dopisać str 18 (2024-grudzień, podzadania 17.1/17.2 mają już str 11)
+- "Pokaż potrzebne wzory" powinien mieć możliwośc wyboru wielu podpunktów?, kropek?, a formulasPage w zadaniach powinien sięzmienić na formulasPages. Powinno być wiele lokacji wzorów do przywołania pod jednym zadaniem. (2024-grudzień, formulasPage już zweryfikowane dla całego arkusza — patrz DONE)
+  - Zad 9. dopisać str 7 (wyróżnik Δ, obok już wpisanej str 8 ze wzorem na x1,x2)
+  - Zad 11. dopisać str 16 (pole trójkąta [10.4])
+  - Zad 17. dopisać str 18 (podzadania 17.1/17.2 mają już str 11)
+  - Zad 19. dopisać str 20 (pole trapezu [10.17], obok już wpisanej str 17 z podobieństwem trójkątów)
+  - Zad 24. dopisać str 27 (jest tam rysunek ostrosłupa, obok już wpisanej str 11 z tangensem)
+  - Zad 30. dopisać str 26 (pole całkowite prostopadłościanu [12.2], obok już wpisanej str 8 z wierzchołkiem paraboli)
 
 - "Wskaźniki" (oceń się):
   - Przycisk "Wskaźniki" powinien się nazywać "Wskaźniki zad. do oceny" lub coś w tym stylu, samo wskaźniki mało mówi. 
