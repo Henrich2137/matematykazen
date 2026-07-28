@@ -6,7 +6,11 @@ DO REALIZACJI
 - nic
 
 
+
 NIE REALIZUJ
+
+
+Do przydzielenia:
 
 - Panel boczny: „Sprawdź wszystkie odpowiedzi" (#sprawdz-wszystkie) znika/pojawia się przy przełączaniu
   „Poprawność odpowiedzi" (natychmiast ↔ po „sprawdź") — panel przez to „skacze". Ma być zawsze widoczny:
@@ -14,6 +18,16 @@ NIE REALIZUJ
   egzaminu (setExamMenuDisabled w app/exam.js, można wzorować mechanizm). Potwierdzone na żywo
   2026-07-27 przy okazji testów v0.08; ten sam temat co niżej w „INNE NOTATKI" (~linia 51) — jeden
   wpis wystarczy, ten wyżej jest teraz aktualny.
+  
+- Zadania otwarte, naliczanie punktów:
+  - zamiast checkboxów powinny być przyciski z punktami do każdego zdania typu "Nierówność zapisana w postaci x2−6x−7≤0x2−6x−7≤0" (przykład z zad 9.) Dokładna punktacja jest w zasadach oceniania w pdf i od tego powinna zależeć ilość przycisków. (czeka na decyzję merytoryczną Henricha o punktacji za poszczególne przyciski, potem do przydzielenia modelowi)
+  - ostateczna odpowiedź w zadaniach takich jak 8. i 9. po sprawdzeniu powinny być przyznane punkty użytkownikowi i automatycznie zaznaczony przycisk punktów
+
+- Tło w niektórych widżetach jest białe w motywie darkmode. Należy zmienić kolory na taki które będą się zgadzać z motywem.
+
+- Przycisk zgłoś błąd powinien wyglądać podobnie do light buttonów
+
+- Przesunięcie w lewo powinno zwijać panel boczny (tylko na telefonie)
 
 
 Sonnet High:
@@ -32,22 +46,12 @@ Sonnet High:
   - Landing i arkusz mają różne rozmiary fontu dla podobnych elementów + do sprawdzenia kontrast WCAG (issues/dark-mode-css-zmienne-landing.md)
 
 
-Do przydzielenia:
-
-- Zadania otwarte, naliczanie punktów:
-  - zamiast checkboxów powinny być przyciski z punktami do każdego zdania typu "Nierówność zapisana w postaci x2−6x−7≤0x2−6x−7≤0" (przykład z zad 9.) Dokładna punktacja jest w zasadach oceniania w pdf i od tego powinna zależeć ilość przycisków. (czeka na decyzję merytoryczną Henricha o punktacji za poszczególne przyciski, potem do przydzielenia modelowi)
-  - ostateczna odpowiedź w zadaniach takich jak 8. i 9. po sprawdzeniu powinny być przyznane punkty użytkownikowi i automatycznie zaznaczony przycisk punktów
-
-- Tło w niektórych widżetach jest białe w motywie darkmode. Należy zmienić kolory na taki które będą się zgadzać z motywem.
-
-- Przycisk zgłoś błąd powinien wyglądać podobnie do light buttonów
-
-- Przesunięcie w lewo powinno zwijać panel boczny (tylko na telefonie)
-
-<br>
 
 TESTOWANIE HENRICH:
+
 - telefon 2024 - wczytuje zadania ale wyświetla błąd. (issues/zadania-nie-renderuja-sie-mobile.md)
+
+
 
 DLA HENRICHA:
 
@@ -57,8 +61,6 @@ DLA HENRICHA:
 
 - Przerenderować w Manimie ostatni krok zad 2 (zad2/zad2rozw_step6.mp4): klatka końcowa pokazuje 5⁻⁴, a poprawny wynik to 5⁴ (5⁻¹ · 5⁵ = 5⁴). Komentarz pod filmem tymczasowo prostuje błąd.
 
-
-<br>
 
 
 INNE NOTATKI, DO PRZEKMINIENIA:
