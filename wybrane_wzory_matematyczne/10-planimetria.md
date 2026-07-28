@@ -1,6 +1,6 @@
 # 10. Planimetria
 
-Strony **15–21** tablicy.
+Strony **15–22** tablicy (sekcja kończy się na górze s. 22, przed geometrią analityczną).
 
 ## [10.0] Oznaczenia w trójkącie \(ABC\) — s. 15, góra
 
@@ -63,3 +63,153 @@ Oznaczenia: \(a\) — długość boku trójkąta równobocznego; \(h\) — wysok
 \[h = \frac{a\sqrt{3}}{2} \qquad P_{\Delta} = \frac{a^2 \sqrt{3}}{4}\]
 
 \[r = \frac{1}{3} h \qquad R = \frac{2}{3} h\]
+
+## [10.7] Cechy przystawania trójkątów — s. 17, góra/środek
+
+**a)** cecha przystawania „bok–bok–bok" dla trójkątów \(ABC\) i \(KLM\): długości boków trójkąta \(ABC\) są równe odpowiednim długościom boków trójkąta \(KLM\), np.: \(|AB| = |KL|\), \(|BC| = |KM|\), \(|CA| = |ML|\)
+
+**b)** cecha przystawania „bok–kąt–bok" dla trójkątów \(ABC\) i \(KLM\): długości dwóch boków trójkąta \(ABC\) są równe odpowiednim długościom dwóch boków trójkąta \(KLM\) i kąty między tymi parami boków są przystające, np.: \(|AB| = |KL|\), \(|BC| = |KM|\) i \(|\sphericalangle ABC| = |\sphericalangle LKM|\)
+
+**c)** cecha przystawania „kąt–bok–kąt" dla trójkątów \(ABC\) i \(KLM\): długość jednego boku trójkąta \(ABC\) jest równa długości jednego boku trójkąta \(KLM\) i kąty przyległe do tego boku trójkąta \(ABC\) są przystające do odpowiednich kątów przyległych do odpowiedniego boku trójkąta \(KLM\), np.: \(|AB| = |KL|\) oraz \(|\sphericalangle BAC| = |\sphericalangle KLM|\) i \(|\sphericalangle ABC| = |\sphericalangle LKM|\)
+
+## [10.8] Cechy podobieństwa trójkątów — s. 17, środek/dół
+
+**a)** cecha podobieństwa „bok–bok–bok" dla trójkątów \(ABC\) i \(KLM\): długości boków trójkąta \(ABC\) są proporcjonalne do odpowiednich długości boków trójkąta \(KLM\), np.:
+
+\[\frac{|AB|}{|KL|} = \frac{|BC|}{|LM|} = \frac{|CA|}{|MK|}\]
+
+**b)** cecha podobieństwa „bok–kąt–bok" dla trójkątów \(ABC\) i \(KLM\): długości dwóch boków trójkąta \(ABC\) są proporcjonalne do odpowiednich długości dwóch boków trójkąta \(KLM\) i kąty między tymi parami boków są przystające, np.:
+
+\[\frac{|AB|}{|KL|} = \frac{|AC|}{|KM|} \text{ i } |\sphericalangle BAC| = |\sphericalangle LKM|\]
+
+**c)** cecha podobieństwa „kąt–kąt–kąt" dla trójkątów \(ABC\) i \(KLM\): kąty trójkąta \(ABC\) są przystające do odpowiednich kątów trójkąta \(KLM\), np.: \(|\sphericalangle BAC| = |\sphericalangle LKM|\) i \(|\sphericalangle ABC| = |\sphericalangle KLM|\) i \(|\sphericalangle ACB| = |\sphericalangle KML|\)
+
+## [10.9] Twierdzenie o dwusiecznej kąta — s. 18, góra
+
+Jeżeli dwusieczna kąta wewnętrznego (zewnętrznego) trójkąta \(ABC\) poprowadzona z wierzchołka \(C\) przecina prostą zawierającą odcinek \(AB\) w punkcie \(D\), to:
+
+\[\frac{|AD|}{|BD|} = \frac{|AC|}{|BC|}\]
+
+## [10.10] Twierdzenie Talesa (wraz z twierdzeniem odwrotnym) — s. 18, góra/środek
+
+Różne proste \(AB\) i \(CD\) przecinają się w punkcie \(P\), przy czym spełniony jest jeden z warunków:
+
+- punkt \(A\) leży wewnątrz odcinka \(PB\) oraz punkt \(C\) leży wewnątrz odcinka \(PD\)
+
+LUB
+
+- punkt \(A\) leży na zewnątrz odcinka \(PB\) oraz punkt \(C\) leży na zewnątrz odcinka \(PD\).
+
+Jeżeli \(\dfrac{|AB|}{|PA|} = \dfrac{|CD|}{|PC|}\), to proste \(AC\) i \(BD\) są równoległe.
+
+Jeżeli proste \(AC\) i \(BD\) są równoległe, to \(\dfrac{|AB|}{|PA|} = \dfrac{|CD|}{|PC|}\).
+
+## [10.11] Koło — s. 18, dół
+
+Pole \(P\) koła o promieniu \(r\) jest równe:
+
+\[P = \pi r^2\]
+
+Obwód \(L\) koła o promieniu \(r\) jest równy:
+
+\[L = 2\pi r\]
+
+## [10.12] Wycinek koła — s. 19, góra
+
+Pole \(P\) wycinka koła o promieniu \(r\) i kącie środkowym \(\alpha\) wyrażonym w stopniach jest równe:
+
+\[P = \frac{\alpha}{360°} \cdot \pi r^2\]
+
+Długość \(L\) łuku \(AB\) wycinka koła o promieniu \(r\) i kącie środkowym \(\alpha\) wyrażonym w stopniach jest równa:
+
+\[L = \frac{\alpha}{360°} \cdot 2\pi r\]
+
+## [10.13] Kąty w okręgu — s. 19, środek
+
+Miara kąta wpisanego w okrąg o środku \(O\) jest równa połowie miary kąta środkowego, opartego na tym samym łuku.
+
+W szczególności kąt wpisany oparty na półokręgu jest kątem prostym.
+
+Miary kątów wpisanych w okrąg o środku \(O\), opartych na tym samym łuku, są równe.
+
+## [10.14] Twierdzenie o kącie między styczną i cięciwą — s. 19, środek/dół
+
+Dany jest okrąg o środku w punkcie \(O\) i cięciwa \(AB\) tego okręgu. Prosta \(AC\) jest styczna do tego okręgu w punkcie \(A\), natomiast punkt \(P\) leży na tym okręgu i nie należy do kąta \(CAB\). Wtedy:
+
+\[|\sphericalangle APB| = |\sphericalangle CAB| \quad \text{i} \quad |\sphericalangle AOB| = 2 \cdot |\sphericalangle CAB|\]
+
+przy czym wybieramy ten z kątów środkowych \(AOB\), który jest oparty na łuku znajdującym się wewnątrz kąta \(CAB\).
+
+## [10.15] Twierdzenie o odcinkach stycznych — s. 20, góra
+
+Jeżeli styczne do okręgu w punktach \(A\) i \(B\) przecinają się w punkcie \(P\), to:
+
+\[|PA| = |PB|\]
+
+## [10.16] Twierdzenie o odcinkach siecznej i stycznej — s. 20, środek
+
+Dane są: prosta przecinająca okrąg w punktach \(A\) i \(B\) oraz prosta styczna do tego okręgu w punkcie \(C\). Jeżeli proste te przecinają się w punkcie \(P\), to:
+
+\[|PA| \cdot |PB| = |PC|^2\]
+
+## [10.17] Trapez — s. 20, dół
+
+Trapez — czworokąt, który ma co najmniej jedną parę boków równoległych.
+
+Oznaczenia: \(a\), \(b\) — długości boków równoległych; \(h\) — wysokość.
+
+Wzór na pole \(P\) trapezu:
+
+\[P = \frac{a + b}{2} \cdot h\]
+
+## [10.18] Równoległobok — s. 21, góra
+
+Równoległobok — czworokąt, który ma dwie pary boków równoległych.
+
+Oznaczenia: \(a\), \(b\) — długości sąsiednich boków; \(h\) — wysokość opuszczona na bok \(a\); \(\alpha\) — kąt między bokami \(a\) i \(b\); \(\gamma\) — kąt między przekątnymi \(AC\) i \(BD\).
+
+Wzory na pole \(P\) równoległoboku:
+
+\[P = ah \qquad P = a \cdot b \cdot \sin \alpha\]
+
+\[P = \frac{1}{2} \cdot |AC| \cdot |BD| \cdot \sin \gamma\]
+
+## [10.19] Romb — s. 21, góra/środek
+
+Romb — czworokąt, który ma wszystkie boki jednakowej długości.
+
+Oznaczenia: \(a\) — długość boku; \(h\) — wysokość; \(\alpha\) — kąt wewnętrzny.
+
+Wzory na pole \(P\) rombu:
+
+\[P = ah \qquad P = a^2 \cdot \sin \alpha\]
+
+\[P = \frac{1}{2} \cdot |AC| \cdot |BD|\]
+
+## [10.20] Deltoid — s. 21, środek
+
+Deltoid — czworokąt wypukły, który ma oś symetrii zawierającą jedną z przekątnych.
+
+Wzór na pole \(P\) deltoidu:
+
+\[P = \frac{1}{2} \cdot |AC| \cdot |BD|\]
+
+## [10.21] Okrąg opisany na czworokącie — s. 21, dół
+
+Na czworokącie można opisać okrąg wtedy i tylko wtedy, gdy sumy miar jego przeciwległych kątów wewnętrznych są równe \(180°\).
+
+\[\alpha + \gamma = 180° \qquad \beta + \delta = 180°\]
+
+## [10.22] Okrąg wpisany w czworokąt — s. 22, góra
+
+W czworokąt wypukły można wpisać okrąg wtedy i tylko wtedy, gdy sumy długości jego przeciwległych boków są równe.
+
+Oznaczenia: \(a\), \(b\), \(c\), \(d\) — długości kolejnych boków czworokąta.
+
+\[a + c = b + d\]
+
+## [10.23] Pola figur podobnych — s. 22, góra/środek
+
+Jeżeli figura \(B\) o polu \(P_B\) jest podobna do figury \(A\) o polu \(P_A\) (różnym od zera) w skali \(k\), to stosunek pól tych figur jest równy kwadratowi skali podobieństwa.
+
+\[\frac{P_B}{P_A} = k^2\]
