@@ -152,6 +152,15 @@ makePanelDraggable(zasadyPanel);
 const TABLICE_STRONA_SZER_PT = 612.288;
 const TABLICE_STRONA_WYS_PT = 858.897;
 
+// Tryb dopasowania strony w panelu:
+//   "FitH"  — do pełnej szerokości kartki (z marginesami),
+//   "FitBH" — do samej treści, bez marginesów: tekst ~30% większy i w kadrze
+//             mieści się mniej strony, więc przewijanie do wzoru w ogóle ma sens.
+// Do porównania na żywo wystarczy zmienić tę jedną stałą. Marginesy w tablicy
+// wzorów to ok. 72 pt z każdej strony, stąd TABLICE_STRONA_TRESC_SZER_PT.
+const TABLICE_TRYB_WIDOKU = "FitH";
+const TABLICE_STRONA_TRESC_SZER_PT = 468;
+
 // Ile punktów strony widać w pionie w panelu przy widoku FitH (ten dopasowuje
 // SZEROKOŚĆ strony do szerokości okna, więc skala wynika z samej szerokości).
 // Gdy panelu nie da się zmierzyć (jest schowany albo jesteśmy na telefonie, gdzie
@@ -159,7 +168,10 @@ const TABLICE_STRONA_WYS_PT = 858.897;
 function widocznaWysokoscTablicyPt() {
     const tablica = document.getElementById("tablica-wzorow");
     if (!tablica || !tablica.clientWidth || !tablica.clientHeight) return 0;
-    const pikseleNaPunkt = tablica.clientWidth / TABLICE_STRONA_SZER_PT;
+    const szerokoscWKadrzePt = TABLICE_TRYB_WIDOKU === "FitBH"
+        ? TABLICE_STRONA_TRESC_SZER_PT
+        : TABLICE_STRONA_SZER_PT;
+    const pikseleNaPunkt = tablica.clientWidth / szerokoscWKadrzePt;
     return tablica.clientHeight / pikseleNaPunkt;
 }
 
@@ -179,7 +191,7 @@ function fragmentTablicy(numerStrony, yWzoru) {
         const widoczneWPionie = widocznaWysokoscTablicyPt();
         // Bez pomiaru nie zgadujemy środka — celujemy prosto w wzór.
         const gornaKrawedz = yWzoru + (widoczneWPionie ? widoczneWPionie / 2 : 0);
-        fragment += `&view=FitH,${Math.round(Math.min(gornaKrawedz, TABLICE_STRONA_WYS_PT))}`;
+        fragment += `&view=${TABLICE_TRYB_WIDOKU},${Math.round(Math.min(gornaKrawedz, TABLICE_STRONA_WYS_PT))}`;
     }
     return `${fragment}&toolbar=0`;
 }
