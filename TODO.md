@@ -18,6 +18,8 @@ Do przydzielenia:
 
 - Punktacja przy zadaniach może być przesunięta troszeczke w lewo, bliżej zadań.
 
+- Zmienić tekst w przycisku "Pokaż potrzebne wzory" na "Pokaż wzory" lub "Potrzebne wzory".
+
 - Panel boczny: „Sprawdź wszystkie odpowiedzi" (#sprawdz-wszystkie) znika/pojawia się przy przełączaniu
   „Poprawność odpowiedzi" (natychmiast ↔ po „sprawdź") — panel przez to „skacze". Ma być zawsze widoczny:
   aktywny w „po sprawdź", wyszarzony/disabled w „natychmiast" — tak jak już jest zrobione w trybie
