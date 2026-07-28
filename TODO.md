@@ -83,13 +83,7 @@ INNE NOTATKI, DO PRZEKMINIENIA:
 
 - dodanie rozwiązań do matury 2026
 
-- Na telefonie pdfy się nie ładują (tablica i zasady oceniania). (to nie będzie problem po zmianie na pdf otwierane na zewnątrz stronki, jeśli tamto będzie działać to można usunąć ten wpis)
-  - Podczas naprawy warto sprawić, aby odpalały się one nie w okienku, ale wypełniały całą stronę z krzyżykiem w rogu.
-  - Jeżeli nie uda się tego naprawić, to należy usunąć tę funkcjonalność z wersji mobilnej.
-
 - Do sekcji „oceń się" powinno być dodane kryteria sukcesu dopiero po kliknięciu rozwiązania. Ale jeszcze nie mam pomysłu, jak to skomponować, aby miało sens.
-
-- Pokminić nad kolejnością przycisków w menu
 
 - W index.html dodać sekcję o autorze i link do Patronite
 
