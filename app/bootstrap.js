@@ -249,7 +249,7 @@ function applySheetMeta(meta) {
     }
     if (meta.tablicaPdfDefaultPage) {
         document.getElementById("tablica-wzorow").data =
-            `${TABLICE_PDF}#page=${meta.tablicaPdfDefaultPage}&toolbar=0`;
+            `${TABLICE_PDF}${fragmentTablicy(meta.tablicaPdfDefaultPage, null)}`;
     }
 }
 

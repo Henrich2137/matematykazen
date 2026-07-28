@@ -706,7 +706,7 @@ function loadExercises() {
 
         if(exercise.formulasPage != null){
             formulasButton.addEventListener("click", () => {
-                openFormulasAtPage(exercise.formulasPage)
+                openFormulasAtPage(exercise.formulasPage, exercise.formulasY)
             });
         }else{
             formulasButton.style.display = "none";

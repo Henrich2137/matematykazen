@@ -146,13 +146,55 @@ function makePanelDraggable(panel) {
 makePanelDraggable(tablicaPanel);
 makePanelDraggable(zasadyPanel);
 
-function openFormulasAtPage(numerStrony) {
+// Rozmiar strony tablicy wzorów w punktach PDF — wszystkie 36 stron mają ten sam
+// (sprawdzone `pdfinfo`: 612.288 x 858.897 pt). Potrzebne, bo parametr
+// `view=FitH,top` operuje we współrzędnych PDF-a, a nie w pikselach.
+const TABLICE_STRONA_SZER_PT = 612.288;
+const TABLICE_STRONA_WYS_PT = 858.897;
+
+// Ile punktów strony widać w pionie w panelu przy widoku FitH (ten dopasowuje
+// SZEROKOŚĆ strony do szerokości okna, więc skala wynika z samej szerokości).
+// Gdy panelu nie da się zmierzyć (jest schowany albo jesteśmy na telefonie, gdzie
+// PDF idzie do nowej karty) zwracamy 0 — wywołujący traktuje to jako „nie wiem".
+function widocznaWysokoscTablicyPt() {
+    const tablica = document.getElementById("tablica-wzorow");
+    if (!tablica || !tablica.clientWidth || !tablica.clientHeight) return 0;
+    const pikseleNaPunkt = tablica.clientWidth / TABLICE_STRONA_SZER_PT;
+    return tablica.clientHeight / pikseleNaPunkt;
+}
+
+// Fragment URL-a PDF-a: strona plus — jeśli znamy pozycję wzoru — przewinięcie do
+// niego. `yWzoru` to współrzędna w punktach liczona OD DOŁU strony (układ PDF),
+// brana z transkryptu tablicy. `view=FitH,top` ustawia GÓRNĄ krawędź widoku, więc
+// żeby wzór wypadł na środku okna, dokładamy połowę tego, co widać.
+//
+// UWAGA: gdy w kadrze mieści się cała strona (a przy domyślnym kształcie panelu —
+// 28% szerokości na 80vh — właśnie tak jest), przewijać nie ma czego: `top`
+// wychodzi wyżej niż górna krawędź strony i po przycięciu daje zwykły widok
+// strony od góry. Kotwica zaczyna działać dopiero, gdy panel jest proporcjonalnie
+// szerszy/niższy niż kartka.
+function fragmentTablicy(numerStrony, yWzoru) {
+    let fragment = `#page=${numerStrony}`;
+    if (yWzoru != null) {
+        const widoczneWPionie = widocznaWysokoscTablicyPt();
+        // Bez pomiaru nie zgadujemy środka — celujemy prosto w wzór.
+        const gornaKrawedz = yWzoru + (widoczneWPionie ? widoczneWPionie / 2 : 0);
+        fragment += `&view=FitH,${Math.round(Math.min(gornaKrawedz, TABLICE_STRONA_WYS_PT))}`;
+    }
+    return `${fragment}&toolbar=0`;
+}
+
+function openFormulasAtPage(numerStrony, yWzoru) {
     // Telefon: otwórz PDF z tablicami wzorów na właściwej stronie w nowej karcie
     // (panel <object> nie działa na Androidzie).
     if (czyTelefon()) {
-        otworzPdfWNowejKarcie(`${TABLICE_PDF}#page=${numerStrony}&toolbar=0`);
+        otworzPdfWNowejKarcie(`${TABLICE_PDF}${fragmentTablicy(numerStrony, yWzoru)}`);
         return;
     }
+
+    // Panel pokazujemy NAJPIERW: dopóki ma display:none, jego <object> ma zerowe
+    // wymiary i nie dałoby się policzyć, ile strony mieści się w kadrze.
+    showFormulasPanel();
 
     const tablica = document.getElementById("tablica-wzorow");
 
@@ -161,10 +203,8 @@ function openFormulasAtPage(numerStrony) {
     const nowyObject = document.createElement("object");
     nowyObject.id = "tablica-wzorow";
     nowyObject.type = "application/pdf";
-    nowyObject.data = `${TABLICE_PDF}#page=${numerStrony}&toolbar=0`;
+    nowyObject.data = `${TABLICE_PDF}${fragmentTablicy(numerStrony, yWzoru)}`;
 
     // Zamieniamy stary <object> na nowy w panelu (styl bierze się z CSS #tablica-wzorow).
     tablica.parentNode.replaceChild(nowyObject, tablica);
-
-    showFormulasPanel();
 }
