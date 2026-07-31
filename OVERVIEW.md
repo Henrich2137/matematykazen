@@ -31,3 +31,5 @@ Freemium: treści z oficjalnych arkuszy CKE — bazowo za darmo; treści własne
 
 - **W planach:** przejście z GitHub Pages na profesjonalny hosting z backendem i bazą danych (obecnie: konta użytkowników, płatności — nie ma, statyczny MVP). Docelowo freemium: arkusze CKE zawsze darmowe, treści własne płatne.
 - **Uwagi i pomysły z zewnątrz:** na razie brak dedykowanego kanału (poza „zgłoś błąd" pod każdym zadaniem, który dotyczy tylko konkretnego zadania) — do ustalenia w miarę rozwoju projektu.
+
+testowy kurczaczek :)
