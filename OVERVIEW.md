@@ -1,8 +1,8 @@
 # Matematyka Zen
 
-Platforma do nauki matematyki pod maturę podstawową (CKE), inspirowana Brilliant.org. Dla maturzystów, a w przyszłości może też dla ósmoklasistów. Bez reklam, minimalistyczny UI. Faza: demo/MVP — statyczna strona, bez hostingu, bez backendu i kont użytkowników (postęp trzymany lokalnie w przeglądarce).
+Platforma do nauki matematyki pod maturę podstawową (CKE), inspirowana Brilliant.org. Dla maturzystów, a w przyszłości może też dla ósmoklasistów. Bez reklam, minimalistyczny UI. Faza: demo/MVP — statyczna strona hostowana na GitHub Pages, bez backendu i kont użytkowników (postęp trzymany lokalnie w przeglądarce).
 
-Zobacz na żywo: brak jeszcze publicznego hostingu — sklonuj repozytorium i odpal dowolnym serwerem statycznym (np. `npx serve`).
+Zobacz na żywo: https://henrich2137.github.io/matematykazen/
 
 ## Arkusze maturalne
 
@@ -29,5 +29,5 @@ Freemium: treści z oficjalnych arkuszy CKE — bazowo za darmo; treści własne
 
 ## Notatki robocze — utrzymywane przez Claude web (projekt „Matematyka Zen" na claude.ai)
 
-- **W planach:** hosting, konta użytkowników, backend/płatności — na razie żadnego z tych nie ma (czysty statyczny MVP). Docelowo freemium: arkusze CKE zawsze darmowe, treści własne płatne.
+- **W planach:** przejście z GitHub Pages na profesjonalny hosting z backendem i bazą danych (obecnie: konta użytkowników, płatności — nie ma, statyczny MVP). Docelowo freemium: arkusze CKE zawsze darmowe, treści własne płatne.
 - **Uwagi i pomysły z zewnątrz:** na razie brak dedykowanego kanału (poza „zgłoś błąd" pod każdym zadaniem, który dotyczy tylko konkretnego zadania) — do ustalenia w miarę rozwoju projektu.
