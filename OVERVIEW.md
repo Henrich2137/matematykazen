@@ -1,3 +1,5 @@
+Ostatnia weryfikacja  23:54  31.07.2026 
+
 # Matematyka Zen
 
 Platforma do nauki matematyki pod maturę podstawową (CKE), inspirowana Brilliant.org. Dla maturzystów, a w przyszłości może też dla ósmoklasistów. Bez reklam, minimalistyczny UI. Faza: demo/MVP — statyczna strona hostowana na GitHub Pages, bez backendu i kont użytkowników (postęp trzymany lokalnie w przeglądarce).

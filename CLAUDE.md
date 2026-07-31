@@ -8,6 +8,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 MatematykaZen is an interactive platform for learning math for the Polish "matura podstawowa" exam, inspired by Brilliant.org. Current phase: demo/MVP. Content = official CKE exam sheets: closed-form exercises get hints/explanations (sometimes interactive widgets); open-form exercises use an off-platform-solve + self-grade flow (`selfScore`). UI philosophy: minimalist, no ads. Business model: freemium (CKE base free, proprietary content paid). This repo is one instance of the exam-sheet page pattern; sibling folders (e.g. `matematykazen11`) hold other sheets with the same structure.
 
+## OVERVIEW.md
+
+[OVERVIEW.md](OVERVIEW.md) — a standalone, Polish-language project summary (opis projektu, arkusze, funkcje, model biznesowy) maintained by Claude web (projekt „Matematyka Zen" na claude.ai) for use outside this repo, starting with an "Ostatnia aktualizacja" timestamp line. **ZASADA: aktualizuj datę i treść tego pliku po każdej większej zmianie, która może wpłynąć na jego treść** (nowy arkusz, nowa funkcja, zmiana modelu biznesowego itp.) — nie czekaj, aż użytkownik o to poprosi.
+
 ## What this is
 
 A static Polish-language practice site for CKE "matura podstawowa" exam sheets. No backend, no build system, no package manager.
@@ -34,12 +38,25 @@ Plus `vendor/katex/` — KaTeX vendored for fully offline math rendering (don't 
 
 ## Git / gitdoc
 
-Henrich's VS Code has the **gitdoc** extension enabled globally (`C:\Users\<user>\AppData\Roaming\Code\User\settings.json`), with **`gitdoc.autoPush: "onCommit"`**: gitdoc auto-commits on every save (timestamp-only messages, no prefix) and **immediately pushes each one to `origin`** — this bypasses the "confirm before push" rule for those commits specifically, because they're not something the assistant initiated. Also set: `autoPull: "onPush"`, `pullOnOpen: true`, `commitOnClose: true`. Practical effects to expect:
-- `git log` on this repo routinely shows a run of bare-timestamp commits between two "real" (prefixed, authored) commits — these are gitdoc, not the assistant, even during an assistant session (e.g. Henrich editing TODO.md in the editor mid-session).
+**STATUS AS OF 2026-08-01: gitdoc is currently DISABLED for this repo — verify before trusting anything below.** `gitdoc.enabled` defaults to `false` and is not set anywhere: it's absent from both `.vscode/settings.json` (emptied by commit `3a985b5`, "usunięcie settingsów z repo i przeniesienie do user settings") and the global user settings.json (`C:\Users\<user>\AppData\Roaming\Code\User\settings.json`) — the "move to user settings" never actually happened, the key was just deleted. **`git status` / `git log` timing should NOT be assumed to include gitdoc auto-commits right now.**
+
+Important mechanical fact (source: `out/config.js` in the installed extension), which explains why this happened and constrains any fix: **`gitdoc.enabled` can only ever be set at `ConfigurationTarget.Workspace`** — the extension's own setter hard-codes it:
+```js
+set enabled(value) {
+    config().update(ENABLED_KEY, value, vscode.ConfigurationTarget.Workspace);
+}
+```
+The Enable/Disable command (and thus the GitDoc UI toggle) always writes to **this repo's `.vscode/settings.json`**, never to global user settings — so putting `gitdoc.enabled: true` in the global file doesn't compose the way the rest of gitdoc's settings do; if you want gitdoc back on, set it back in `.vscode/settings.json` (or re-toggle via the UI), not in the global user settings.json. Global user settings.json is still the right place for the *other* `gitdoc.*` keys (delay/push/pull behavior) if you ever want to override them, since only `enabled` has this workspace-only restriction.
+
+**When gitdoc IS enabled**, the behavior described below applies — but as of this writing every one of these values (`autoPush: "onCommit"`, `autoPull: "onPush"`, `pullOnOpen: true`, `commitOnClose: true`, `pushMode: "forcePush"`, `autoCommitDelay: 30000`) is just the **extension's built-in default** — none of them are explicitly set in any settings.json found on this machine. Don't assume a settings file documents them; they come from the extension itself (`out/config.js`).
+
+If/when re-enabled, expect:
+- gitdoc auto-commits on every save (timestamp-only messages, no prefix) and **immediately pushes each one to `origin`** (`autoPush: "onCommit"` default) — this bypasses the "confirm before push" rule for those commits specifically, because they're not something the assistant initiated.
+- `git log` on this repo would routinely show a run of bare-timestamp commits between two "real" (prefixed, authored) commits — these are gitdoc, not the assistant, even during an assistant session (e.g. Henrich editing TODO.md in the editor mid-session).
 - Before squashing a range of commits for the assistant's own work, check `git show --stat` on each one — don't assume every commit in the range is the assistant's; a gitdoc auto-commit from Henrich's own edits can land in the middle of the range (happened 2026-07-26, see `DONE/03-2026-07-27.md`).
 - Because autoPush is immediate, treat any commit as **already on `origin`** unless proven otherwise — there is no local-only staging window to rely on.
 
-Verified against the installed extension (`vsls-contrib.gitdoc-0.2.3`, VS Code 1.130.0) on 2026-07-26, in case the commit cadence is ever tuned:
+Verified against the installed extension (`vsls-contrib.gitdoc-0.2.3`, VS Code 1.130.0) on 2026-07-26 (mechanics) and 2026-08-01 (enabled-state + config-target check), in case the commit cadence is ever tuned:
 - **`gitdoc.autoCommitDelay` (default 30000 ms) is a debounce, not an interval** (`out/watcher.js`: `debounce(() => commit(repo), autoCommitDelay)`, timer reset on every repo-state change). Raising it to e.g. 20 min means "commit 20 min after the *last* edit", not "commit every 20 min" — during continuous editing nothing is committed at all until you pause (or close VS Code, which `commitOnClose` catches).
 - The debounced function is cached per repository object in a `commitMap` that is never cleared, so **a changed `autoCommitDelay` only takes effect after `Developer: Reload Window`**, not on settings save.
 - There is **no "commit every N saves"** option — the only knobs are `autoCommitDelay`, `filePattern` (which files trigger a commit), `excludeBranches`, and fully manual mode (`gitdoc.enabled: false` + the `GitDoc: Commit` command).
