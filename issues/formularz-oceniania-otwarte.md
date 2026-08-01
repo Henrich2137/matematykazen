@@ -18,7 +18,7 @@ Henrich: zrób **prototyp na 1-2 zadaniach otwartych** jako dowód koncepcji (pe
 
 - Schemat danych w `exercises.json`: nowe pole per selfScore-zadanie, np. `"kryteriaOceny": ["...", "...", "..."]` (lista stringów) + osobne pole na poprawną „ostateczną odpowiedź" do normalizacji (analogicznie do istniejącego `correctAnswer`/`correctAnswerIndex` wzorca w innych typach zadań — sprawdź ARCHITECTURE.md, sekcja schematu).
 - UI checklisty: prawdopodobnie zestaw checkboxów pod notatkami, nad przyciskami punktacji; nie musi wpływać na `earnedScore` bezpośrednio.
-- Które 1-2 zadania na prototyp: dowolne, ale wybierz coś z jasnym, rozbitym na punkty kluczem oceniania w PDF-ie `matura/<id>/*odpowiedzi.pdf`, żeby checklista miała sens.
+- Które 1-2 zadania na prototyp: dowolne, ale wybierz coś z jasnym, rozbitym na punkty kluczem oceniania w PDF-ie `matura/<id>/odpowiedzi.pdf`, żeby checklista miała sens.
 
 ## Powiązane
 

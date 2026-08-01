@@ -4,7 +4,7 @@ Strony **22–26** tablicy (sekcja kończy się na górze s. 26, przed stereomet
 
 > **Rysunki:** [11.1]/[11.2] (odcinek w układzie współrzędnych) i [11.3] (prosta z kątem
 > nachylenia \(\alpha\)) mają w PDF-ie rysunki poglądowe — nie wnoszą wzorów ponad to, co
-> jest w tekście. W razie potrzeby: `../wybrane_wzory_matematyczne.pdf`, s. 22–23.
+> jest w tekście. W razie potrzeby: `../tablica-wzorow.pdf`, s. 22–23.
 
 ## [11.1] Długość odcinka — s. 22, środek/dół
 

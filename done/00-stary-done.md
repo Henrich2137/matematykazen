@@ -1,7 +1,7 @@
 ARCHIWUM - stara, nieposegregowana zawartosc dawnego DONE.md z rootu (2026-07-04 - 2026-07-13).
-Przeniesione w calosci, bez zmian w tresci, przy podziale DONE.md na katalog DONE/ (2026-07-22).
+Przeniesione w calosci, bez zmian w tresci, przy podziale DONE.md na katalog done/ (2026-07-22).
 Granice partii/mergow w tej historii sa dzis nieodtwarzalne, wiec zostaje jednym plikiem.
-Nie wczytuj domyslnie. Indeks: DONE/README.md.
+Nie wczytuj domyslnie. Indeks: done/README.md.
 
 ZROBIONE PRZEZ OPUSA (2026-07-13):
 - [ZROBIONE] Wywalony przycisk "wyczyść zapisany postęp" z dołu arkusza (był czystym
@@ -70,7 +70,7 @@ ZROBIONE PRZEZ FABLE (2026-07-10, po ręcznej reorganizacji Henricha na foldery 
   już zrobiony przez Henricha (surowiec pod przyszłe zadanie Opusa, celowo niepodłączony).
   Wypełniłem PUSTY matura/2024-grudzien/index.html treścią starego matematykazen.html
   (Henrich w międzyczasie sam skopiował plik, ja poprawiłem ścieżki): style.css,
-  vendor/katex/..., script.js, wybrane_wzory_matematyczne.pdf, arkusze PDF/..., link do
+  vendor/katex/..., script.js, tablica-wzorow.pdf, arkusze PDF/..., link do
   logo → ../../; dodałem window.SHEET_ID="grudzien2024" + window.TABLICE_PDF (analogicznie
   do 2026-maj); exercises.json i solutionsInteractive.js zostały lokalne (bez zmian ścieżki).
   matura/2026-maj/index.html miał już poprawne ścieżki ../, ale ładował martwy
@@ -122,7 +122,7 @@ ZROBIONE PRZEZ FABLE (2026-07-06, sesja zdalna, do ewentualnej weryfikacji przez
 - [DONE] formulasPage uzupełnione dla arkusza 2026 (32 z 41 wpisów; reszta celowo null —
   zadania bez sensownego wzoru w broszurze, np. równania wymierne, funkcja liniowa; przycisk
   "Pokaż potrzebne wzory" jest wtedy ukryty). Numery stron NIE zgadywane: tekst
-  wybrane_wzory_matematyczne.pdf wyciągnięty pypdf-em i zmapowany na początek właściwej
+  tablica-wzorow.pdf wyciągnięty pypdf-em i zmapowany na początek właściwej
   (pod)sekcji broszury (np. Tales s.18, kąty w okręgu s.19, pole trójkąta o wierzchołkach
   s.25, stereometria s.27), zgodnie z konwencją arkusza 2024. E2E: zad 1 otwiera tablice
   na #page=5, zad 7 (null) nie pokazuje przycisku.
@@ -286,7 +286,7 @@ Byłoby idealnie:
 === PRZENIESIONE Z TODO.md (2026-07-05, porządkowanie: zrobione wpisy trafiają tutaj) ===
 
 --- Weryfikacja zgodności z arkuszem PDF (2026-07-05, sesja: sprawdzenie exercises.js vs "arkusze PDF/") ---
-Porównałem cały exercises.js z arkuszem (matematyka-2024-grudzien-probna-podstawowa.pdf)
+Porównałem cały exercises.js z arkuszem (arkusz.pdf)
 i kluczem (…-odpowiedzi.pdf). Tekst obu PDF-ów wyciągnąłem przez `pdftotext -layout`
 do arkusze PDF/arkusz.txt oraz arkusze PDF/odp.txt (zostawione na przyszłość).
 
@@ -455,7 +455,7 @@ Zostawione bez zmian (za decyzją Henricha):
 
 --- Sesja 2026-07-06 (Opus): ekstrakt PDF 2026 + szkielet exercises.json na 2026 + dopisek formatu ---
 - [ZROBIONE 2026-07-06] Ekstrakt arkusza matury 2026 do tekstu: pdftotext -enc UTF-8 -layout
-  (poppler-utils doinstalowany w środowisku) na matematyka-2026-maj-matura-podstawowa.pdf
+  (poppler-utils doinstalowany w środowisku) na arkusz.pdf
   i ...-odpowiedzi.pdf → arkusze PDF/*.txt (polskie znaki zachowane, sprawdzone wzrokowo).
 - [ZROBIONE 2026-07-06] Szkielet matura-2026-maj/exercises.json: nowy folder-rodzeństwo,
   41 wpisów pokrywających wszystkie 33 zadania (w tym zadania wieloczęściowe 12, 13, 24, 33
@@ -468,7 +468,7 @@ Zostawione bez zmian (za decyzją Henricha):
   zweryfikowanych automatycznie przez katex.renderToString (vendor/katex), 0 błędów.
   Celowo PUSTE/TODO (do dorobienia przez Fable): hint, solutionText, solutionTextMore,
   solutionStepByStep, solutionInteractive (wszystkie null/""), formulasPage (null — strony
-  w wybrane_wzory_matematyczne.pdf jeszcze nie dopasowane). Brakujące obrazki/wykresy
+  w tablica-wzorow.pdf jeszcze nie dopasowane). Brakujące obrazki/wykresy
   (zadania 12, 13, 19, 20, 31 — zad 31 bez obrazka w ogóle się nie da rozwiązać, dane są
   tylko na diagramach słupkowych) odnotowane w TODO.md z instrukcją wycięcia (pdftoppm,
   wzorem zad30/2024). Folder ma na razie tylko exercises.json — matematykazen.html/

@@ -5,7 +5,7 @@ Strony **15–22** tablicy (sekcja kończy się na górze s. 22, przed geometri�
 > **Rysunki:** prawie każdy punkt tej sekcji ma w PDF-ie rysunek, którego tutaj nie ma —
 > zamiast niego podane są legendy oznaczeń (co znaczy każdy symbol). Do podstawienia do
 > wzoru to wystarcza. Gdy potrzebujesz samej **konfiguracji** figury — który kąt jest oparty
-> na którym łuku, jak leżą punkty względem siebie — otwórz `../wybrane_wzory_matematyczne.pdf`
+> na którym łuku, jak leżą punkty względem siebie — otwórz `../tablica-wzorow.pdf`
 > na stronie podanej przy wzorze. Najbardziej zależne od rysunku są [10.7], [10.8]
 > (dwa trójkąty i odpowiadające sobie wierzchołki), [10.10] (dwa przypadki Talesa)
 > oraz [10.14] (trzy różne położenia stycznej, cięciwy i punktu \(P\)).

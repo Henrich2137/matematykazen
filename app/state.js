@@ -17,9 +17,9 @@ let exercises = [];
 // brak/pusty/nieznany ?arkusz=
 // kończy się komunikatem "błędny link" (startSheet()), nie cichym arkuszem.
 const SHEET_ID = new URLSearchParams(location.search).get("arkusz");
-// wybrane_wzory_matematyczne.pdf leży w rootcie obok template.html (jedynego
+// tablica-wzorow.pdf leży w rootcie obok template.html (jedynego
 // pliku renderującego arkusze), więc ścieżka jest zawsze ta sama.
-const TABLICE_PDF = "wybrane_wzory_matematyczne.pdf";
+const TABLICE_PDF = "tablica-wzorow.pdf";
 
 // Media zadań (obrazki, filmy) leżą w matura/<id>/media/… i są zapisane w
 // exercises.json ścieżką WZGLĘDNĄ do folderu arkusza (np. "media/zad1/…").

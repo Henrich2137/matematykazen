@@ -1,6 +1,6 @@
 # Tablica wzorów CKE — transkrypt
 
-Transkrypt `wybrane_wzory_matematyczne.pdf` (CKE, 2022) rozbity na sekcje, żeby
+Transkrypt `tablica-wzorow.pdf` (CKE, 2022) rozbity na sekcje, żeby
 model ładował tylko potrzebny fragment zamiast całych 31 stron.
 
 **Jak używać:** znajdź temat w skorowidzu na dole → otwórz wskazany plik. Numer strony
@@ -8,7 +8,7 @@ podany przy każdym wzorze to strona PDF-a — ta sama, którą wpisuje się w
 `formulasPage` w `exercises.json` (numeracja drukowana = fizyczna, bez przesunięcia).
 
 **Przy ustalaniu `formulasPage` dla konkretnego zadania (nauka z błędów Sonneta, 2026-07-28,
-patrz DONE/04-biezace.md):**
+patrz done/04-biezace.md):**
 - Nie zgaduj strony z samego **tematu** zadania (np. "to stereometria więc str. 27") — sprawdź,
   jakiego wzoru **faktycznie** używa `hint`/`solutionText`/`solutionTextMore`. Zadanie może
   brzmieć jak dział X, a rozwiązanie po drodze używać tylko podstawowej definicji z działu Y
@@ -41,7 +41,7 @@ patrz DONE/04-biezace.md):**
 
 Transkrypt pokrywa **cały tekst i wszystkie wzory** ze stron 4–33 (każdy punkt „•" z oryginału).
 Trzy rzeczy zostały świadomie pominięte — jeśli potrzebujesz którejś z nich, otwórz
-`../wybrane_wzory_matematyczne.pdf` na wskazanej stronie:
+`../tablica-wzorow.pdf` na wskazanej stronie:
 
 | Czego brak | Gdzie w PDF | Dlaczego pominięte |
 |---|---|---|

@@ -36,7 +36,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
       - Panel boczny: „Sprawdź wszystkie odpowiedzi" (#sprawdz-wszystkie) znika/pojawia się przy przełączaniu „Poprawność odpowiedzi" (natychmiast ↔ po „sprawdź") - panel przez to „skacze". Ma być zawsze widoczny: aktywny w „po sprawdź", wyszarzony/disabled w „natychmiast" — tak jak już jest zrobione w trybie egzaminu (setExamMenuDisabled w app/exam.js, można wzorować mechanizm). Potwierdzone na żywo 2026-07-27 przy okazji testów v0.08; ten sam temat co niżej w „INNE NOTATKI" (~linia 51) — jeden wpis wystarczy, ten wyżej jest teraz aktualny.
 
     - Spójność UI, sesja 2 (jeszcze NIE zrobione, ciąg dalszy sesji 1 [ZROBIONE 2026-07-27], było przydzielone dla Sonnet High). Szczegóły: issues/ui-spojnosc-etap2.md
-      - Sesja 1 [ZROBIONE 2026-07-27] + 3 Twoje drobnice (cienie sidebara, ciemniejszy tekst przycisku stopki, tytuł 32%) — patrz DONE/03-2026-07-27.md i DONE/04-biezace.md. Do sprawdzenia na żywo (v0.07): stopka, przełącznik w obu motywach, panele PDF, kreska i strzałka sidebara, tytuł arkusza na telefonie.
+      - Sesja 1 [ZROBIONE 2026-07-27] + 3 Twoje drobnice (cienie sidebara, ciemniejszy tekst przycisku stopki, tytuł 32%) — patrz done/03-2026-07-27.md i done/04-biezace.md. Do sprawdzenia na żywo (v0.07): stopka, przełącznik w obu motywach, panele PDF, kreska i strzałka sidebara, tytuł arkusza na telefonie.
       - 4 różne rozmiary fontu na karcie zadania — ujednolicić
       - Przyciski odpowiedzi (ABCD, P/F, punkty) bez podświetlenia na hover
       - Dwa różne style hover w menu (ramka vs tło) — wybrać jeden
@@ -66,7 +66,8 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
   - Przerenderować w Manimie ostatni krok zad 2 (zad2/zad2rozw_step6.mp4): klatka końcowa pokazuje 5⁻⁴, a poprawny wynik to 5⁴ (5⁻¹ · 5⁵ = 5⁴). Komentarz pod filmem tymczasowo prostuje błąd.
 
-
+  - pokminić sobie dydaktycznie nad arkuszem aby zadać robotę Fable
+  
 <br>
 
 
@@ -103,6 +104,14 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     - W index.html dodać sekcję o autorze i link do Patronite
 
 
+  + ULEPSZANIE WORKFLOW (skopiowane z NOTATKI_USERA)
+    - Schedule adversarial review lub /code-review
+    - Stworzyć/pobrać potrzebne mi skille do tego projektu
+
+  
+  - Po kliknięciu prevStepButton animacja powinna odpalać się od tyłu (łatwiej chyba ffmpegiem wyrenderować wszystkie animacje od tyłu niż robić to w przeglądarce)
+
+  - Funkcjonalność otwierania tablicy wzorów w nowej karcie o raz Dodać przełącznik "miejsce otwarcia: nowa karta / wew. okienko" pod "Otwórz tablice wzorów"
 
 
 <br>
@@ -118,11 +127,15 @@ Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz is
     - Formularz zgłoszenia na telefonie jest wysoki: 8 pigułek kategorii idzie po jednej na wiersz (~340 px), więc obowiązkowe pole opisu jest daleko w dole. Do rozważenia: dwie pigułki w rzędzie, skrócone nazwy albo opis nad kategoriami. (nie ma dramatu, jest w miare ok)
 
 
+  + OPUS DOPISAŁ (Opus 5, effort high):
+
+    - ARCHITECTURE.md odwołuje się do plików, których NIE MA od lipca: `script.js` (9 wzmianek, podzielony na `app/*.js` 2026-07-23), `style.css` (4, podzielony na `style/*.css`) i gołe `exercises.json` bez `matura/<id>/` (13). Trzy z nich to klikalne linki markdown, które prowadzą donikąd. Znalezione przy porządkach nazewniczych 2026-08-01 — świadomie nie ruszone, bo to osobna robota (26 miejsc), nie literówka.
+
 + ZASADY DLA CLAUDE-A:
 
-  - tu są TYLKO otwarte punkty. Zrobione wpisy [DONE]/[ZROBIONE] przenoszone są do bieżącego pliku pod DONE/ — patrz DONE/README.md i CLAUDE.md.)
+  - tu są TYLKO otwarte punkty. Zrobione wpisy [DONE]/[ZROBIONE] przenoszone są do bieżącego pliku pod done/ — patrz done/README.md i CLAUDE.md.)
 
-  - TEN PLIK MA BYĆ SLEEK — krótkie hasła, jedno-dwa zdania na punkt. Żadnych ścian tekstu. Szczegóły (mechanizm, pliki, linie) idą do issues/ albo DONE/, a tu zostaje jedna linijka z odnośnikiem.
+  - TEN PLIK MA BYĆ SLEEK — krótkie hasła, jedno-dwa zdania na punkt. Żadnych ścian tekstu. Szczegóły (mechanizm, pliki, linie) idą do issues/ albo done/, a tu zostaje jedna linijka z odnośnikiem.
   Drogi Claudzie, jeżeli zmieniasz ten plik to wklejaj do odpowiedniej sekcji na dole
 
   - Zawsze sprawdzaj, testuj czy wprowadzone przez ciebie zmiany działają zanim zrobisz ostatni commit.

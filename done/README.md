@@ -19,14 +19,14 @@ Do szukania używaj najpierw tego indeksu (tagi niżej), potem grepa po konkretn
 
 == 04-biezace.md — partia OTWARTA (2026-07-27 → ?) ==
 - 2026-07-28 (Sonnet High) — `formulasPage` zweryfikowane dla całego arkusza 2024-grudzień (35 zadań)
-  na podstawie transkryptu wybrane_wzory_matematyczne/: uzupełnione 6 brakujących (zad. 7, 8, 10,
+  na podstawie transkryptu tablica-wzorow-transkrypt/: uzupełnione 6 brakujących (zad. 7, 8, 10,
   11, 12, 17 — z czego 7/8/10/12 świadomie zostają bez strony, bo nie wymagają tablic) oraz
   poprawionych 8 błędnych/zdezaktualizowanych (zad. 9→8; zad. 12.1-12.3→8 zamiast 7 —
   wierzchołek/postać kanoniczna są na str. 8, nie na str. 7 z wyróżnikiem; zad. 16→9; zad. 19→17 —
   podobieństwo trójkątów, nie Pitagoras; zad. 24→11 — to zadanie liczy wysokość z tangensa, nie
   objętość ostrosłupa; zad. 30→8; zad. 5 zostaje 10, potwierdzone). Metoda ustalona po korektach
   Henricha: strona formulasPage musi odpowiadać wzorowi FAKTYCZNIE użytemu w solutionText/hint, nie
-  samemu tematowi zadania — patrz notatka w wybrane_wzory_matematyczne/INDEX.md. Przy okazji,
+  samemu tematowi zadania — patrz notatka w tablica-wzorow-transkrypt/README.md. Przy okazji,
   na prośbę Henricha odczytany fragment prawdziwego PDF-a (s. 7-11): dopisany do transkryptu
   brakujący wzór [8.10] „Procent składany" `Kₙ=K₀·(1+p/100)ⁿ` (s. 10, dół), którego wcześniej w
   ogóle nie było w 08-ciagi.md — stąd wcześniejsze niezgodności przy zad. 5/16 (Wybrane granice
@@ -122,7 +122,7 @@ Do szukania używaj najpierw tego indeksu (tagi niżej), potem grepa po konkretn
   „Błędny link" przy złym ?arkusz=, podtytuł trybu w pasku, confirm przy resecie punktacji
   [css, pdf-panele, routing, egzamin]
 
-== STARY_PRZENIESIONY_DONE.md — archiwum (2026-07-04 → 2026-07-13) ==
+== 00-stary-done.md — archiwum (2026-07-04 → 2026-07-13) ==
 Stara, nieposegregowana zawartość dawnego DONE.md z rootu; granice partii/mergów w tej
 historii są dziś nieodtwarzalne, więc zostaje jednym plikiem. Główne wątki:
 - 2026-07-13 — usunięty duplikat „wyczyść zapisany postęp", „zakończ egzamin" przeniesiony

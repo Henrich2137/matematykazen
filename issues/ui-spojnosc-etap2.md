@@ -1,7 +1,7 @@
 # Spójność UI — etap 2: reszta drobnic z audytu
 
 Wsad dla **Sonneta High**. Powstał z audytu w sesji 1 (Opus High, 2026-07-27) — tam wprowadzono
-warstwę tokenów i zamknięto 6 punktów Henricha, patrz `DONE/` (wpis „Spójność UI, sesja 1").
+warstwę tokenów i zamknięto 6 punktów Henricha, patrz `done/` (wpis „Spójność UI, sesja 1").
 Tokeny są już na miejscu i to ich należy używać: `--radius-kontrolka`, `--radius-pigulka`,
 `--border-kontrolka`, `--shadow-panel`, `--segment-bg` / `--segment-text` (style/base.css).
 

@@ -5,7 +5,7 @@ Szczegółowe opisy pojedynczych problemów: konkretne pliki, linie, mechanizm a
 Zasady:
 - Jeden plik = jeden problem. Nazwa pliku: krótki opisowy slug po polsku, kebab-case.
 - Nowy problem znaleziony podczas pracy → nowy plik tutaj + jedna linijka w TODO.md z odnośnikiem `(issues/nazwa.md)`.
-- Naprawione → przenieś notatkę do `DONE/` (patrz `DONE/README.md`) i usuń plik stąd.
+- Naprawione → przenieś notatkę do `done/` (patrz `done/README.md`) i usuń plik stąd.
 - Nie czytaj tego katalogu z automatu przy każdej sesji — otwieraj konkretny plik, gdy TODO.md do niego linkuje.
 
 ## Aktywne
