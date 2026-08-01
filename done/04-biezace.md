@@ -18,6 +18,26 @@ inaczej git nie zapisze zmiany wielkości liter i na Linuksie/CI zostanie stara 
 stare referencje `DONE/...` działałyby dalej lokalnie, ale pękłyby na GitHubie/Linuksie — dlatego przepisane
 wszystkie, mimo że lokalnie „i tak działały"  [dokumentacja, konwencje]
 
+[ZROBIONE 2026-08-01] Martwe referencje w ARCHITECTURE.md po lipcowych podziałach plików — wszystkie
+wskazują teraz na FAKTYCZNY plik, ustalony przez grep definicji, nie zgadywany:
+- `script.js` (nie istnieje od 2026-07-23) → konkretny moduł przy każdej wzmiance: `SHEET_ID`,
+  `renderMath()`, `mediaPath()`, `TABLICE_PDF` → app/state.js; `startSheet()` → app/bootstrap.js;
+  `loadExercises()` → app/render.js; ogólne „rendering logic" → app/.
+- `style.css` (podzielony na style/*.css) → `.katex 1.08em` → style/base.css; reguła stylowania zadań
+  → style/ z podpowiedzią „karty zadań w sheet.css, kolory/tokeny w base.css"; nagłówek sekcji CSS → style/.
+- `[exercises.json](exercises.json)` → `matura/2024-grudzien/exercises.json` (sekcja provenance dotyczy
+  konkretnie tego arkusza).
+- Przy okazji WYKRYTY BŁĄD LICZBOWY: ARCHITECTURE.md i CLAUDE.md mówiły o „nine `app/*.js` files",
+  a plików jest DZIESIĘĆ (state, theme, exam, indicators, panels, answers, steps, report, render,
+  bootstrap). Poprawione w obu; kolejność ładowania dopisana wprost do ARCHITECTURE.md, bo wcześniej
+  była tylko w CLAUDE.md. Widżetów faktycznie jest dziewięć — ta liczba była dobra.
+- `issues/dwie-karty-tryb-egzaminu.md` wskazywał `finishExam()` „w script.js" → app/exam.js (3 miejsca).
+  Zostawione: `issues/wskazniki-reload-faza-oceniania.md`, gdzie „podział script.js → app/*.js" to opis
+  historycznego zdarzenia, a nie wskaźnik na plik.
+Weryfikacja: skrypt sprawdzający KAŻDY link markdown w repo względem katalogu jego pliku — zero wiszących
+(wcześniej 3). Zgłoszone przeze mnie do TODO.md kilka minut wcześniej, usunięte stamtąd po zrobieniu
+[dokumentacja, refaktor]
+
 [ZROBIONE 2026-08-01] Porządki nazewnicze, część druga — cztery zmiany z listy „co jeszcze uspójnić"
 (Henrich wybrał 1–4, punkt 5 o osieroconych notatkach w roocie zostaje na później):
 

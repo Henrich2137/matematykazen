@@ -127,10 +127,6 @@ Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz is
     - Formularz zgłoszenia na telefonie jest wysoki: 8 pigułek kategorii idzie po jednej na wiersz (~340 px), więc obowiązkowe pole opisu jest daleko w dole. Do rozważenia: dwie pigułki w rzędzie, skrócone nazwy albo opis nad kategoriami. (nie ma dramatu, jest w miare ok)
 
 
-  + OPUS DOPISAŁ (Opus 5, effort high):
-
-    - ARCHITECTURE.md odwołuje się do plików, których NIE MA od lipca: `script.js` (9 wzmianek, podzielony na `app/*.js` 2026-07-23), `style.css` (4, podzielony na `style/*.css`) i gołe `exercises.json` bez `matura/<id>/` (13). Trzy z nich to klikalne linki markdown, które prowadzą donikąd. Znalezione przy porządkach nazewniczych 2026-08-01 — świadomie nie ruszone, bo to osobna robota (26 miejsc), nie literówka.
-
 + ZASADY DLA CLAUDE-A:
 
   - tu są TYLKO otwarte punkty. Zrobione wpisy [DONE]/[ZROBIONE] przenoszone są do bieżącego pliku pod done/ — patrz done/README.md i CLAUDE.md.)
