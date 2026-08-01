@@ -32,7 +32,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
       - Przełączniki w stylu Motyw, Poprawność itd. są zbyt blade i wyglądają na nieaktywne/zablokowane
       - w trybie egzaminu Poprawność powinna być tak samo nieaktywna/zablokowana ja Punktacja
       - stan przełączników (np. ciemny, jasny, wł., wył., wszystko itd.) chyba jest napisany zbyt tłustą czcionką czy coś. Wyrazy wadają się nieostre, mają jakby bleeding/bloom effect.
-      - toggle wł/wył panel boczny powinien mieć zamienione ikonki strazłki zwiń/rozwiń
       - Panel boczny: „Sprawdź wszystkie odpowiedzi" (#sprawdz-wszystkie) znika/pojawia się przy przełączaniu „Poprawność odpowiedzi" (natychmiast ↔ po „sprawdź") - panel przez to „skacze". Ma być zawsze widoczny: aktywny w „po sprawdź", wyszarzony/disabled w „natychmiast" — tak jak już jest zrobione w trybie egzaminu (setExamMenuDisabled w app/exam.js, można wzorować mechanizm). Potwierdzone na żywo 2026-07-27 przy okazji testów v0.08; ten sam temat co niżej w „INNE NOTATKI" (~linia 51) — jeden wpis wystarczy, ten wyżej jest teraz aktualny.
 
     - Spójność UI, sesja 2 (jeszcze NIE zrobione, ciąg dalszy sesji 1 [ZROBIONE 2026-07-27], było przydzielone dla Sonnet High). Szczegóły: issues/ui-spojnosc-etap2.md
