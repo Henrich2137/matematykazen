@@ -108,8 +108,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     - Schedule adversarial review lub /code-review
     - Stworzyć/pobrać potrzebne mi skille do tego projektu
 
-  
-  - Po kliknięciu prevStepButton animacja powinna odpalać się od tyłu (łatwiej chyba ffmpegiem wyrenderować wszystkie animacje od tyłu niż robić to w przeglądarce)
+  - Po kliknięciu prevStepButton animacja powinna odpalać się od tyłu (jeżeli to możliwe aby odtwarzać animacje od tyłu, można też renderować każdą od tyłu)
 
   - Funkcjonalność otwierania tablicy wzorów w nowej karcie o raz Dodać przełącznik "miejsce otwarcia: nowa karta / wew. okienko" pod "Otwórz tablice wzorów"
 
