@@ -1,8 +1,8 @@
-Ostatnia weryfikacja  23:54  31.07.2026 
+Ostatnia weryfikacja  12:35  02.08.2026 
 
 # Matematyka Zen
 
-Platforma do nauki matematyki pod maturę podstawową (CKE), inspirowana Brilliant.org. Dla maturzystów, a w przyszłości może też dla ósmoklasistów. Bez reklam, minimalistyczny UI. Faza: demo/MVP — statyczna strona hostowana na GitHub Pages, bez backendu i kont użytkowników (postęp trzymany lokalnie w przeglądarce).
+Platforma do nauki matematyki pod maturę podstawową (CKE), inspirowana Brilliant.org. Dla maturzystów, a w przyszłości może też dla ósmoklasistów. Bez reklam, minimalistyczny UI. Faza: **Beta** (oznaczona przy logo jako „vX Beta") — strona wystawiona publicznie pod docelową ładną domeną (np. matematykazen.pl), cel: zdobyć zainteresowanie i sprawdzić, czy projekt przyjmie się w społeczności. Nadal statyczna, bez backendu i kont użytkowników (postęp trzymany lokalnie w przeglądarce).
 
 Zobacz na żywo: https://henrich2137.github.io/matematykazen/
 
@@ -25,13 +25,40 @@ Zobacz na żywo: https://henrich2137.github.io/matematykazen/
 - Panel boczny z ustawieniami (natychmiastowa poprawność vs. „sprawdź później", widoczność punktacji, itd.).
 - Postęp i ustawienia zapisywane lokalnie (bez konta, bez serwera).
 
-## Model biznesowy
+## Ścieżka biznesowa
 
-Freemium: treści z oficjalnych arkuszy CKE — bazowo za darmo; treści własne (plan na przyszłość) — płatne.
+Faza 1 - Budowa (obecna)
+- Beta testy ale bez marketingu i domeny co czyni je bardziej zamkniętymi.
+
+
+Faza 2 - Soft Launch i Beta testy
+Marketing, naprawa zgłaszanych błędów, zbieranie pieniędzy na patronite.
+- hosting: nadal GitHub Pages
+- domena matematykazen.pl.
+Cel: zdobyć zainteresowanie i sprawdzić, czy projekt przyjmie się w społeczności.
+
+
+Faza 3 - Rozwidlenie
+Przejście z GitHub Pages na profesjonalny hosting z backendem i bazą danych.
+W zależności od przychodów z dotacji oraz liczby użytkowników wybiorę jedną z dwóch ścieżek:
+
+- ALBO: Freemium
+    - Handover do profesjonalnego web deva, bardziej zamknięta licencja, 
+    - Paywall. Autorskie zadania za abonamentem.
+    - bardziej zamknięta licencja
+
+- ALBO: Open-source
+    - Rozwijanie wraz ze społecznościa opensourcową. 
+    - Brak paywalla.
+    - otwarta licencja
+    - Przychód z dotacji (np. Patronite lub Suppi)
+
+
+
+
 
 ## Notatki robocze — utrzymywane przez Claude web (projekt „Matematyka Zen" na claude.ai)
 
-- **W planach:** przejście z GitHub Pages na profesjonalny hosting z backendem i bazą danych (obecnie: konta użytkowników, płatności — nie ma, statyczny MVP). Docelowo freemium: arkusze CKE zawsze darmowe, treści własne płatne.
 - **Uwagi i pomysły z zewnątrz:** na razie brak dedykowanego kanału (poza „zgłoś błąd" pod każdym zadaniem, który dotyczy tylko konkretnego zadania) — do ustalenia w miarę rozwoju projektu.
 
 testowy kurczaczek :)
