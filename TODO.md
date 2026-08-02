@@ -128,6 +128,13 @@ Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz is
     - Formularz zgłoszenia na telefonie jest wysoki: 8 pigułek kategorii idzie po jednej na wiersz (~340 px), więc obowiązkowe pole opisu jest daleko w dole. Do rozważenia: dwie pigułki w rzędzie, skrócone nazwy albo opis nad kategoriami. (nie ma dramatu, jest w miare ok)
 
 
+  + OPUS DOPISAŁ (Opus 5, medium):
+
+    - Gdy Henrich zdecyduje się upublicznić imię i nazwisko, trzeba podmienić pseudonim `Henrich2137` na dane osobowe w dwóch miejscach: `LICENSE.md` (linie 1–2: copyright + Required Notice) i `CONTRIBUTING.md` (punkt 2 zgody na licencjonowanie wkładu). CLA na pseudonim jest słabsze dowodowo niż na nazwisko.
+
+    - Gdy ruszy domena matematykazen.pl, podmień URL w `LICENSE.md:2` (Required Notice — ta linia jest kopiowana przez każdego redystrybutora) i `README.md`; w OVERVIEW.md domena jest już opisana jako plan Fazy 2.
+
+
 + ZASADY DLA CLAUDE-A:
 
   - tu są TYLKO otwarte punkty. Zrobione wpisy [DONE]/[ZROBIONE] przenoszone są do bieżącego pliku pod done/ — patrz done/README.md i CLAUDE.md.)

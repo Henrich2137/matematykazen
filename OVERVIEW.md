@@ -1,8 +1,8 @@
-Ostatnia weryfikacja  13:25  02.08.2026 
+Ostatnia weryfikacja  16:45  02.08.2026 
 
 # Matematyka Zen
 
-Platforma do nauki matematyki pod maturę podstawową (CKE), inspirowana Brilliant.org. Dla maturzystów, a w przyszłości może też dla ósmoklasistów. Bez reklam, minimalistyczny UI. Faza: **Beta** (oznaczona przy logo jako „vX Beta") — strona wystawiona publicznie pod docelową ładną domeną (np. matematykazen.pl), cel: zdobyć zainteresowanie i sprawdzić, czy projekt przyjmie się w społeczności. Nadal statyczna, bez backendu i kont użytkowników (postęp trzymany lokalnie w przeglądarce).
+Platforma do nauki matematyki pod maturę podstawową (CKE), inspirowana Brilliant.org. Dla maturzystów, a w przyszłości może też dla ósmoklasistów. Bez reklam, minimalistyczny UI. Obecnie projekt jest w Fazie 1. „Budowa" z rozpiski niżej — strona jest już publicznie dostępna na GitHub Pages , ale bez marketingu i bez własnej domeny; ładna domena (np. matematykazen.pl) i szukanie zainteresowania to dopiero Faza 2. Nadal statyczna, bez backendu i kont użytkowników (postęp trzymany lokalnie w przeglądarce).
 
 Zobacz na żywo: https://henrich2137.github.io/matematykazen/
 
@@ -30,10 +30,10 @@ Zobacz na żywo: https://henrich2137.github.io/matematykazen/
 Faza 1 - Budowa (obecna)
 - Beta testy ale bez marketingu i domeny co czyni je bardziej zamkniętymi.
 
-
 Faza 2 - Soft Launch i Beta testy
 Marketing, naprawa zgłaszanych błędów, zbieranie pieniędzy na patronite.
 - hosting: nadal GitHub Pages
+- licencja PolyForm Noncommercial
 - domena matematykazen.pl.
 Cel: zdobyć zainteresowanie i sprawdzić, czy projekt przyjmie się w społeczności.
 
@@ -43,9 +43,9 @@ Przejście z GitHub Pages na profesjonalny hosting z backendem i bazą danych.
 W zależności od przychodów z dotacji oraz liczby użytkowników wybiorę jedną z dwóch ścieżek:
 
 - ALBO: Freemium
-    - Handover do profesjonalnego web deva, bardziej zamknięta licencja, 
+    - Handover do profesjonalnego web deva.
     - Paywall. Autorskie zadania za abonamentem.
-    - bardziej zamknięta licencja
+    - Bardziej zamknięta licencja
 
 - ALBO: Open-source
     - Rozwijanie wraz ze społecznościa opensourcową. 
@@ -57,8 +57,12 @@ W zależności od przychodów z dotacji oraz liczby użytkowników wybiorę jedn
 
 
 
+## Licencja
+
+Kod i treści autorskie: **PolyForm Noncommercial 1.0.0** (użytek wyłącznie niekomercyjny; licencja komercyjna do uzgodnienia mailowo). Zadania i klucze CKE nie są objęte tą licencją. Kontrybutorzy przy wysyłaniu Pull Requesta zgadzają się na przekazanie właścicielowi projektu szerokiej licencji na swój wkład (również komercyjnej), zachowując prawo do własnego wkładu — dzięki temu przyszła zmiana licencji (Faza 3) nie będzie zablokowana.
+
 ## Notatki robocze — utrzymywane przez Claude web (projekt „Matematyka Zen" na claude.ai)
 
-- **Uwagi i pomysły z zewnątrz:** na razie brak dedykowanego kanału (poza „zgłoś błąd" pod każdym zadaniem, który dotyczy tylko konkretnego zadania) — do ustalenia w miarę rozwoju projektu.
+- **Uwagi i pomysły z zewnątrz:** „zgłoś błąd" pod każdym zadaniem (dotyczy tylko konkretnego zadania) oraz — od 02.08.2026 — issues i Pull Requesty na GitHubie, opisane w CONTRIBUTING.md. Kanał publiczny, ale jeszcze nierozreklamowany.
 
 testowy kurczaczek :)

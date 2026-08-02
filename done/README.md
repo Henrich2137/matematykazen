@@ -18,6 +18,10 @@ Do szukania używaj najpierw tego indeksu (tagi niżej), potem grepa po konkretn
 
 
 == 04-biezace.md — partia OTWARTA (2026-07-27 → ?) ==
+- 2026-08-02 (Opus 5 Medium) — licencja PolyForm Noncommercial 1.0.0 + CLA: zweryfikowany LICENSE.md,
+  nowe CONTRIBUTING.md / README.md / .github/PULL_REQUEST_TEMPLATE.md, właściciel jako pseudonim
+  `Henrich2137`, URL Required Notice na GitHub Pages zamiast nieistniejącej domeny; odkłamana faza
+  projektu w OVERVIEW.md  [licencja, cla, dokumentacja, github]
 - 2026-07-28 (Sonnet High) — `formulasPage` zweryfikowane dla całego arkusza 2024-grudzień (35 zadań)
   na podstawie transkryptu tablica-wzorow-transkrypt/: uzupełnione 6 brakujących (zad. 7, 8, 10,
   11, 12, 17 — z czego 7/8/10/12 świadomie zostają bez strony, bo nie wymagają tablic) oraz

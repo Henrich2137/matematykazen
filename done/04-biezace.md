@@ -1,5 +1,22 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-02] (Opus 5 Medium) Licencja i zasady kontrybucji. `LICENSE.md` (wklejony ręcznie przez
+Henricha) zweryfikowany sekcja po sekcji z oficjalnym PolyForm Noncommercial 1.0.0 — tekst kompletny i wierny,
+poprawki tylko kosmetyczne: usunięte trailing spaces w polskiej części po `---` i dopisana sekcja „Wkład
+społeczności" z linkiem do CONTRIBUTING.md. Nowe pliki: `CONTRIBUTING.md` (jak pomagać + CLA — otwarcie PR-a
+= udzielenie właścicielowi szerokiej, nieodwołalnej, także komercyjnej licencji na wkład, przy zachowaniu praw
+kontrybutora; sens: nie zablokować przyszłej zmiany licencji z Fazy 3), `README.md` (repo go nie miało w ogóle)
+i `.github/PULL_REQUEST_TEMPLATE.md` (checklista + pogrubione odesłanie do CLA).
+Dwie decyzje świadome, obie z przypomnieniem w TODO.md pod `OPUS DOPISAŁ`: (1) właściciel występuje jako
+pseudonim `Henrich2137`, nie imię i nazwisko — CLA na pseudonim jest słabsze dowodowo, a podmiana wymaga
+DWÓCH miejsc (LICENSE.md linie 1–2 i punkt 2 w CONTRIBUTING.md); (2) URL w linii `Required Notice:` zmieniony
+z `https://matematykazen.pl` (domena jeszcze nie działa) na GitHub Pages — ta linia jest z definicji kopiowana
+przez każdego redystrybutora, więc martwy link by się propagował.
+Przy okazji odkłamana OVERVIEW.md: pisała, że strona jest wystawiona „pod docelową ładną domeną" i że celem
+obecnej fazy jest zdobywanie zainteresowania — a to cel Fazy 2, podczas gdy Faza 1 jest jawnie bez marketingu
+i bez domeny; dopisana też sekcja „Licencja" i zaktualizowana notatka o kanałach kontaktu (są już issues/PR-y)
+[licencja, cla, dokumentacja, github]
+
 [ZROBIONE 2026-08-01] Ikona strzałki #sidebar-toggle (template.html) zamieniona kierunkiem — SVG path
 z lewoskrętnego `M15 5l-7 7 7 7` na prawoskrętny `M9 5l7 7-7 7`. Rotacja o 180° przy otwarciu panelu
 (`body.sidebar-otwarty #sidebar-toggle` w style/sheet.css) zostaje bez zmian [ui, sidebar, css]

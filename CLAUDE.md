@@ -12,6 +12,17 @@ MatematykaZen is an interactive platform for learning math for the Polish "matur
 
 [OVERVIEW.md](OVERVIEW.md) — a standalone, Polish-language project summary (opis projektu, arkusze, funkcje, model biznesowy) maintained by Claude web (projekt „Matematyka Zen" na claude.ai) for use outside this repo, starting with an "Ostatnia aktualizacja" timestamp line. **ZASADA: aktualizuj datę i treść tego pliku po każdej większej zmianie, która może wpłynąć na jego treść** (nowy arkusz, nowa funkcja, zmiana modelu biznesowego itp.) — nie czekaj, aż użytkownik o to poprosi.
 
+## Licensing / contributions (added 2026-08-02)
+
+Root-level meta files, all Polish except the license text itself:
+
+- `LICENSE.md` — **PolyForm Noncommercial 1.0.0**, official text verbatim (don't reword it), preceded by the copyright + `Required Notice:` lines and followed by Polish notes after the `---`: CKE exercises/keys are **not** covered by the license, pointer to CONTRIBUTING.md, commercial-license contact.
+- `CONTRIBUTING.md` — how to contribute + the **CLA**: opening a PR grants the owner a broad, irrevocable, *also commercial* license to the contribution, so a future license change (Faza 3 in OVERVIEW.md) isn't blocked by contributors' copyright.
+- `README.md` — repo front page (what the project is, how to serve it locally, „Licencja" section).
+- `.github/PULL_REQUEST_TEMPLATE.md` — checklist + a bold line binding the PR author to the CLA (relative link `../CONTRIBUTING.md`).
+
+Two placeholders are deliberate and tracked in TODO.md (`OPUS DOPISAŁ`): the owner is named by the pseudonym **`Henrich2137`** (LICENSE.md lines 1–2 + CONTRIBUTING.md point 2 — change both together if the real name is ever published), and the `Required Notice:` URL points at GitHub Pages until `matematykazen.pl` actually goes live. That notice line is copied by every redistributor, so it must never carry a dead link.
+
 ## What this is
 
 A static Polish-language practice site for CKE "matura podstawowa" exam sheets. No backend, no build system, no package manager.
