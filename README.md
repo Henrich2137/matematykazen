@@ -1,9 +1,9 @@
 # MatematykaZen
 
 Interaktywna platforma do nauki matematyki pod **maturę podstawową** (CKE).
-Statyczna strona — bez backendu i kont, postęp zapisywany lokalnie w przeglądarce.
+Póki co statyczna strona - bez backendu i kont, postęp zapisywany lokalnie w przeglądarce.
 
-Na żywo: <https://henrich2137.github.io/matematykazen/>
+Dostępna na: <https://henrich2137.github.io/matematykazen/>
 
 ## Co jest w środku
 
