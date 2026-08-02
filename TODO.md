@@ -108,7 +108,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
   - Przekminić i dodać zasadę dotyczącą tłumaczenia mi (Henrichowi) rzeczy (jak mam przeprowadzić test, jak wygląda projekt itd.)
   
-  - Watermark kodu
+  - Dodać link do licencji widoczny w stopce czy coś. i jakiś copyright (czy left)czy coś
 
   - Po kliknięciu prevStepButton animacja powinna odpalać się od tyłu (jeżeli to możliwe aby odtwarzać animacje od tyłu, można też renderować każdą od tyłu)
 
