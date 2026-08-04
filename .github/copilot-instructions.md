@@ -1,4 +1,4 @@
-NA POCZĄTKU KAŻDEJ SESJI MÓW: "Wczytałem copilot-instructions.md!"
+NA POCZĄTKU SESJI MÓW: "Wczytałem copilot-instructions.md"
 
 Wczytuj zawsze plik CLAUDE.md na początku sesji. I traktuj wszelkie uwagi do Claude, Sonneta, Opusa itd. Jak do siebie.
 
