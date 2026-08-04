@@ -1,5 +1,7 @@
 # CLAUDE.md
 
+Napisz na początku sesji: "Wczytałem CLAUDE.md"
+
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 **Detailed architecture and exercise data schema live in [ARCHITECTURE.md](ARCHITECTURE.md); the full CSS/layout reference lives in [ARCHITECTURE_CSS.md](ARCHITECTURE_CSS.md).** Read them before touching the rendering logic in template.html, the schema in a sheet's exercises.json, or the CSS in style/ — and keep them in sync when you change what they describe. Don't duplicate their content here.
