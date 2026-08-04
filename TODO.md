@@ -102,6 +102,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
   + ULEPSZANIE WORKFLOW (skopiowane z NOTATKI_USERA)
     - Schedule adversarial review lub /code-review
     - Stworzyć/pobrać potrzebne mi skille do tego projektu
+    - uruchomienie całego VS Code w Dev Container (Docker) z uwagi, że /sandbox coś nie działa chyba w rozszerzeniu Claude Code
 
 
   - W index.html dodać sekcję o autorze i link do Patronite
