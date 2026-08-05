@@ -4,6 +4,7 @@
     "dockerfile": "Dockerfile"
   },
   //"postCreateCommand": "npm install",
+  //bez sensu bo mozna overwrite "postCreateCommand": "chmod 555 /workspace/.devcontainer/init-firewall.sh; chmod 555 /workspace/.devcontainer/devcontainer.json; chmod 555 /workspace/.devcontainer/Dockerfile; ",
   "runArgs": [
     "--cap-add=NET_ADMIN",
     "--cap-add=NET_RAW"
