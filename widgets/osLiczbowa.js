@@ -82,7 +82,7 @@ function widgetOsLiczbowa(container) {
         }
 
         // Środek (−a) — zielony, jak okienko z a (ta sama liczba, tylko z minusem).
-        ctx.fillStyle = "#2e7d32";
+        ctx.fillStyle = WG_KOLORY.zielony;
         if (center >= MIN && center <= MAX) {
             ctx.beginPath();
             ctx.arc(toPix(center), centerY, 4, 0, Math.PI * 2);
@@ -93,7 +93,7 @@ function widgetOsLiczbowa(container) {
         // po trafieniu w rozwiązanie dostaje zieloną obwódkę.
         const dist = Math.abs(state.x + a);
         const trafiony = b >= 0 && Math.abs(dist - b) < 0.01;
-        ctx.fillStyle = "#c99700";
+        ctx.fillStyle = WG_KOLORY.zolty;
         ctx.beginPath();
         ctx.arc(toPix(state.x), centerY, 7, 0, Math.PI * 2);
         ctx.fill();
@@ -131,5 +131,7 @@ function widgetOsLiczbowa(container) {
         state.x = 0;
         draw();
     });
+    // Przemalowanie po zmianie motywu (paleta z CSS — widgets/_helpers.js).
+    wgZarejestrujRysowanie(canvas, draw);
     draw();
 }

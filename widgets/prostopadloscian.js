@@ -40,7 +40,7 @@ function widgetProstopadloscian(container) {
         const w = x * s, wys = h * s;
 
         ctx.strokeStyle = max ? WG_KOLORY.ok : WG_KOLORY.wykres;
-        ctx.fillStyle = max ? "rgba(10,179,47,0.15)" : "rgba(122,63,168,0.08)";
+        ctx.fillStyle = max ? WG_KOLORY.obszarOk : WG_KOLORY.obszarWykres;
         ctx.lineWidth = 1.5;
         // ściana przednia
         ctx.fillRect(bx, by - wys, w, wys);
@@ -54,7 +54,7 @@ function widgetProstopadloscian(container) {
         ctx.stroke();
 
         // Podpisy krawędzi.
-        ctx.fillStyle = "#333";
+        ctx.fillStyle = WG_KOLORY.tekst;
         ctx.font = "12px Arial";
         ctx.textAlign = "center";
         ctx.textBaseline = "top";
@@ -86,7 +86,7 @@ function widgetProstopadloscian(container) {
         ctx.stroke();
 
         // Maksimum (24/13, 1152/13).
-        ctx.strokeStyle = "#bbb";
+        ctx.strokeStyle = WG_KOLORY.liniaSlaba;
         ctx.setLineDash([4, 3]);
         ctx.beginPath();
         ctx.moveTo(gx(X_MAX_POLA), gy(0));
@@ -111,5 +111,7 @@ function widgetProstopadloscian(container) {
     }
 
     slider.addEventListener("input", draw);
+    // Przemalowanie po zmianie motywu (paleta z CSS — widgets/_helpers.js).
+    wgZarejestrujRysowanie(canvas, draw);
     draw();
 }

@@ -50,12 +50,12 @@ function widgetProcentSkladany(container) {
         kwoty.forEach((kwota, i) => {
             const x = 90 + i * 150;
             const h = kwota * scale;
-            ctx.fillStyle = (i === 2 && trafiony) ? WG_KOLORY.ok : "#c9b3dd";
+            ctx.fillStyle = (i === 2 && trafiony) ? WG_KOLORY.ok : WG_KOLORY.slupek;
             ctx.fillRect(x, baseY - h, 90, h);
             ctx.strokeStyle = WG_KOLORY.wykres;
             ctx.strokeRect(x, baseY - h, 90, h);
 
-            ctx.fillStyle = "#333";
+            ctx.fillStyle = WG_KOLORY.tekst;
             ctx.textAlign = "center";
             ctx.textBaseline = "bottom";
             ctx.font = "12px Arial";
@@ -70,5 +70,7 @@ function widgetProcentSkladany(container) {
     }
 
     slider.addEventListener("input", draw);
+    // Przemalowanie po zmianie motywu (paleta z CSS — widgets/_helpers.js).
+    wgZarejestrujRysowanie(canvas, draw);
     draw();
 }

@@ -25,7 +25,7 @@ function widgetNierownoscKwadratowa(container) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         // Obszar rozwiązań (parabola pod osią) — delikatne zielone tło.
-        ctx.fillStyle = "rgba(10, 179, 47, 0.08)";
+        ctx.fillStyle = WG_KOLORY.obszarOk;
         ctx.beginPath();
         ctx.moveTo(px(-1), py(0));
         for (let x = -1; x <= 7; x += 0.1) ctx.lineTo(px(x), py(f(x)));
@@ -79,7 +79,7 @@ function widgetNierownoscKwadratowa(container) {
         // Punkt testowy na osi + wartość na paraboli.
         const val = state.x * (state.x - 6);
         const spelnia = val <= 7.0001;
-        ctx.strokeStyle = "#aaa";
+        ctx.strokeStyle = WG_KOLORY.liniaSlaba;
         ctx.setLineDash([4, 3]);
         ctx.beginPath();
         ctx.moveTo(px(state.x), py(0));
@@ -108,5 +108,7 @@ function widgetNierownoscKwadratowa(container) {
         state.x = snap !== raw ? snap : Math.round(raw * 4) / 4;
         draw();
     });
+    // Przemalowanie po zmianie motywu (paleta z CSS — widgets/_helpers.js).
+    wgZarejestrujRysowanie(canvas, draw);
     draw();
 }

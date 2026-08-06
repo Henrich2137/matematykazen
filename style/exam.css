@@ -181,8 +181,8 @@ body.reczne-sprawdzanie #sprawdz-wszystkie {
 /* Wszystko, co zdradza wynik albo pozwala go obejść, znika na czas egzaminu.
    !important, bo część z tych elementów ma display ustawiane inline przez JS
    (np. przełącznik widoku punktów). Cały wiersz light-buttonów (Podpowiedź /
-   Rozwiązanie / Pokaż potrzebne wzory) chowamy razem z kontenerem, żeby nie
-   został pusty odstęp — „Pokaż potrzebne wzory" naprowadzałaby na metodę
+   Rozwiązanie / Zgłoś błąd / Pokaż wzory) chowamy razem z kontenerem, żeby nie
+   został pusty odstęp — „Pokaż wzory" naprowadzałaby na metodę
    konkretnego zadania, więc na egzaminie znika. TABLICA wzorów CKE i jej
    przycisk toggle (#toggle-tablica) celowo ZOSTAJĄ — na maturze też są.
    Zasady oceniania (#toggle-zasady = klucz odpowiedzi) zostają ukryte. */

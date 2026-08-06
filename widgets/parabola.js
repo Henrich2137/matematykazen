@@ -46,7 +46,7 @@ function widgetParabola(container) {
         for (let i = X0; i <= X1; i++) if (i !== 0) ctx.fillText(i, px(i), py(0) + 6);
 
         // Oś symetrii x = 3.
-        ctx.strokeStyle = "#bbb";
+        ctx.strokeStyle = WG_KOLORY.liniaSlaba;
         ctx.setLineDash([5, 4]);
         ctx.beginPath();
         ctx.moveTo(px(3), 245);
@@ -68,7 +68,7 @@ function widgetParabola(container) {
         ctx.fillText("W = (3, 0)", px(3) + 38, py(0) - 4);
 
         // Punkt użytkownika.
-        ctx.fillStyle = "#333";
+        ctx.fillStyle = WG_KOLORY.tekst;
         ctx.beginPath();
         ctx.arc(px(state.x), py(f(state.x)), 7, 0, Math.PI * 2);
         ctx.fill();
@@ -88,5 +88,7 @@ function widgetParabola(container) {
         state.x = snap !== raw ? snap : Math.round(raw * 2) / 2;
         draw();
     });
+    // Przemalowanie po zmianie motywu (paleta z CSS — widgets/_helpers.js).
+    wgZarejestrujRysowanie(canvas, draw);
     draw();
 }

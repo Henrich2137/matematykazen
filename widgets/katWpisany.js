@@ -46,7 +46,7 @@ function widgetKatWpisany(container) {
         ctx.fillText("łuk AB = ⅓ · 2π·6 = 4π", cx, cy + R + 12);
 
         // Ramiona kąta środkowego.
-        ctx.strokeStyle = "#999";
+        ctx.strokeStyle = WG_KOLORY.linia;
         ctx.lineWidth = 1.5;
         [A, B].forEach(P => {
             ctx.beginPath();
@@ -65,7 +65,7 @@ function widgetKatWpisany(container) {
         ctx.fillText("120°", cx, cy + 32);
 
         // Ramiona kąta wpisanego.
-        ctx.strokeStyle = "#444";
+        ctx.strokeStyle = WG_KOLORY.liniaMocna;
         [A, B].forEach(P => {
             ctx.beginPath();
             ctx.moveTo(C.x, C.y);
@@ -97,7 +97,7 @@ function widgetKatWpisany(container) {
         const punkty = [[A, "A"], [B, "B"], [S, "S"]];
         ctx.font = "bold 13px Arial";
         punkty.forEach(([P, name]) => {
-            ctx.fillStyle = "#333";
+            ctx.fillStyle = WG_KOLORY.tekst;
             ctx.beginPath();
             ctx.arc(P.x, P.y, 3.5, 0, Math.PI * 2);
             ctx.fill();
@@ -128,5 +128,7 @@ function widgetKatWpisany(container) {
         state.deg = deg;
         draw();
     });
+    // Przemalowanie po zmianie motywu (paleta z CSS — widgets/_helpers.js).
+    wgZarejestrujRysowanie(canvas, draw);
     draw();
 }

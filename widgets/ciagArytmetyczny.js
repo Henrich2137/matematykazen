@@ -30,7 +30,7 @@ function widgetCiagArytmetyczny(container) {
         const scale = 85 / maxAbs;
 
         // Linia zera.
-        ctx.strokeStyle = "#ccc";
+        ctx.strokeStyle = WG_KOLORY.liniaSlaba;
         ctx.beginPath();
         ctx.moveTo(30, zeroY);
         ctx.lineTo(490, zeroY);
@@ -42,12 +42,12 @@ function widgetCiagArytmetyczny(container) {
         wyrazy.forEach((w, i) => {
             const x = 70 + i * 150;
             const h = w * scale;
-            ctx.fillStyle = arytmetyczny ? "rgba(10,179,47,0.35)" : "#c9b3dd";
+            ctx.fillStyle = arytmetyczny ? WG_KOLORY.slupekOk : WG_KOLORY.slupek;
             ctx.strokeStyle = arytmetyczny ? WG_KOLORY.ok : WG_KOLORY.wykres;
             ctx.fillRect(x, Math.min(zeroY, zeroY - h), 80, Math.abs(h));
             ctx.strokeRect(x, Math.min(zeroY, zeroY - h), 80, Math.abs(h));
 
-            ctx.fillStyle = "#333";
+            ctx.fillStyle = WG_KOLORY.tekst;
             ctx.font = "13px Arial";
             ctx.textAlign = "center";
             ctx.textBaseline = h >= 0 ? "bottom" : "top";
@@ -73,5 +73,7 @@ function widgetCiagArytmetyczny(container) {
     }
 
     slider.addEventListener("input", draw);
+    // Przemalowanie po zmianie motywu (paleta z CSS — widgets/_helpers.js).
+    wgZarejestrujRysowanie(canvas, draw);
     draw();
 }

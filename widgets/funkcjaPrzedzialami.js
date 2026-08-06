@@ -64,7 +64,7 @@ function widgetFunkcjaPrzedzialami(container) {
 
         // Kółko otwarte na początku dziedziny i pełne na końcu.
         ctx.lineWidth = 2;
-        ctx.fillStyle = "#fff";
+        ctx.fillStyle = WG_KOLORY.plotno;
         ctx.beginPath(); ctx.arc(px(-4), py(3), 4, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
         ctx.fillStyle = WG_KOLORY.wykres;
         ctx.beginPath(); ctx.arc(px(4), py(1), 4, 0, Math.PI * 2); ctx.fill();
@@ -87,5 +87,7 @@ function widgetFunkcjaPrzedzialami(container) {
     }
 
     slider.addEventListener("input", draw);
+    // Przemalowanie po zmianie motywu (paleta z CSS — widgets/_helpers.js).
+    wgZarejestrujRysowanie(canvas, draw);
     draw();
 }

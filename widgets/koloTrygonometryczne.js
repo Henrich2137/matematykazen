@@ -28,9 +28,9 @@ function widgetKoloTrygonometryczne(container) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         // II ćwiartka (kąty rozwarte) — delikatne tło.
-        ctx.fillStyle = "rgba(74, 144, 217, 0.07)";
+        ctx.fillStyle = WG_KOLORY.obszarInfo;
         ctx.fillRect(cx - R - 15, cy - R - 15, R + 15, R + 15);
-        ctx.fillStyle = "#9bb8d4";
+        ctx.fillStyle = WG_KOLORY.etykietaInfo;
         ctx.font = "11px Arial";
         ctx.textAlign = "left";
         ctx.textBaseline = "top";
@@ -41,7 +41,7 @@ function widgetKoloTrygonometryczne(container) {
         ctx.lineWidth = 1;
         wgStrzalka(ctx, cx - R - 25, cy, cx + R + 25, cy);
         wgStrzalka(ctx, cx, cy + R + 20, cx, cy - R - 20);
-        ctx.strokeStyle = "#999";
+        ctx.strokeStyle = WG_KOLORY.linia;
         ctx.beginPath();
         ctx.arc(cx, cy, R, 0, Math.PI * 2);
         ctx.stroke();
@@ -62,13 +62,13 @@ function widgetKoloTrygonometryczne(container) {
         ctx.fillText("sin α = √3/4", cx + R - 40, yCel - 3);
 
         // Ramię kąta + łuk.
-        ctx.strokeStyle = "#555";
+        ctx.strokeStyle = WG_KOLORY.liniaMocna;
         ctx.lineWidth = 1.5;
         ctx.beginPath();
         ctx.moveTo(cx, cy);
         ctx.lineTo(P.x, P.y);
         ctx.stroke();
-        ctx.strokeStyle = "#aaa";
+        ctx.strokeStyle = WG_KOLORY.liniaSlaba;
         ctx.beginPath();
         ctx.arc(cx, cy, 24, 0, -rad, true);
         ctx.stroke();
@@ -87,7 +87,7 @@ function widgetKoloTrygonometryczne(container) {
         ctx.stroke();
 
         // Punkt na okręgu.
-        ctx.fillStyle = sinOk ? (cos < 0 ? WG_KOLORY.ok : WG_KOLORY.punkt) : "#333";
+        ctx.fillStyle = sinOk ? (cos < 0 ? WG_KOLORY.ok : WG_KOLORY.punkt) : WG_KOLORY.tekst;
         ctx.beginPath();
         ctx.arc(P.x, P.y, 7, 0, Math.PI * 2);
         ctx.fill();
@@ -117,5 +117,7 @@ function widgetKoloTrygonometryczne(container) {
         state.deg = snap !== deg ? snap : Math.round(deg * 2) / 2;
         draw();
     });
+    // Przemalowanie po zmianie motywu (paleta z CSS — widgets/_helpers.js).
+    wgZarejestrujRysowanie(canvas, draw);
     draw();
 }

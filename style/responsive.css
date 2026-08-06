@@ -33,6 +33,18 @@
 }
 
 @media (max-width: 720px) {
+    /* Wiersz przycisków tekstowych (Podpowiedź / Rozwiązanie / Zgłoś błąd /
+       Pokaż wzory): na desktopie cztery w jednym rzędzie, tu łamią się po dwa.
+       flex-basis 40% + wrap zamiast czterech kolumn po ~80px, w których każda
+       etykieta zawijałaby się na trzy linijki. */
+    .light-button-container {
+        flex-wrap: wrap;
+        gap: 10px 14px;
+    }
+    .light-button-container > .light-button {
+        flex: 1 1 40%;
+    }
+
     /* Narożniki bliżej krawędzi i ciaśniejsze pigułki — na wąskim ekranie oba
        klastry muszą zmieścić się w jednym rzędzie (patrz breakpoint 560px). */
     #naroznik-lewy,

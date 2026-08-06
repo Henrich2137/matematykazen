@@ -465,9 +465,11 @@ if (zgForm) {
     });
 }
 
-// ===== LINK POD ZADANIEM =====
-// Wołane z loadExercises() (app/render.js) dla każdego zadania: dokłada na końcu
-// klonu dyskretny link „zgłoś błąd w tym zadaniu". Numer bierzemy z treści
+// ===== PRZYCISK W WIERSZU PRZYCISKÓW TEKSTOWYCH =====
+// Wołane z loadExercises() (app/render.js) dla każdego zadania: dokłada przycisk
+// „zgłoś błąd" do .light-button-container, między „Rozwiązanie" a „Pokaż wzory"
+// (kolejność ustalona z Henrichem 2026-08-06 — wcześniej był to osobny, bledszy
+// napis pod całą kartą). Numer bierzemy z treści
 // („Zadanie N.") — jak wskaźniki „oceń się" — bo indeks w tablicy rozjeżdża się
 // z numeracją CKE (zadania nadrzędne / wieloczęściowe). Widoczność steruje
 // globalnie klasa body.bez-zglaszania (CSS), więc tu tworzymy link zawsze.
@@ -480,11 +482,15 @@ function dodajLinkZgloszenia(exerciseClone) {
     const numer = m ? m[1].replace(/\.$/, "") : "?";
     const link = document.createElement("button");
     link.type = "button";
-    link.className = "report-error-link";
-    link.textContent = "zgłoś błąd";
+    // .light-button niesie cały wygląd (wspólny z Podpowiedzią/Rozwiązaniem),
+    // .report-error-link zostaje uchwytem dla body.bez-zglaszania.
+    link.className = "report-error-link light-button";
+    link.textContent = "Zgłoś błąd";
     link.title = "Zgłoś błąd w tym zadaniu (zła odpowiedź, literówka, problem z filmem…)";
     // Karta zadania idzie dalej, bo formularz jest do niej PRZENOSZONY, a dane
     // automatyczne (odpowiedź ucznia, krok rozwiązania) czytamy z jej DOM.
     link.addEventListener("click", () => otworzModalZgloszenia(numer, exerciseClone));
-    exerciseClone.appendChild(link);
+    const wiersz = exerciseClone.querySelector(".light-button-container");
+    if (wiersz) wiersz.insertBefore(link, wiersz.querySelector(".formulas-button"));
+    else exerciseClone.appendChild(link); // szablon bez wiersza — nie gubimy zgłaszania
 }

@@ -28,6 +28,9 @@ function applyTheme(motyw) {
     // Wartość w panelu bocznym (ustawWartosc pisze do .wartosc + data-stan;
     // NIE do textContent, żeby nie skasować ikony — patrz app/state.js).
     ustawWartosc(themeToggle, motyw);
+    // Widżety rysują na canvasie, więc nie zmienią się same wraz z CSS —
+    // przeładowują paletę i przerysowują się na żądanie (widgets/_helpers.js).
+    if (typeof wgPrzemaluj === "function") wgPrzemaluj();
 }
 applyTheme(readTheme()); // zsynchronizuj etykietę ze stanem z <head>
 if (themeToggle) {

@@ -118,12 +118,92 @@ function wgStrzalka(ctx, x1, y1, x2, y2) {
     ctx.fill();
 }
 
+/* ===== PALETA WIDŻETÓW (motyw jasny/ciemny) =============================
+   Canvas nie dziedziczy kolorów z CSS, więc paleta jest czytana ze zmiennych
+   motywu (style/base.css, sekcja „PALETA WIDŻETÓW") przez getComputedStyle
+   i trzymana tutaj jako gotowe stringi. Wartości poniżej to tylko FALLBACK
+   (jasny motyw), gdyby zmiennej zabrakło.
+   Reguła: w plikach widżetów NIE ma literałów kolorów — wszystko przez
+   WG_KOLORY, inaczej element nie przełączy się razem z motywem. */
 const WG_KOLORY = {
+    plotno: "#fff",           // --canvas-bg (tło płótna, np. „puste" kółko)
     osie: "#666",
     siatka: "#eee",
-    wykres: "#7a3fa8",   // fiolet jak na rysunkach CKE
-    punkt: "#e8871e",    // pomarańcz
+    tekst: "#333",            // liczby, nazwy punktów, podpisy
+    linia: "#999",            // linie pomocnicze
+    liniaSlaba: "#bbb",       // przerywane, linia zera
+    liniaMocna: "#444",       // wyróżnione ramiona/odcinki
+    wykres: "#7a3fa8",        // fiolet jak na rysunkach CKE (--accent-purple)
+    punkt: "#e8871e",         // pomarańcz
+    zolty: "#c99700",
+    zielony: "#2e7d32",       // --accent-green (środek osi w zad. 1)
+    slupek: "#c9b3dd",
+    etykietaInfo: "#9bb8d4",
     ok: "#0AB32F",
     zle: "#d9534f",
-    info: "#4a90d9"
+    info: "#4a90d9",
+    obszarOk: "rgba(10, 179, 47, 0.08)",
+    obszarInfo: "rgba(74, 144, 217, 0.07)",
+    obszarWykres: "rgba(122, 63, 168, 0.08)",
+    slupekOk: "rgba(10, 179, 47, 0.35)"
 };
+
+// Nazwa w WG_KOLORY → zmienna CSS.
+const WG_ZMIENNE = {
+    plotno: "--canvas-bg",
+    osie: "--wg-osie",
+    siatka: "--wg-siatka",
+    tekst: "--wg-tekst",
+    linia: "--wg-linia",
+    liniaSlaba: "--wg-linia-slaba",
+    liniaMocna: "--wg-linia-mocna",
+    wykres: "--accent-purple",
+    punkt: "--wg-punkt",
+    zolty: "--wg-zolty",
+    zielony: "--accent-green",
+    slupek: "--wg-slupek",
+    etykietaInfo: "--wg-etykieta-info",
+    ok: "--correct",
+    zle: "--incorrect",
+    info: "--accent-blue-strong",
+    obszarOk: "--wg-obszar-ok",
+    obszarInfo: "--wg-obszar-info",
+    obszarWykres: "--wg-obszar-wykres",
+    slupekOk: "--wg-slupek-ok"
+};
+
+// getComputedStyle oddaje kolory jako "rgb(r, g, b)"; canvasowi to nie
+// przeszkadza, ale KaTeXowy \textcolor{...} (zad. 18) przyjmuje tylko hex,
+// więc kolory bez alfy sprowadzamy do #rrggbb. rgba(...) zostaje jak jest.
+function wgHex(kolor) {
+    const m = kolor.match(/^rgb\(\s*(\d+)[,\s]+(\d+)[,\s]+(\d+)\s*\)$/);
+    if (!m) return kolor;
+    return "#" + [1, 2, 3].map(i => Number(m[i]).toString(16).padStart(2, "0")).join("");
+}
+
+function wgOdswiezKolory() {
+    const s = getComputedStyle(document.documentElement);
+    for (const [nazwa, zmienna] of Object.entries(WG_ZMIENNE)) {
+        const v = s.getPropertyValue(zmienna).trim();
+        if (v) WG_KOLORY[nazwa] = wgHex(v);
+    }
+}
+
+/* Przemalowanie widżetów po zmianie motywu — bez reloadu strony.
+   Każdy widżet rejestruje swoją funkcję rysującą razem z canvasem; canvasy,
+   których nie ma już w dokumencie, wypadają z listy przy pierwszej okazji.
+   Wołane z applyTheme() (app/theme.js) oraz przy zmianie motywu systemowego
+   w trybie „auto". */
+const wgRysowania = [];
+function wgZarejestrujRysowanie(canvas, rysuj) {
+    wgRysowania.push({ canvas, rysuj });
+}
+function wgPrzemaluj() {
+    wgOdswiezKolory();
+    for (let i = wgRysowania.length - 1; i >= 0; i--) {
+        if (!wgRysowania[i].canvas.isConnected) { wgRysowania.splice(i, 1); continue; }
+        try { wgRysowania[i].rysuj(); } catch (e) { console.warn("Widżet: nie udało się przemalować.", e); }
+    }
+}
+wgOdswiezKolory();
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", wgPrzemaluj);

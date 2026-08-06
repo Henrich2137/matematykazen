@@ -40,7 +40,7 @@
     --bg-subtle: #fafafa;     /* nagłówek tabeli danych */
     --bg-code: #f3f3f3;       /* kod inline w komunikacie błędu */
     --bg-hover: #f0f0f0;      /* hover krzyżyka paneli */
-    --canvas-bg: #fff;        /* NIE ciemnieje — widżety rysują ciemnym po jasnym */
+    --canvas-bg: #fff;        /* płótno widżetów — ciemnieje razem z motywem (patrz PALETA WIDŻETÓW) */
     --overlay-bg: rgba(255, 255, 255, 0.88); /* nakładka podsumowania egzaminu */
 
     /* Tekst (od najciemniejszego do najjaśniejszego) */
@@ -84,6 +84,28 @@
     --accent-purple: #7a3fa8;   /* aktywny wzór przedziału (widżet) */
     --accent-green: #2e7d32;    /* okienko „a" widżetu zad. 1 */
     --overlay-icon: #d1d1d1;    /* strzałka ↺ na końcu filmu */
+
+    /* ===== PALETA WIDŻETÓW (canvas) =====
+       Widżety rysują na canvasie, więc nie dziedziczą kolorów z CSS — czytają
+       te zmienne przez getComputedStyle (WG_KOLORY / wgOdswiezKolory w
+       widgets/_helpers.js) i przemalowują się przy zmianie motywu.
+       Dlatego KAŻDY kolor widżetu musi mieć tu swój token (i wariant ciemny),
+       zamiast literału w pliku widżetu. Wypełnienia półprzezroczyste
+       (--wg-obszar-*) zostają jako rgba — canvas nie zna alfy z tokena. */
+    --wg-osie: #666;          /* osie ze strzałkami, podziałka */
+    --wg-siatka: #eee;        /* siatka pomocnicza */
+    --wg-tekst: #333;         /* liczby, nazwy punktów, podpisy krawędzi */
+    --wg-linia: #999;         /* linie pomocnicze (okrąg, ramiona kąta środkowego) */
+    --wg-linia-slaba: #bbb;   /* linie przerywane, linia zera */
+    --wg-linia-mocna: #444;   /* wyróżnione ramiona/odcinki */
+    --wg-punkt: #e8871e;      /* pomarańczowy punkt/łuk */
+    --wg-zolty: #c99700;      /* punkt testowy na osi (zad 1) */
+    --wg-slupek: #c9b3dd;     /* wypełnienie słupków */
+    --wg-etykieta-info: #9bb8d4; /* blada niebieska etykieta obszaru */
+    --wg-obszar-ok: rgba(10, 179, 47, 0.08);
+    --wg-obszar-info: rgba(74, 144, 217, 0.07);
+    --wg-obszar-wykres: rgba(122, 63, 168, 0.08);
+    --wg-slupek-ok: rgba(10, 179, 47, 0.35);
 
     /* Komunikat błędu wczytywania */
     --error-border: #e0b4b4;
@@ -173,6 +195,26 @@
         --accent-green: #4a9d54;
         --overlay-icon: #555;
 
+        --canvas-bg: #1c1c1c;
+
+        /* Paleta widżetów — ciemna (patrz blok w :root). Akcenty (zielony, czerwony,
+           niebieski, fiolet) biorą się z --correct/--incorrect/--accent-* i mają już
+           swoje ciemne warianty wyżej. */
+        --wg-osie: #a6a6a6;
+        --wg-siatka: #2f2f2f;
+        --wg-tekst: #dcdcdc;
+        --wg-linia: #7d7d7d;
+        --wg-linia-slaba: #555;
+        --wg-linia-mocna: #c4c4c4;
+        --wg-punkt: #f0a04b;
+        --wg-zolty: #e0b64a;
+        --wg-slupek: #5b4470;
+        --wg-etykieta-info: #7f9fbe;
+        --wg-obszar-ok: rgba(60, 207, 90, 0.16);
+        --wg-obszar-info: rgba(106, 176, 255, 0.12);
+        --wg-obszar-wykres: rgba(169, 127, 208, 0.16);
+        --wg-slupek-ok: rgba(60, 207, 90, 0.4);
+
         --error-border: #6a4040;
         --error-bg: #2a1e1e;
 
@@ -237,6 +279,26 @@ html.theme-dark {
     --accent-purple: #a97fd0;
     --accent-green: #4a9d54;
     --overlay-icon: #555;
+
+    --canvas-bg: #1c1c1c;
+
+    /* Paleta widżetów — ciemna (patrz blok w :root). Akcenty (zielony, czerwony,
+       niebieski, fiolet) biorą się z --correct/--incorrect/--accent-* i mają już
+       swoje ciemne warianty wyżej. */
+    --wg-osie: #a6a6a6;
+    --wg-siatka: #2f2f2f;
+    --wg-tekst: #dcdcdc;
+    --wg-linia: #7d7d7d;
+    --wg-linia-slaba: #555;
+    --wg-linia-mocna: #c4c4c4;
+    --wg-punkt: #f0a04b;
+    --wg-zolty: #e0b64a;
+    --wg-slupek: #5b4470;
+    --wg-etykieta-info: #7f9fbe;
+    --wg-obszar-ok: rgba(60, 207, 90, 0.16);
+    --wg-obszar-info: rgba(106, 176, 255, 0.12);
+    --wg-obszar-wykres: rgba(169, 127, 208, 0.16);
+    --wg-slupek-ok: rgba(60, 207, 90, 0.4);
 
     --error-border: #6a4040;
     --error-bg: #2a1e1e;
