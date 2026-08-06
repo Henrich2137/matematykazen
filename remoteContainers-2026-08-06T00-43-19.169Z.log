@@ -1,0 +1,326 @@
+[2026-08-06T00:43:19.290Z] Dev Containers 0.463.0 in VS Code 1.132.0 (df53daabb18cd157bdb08c7f01c34df936cf12f4).
+[2026-08-06T00:43:19.290Z] Start: Resolving Remote
+[2026-08-06T00:43:19.435Z] Setting up container for folder or workspace: /home/wojciech/matematykazen
+[2026-08-06T00:43:19.472Z] Start: Check Docker is running
+[2026-08-06T00:43:19.475Z] Start: Run: podman version
+[2026-08-06T00:43:19.508Z] Client:        Podman Engine
+Version:       5.8.4
+API Version:   5.8.4
+Go Version:    go1.26.4-X:nodwarf5
+Git Commit:    5431df23c742e5edea35bef34eed696f4db0106b
+Built:         Fri Jun 26 02:00:00 2026
+Build Origin:  Fedora Project
+OS/Arch:       linux/amd64
+[2026-08-06T00:43:19.512Z] Stop (37 ms): Run: podman version
+[2026-08-06T00:43:19.515Z] Stop (43 ms): Check Docker is running
+[2026-08-06T00:43:19.518Z] Start: Run: podman volume ls -q
+[2026-08-06T00:43:19.559Z] Stop (41 ms): Run: podman volume ls -q
+[2026-08-06T00:43:19.561Z] Start: Run: podman ps -q -a --filter label=vsch.local.folder=/home/wojciech/matematykazen --filter label=vsch.quality=stable
+[2026-08-06T00:43:19.610Z] Stop (49 ms): Run: podman ps -q -a --filter label=vsch.local.folder=/home/wojciech/matematykazen --filter label=vsch.quality=stable
+[2026-08-06T00:43:19.612Z] Start: Run: podman ps -q -a --filter label=devcontainer.local_folder=/home/wojciech/matematykazen --filter label=devcontainer.config_file=/home/wojciech/matematykazen/.devcontainer/devcontainer.json
+[2026-08-06T00:43:19.652Z] Stop (40 ms): Run: podman ps -q -a --filter label=devcontainer.local_folder=/home/wojciech/matematykazen --filter label=devcontainer.config_file=/home/wojciech/matematykazen/.devcontainer/devcontainer.json
+[2026-08-06T00:43:19.653Z] Start: Run: podman inspect --type container 048d2566bdc1
+[2026-08-06T00:43:19.692Z] Stop (39 ms): Run: podman inspect --type container 048d2566bdc1
+[2026-08-06T00:43:19.694Z] Running Dev Containers CLI:   up --user-data-folder /home/wojciech/.config/Code/User/globalStorage/ms-vscode-remote.remote-containers/data --docker-path podman --docker-compose-path podman-compose --container-session-data-folder /tmp/devcontainers-13d84aff-f6b6-47ac-beba-4f903cd9f79a1785976997848 --workspace-folder /home/wojciech/matematykazen --workspace-mount-consistency cached --gpu-availability detect --id-label devcontainer.local_folder=/home/wojciech/matematykazen --id-label devcontainer.config_file=/home/wojciech/matematykazen/.devcontainer/devcontainer.json --log-level debug --log-format json --config /home/wojciech/matematykazen/.devcontainer/devcontainer.json --default-user-env-probe loginInteractiveShell --remove-existing-container --experimental-lockfile --mount type=volume,source=vscode,target=/vscode,external=true --mount type=bind,source=/run/user/1000/wayland-0,target=/tmp/vscode-wayland-3ff3393d-7630-4e4d-884e-d22a6e247208.sock --skip-post-create --update-remote-user-uid-default on --mount-workspace-git-root --include-configuration --include-merged-configuration
+[2026-08-06T00:43:19.696Z] Start: Run: /usr/share/code/code /home/wojciech/.vscode/extensions/ms-vscode-remote.remote-containers-0.463.0/dist/spec-node/devContainersSpecCLI.js up --user-data-folder /home/wojciech/.config/Code/User/globalStorage/ms-vscode-remote.remote-containers/data --docker-path podman --docker-compose-path podman-compose --container-session-data-folder /tmp/devcontainers-13d84aff-f6b6-47ac-beba-4f903cd9f79a1785976997848 --workspace-folder /home/wojciech/matematykazen --workspace-mount-consistency cached --gpu-availability detect --id-label devcontainer.local_folder=/home/wojciech/matematykazen --id-label devcontainer.config_file=/home/wojciech/matematykazen/.devcontainer/devcontainer.json --log-level debug --log-format json --config /home/wojciech/matematykazen/.devcontainer/devcontainer.json --default-user-env-probe loginInteractiveShell --remove-existing-container --experimental-lockfile --mount type=volume,source=vscode,target=/vscode,external=true --mount type=bind,source=/run/user/1000/wayland-0,target=/tmp/vscode-wayland-3ff3393d-7630-4e4d-884e-d22a6e247208.sock --skip-post-create --update-remote-user-uid-default on --mount-workspace-git-root --include-configuration --include-merged-configuration
+[2026-08-06T00:43:19.893Z] Warning: --experimental-lockfile is deprecated. Lockfiles are now enabled by default.
+[2026-08-06T00:43:19.912Z] @devcontainers/cli 0.88.0. Node.js v24.18.0. linux 7.1.5-ogc5.1.fc44.x86_64 x64.
+[2026-08-06T00:43:19.912Z] Start: Run: podman buildx version
+[2026-08-06T00:43:19.963Z] Stop (51 ms): Run: podman buildx version
+[2026-08-06T00:43:19.964Z] buildah 1.43.2
+[2026-08-06T00:43:19.964Z] 
+[2026-08-06T00:43:19.964Z] Start: Run: podman -v
+[2026-08-06T00:43:19.983Z] Stop (19 ms): Run: podman -v
+[2026-08-06T00:43:19.983Z] Start: Run: podman version --format {{.Server.Version}}
+[2026-08-06T00:43:20.005Z] Stop (22 ms): Run: podman version --format {{.Server.Version}}
+[2026-08-06T00:43:20.005Z] 5.8.4
+[2026-08-06T00:43:20.005Z] 
+[2026-08-06T00:43:20.005Z] Start: Resolving Remote
+[2026-08-06T00:43:20.011Z] Start: Run: podman ps -q -a --filter label=devcontainer.local_folder=/home/wojciech/matematykazen --filter label=devcontainer.config_file=/home/wojciech/matematykazen/.devcontainer/devcontainer.json
+[2026-08-06T00:43:20.038Z] Stop (27 ms): Run: podman ps -q -a --filter label=devcontainer.local_folder=/home/wojciech/matematykazen --filter label=devcontainer.config_file=/home/wojciech/matematykazen/.devcontainer/devcontainer.json
+[2026-08-06T00:43:20.039Z] Start: Run: podman inspect --type container 048d2566bdc1
+[2026-08-06T00:43:20.073Z] Stop (34 ms): Run: podman inspect --type container 048d2566bdc1
+[2026-08-06T00:43:20.073Z] Start: Removing Existing Container
+[2026-08-06T00:43:20.073Z] Start: Run: podman rm -f 048d2566bdc1038e27ce9f78a04df360970ee75c803a14c9e75eed7fddf2adf2
+[2026-08-06T00:43:20.128Z] Stop (55 ms): Run: podman rm -f 048d2566bdc1038e27ce9f78a04df360970ee75c803a14c9e75eed7fddf2adf2
+[2026-08-06T00:43:20.128Z] Stop (55 ms): Removing Existing Container
+[2026-08-06T00:43:20.131Z] Start: Run: podman inspect --type image node:20
+[2026-08-06T00:43:20.170Z] Stop (39 ms): Run: podman inspect --type image node:20
+[2026-08-06T00:43:20.172Z] Start: Run: podman buildx build --load --build-arg BUILDKIT_INLINE_CACHE=1 -f /tmp/devcontainercli-wojciech/container-features/0.88.0-1785977000171/Dockerfile-with-features -t vsc-matematykazen-343a3279c92a5d423d4c7cd5a7e2d770495611f75ac7497f190409698e0e178a --target dev_containers_target_stage --build-arg _DEV_CONTAINERS_BASE_IMAGE=dev_container_auto_added_stage_label /home/wojciech/matematykazen/.devcontainer
+[2026-08-06T00:43:20.198Z] WARN[0000] missing "TZ" build argument. Try adding "--build-arg TZ=<VALUE>" to the command line 
+[2026-08-06T00:43:20.198Z] [1/2] STEP 1/26: FROM node:20 AS dev_container_auto_added_stage_label
+[2026-08-06T00:43:21.608Z] [1/2] STEP 2/26: ARG TZ
+[2026-08-06T00:43:21.627Z] --> Using cache 941a1945e2382cdd25e5c60812c3ffeaf3ba15da8af326c159241761427b7bc5
+--> 941a1945e238
+[2026-08-06T00:43:21.634Z] [1/2] STEP 3/26: ENV TZ="$TZ"
+[2026-08-06T00:43:21.638Z] --> Using cache ef01fabb0e63bef58e726972348615d1f6d56e45501294a3e3ba72bf48257b26
+--> ef01fabb0e63
+[2026-08-06T00:43:21.645Z] [1/2] STEP 4/26: ARG CLAUDE_CODE_VERSION=latest
+[2026-08-06T00:43:21.649Z] --> Using cache 9a322ec18908142762d62fa5930dd5a363d83d4089ebb6f8bd376d79baa0670d
+--> 9a322ec18908
+[2026-08-06T00:43:21.656Z] [1/2] STEP 5/26: RUN apt-get update && apt-get install -y --no-install-recommends   less   git   procps   sudo   fzf   zsh   man-db   unzip   gnupg2   gh   iptables   ipset   iproute2   dnsutils   aggregate   jq   nano   vim   && apt-get clean && rm -rf /var/lib/apt/lists/*
+[2026-08-06T00:43:21.662Z] --> Using cache 1019b2d15f01602943df9d121a33f2e22edea3f232c951af1d856d63ad2899fc
+--> 1019b2d15f01
+[2026-08-06T00:43:21.669Z] [1/2] STEP 6/26: RUN mkdir -p /usr/local/share/npm-global &&   chown -R node:node /usr/local/share
+[2026-08-06T00:43:21.674Z] --> Using cache 3ac102565d66c16dad772b5a7079faee832d47d297afab5663f2b833a87fdbde
+--> 3ac102565d66
+[2026-08-06T00:43:21.681Z] [1/2] STEP 7/26: ARG USERNAME=node
+[2026-08-06T00:43:21.685Z] --> Using cache 9e5b9a0a40febbb9e5401ed705de5c19f3716c21498d1bf6ed4bd8f5a07f02f4
+--> 9e5b9a0a40fe
+[2026-08-06T00:43:21.692Z] [1/2] STEP 8/26: RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history"   && mkdir /commandhistory   && touch /commandhistory/.bash_history   && chown -R $USERNAME /commandhistory
+[2026-08-06T00:43:21.697Z] --> Using cache f1a924b48ab71d46d0b47796305efdd16c7d458f64d238661c5c32fc339d399d
+--> f1a924b48ab7
+[2026-08-06T00:43:21.703Z] [1/2] STEP 9/26: ENV DEVCONTAINER=true
+[2026-08-06T00:43:21.706Z] --> Using cache 148e3eab12fe44018f5155ddf82e05dec5a24dda17e3f330703e043929c1988e
+--> 148e3eab12fe
+[2026-08-06T00:43:21.712Z] [1/2] STEP 10/26: RUN mkdir -p /workspace /home/node/.claude &&   chown -R node:node /workspace /home/node/.claude
+[2026-08-06T00:43:21.718Z] --> Using cache aeb3dea99650df9df15aac6222a405e8a2690454455bb7c5a9228568df1151ab
+--> aeb3dea99650
+[2026-08-06T00:43:21.724Z] [1/2] STEP 11/26: WORKDIR /workspace
+[2026-08-06T00:43:21.752Z] --> Using cache 406179baafc9e8a9a2ae7fecfe04bca49d02414f52a71d92de7278e0a8024ed3
+--> 406179baafc9
+[2026-08-06T00:43:21.759Z] [1/2] STEP 12/26: ARG GIT_DELTA_VERSION=0.18.2
+[2026-08-06T00:43:21.786Z] --> Using cache 9832ac68254383af62ecaf7939e6d443870ea3758cbcebbd430f4eafae9bd86f
+--> 9832ac682543
+[2026-08-06T00:43:21.793Z] [1/2] STEP 13/26: RUN ARCH=$(dpkg --print-architecture) &&   wget "https://github.com/dandavison/delta/releases/download/${GIT_DELTA_VERSION}/git-delta_${GIT_DELTA_VERSION}_${ARCH}.deb" &&   sudo dpkg -i "git-delta_${GIT_DELTA_VERSION}_${ARCH}.deb" &&   rm "git-delta_${GIT_DELTA_VERSION}_${ARCH}.deb"
+[2026-08-06T00:43:21.801Z] --> Using cache 588048851edf9e36cad4d3e7ee6f953e21acebc09b8288571dbde7c7491069ae
+--> 588048851edf
+[2026-08-06T00:43:21.807Z] [1/2] STEP 14/26: USER node
+[2026-08-06T00:43:21.902Z] --> Using cache 143078e555f6b52759c491f9b993543a1063a3ac901c99b231b371d011539c60
+--> 143078e555f6
+[2026-08-06T00:43:21.915Z] [1/2] STEP 15/26: ENV NPM_CONFIG_PREFIX=/usr/local/share/npm-global
+[2026-08-06T00:43:22.011Z] --> Using cache bff050ad1ac1cbe07df599ff214efa173a56881e08b3b70e7ccb6958649a70c7
+--> bff050ad1ac1
+[2026-08-06T00:43:22.018Z] [1/2] STEP 16/26: ENV PATH=$PATH:/usr/local/share/npm-global/bin
+[2026-08-06T00:43:22.113Z] --> Using cache 423dade9ecf99da703debf465a1fbbca98cac693b2550f5ed85c584d50cc55dd
+--> 423dade9ecf9
+[2026-08-06T00:43:22.120Z] [1/2] STEP 17/26: ENV SHELL=/bin/zsh
+[2026-08-06T00:43:22.212Z] --> Using cache 414ebc03ba8fc5f98011b395aabafb9745061c8136ff5afeab5ef49eb1fe22e2
+--> 414ebc03ba8f
+[2026-08-06T00:43:22.220Z] [1/2] STEP 18/26: ENV EDITOR=nano
+[2026-08-06T00:43:22.312Z] --> Using cache d804ac7c88c5f124b5632a361bceeb75214218a173ba3892f51e0f4a60fc2d01
+--> d804ac7c88c5
+[2026-08-06T00:43:22.320Z] [1/2] STEP 19/26: ENV VISUAL=nano
+[2026-08-06T00:43:22.415Z] --> Using cache b6103370ba621ce5d9033b22de1a8a6ca09ee80cb8aecbe3bd02e057552fe3a0
+--> b6103370ba62
+[2026-08-06T00:43:22.422Z] [1/2] STEP 20/26: ARG ZSH_IN_DOCKER_VERSION=1.2.0
+[2026-08-06T00:43:22.514Z] --> Using cache eaaa20b2b1707645ae17b348f5ab66f4d584d1c8770ad24e0f005db96d22c43e
+--> eaaa20b2b170
+[2026-08-06T00:43:22.521Z] [1/2] STEP 21/26: RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v${ZSH_IN_DOCKER_VERSION}/zsh-in-docker.sh)" --   -p git   -p fzf   -a "source /usr/share/doc/fzf/examples/key-bindings.zsh"   -a "source /usr/share/doc/fzf/examples/completion.zsh"   -a "export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history"   -x
+[2026-08-06T00:43:22.526Z] --> Using cache c5bcbdaa2d56cbc95b7042eef205611d70e457c628c277e61ac3574a12548fb4
+--> c5bcbdaa2d56
+[2026-08-06T00:43:22.534Z] [1/2] STEP 22/26: RUN npm install -g @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}
+[2026-08-06T00:43:22.538Z] --> Using cache 6ea0e4f827bf48fd9d97d8fca79e9d8d59ee2849b5d1dad897579ee0fb25717b
+--> 6ea0e4f827bf
+[2026-08-06T00:43:22.544Z] [1/2] STEP 23/26: COPY init-firewall.sh /usr/local/bin/
+[2026-08-06T00:43:22.753Z] --> Using cache f21ea4f89d8c5f5a90a0fefb1821500ad34f585fab7296a22af07978064fcbe7
+--> f21ea4f89d8c
+[2026-08-06T00:43:22.761Z] [1/2] STEP 24/26: USER root
+[2026-08-06T00:43:22.855Z] --> Using cache 6578891ae2bbeba1958843d34c8cd026075f7542d0dfda4aa681640e7a6586f2
+--> 6578891ae2bb
+[2026-08-06T00:43:22.863Z] [1/2] STEP 25/26: RUN chmod +x /usr/local/bin/init-firewall.sh &&   echo "node ALL=(root) NOPASSWD: /usr/local/bin/init-firewall.sh" > /etc/sudoers.d/node-firewall &&   chmod 0440 /etc/sudoers.d/node-firewall
+[2026-08-06T00:43:22.878Z] --> Using cache aa37c7c88d2c98c8435ffdbc5952bdf4d598c5322696eaa2d8cb46002bc8b93f
+--> aa37c7c88d2c
+[2026-08-06T00:43:22.886Z] [1/2] STEP 26/26: USER node
+[2026-08-06T00:43:22.979Z] --> Using cache f541bef7dcc8fb206b5cb988ad4fb5273af9c8d47a951e058a4bb69354ba397a
+--> f541bef7dcc8
+[2026-08-06T00:43:22.980Z] [2/2] STEP 1/2: FROM f541bef7dcc8fb206b5cb988ad4fb5273af9c8d47a951e058a4bb69354ba397a AS dev_containers_target_stage
+[2026-08-06T00:43:22.988Z] [2/2] STEP 2/2: LABEL devcontainer.metadata="[ {\"postStartCommand\":\"sudo /usr/local/bin/init-firewall.sh\",\"waitFor\":\"postStartCommand\",\"customizations\":{\"vscode\":{\"extensions\":[\"anthropic.claude-code\",\"dbaeumer.vscode-eslint\",\"esbenp.prettier-vscode\",\"eamodio.gitlens\"]}},\"mounts\":[\"source=\${localWorkspaceFolder}/.devcontainer,target=/workspace/.devcontainer,type=bind,readonly\",\"source=matematykazen-claude-config,target=/home/node/.claude,type=volume\"],\"containerEnv\":{\"CLAUDE_CONFIG_DIR\":\"/home/node/.claude\"},\"remoteUser\":\"node\",\"updateRemoteUserUID\":true} ]"
+[2026-08-06T00:43:23.084Z] [2/2] COMMIT vsc-matematykazen-343a3279c92a5d423d4c7cd5a7e2d770495611f75ac7497f190409698e0e178a
+[2026-08-06T00:43:23.119Z] --> d7bc732e684c
+[Warning] one or more build args were not consumed: [BUILDKIT_INLINE_CACHE]
+[2026-08-06T00:43:23.119Z] Successfully tagged localhost/vsc-matematykazen-343a3279c92a5d423d4c7cd5a7e2d770495611f75ac7497f190409698e0e178a:latest
+[2026-08-06T00:43:23.174Z] d7bc732e684c1d32568955329c18175349f9e29fa08892b47e143e51dfb14745
+[2026-08-06T00:43:23.178Z] Stop (3006 ms): Run: podman buildx build --load --build-arg BUILDKIT_INLINE_CACHE=1 -f /tmp/devcontainercli-wojciech/container-features/0.88.0-1785977000171/Dockerfile-with-features -t vsc-matematykazen-343a3279c92a5d423d4c7cd5a7e2d770495611f75ac7497f190409698e0e178a --target dev_containers_target_stage --build-arg _DEV_CONTAINERS_BASE_IMAGE=dev_container_auto_added_stage_label /home/wojciech/matematykazen/.devcontainer
+[2026-08-06T00:43:23.179Z] Start: Run: podman inspect --type image vsc-matematykazen-343a3279c92a5d423d4c7cd5a7e2d770495611f75ac7497f190409698e0e178a
+[2026-08-06T00:43:23.218Z] Stop (39 ms): Run: podman inspect --type image vsc-matematykazen-343a3279c92a5d423d4c7cd5a7e2d770495611f75ac7497f190409698e0e178a
+[2026-08-06T00:43:23.219Z] Start: Run: podman build -f /tmp/devcontainercli-wojciech/updateUID.Dockerfile-0.88.0 -t vsc-matematykazen-343a3279c92a5d423d4c7cd5a7e2d770495611f75ac7497f190409698e0e178a-uid --platform linux/amd64 --build-arg BASE_IMAGE=localhost/vsc-matematykazen-343a3279c92a5d423d4c7cd5a7e2d770495611f75ac7497f190409698e0e178a --build-arg REMOTE_USER=node --build-arg NEW_UID=1000 --build-arg NEW_GID=1000 --build-arg IMAGE_USER=node /home/wojciech/.config/Code/User/globalStorage/ms-vscode-remote.remote-containers/data/empty-folder
+[2026-08-06T00:43:23.246Z] STEP 1/9: FROM localhost/vsc-matematykazen-343a3279c92a5d423d4c7cd5a7e2d770495611f75ac7497f190409698e0e178a
+[2026-08-06T00:43:23.261Z] STEP 2/9: USER root
+[2026-08-06T00:43:23.407Z] --> f40ecdbebd57
+[2026-08-06T00:43:23.415Z] STEP 3/9: ARG REMOTE_USER
+[2026-08-06T00:43:23.561Z] --> 4eee191816dc
+[2026-08-06T00:43:23.568Z] STEP 4/9: ARG NEW_UID
+[2026-08-06T00:43:23.690Z] --> 02eedb8db983
+[2026-08-06T00:43:23.697Z] STEP 5/9: ARG NEW_GID
+[2026-08-06T00:43:23.828Z] --> ae4a0c7b7fca
+[2026-08-06T00:43:23.835Z] STEP 6/9: SHELL ["/bin/sh", "-c"]
+[2026-08-06T00:43:23.925Z] WARN[0000] SHELL is not supported for OCI image format, [/bin/sh -c] will be ignored. Must use `docker` format 
+[2026-08-06T00:43:23.960Z] --> 8db8388c15b2
+[2026-08-06T00:43:23.967Z] STEP 7/9: RUN eval $(sed -n "s/${REMOTE_USER}:[^:]*:\([^:]*\):\([^:]*\):[^:]*:\([^:]*\).*/OLD_UID=\1;OLD_GID=\2;HOME_FOLDER=\3/p" /etc/passwd); 	eval $(sed -n "s/\([^:]*\):[^:]*:${NEW_UID}:.*/EXISTING_USER=\1/p" /etc/passwd); 	eval $(sed -n "s/\([^:]*\):[^:]*:${NEW_GID}:.*/EXISTING_GROUP=\1/p" /etc/group); 	if [ -z "$OLD_UID" ]; then 		echo "Remote user not found in /etc/passwd ($REMOTE_USER)."; 	elif [ "$OLD_UID" = "$NEW_UID" -a "$OLD_GID" = "$NEW_GID" ]; then 		echo "UIDs and GIDs are the same ($NEW_UID:$NEW_GID)."; 	elif [ "$OLD_UID" != "$NEW_UID" -a -n "$EXISTING_USER" ]; then 		echo "User with UID exists ($EXISTING_USER=$NEW_UID)."; 	else 		if [ "$OLD_GID" != "$NEW_GID" -a -n "$EXISTING_GROUP" ]; then 			echo "Group with GID exists ($EXISTING_GROUP=$NEW_GID)."; 			NEW_GID="$OLD_GID"; 		fi; 		echo "Updating UID:GID from $OLD_UID:$OLD_GID to $NEW_UID:$NEW_GID."; 		sed -i -e "s/\(${REMOTE_USER}:[^:]*:\)[^:]*:[^:]*/\1${NEW_UID}:${NEW_GID}/" /etc/passwd; 		if [ "$OLD_GID" != "$NEW_GID" ]; then 			sed -i -e "s/\([^:]*:[^:]*:\)${OLD_GID}:/\1${NEW_GID}:/" /etc/group; 		fi; 		chown -R $NEW_UID:$NEW_GID $HOME_FOLDER; 	fi;
+[2026-08-06T00:43:24.234Z] UIDs and GIDs are the same (1000:1000).
+[2026-08-06T00:43:24.263Z] WARN[0001] SHELL is not supported for OCI image format, [/bin/sh -c] will be ignored. Must use `docker` format 
+[2026-08-06T00:43:24.318Z] --> a1b8bb508017
+[2026-08-06T00:43:24.325Z] STEP 8/9: ARG IMAGE_USER
+[2026-08-06T00:43:24.418Z] WARN[0001] SHELL is not supported for OCI image format, [/bin/sh -c] will be ignored. Must use `docker` format 
+[2026-08-06T00:43:24.456Z] --> 83ea3e791d6a
+[2026-08-06T00:43:24.464Z] STEP 9/9: USER $IMAGE_USER
+[2026-08-06T00:43:24.554Z] COMMIT vsc-matematykazen-343a3279c92a5d423d4c7cd5a7e2d770495611f75ac7497f190409698e0e178a-uid
+[2026-08-06T00:43:24.554Z] WARN[0001] SHELL is not supported for OCI image format, [/bin/sh -c] will be ignored. Must use `docker` format 
+[2026-08-06T00:43:24.632Z] --> 1acac9a20c81
+[2026-08-06T00:43:24.632Z] Successfully tagged localhost/vsc-matematykazen-343a3279c92a5d423d4c7cd5a7e2d770495611f75ac7497f190409698e0e178a-uid:latest
+[2026-08-06T00:43:24.665Z] 1acac9a20c81ff0d4962fc9be93d1676b6045162054ed8fcc65e82bf48d900f2
+[2026-08-06T00:43:24.672Z] Stop (1453 ms): Run: podman build -f /tmp/devcontainercli-wojciech/updateUID.Dockerfile-0.88.0 -t vsc-matematykazen-343a3279c92a5d423d4c7cd5a7e2d770495611f75ac7497f190409698e0e178a-uid --platform linux/amd64 --build-arg BASE_IMAGE=localhost/vsc-matematykazen-343a3279c92a5d423d4c7cd5a7e2d770495611f75ac7497f190409698e0e178a --build-arg REMOTE_USER=node --build-arg NEW_UID=1000 --build-arg NEW_GID=1000 --build-arg IMAGE_USER=node /home/wojciech/.config/Code/User/globalStorage/ms-vscode-remote.remote-containers/data/empty-folder
+[2026-08-06T00:43:24.673Z] Start: Run: podman events --format json --filter event=start
+[2026-08-06T00:43:24.678Z] Start: Starting container
+[2026-08-06T00:43:24.678Z] Start: Run: podman run --sig-proxy=false -a STDOUT -a STDERR --mount source=/home/wojciech/matematykazen,target=/workspace,type=bind --mount source=/home/wojciech/matematykazen/.devcontainer,target=/workspace/.devcontainer,type=bind,readonly --mount source=matematykazen-claude-config,target=/home/node/.claude,type=volume --mount type=volume,src=vscode,dst=/vscode --mount type=bind,src=/run/user/1000/wayland-0,dst=/tmp/vscode-wayland-3ff3393d-7630-4e4d-884e-d22a6e247208.sock -l devcontainer.local_folder=/home/wojciech/matematykazen -l devcontainer.config_file=/home/wojciech/matematykazen/.devcontainer/devcontainer.json -e CLAUDE_CONFIG_DIR=/home/node/.claude --security-opt label=disable --userns=keep-id --cap-drop=ALL --cap-add=NET_ADMIN --cap-add=NET_RAW --entrypoint /bin/sh vsc-matematykazen-343a3279c92a5d423d4c7cd5a7e2d770495611f75ac7497f190409698e0e178a-uid -c echo Container started
+[2026-08-06T00:43:28.051Z] Container started
+[2026-08-06T00:43:28.260Z] Start: Run: podman inspect --type container 7d7229eca53cfa1435b877c2602971e19991c9b878c2b24ef256367682073d06
+[2026-08-06T00:43:28.311Z] Stop (51 ms): Run: podman inspect --type container 7d7229eca53cfa1435b877c2602971e19991c9b878c2b24ef256367682073d06
+[2026-08-06T00:43:28.312Z] Stop (3634 ms): Starting container
+[2026-08-06T00:43:28.312Z] Start: Run: podman ps -q -a --filter label=devcontainer.local_folder=/home/wojciech/matematykazen --filter label=devcontainer.config_file=/home/wojciech/matematykazen/.devcontainer/devcontainer.json
+[2026-08-06T00:43:28.316Z] Stop (3643 ms): Run: podman events --format json --filter event=start
+[2026-08-06T00:43:28.343Z] Stop (31 ms): Run: podman ps -q -a --filter label=devcontainer.local_folder=/home/wojciech/matematykazen --filter label=devcontainer.config_file=/home/wojciech/matematykazen/.devcontainer/devcontainer.json
+[2026-08-06T00:43:28.343Z] Start: Run: podman inspect --type container 7d7229eca53c
+[2026-08-06T00:43:28.375Z] Stop (32 ms): Run: podman inspect --type container 7d7229eca53c
+[2026-08-06T00:43:28.376Z] Start: Inspecting container
+[2026-08-06T00:43:28.376Z] Start: Run: podman inspect --type container 7d7229eca53cfa1435b877c2602971e19991c9b878c2b24ef256367682073d06
+[2026-08-06T00:43:28.408Z] Stop (32 ms): Run: podman inspect --type container 7d7229eca53cfa1435b877c2602971e19991c9b878c2b24ef256367682073d06
+[2026-08-06T00:43:28.408Z] Stop (32 ms): Inspecting container
+[2026-08-06T00:43:28.409Z] Start: Run in container: /bin/sh
+[2026-08-06T00:43:28.412Z] Start: Run in container: uname -m
+[2026-08-06T00:43:28.491Z] x86_64
+[2026-08-06T00:43:28.491Z] 
+[2026-08-06T00:43:28.491Z] Stop (79 ms): Run in container: uname -m
+[2026-08-06T00:43:28.491Z] Start: Run in container: (cat /etc/os-release || cat /usr/lib/os-release) 2>/dev/null
+[2026-08-06T00:43:28.498Z] PRETTY_NAME="Debian GNU/Linux 12 (bookworm)"
+NAME="Debian GNU/Linux"
+VERSION_ID="12"
+VERSION="12 (bookworm)"
+VERSION_CODENAME=bookworm
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+[2026-08-06T00:43:28.498Z] 
+[2026-08-06T00:43:28.498Z] Stop (7 ms): Run in container: (cat /etc/os-release || cat /usr/lib/os-release) 2>/dev/null
+[2026-08-06T00:43:28.498Z] Start: Run in container:  (command -v getent >/dev/null 2>&1 && getent passwd 'node' || grep -E '^node|^[^:]*:[^:]*:node:' /etc/passwd || true)
+[2026-08-06T00:43:28.504Z] Stop (6 ms): Run in container:  (command -v getent >/dev/null 2>&1 && getent passwd 'node' || grep -E '^node|^[^:]*:[^:]*:node:' /etc/passwd || true)
+[2026-08-06T00:43:28.504Z] Start: Run in container: test -f '/var/devcontainer/.patchEtcEnvironmentMarker'
+[2026-08-06T00:43:28.505Z] 
+[2026-08-06T00:43:28.505Z] 
+[2026-08-06T00:43:28.505Z] Exit code 1
+[2026-08-06T00:43:28.505Z] Stop (1 ms): Run in container: test -f '/var/devcontainer/.patchEtcEnvironmentMarker'
+[2026-08-06T00:43:28.505Z] Start: Run in container: /bin/sh
+[2026-08-06T00:43:28.508Z] Start: Run in container: test ! -f '/var/devcontainer/.patchEtcEnvironmentMarker' && set -o noclobber && mkdir -p '/var/devcontainer' && { > '/var/devcontainer/.patchEtcEnvironmentMarker' ; } 2> /dev/null
+[2026-08-06T00:43:28.604Z] 
+[2026-08-06T00:43:28.604Z] 
+[2026-08-06T00:43:28.604Z] Stop (96 ms): Run in container: test ! -f '/var/devcontainer/.patchEtcEnvironmentMarker' && set -o noclobber && mkdir -p '/var/devcontainer' && { > '/var/devcontainer/.patchEtcEnvironmentMarker' ; } 2> /dev/null
+[2026-08-06T00:43:28.604Z] Start: Run in container: cat >> /etc/environment <<'etcEnvironmentEOF'
+[2026-08-06T00:43:28.606Z] 
+[2026-08-06T00:43:28.606Z] 
+[2026-08-06T00:43:28.606Z] Stop (2 ms): Run in container: cat >> /etc/environment <<'etcEnvironmentEOF'
+[2026-08-06T00:43:28.606Z] Start: Run in container: test -f '/var/devcontainer/.patchEtcProfileMarker'
+[2026-08-06T00:43:28.606Z] 
+[2026-08-06T00:43:28.606Z] 
+[2026-08-06T00:43:28.606Z] Exit code 1
+[2026-08-06T00:43:28.606Z] Stop (0 ms): Run in container: test -f '/var/devcontainer/.patchEtcProfileMarker'
+[2026-08-06T00:43:28.607Z] Start: Run in container: test ! -f '/var/devcontainer/.patchEtcProfileMarker' && set -o noclobber && mkdir -p '/var/devcontainer' && { > '/var/devcontainer/.patchEtcProfileMarker' ; } 2> /dev/null
+[2026-08-06T00:43:28.609Z] 
+[2026-08-06T00:43:28.609Z] 
+[2026-08-06T00:43:28.609Z] Stop (2 ms): Run in container: test ! -f '/var/devcontainer/.patchEtcProfileMarker' && set -o noclobber && mkdir -p '/var/devcontainer' && { > '/var/devcontainer/.patchEtcProfileMarker' ; } 2> /dev/null
+[2026-08-06T00:43:28.609Z] Start: Run in container: sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1${PATH:-\3}/g' /etc/profile || true
+[2026-08-06T00:43:28.614Z] 
+[2026-08-06T00:43:28.614Z] 
+[2026-08-06T00:43:28.614Z] Stop (5 ms): Run in container: sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1${PATH:-\3}/g' /etc/profile || true
+[2026-08-06T00:43:28.614Z] Stop (8609 ms): Resolving Remote
+[2026-08-06T00:43:28.636Z] Stop (8940 ms): Run: /usr/share/code/code /home/wojciech/.vscode/extensions/ms-vscode-remote.remote-containers-0.463.0/dist/spec-node/devContainersSpecCLI.js up --user-data-folder /home/wojciech/.config/Code/User/globalStorage/ms-vscode-remote.remote-containers/data --docker-path podman --docker-compose-path podman-compose --container-session-data-folder /tmp/devcontainers-13d84aff-f6b6-47ac-beba-4f903cd9f79a1785976997848 --workspace-folder /home/wojciech/matematykazen --workspace-mount-consistency cached --gpu-availability detect --id-label devcontainer.local_folder=/home/wojciech/matematykazen --id-label devcontainer.config_file=/home/wojciech/matematykazen/.devcontainer/devcontainer.json --log-level debug --log-format json --config /home/wojciech/matematykazen/.devcontainer/devcontainer.json --default-user-env-probe loginInteractiveShell --remove-existing-container --experimental-lockfile --mount type=volume,source=vscode,target=/vscode,external=true --mount type=bind,source=/run/user/1000/wayland-0,target=/tmp/vscode-wayland-3ff3393d-7630-4e4d-884e-d22a6e247208.sock --skip-post-create --update-remote-user-uid-default on --mount-workspace-git-root --include-configuration --include-merged-configuration
+[2026-08-06T00:43:28.640Z] Start: Run: podman inspect --type container 7d7229eca53cfa1435b877c2602971e19991c9b878c2b24ef256367682073d06
+[2026-08-06T00:43:28.772Z] Stop (132 ms): Run: podman inspect --type container 7d7229eca53cfa1435b877c2602971e19991c9b878c2b24ef256367682073d06
+[2026-08-06T00:43:28.775Z] Start: Run: podman exec -i -u root 7d7229eca53cfa1435b877c2602971e19991c9b878c2b24ef256367682073d06 /bin/sh -c echo "New container started. Keep-alive process started." ; export VSCODE_REMOTE_CONTAINERS_SESSION=13d84aff-f6b6-47ac-beba-4f903cd9f79a1785976997848 ; /bin/sh
+[2026-08-06T00:43:28.778Z] Start: Inspecting container
+[2026-08-06T00:43:28.780Z] Start: Run: podman inspect --type container 7d7229eca53cfa1435b877c2602971e19991c9b878c2b24ef256367682073d06
+[2026-08-06T00:43:28.864Z] New container started. Keep-alive process started.
+[2026-08-06T00:43:28.893Z] Stop (113 ms): Run: podman inspect --type container 7d7229eca53cfa1435b877c2602971e19991c9b878c2b24ef256367682073d06
+[2026-08-06T00:43:28.894Z] Stop (116 ms): Inspecting container
+[2026-08-06T00:43:28.897Z] Start: Run in container: /bin/sh
+[2026-08-06T00:43:28.905Z] Start: Run in container: uname -m
+[2026-08-06T00:43:28.991Z] x86_64
+[2026-08-06T00:43:28.993Z] 
+[2026-08-06T00:43:28.994Z] Stop (89 ms): Run in container: uname -m
+[2026-08-06T00:43:28.995Z] Start: Run in container: (cat /etc/os-release || cat /usr/lib/os-release) 2>/dev/null
+[2026-08-06T00:43:28.998Z] PRETTY_NAME="Debian GNU/Linux 12 (bookworm)"
+NAME="Debian GNU/Linux"
+VERSION_ID="12"
+VERSION="12 (bookworm)"
+VERSION_CODENAME=bookworm
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+[2026-08-06T00:43:28.999Z] 
+[2026-08-06T00:43:29.000Z] Stop (5 ms): Run in container: (cat /etc/os-release || cat /usr/lib/os-release) 2>/dev/null
+[2026-08-06T00:43:29.002Z] Start: Run in container:  (command -v getent >/dev/null 2>&1 && getent passwd 'node' || grep -E '^node|^[^:]*:[^:]*:node:' /etc/passwd || true)
+[2026-08-06T00:43:29.005Z] Stop (3 ms): Run in container:  (command -v getent >/dev/null 2>&1 && getent passwd 'node' || grep -E '^node|^[^:]*:[^:]*:node:' /etc/passwd || true)
+[2026-08-06T00:43:29.007Z] safe.directory: Looking up root folder for workspace folder '/workspace'.
+[2026-08-06T00:43:29.008Z] Start: Run in container: command -v git >/dev/null 2>&1 && ROOT_FOLDER="$(git -C '/workspace' rev-parse --show-toplevel)" && test "$(stat -c %u "$ROOT_FOLDER")" != "$(id -u)" && echo -n "$ROOT_FOLDER"
+[2026-08-06T00:43:29.027Z] 
+[2026-08-06T00:43:29.028Z] 
+[2026-08-06T00:43:29.029Z] Exit code 1
+[2026-08-06T00:43:29.030Z] Stop (22 ms): Run in container: command -v git >/dev/null 2>&1 && ROOT_FOLDER="$(git -C '/workspace' rev-parse --show-toplevel)" && test "$(stat -c %u "$ROOT_FOLDER")" != "$(id -u)" && echo -n "$ROOT_FOLDER"
+[2026-08-06T00:43:29.031Z] safe.directory: Checking host ownership of root folder at mount point '/workspace' skipped.
+[2026-08-06T00:43:29.033Z] Start: Updating configuration state
+[2026-08-06T00:43:29.037Z] Stop (4 ms): Updating configuration state
+[2026-08-06T00:43:29.039Z] Start: Setup shutdown monitor
+[2026-08-06T00:43:29.043Z] Forking shutdown monitor: /home/wojciech/.vscode/extensions/ms-vscode-remote.remote-containers-0.463.0/dist/shutdown/shutdownMonitorProcess /run/user/1000/vscode-rc-cc5fed34-1c9e-4832-a128-4a712e7ffeb8.sock singleContainer Debug /home/wojciech/.config/Code/logs/20260806T020523/window1/exthost/ms-vscode-remote.remote-containers 1785976999169
+[2026-08-06T00:43:29.050Z] Stop (11 ms): Setup shutdown monitor
+[2026-08-06T00:43:29.052Z] Start: Run in container: test -d '/home/node/.vscode-server'
+[2026-08-06T00:43:29.055Z] 
+[2026-08-06T00:43:29.056Z] 
+[2026-08-06T00:43:29.057Z] Exit code 1
+[2026-08-06T00:43:29.058Z] Stop (6 ms): Run in container: test -d '/home/node/.vscode-server'
+[2026-08-06T00:43:29.059Z] Start: Run in container: test -d '/home/node/.vscode-remote'
+[2026-08-06T00:43:29.061Z] 
+[2026-08-06T00:43:29.062Z] 
+[2026-08-06T00:43:29.063Z] Exit code 1
+[2026-08-06T00:43:29.064Z] Stop (5 ms): Run in container: test -d '/home/node/.vscode-remote'
+[2026-08-06T00:43:29.065Z] Start: Run in container: test ! -f '/home/node/.vscode-server/data/Machine/.writeMachineSettingsMarker' && set -o noclobber && mkdir -p '/home/node/.vscode-server/data/Machine' && { > '/home/node/.vscode-server/data/Machine/.writeMachineSettingsMarker' ; } 2> /dev/null
+[2026-08-06T00:43:29.067Z] 
+[2026-08-06T00:43:29.068Z] 
+[2026-08-06T00:43:29.069Z] Stop (4 ms): Run in container: test ! -f '/home/node/.vscode-server/data/Machine/.writeMachineSettingsMarker' && set -o noclobber && mkdir -p '/home/node/.vscode-server/data/Machine' && { > '/home/node/.vscode-server/data/Machine/.writeMachineSettingsMarker' ; } 2> /dev/null
+[2026-08-06T00:43:29.070Z] Start: Run in container: test -f '/home/node/.vscode-server/data/Machine/settings.json'
+[2026-08-06T00:43:29.072Z] 
+[2026-08-06T00:43:29.073Z] 
+[2026-08-06T00:43:29.073Z] Exit code 1
+[2026-08-06T00:43:29.074Z] Stop (4 ms): Run in container: test -f '/home/node/.vscode-server/data/Machine/settings.json'
+[2026-08-06T00:43:29.076Z] Start: Run in container: which apt dpkg snap dnf yum rpm apk docker git gh kubectl podman curl wget ssh scp rsync gpg ps lsof netstat top tree find grep zip unzip tar gzip bzip2 xz || true
+[2026-08-06T00:43:29.080Z] Stop (4 ms): Run in container: which apt dpkg snap dnf yum rpm apk docker git gh kubectl podman curl wget ssh scp rsync gpg ps lsof netstat top tree find grep zip unzip tar gzip bzip2 xz || true
+[2026-08-06T00:43:29.081Z] Start: Run in container: mkdir -p '/home/node/.vscode-server/data/Machine' && cat >'/home/node/.vscode-server/data/Machine/settings.json' <<'settingsJSON'
+[2026-08-06T00:43:29.084Z] 
+[2026-08-06T00:43:29.085Z] 
+[2026-08-06T00:43:29.086Z] Stop (5 ms): Run in container: mkdir -p '/home/node/.vscode-server/data/Machine' && cat >'/home/node/.vscode-server/data/Machine/settings.json' <<'settingsJSON'
+[2026-08-06T00:43:29.087Z] Start: Run in container: test ! -f '/home/node/.vscode-server/data/Machine/.writeMachineMCPConfigMarker' && set -o noclobber && mkdir -p '/home/node/.vscode-server/data/Machine' && { > '/home/node/.vscode-server/data/Machine/.writeMachineMCPConfigMarker' ; } 2> /dev/null
+[2026-08-06T00:43:29.090Z] 
+[2026-08-06T00:43:29.091Z] 
+[2026-08-06T00:43:29.093Z] Stop (6 ms): Run in container: test ! -f '/home/node/.vscode-server/data/Machine/.writeMachineMCPConfigMarker' && set -o noclobber && mkdir -p '/home/node/.vscode-server/data/Machine' && { > '/home/node/.vscode-server/data/Machine/.writeMachineMCPConfigMarker' ; } 2> /dev/null
+[2026-08-06T00:43:29.094Z] Start: Run in container: test -f '/home/node/.vscode-server/data/User/mcp.json'
+[2026-08-06T00:43:29.095Z] 
+[2026-08-06T00:43:29.096Z] 
+[2026-08-06T00:43:29.097Z] Exit code 1
+[2026-08-06T00:43:29.098Z] Stop (4 ms): Run in container: test -f '/home/node/.vscode-server/data/User/mcp.json'
+[2026-08-06T00:43:29.099Z] Start: Run in container: test -d '/home/node/.vscode-server/bin/df53daabb18cd157bdb08c7f01c34df936cf12f4'
+[2026-08-06T00:43:29.101Z] 
+[2026-08-06T00:43:29.102Z] 
+[2026-08-06T00:43:29.103Z] Exit code 1
+[2026-08-06T00:43:29.104Z] Stop (5 ms): Run in container: test -d '/home/node/.vscode-server/bin/df53daabb18cd157bdb08c7f01c34df936cf12f4'
+[2026-08-06T00:43:29.105Z] Start: Run in container: test -d '/vscode/vscode-server/bin/linux-x64/df53daabb18cd157bdb08c7f01c34df936cf12f4'
+[2026-08-06T00:43:29.106Z] 
+[2026-08-06T00:43:29.108Z] 
+[2026-08-06T00:43:29.109Z] Exit code 1
+[2026-08-06T00:43:29.110Z] Stop (5 ms): Run in container: test -d '/vscode/vscode-server/bin/linux-x64/df53daabb18cd157bdb08c7f01c34df936cf12f4'
+[2026-08-06T00:43:29.111Z] Installing VS Code Server for commit df53daabb18cd157bdb08c7f01c34df936cf12f4
+[2026-08-06T00:43:29.112Z] Start: Run in container: /bin/sh
+[2026-08-06T00:43:29.118Z] Start: Installing VS Code Server
+[2026-08-06T00:43:29.119Z] Start: Run in container: mkdir -p /vscode/vscode-server/bin/linux-x64/df53daabb18cd157bdb08c7f01c34df936cf12f4_1785977009119
+[2026-08-06T00:43:29.197Z] 
+[2026-08-06T00:43:29.198Z] mkdir: cannot create directory '/vscode/vscode-server/bin': Permission denied
+[2026-08-06T00:43:29.199Z] Exit code 1
+[2026-08-06T00:43:29.200Z] Stop (81 ms): Run in container: mkdir -p /vscode/vscode-server/bin/linux-x64/df53daabb18cd157bdb08c7f01c34df936cf12f4_1785977009119
+[2026-08-06T00:43:29.201Z] Start: Run in container: rm -rf /vscode/vscode-server/bin/linux-x64/df53daabb18cd157bdb08c7f01c34df936cf12f4_1785977009119
+[2026-08-06T00:43:29.209Z] 
+[2026-08-06T00:43:29.210Z] 
+[2026-08-06T00:43:29.211Z] Stop (10 ms): Run in container: rm -rf /vscode/vscode-server/bin/linux-x64/df53daabb18cd157bdb08c7f01c34df936cf12f4_1785977009119
+[2026-08-06T00:43:29.212Z] Stop (94 ms): Installing VS Code Server
+[2026-08-06T00:43:29.217Z] Command in container failed: mkdir -p /vscode/vscode-server/bin/linux-x64/df53daabb18cd157bdb08c7f01c34df936cf12f4_1785977009119
+[2026-08-06T00:43:29.218Z] mkdir: cannot create directory '/vscode/vscode-server/bin': Permission denied
+[2026-08-06T00:43:29.219Z] Exit code 1
