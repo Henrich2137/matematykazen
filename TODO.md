@@ -40,7 +40,38 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 
 + TESTOWANIE HENRICH:
-  - nic
+
+  Paczka z 2026-08-06 (Opus 5 Medium) — sprawdzone przeze mnie w headless Chromium (oba arkusze,
+  oba motywy, 1400px i 390px), ale warto przeklikać na żywo, zwłaszcza na telefonie. Szczegóły
+  zmian: done/04-biezace.md.
+
+  - Widżety w ciemnym motywie: otwórz rozwiązania zadań z widżetem (1, 5, 9, 10, 12.1, 15, 18, 20, 30)
+    i sprawdź, czy osie/liczby/opisy są czytelne na ciemnym płótnie. Potem PRZEŁĄCZ motyw przy
+    otwartym widżecie — ma się przemalować od razu, bez odświeżania strony (także przy „auto",
+    gdy zmienisz motyw systemu).
+
+  - Wiersz przycisków pod zadaniem: Podpowiedź / Rozwiązanie / Zgłoś błąd / Pokaż wzory — czy
+    kolejność i wygląd Ci pasują. Sprawdź zadanie BEZ wzorów (np. 8) i wyłącz „Zgłoś błąd pod
+    zadaniem" w panelu bocznym — wiersz ma się rozłożyć równo na to, co zostało. Na telefonie
+    przyciski łamią się po dwa w rzędzie.
+
+  - Formularz zgłoszenia błędu: czy nadal otwiera się w karcie zadania nad tym wierszem i czy
+    ponowne kliknięcie go zwija.
+
+  - Zadania otwarte (główna zmiana): boks „Sprawdź obliczenia" ma być domyślnie ZWINIĘTY.
+    Zaznaczanie kryteriów od razu podbija punkty zadania i sumę u góry; odznaczanie obniża.
+    Sprawdź zad. 9 (kryterium warte 0 pkt zostaje szare) i zad. 19 lub 30 (4 kryteria).
+    Po odświeżeniu strony punkty i zaznaczenia mają wrócić.
+
+  - Zadania otwarte, czy treść kryteriów jest dla Ciebie OK merytorycznie — pisałem je jako
+    kolejne progi z klucza CKE, alternatywy sklejone słowem „lub". Przy zadaniach 4-punktowych
+    trzeba zaznaczyć wszystkie osiągnięte progi, żeby dostać komplet (patrz uwaga w moich
+    notatkach na dole pliku).
+
+  - Tryb egzaminu: boks „Sprawdź obliczenia" ma być niewidoczny w trakcie egzaminu, a po
+    zakończeniu — komunikat w podsumowaniu odsyła teraz do tego boksu, nie do przycisków punktów.
+    Wskaźniki „oceń się": kropka gaśnie po ROZWINIĘCIU boksu (nawet bez zaznaczeń — brak zaznaczeń
+    to też ocena, na 0 pkt). Powiedz, jeśli wolisz inny warunek.
 
 
 <br>
