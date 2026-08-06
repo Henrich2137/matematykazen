@@ -918,28 +918,61 @@ body.sidebar-otwarty #sidebar-linia {
     background-color: var(--bg-muted);
 }
 
-/* ===== ZADANIA OTWARTE: POMOCNICZA CHECKLISTA KRYTERIÓW OCENY ===== */
-/* Wewnątrz .self-score-container (chowana w trybie egzaminu). Nie sumuje punktów
-   — tylko ułatwia decyzję samooceny. */
-.grading-criteria {
+/* ===== ZADANIA OTWARTE: BOKS „SPRAWDŹ OBLICZENIA" (kryteria + punkty) =====
+   Zwijany <details> wewnątrz .self-score-container (a więc chowany w trybie
+   egzaminu). To on przyznaje punkty za zadanie otwarte — przyciski „0/1/2 pkt"
+   zostały tylko jako awaryjna ścieżka dla zadań bez kryteriów w danych.
+   Wygląd celowo „mały panel boczny": ta sama ramka --border-strong, promień
+   --radius-kontrolka i typografia nagłówka (14px/600) co #sidebar i panele PDF,
+   tyle że w przepływie karty zadania — bez cienia, przeciągania i zmiany rozmiaru. */
+.ocena-box {
     max-width: 520px;
     margin: 4px auto 14px;
-    padding: 12px 14px;
-    border: 1px solid var(--border);
+    border: 1px solid var(--border-strong);
     border-radius: var(--radius-kontrolka);
-    background-color: var(--bg-muted);
+    background-color: var(--bg);
     text-align: left;
+    overflow: hidden;
 }
-.grading-criteria-intro {
-    margin-bottom: 8px;
-    font-size: 13px;
-    color: var(--text-muted);
+/* Nagłówek = jedyna widoczna rzecz w stanie zwiniętym: tytuł + strzałka.
+   list-style/::-webkit-details-marker znikają, bo domyślny trójkącik ma inny
+   kształt w każdej przeglądarce i nie da się go ustawić po prawej. */
+.ocena-box-tytul {
+    display: flex;
+    align-items: center;
+    padding: 10px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    cursor: pointer;
+    list-style: none;
+}
+.ocena-box-tytul::-webkit-details-marker {
+    display: none;
+}
+.ocena-box-tytul::after {
+    content: "›";
+    margin-left: auto;
+    font-size: 18px;
+    line-height: 1;
+    color: var(--text-faint);
+    transition: transform 150ms ease;
+}
+.ocena-box[open] > .ocena-box-tytul::after {
+    transform: rotate(90deg);
+}
+.ocena-box-tytul:hover {
+    background-color: var(--bg-muted);
+}
+.ocena-box-tresc {
+    padding: 4px 14px 12px;
+    border-top: 1px solid var(--separator);
 }
 .grading-criterion {
     display: flex;
     align-items: flex-start;
     gap: 8px;
-    margin: 7px 0;
+    margin: 10px 0;
     font-size: 15px;
     line-height: 1.4;
     cursor: pointer;
@@ -950,6 +983,35 @@ body.sidebar-otwarty #sidebar-linia {
     width: 16px;
     height: 16px;
     cursor: pointer;
+}
+.grading-criterion-tekst {
+    flex: 1;
+}
+/* Mały licznik punktów kryterium — młodszy brat badge'a .exercise-score:
+   ta sama rola („ile to jest warte"), mniejszy rozmiar i wyszarzony, dopóki
+   kryterium nie jest zaznaczone. */
+.kryterium-punkty {
+    flex-shrink: 0;
+    align-self: center;
+    min-width: 44px;
+    padding: 1px 6px;
+    border: 1px solid var(--score-low-border);
+    border-radius: var(--radius-kontrolka);
+    font-size: 12px;
+    text-align: center;
+    color: var(--score-low-text);
+    white-space: nowrap;
+}
+.grading-criterion input[type="checkbox"]:checked ~ .kryterium-punkty {
+    border-color: var(--score-high-border);
+    color: var(--correct);
+}
+/* Kryterium warte 0 pkt (krok, za który klucz CKE sam z siebie nie daje punktu)
+   zostaje szare także po zaznaczeniu — zielony licznik przy „0 pkt" sugerowałby
+   zdobyty punkt. */
+.grading-criterion input[type="checkbox"]:checked ~ .kryterium-punkty.kryterium-punkty-zero {
+    border-color: var(--score-low-border);
+    color: var(--score-low-text);
 }
 
 /* Ogólne zastrzeżenie prawne samooceny — RAZ na stronie (stopka arkusza), nie
@@ -964,12 +1026,27 @@ body.sidebar-otwarty #sidebar-linia {
     text-align: center;
 }
 
-/* ===== PRZYCISKI TEKSTOWE (podpowiedź / rozwiązanie / wzory) ===== */
+/* ===== PRZYCISKI TEKSTOWE (podpowiedź / rozwiązanie / zgłoś błąd / wzory) =====
+   Wiersz jest FLEXEM, a nie ciągiem inline-blocków po sztywne 30%: przycisków
+   bywa od jednego do czterech (wzory znikają przy formulasPage: null,
+   podpowiedź przy pustym hint, „zgłoś błąd" wyłącza przełącznik w panelu
+   bocznym), więc szerokość musi wynikać z tego, ile ich zostało. */
 .light-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 10px;
     width: 90%;
-    margin-top: 20px;
-    margin-left: 2%;
-    text-align: center;
+    margin: 20px auto 0;
+}
+/* Każdy przycisk bierze równą część wiersza (flex-basis 0, nie „auto" —
+   inaczej dłuższa etykieta „Pokaż wzory" dostałaby więcej miejsca niż
+   „Podpowiedź"). min-width: 0 pozwala tekstowi się zawinąć zamiast rozpychać
+   wiersz na wąskim ekranie. */
+.light-button-container > .light-button {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
 }
 .light-button {
     display: inline-block;
@@ -1333,23 +1410,10 @@ input::-webkit-inner-spin-button {
 
 /* Link „zgłoś błąd w tym zadaniu" — tekstowy, wzorem badge'a .exercise-score
    trzyma się przygaszonej kolorystyki, żeby nie odciągał uwagi od zadania. */
-.report-error-link {
-    display: block;
-    width: 100%;
-    margin-top: 24px;
-    padding: 0;
-    border: none;
-    background: none;
-    font-family: inherit;
-    font-size: 13px;
-    color: var(--text-faint);
-    cursor: pointer;
-    text-align: center;
-}
-.report-error-link:hover {
-    color: var(--text-muted);
-    text-decoration: underline;
-}
+/* „zgłoś błąd" siedzi w .light-button-container i nosi klasę .light-button,
+   więc wygląd (rozmiar, kolor, hover) bierze STAMTĄD — tu zostaje sama klasa
+   jako uchwyt dla globalnego wyłącznika niżej. Dawniej był to osobny, mniejszy
+   i bledszy napis pod kartą (13px, --text-faint, display:block). */
 /* Globalne wyłączenie linku (toggle w menu ⋯). */
 body.bez-zglaszania .report-error-link {
     display: none;

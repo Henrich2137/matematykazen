@@ -127,6 +127,10 @@
         "correctAnswerIndex": -1,
         "maxScore": 2,
         "selfScore": true,
+        "gradingCriteria": [
+            { "tekst": "Wszystkie składniki sprowadzone do wspólnej podstawy, np. \\(2^{100} + 2^{98} + 2^{96}\\) (lub \\(4^{50} + 4^{49} + 4^{48}\\), lub \\(16^{25} + 16^{24}\\cdot 4 + 16^{24}\\))", "punkty": 1 },
+            { "tekst": "Wyłączony wspólny czynnik i doprowadzenie do postaci \\(k \\cdot 21\\), gdzie \\(k\\) jest liczbą naturalną, np. \\(2^{96} \\cdot 21\\), wraz z wnioskiem o podzielności", "punkty": 1 }
+        ],
         "hint": "Żeby wykazać podzielność przez <b>21</b>, będziemy rozkładać tę liczbę na czynniki, czyli wyciągać coś przed nawias aby powstało: \\(\\ldots \\cdot 21\\)",
         "formulasPage": 5,
         "solutionText": "Wszystkie składniki zapisujemy jako potęgi dwójki i wyciągamy najmniejszą z nich przed nawias — w nawiasie zostaje <b>21</b>.",
@@ -260,9 +264,9 @@
             "accepted": ["x = -6", "-6"]
         },
         "gradingCriteria": [
-            "Zapisane założenie (dziedzina): \\(x \\ne 1\\)",
-            "Równanie sprowadzone do postaci bez ułamków, np. \\(2(x + 3) = x\\)",
-            "Obliczony wynik: \\(x = -6\\) (należy do dziedziny)"
+            { "tekst": "Zapisane założenie (dziedzina): \\(x \\ne 1\\)", "punkty": 1 },
+            { "tekst": "Równanie sprowadzone do postaci bez ułamków, np. \\(2(x + 3) = x\\)", "punkty": 1 },
+            { "tekst": "Obliczony wynik: \\(x = -6\\) (należy do dziedziny)", "punkty": 1 }
         ],
         "hint": "Zacznij od określenia dziedziny (mianowniki \\(\\ne 0\\)). Zauważ, że \\(2x - 2 = 2(x - 1)\\) — oba mianowniki znikną po pomnożeniu przez \\(2(x - 1)\\).",
         "formulasPage": null,
@@ -284,9 +288,9 @@
             "accepted": ["⟨-1, 7⟩", "<-1, 7>", "[-1, 7]"]
         },
         "gradingCriteria": [
-            "Nierówność zapisana w postaci \\(x^{2} - 6x - 7 \\le 0\\)",
-            "Obliczone miejsca zerowe trójmianu: \\(x = -1\\) oraz \\(x = 7\\)",
-            "Zapisany zbiór rozwiązań (przedział domknięty): \\(\\langle -1,\\ 7\\rangle\\)"
+            { "tekst": "Nierówność zapisana w postaci \\(x^{2} - 6x - 7 \\le 0\\)", "punkty": 0 },
+            { "tekst": "Obliczone miejsca zerowe trójmianu: \\(x = -1\\) oraz \\(x = 7\\)", "punkty": 1 },
+            { "tekst": "Zapisany zbiór rozwiązań (przedział domknięty): \\(\\langle -1,\\ 7\\rangle\\)", "punkty": 1 }
         ],
         "hint": "Przenieś wszystkie wyrazy na jedną stronę, rozwiąż równanie kwadratowe, naszkicuj parabolę i odczytaj, gdzie nierówność jest spełniona.",
         "formulasPage": 8,
@@ -599,6 +603,12 @@
         "correctAnswerIndex": -1,
         "maxScore": 4,
         "selfScore": true,
+        "gradingCriteria": [
+            { "tekst": "Obliczona długość \\(|BC| = 4{,}5\\) lub zapisane równanie wynikające z podobieństwa trójkątów, lub podana skala podobieństwa, lub obliczony cosinus kąta \\(BAC\\)", "punkty": 1 },
+            { "tekst": "Obliczona długość \\(|AD| = 3{,}6\\) lub \\(|DC| = 4{,}8\\), lub obliczone pole trójkąta \\(ABC = 13{,}5\\)", "punkty": 1 },
+            { "tekst": "Obliczone OBIE długości: \\(|AD| = 3{,}6\\) oraz \\(|DC| = 4{,}8\\) (lub oba pola: \\(13{,}5\\) oraz \\(8{,}64\\))", "punkty": 1 },
+            { "tekst": "Poprawny wynik: pole trapezu \\(P = 22{,}14\\)", "punkty": 1 }
+        ],
         "hint": "W trójkącie ABC (prostokątnym przy C) oblicz BC z Pitagorasa. Kąty CAB i DCA są naprzemianległe (\\(DC \\parallel AB\\)) — wykorzystaj to w trójkącie ACD do wyznaczenia wysokości AD i podstawy DC.",
         "formulasPage": 17,
         "solutionText": "\\(|BC| = \\sqrt{7{,}5^{2} - 6^{2}} = 4{,}5\\). Z podobieństwa kątów: \\(|AD| = 3{,}6\\) i \\(|DC| = 4{,}8\\). Pole: \\(P = \\frac{1}{2} \\cdot (7{,}5 + 4{,}8) \\cdot 3{,}6 = \\boldsymbol{22{,}14}\\).",
@@ -721,6 +731,10 @@
         "correctAnswerIndex": -1,
         "maxScore": 2,
         "selfScore": true,
+        "gradingCriteria": [
+            { "tekst": "Obliczony kwadrat promienia podstawy stożka: \\(r^{2} = 12\\)", "punkty": 1 },
+            { "tekst": "Poprawny wynik: miara kąta rozwarcia \\(120^{\\circ}\\)", "punkty": 1 }
+        ],
         "hint": "Z wzoru \\(V = \\frac{1}{3}\\pi r^{2} h\\) wyznacz promień podstawy. Kąt rozwarcia to 2× kąt między wysokością a tworzącą: \\(\\operatorname{tg}\\frac{\\alpha}{2} = \\frac{r}{h}\\).",
         "formulasPage": 27,
         "solutionText": "\\(\\frac{1}{3}\\pi r^{2} \\cdot 2 = 8\\pi \\Rightarrow r^{2} = 12 \\Rightarrow r = 2\\sqrt{3}\\). Dalej \\(\\operatorname{tg}\\frac{\\alpha}{2} = \\frac{r}{h} = \\frac{2\\sqrt{3}}{2} = \\sqrt{3}\\), więc \\(\\frac{\\alpha}{2} = 60^{\\circ}\\) i kąt rozwarcia \\(\\boldsymbol{\\alpha = 120^{\\circ}}\\).",
@@ -753,6 +767,10 @@
         "correctAnswerIndex": -1,
         "maxScore": 2,
         "selfScore": true,
+        "gradingCriteria": [
+            { "tekst": "Obliczona liczba wszystkich zdarzeń elementarnych \\(|\\Omega| = 6 \\cdot 4 = 24\\) (np. w tabeli lub na drzewie) lub liczba zdarzeń sprzyjających \\(|A| = 11\\)", "punkty": 1 },
+            { "tekst": "Poprawny wynik: \\(P(A) = \\tfrac{11}{24}\\)", "punkty": 1 }
+        ],
         "hint": "Wszystkich par jest \\(6 \\cdot 4 = 24\\). Przejrzyj liczby z D: przy 8 iloczyn zawsze dzieli się przez 4; przy 7 i 9 musi pomóc liczba z C; przy 10 wystarczy, że liczba z C jest parzysta.",
         "formulasPage": 29,
         "solutionText": "\\(|\\Omega| = 24\\). Sprzyjające: z 8 — każde c (6 par); z 7 i 9 — tylko \\(c = 4\\) (2 pary); z 10 — c parzyste: 2, 4, 6 (3 pary). Razem 11, więc \\(\\boldsymbol{P(A) = \\frac{11}{24}}\\).",
@@ -799,6 +817,12 @@
         "correctAnswerIndex": -1,
         "maxScore": 4,
         "selfScore": true,
+        "gradingCriteria": [
+            { "tekst": "Zapisana zależność między długościami krawędzi, np. \\(4x + 4|AD| + 4 \\cdot 3x = 48\\), lub wyznaczony zakres zmienności \\(x \\in (0,\\ 3)\\)", "punkty": 1 },
+            { "tekst": "Zapisany poprawny wzór na pole powierzchni całkowitej: \\(P(x) = -26x^{2} + 96x\\) (lub zależność między krawędziami ORAZ zakres zmienności \\(x\\))", "punkty": 1 },
+            { "tekst": "Wzór \\(P(x)\\) razem z dziedziną \\(x \\in (0,\\ 3)\\) lub wzór \\(P(x)\\) razem z obliczoną pierwszą współrzędną wierzchołka \\(x = \\tfrac{24}{13}\\)", "punkty": 1 },
+            { "tekst": "Komplet: \\(P(x) = -26x^{2} + 96x\\) oraz \\(x \\in (0,\\ 3)\\) oraz \\(x = \\tfrac{24}{13}\\)", "punkty": 1 }
+        ],
         "hint": "Oznacz \\(AB = x\\), \\(AE = 3x\\), a trzecią krawędź (AD) wyznacz z sumy krawędzi: \\(4(x + AD + 3x) = 48\\). Pole całkowite to suma pól trzech par ścian; maksimum funkcji kwadratowej jest w wierzchołku.",
         "formulasPage": 8,
         "solutionText": "Z sumy krawędzi: \\(AD = 12 - 4x\\), stąd \\(\\boldsymbol{P(x) = -26x^{2} + 96x}\\) dla \\(\\boldsymbol{x \\in (0,\\ 3)}\\). Maksimum w wierzchołku: \\(x = \\frac{96}{52} = \\boldsymbol{\\frac{24}{13}}\\).",

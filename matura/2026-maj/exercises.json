@@ -129,6 +129,10 @@
         "maxScore": 2,
         "selfScore": true,
         "formulasPage": null,
+        "gradingCriteria": [
+            { "tekst": "Uzasadnienie, że liczba \\(7n^{2} + 21n\\) jest podzielna przez \\(7\\) albo przez \\(2\\), lub rozpatrzenie jednego z przypadków: \\(n = 2k\\) albo \\(n = 2k + 1\\)", "punkty": 1 },
+            { "tekst": "Przeprowadzone pełne rozumowanie (podzielność przez \\(7\\) i przez \\(2\\), lub oba przypadki parzystości \\(n\\))", "punkty": 1 }
+        ],
         "hint": "",
         "solutionText": "",
         "solutionTextMore": "",
@@ -179,6 +183,10 @@
         "maxScore": 2,
         "selfScore": true,
         "formulasPage": 7,
+        "gradingCriteria": [
+            { "tekst": "Obliczone pierwiastki trójmianu \\(3x^{2} - 2x - 8\\): \\(x_1 = -\\tfrac{4}{3}\\) oraz \\(x_2 = 2\\)", "punkty": 1 },
+            { "tekst": "Zapisany zbiór rozwiązań: \\(\\left(-\\infty,\\ -\\tfrac{4}{3}\\right\\rangle \\cup \\langle 2,\\ +\\infty)\\)", "punkty": 1 }
+        ],
         "hint": "",
         "solutionText": "",
         "solutionTextMore": "",
@@ -193,6 +201,10 @@
         "maxScore": 2,
         "selfScore": true,
         "formulasPage": null,
+        "gradingCriteria": [
+            { "tekst": "Zapisany układ dwóch równań (lub jedno równanie z jedną niewiadomą) pozwalający obliczyć liczby biletów, np. \\(x + y = 200\\) oraz \\(0{,}75 \\cdot (35x + 25y) = 4665\\)", "punkty": 1 },
+            { "tekst": "Poprawny wynik: \\(78\\) biletów", "punkty": 1 }
+        ],
         "hint": "",
         "solutionText": "",
         "solutionTextMore": "",
@@ -333,6 +345,12 @@
         "maxScore": 4,
         "selfScore": true,
         "formulasPage": 7,
+        "gradingCriteria": [
+            { "tekst": "Zapisany wzór \\(f(x) = a(x - 3)^{2} - 2\\) lub stwierdzenie, że jednym z miejsc zerowych \\(f\\) jest \\(1\\), lub że wierzchołkiem wykresu \\(g\\) jest \\((2,\\ -2)\\), lub że drugim miejscem zerowym \\(g\\) jest \\(4\\), lub układ dwóch równań z \\(a, b, c\\)", "punkty": 1 },
+            { "tekst": "Zapisany wzór \\(f(x) = a(x - 3)^{2} - 2\\) ORAZ miejsce zerowe \\(1\\), lub wzór \\(f(x) = a(x - 1)(x - 5)\\), lub równanie z jedną niewiadomą \\(a\\), lub układ trzech niezależnych równań z \\(a, b, c\\)", "punkty": 1 },
+            { "tekst": "Powyższe oraz obliczona wartość jednego ze współczynników: \\(a = \\tfrac{1}{2}\\) lub \\(b = -3\\), lub \\(c = \\tfrac{5}{2}\\)", "punkty": 1 },
+            { "tekst": "Poprawny wynik: \\(f(x) = \\tfrac{1}{2}x^{2} - 3x + \\tfrac{5}{2}\\)", "punkty": 1 }
+        ],
         "hint": "",
         "solutionText": "",
         "solutionTextMore": "",
@@ -347,6 +365,11 @@
         "maxScore": 3,
         "selfScore": true,
         "formulasPage": 9,
+        "gradingCriteria": [
+            { "tekst": "Obliczone wyrazy \\(a_1 = 8\\) oraz \\(a_9 = 32\\), lub zapisany związek \\((a_9)^{2} = a_1 \\cdot a_k\\)", "punkty": 1 },
+            { "tekst": "Obliczone wszystkie wyrazy ciągu geometrycznego \\((8,\\ 32,\\ 128)\\) lub zapisane równanie z niewiadomą \\(k\\), np. \\(32^{2} = 8 \\cdot (3k + 5)\\)", "punkty": 1 },
+            { "tekst": "Poprawny wynik: \\(k = 41\\)", "punkty": 1 }
+        ],
         "hint": "",
         "solutionText": "",
         "solutionTextMore": "",
@@ -455,6 +478,10 @@
         "maxScore": 2,
         "selfScore": true,
         "formulasPage": 18,
+        "gradingCriteria": [
+            { "tekst": "Zapisane pola obu trójkątów w postaci \\(P = \\tfrac{1}{2} \\cdot a \\cdot |MN| \\cdot \\sin\\alpha\\) (lub przez wspólną wysokość z wierzchołka \\(N\\)), lub zapisany związek \\(\\tfrac{|KN|}{|NL|} = \\tfrac{a}{b}\\)", "punkty": 1 },
+            { "tekst": "Przeprowadzone pełne rozumowanie prowadzące do \\(\\tfrac{P_{KNM}}{P_{NLM}} = \\tfrac{a}{b}\\)", "punkty": 1 }
+        ],
         "hint": "",
         "solutionText": "",
         "solutionTextMore": "",
@@ -601,6 +628,10 @@
         "maxScore": 2,
         "selfScore": true,
         "formulasPage": 27,
+        "gradingCriteria": [
+            { "tekst": "Obliczona wysokość ostrosłupa \\(H = 4\\) lub pole podstawy \\(P_{ABCD} = (4\\sqrt{6})^{2}\\)", "punkty": 1 },
+            { "tekst": "Poprawny wynik: \\(V = 128\\)", "punkty": 1 }
+        ],
         "hint": "",
         "solutionText": "",
         "solutionTextMore": "",
@@ -651,6 +682,10 @@
         "maxScore": 2,
         "selfScore": true,
         "formulasPage": 29,
+        "gradingCriteria": [
+            { "tekst": "Obliczona liczba wszystkich zdarzeń elementarnych \\(|\\Omega| = 5 \\cdot 5 = 25\\) (np. w tabeli lub na drzewie) lub liczba zdarzeń sprzyjających \\(|A| = 9\\)", "punkty": 1 },
+            { "tekst": "Poprawny wynik: \\(P(A) = \\tfrac{9}{25}\\)", "punkty": 1 }
+        ],
         "hint": "",
         "solutionText": "",
         "solutionTextMore": "",

@@ -111,6 +111,11 @@ function loadExercises() {
         let finalInput = null;
         let ocenKoncowaOdpowiedz = null;
         const criteriaBoxes = [];
+        // Checklista kryteriów: zwijany boks „Sprawdź obliczenia" i jego funkcja
+        // licząca punkty — przywracanie postępu musi po odtworzeniu zaznaczeń
+        // przeliczyć wynik (punkty NIE są zapisywane, tylko wyprowadzane).
+        let ocenaBox = null;
+        let przeliczKryteriaZadania = null;
         // Ustawiane przez gałęzie zadań zamkniętych (ABCD/PF/multiSelect) na funkcję
         // odsłaniającą ocenę tego zadania. Używa jej przywracanie postępu, by w
         // trybie „sprawdź później" odsłonić ocenę tylko tam, gdzie użytkownik już
@@ -399,18 +404,16 @@ function loadExercises() {
             // rozwiązanie, a po egzaminie — gdy rozwiązania i samoocena wracają —
             // porównuje wpisany tok z kluczem i przyznaje sobie punkty. Zapis
             // idzie do localStorage tą samą drogą co reszta odpowiedzi (stan.open).
+            // Bez etykiety nad polem (2026-08-06): rolę opisu przejął krótki
+            // placeholder w środku — cztery rozwlekłe zdania-etykiety karty
+            // zadania otwartego zostały wtedy usunięte.
             const openBox = document.createElement("div");
             openBox.className = "open-answer-container";
-
-            const openLabel = document.createElement("div");
-            openLabel.className = "open-answer-label";
-            openLabel.textContent = "Twoja odpowiedź / tok rozwiązania:";
-            openBox.appendChild(openLabel);
 
             openTextarea = document.createElement("textarea");
             openTextarea.className = "open-answer";
             openTextarea.rows = 4;
-            openTextarea.placeholder = "Zapisz tu swoją odpowiedź lub tok rozwiązania — po odsłonięciu rozwiązania porównasz je z kluczem i ocenisz się.";
+            openTextarea.placeholder = "miejsce na notatki";
             openTextarea.addEventListener("input", () => {
                 stan.open = openTextarea.value;
                 zapiszPostep();
@@ -434,11 +437,11 @@ function loadExercises() {
                 const fbox = document.createElement("div");
                 fbox.className = "final-answer-container";
 
-                const flabel = document.createElement("div");
-                flabel.className = "final-answer-label";
-                flabel.innerHTML = exercise.finalAnswer.label || "Twoja ostateczna odpowiedź:";
-                fbox.appendChild(flabel);
-
+                // finalAnswer.label CELOWO nie jest renderowane (2026-08-06) —
+                // etykieta „Twoja ostateczna odpowiedź (…)" zniknęła z karty;
+                // pole tłumaczy się samo przez placeholder i przycisk „Sprawdź".
+                // Pole zostaje w danych (patrz ARCHITECTURE.md), żeby nie ruszać
+                // wszystkich arkuszy — renderer je po prostu ignoruje.
                 const frow = document.createElement("div");
                 frow.className = "final-answer-row";
 
@@ -484,31 +487,57 @@ function loadExercises() {
                 });
             }
 
+            // Kryteria oceny z danych. Schemat docelowy to obiekty
+            // { tekst, punkty }; stary, płaski string dopuszczamy jako 0 pkt,
+            // żeby niezmigrowany arkusz dalej się renderował (z ostrzeżeniem).
+            const kryteria = (Array.isArray(exercise.gradingCriteria) ? exercise.gradingCriteria : [])
+                .map(k => {
+                    if (typeof k === "string") {
+                        console.warn(`Zadanie ${numerZadania(exercise, index)}: kryterium bez punktacji (stary schemat) — 0 pkt`);
+                        return { tekst: k, punkty: 0 };
+                    }
+                    return { tekst: k.tekst, punkty: Number(k.punkty) || 0 };
+                });
+
+            // Wynik zadania = suma zaznaczonych kryteriów, ale nie więcej niż
+            // maxScore: w kluczu CKE suma kryteriów bywa WIĘKSZA od maksimum za
+            // zadanie (np. 3 kryteria przy maxScore 2), bo pojedyncze kroki
+            // punktują się alternatywnie.
+            function przeliczKryteria() {
+                let suma = 0;
+                kryteria.forEach((k, i) => { if (criteriaBoxes[i] && criteriaBoxes[i].checked) suma += k.punkty; });
+                setScore(Math.min(suma, exercise.maxScore));
+            }
+            przeliczKryteriaZadania = przeliczKryteria;
+
             // Zadanie otwarte z samooceną: uczeń rozwiązuje na kartce, porównuje
-            // z rozwiązaniem i sam przyznaje sobie punkty (0..maxScore).
+            // z rozwiązaniem i sam przyznaje sobie punkty (checklista niżej).
             const box = document.createElement("div");
             box.className = "self-score-container";
 
-            const label = document.createElement("div");
-            label.className = "self-score-label";
-            label.textContent = "Rozwiąż na kartce, porównaj z rozwiązaniem i oceń się:";
-            box.appendChild(label);
+            // CHECKLISTA KRYTERIÓW OCENY — od 2026-08-06 NIE jest już tylko
+            // pomocą: to ONA przyznaje punkty (przyciski „0 pkt / 1 pkt / …"
+            // zniknęły). Każde kryterium ma własną wartość punktową z klucza CKE,
+            // wynik zadania = suma zaznaczonych, przycięta do maxScore (suma
+            // kryteriów nie musi się równać maxScore — patrz ARCHITECTURE.md).
+            // Całość siedzi w zwijanym boksie „Sprawdź obliczenia", domyślnie
+            // ZWINIĘTYM, żeby lista kryteriów nie zdradzała rozwiązania od razu.
+            // Wewnątrz .self-score-container, więc w trybie egzaminu znika razem
+            // z resztą samooceny.
+            if (kryteria.length) {
+                const clBox = document.createElement("details");
+                clBox.className = "ocena-box";
+                ocenaBox = clBox;
 
-            // POMOCNICZA CHECKLISTA KRYTERIÓW OCENY (opcjonalna, gdy exercise.gradingCriteria
-            // istnieje). Checkboxy z elementami oficjalnego klucza CKE, za które są punkty —
-            // mają UŁATWIĆ decyzję ucznia, ale NIE sumują punktów automatycznie (uczeń dalej
-            // sam wybiera liczbę punktów przyciskami niżej). Wewnątrz .self-score-container,
-            // więc w trybie egzaminu jest schowana razem z resztą samooceny.
-            if (Array.isArray(exercise.gradingCriteria) && exercise.gradingCriteria.length) {
-                const clBox = document.createElement("div");
-                clBox.className = "grading-criteria";
+                const naglowek = document.createElement("summary");
+                naglowek.className = "ocena-box-tytul";
+                naglowek.textContent = "Sprawdź obliczenia";
+                clBox.appendChild(naglowek);
 
-                const clIntro = document.createElement("div");
-                clIntro.className = "grading-criteria-intro";
-                clIntro.textContent = "Zaznacz, co znalazło się w Twoim rozwiązaniu (to tylko pomoc — punkty przyznajesz samodzielnie):";
-                clBox.appendChild(clIntro);
+                const tresc = document.createElement("div");
+                tresc.className = "ocena-box-tresc";
 
-                exercise.gradingCriteria.forEach((kryterium, ki) => {
+                kryteria.forEach((kryterium, ki) => {
                     const lab = document.createElement("label");
                     lab.className = "grading-criterion";
 
@@ -517,37 +546,65 @@ function loadExercises() {
                     cb.addEventListener("change", () => {
                         if (!Array.isArray(stan.kryteria)) stan.kryteria = [];
                         stan.kryteria[ki] = cb.checked;
+                        przeliczKryteria();
                         zapiszPostep();
+                        odswiezWskaznikiOtwarte();
                     });
                     criteriaBoxes.push(cb);
 
                     const span = document.createElement("span");
-                    span.innerHTML = kryterium;
+                    span.className = "grading-criterion-tekst";
+                    span.innerHTML = kryterium.tekst;
+
+                    // Mały licznik po prawej — młodszy brat badge'a punktacji
+                    // zadania (.exercise-score), stąd wspólne klasy kolorów.
+                    const pkt = document.createElement("span");
+                    pkt.className = "kryterium-punkty" + (kryterium.punkty === 0 ? " kryterium-punkty-zero" : "");
+                    pkt.textContent = `${kryterium.punkty} pkt`;
 
                     lab.appendChild(cb);
                     lab.appendChild(span);
-                    clBox.appendChild(lab);
+                    lab.appendChild(pkt);
+                    tresc.appendChild(lab);
                 });
 
-                box.appendChild(clBox);
-            }
-
-            const buttons = [];
-            for (let n = 0; n <= exercise.maxScore; n++) {
-                const btn = document.createElement("button");
-                btn.textContent = `${n} pkt`;
-                btn.addEventListener("click", () => {
-                    buttons.forEach(b => b.classList.remove("selected"));
-                    btn.classList.add("selected");
-                    setScore(n);
-                    stan.self = n;
+                clBox.appendChild(tresc);
+                // Otwarcie boksu = „przejrzałem kryteria", czyli zadanie jest
+                // ocenione także wtedy, gdy uczeń nie zaznaczył NICZEGO (0 pkt to
+                // też ocena). Bez tego wskaźnik „oceń się" nie miałby jak zgasnąć.
+                clBox.addEventListener("toggle", () => {
+                    if (!clBox.open || stan.ocenaOtwarta) return;
+                    stan.ocenaOtwarta = true;
                     zapiszPostep();
-                    // Zadanie właśnie ocenione — jego wskaźnik (jeśli był) znika.
                     odswiezWskaznikiOtwarte();
                 });
-                buttons.push(btn);
-                selfButtons.push(btn);
-                box.appendChild(btn);
+                box.appendChild(clBox);
+            } else {
+                // Zadanie otwarte BEZ kryteriów w danych — zostaje stara,
+                // ręczna samoocena (0..maxScore), żeby dało się je w ogóle
+                // ocenić. Docelowo każde zadanie otwarte dostanie kryteria.
+                const label = document.createElement("div");
+                label.className = "self-score-label";
+                label.textContent = "Oceń się:";
+                box.appendChild(label);
+
+                const buttons = [];
+                for (let n = 0; n <= exercise.maxScore; n++) {
+                    const btn = document.createElement("button");
+                    btn.textContent = `${n} pkt`;
+                    btn.addEventListener("click", () => {
+                        buttons.forEach(b => b.classList.remove("selected"));
+                        btn.classList.add("selected");
+                        setScore(n);
+                        stan.self = n;
+                        zapiszPostep();
+                        // Zadanie właśnie ocenione — jego wskaźnik (jeśli był) znika.
+                        odswiezWskaznikiOtwarte();
+                    });
+                    buttons.push(btn);
+                    selfButtons.push(btn);
+                    box.appendChild(btn);
+                }
             }
             answersContainer.appendChild(box);
 
@@ -831,10 +888,17 @@ function loadExercises() {
                 finalInput.value = zap.koncowa;
                 if (zap.koncowa.trim() !== "" && ocenKoncowaOdpowiedz) ocenKoncowaOdpowiedz();
             }
-            // Pomocnicza checklista kryteriów: przywróć zaznaczenia (stan.kryteria
-            // jest już zasiane z zapisu, więc ustawiamy tylko widoczny .checked).
-            if (Array.isArray(zap.kryteria) && criteriaBoxes.length) {
-                zap.kryteria.forEach((zazn, ki) => { if (criteriaBoxes[ki]) criteriaBoxes[ki].checked = !!zazn; });
+            // Checklista kryteriów: przywróć zaznaczenia (stan.kryteria jest już
+            // zasiane z zapisu, więc ustawiamy tylko widoczny .checked) i PRZELICZ
+            // punkty — wynik nie jest zapisywany, tylko wyprowadzany z zaznaczeń.
+            // Boks zostawiamy zwinięty, chyba że coś w nim było zaznaczone —
+            // wtedy uczeń ma od razu widzieć, skąd wzięły się jego punkty.
+            if (criteriaBoxes.length) {
+                if (Array.isArray(zap.kryteria)) {
+                    zap.kryteria.forEach((zazn, ki) => { if (criteriaBoxes[ki]) criteriaBoxes[ki].checked = !!zazn; });
+                }
+                if (przeliczKryteriaZadania) przeliczKryteriaZadania();
+                if (ocenaBox && criteriaBoxes.some(cb => cb.checked)) ocenaBox.open = true;
             }
             // Tryb „sprawdź później" (natychmiastowa poprawność OFF): powyższe kliki
             // odtworzyły tylko ZAZNACZENIE (bez koloru). Jeśli użytkownik przed

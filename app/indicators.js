@@ -69,8 +69,13 @@ if (wskaznikiTrybToggle) {
 
 // Zadanie otwarte bez samooceny — w trybie "wszystkie" to wystarczy; w trybie
 // "wypelnione" dodatkowo wymagamy niepustego toku rozwiązania w okienku.
+// „Ocenione" znaczy dziś jedno z dwojga: kliknięty przycisk punktów (zadania
+// bez kryteriów w danych) ALBO otwarty boks „Sprawdź obliczenia" (stan.ocenaOtwarta) —
+// samo zaznaczenie kryteriów nie wystarcza jako warunek, bo uczeń, który
+// przejrzał listę i nie zaznaczył nic, też ocenił zadanie (na 0 pkt).
 function czyNieoceniony(zadanie) {
     if (Number.isInteger(zadanie.stan.self)) return false;
+    if (zadanie.stan.ocenaOtwarta) return false;
     if (czytajTrybWskaznikow() === "wypelnione") {
         return typeof zadanie.stan.open === "string" && zadanie.stan.open.trim() !== "";
     }

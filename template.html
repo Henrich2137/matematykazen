@@ -408,7 +408,10 @@
         <div class="light-button-container">
             <button class="hint-button light-button">Podpowiedź</button>
             <button class="solution-button light-button">Rozwiązanie</button>
-            <button class="formulas-button light-button">Pokaż potrzebne wzory</button>
+            <!-- „zgłoś błąd" dokłada tu app/report.js (dodajLinkZgloszenia),
+                 między Rozwiązanie a Wzory — kolejność wiersza: Podpowiedź,
+                 Rozwiązanie, Zgłoś błąd, Wzory. -->
+            <button class="formulas-button light-button">Pokaż wzory</button>
         </div>
 
             <div class="hint-container"></div>
@@ -491,8 +494,9 @@
          zadaniu). Dotyczy pola „ostateczna odpowiedź" i checklisty kryteriów przy
          zadaniach otwartych (patrz issues/formularz-oceniania-otwarte.md). -->
     <p class="samoocena-disclaimer">
-        Samoocena, checklisty i automatyczne sprawdzanie „ostatecznej odpowiedzi" są jedynie
-        narzędziem pomocniczym — MatematykaZen nie jest egzaminatorem. Ostateczną poprawność
+        Punkty za zadania otwarte przyznaje checklista „Sprawdź obliczenia" na podstawie tego,
+        co sam zaznaczysz — razem z automatycznym sprawdzaniem „ostatecznej odpowiedzi" jest to
+        jedynie narzędzie pomocnicze. MatematykaZen nie jest egzaminatorem: ostateczną poprawność
         i punktację każdego zadania otwartego trzeba ocenić indywidualnie według oficjalnych
         zasad oceniania CKE.
     </p>
