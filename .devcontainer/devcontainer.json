@@ -1,0 +1,70 @@
+{
+  "name": "matematykazen-dev",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  // ZERO uprawnień dla kontenera — także NET_ADMIN. To jest celowe: podman
+  // wkłada dodane capabilities do zestawu ambient również zwykłemu userowi,
+  // więc kontener z NET_ADMIN mógłby rozbroić własny firewall (`iptables -F`)
+  // bez żadnego sudo. Firewall nakłada więc HOST, przez
+  // .devcontainer/host-firewall.sh (patrz initializeCommand niżej).
+  // Efekt uboczny: `sudo` w kontenerze nie działa (brak SETUID/SETGID) —
+  // instalacja pakietów idzie przez Dockerfile i przebudowę obrazu.
+  //
+  // ŚWIADOMIE NIE MA TU --userns=keep-id (flaga wyłącznie podmanowa; Docker
+  // odrzuca ją błędem, a config ma działać też na Kubuntu z Docker Engine).
+  // Pod podmanem rozszerzenie Dev Containers dokłada `--userns=keep-id`
+  // i `--security-opt label=disable` samo, gdy remoteUser != root.
+  "runArgs": [
+    "--cap-drop=ALL"
+  ],
+  "remoteUser": "node",
+  // false, bo pod keep-id uid node (1000) ma się zgadzać z uid hosta (1000).
+  "updateRemoteUserUID": false,
+
+  // Bez własnego workspaceMount repo montuje się pod domyślną ścieżką
+  // /workspaces/${localWorkspaceFolderBasename} — workspaceFolder musi ją
+  // powtarzać, inaczej VS Code otwiera pusty katalog.
+  "workspaceFolder": "/workspaces/matematykazen",
+  "mounts": [
+    "source=matematykazen-claude-config,target=/home/node/.claude,type=volume",
+
+    // .devcontainer TYLKO DO ODCZYTU — nakłada się na zamontowane repo i
+    // przykrywa ten katalog. Bez tego kontener mógłby podmienić własną
+    // konfigurację, a `host-firewall.sh` wykonuje się NA HOŚCIE jako Ty:
+    // podmieniony = dowolny kod poza izolacją przy następnym otwarciu
+    // kontenera. Pliki nadal się czytają i uruchamiają, nie da się ich tylko
+    // zapisać. Konsekwencja: zmiany w .devcontainer robisz z hosta, a operacje
+    // gita, które dotykają tego katalogu (checkout innej gałęzi, pull), nie
+    // przejdą z wnętrza kontenera.
+    "source=${localWorkspaceFolder}/.devcontainer,target=/workspaces/matematykazen/.devcontainer,type=bind,readonly"
+  ],
+
+  "containerEnv": {
+    "CLAUDE_CONFIG_DIR": "/home/node/.claude"
+  },
+  // Wykonuje się NA HOŚCIE, zanim powstanie kontener. Odpala obserwatora w tle:
+  // poczeka, aż kontener wstanie, i nałoży na niego firewall z zewnątrz.
+  // Wołane SYNCHRONICZNIE (bez `&`): tryb --spawn oddaje obserwatora systemd-owi
+  // i wraca w kilkadziesiąt ms. Warianty z `nohup &` i `setsid &` zawiodły — VS
+  // Code sprzątał proces w tle, zanim ten zdążył cokolwiek zrobić. Jednostka
+  // systemd żyje we własnym cgroupie, poza drzewem procesów VS Code.
+  // Przekierowanie wyjścia łapie błędy, które padłyby przed pierwszym logiem.
+  "initializeCommand": "bash ${localWorkspaceFolder}/.devcontainer/host-firewall.sh --spawn >>/tmp/matematykazen-firewall-spawn.log 2>&1 || true",
+
+  // Wykonuje się w kontenerze. Nie nakłada już firewalla (nie ma czym) — czeka
+  // na niego i przerywa start sesji, jeśli się nie pojawi. Fail-closed: lepiej
+  // nie wejść do kontenera, niż wejść do niego bez ochrony.
+  "postStartCommand": "bash .devcontainer/verify-firewall.sh",
+  "waitFor": "postStartCommand",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "anthropic.claude-code",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "eamodio.gitlens"
+      ]
+    }
+  }
+}

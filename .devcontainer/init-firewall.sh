@@ -24,15 +24,30 @@ else
     echo "No Docker DNS rules to restore"
 fi
 
-# First allow DNS and localhost before any restrictions
-# Allow outbound DNS
-iptables -A OUTPUT -p udp --dport 53 -j ACCEPT
-# Allow inbound DNS responses
-iptables -A INPUT -p udp --sport 53 -j ACCEPT
-# Allow outbound SSH
-iptables -A OUTPUT -p tcp --dport 22 -j ACCEPT
-# Allow inbound SSH responses
-iptables -A INPUT -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT
+# DNS: TYLKO do resolwerów z /etc/resolv.conf, nie do dowolnego adresu.
+# Oryginał przepuszczał UDP 53 wszędzie, co jest gotowym kanałem eksfiltracji —
+# dane koduje się w etykietach zapytania do własnego serwera autorytatywnego,
+# a odpowiedzi odbiera w rekordach TXT. Lista domen tego nie widzi, bo filtruje
+# po docelowym IP. Czytanie resolv.conf jest przenośne: pod podmanem/pastą jest
+# tam 169.254.1.1, pod Dockerem 127.0.0.11.
+DNS_SERVERS=$(awk '$1 == "nameserver" && $2 ~ /^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$/ {print $2}' /etc/resolv.conf)
+if [ -z "$DNS_SERVERS" ]; then
+    echo "ERROR: brak resolwera IPv4 w /etc/resolv.conf — nie wiem, komu zezwolić na DNS"
+    exit 1
+fi
+while read -r ns; do
+    echo "Allowing DNS to $ns"
+    iptables -A OUTPUT -p udp --dport 53 -d "$ns" -j ACCEPT
+    iptables -A OUTPUT -p tcp --dport 53 -d "$ns" -j ACCEPT
+    iptables -A INPUT -p udp --sport 53 -s "$ns" -j ACCEPT
+done < <(echo "$DNS_SERVERS")
+# SSH na zewnątrz jest ŚWIADOMIE zablokowany: przy zdalnym repo po HTTPS jest
+# niepotrzebny, a w połączeniu z forwardowanym ssh-agentem hosta byłby gotowym
+# kanałem eksfiltracji (scp/git push na dowolny serwer).
+# Jeśli kiedyś przejdziesz na remote po SSH, odkomentuj:
+# iptables -A OUTPUT -p tcp --dport 22 -j ACCEPT
+# iptables -A INPUT -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT
+
 # Allow localhost
 iptables -A INPUT -i lo -j ACCEPT
 iptables -A OUTPUT -o lo -j ACCEPT
@@ -95,12 +110,15 @@ if [ -z "$HOST_IP" ]; then
     exit 1
 fi
 
-HOST_NETWORK=$(echo "$HOST_IP" | sed "s/\.[0-9]*$/.0\/24/")
-echo "Host network detected as: $HOST_NETWORK"
+# UWAGA: oryginał (pisany pod Dockera) rozszerzał adres bramy na całe /24, bo
+# tam bramą jest most dockerowy. Pod rootless podmanem z pastą kontener widzi
+# PRAWDZIWĄ sieć lokalną, więc /24 otwierałoby dostęp do całego LAN-u i do usług
+# na hoście. Przepuszczamy tylko samą bramę (/32).
+echo "Gateway detected as: $HOST_IP (przepuszczamy /32, nie całe /24)"
 
 # Set up remaining iptables rules
-iptables -A INPUT -s "$HOST_NETWORK" -j ACCEPT
-iptables -A OUTPUT -d "$HOST_NETWORK" -j ACCEPT
+iptables -A INPUT -s "$HOST_IP" -j ACCEPT
+iptables -A OUTPUT -d "$HOST_IP" -j ACCEPT
 
 # Set default policies to DROP first
 iptables -P INPUT DROP
@@ -116,6 +134,38 @@ iptables -A OUTPUT -m set --match-set allowed-domains dst -j ACCEPT
 
 # Explicitly REJECT all other outbound traffic for immediate feedback
 iptables -A OUTPUT -j REJECT --reject-with icmp-admin-prohibited
+
+# BEZPIECZNIK. Gdyby zawężenie DNS z jakiegokolwiek powodu zabiło rozwiązywanie
+# nazw (inny resolver, resolv.conf podmieniony po starcie, IPv6-only DNS),
+# wracamy do ogólnej reguły. Lepiej działający kontener z jedną znaną słabością
+# niż sesja, która się nie podnosi — postStartCommand jest fail-closed, więc
+# zepsuty DNS oznaczałby brak możliwości pracy.
+# Reguły wchodzą przez -I (na początek łańcucha), bo -A trafiłoby za REJECT.
+if ! dig +short +time=3 +tries=1 api.github.com 2>/dev/null | grep -qE '^[0-9]+\.'; then
+    echo "UWAGA: DNS nie działa po zawężeniu — przywracam ogólną regułę UDP 53"
+    iptables -I OUTPUT -p udp --dport 53 -j ACCEPT
+    iptables -I INPUT -p udp --sport 53 -j ACCEPT
+else
+    echo "DNS po zawężeniu działa poprawnie"
+fi
+
+# IPv6: pełna blokada. Lista dozwolonych adresów jest wyłącznie IPv4, więc
+# gdyby kontener kiedykolwiek dostał egress po IPv6, cały firewall dałoby się
+# ominąć jednym `curl -6`. Dziś kontener ma tylko ULA Tailscale bez trasy
+# globalnej, czyli to zabezpieczenie na zapas. Blok jest miękki: brak obsługi
+# IPv6 w jądrze/netns ma dać ostrzeżenie, a nie wywalić skrypt.
+if ip6tables -L >/dev/null 2>&1; then
+    ip6tables -F 2>/dev/null || true
+    ip6tables -X 2>/dev/null || true
+    ip6tables -A INPUT -i lo -j ACCEPT
+    ip6tables -A OUTPUT -o lo -j ACCEPT
+    ip6tables -P INPUT DROP
+    ip6tables -P FORWARD DROP
+    ip6tables -P OUTPUT DROP
+    echo "IPv6 zablokowane (poza loopbackiem)"
+else
+    echo "UWAGA: ip6tables niedostępne — IPv6 nie jest filtrowane"
+fi
 
 echo "Firewall configuration complete"
 echo "Verifying firewall rules..."
