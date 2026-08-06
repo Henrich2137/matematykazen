@@ -3,7 +3,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.
 
-  
+  - Punktacja przy zadaniach może być przesunięta troszeczke w lewo (o 40px), bliżej zadań.
 
 
 <br>
@@ -12,20 +12,9 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + NIE REALIZUJ
 
   + UI
-    
-    - Okno typu "Zaznacz co masz w rozwiązaniu" (np w zad 9.) powinno być jakoś schowane bo podpowiada, spoiluje uczniowi na starcie co ma zrobić.
+    - Przycisk "Rozwiązanie" w przypadku wielu rozwiązań powinien nazywać się "Rozwiązania" i mieć możliwość również rozwinięcia listy różnych rozwiązań: Zwykłe, Krok po kroku, Interaktywne... i każde z nich powinno mieć możliwość 
+    (Okno "Zaznacz co masz w rozwiązaniu" spoilujące rozwiązanie — rozwiązane przy okazji redesignu zadań otwartych wyżej: box jest domyślnie zwinięty.)
 
-    - Tło w niektórych widżetach jest białe w motywie darkmode. Należy zmienić kolory na taki które będą się zgadzać z motywem.
-
-    - Przycisk zgłoś błąd powinien wyglądać podobnie do light buttonów
-
-    - Punktacja przy zadaniach może być przesunięta troszeczke w lewo, bliżej zadań.
-
-    - Zmienić tekst w przycisku "Pokaż potrzebne wzory" na "Pokaż wzory" lub "Potrzebne wzory".
-      
-    - Zadania otwarte, naliczanie punktów:
-      - zamiast checkboxów powinny być przyciski z punktami do każdego zdania typu "Nierówność zapisana w postaci x2−6x−7≤0x2−6x−7≤0" (przykład z zad 9.) Dokładna punktacja jest w zasadach oceniania w pdf i od tego powinna zależeć ilość przycisków. (czeka na decyzję merytoryczną Henricha o punktacji za poszczególne przyciski, potem do przydzielenia modelowi)
-      - ostateczna odpowiedź w zadaniach takich jak 8. i 9. po sprawdzeniu powinny być przyznane punkty użytkownikowi i automatycznie zaznaczony przycisk punktów
 
     - Menu / Panel boczny:
       - Swipe/Przesunięcie w lewo powinno zwijać panel boczny (tylko na telefonie)
@@ -39,8 +28,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
       - 4 różne rozmiary fontu na karcie zadania — ujednolicić
       - Przyciski odpowiedzi (ABCD, P/F, punkty) bez podświetlenia na hover
       - Dwa różne style hover w menu (ramka vs tło) — wybrać jeden
-      - Przyciski Podpowiedź/Rozwiązanie/Wzory łamią się na telefonie (sztywne 30% szerokości)
-      - Samoocena na telefonie: 5 przycisków układa się krzywo (2+2+1)
       - Cień okienka podsumowania egzaminu wpisany na sztywno zamiast jako token
       - Dwa miejsca z ramką 2px zamiast standardowej 1px
       - Okienko podsumowania egzaminu bez zaokrąglonych rogów (reszta strony ma)
@@ -96,7 +83,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
     - Przycisk "Sprawdź wszystkie odpowiedzi" powinien być umieszczony jako podpunkt pod "Poprawność"?
 
-    - Do sekcji „oceń się" z checkboxami powinno być dodane kryteria sukcesu dopiero po kliknięciu rozwiązania. Ale jeszcze nie mam pomysłu, jak to skomponować, aby miało sens.
+    - Do sekcji „oceń się" z checkboxami powinno być dodane kryteria sukcesu dopiero po kliknięciu rozwiązania. Ale jeszcze nie mam pomysłu, jak to skomponować, aby miało sens. (Częściowo załatwia to zwijany box z DO ZROBIENIA — wrócić do tematu po tamtej zmianie.)
 
 
   + ULEPSZANIE WORKFLOW (skopiowane z NOTATKI_USERA)
@@ -146,6 +133,14 @@ Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz is
 
     - Świadomie NIEdomknięte dziury w firewallu, do ewentualnej decyzji: (1) brama `/32` jest przepuszczona, więc z kontenera widać panel WWW routera — zostawione, bo zawężanie tego groziło zepsuciem DNS; (2) dozwolone domeny (GitHub, npm) są z natury kanałem na dane — nie da się usunąć bez odcięcia gita.
 
+
+  + OPUS DOPISAŁ (Opus 5, medium) — po paczce z 2026-08-06:
+
+    - Zadania otwarte bez `gradingCriteria` w danych nadal renderują stare przyciski „0..N pkt" (awaryjna ścieżka w app/render.js). Dziś takich zadań nie ma — przy wpinaniu NOWEGO arkusza trzeba pamiętać o kryteriach, inaczej zadanie po cichu wróci do starego UI.
+
+    - `finalAnswer.label` w exercises.json nie ma już odbiorcy (renderer je ignoruje). Zostawione we wszystkich arkuszach — do decyzji, czy kiedyś wyczyścić dane.
+
+    - Kryteria dla zadań 4-punktowych są kaskadą progów z klucza CKE, więc uczeń, który zaznaczy tylko „poprawny wynik", dostanie 1 pkt zamiast 4. Do przemyślenia, czy zaznaczenie wyższego progu nie powinno automatycznie zaznaczać niższych.
 
 + ZASADY DLA CLAUDE-A:
 

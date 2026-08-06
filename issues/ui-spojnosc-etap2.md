@@ -52,13 +52,15 @@ główna robota etapu 2.
 3. **Dwa modele hoveru w chrome.** Ramka (narożniki, panele) vs tło (sidebar). Rozstrzygnąć,
    który jest wzorcem, i opisać wybór w komentarzu — dziś nie ma zapisanej zasady.
 
-4. **`.light-button { width: 30% }`** (sheet.css:894) — sztywny procent na trzy przyciski
-   („Podpowiedź / Rozwiązanie / Pokaż potrzebne wzory"). Na 390px trzeci zawija się na trzy
-   linie i wiersz robi się nierówny (widać na zrzucie `dark-390-stopka`). Kandydat: flex z `gap`
-   i zawijaniem, zamiast procentów.
+4. ~~**`.light-button { width: 30% }`** — sztywny procent na przyciski pod zadaniem.~~
+   **[ZROBIONE 2026-08-06, Opus 5 Medium]** Wiersz jest flexem (`flex: 1 1 0`), a poniżej 720px
+   zawija się po dwa przyciski w rzędzie — zrobione razem z przeniesieniem „zgłoś błąd" do tego
+   wiersza (patrz done/04-biezace.md).
 
-5. **Samoocena na telefonie**: pięć przycisków „0–4 pkt" schodzi 2 + 2 + 1 z osamotnionym
-   ostatnim na środku. Rozważyć siatkę o równych kolumnach.
+5. ~~**Samoocena na telefonie**: pięć przycisków „0–4 pkt" schodzi 2 + 2 + 1.~~
+   **[ZROBIONE 2026-08-06, Opus 5 Medium]** Przyciski punktowe zniknęły — punkty przyznaje
+   checklista „Sprawdź obliczenia" (patrz done/04-biezace.md). Zostały tylko jako awaryjna
+   ścieżka dla zadań bez kryteriów w danych.
 
 6. **Cienie poza tokenem.** `--shadow-panel` objął sidebar, panele PDF i toast. Zostały:
    `#egzamin-podsumowanie .egzamin-okno` (exam.css: `0 6px 24px rgba(0,0,0,.10)`) oraz kropki

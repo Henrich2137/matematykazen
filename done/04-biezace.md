@@ -1,5 +1,69 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-06] (Opus 5 Medium) Paczka czterech punktów doprecyzowanych z Sonnetem 2026-08-06
+(pliki issues/dark-mode-widzety-kolory.md i issues/zadania-otwarte-redesign.md — oba usunięte):
+
+1. Widżety spójne z motywem. `--canvas-bg` przestało być na sztywno białe (`#fff` → `#1c1c1c` w ciemnym),
+   doszedł blok tokenów `--wg-*` (osie, siatka, tekst, trzy klasy linii pomocniczych, punkt, żółty, słupek,
+   etykieta info, półprzezroczyste wypełnienia obszarów) w :root i w OBU blokach ciemnych base.css.
+   Z plików `widgets/*.js` zniknęły WSZYSTKIE literały kolorów — paleta `WG_KOLORY` jest teraz czytana
+   ze zmiennych CSS przez `wgOdswiezKolory()` (mapa nazwa→zmienna: `WG_ZMIENNE`; `rgb()` konwertowane
+   na hex, bo KaTeXowy `\textcolor` w zad. 18 przyjmuje tylko hex). Przemalowanie BEZ reloadu: każdy
+   widżet rejestruje swoją funkcję rysującą przez `wgZarejestrujRysowanie(canvas, draw)`, a `wgPrzemaluj()`
+   odświeża paletę i przerysowuje wszystkie canvasy nadal obecne w DOM — wołane z `applyTheme()`
+   (app/theme.js) oraz z nasłuchu `matchMedia("(prefers-color-scheme: dark)")` dla trybu „auto".
+   (Obrazki CKE i wideo z Manima to osobna, nadal otwarta sprawa — issues/dark-mode-obrazki-wideo.md.)
+   [widzety, dark-mode, canvas, tokeny]
+
+2. „Pokaż potrzebne wzory" → „Pokaż wzory" (template.html + komentarze w exam.css/ARCHITECTURE*).  [ui, teksty]
+
+3. „zgłoś błąd" przeniesiony do wiersza light-buttonów: kolejność Podpowiedź / Rozwiązanie / Zgłoś błąd /
+   Pokaż wzory, wygląd dokładnie taki jak sąsiadów (klasa `.light-button`; `.report-error-link` została
+   już tylko uchwytem dla `body.bez-zglaszania`). `.light-button-container` jest flexem, a przyciski mają
+   `flex: 1 1 0` zamiast sztywnych 30% — wiersz sam rozkłada szerokości, gdy zniknie „Pokaż wzory"
+   (formulasPage: null), podpowiedź albo gdy zgłaszanie jest wyłączone w panelu. Poniżej 720px łamie się
+   po dwa przyciski w rzędzie (przy okazji domyka punkt „przyciski łamią się na telefonie" z sekcji
+   spójności UI). Formularz zgłoszenia działa bez zmian (nadal wsuwa się nad ten wiersz).  [ui, zglaszanie, responsywnosc]
+
+4. Zadania otwarte — redesign. Usunięte cztery rozwlekłe etykiety; textarea ma placeholder „miejsce na
+   notatki", a `finalAnswer.label` jest przez renderer IGNOROWANE (pole zostaje w danych wszystkich
+   arkuszy, żeby nie przepisywać ich bez potrzeby). Checklista kryteriów przeniesiona do zwijanego
+   `<details class="ocena-box">` z tytułem „Sprawdź obliczenia", domyślnie ZWINIĘTEGO (to samo załatwia
+   stary zarzut, że checklista spojlerowała rozwiązanie), stylizowanego jak mały panel boczny.
+   Najważniejsze: checklista PRZYZNAJE PUNKTY — `gradingCriteria` to teraz obiekty `{ tekst, punkty }`,
+   wynik zadania = suma zaznaczonych przycięta do `maxScore` (suma kryteriów NIE musi równać się
+   maxScore — zad. 9 ma 0+1+1 przy maxScore 2). Przyciski „0 pkt / 1 pkt / 2 pkt" zniknęły; zostały
+   wyłącznie jako awaryjna ścieżka dla zadań bez kryteriów w danych (dziś takich nie ma). Każde kryterium
+   ma po prawej mały licznik punktów wzorowany na `.exercise-score` (kryterium warte 0 pkt zostaje szare
+   także po zaznaczeniu). Punkty NIE są zapisywane — po reloadzie przeliczają się z `stan.kryteria`, więc
+   ścieżka oceniania pozostaje jedna. Dla wskaźników „oceń się" „ocenione" znaczy teraz „otwarty boks"
+   (`stan.ocenaOtwarta`), bo uczeń, który przejrzał listę i nic nie zaznaczył, też się ocenił — na 0 pkt.
+   Kryteria dopisane do WSZYSTKICH 15 zadań otwartych obu arkuszy (2024-grudzień: 3, 8, 9, 19, 26, 28, 30;
+   2026-maj: 7, 10, 11, 14, 15, 21, 27, 30) — treść to kolejne PROGI punktowe z zasad oceniania CKE,
+   alternatywy („ALBO" z klucza) sklejone w jedno zdanie słowem „lub", każdy próg po 1 pkt. Wariant progów
+   1:1 z kluczem wybrał Henrich (2026-08-06), po tym jak okazało się, że klucz CKE nie jest listą
+   niezależnych kroków, tylko kaskadą („2 pkt — to co na 1 pkt oraz…").  [zadania-otwarte, punktacja, schemat-danych, cke]
+
+Przy okazji domknięte i usunięte: issues/formularz-oceniania-otwarte.md (punkt 1 „ostateczna odpowiedź"
+i punkt 2 „checklista" zrobione/zastąpione redesignem, punkt 3 „zastrzeżenie prawne raz w stopce" jest
+w template.html jako `.samoocena-disclaimer` — przeredagowany, bo checklista przyznaje teraz punkty)
+oraz punkty 4 i 5 z issues/ui-spojnosc-etap2.md (sztywne 30% szerokości light-buttonów i krzywy układ
+przycisków samooceny na telefonie — oba zniknęły razem z tą paczką).
+
+Weryfikacja: brak przeglądarki w kontenerze (CDN Playwrighta odcięty przez firewall), więc do testów
+na żywo posłużył headless Chromium z npmowej paczki `@sparticuz/chromium` + biblioteki z jej `al2023.tar.br`
+(LD_LIBRARY_PATH). Przeklikane oba arkusze × oba motywy × 1400px i 390px: renderowanie wszystkich zadań,
+brak poziomego scrolla, boksy zwinięte, brak starych etykiet i przycisków punktowych, przycisk zgłoszenia
+w wierszu, KaTeX w kryteriach, naliczanie i przycinanie punktów, przetrwanie reloadu, ukrycie boksu
+w trybie egzaminu, gaszenie kropek „oceń się", przemalowanie widżetów po przełączeniu motywu bez reloadu.
+
+[ZROBIONE 2026-08-06] (Sonnet 5) Porządki w repo: usunięte `.idea/` (stary, niespójny konfig JetBrains —
+`.name` wskazywał na `matematykazen11.html`, `.iml` na `matematykazen10`, ślad skopiowania folderu
+z innego projektu) oraz pusty `package-lock.json` bez towarzyszącego `package.json` (projekt nie ma
+build systemu ani package managera). Do tego wcześniej ręcznie usunięte przez Henricha: testowy agent
+`.claude/agents/testowy agent claude w zakladce Chat.agent.md` i log `remoteContainers-*.log`. Zmiany
+tylko wystagowane, niezacommitowane na życzenie Henricha.
+
 [ZROBIONE 2026-08-04] Projekt udało się uruchomić w Dockerze na komputerze w domu — strona była dostępna lokalnie w przeglądarce i działała zgodnie z oczekiwaniami.
 
 [ZROBIONE 2026-08-02] (Opus 5 Medium) Licencja i zasady kontrybucji. `LICENSE.md` (wklejony ręcznie przez

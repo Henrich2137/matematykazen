@@ -1,4 +1,4 @@
-Ostatnia weryfikacja  16:45  02.08.2026 
+Ostatnia weryfikacja  17:30  06.08.2026 
 
 # Matematyka Zen
 
@@ -14,14 +14,15 @@ Zobacz na żywo: https://henrich2137.github.io/matematykazen/
 
 ## Funkcje
 
-- Dwa typy zadań: zamknięte (ABCD, prawda/fałsz, wielokrotny wybór, uzupełnianie) oceniane automatycznie na bieżąco, oraz otwarte — bez automatycznej oceny, rozwiązywane poza platformą i oceniane przez ucznia samodzielnie (patrz samoocena niżej).
+- Dwa typy zadań: zamknięte (ABCD, prawda/fałsz, wielokrotny wybór, uzupełnianie) oceniane automatycznie na bieżąco, oraz otwarte — rozwiązywane poza platformą, punktowane przez ucznia z checklisty kryteriów CKE (patrz samoocena niżej).
 - Tablica wzorów (oficjalny PDF CKE) w przesuwnym, skalowalnym okienku.
 - Zasady oceniania (klucz odpowiedzi CKE) w analogicznym, osobnym okienku.
 - Tryb próbnego egzaminu — 170 min z zegarem, ukrywa podpowiedzi/wyniki na czas trwania, podsumowanie po zakończeniu.
-- Samoocena zadań otwartych: rozwiązanie na kartce → porównanie z modelowym rozwiązaniem → ocena punktowa przez użytkownika.
+- Samoocena zadań otwartych: rozwiązanie na kartce → porównanie z modelowym rozwiązaniem → rozwijana checklista „Sprawdź obliczenia" z kryteriami z oficjalnych zasad oceniania CKE; zaznaczenie kryterium od razu dolicza jego punkty do wyniku zadania (checklista jest domyślnie zwinięta, żeby nie zdradzać rozwiązania).
+- Przy każdym zadaniu otwartym miejsce na notatki oraz pole „ostateczna odpowiedź" sprawdzane automatycznie.
 - Wskaźniki zadań czekających na samoocenę (po egzaminie).
 - Zgłaszanie błędu w zadaniu wprost pod nim (formularz z kategoriami, bez opuszczania strony).
-- Motyw jasny / ciemny / auto.
+- Motyw jasny / ciemny / auto — razem z motywem przełączają się też interaktywne widżety (ciemne płótno, jasne osie i opisy).
 - Panel boczny z ustawieniami (natychmiastowa poprawność vs. „sprawdź później", widoczność punktacji, itd.).
 - Postęp i ustawienia zapisywane lokalnie (bez konta, bez serwera).
 
