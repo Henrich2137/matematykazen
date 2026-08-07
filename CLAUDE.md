@@ -115,6 +115,7 @@ No build or test tooling. **Serve the directory with a static file server** (e.g
 ## User notes
 
 - Ostrzegaj mnie przed włączeniem ciężkiego zadania np subagent-heavy sessions, które ostatnio wciągnęły mi 60% session limit dosyć szybko gdy robiłem code-review ultra
+- Gdy treść do tego pasuje (wyjaśnienia, oceny, listy opcji, podsumowania), prezentuj informacje w punktach w stylu TODO.md — pogrubiony nagłówek/tytuł punktu, pod nim zagnieżdżone podpunkty z detalami — zamiast ciągłej prozy z nagłówkami. Tabelki i inne wizualne reprezentacje też mile widziane, jeśli pasują do treści. W takich zestawieniach można też używać kolorowych emotikonek jako oznaczeń stanu/oceny (np. ❌/✅ dla „niepotrzebne"/„potrzebne", „nie działa"/„działa"). ⭐ tylko dla faktycznej skali ocen (np. „4/5 gwiazdek") — NIE jako zamiennik neutralnego/nieokreślonego stanu. Do stanu neutralnego/„zależy od Ciebie" używaj 🟨 (żółty kwadrat) — trzeci stan obok ✅/❌. Nie dotyczy to nastrojowych emotikon/buźek (np. :), 🙂) — tych unikaj zawsze, także w punktach/tabelkach. Poza oznaczeniami stanu/oceny obowiązuje domyślny zakaz emoji z sekcji "Tone and style".
 
 ## Cloud sessions / routines
 
