@@ -1,5 +1,31 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-07] (Opus 5 Medium) Konfiguracja narzędzi, zero zmian w kodzie strony:
+
+1. Auto-fetch + auto-pull przy starcie VS Code. `.vscode/settings.json` → `git.autofetch: true`
+   (fetch w tle co ~3 min, nic nie scala), `.vscode/tasks.json` → task `git pull --ff-only`
+   z `runOn: folderOpen` (pull raz, przy otwarciu folderu). Świadomie natywnym mechanizmem VS Code,
+   a NIE przez `gitdoc.pullOnOpen`: gitdoc jest pakietem wszystko-albo-nic, więc włączenie go dla
+   samego pull-on-open wróciłoby z auto-commitem i `forcePush` (wyłączonymi celowo 2026-08-01).
+   `--ff-only` z założenia — nigdy nie nadpisze lokalnych commitów, przy rozjeździe po prostu nie
+   wykona się. Oba pliki śledzone przez gita, więc działa tak samo w kontenerze i poza nim (o to
+   chodziło Henrichowi: parytet obu środowisk). Na nowej maszynie VS Code pyta raz „Allow Automatic
+   Tasks in Folder?".
+
+2. Plugin superpowers 6.2.0 FAKTYCZNIE zainstalowany (scope `project`). Deklaracja
+   `enabledPlugins` w `.claude/settings.json` była poprawna od początku — brakowało samej
+   instalacji, `installed_plugins.json` był pusty `{}`, więc żaden z 14 skilli (m.in.
+   `brainstorming`) nigdy się nie ładował. Instalacja z oficjalnego marketplace'u Anthropic,
+   który przypina SHA `44c9b2d` — sprawdzone u źródła: to ten sam commit co ówczesny HEAD
+   `obra/superpowers`, więc przypięcie nic nie kosztuje. Duplikat instalacji w scope `user`
+   usunięty (decyzja Henricha: ma działać w tym repo, nie we wszystkich projektach).
+   Przy okazji instalator znormalizował końcówki linii w tym pliku CRLF→LF.
+   Pułapka na przyszłość, na którą sam się nabrałem: superpowers NIE jest podkatalogiem w cache
+   marketplace'u (jego wpis ma źródło typu `url`, klonowane dopiero przy instalacji), więc `ls`
+   po `plugins/` i `external_plugins/` fałszywie sugeruje, że pluginu tam nie ma.
+   Szczegóły w CLAUDE.md, sekcja „Claude Code — plugins / skills".
+   [narzedzia, git, vscode, claude-code, pluginy, skille]
+
 [ZROBIONE 2026-08-06] (Opus 5 Medium) Paczka czterech punktów doprecyzowanych z Sonnetem 2026-08-06
 (pliki issues/dark-mode-widzety-kolory.md i issues/zadania-otwarte-redesign.md — oba usunięte):
 

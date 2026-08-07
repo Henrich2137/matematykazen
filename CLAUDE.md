@@ -75,6 +75,33 @@ Verified against the installed extension (`vsls-contrib.gitdoc-0.2.3`, VS Code 1
 - There is **no "commit every N saves"** option — the only knobs are `autoCommitDelay`, `filePattern` (which files trigger a commit), `excludeBranches`, and fully manual mode (`gitdoc.enabled: false` + the `GitDoc: Commit` command).
 - `gitdoc.pushMode` defaults to **`"forcePush"`** — worth knowing before diagnosing any odd `origin` history.
 
+### Auto-fetch / auto-pull (added 2026-08-07) — nothing to do with gitdoc
+
+The repo configures two **native VS Code** features, deliberately chosen over `gitdoc.pullOnOpen`: gitdoc is all-or-nothing, so turning it on for pull-on-open would drag back auto-commit + `forcePush` (disabled on purpose, see above).
+
+- `.vscode/settings.json` → `"git.autofetch": true` — background `git fetch` every ~3 min. Fetch only, never merges; the visible effect is just the „↓N" counter in Source Control.
+- `.vscode/tasks.json` → a `git pull --ff-only` task with `"runOn": "folderOpen"` — pulls **once, when the folder is opened**. `--ff-only` is the safety: it can never overwrite local commits or create a merge; on diverged branches it simply fails and reveals the terminal.
+
+Both files are tracked, so they travel with the repo and behave identically inside and outside the devcontainer (that parity is the point). On a fresh machine/profile VS Code asks once — „Allow Automatic Tasks in Folder?" — and the task won't run until it's allowed.
+
+Consequence for the assistant: local `master` is often already up to date at session start, but a background fetch **does not touch the working tree**, so still run `git fetch` before reasoning about history in a long session.
+
+## Claude Code — plugins / skills (added 2026-08-07)
+
+`.claude/settings.json` is tracked in the repo and declares `enabledPlugins`, so the plugin travels with the repo:
+
+```json
+{ "enabledPlugins": { "superpowers@claude-plugins-official": true } }
+```
+
+- **superpowers** ([obra/superpowers](https://github.com/obra/superpowers), MIT, Jesse Vincent) — 14 skills (`brainstorming`, `systematic-debugging`, `test-driven-development`, `writing-plans`, `using-git-worktrees`, …). Installed at **scope `project`**, deliberately not `user`: it should apply to this repo, not to every one of Henrich's projects.
+- Installed from Anthropic's official marketplace `claude-plugins-official`, not from the upstream `superpowers-marketplace`. The official entry pins a SHA (`44c9b2d` = v6.2.0) — checked 2026-08-07: that is exactly the same commit as upstream HEAD at the time, so pinning costs nothing and guards against code being swapped under a tag.
+- **Search trap**: superpowers is **not** a subdirectory in the local marketplace cache (`~/.claude/plugins/marketplaces/claude-plugins-official/`) — neither in `plugins/` nor `external_plugins/`, because its `marketplace.json` entry uses a `url` source that is cloned only at install time. An `ls` over those directories falsely suggests the plugin isn't there (this misled me on 2026-08-07).
+- The plugin's code lives in the user cache (`~/.claude/plugins/cache/…`), **not in the repo** — a fresh machine has to fetch it from GitHub. Inside the container that passes the firewall (GitHub ranges are allowlisted).
+- It installs a **`SessionStart` hook** (`startup|clear|compact`, synchronous) that runs at every session start, `/clear` and compaction.
+- Skills only appear **after a Claude Code session restart**.
+- `vendor/superpowers/` holds only `LICENSE` (MIT) + `NOTICE.md` — a slot for skills that might later be copied and fine-tuned. It deliberately contains **no plugin code**; don't copy the plugin in there "for tidiness".
+
 ## Running / previewing
 
 No build or test tooling. **Serve the directory with a static file server** (e.g. `npx serve`, `python -m http.server`) — since the exercises.json migration the exam page loads its data with `fetch`, which does not work over `file://` (the page then shows a message explaining exactly this; index.html alone still opens fine from a file). No linter/test suite — verify changes by opening the page and clicking through the exercise(s) you touched.

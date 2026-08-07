@@ -18,6 +18,11 @@ Do szukania używaj najpierw tego indeksu (tagi niżej), potem grepa po konkretn
 
 
 == 04-biezace.md — partia OTWARTA (2026-07-27 → ?) ==
+- 2026-08-07 (Opus 5 Medium) — narzędzia, bez zmian w kodzie strony: auto-fetch + auto-pull przy starcie
+  VS Code natywnymi mechanizmami (`.vscode/tasks.json` runOn folderOpen + `git.autofetch`), świadomie
+  zamiast gitdoc.pullOnOpen; plugin superpowers 6.2.0 faktycznie zainstalowany w scope project
+  (deklaracja w .claude/settings.json była poprawna, brakowało instalacji)
+  [narzedzia, git, vscode, claude-code, pluginy, skille]
 - 2026-08-02 (Opus 5 Medium) — licencja PolyForm Noncommercial 1.0.0 + CLA: zweryfikowany LICENSE.md,
   nowe CONTRIBUTING.md / README.md / .github/PULL_REQUEST_TEMPLATE.md, właściciel jako pseudonim
   `Henrich2137`, URL Required Notice na GitHub Pages zamiast nieistniejącej domeny; odkłamana faza
