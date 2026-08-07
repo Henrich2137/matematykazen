@@ -5,16 +5,19 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
   - Punktacja przy zadaniach może być przesunięta troszeczke w lewo (o 40px), bliżej zadań.
 
+  - Zadania otworte, W rozwijanej liście "Sprawdź obliczenia" zmień na "Sprawdzanie obliczeń"
+  
+  - Zmień tło widżetów w trybie ciemnym na identycznez tłem strony. Obecnie się troche różni. W jasnym wygląda dobrze ale możesz sprawdzić czy jest na pewno to samo.
+
 
 <br>
 
 
 + NIE REALIZUJ
-
   + UI
+    
     - Przycisk "Rozwiązanie" w przypadku wielu rozwiązań powinien nazywać się "Rozwiązania" i mieć możliwość również rozwinięcia listy różnych rozwiązań: Zwykłe, Krok po kroku, Interaktywne... i każde z nich powinno mieć możliwość 
     (Okno "Zaznacz co masz w rozwiązaniu" spoilujące rozwiązanie — rozwiązane przy okazji redesignu zadań otwartych wyżej: box jest domyślnie zwinięty.)
-
 
     - Menu / Panel boczny:
       - Swipe/Przesunięcie w lewo powinno zwijać panel boczny (tylko na telefonie)
