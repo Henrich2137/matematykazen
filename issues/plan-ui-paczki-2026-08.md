@@ -73,7 +73,7 @@ wyraźnie więcej niż jego wartość — zrób wersję dobrą, opisz w commicie
 
 ---
 
-## Paczka 1 — Drobnica
+## Paczka 1 — Drobnica  ✅ ZROBIONA (2026-08-09, v11 Beta)
 
 **Model: Sonnet 5 High.** Mała, dobrze określona. Jest też testem całego łańcucha
 (serwer → zrzut → poprawka → zrzut), więc rób ją pierwszą.
@@ -94,7 +94,7 @@ wyraźnie więcej niż jego wartość — zrób wersję dobrą, opisz w commicie
 
 ---
 
-## Paczka 2 — Panel boczny
+## Paczka 2 — Panel boczny  ✅ ZROBIONA (2026-08-09, v12 Beta)
 
 **Model: Opus 5 Medium.** Miks CSS i JS w jednym regionie ekranu. Swipe to jedyna nowa
 funkcjonalność w całym planie i ma realne pułapki, stąd mocniejszy model.
@@ -125,7 +125,7 @@ Kontekst: `app/bootstrap.js` (panel `#sidebar`), `app/exam.js` (mechanizm `setEx
 
 ---
 
-## Paczka 3 — Kolory i motyw ciemny
+## Paczka 3 — Kolory i motyw ciemny  ✅ ZROBIONA (2026-08-09, v13 Beta, razem z dokładkami niżej)
 
 **Model: Opus 5 Medium.** Mała, ale wymaga porównywania wartości piksel po pikselu.
 
@@ -160,7 +160,7 @@ więc doklejone są tutaj.
    jego zawartość nie mieści się na ekranie. Nie popsuj swipe'a z paczki 2 — to ten sam
    obszar gestów.
 
-## Paczka 4 — Spójność UI, etap 2
+## Paczka 4 — Spójność UI, etap 2  ← DO ZROBIENIA
 
 **Model: Fable.** Największa i najbardziej oceniająca — audyt całego `style/`.
 **Idzie ostatnia**, bo zamiata po wartościach ustalonych w paczkach 2 i 3.

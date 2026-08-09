@@ -3,10 +3,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.
 
-  - Zmień tło widżetów w trybie ciemnym na identycznez tłem strony. Obecnie się troche różni. W jasnym wygląda dobrze ale możesz sprawdzić czy jest na pewno to samo.
-
-  - tło formularz zgłoszenia błędu powinnp być troszke ciemniejsze niż obecnie. Ale nie aż tak ciemne jak główne tło strony, coś pomiędzy.
-
   - Spójność UI, sesja 2 (jeszcze NIE zrobione, ciąg dalszy sesji 1 [ZROBIONE 2026-07-27], było przydzielone dla Sonnet High). Szczegóły: issues/ui-spojnosc-etap2.md
     - Sesja 1 [ZROBIONE 2026-07-27] + 3 Twoje drobnice (cienie sidebara, ciemniejszy tekst przycisku stopki, tytuł 32%) — patrz done/03-2026-07-27.md i done/04-biezace.md. Do sprawdzenia na żywo (v0.07): stopka, przełącznik w obu motywach, panele PDF, kreska i strzałka sidebara, tytuł arkusza na telefonie.
     - 4 różne rozmiary fontu na karcie zadania — ujednolicić
