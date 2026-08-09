@@ -19,9 +19,10 @@
     }
 }
 
-/* Badge punktów wisi 120px za prawą krawędzią karty (650px + 2×50px padding),
-   więc mieści się dopiero od ~1010px szerokości okna — poniżej wraca do
-   prawego górnego rogu karty, żeby nie robić poziomego scrolla. */
+/* Badge punktów wisi 80px za prawą krawędzią karty (650px + 2×50px padding;
+   2026-08-09 przysunięty z 120px bliżej treści, patrz TODO.md), więc mieści
+   się dopiero od niecałych ~950px szerokości okna — poniżej wraca do prawego
+   górnego rogu karty, żeby nie robić poziomego scrolla. */
 @media (max-width: 1024px) {
     .exercise-score {
         top: 8px;

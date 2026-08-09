@@ -91,15 +91,9 @@
 }
 
 /* Suma punktów bierze wygląd z reguły „pigułki" wyżej; tu tylko przygaszony
-   kolor tekstu (to informacja, nie kontrolka). Odsunięta od prawej krawędzi
-   #naroznik-prawy (margin-right), żeby siedzieć bliżej treści zadań zamiast
-   lepić się do krawędzi ekranu — #naroznik-prawy jest pinowany prawą
-   krawędzią (right: 20px), więc margines na TYM elemencie przesuwa samą
-   pigułkę w lewo, nie ruszając #egzamin-timer/#egzamin-koniec-bar (nigdy nie
-   widoczne jednocześnie z #total-score, patrz style/exam.css). */
+   kolor tekstu (to informacja, nie kontrolka). */
 #total-score {
     color: var(--text-faint);
-    margin-right: 40px;
 }
 /* Procent zdobytych punktów obok sumy (tryb ćwiczeniowy). Zielony dopiero od
    progu zdawalności (30%); cursor: help podpowiada, że po najechaniu jest
@@ -589,7 +583,9 @@ body.sidebar-otwarty #sidebar-linia {
 
     position: absolute;
     top: 48px;
-    right: -120px;
+    /* -120px → -80px: badge podjechał ~40px bliżej karty zadania (Henrich,
+       TODO.md), zamiast wisieć daleko za prawą krawędzią. */
+    right: -80px;
     /* Zrównanie w pionie z pierwszą linią treści (numerem zadania). Bez tego
        badge siedział optycznie ~16px za wysoko względem "Zadanie N.". */
     margin-top: 16px;
