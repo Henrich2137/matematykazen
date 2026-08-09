@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=STIX+Two+Math&display=swap');
+/* Lora + STIX Two Math z dysku, nie z Google Fonts (zmiana 2026-08-09).
+   Dlaczego i co dokładnie leży w środku — komentarz na górze vendor/fonts/fonts.css. */
+@import url('../vendor/fonts/fonts.css');
 
 /* KaTeX (vendor/katex/): delikatnie mniejszy niż domyślne 1.21em, żeby wzory
    nie dominowały nad tekstem zadania; blokowe wzory (\[ \]) są wyśrodkowane

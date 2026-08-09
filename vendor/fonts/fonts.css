@@ -1,0 +1,102 @@
+/* Lora + STIX Two Math — zwendorowane lokalnie (2026-08-09), tak jak KaTeX.
+   Wcześniej style/base.css ciągnął je @importem z fonts.googleapis.com. Trzy
+   powody zmiany: strona miała działać offline (KaTeX został zwendorowany
+   dokładnie po to, a fonty i tak wychodziły do sieci), każde wejście ucznia
+   generowało połączenie z Google, a wewnątrz devcontainera ta domena jest
+   zablokowana firewallem — czyli zrzuty ekranu robione do pracy nad CSS-em
+   pokazywały font zastępczy zamiast prawdziwej typografii strony.
+
+   Źródło plików: pakiety npm @fontsource/lora i @fontsource/stix-two-math
+   (oba 5.3.0), które przepakowują dokładnie te binaria, co Google Fonts.
+   Licencja obu rodzin: SIL OFL 1.1 — patrz LICENSE-lora i LICENSE-stix-two-math.
+
+   Zakres jest CELOWO wąski — tylko to, czego strona faktycznie używa
+   (deklaracje w style/: Lora 400, Lora 600, Lora 400 italic + STIX Two Math).
+   Cyrylica, wietnamski i wagi 500/700 nie są kopiowane. Dokładając nowy krój
+   lub wagę w CSS-ie trzeba dołożyć tu @font-face, inaczej przeglądarka po
+   cichu zjedzie na zastępnik.
+
+   Tylko woff2, bez woff: format jest wspierany przez każdą przeglądarkę od
+   2016 r., a drugi zestaw plików podwoiłby wagę katalogu bez zysku.
+
+   `unicode-range` jest tu OBOWIĄZKOWE i przepisane 1:1 z Google Fonts
+   (pole `unicode.json` w pakietach fontsource). Bez niego deklaracja
+   latin-ext przykryłaby latin dla tej samej rodziny/wagi i polskie ogonki
+   rozjechałyby się z resztą tekstu. */
+
+/* ——— Lora: latin ——— */
+
+@font-face {
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(./files/lora-latin-400-normal.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url(./files/lora-latin-600-normal.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'Lora';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url(./files/lora-latin-400-italic.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ——— Lora: latin-ext ———
+   Tu mieszkają polskie ą ć ę ł ń ś ź ż (ó jest już w latin, bo to Latin-1). */
+
+@font-face {
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(./files/lora-latin-ext-400-normal.woff2) format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url(./files/lora-latin-ext-600-normal.woff2) format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+    font-family: 'Lora';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url(./files/lora-latin-ext-400-italic.woff2) format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* ——— STIX Two Math ———
+   Google wydaje ten krój wyłącznie w podzbiorze `latin` (nie ma latin-ext) i
+   ta wersja to odwzorowuje. Polskie ogonki spadają więc na Lorę — dokładnie
+   tak, jak działo się to dotąd przy ładowaniu z CDN-u.
+
+   To najcięższy plik w repo po stronie fontów (~400 kB) — krój matematyczny
+   niesie komplet symboli. Zostaje, bo style/ deklaruje go jako pierwszy
+   w rodzinie dla treści zadań. */
+
+@font-face {
+    font-family: 'STIX Two Math';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(./files/stix-two-math-latin-400-normal.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
