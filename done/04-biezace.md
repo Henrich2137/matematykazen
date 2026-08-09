@@ -1,5 +1,33 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-09] (Opus 5 Medium) Fałszywy alarm: blokada scrolla pod panelem bocznym
+na Pixelu 7a — to był cache przeglądarki, nie błąd.
+
+Po wypchnięciu v13 Henrich zgłosił, że na Pixelu 7a (GrapheneOS) arkusz nadal przewija się
+pod otwartym panelem, mimo że w Chromium i w symulowanym telefonie w Firefoksie blokada
+działa. Wpis trafił do TODO.md razem z czterema tropami (visual viewport przy przybliżonej
+stronie, próg 1300px liczony z `innerWidth`, brak `touch-action` na `#sidebar-przyciemnienie`,
+pokrewieństwo z issues/zadania-nie-renderuja-sie-mobile.md).
+
+**Po odświeżeniu strony na telefonie blokada zadziałała poprawnie** — w symulowanym Firefoksie
+również. Żaden z tropów nie okazał się potrzebny; telefon trzymał starą wersję plików.
+Punkt usunięty z TODO.md bez żadnej zmiany w kodzie. Mechanizm z v13 zostaje bez poprawek:
+`body.blokada-scrolla` (`position: fixed` + zapamiętany `scrollY` w ujemnym `top`), zakładana
+poniżej progu 1300px — `app/bootstrap.js`, `style/sheet.css:175`.
+
+**Wniosek na przyszłość, wart zapamiętania przy każdym teście na telefonie:** pierwszy objaw
+po wdrożeniu bywa cache'em, nie regresją. Numer wersji przy logo („vN Beta") istnieje dokładnie
+po to — zanim ktokolwiek zacznie diagnozować zgłoszenie z telefonu, warto najpierw sprawdzić,
+czy w rogu widnieje ta wersja, która zawiera poprawkę. Tu tego kroku zabrakło i kosztowało
+to wpis w TODO.md plus cztery hipotezy do zbadania.
+
+Przy okazji tej samej sesji Henrich potwierdził, że **zadania renderują się na Pixelu 7a
+poprawnie** — dotyczy to issues/zadania-nie-renderuja-sie-mobile.md, ale że tamta awaria bywała
+przerywana, plik zostaje w issues/ do świadomej decyzji Henricha, a nie zamykany przy okazji.
+
+[tagi: mobile, cache, panel-boczny, falszywy-alarm]
+
+
 [ZROBIONE 2026-08-09] (Opus 5 Medium) Paczka 3 „Kolory i motyw ciemny" + dwie dokładki
 z issues/plan-ui-paczki-2026-08.md (wersja v13 Beta):
 

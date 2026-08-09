@@ -3,12 +3,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.
 
-  - Blokada przewijania pod otwartym panelem bocznym NIE działa na Pixelu 7a (GrapheneOS), mimo że w Chromium na symulowanym telefonie działa, a na symulowanym telefonie w Firefoksie też jest OK (panel przewija się w pionie, arkusz stoi). Zrobione w v13: `body.blokada-scrolla` (`position: fixed` + zapamiętany `scrollY` w ujemnym `top`), zakładane poniżej progu 1300px — `app/bootstrap.js` i `style/sheet.css:175`. Tropy do sprawdzenia, zanim ktoś zacznie przepisywać mechanizm:
-    - czy to w ogóle scroll dokumentu, czy **panoramowanie przybliżonej strony** (visual viewport). Tego drugiego nie da się zablokować CSS-em i pasowałoby do starszej notatki „strona na telefonie wygląda jakby była przybliżona" niżej w INNYCH NOTATKACH — jeśli to to, prawdziwą naprawą jest meta viewport / szerokość layoutu, nie blokada scrolla.
-    - czy klasa `blokada-scrolla` faktycznie wchodzi na tym urządzeniu (próg 1300px liczy `innerWidth`; sprawdzić, co Pixel 7a raportuje przy jego skali).
-    - czy gest nie idzie po `#sidebar-przyciemnienie` (position: fixed, inset: 0) — brakuje mu `touch-action`/`overscroll-behavior`.
-    - Pixel 7a + GrapheneOS ma już jedną własną awarię w tym repo (issues/zadania-nie-renderuja-sie-mobile.md) — warto sprawdzić, czy to nie ta sama rodzina problemu.
-
   - Spójność UI, sesja 2 (jeszcze NIE zrobione, ciąg dalszy sesji 1 [ZROBIONE 2026-07-27], było przydzielone dla Sonnet High). Szczegóły: issues/ui-spojnosc-etap2.md
     - Sesja 1 [ZROBIONE 2026-07-27] + 3 Twoje drobnice (cienie sidebara, ciemniejszy tekst przycisku stopki, tytuł 32%) — patrz done/03-2026-07-27.md i done/04-biezace.md. Do sprawdzenia na żywo (v0.07): stopka, przełącznik w obu motywach, panele PDF, kreska i strzałka sidebara, tytuł arkusza na telefonie.
     - 4 różne rozmiary fontu na karcie zadania — ujednolicić
