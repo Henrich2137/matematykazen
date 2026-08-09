@@ -1,5 +1,19 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-09] (Fable 5) Paczka 4 „Spójność UI, etap 2" — audyt całego style/, v14 Beta.
+
+Zamknięte wszystkie punkty z issues/ui-spojnosc-etap2.md (plik przeniesiony do done/ui-spojnosc-etap2.md):
+- **Zasada hoveru** zapisana w komentarzu przy `#naroznik-prawy button:hover` (sheet.css): chrome = podświetlone tło (decyzja Henricha), kontrolki treści = ciemniejsza ramka. Pigułki narożników, strzałka panelu i przełącznik motywu landingu przeszły z ramki na tło.
+- **Hover na odpowiedziach** (ABCD/PF/„N pkt") — nowy, ramką `--border-strong`, z `:not(...)` na stany poprawne/błędne/.selected.
+- **Skala kontrolek karty zadania** — trzy klasy (duża 18px / kontrolka 17px, 8px 11px / tekstowa 16px) opisane przy banerze „PRZYCISKI ODPOWIEDZI"; ujednolicone paddingi pól fillIn i „ostatecznej odpowiedzi" (6px 8px → 8px 11px) oraz oba przyciski „Sprawdź" (wspólne 15px / 8px 18px).
+- **`--shadow-modal`** — nowy token (oba ciemne bloki) zamiast cienia wpisanego na sztywno w oknie podsumowania egzaminu; okno dostało też `--radius-kontrolka` (było ostatnią „kartą" z ostrymi rogami).
+- **Ramki 2px → 1px** tam, gdzie grubość nic nie kodowała: `#wskazniki-ukryj` i trzy separatory bloków rozwiązania (`.solution-text/step-by-step/interactive-container`).
+- **Landing vs arkusz**: typografia już spójna (lede/CTA 18px = treść zadania; CTA świadomie trzyma wagę w rozmiarze — komentarz z 2026-07-27), zapisana komentarzem przy `.landing-lede`. Kontrast WCAG zmierzony z getComputedStyle w obu motywach: jedyny oblewający był jasny `--text-faint` #858585 (3.7:1 przy 13px) → #767676 (4.54:1); ciemny motyw przechodził w całości. Zamyka to też issues/dark-mode-css-zmienne-landing.md (punkty --border-close/--bg-hover naprawione już wcześniej, plik usunięty).
+- Punkty rozstrzygnięte decyzjami Henricha, bez zmian w kodzie: karta zadania bez ramki/zaokrągleń, marginesy w obecnych proporcjach.
+Weryfikacja: komplet 16 zrzutów przed/po + ujęcia celowane (podsumowanie egzaminu, pola zadań otwartych, hovery, separatory) + liczbowo przez getComputedStyle. ARCHITECTURE_CSS.md zaktualizowany (sekcja „Shape tokens": zasada hoveru, --shadow-modal, skala kontrolek).
+
+[tagi: css, ui, tokeny, hover, wcag, kontrast, landing, egzamin, spojnosc]
+
 [ZROBIONE 2026-08-09] (Opus 5 Medium) Fałszywy alarm: blokada scrolla pod panelem bocznym
 na Pixelu 7a — to był cache przeglądarki, nie błąd.
 

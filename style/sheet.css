@@ -59,8 +59,16 @@
 #naroznik-prawy button {
     cursor: pointer;
 }
+/* ZASADA HOVERU (decyzja Henricha 2026-08-09, spójność UI etap 2):
+   • chrome strony (pigułki narożników, strzałka panelu, wiersze sidebara,
+     przełącznik trybu, krzyżyki paneli) → PODŚWIETLONE TŁO (--bg-muted /
+     --bg-hover), ramka bez zmian;
+   • kontrolki w TREŚCI zadania (odpowiedzi ABCD/PF, samoocena, przyciski
+     „sprawdź", stopka, pigułki formularza) → CIEMNIEJSZA RAMKA
+     (--border-strong), bo ich tło i inset box-shadow niosą już stany
+     poprawne/błędne/.selected i hover tłem by z nimi kolidował. */
 #naroznik-prawy button:hover {
-    border-color: var(--border-strong);
+    background-color: var(--bg-muted);
 }
 
 /* Logo jest linkiem do strony głównej (index.html) — wygląda jak zwykły napis.
@@ -154,8 +162,9 @@
     cursor: pointer;
     transition: transform 180ms cubic-bezier(0.2, 0.7, 0.3, 1), color 120ms ease;
 }
+/* Hover chrome = tło (patrz ZASADA HOVERU przy #naroznik-prawy button). */
 #sidebar-toggle:hover {
-    border-color: var(--border-strong);
+    background-color: var(--bg-muted);
     color: var(--text);
 }
 /* Otwarty panel → strzałka obraca się o 180° (◀ ↔ ▶), tą samą krzywą
@@ -645,7 +654,19 @@ body.sidebar-otwarty #sidebar-linia {
     color: var(--correct);
 }
 
-/* ===== PRZYCISKI ODPOWIEDZI ===== */
+/* ===== PRZYCISKI ODPOWIEDZI =====
+   SKALA KONTROLEK NA KARCIE ZADANIA (spójność UI etap 2, 2026-08-09) — trzy
+   klasy rozmiaru, żeby cztery paddingi i rozmiary fontu nie rozjeżdżały się
+   dalej po jednej kontrolce na raz:
+     • DUŻA (odpowiedzi ABCD / multiselect): 18px — jak treść zadania,
+       padding 10px 12px;
+     • KONTROLKA (pola fillIn / „ostateczna odpowiedź", samoocena „N pkt"):
+       17px, padding 8px 11px;
+     • TEKSTOWA (textarea rozwiązania): 16px — proza, nie pojedyncza wartość,
+       padding 10px 12px.
+   Przyciski „Sprawdź" przy polach: 15px, padding 8px 18px (akcja drugorzędna,
+   mniejsza od kontrolki, którą sprawdza). P/F zostaje 44px/16px — jego rozmiar
+   niesie znaczenie (para jednoznakowych przycisków przy stwierdzeniu). */
 .button-container {
     width: 90%;
     margin: 10px auto 0;
@@ -696,6 +717,16 @@ body.sidebar-otwarty #sidebar-linia {
 .button-container button.selected {
     border-color: var(--accent-blue);
     box-shadow: inset 0 0 0 1px var(--accent-blue);
+}
+/* Hover klikalnych odpowiedzi (ABCD, P/F, „N pkt") — informacja zwrotna przed
+   kliknięciem, której wcześniej nie było. RAMKĄ, nie tłem (patrz ZASADA HOVERU
+   przy #naroznik-prawy button): tło + inset box-shadow niosą już stany
+   poprawne/błędne/.selected, więc :not() wyłącza hover na ocenionych/zaznaczonych.
+   .answer-check-floating ma własny hover (tło) i niebieską ramkę — wykluczony. */
+.button-container button:hover:not(.correct):not(.incorrect):not(.selected):not(.answer-check-floating),
+.pf-row button:hover:not(.correct):not(.incorrect):not(.selected),
+.self-score-container button:hover:not(.selected) {
+    border-color: var(--border-strong);
 }
 
 /* Kontener odpowiedzi jest układem odniesienia dla pływającego przycisku
@@ -804,7 +835,7 @@ body.sidebar-otwarty #sidebar-linia {
 }
 .fill-in-input {
     width: 130px;
-    padding: 6px 8px;
+    padding: 8px 11px; /* klasa KONTROLKA — patrz SKALA KONTROLEK wyżej */
     border: 1px solid var(--border-strong);
     border-radius: var(--radius-kontrolka);
     background-color: var(--bg);
@@ -826,12 +857,13 @@ body.sidebar-otwarty #sidebar-linia {
     display: block;
     width: auto;
     margin: 12px auto 0;
-    padding: 8px 22px;
+    /* 15px / 8px 18px — jak .final-answer-check (SKALA KONTROLEK wyżej). */
+    padding: 8px 18px;
     border: 1px solid var(--border);
     border-radius: var(--radius-kontrolka);
     background-color: var(--bg);
     font-family: inherit;
-    font-size: 16px;
+    font-size: 15px;
     color: var(--text);
     cursor: pointer;
 }
@@ -923,7 +955,7 @@ body.sidebar-otwarty #sidebar-linia {
 }
 .final-answer-input {
     width: 160px;
-    padding: 6px 8px;
+    padding: 8px 11px; /* klasa KONTROLKA — patrz SKALA KONTROLEK wyżej */
     border: 1px solid var(--border-strong);
     border-radius: var(--radius-kontrolka);
     background-color: var(--bg);
@@ -945,7 +977,9 @@ body.sidebar-otwarty #sidebar-linia {
     display: inline-block;
     width: auto;
     margin: 0;
-    padding: 6px 18px;
+    /* 15px / 8px 18px — jak .fill-in-check (SKALA KONTROLEK wyżej); pion 8px
+       zrównuje wysokość z polem obok (też 8px). */
+    padding: 8px 18px;
     border: 1px solid var(--border);
     border-radius: var(--radius-kontrolka);
     background-color: var(--bg);
@@ -1133,7 +1167,7 @@ body.sidebar-otwarty #sidebar-linia {
 }
 .solution-text-container {
     padding: 30px 0 30px 30px;
-    border-bottom: 2px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle); /* 2px→1px (etap 2): grubość nie niosła znaczenia */
 }
 .solution-text-container:empty {
     display: none;
@@ -1151,7 +1185,7 @@ body.sidebar-otwarty #sidebar-linia {
 
 .solution-step-by-step-container {
     display: none;
-    border-bottom: 2px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle); /* 2px→1px (etap 2): grubość nie niosła znaczenia */
     text-align: center;
 }
 .solution-step-by-step-container video {
@@ -1246,7 +1280,7 @@ body.sidebar-otwarty #sidebar-linia {
 }
 .solution-interactive-container {
     padding-bottom: 30px;
-    border-bottom: 2px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle); /* 2px→1px (etap 2): grubość nie niosła znaczenia */
     text-align: center;
 }
 .solution-interactive-container:empty {

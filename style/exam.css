@@ -241,8 +241,12 @@ body.tryb-egzaminu .final-answer-check {
     margin: 0 20px;
     padding: 26px 34px;
     border: 1px solid var(--border-window);
+    /* Promień + nazwany cień (etap 2): było jedyną „kartą" strony z ostrymi
+       narożnikami i cieniem wpisanym na sztywno. Modal ma prawo do mocniejszego
+       cienia niż --shadow-panel — ale jako token (--shadow-modal, base.css). */
+    border-radius: var(--radius-kontrolka);
     background-color: var(--bg);
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.10);
+    box-shadow: var(--shadow-modal);
     text-align: left;
     font-size: 17px;
     line-height: 1.55;
@@ -312,7 +316,9 @@ body.wskazniki-scroll-aktywny .wskaznik-otwarte {
     display: none;
     max-width: calc(100vw - 20px);
     padding: 6px 12px;
-    border: 2px solid var(--wskaznik-border);
+    /* 2px→1px (etap 2): standardowa grubość kontrolki; żółty kolor ramki sam
+       wiąże przycisk z kropkami, grubość nic tu nie kodowała. */
+    border: var(--border-kontrolka) solid var(--wskaznik-border);
     border-radius: var(--radius-kontrolka);
     background-color: var(--bg);
     font-family: inherit;

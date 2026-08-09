@@ -3,17 +3,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.
 
-  - Spójność UI, sesja 2 (jeszcze NIE zrobione, ciąg dalszy sesji 1 [ZROBIONE 2026-07-27], było przydzielone dla Sonnet High). Szczegóły: issues/ui-spojnosc-etap2.md
-    - Sesja 1 [ZROBIONE 2026-07-27] + 3 Twoje drobnice (cienie sidebara, ciemniejszy tekst przycisku stopki, tytuł 32%) — patrz done/03-2026-07-27.md i done/04-biezace.md. Do sprawdzenia na żywo (v0.07): stopka, przełącznik w obu motywach, panele PDF, kreska i strzałka sidebara, tytuł arkusza na telefonie.
-    - 4 różne rozmiary fontu na karcie zadania — ujednolicić
-    - Przyciski odpowiedzi (ABCD, P/F, punkty) bez podświetlenia na hover
-    - Dwa różne style hover w menu (ramka vs tło) — wybrać jeden
-    - Cień okienka podsumowania egzaminu wpisany na sztywno zamiast jako token
-    - Dwa miejsca z ramką 2px zamiast standardowej 1px
-    - Okienko podsumowania egzaminu bez zaokrąglonych rogów (reszta strony ma)
-    - Marginesy bez spójnej skali (10/16/20/40/50/60/70/80px) — do sprawdzenia ostrożnie, na zrzutach
-    - Karta zadania bez ramki/zaokrąglenia, reszta strony już zaokrąglona — decyzja Henricha
-    - Landing i arkusz mają różne rozmiary fontu dla podobnych elementów + do sprawdzenia kontrast WCAG (issues/dark-mode-css-zmienne-landing.md)
+  - nic
 
 
 <br>
@@ -29,7 +19,11 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + TESTOWANIE HENRICH:
 
-  - nic (v13 przetestowana: swipe OK, przewijanie panelu OK, odcień formularza OK; blokada scrolla na Pixelu 7a nie zadziałała — wpis przeniesiony do DO ZROBIENIA)
+  - (v14) Hover myszą: menu/pigułki/strzałka panelu podświetlają się teraz TŁEM, a odpowiedzi ABCD/PF/„N pkt" ciemniejszą RAMKĄ (nowość — wcześniej nie reagowały wcale). Pojeździj kursorem i oceń, czy to rozróżnienie dobrze się czuje.
+
+  - (v14) Jasny motyw: drobne szare teksty (suma punktów w rogu, stopka, podpisy pod przyciskami na landingu) są odrobinę ciemniejsze (poprawka kontrastu WCAG). Oceń, czy nadal wyglądają dyskretnie, czy już za bardzo rzucają się w oczy.
+
+  - (v14) Pola wpisywane (zad. 10, „ostateczna odpowiedź") są o ~4px wyższe (ujednolicony padding). Rzut oka na telefonie, czy wpisywanie i układ wierszy nadal wyglądają dobrze.
 
 <br>
 
@@ -94,6 +88,9 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
   - sprawdzić merytorykę arkuszy (na końcu, przed rozpowszechnieniem)
 
+  - wysyłanie całego localStorage przez użytkownika podczas zgłaszania błędu jest a bit scatchy też troche niebezpiczne
+
+  - 
 
 <br>
 
@@ -146,6 +143,12 @@ Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz is
     - Gdy `matematykazen.pl` ruszy: odkomentować wpis w `CONTENT_DOMAINS` w `.devcontainer/init-firewall.sh` (dziś domena nie istnieje w DNS) i przy okazji poprawić `Required Notice:` w LICENSE.md, które wciąż wskazuje na GitHub Pages.
 
     - Po najbliższym Rebuild Container: zalogować się raz `gh auth login` — od teraz `~/.config/gh` siedzi w wolumenie `matematykazen-gh-config` i przeżywa przebudowy.
+
+  + FABLE DOPISAŁ (Fable 5, po paczce 4 „Spójność UI etap 2", 2026-08-09):
+
+    - W jasnym motywie --text-faint-2 (#909090, 3.3:1) i --text-faint-3 (#999, 2.8:1) są poniżej WCAG AA (4.5:1) przy 13–14px tekstach (etykiety „miejsce na notatki"/samooceny, uchwyty paneli PDF). Paczka 4 poprawiła tylko --text-faint (mierzone elementy landingu i stopek); te dwa tokeny do decyzji — przyciemnienie zmieni sporo drobnych etykiet naraz.
+
+    - Cienie kropek wskaźników (0 1px 4px w exam.css) świadomie zostały poza tokenem — dwa drobne, powiązane znaczeniowo wystąpienia; tokenizować dopiero, gdyby doszło trzecie.
 
 + ZASADY DLA CLAUDE-A:
 

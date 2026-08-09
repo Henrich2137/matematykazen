@@ -51,7 +51,9 @@
     --text-soft: #444;        /* teksty landingu */
     --text-muted: #555;       /* zegar egzaminu */
     --text-muted-2: #606060;  /* przyciski tekstowe, tytuły widżetów */
-    --text-faint: #858585;    /* suma punktów, podpisy CTA */
+    --text-faint: #767676;    /* suma punktów, podpisy CTA, stopki; 2026-08-09:
+                                 #858585 dawało 3.7:1 na bieli — poniżej WCAG AA
+                                 (4.5:1) dla drobnego tekstu; #767676 = 4.54:1 */
     --text-faint-2: #909090;  /* etykiety pól, wg-neutral */
     --text-faint-3: #999;     /* podtytuł trybu, uchwyty paneli */
 
@@ -131,7 +133,7 @@
     --radius-kontrolka: 6px;
 
     /* Domyślna grubość ramki kontrolki. 2px zostaje tylko tam, gdzie NIESIE
-       znaczenie (obwódki wartości w widżetach, CTA landingu). */
+       znaczenie (obwódki wartości .wg-a/.wg-b w widżetach — kodują kolor). */
     --border-kontrolka: 1px;
 
     /* Wspólny cień pływających paneli (panel boczny, panele PDF, toast).
@@ -139,6 +141,11 @@
        `0 4px 16px rgba(0,0,0,.12)` sidebara — panel ma leżeć blisko strony,
        nie unosić się nad nią. */
     --shadow-panel: 0 2px 10px rgba(0, 0, 0, 0.07);
+
+    /* Cień modala (okno podsumowania egzaminu) — celowo mocniejszy niż
+       --shadow-panel: modal przykrywa całą stronę, więc może się unosić wyżej.
+       Nazwany token zamiast wartości w miejscu (spójność UI, etap 2). */
+    --shadow-modal: 0 6px 24px rgba(0, 0, 0, 0.10);
 
     /* Aktywny segment przełącznika trybu (ćwiczenia/egzamin). Dawniej pełna
        inwersja (tło --text): w jasnym motywie czarny prostokąt, w ciemnym
@@ -321,6 +328,7 @@ html.theme-dark {
     /* Cień na ciemnym tle prawie nie pracuje — ta sama geometria, mocniejsza
        nieprzezroczystość. Promienie i grubość ramki są wspólne (z :root). */
     --shadow-panel: 0 2px 10px rgba(0, 0, 0, 0.35);
+    --shadow-modal: 0 6px 24px rgba(0, 0, 0, 0.45);
 
     /* Aktywny segment: CIEMNIEJSZY od bieli (dawniej tło --text ≈ #e6e6e6). */
     --segment-bg: #303030;

@@ -12,14 +12,12 @@ Zasady:
 
 - [dwie-karty-tryb-egzaminu.md](dwie-karty-tryb-egzaminu.md) — dwie karty tego samego arkusza blokują "zakończ egzamin"
 - [dark-mode-obrazki-wideo.md](dark-mode-obrazki-wideo.md) — obrazki CKE i wideo z Manima świecą na biało w dark mode
-- [dark-mode-css-zmienne-landing.md](dark-mode-css-zmienne-landing.md) — landing page używa niewłaściwych zmiennych CSS (kontrast WCAG)
 - [dark-mode-wskazniki-scroll.md](dark-mode-wskazniki-scroll.md) — kropki wskaźników "gumkują" przy scrollowaniu
 - [dokumentacja-exam-mode-luka.md](dokumentacja-exam-mode-luka.md) — ARCHITECTURE.md nie opisuje połowy trybu egzaminu
 - [numer-zadania-podnumer.md](numer-zadania-podnumer.md) — regex numeru zadania gubi podnumery (12.1 vs 12.2)
 - [motyw-rozjezdza-sie-miedzy-kartami.md](motyw-rozjezdza-sie-miedzy-kartami.md) — dark/light mode niespójny między kartami przeglądarki
 - [ocenianie-cichy-blad-zapisu.md](ocenianie-cichy-blad-zapisu.md) — `ustawFazeOceniania()` cicho połyka błędy zapisu do localStorage
 - [wskazniki-reload-faza-oceniania.md](wskazniki-reload-faza-oceniania.md) — wskaźniki „oceń się" znikają po odświeżeniu strony po egzaminie
-- [ui-spojnosc-etap2.md](ui-spojnosc-etap2.md) — spójność UI, sesja 2: reszta drobnic z audytu (dla Sonneta High)
 - [zadania-nie-renderuja-sie-mobile.md](zadania-nie-renderuja-sie-mobile.md) — zadania nie renderują się na telefonie (Pixel 7a/GrapheneOS, Firefox i Brave)
 
 ## Opisy konstrukcji (nie problemy)

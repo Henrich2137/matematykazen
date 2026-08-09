@@ -44,8 +44,10 @@
     color: var(--text-muted);
     cursor: pointer;
 }
+/* Hover chrome = podświetlone tło, nie ramka (ZASADA HOVERU — patrz komentarz
+   przy #naroznik-prawy button w style/sheet.css). */
 .landing-theme-toggle:hover {
-    border-color: var(--text);
+    background-color: var(--bg-muted);
     color: var(--text);
 }
 .landing-hero h1 {
@@ -56,6 +58,10 @@
 .landing-lede {
     max-width: 560px;
     margin: 0 auto 30px;
+    /* 18px = rozmiar treści zadania na arkuszu (.exercise-container) — landing
+       i arkusz celowo dzielą skalę: lede/CTA 18px, podpisy 14px, stopka 13px
+       (sprawdzone przy audycie etapu 2; CTA trzyma wagę w rozmiarze, patrz
+       komentarz przy .landing-cta). */
     font-size: 18px;
     line-height: 1.6;
     color: var(--text-soft);

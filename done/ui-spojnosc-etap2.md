@@ -1,4 +1,6 @@
-# Spójność UI — etap 2: reszta drobnic z audytu
+# [ZAMKNIĘTE 2026-08-09, Fable 5 — paczka 4, v14 Beta] Spójność UI — etap 2: reszta drobnic z audytu
+
+**Wszystkie punkty zamknięte** — jak, patrz wpis w done/04-biezace.md. Punkty 3, 9 i 10 rozstrzygnięte decyzjami Henricha (hover chrome = tło; marginesy i karta zadania bez zmian). Poniżej oryginalny wsad.
 
 Wsad dla **Sonneta High**. Powstał z audytu w sesji 1 (Opus High, 2026-07-27) — tam wprowadzono
 warstwę tokenów i zamknięto 6 punktów Henricha, patrz `done/` (wpis „Spójność UI, sesja 1").

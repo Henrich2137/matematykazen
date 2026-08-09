@@ -160,7 +160,7 @@ więc doklejone są tutaj.
    jego zawartość nie mieści się na ekranie. Nie popsuj swipe'a z paczki 2 — to ten sam
    obszar gestów.
 
-## Paczka 4 — Spójność UI, etap 2  ← DO ZROBIENIA
+## Paczka 4 — Spójność UI, etap 2  ✅ ZROBIONA (2026-08-09, v14 Beta — plan tym samym DOMKNIĘTY w całości)
 
 **Model: Fable.** Największa i najbardziej oceniająca — audyt całego `style/`.
 **Idzie ostatnia**, bo zamiata po wartościach ustalonych w paczkach 2 i 3.
