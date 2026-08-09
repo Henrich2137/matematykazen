@@ -25,3 +25,7 @@ Zasady:
 ## Opisy konstrukcji (nie problemy)
 
 - [playwright-podglad.md](playwright-podglad.md) — Playwright + Chromium w kontenerze: skąd się bierze przeglądarka i jak podbić wersję
+
+## Plany
+
+- [plan-ui-paczki-2026-08.md](plan-ui-paczki-2026-08.md) — otwarte punkty UI z TODO.md podzielone na 4 sekwencyjne paczki + decyzje Henricha; wsad dla sesji autonomicznych

@@ -112,6 +112,8 @@ No build or test tooling. **Serve the directory with a static file server** (e.g
 
 Inside the devcontainer there **is** a browser: Playwright + Chromium, for screenshotting your own visual/CSS changes. The browser binary is not downloaded in the container (the firewall blocks Playwright's CDN) — it comes from a read-only bind of the host's `~/.cache/ms-playwright`, and its version is pinned in `.devcontainer/Dockerfile`. See [issues/playwright-podglad.md](issues/playwright-podglad.md) for usage and how to bump the version.
 
+Don't hand-roll a Playwright script for routine visual work — [tools/zrzuty.js](tools/zrzuty.js) already takes the standard set (arkusz / landing / sidebar / exam mode × desktop + phone × light + dark) into `/tmp/zrzuty/<label>/`, so two runs can be compared frame by frame. Its header documents the flags and the two traps that make screenshots silently lie (the mandatory `NODE_PATH`, and the theme key/class mismatch it now guards against).
+
 ## Content notes
 
 - All user-facing content and code comments are Polish; keep new content in Polish, direct exam-prep tone.
