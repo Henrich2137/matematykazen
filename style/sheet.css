@@ -164,6 +164,22 @@ body.sidebar-otwarty #sidebar-toggle {
     transform: rotate(180deg);
 }
 
+/* Blokada scrolla tła na czas otwartego panelu — zakładana WYŁĄCZNIE przez JS
+   (app/bootstrap.js) i tylko poniżej progu nakładania, bo tylko wtedy panel
+   zasłania arkusz. Dlaczego position: fixed, a nie overflow: hidden na <body>:
+   na iOS Safari `overflow: hidden` nie zatrzymuje przewijania dokumentu.
+   Cena tej metody — dokument „przeskakuje" na górę — jest spłacona przez JS:
+   ustawia `top: -<pozycja>px` przy otwarciu i przywraca scroll przy zamknięciu.
+   Sam panel (#sidebar, overflow-y: auto) scrolluje się dalej normalnie — jest
+   position: fixed, więc ta reguła go nie dotyczy. */
+body.blokada-scrolla {
+    position: fixed;
+    left: 0;
+    right: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
 #sidebar-przyciemnienie {
     position: fixed;
     inset: 0;
@@ -1473,7 +1489,11 @@ body.bez-zglaszania .report-error-link {
     width: 100%;
     padding: 20px 22px;
     border: 1px solid var(--border-window);
-    background-color: var(--bg-muted);
+    /* Własny token, nie --bg-muted: w ciemnym motywie formularz ma być „czymś
+       pomiędzy" tłem strony a resztą paneli — wyraźnie odcięty od karty zadania,
+       ale nie jaśniejszy niż trzeba. W jasnym motywie wartość jest ta sama co
+       dawniej (#f7f7f7), więc nic się tam nie zmienia. */
+    background-color: var(--bg-formularz);
     text-align: left;
     font-size: 16px;
     line-height: 1.55;

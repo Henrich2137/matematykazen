@@ -141,6 +141,25 @@ Kontekst: `app/bootstrap.js` (panel `#sidebar`), `app/exam.js` (mechanizm `setEx
 
 ---
 
+### Dokładki do paczki 3 (z testów Henricha na v12 Beta, 2026-08-09)
+
+Oba punkty należą tematycznie do panelu bocznego, ale paczka 2 była już zamknięta i wypchnięta,
+więc doklejone są tutaj.
+
+3. **„Zgłoś błąd pod zadaniem" ma być blokowane w trybie egzaminu**, tak jak „Punktacja"
+   i „Poprawność". Henrich: „będzie tak spójniej z resztą". Mechanizm istnieje —
+   dopisz przełącznik do `OPCJE_MENU_EGZAMIN` w `app/exam.js` (jedyny pisarz `disabled`
+   na tych przyciskach to `odswiezBlokadyMenu()`). Sprawdź, czy sam formularz zgłoszenia
+   pod zadaniem zachowuje się przy tym sensownie.
+
+4. **Otwarty panel boczny na telefonie nie może przewijać arkusza pod spodem.** Dziś ruch
+   palcem w pionie przy otwartym panelu scrolluje treść za nim (zgłoszone przez Henricha
+   na v12 Beta). Zablokuj scroll tła na czas otwarcia panelu — uwaga na dwie klasyczne
+   pułapki: `overflow: hidden` na `body` na iOS gubi pozycję scrolla (po zamknięciu strona
+   skacze na górę), a blokada nie może zabić przewijania **wewnątrz samego panelu**, gdy
+   jego zawartość nie mieści się na ekranie. Nie popsuj swipe'a z paczki 2 — to ten sam
+   obszar gestów.
+
 ## Paczka 4 — Spójność UI, etap 2
 
 **Model: Fable.** Największa i najbardziej oceniająca — audyt całego `style/`.

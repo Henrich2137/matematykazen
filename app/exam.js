@@ -125,7 +125,11 @@ if (trybEgzaminBtn) {
 // „Poprawność" (#natychmiastowa-toggle) jest tu od 2026-08-09: w egzaminie
 // poprawność i tak jest ukryta, więc przełączanie „kiedy ją pokazywać" niczego
 // nie zmienia — a niewyszarzone ustawienie sugerowało, że zmienia.
-const OPCJE_MENU_EGZAMIN = ["show-all-solutions", "score-switch-button", "reset-scores", "egzamin-start", "sprawdz-wszystkie", "sprawdz-wszystkie-stopka", "natychmiastowa-toggle"];
+// „Zgłoś błąd pod zadaniem" (#zglos-blad-toggle) jest tu od 2026-08-09: linki
+// „zgłoś błąd" i tak znikają w egzaminie razem z całym .light-button-container
+// (style/exam.css), więc przełącznik nie miał czego włączać — a niewyszarzony
+// sugerował, że ma.
+const OPCJE_MENU_EGZAMIN = ["show-all-solutions", "score-switch-button", "reset-scores", "egzamin-start", "sprawdz-wszystkie", "sprawdz-wszystkie-stopka", "natychmiastowa-toggle", "zglos-blad-toggle"];
 
 // „Sprawdź wszystkie odpowiedzi" nie ma czego odsłaniać, gdy poprawność
 // pokazuje się natychmiast — dawniej przycisk wtedy ZNIKAŁ z panelu i panel
@@ -165,6 +169,12 @@ function enableExamMode() {
     document.body.classList.add("tryb-egzaminu");
     updateModeSwitch();
     odswiezBlokadyMenu();
+    // Formularz zgłoszenia mógł być otwarty w karcie zadania w chwili startu —
+    // jego kotwica (.light-button-container) właśnie zniknęła, więc zostałby
+    // wiszącym blokiem w egzaminie. Funkcja pochodzi z app/report.js, który
+    // ładuje się PO tym pliku — stąd sprawdzenie typeof (w chwili wywołania,
+    // czyli po kliknięciu użytkownika, jest już zdefiniowana).
+    if (typeof zamknijModalZgloszenia === "function") zamknijModalZgloszenia();
     tickExam();
     if (!egzaminInterval) egzaminInterval = setInterval(tickExam, 1000);
 }

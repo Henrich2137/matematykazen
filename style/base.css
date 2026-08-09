@@ -42,6 +42,7 @@
     --bg-subtle: #fafafa;     /* nagłówek tabeli danych */
     --bg-code: #f3f3f3;       /* kod inline w komunikacie błędu */
     --bg-hover: #f0f0f0;      /* hover krzyżyka paneli */
+    --bg-formularz: #f7f7f7;  /* formularz zgłoszenia błędu — w ciemnym „coś pomiędzy” tłem strony a --bg-muted */
     --canvas-bg: #fff;        /* płótno widżetów — ciemnieje razem z motywem (patrz PALETA WIDŻETÓW) */
     --overlay-bg: rgba(255, 255, 255, 0.88); /* nakładka podsumowania egzaminu */
 
@@ -159,6 +160,7 @@
         --bg-subtle: #222;
         --bg-code: #2b2b2b;
         --bg-hover: #303030;
+        --bg-formularz: #1e1e1e;
         --overlay-bg: rgba(20, 20, 20, 0.9);
 
         --text: #e6e6e6;
@@ -197,7 +199,10 @@
         --accent-green: #4a9d54;
         --overlay-icon: #555;
 
-        --canvas-bg: #1c1c1c;
+        /* W ciemnym motywie płótno ma być NIEODRÓŻNIALNE od tła strony (--bg):
+           widżet jest treścią zadania, nie osobną kartą. Dawniej #1c1c1c — o 8
+           jednostek jaśniejsze niż tło, co dawało widoczny prostokąt. */
+        --canvas-bg: #141414;
 
         /* Paleta widżetów — ciemna (patrz blok w :root). Akcenty (zielony, czerwony,
            niebieski, fiolet) biorą się z --correct/--incorrect/--accent-* i mają już
@@ -244,6 +249,7 @@ html.theme-dark {
     --bg-subtle: #222;
     --bg-code: #2b2b2b;
     --bg-hover: #303030;
+    --bg-formularz: #1e1e1e;
     --overlay-bg: rgba(20, 20, 20, 0.9);
 
     --text: #e6e6e6;
@@ -282,7 +288,10 @@ html.theme-dark {
     --accent-green: #4a9d54;
     --overlay-icon: #555;
 
-    --canvas-bg: #1c1c1c;
+    /* W ciemnym motywie płótno ma być NIEODRÓŻNIALNE od tła strony (--bg):
+       widżet jest treścią zadania, nie osobną kartą. Dawniej #1c1c1c — o 8
+       jednostek jaśniejsze niż tło, co dawało widoczny prostokąt. */
+    --canvas-bg: #141414;
 
     /* Paleta widżetów — ciemna (patrz blok w :root). Akcenty (zielony, czerwony,
        niebieski, fiolet) biorą się z --correct/--incorrect/--accent-* i mają już

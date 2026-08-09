@@ -1,5 +1,32 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-09] (Opus 5 Medium) Paczka 3 „Kolory i motyw ciemny" + dwie dokładki
+z issues/plan-ui-paczki-2026-08.md (wersja v13 Beta):
+
+1. **Tło widżetów w ciemnym = tło strony.** Przyczyną nie był żaden styl widżetu, tylko osobny
+   token `--canvas-bg` (`canvas { background-color: var(--canvas-bg) }` w sheet.css): w ciemnym
+   miał `#1c1c1c` przy tle strony `#141414`. Ustawiony na `#141414` w OBU blokach ciemnej palety
+   w base.css. Zweryfikowane `getComputedStyle`: ciemny `rgb(28,28,28)` → `rgb(20,20,20)` = body;
+   jasny bez zmian, potwierdzone liczbowo `rgb(255,255,255)` = body.
+2. **Tło formularza zgłoszenia — „coś pomiędzy".** Żaden istniejący token nie pasował
+   (`--bg-subtle` #222 zmieniłby też jasny motyw na jaśniejszy), więc nowy `--bg-formularz`:
+   jasny `#f7f7f7` (dokładnie jak dotąd, zero zmian), ciemny `#1e1e1e` między tłem strony
+   `#141414` a `--bg-muted` `#262626`. `.zglos-blad-okno` czyta ten token.
+3. **„Zgłoś błąd pod zadaniem" blokowane w egzaminie** — `zglos-blad-toggle` dopisany do
+   `OPCJE_MENU_EGZAMIN` w app/exam.js (linki „zgłoś błąd" i tak znikają w egzaminie razem
+   z `.light-button-container`). `enableExamMode()` zamyka dodatkowo otwarty formularz, bo jego
+   kotwica właśnie znikała i blok zostawał wiszący. Sprawdzone: w egzaminie `disabled=true`,
+   `opacity 0.4`, formularz `display:none`; po zakończeniu egzaminu wraca `disabled=false`.
+4. **Otwarty panel boczny nie przewija arkusza pod spodem.** `body.blokada-scrolla`
+   (`position: fixed`, sheet.css) + w app/bootstrap.js `zablokujScrollTla()`/`odblokujScrollTla()`
+   zapamiętujące pozycję w ujemnym `top` i przywracające ją `scrollTo` — świadomie nie
+   `overflow: hidden`, bo na iOS nie działa, i z zapamiętaniem pozycji, bo `position: fixed`
+   sam z siebie skacze na górę. Zakładane tylko poniżej progu 1300 px (`sidebarNaklada()`),
+   plus handler `resize` zdejmujący blokadę po przekroczeniu progu z otwartym panelem.
+   Test (390×780, hasTouch): pozycja 900 → w trakcie `top:-900px`, po zamknięciu znów 900;
+   swipe w lewo z paczki 2 nadal zwija panel i zdejmuje blokadę. Panel jest `position: fixed`
+   z `overflow-y: auto`, więc reguła go nie dotyczy i scroll w środku zostaje.
+
 [ZROBIONE 2026-08-09] (Opus 5 Medium) Paczka 2 „Panel boczny" z issues/plan-ui-paczki-2026-08.md
 (wszystkie pięć punktów, wersja v12 Beta):
 

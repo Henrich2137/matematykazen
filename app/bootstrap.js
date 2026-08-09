@@ -31,8 +31,34 @@ function sidebarNaklada() {
 function czySidebarOtwarty() {
     return document.body.classList.contains("sidebar-otwarty");
 }
+/* Blokada przewijania arkusza pod otwartym panelem (zgłoszone na v12 Beta:
+   ruch palcem w pionie scrollował treść za panelem). Zakładana tylko wtedy, gdy
+   panel NAKŁADA się na treść — powyżej progu 1300px siedzi w marginesie i nic
+   nie zasłania, więc blokowanie strony byłoby uciążliwe.
+   Mechanika: body dostaje position: fixed (patrz .blokada-scrolla w sheet.css)
+   i ujemny `top` równy dotychczasowej pozycji scrolla, żeby strona nie skoczyła
+   na górę; przy zdejmowaniu blokady pozycja wraca przez scrollTo. Scroll WEWNĄTRZ
+   panelu działa dalej — #sidebar jest position: fixed z overflow-y: auto. */
+let pozycjaScrollaPrzedPanelem = null;
+function zablokujScrollTla() {
+    if (pozycjaScrollaPrzedPanelem !== null) return;
+    pozycjaScrollaPrzedPanelem = window.scrollY || window.pageYOffset || 0;
+    document.body.style.top = `-${pozycjaScrollaPrzedPanelem}px`;
+    document.body.classList.add("blokada-scrolla");
+}
+function odblokujScrollTla() {
+    if (pozycjaScrollaPrzedPanelem === null) return;
+    const y = pozycjaScrollaPrzedPanelem;
+    pozycjaScrollaPrzedPanelem = null;
+    document.body.classList.remove("blokada-scrolla");
+    document.body.style.top = "";
+    // Bez płynnego przewijania — to przywrócenie stanu, nie nawigacja.
+    window.scrollTo(0, y);
+}
+
 function otworzSidebar() {
     document.body.classList.add("sidebar-otwarty");
+    if (sidebarNaklada()) zablokujScrollTla();
     if (sidebarToggle) {
         sidebarToggle.setAttribute("aria-expanded", "true");
         sidebarToggle.setAttribute("aria-label", "Zamknij menu");
@@ -55,6 +81,7 @@ function otworzSidebar() {
 // (visibility: hidden) panelu i Tab startuje z nieoczywistego miejsca.
 function zamknijSidebar(wrocFokus) {
     document.body.classList.remove("sidebar-otwarty");
+    odblokujScrollTla();
     if (sidebarToggle) {
         sidebarToggle.setAttribute("aria-expanded", "false");
         sidebarToggle.setAttribute("aria-label", "Otwórz menu");
@@ -73,6 +100,14 @@ if (sidebarPrzyciemnienie) {
 }
 document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && czySidebarOtwarty()) zamknijSidebar(true);
+});
+// Obrót telefonu / zmiana rozmiaru okna przy otwartym panelu: powyżej progu
+// panel przestaje nakładać się na treść, więc blokada scrolla traci sens
+// (i uwięziłaby stronę). Poniżej progu — zakładamy ją z powrotem.
+window.addEventListener("resize", () => {
+    if (!czySidebarOtwarty()) return;
+    if (sidebarNaklada()) zablokujScrollTla();
+    else odblokujScrollTla();
 });
 if (sidebar) {
     // Delegacja na kontenerze: własny handler przycisku odpala się PIERWSZY

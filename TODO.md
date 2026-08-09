@@ -39,6 +39,12 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
   - v12 Beta: czy stany przełączników („ciemny", „wszystko", „natychmiast") czytają się już ostro na Twoim ekranie — na zrzutach bleeding zniknął, ale to zależy od wygładzania czcionek w systemie.
 
+  - v13 Beta, TELEFON: przy otwartym panelu bocznym spróbuj przewinąć arkusz palcem po ciemnym tle obok panelu — nie ma drgnąć. Po zamknięciu panelu strona ma zostać dokładnie tam, gdzie była (żadnego skoku na górę). Sprawdź też oba kierunki obrotu ekranu z otwartym panelem.
+
+  - v13 Beta, TELEFON: czy swipe w lewo zamykający panel działa dalej tak samo jak w v12 (blokada scrolla ruszała ten sam obszar gestów) i czy przewijanie WEWNĄTRZ panelu (gdy pozycje nie mieszczą się na ekranie, np. w poziomie) nadal działa.
+
+  - v13 Beta, motyw CIEMNY: czy tło formularza zgłoszenia błędu (#1e1e1e) jest teraz w sam raz — ma być ciemniejsze niż było, ale wciąż odróżnialne od tła strony (#141414). Na zrzucie różnica jest subtelna.
+
 <br>
 
 
