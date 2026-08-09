@@ -81,7 +81,15 @@
         "anthropic.claude-code",
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
-        "eamodio.gitlens"
+        "mhutchie.git-graph",
+        // Podglad KaTeX-a w plikach .md. Uwaga: exercises.json to nie
+        // markdown, wiec wzorow z arkuszy tym nie podejrzysz — to jest pod
+        // ARCHITECTURE.md i transkrypt tablicy wzorow.
+        "goessner.mdmath",
+        // Serwer statyczny. Od migracji na exercises.json strona laduje dane
+        // fetchem, ktory nie dziala po file:// — bez serwera arkusz sie nie
+        // otworzy. VS Code sam przekieruje port na hosta.
+        "ritwickdey.LiveServer"
       ]
     }
   }
