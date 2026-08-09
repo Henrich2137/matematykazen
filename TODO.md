@@ -25,6 +25,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
     - Przycisk "Sprawdź wszystkie odpowiedzi" powinien być umieszczony jako podpunkt pod "Poprawność"? (podobnie jak to wygląda z opcjami dot. trybu egzaminu)
 
+    - Formularz zgłoszenia na telefonie jest wysoki: 8 pigułek kategorii idzie po jednej na wiersz (~340 px), więc obowiązkowe pole opisu jest daleko w dole. Do rozważenia: dwie pigułki w rzędzie szczególnie te gdzie są krótkie nazwy. Nie przekombinuj tego. zrób tak aby na pewno działało, nie musi być idealnie. Niektóre pigułki mogą być po prostu mniejsze czy coś.
 
 <br>
 
@@ -88,8 +89,10 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     - Możliwość zmiany powyższego w ustawieniach: "Widoczność zwykłego rozwiązania: gdy brakuje krok po kroku, zawsze, nigdy
 
   - Przycisk "Zresetuj ustawienia" z popup-em do potwierdzenie. Podświetlajacy się na czerwono po najechaniu i widoczny na dole side panelu aby przypadkiem go nie kliknąć.
+  - Wsparcie, donate-y itd.
 
-  - W index.html dodać sekcję o autorze i link do Patronite
+    - W index.html dodać sekcję o autorze i link do Patronite
+    - Na githubie w ustawieniach repo też można coś podpiąć chyba ale trzeba sprawdizć czy byłoby to fair.
 
   - Przekminić i dodać zasadę dotyczącą tłumaczenia mi (Henrichowi) rzeczy (jak mam przeprowadzić test, jak wygląda projekt itd.)
 
@@ -112,7 +115,7 @@ Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz is
     - Tryb testowy dla zgłaszania błędów (app/report.js): przycisk „Wyślij zgłoszenie" zamieniony na „Wyślij zgłoszenie lokalnie" 
       - (np. pod `?test-zgloszenie=1`, wzorem `?test-egzamin=1`), który loguje payload do konsoli/localStorage zamiast robić fetch do Formspree — żeby testować całą ścieżkę (walidacja, honeypot, throttling, toast) bez zużywania miesięcznego limitu 50 zgłoszeń.
 
-    - Formularz zgłoszenia na telefonie jest wysoki: 8 pigułek kategorii idzie po jednej na wiersz (~340 px), więc obowiązkowe pole opisu jest daleko w dole. Do rozważenia: dwie pigułki w rzędzie, skrócone nazwy albo opis nad kategoriami. (nie ma dramatu, jest w miare ok)
+    
 
 
   + Opus 5, medium
