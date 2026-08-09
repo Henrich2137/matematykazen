@@ -46,7 +46,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
   Paczka z 2026-08-06 (Opus 5 Medium) — sprawdzone przeze mnie w headless Chromium (oba arkusze,
   oba motywy, 1400px i 390px), ale warto przeklikać na żywo, zwłaszcza na telefonie. Szczegóły
-  zmian: done/04-biezace.md.
+  zmian: done/04-biezace.md
 
   - Widżety w ciemnym motywie: otwórz rozwiązania zadań z widżetem (1, 5, 9, 10, 12.1, 15, 18, 20, 30)
     i sprawdź, czy osie/liczby/opisy są czytelne na ciemnym płótnie. Potem PRZEŁĄCZ motyw przy
