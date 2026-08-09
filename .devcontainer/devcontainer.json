@@ -55,11 +55,36 @@
     // zapisać. Konsekwencja: zmiany w .devcontainer robisz z hosta, a operacje
     // gita, które dotykają tego katalogu (checkout innej gałęzi, pull), nie
     // przejdą z wnętrza kontenera.
-    "source=${localWorkspaceFolder}/.devcontainer,target=/workspaces/matematykazen/.devcontainer,type=bind,readonly"
+    "source=${localWorkspaceFolder}/.devcontainer,target=/workspaces/matematykazen/.devcontainer,type=bind,readonly",
+
+    // Chromium dla Playwrighta — do oglądania własnych zmian w CSS zrzutami
+    // ekranu (patrz issues/playwright-podglad.md).
+    //
+    // Bind z hosta, a nie wolumen, bo wolumen trzeba by czymś wypełnić, a
+    // pobranie przeglądarki wymaga sieci: firewall blokuje cdn.playwright.dev
+    // i storage.googleapis.com, a dopisanie ich do allowlisty odpadło — to
+    // anycast Cloudflare/Azure, czyli dokładnie ten problem, dla którego
+    // świadomie odrzucono formspree.io (komentarz w init-firewall.sh).
+    // Przeglądarkę pobiera się więc raz na hoście, do ~/.cache/ms-playwright.
+    //
+    // readonly, bo Playwright w trakcie działania tylko czyta binarki — a
+    // kontener nie ma po co móc podmienić pliku wykonywalnego, który sam
+    // uruchamia.
+    //
+    // ${localEnv:HOME}, bo ${localWorkspaceFolder} wskazuje repo, a ten katalog
+    // leży poza nim (celowo — 650 MB binarek nie ma prawa trafić do gita).
+    //
+    // UWAGA: wersja pakietu `playwright` instalowana w Dockerfile musi być
+    // DOKŁADNIE ta, którą pobrano tutaj — biblioteka żąda konkretnego builda
+    // przeglądarki i przy rozjeździe odmawia startu.
+    "source=${localEnv:HOME}/.cache/ms-playwright,target=/home/node/.cache/ms-playwright,type=bind,readonly"
   ],
 
   "containerEnv": {
-    "CLAUDE_CONFIG_DIR": "/home/node/.claude"
+    "CLAUDE_CONFIG_DIR": "/home/node/.claude",
+    // Bez tego Playwright szuka przeglądarek pod swoją domyślną ścieżką i
+    // nie zobaczy tej podmontowanej wyżej.
+    "PLAYWRIGHT_BROWSERS_PATH": "/home/node/.cache/ms-playwright"
   },
   // Wykonuje się NA HOŚCIE, zanim powstanie kontener. Odpala obserwatora w tle:
   // poczeka, aż kontener wstanie, i nałoży na niego firewall z zewnątrz.

@@ -21,3 +21,7 @@ Zasady:
 - [wskazniki-reload-faza-oceniania.md](wskazniki-reload-faza-oceniania.md) — wskaźniki „oceń się" znikają po odświeżeniu strony po egzaminie
 - [ui-spojnosc-etap2.md](ui-spojnosc-etap2.md) — spójność UI, sesja 2: reszta drobnic z audytu (dla Sonneta High)
 - [zadania-nie-renderuja-sie-mobile.md](zadania-nie-renderuja-sie-mobile.md) — zadania nie renderują się na telefonie (Pixel 7a/GrapheneOS, Firefox i Brave)
+
+## Opisy konstrukcji (nie problemy)
+
+- [playwright-podglad.md](playwright-podglad.md) — Playwright + Chromium w kontenerze: skąd się bierze przeglądarka i jak podbić wersję

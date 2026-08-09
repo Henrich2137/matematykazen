@@ -110,6 +110,8 @@ Every commit (local or cloud) gets a `Co-Authored-By:` trailer in the form **`Lo
 
 No build or test tooling. **Serve the directory with a static file server** (e.g. `npx serve`, `python -m http.server`) — since the exercises.json migration the exam page loads its data with `fetch`, which does not work over `file://` (the page then shows a message explaining exactly this; index.html alone still opens fine from a file). No linter/test suite — verify changes by opening the page and clicking through the exercise(s) you touched.
 
+Inside the devcontainer there **is** a browser: Playwright + Chromium, for screenshotting your own visual/CSS changes. The browser binary is not downloaded in the container (the firewall blocks Playwright's CDN) — it comes from a read-only bind of the host's `~/.cache/ms-playwright`, and its version is pinned in `.devcontainer/Dockerfile`. See [issues/playwright-podglad.md](issues/playwright-podglad.md) for usage and how to bump the version.
+
 ## Content notes
 
 - All user-facing content and code comments are Polish; keep new content in Polish, direct exam-prep tone.

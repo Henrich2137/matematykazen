@@ -86,6 +86,54 @@ RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/
 # Install Claude
 RUN npm install -g @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}
 
+# Playwright — do robienia zrzutów strony przy zadaniach wizualnych.
+# Sama przeglądarka NIE jest tu pobierana: przychodzi bindem z hosta
+# (~/.cache/ms-playwright), bo firewall kontenera blokuje CDN Playwrighta.
+# Szczegóły: issues/playwright-podglad.md.
+#
+# Wersja przypięta na sztywno i MUSI się zgadzać z buildem pobranym na hoście —
+# przy rozjeździe Playwright odmawia startu. Podbicie = pobranie nowej wersji na
+# hoście + zmiana tej liczby, oba naraz.
+ARG PLAYWRIGHT_VERSION=1.62.1
+
+USER root
+# Biblioteki systemowe Chromium, lista z samego Playwrighta
+# (lib/server/registry/nativeDeps.js, wpis "debian12-x64" → chromium).
+# Fonty osobno: obraz node:20 jest praktycznie bez fontów, a strona jest po
+# polsku — bez pokrycia Latin Extended-A zrzuty pokazują puste prostokąty.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  libasound2 \
+  libatk-bridge2.0-0 \
+  libatk1.0-0 \
+  libatspi2.0-0 \
+  libcairo2 \
+  libcups2 \
+  libdbus-1-3 \
+  libdrm2 \
+  libgbm1 \
+  libglib2.0-0 \
+  libnspr4 \
+  libnss3 \
+  libpango-1.0-0 \
+  libx11-6 \
+  libxcb1 \
+  libxcomposite1 \
+  libxdamage1 \
+  libxext6 \
+  libxfixes3 \
+  libxkbcommon0 \
+  libxrandr2 \
+  fonts-liberation \
+  fonts-dejavu-core \
+  fonts-noto-color-emoji \
+  && apt-get clean && rm -rf /var/lib/apt/lists/*
+USER node
+
+# PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1, bo inaczej postinstall próbuje ściągnąć
+# przeglądarkę drugi raz — tym razem w kontenerze, czyli przez firewall, czyli
+# build pada.
+RUN PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm install -g playwright@${PLAYWRIGHT_VERSION}
+
 
 # Copy and set up firewall script
 COPY init-firewall.sh /usr/local/bin/
