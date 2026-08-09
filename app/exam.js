@@ -221,7 +221,7 @@ function finishExam(czasMinal) {
         `<p>Wykorzystany czas: ${formatTime(uzyty)} ze ${formatTime(CZAS_EGZAMINU_MS)}.</p>` +
         `<p><b>Zadania otwarte (${maxOtwarte} pkt) nie są jeszcze policzone.</b> Rozwiązania są już ` +
         `odblokowane — porównaj z nimi swoje notatki i pod każdym zadaniem otwartym rozwiń ` +
-        `„Sprawdź obliczenia", zaznaczając to, co masz w rozwiązaniu; punkty doliczą się do sumy w pasku.</p>` +
+        `„Sprawdzanie obliczeń", zaznaczając to, co masz w rozwiązaniu; punkty doliczą się do sumy w pasku.</p>` +
         `<button id="egzamin-zamknij" class="light-button">wróć do arkusza</button>`;
     egzaminPodsumowanie.style.display = "flex";
     okno.querySelector("#egzamin-zamknij").addEventListener("click", () => {

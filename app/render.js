@@ -111,7 +111,7 @@ function loadExercises() {
         let finalInput = null;
         let ocenKoncowaOdpowiedz = null;
         const criteriaBoxes = [];
-        // Checklista kryteriów: zwijany boks „Sprawdź obliczenia" i jego funkcja
+        // Checklista kryteriów: zwijany boks „Sprawdzanie obliczeń" i jego funkcja
         // licząca punkty — przywracanie postępu musi po odtworzeniu zaznaczeń
         // przeliczyć wynik (punkty NIE są zapisywane, tylko wyprowadzane).
         let ocenaBox = null;
@@ -520,7 +520,7 @@ function loadExercises() {
             // zniknęły). Każde kryterium ma własną wartość punktową z klucza CKE,
             // wynik zadania = suma zaznaczonych, przycięta do maxScore (suma
             // kryteriów nie musi się równać maxScore — patrz ARCHITECTURE.md).
-            // Całość siedzi w zwijanym boksie „Sprawdź obliczenia", domyślnie
+            // Całość siedzi w zwijanym boksie „Sprawdzanie obliczeń", domyślnie
             // ZWINIĘTYM, żeby lista kryteriów nie zdradzała rozwiązania od razu.
             // Wewnątrz .self-score-container, więc w trybie egzaminu znika razem
             // z resztą samooceny.
@@ -531,7 +531,7 @@ function loadExercises() {
 
                 const naglowek = document.createElement("summary");
                 naglowek.className = "ocena-box-tytul";
-                naglowek.textContent = "Sprawdź obliczenia";
+                naglowek.textContent = "Sprawdzanie obliczeń";
                 clBox.appendChild(naglowek);
 
                 const tresc = document.createElement("div");

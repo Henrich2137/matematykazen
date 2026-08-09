@@ -91,9 +91,15 @@
 }
 
 /* Suma punktów bierze wygląd z reguły „pigułki" wyżej; tu tylko przygaszony
-   kolor tekstu (to informacja, nie kontrolka). */
+   kolor tekstu (to informacja, nie kontrolka). Odsunięta od prawej krawędzi
+   #naroznik-prawy (margin-right), żeby siedzieć bliżej treści zadań zamiast
+   lepić się do krawędzi ekranu — #naroznik-prawy jest pinowany prawą
+   krawędzią (right: 20px), więc margines na TYM elemencie przesuwa samą
+   pigułkę w lewo, nie ruszając #egzamin-timer/#egzamin-koniec-bar (nigdy nie
+   widoczne jednocześnie z #total-score, patrz style/exam.css). */
 #total-score {
     color: var(--text-faint);
+    margin-right: 40px;
 }
 /* Procent zdobytych punktów obok sumy (tryb ćwiczeniowy). Zielony dopiero od
    progu zdawalności (30%); cursor: help podpowiada, że po najechaniu jest
@@ -1018,12 +1024,27 @@ body.sidebar-otwarty #sidebar-linia {
    przy każdym zadaniu. */
 .samoocena-disclaimer {
     max-width: 650px;
-    margin: 0 auto 60px;
+    margin: 0 auto 20px;
     padding: 0 20px;
     font-size: 13px;
     line-height: 1.5;
     color: var(--text-faint);
     text-align: center;
+}
+
+/* Copyright + link do licencji, sam dół stopki arkusza — pod zastrzeżeniem
+   samooceny. Ten sam wygląd (rozmiar/kolor/wyśrodkowanie) co .landing-footer
+   w style/landing.css, żeby obie strony miały spójną stopkę. */
+.stopka-copyright {
+    margin: 0 auto 60px;
+    padding: 0 20px;
+    font-size: 13px;
+    text-align: center;
+    color: var(--text-faint);
+}
+.stopka-copyright a {
+    color: var(--text-muted-2);
+    text-decoration: underline;
 }
 
 /* ===== PRZYCISKI TEKSTOWE (podpowiedź / rozwiązanie / zgłoś błąd / wzory) =====

@@ -39,7 +39,9 @@
        etykieta zawijałaby się na trzy linijki. */
     .light-button-container {
         flex-wrap: wrap;
-        gap: 10px 14px;
+        /* row-gap 20px (kolumnowy 14px zostaje) — dwa zawinięte wiersze
+           przycisków były zbyt ciasno sklejone, patrz TODO.md. */
+        gap: 20px 14px;
     }
     .light-button-container > .light-button {
         flex: 1 1 40%;

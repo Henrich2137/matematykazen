@@ -1,5 +1,14 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-09] (Sonnet 5 High) Paczka 1 „Drobnica" z issues/plan-ui-paczki-2026-08.md:
+napis „Sprawdź obliczenia" → „Sprawdzanie obliczeń" (render.js + exam.js + template.html +
+ARCHITECTURE.md/OVERVIEW.md); #total-score przesunięty 40px w lewo (margin-right, bo
+#naroznik-prawy jest pinowany prawą krawędzią); stopka arkusza (template.html) i landing
+(index.html) dostały linijkę „© 2026 Henrich2137 · Licencja” (nowe klasy .stopka-copyright /
+.landing-footer a); row-gap wiersza przycisków (Podpowiedź/Rozwiązanie/Zgłoś błąd/Pokaż wzory)
+na telefonie 10px→20px. Zweryfikowane zrzutami Playwright (jasny/ciemny × desktop/telefon) na
+template.html i index.html.  [css, ui, stopka, tekst, drobnica]
+
 [ZROBIONE 2026-08-09] (Opus 5) Devcontainer nie wstawał: `mkdir: cannot create directory
 '/vscode/vscode-server/bin': Permission denied`. Diagnoza i naprawa, zero zmian w plikach repo.
 

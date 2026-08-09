@@ -3,40 +3,36 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.
 
-  - Punktacja przy zadaniach może być przesunięta troszeczke w lewo (o 40px), bliżej zadań.
-
-  - Zadania otworte, W rozwijanej liście "Sprawdź obliczenia" zmień na "Sprawdzanie obliczeń"
-  
   - Zmień tło widżetów w trybie ciemnym na identycznez tłem strony. Obecnie się troche różni. W jasnym wygląda dobrze ale możesz sprawdzić czy jest na pewno to samo.
+
+  - tło formularz zgłoszenia błędu powinnp być troszke ciemniejsze niż obecnie. Ale nie aż tak ciemne jak główne tło strony, coś pomiędzy.
+
+  - Menu / Panel boczny:
+    - Swipe/Przesunięcie w lewo powinno zwijać panel boczny (tylko na telefonie)
+    - Przełączniki w stylu Motyw, Poprawność itd. są zbyt blade i wyglądają na nieaktywne/zablokowane
+    - w trybie egzaminu Poprawność powinna być tak samo nieaktywna/zablokowana ja Punktacja
+    - stan przełączników (np. ciemny, jasny, wł., wył., wszystko itd.) chyba jest napisany zbyt tłustą czcionką czy coś. Wyrazy wadają się nieostre, mają jakby bleeding/bloom effect.
+    - Panel boczny: „Sprawdź wszystkie odpowiedzi" (#sprawdz-wszystkie) znika/pojawia się przy przełączaniu „Poprawność odpowiedzi" (natychmiast ↔ po „sprawdź") - panel przez to „skacze". Ma być zawsze widoczny: aktywny w „po sprawdź", wyszarzony/disabled w „natychmiast" — tak jak już jest zrobione w trybie egzaminu (setExamMenuDisabled w app/exam.js, można wzorować mechanizm). Potwierdzone na żywo 2026-07-27 przy okazji testów v0.08; ten sam temat co niżej w „INNE NOTATKI" (~linia 51) — jeden wpis wystarczy, ten wyżej jest teraz aktualny.
+
+  - Spójność UI, sesja 2 (jeszcze NIE zrobione, ciąg dalszy sesji 1 [ZROBIONE 2026-07-27], było przydzielone dla Sonnet High). Szczegóły: issues/ui-spojnosc-etap2.md
+    - Sesja 1 [ZROBIONE 2026-07-27] + 3 Twoje drobnice (cienie sidebara, ciemniejszy tekst przycisku stopki, tytuł 32%) — patrz done/03-2026-07-27.md i done/04-biezace.md. Do sprawdzenia na żywo (v0.07): stopka, przełącznik w obu motywach, panele PDF, kreska i strzałka sidebara, tytuł arkusza na telefonie.
+    - 4 różne rozmiary fontu na karcie zadania — ujednolicić
+    - Przyciski odpowiedzi (ABCD, P/F, punkty) bez podświetlenia na hover
+    - Dwa różne style hover w menu (ramka vs tło) — wybrać jeden
+    - Cień okienka podsumowania egzaminu wpisany na sztywno zamiast jako token
+    - Dwa miejsca z ramką 2px zamiast standardowej 1px
+    - Okienko podsumowania egzaminu bez zaokrąglonych rogów (reszta strony ma)
+    - Marginesy bez spójnej skali (10/16/20/40/50/60/70/80px) — do sprawdzenia ostrożnie, na zrzutach
+    - Karta zadania bez ramki/zaokrąglenia, reszta strony już zaokrąglona — decyzja Henricha
+    - Landing i arkusz mają różne rozmiary fontu dla podobnych elementów + do sprawdzenia kontrast WCAG (issues/dark-mode-css-zmienne-landing.md)
 
 
 <br>
 
 
 + NIE REALIZUJ
-  + UI
-    
-    - Przycisk "Rozwiązanie" w przypadku wielu rozwiązań powinien nazywać się "Rozwiązania" i mieć możliwość również rozwinięcia listy różnych rozwiązań: Zwykłe, Krok po kroku, Interaktywne... i każde z nich powinno mieć możliwość 
-    (Okno "Zaznacz co masz w rozwiązaniu" spoilujące rozwiązanie — rozwiązane przy okazji redesignu zadań otwartych wyżej: box jest domyślnie zwinięty.)
 
-    - Menu / Panel boczny:
-      - Swipe/Przesunięcie w lewo powinno zwijać panel boczny (tylko na telefonie)
-      - Przełączniki w stylu Motyw, Poprawność itd. są zbyt blade i wyglądają na nieaktywne/zablokowane
-      - w trybie egzaminu Poprawność powinna być tak samo nieaktywna/zablokowana ja Punktacja
-      - stan przełączników (np. ciemny, jasny, wł., wył., wszystko itd.) chyba jest napisany zbyt tłustą czcionką czy coś. Wyrazy wadają się nieostre, mają jakby bleeding/bloom effect.
-      - Panel boczny: „Sprawdź wszystkie odpowiedzi" (#sprawdz-wszystkie) znika/pojawia się przy przełączaniu „Poprawność odpowiedzi" (natychmiast ↔ po „sprawdź") - panel przez to „skacze". Ma być zawsze widoczny: aktywny w „po sprawdź", wyszarzony/disabled w „natychmiast" — tak jak już jest zrobione w trybie egzaminu (setExamMenuDisabled w app/exam.js, można wzorować mechanizm). Potwierdzone na żywo 2026-07-27 przy okazji testów v0.08; ten sam temat co niżej w „INNE NOTATKI" (~linia 51) — jeden wpis wystarczy, ten wyżej jest teraz aktualny.
-
-    - Spójność UI, sesja 2 (jeszcze NIE zrobione, ciąg dalszy sesji 1 [ZROBIONE 2026-07-27], było przydzielone dla Sonnet High). Szczegóły: issues/ui-spojnosc-etap2.md
-      - Sesja 1 [ZROBIONE 2026-07-27] + 3 Twoje drobnice (cienie sidebara, ciemniejszy tekst przycisku stopki, tytuł 32%) — patrz done/03-2026-07-27.md i done/04-biezace.md. Do sprawdzenia na żywo (v0.07): stopka, przełącznik w obu motywach, panele PDF, kreska i strzałka sidebara, tytuł arkusza na telefonie.
-      - 4 różne rozmiary fontu na karcie zadania — ujednolicić
-      - Przyciski odpowiedzi (ABCD, P/F, punkty) bez podświetlenia na hover
-      - Dwa różne style hover w menu (ramka vs tło) — wybrać jeden
-      - Cień okienka podsumowania egzaminu wpisany na sztywno zamiast jako token
-      - Dwa miejsca z ramką 2px zamiast standardowej 1px
-      - Okienko podsumowania egzaminu bez zaokrąglonych rogów (reszta strony ma)
-      - Marginesy bez spójnej skali (10/16/20/40/50/60/70/80px) — do sprawdzenia ostrożnie, na zrzutach
-      - Karta zadania bez ramki/zaokrąglenia, reszta strony już zaokrąglona — decyzja Henricha
-      - Landing i arkusz mają różne rozmiary fontu dla podobnych elementów + do sprawdzenia kontrast WCAG (issues/dark-mode-css-zmienne-landing.md)
+  - nic
 
 
 <br>
@@ -44,38 +40,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + TESTOWANIE HENRICH:
 
-  Paczka z 2026-08-06 (Opus 5 Medium) — sprawdzone przeze mnie w headless Chromium (oba arkusze,
-  oba motywy, 1400px i 390px), ale warto przeklikać na żywo, zwłaszcza na telefonie. Szczegóły
-  zmian: done/04-biezace.md
-
-  - Widżety w ciemnym motywie: otwórz rozwiązania zadań z widżetem (1, 5, 9, 10, 12.1, 15, 18, 20, 30)
-    i sprawdź, czy osie/liczby/opisy są czytelne na ciemnym płótnie. Potem PRZEŁĄCZ motyw przy
-    otwartym widżecie — ma się przemalować od razu, bez odświeżania strony (także przy „auto",
-    gdy zmienisz motyw systemu).
-
-  - Wiersz przycisków pod zadaniem: Podpowiedź / Rozwiązanie / Zgłoś błąd / Pokaż wzory — czy
-    kolejność i wygląd Ci pasują. Sprawdź zadanie BEZ wzorów (np. 8) i wyłącz „Zgłoś błąd pod
-    zadaniem" w panelu bocznym — wiersz ma się rozłożyć równo na to, co zostało. Na telefonie
-    przyciski łamią się po dwa w rzędzie.
-
-  - Formularz zgłoszenia błędu: czy nadal otwiera się w karcie zadania nad tym wierszem i czy
-    ponowne kliknięcie go zwija.
-
-  - Zadania otwarte (główna zmiana): boks „Sprawdź obliczenia" ma być domyślnie ZWINIĘTY.
-    Zaznaczanie kryteriów od razu podbija punkty zadania i sumę u góry; odznaczanie obniża.
-    Sprawdź zad. 9 (kryterium warte 0 pkt zostaje szare) i zad. 19 lub 30 (4 kryteria).
-    Po odświeżeniu strony punkty i zaznaczenia mają wrócić.
-
-  - Zadania otwarte, czy treść kryteriów jest dla Ciebie OK merytorycznie — pisałem je jako
-    kolejne progi z klucza CKE, alternatywy sklejone słowem „lub". Przy zadaniach 4-punktowych
-    trzeba zaznaczyć wszystkie osiągnięte progi, żeby dostać komplet (patrz uwaga w moich
-    notatkach na dole pliku).
-
-  - Tryb egzaminu: boks „Sprawdź obliczenia" ma być niewidoczny w trakcie egzaminu, a po
-    zakończeniu — komunikat w podsumowaniu odsyła teraz do tego boksu, nie do przycisków punktów.
-    Wskaźniki „oceń się": kropka gaśnie po ROZWINIĘCIU boksu (nawet bez zaznaczeń — brak zaznaczeń
-    to też ocena, na 0 pkt). Powiedz, jeśli wolisz inny warunek.
-
+  - nic
 
 <br>
 
@@ -92,16 +57,8 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 
 + INNE NOTATKI, DO PRZEKMINIENIA:
-
-  - "Pokaż potrzebne wzory" powinien mieć możliwośc wyboru wielu podpunktów?, kropek?, a formulasPage w zadaniach powinien się zmienić na formulasPages (s na końcu). Powinno być wiele lokacji wzorów do przywołania pod jednym zadaniem. 
-    - Zad 9. dopisać str 7 (wyróżnik Δ, obok już wpisanej str 8 ze wzorem na x1,x2)
-    - Zad 11. dopisać str 16 (pole trójkąta [10.4])
-    - Zad 17. dopisać str 18 (podzadania 17.1/17.2 mają już str 11)
-    - Zad 19. dopisać str 20 (pole trapezu [10.17], obok już wpisanej str 17 z podobieństwem trójkątów)
-    - Zad 24. dopisać str 27 (jest tam rysunek ostrosłupa, obok już wpisanej str 11 z tangensem)
-    - Zad 30. dopisać str 26 (pole całkowite prostopadłościanu [12.2], obok już wpisanej str 8 z wierzchołkiem paraboli)
-
-  + UI:
+  
+  + UI
 
     - "Wskaźniki" (oceń się):
       - Przycisk "Wskaźniki" powinien się nazywać "Wskaźniki zad. do oceny" lub coś w tym stylu, samo wskaźniki mało mówi. 
@@ -119,22 +76,34 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
     - Do sekcji „oceń się" z checkboxami powinno być dodane kryteria sukcesu dopiero po kliknięciu rozwiązania. Ale jeszcze nie mam pomysłu, jak to skomponować, aby miało sens. (Częściowo załatwia to zwijany box z DO ZROBIENIA — wrócić do tematu po tamtej zmianie.)
 
+  - "Pokaż potrzebne wzory" powinien mieć możliwośc wyboru wielu podpunktów?, kropek?, a formulasPage w zadaniach powinien się zmienić na formulasPages (s na końcu). Powinno być wiele lokacji wzorów do przywołania pod jednym zadaniem. 
+    - Zad 9. dopisać str 7 (wyróżnik Δ, obok już wpisanej str 8 ze wzorem na x1,x2)
+    - Zad 11. dopisać str 16 (pole trójkąta [10.4])
+    - Zad 17. dopisać str 18 (podzadania 17.1/17.2 mają już str 11)
+    - Zad 19. dopisać str 20 (pole trapezu [10.17], obok już wpisanej str 17 z podobieństwem trójkątów)
+    - Zad 24. dopisać str 27 (jest tam rysunek ostrosłupa, obok już wpisanej str 11 z tangensem)
+    - Zad 30. dopisać str 26 (pole całkowite prostopadłościanu [12.2], obok już wpisanej str 8 z wierzchołkiem paraboli)
 
   + ULEPSZANIE WORKFLOW (skopiowane z NOTATKI_USERA)
     - Schedule adversarial review lub /code-review
     - Stworzyć/pobrać potrzebne mi skille do tego projektu
-    - uruchomienie całego VS Code w Dev Container (Docker) z uwagi, że /sandbox coś nie działa chyba w rozszerzeniu Claude Code
 
+  - Przycisk "Rozwiązanie" w przypadku wielu rozwiązań powinien nazywać się "Rozwiązania" i mieć możliwość również rozwinięcia listy różnych rozwiązań: Zwykłe, Krok po kroku, Interaktywne
+  Każdy z tych elementów byłby przyciskiem. 
+    - Domyślnie: gdy istnieje rozwiązanie "krok po kroku" to "zwykłe" powinno być zwinięte i vice versa
+    - Możliwość zmiany powyższego w ustawieniach: "Widoczność zwykłego rozwiązania: gdy brakuje krok po kroku, zawsze, nigdy
+
+  - Przycisk "Zresetuj ustawienia" z popup-em do potwierdzenie. Podświetlajacy się na czerwono po najechaniu i widoczny na dole side panelu aby przypadkiem go nie kliknąć.
 
   - W index.html dodać sekcję o autorze i link do Patronite
 
   - Przekminić i dodać zasadę dotyczącą tłumaczenia mi (Henrichowi) rzeczy (jak mam przeprowadzić test, jak wygląda projekt itd.)
-  
-  - Dodać link do licencji widoczny w stopce czy coś. i jakiś copyright (czy left)czy coś
 
   - Po kliknięciu prevStepButton animacja powinna odpalać się od tyłu (jeżeli to możliwe aby odtwarzać animacje od tyłu, można też renderować każdą od tyłu)
 
   - Funkcjonalność otwierania tablicy wzorów w nowej karcie o raz Dodać przełącznik "miejsce otwarcia: nowa karta / wew. okienko" pod "Otwórz tablice wzorów"
+
+  - sprawdzić merytorykę arkuszy (na końcu, przed rozpowszechnieniem)
 
 
 <br>

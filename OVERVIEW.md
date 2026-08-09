@@ -18,7 +18,7 @@ Zobacz na żywo: https://henrich2137.github.io/matematykazen/
 - Tablica wzorów (oficjalny PDF CKE) w przesuwnym, skalowalnym okienku.
 - Zasady oceniania (klucz odpowiedzi CKE) w analogicznym, osobnym okienku.
 - Tryb próbnego egzaminu — 170 min z zegarem, ukrywa podpowiedzi/wyniki na czas trwania, podsumowanie po zakończeniu.
-- Samoocena zadań otwartych: rozwiązanie na kartce → porównanie z modelowym rozwiązaniem → rozwijana checklista „Sprawdź obliczenia" z kryteriami z oficjalnych zasad oceniania CKE; zaznaczenie kryterium od razu dolicza jego punkty do wyniku zadania (checklista jest domyślnie zwinięta, żeby nie zdradzać rozwiązania).
+- Samoocena zadań otwartych: rozwiązanie na kartce → porównanie z modelowym rozwiązaniem → rozwijana checklista „Sprawdzanie obliczeń" z kryteriami z oficjalnych zasad oceniania CKE; zaznaczenie kryterium od razu dolicza jego punkty do wyniku zadania (checklista jest domyślnie zwinięta, żeby nie zdradzać rozwiązania).
 - Przy każdym zadaniu otwartym miejsce na notatki oraz pole „ostateczna odpowiedź" sprawdzane automatycznie.
 - Wskaźniki zadań czekających na samoocenę (po egzaminie).
 - Zgłaszanie błędu w zadaniu wprost pod nim (formularz z kategoriami, bez opuszczania strony).

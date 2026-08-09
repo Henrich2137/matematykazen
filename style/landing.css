@@ -129,9 +129,14 @@
 }
 .landing-footer {
     margin-top: 70px;
+    margin-bottom: 40px;
     font-size: 13px;
     text-align: center;
     color: var(--text-faint);
+}
+.landing-footer a {
+    color: var(--text-muted-2);
+    text-decoration: underline;
 }
 @media (max-width: 640px) {
     .landing-cards {
