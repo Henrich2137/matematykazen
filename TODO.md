@@ -3,6 +3,12 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.
 
+  - Blokada przewijania pod otwartym panelem bocznym NIE działa na Pixelu 7a (GrapheneOS), mimo że w Chromium na symulowanym telefonie działa, a na symulowanym telefonie w Firefoksie też jest OK (panel przewija się w pionie, arkusz stoi). Zrobione w v13: `body.blokada-scrolla` (`position: fixed` + zapamiętany `scrollY` w ujemnym `top`), zakładane poniżej progu 1300px — `app/bootstrap.js` i `style/sheet.css:175`. Tropy do sprawdzenia, zanim ktoś zacznie przepisywać mechanizm:
+    - czy to w ogóle scroll dokumentu, czy **panoramowanie przybliżonej strony** (visual viewport). Tego drugiego nie da się zablokować CSS-em i pasowałoby do starszej notatki „strona na telefonie wygląda jakby była przybliżona" niżej w INNYCH NOTATKACH — jeśli to to, prawdziwą naprawą jest meta viewport / szerokość layoutu, nie blokada scrolla.
+    - czy klasa `blokada-scrolla` faktycznie wchodzi na tym urządzeniu (próg 1300px liczy `innerWidth`; sprawdzić, co Pixel 7a raportuje przy jego skali).
+    - czy gest nie idzie po `#sidebar-przyciemnienie` (position: fixed, inset: 0) — brakuje mu `touch-action`/`overscroll-behavior`.
+    - Pixel 7a + GrapheneOS ma już jedną własną awarię w tym repo (issues/zadania-nie-renderuja-sie-mobile.md) — warto sprawdzić, czy to nie ta sama rodzina problemu.
+
   - Spójność UI, sesja 2 (jeszcze NIE zrobione, ciąg dalszy sesji 1 [ZROBIONE 2026-07-27], było przydzielone dla Sonnet High). Szczegóły: issues/ui-spojnosc-etap2.md
     - Sesja 1 [ZROBIONE 2026-07-27] + 3 Twoje drobnice (cienie sidebara, ciemniejszy tekst przycisku stopki, tytuł 32%) — patrz done/03-2026-07-27.md i done/04-biezace.md. Do sprawdzenia na żywo (v0.07): stopka, przełącznik w obu motywach, panele PDF, kreska i strzałka sidebara, tytuł arkusza na telefonie.
     - 4 różne rozmiary fontu na karcie zadania — ujednolicić
@@ -29,17 +35,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + TESTOWANIE HENRICH:
 
-  - v12 Beta, TELEFON: otwórz panel boczny i przeciągnij palcem w LEWO — panel ma się zwinąć. Sprawdź przy okazji, czy gest nie przeszkadza w normalnym przewijaniu panelu w pionie i czy nie łapie się przypadkiem przy zwykłym scrollowaniu ukosem. Progi ustawiłem tak, żeby zwijało dopiero przy zdecydowanym ruchu (ok. 60 px w mniej niż 0,7 s) — powiedz, czy to nie za czule albo nie za opornie. Wolne, długie przeciąganie (ponad ~0,7 s) świadomie NIE zwija.
-
-  - v12 Beta, panel boczny w obu motywach: czy etykiety ustawień (Motyw, Punktacja, Poprawność) są teraz w sam raz mocne — czy już za mocne? Wyszarzone pozycje (w egzaminie, oraz „Sprawdź wszystkie odpowiedzi" przy poprawności „natychmiast") mają się wyraźnie od nich odróżniać.
-
-  - v12 Beta: czy stany przełączników („ciemny", „wszystko", „natychmiast") czytają się już ostro na Twoim ekranie — na zrzutach bleeding zniknął, ale to zależy od wygładzania czcionek w systemie.
-
-  - v13 Beta, TELEFON: przy otwartym panelu bocznym spróbuj przewinąć arkusz palcem po ciemnym tle obok panelu — nie ma drgnąć. Po zamknięciu panelu strona ma zostać dokładnie tam, gdzie była (żadnego skoku na górę). Sprawdź też oba kierunki obrotu ekranu z otwartym panelem.
-
-  - v13 Beta, TELEFON: czy swipe w lewo zamykający panel działa dalej tak samo jak w v12 (blokada scrolla ruszała ten sam obszar gestów) i czy przewijanie WEWNĄTRZ panelu (gdy pozycje nie mieszczą się na ekranie, np. w poziomie) nadal działa.
-
-  - v13 Beta, motyw CIEMNY: czy tło formularza zgłoszenia błędu (#1e1e1e) jest teraz w sam raz — ma być ciemniejsze niż było, ale wciąż odróżnialne od tła strony (#141414). Na zrzucie różnica jest subtelna.
+  - nic (v13 przetestowana: swipe OK, przewijanie panelu OK, odcień formularza OK; blokada scrolla na Pixelu 7a nie zadziałała — wpis przeniesiony do DO ZROBIENIA)
 
 <br>
 
