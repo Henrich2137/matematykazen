@@ -7,13 +7,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
   - tło formularz zgłoszenia błędu powinnp być troszke ciemniejsze niż obecnie. Ale nie aż tak ciemne jak główne tło strony, coś pomiędzy.
 
-  - Menu / Panel boczny:
-    - Swipe/Przesunięcie w lewo powinno zwijać panel boczny (tylko na telefonie)
-    - Przełączniki w stylu Motyw, Poprawność itd. są zbyt blade i wyglądają na nieaktywne/zablokowane
-    - w trybie egzaminu Poprawność powinna być tak samo nieaktywna/zablokowana ja Punktacja
-    - stan przełączników (np. ciemny, jasny, wł., wył., wszystko itd.) chyba jest napisany zbyt tłustą czcionką czy coś. Wyrazy wadają się nieostre, mają jakby bleeding/bloom effect.
-    - Panel boczny: „Sprawdź wszystkie odpowiedzi" (#sprawdz-wszystkie) znika/pojawia się przy przełączaniu „Poprawność odpowiedzi" (natychmiast ↔ po „sprawdź") - panel przez to „skacze". Ma być zawsze widoczny: aktywny w „po sprawdź", wyszarzony/disabled w „natychmiast" — tak jak już jest zrobione w trybie egzaminu (setExamMenuDisabled w app/exam.js, można wzorować mechanizm). Potwierdzone na żywo 2026-07-27 przy okazji testów v0.08; ten sam temat co niżej w „INNE NOTATKI" (~linia 51) — jeden wpis wystarczy, ten wyżej jest teraz aktualny.
-
   - Spójność UI, sesja 2 (jeszcze NIE zrobione, ciąg dalszy sesji 1 [ZROBIONE 2026-07-27], było przydzielone dla Sonnet High). Szczegóły: issues/ui-spojnosc-etap2.md
     - Sesja 1 [ZROBIONE 2026-07-27] + 3 Twoje drobnice (cienie sidebara, ciemniejszy tekst przycisku stopki, tytuł 32%) — patrz done/03-2026-07-27.md i done/04-biezace.md. Do sprawdzenia na żywo (v0.07): stopka, przełącznik w obu motywach, panele PDF, kreska i strzałka sidebara, tytuł arkusza na telefonie.
     - 4 różne rozmiary fontu na karcie zadania — ujednolicić
@@ -40,7 +33,11 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + TESTOWANIE HENRICH:
 
-  - nic
+  - v12 Beta, TELEFON: otwórz panel boczny i przeciągnij palcem w LEWO — panel ma się zwinąć. Sprawdź przy okazji, czy gest nie przeszkadza w normalnym przewijaniu panelu w pionie i czy nie łapie się przypadkiem przy zwykłym scrollowaniu ukosem. Progi ustawiłem tak, żeby zwijało dopiero przy zdecydowanym ruchu (ok. 60 px w mniej niż 0,7 s) — powiedz, czy to nie za czule albo nie za opornie. Wolne, długie przeciąganie (ponad ~0,7 s) świadomie NIE zwija.
+
+  - v12 Beta, panel boczny w obu motywach: czy etykiety ustawień (Motyw, Punktacja, Poprawność) są teraz w sam raz mocne — czy już za mocne? Wyszarzone pozycje (w egzaminie, oraz „Sprawdź wszystkie odpowiedzi" przy poprawności „natychmiast") mają się wyraźnie od nich odróżniać.
+
+  - v12 Beta: czy stany przełączników („ciemny", „wszystko", „natychmiast") czytają się już ostro na Twoim ekranie — na zrzutach bleeding zniknął, ale to zależy od wygładzania czcionek w systemie.
 
 <br>
 

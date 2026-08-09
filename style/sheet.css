@@ -275,6 +275,16 @@ body.sidebar-otwarty #sidebar-linia {
 .sidebar-ustawienie:hover:not(:disabled) {
     background-color: var(--bg-muted);
 }
+/* Pozycja WYŁĄCZONA (2026-08-09 przeniesione z exam.css, bo powodów jest już
+   dwa: trwający egzamin oraz „Sprawdź wszystkie odpowiedzi" przy poprawności
+   „natychmiast" — patrz odswiezBlokadyMenu() w app/exam.js). Pozycja nie znika,
+   tylko blednie: panel ma nie skakać. Warunkiem czytelności tego stanu jest
+   dostatecznie mocny stan NORMALNY — dlatego etykiety ustawień jadą na
+   --text-muted, nie na --text-faint-2 (patrz niżej). */
+#sidebar button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
 
 .sidebar-akcja {
     display: flex;
@@ -319,11 +329,15 @@ body.sidebar-otwarty #sidebar-linia {
     gap: 8px;
     height: 40px;
     font-size: 13px;
-    /* Etykieta szara, wartość ciemna i półgruba — świadomie BEZ koloru akcentu:
-       --accent-blue-strong znaczy już „Twój wybór w zadaniu" (ABCD, widżety),
-       a zielony/czerwony to poprawność; kolor w menu konkurowałby ze znaczeniem
-       z treści. Kontrast działa w obu motywach bez nowych zmiennych. */
-    color: var(--text-faint-2);
+    /* Etykieta ciemniejsza od wartości, ale wciąż od niej lżejsza — świadomie BEZ
+       koloru akcentu: --accent-blue-strong znaczy już „Twój wybór w zadaniu"
+       (ABCD, widżety), a zielony/czerwony to poprawność; kolor w menu
+       konkurowałby ze znaczeniem z treści.
+       2026-08-09: było --text-faint-2 (#909090 / #8c8c8c) i całe ustawienia
+       wyglądały na wyłączone — po tej samej stronie skali co realnie wyszarzone
+       „Punktacja" w egzaminie. Skoro `disabled` ma teraz znaczyć „wyłączone",
+       stan normalny musi być od niego wyraźnie odróżnialny, stąd --text-muted. */
+    color: var(--text-muted);
 }
 .sidebar-ustawienie .etykieta {
     min-width: 0;
@@ -331,14 +345,20 @@ body.sidebar-otwarty #sidebar-linia {
     white-space: nowrap;
     text-overflow: ellipsis;
 }
-/* Wartość o stopień mniejsza od etykiety — jest półgruba, więc dalej dominuje
-   wzrokowo, a oddaje etykiecie kilka pikseli w ciasnym wierszu. */
+/* Wartość o stopień mniejsza od etykiety, ale w pełnym --text — to kolor, nie
+   waga, robi tu hierarchię.
+   2026-08-09: było `font-weight: 600`. Lora jest szeryfowa i ma mocny kontrast
+   grubości kresek; jej odmiana 600 przy 12px zlepiała szeryfy i laski w plamę
+   („ciemny", „wszystko" wyglądały na rozmyte/rozlane, szczególnie jasny tekst
+   na ciemnym tle). Zdiagnozowane porównaniem 600/400 w powiększeniu ×5 —
+   przyczyną była waga, nie kontrast tła. Waga 400 przy tym samym rozmiarze jest
+   ostra; hierarchię wobec etykiety utrzymuje --text vs --text-muted i kropki. */
 .sidebar-ustawienie .wartosc,
 .sidebar-ustawienie .wartosc-podglad {
     font-size: 12px;
     white-space: nowrap;
     color: var(--text);
-    font-weight: 600;
+    font-weight: 400;
 }
 .sidebar-ustawienie .wartosc-podglad {
     display: none;
@@ -365,11 +385,13 @@ body.sidebar-otwarty #sidebar-linia {
     align-items: center;
     gap: 3px;
 }
+/* Kropka nieaktywna: --border-strong, nie --border-muted (2026-08-09) — #ddd na
+   bieli gubiło się przy 5px i cały przełącznik czytał się jako wyłączony. */
 .sidebar-ustawienie .kropka {
     width: 5px;
     height: 5px;
     border-radius: 50%;
-    background-color: var(--border-muted);
+    background-color: var(--border-strong);
 }
 .sidebar-ustawienie .kropka-aktywna {
     background-color: var(--text);

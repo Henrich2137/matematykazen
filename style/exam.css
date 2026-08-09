@@ -168,15 +168,13 @@ body:not(.reczne-sprawdzanie) #egzamin-koniec,
 body:not(.reczne-sprawdzanie) #egzamin-start-stopka {
     margin-top: 40px;
 }
-/* Panel boczny: „Sprawdź wszystkie odpowiedzi" tylko w trybie „sprawdź później"
-   (widoczny też w trakcie egzaminu, ale wyszarzony — patrz komentarz przy
-   #sprawdz-wszystkie-stopka). `flex`, bo taki jest wiersz .sidebar-akcja. */
-#sprawdz-wszystkie {
-    display: none;
-}
-body.reczne-sprawdzanie #sprawdz-wszystkie {
-    display: flex;
-}
+/* Panel boczny: „Sprawdź wszystkie odpowiedzi" jest ZAWSZE widoczny (2026-08-09).
+   Dawniej znikał przy poprawności „natychmiast" i panel skakał przy każdym
+   przełączeniu „Poprawności". Teraz zostaje na miejscu, a przy „natychmiast"
+   (i w egzaminie) jest tylko wyszarzony — `disabled` ustawia odswiezBlokadyMenu()
+   w app/exam.js, wygląd: `#sidebar button:disabled` w style/sheet.css.
+   W stopce arkusza zostaje po staremu (chowany), bo tam nie ma czego rozjeżdżać —
+   patrz #sprawdz-wszystkie-stopka-wrap wyżej. */
 
 /* Wszystko, co zdradza wynik albo pozwala go obejść, znika na czas egzaminu.
    !important, bo część z tych elementów ma display ustawiane inline przez JS
@@ -195,11 +193,10 @@ body.tryb-egzaminu .answer-check-floating {
     display: none !important;
 }
 
-/* Pozycje panelu bocznego niedozwolone podczas egzaminu (pokaż rozwiązania,
-   punktacja, reset, start egzaminu) NIE znikają — zostają widoczne, ale
-   wyszarzone i nieklikalne, żeby panel nie był pustą ramką. Atrybut disabled
-   ustawia JS w enableExamMode()/finishExam(); tu tylko wygląd. */
-body.tryb-egzaminu #sidebar button:disabled,
+/* Wygląd wyszarzenia pozycji panelu przeniesiony do style/sheet.css
+   (`#sidebar button:disabled`), bo blokada nie jest już wyłącznie egzaminacyjna —
+   patrz odswiezBlokadyMenu() w app/exam.js. Tu zostaje tylko bliźniacza reguła
+   dla przycisku w stopce arkusza. */
 body.tryb-egzaminu #sprawdz-wszystkie-stopka:disabled {
     opacity: 0.4;
     cursor: not-allowed;

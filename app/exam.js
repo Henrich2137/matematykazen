@@ -122,20 +122,49 @@ if (trybEgzaminBtn) {
 // zajmuje wtedy "Zakończ egzamin" — ale disabled zostawiamy jako drugą zaporę.)
 // Połówki #tryb-przelacznik świadomie NIE są na tej liście: „ćwiczenia" to
 // jedyne wyjście z egzaminu obok #egzamin-koniec.
-const OPCJE_MENU_EGZAMIN = ["show-all-solutions", "score-switch-button", "reset-scores", "egzamin-start", "sprawdz-wszystkie", "sprawdz-wszystkie-stopka"];
-function setExamMenuDisabled(disabled) {
-    OPCJE_MENU_EGZAMIN.forEach(id => {
+// „Poprawność" (#natychmiastowa-toggle) jest tu od 2026-08-09: w egzaminie
+// poprawność i tak jest ukryta, więc przełączanie „kiedy ją pokazywać" niczego
+// nie zmienia — a niewyszarzone ustawienie sugerowało, że zmienia.
+const OPCJE_MENU_EGZAMIN = ["show-all-solutions", "score-switch-button", "reset-scores", "egzamin-start", "sprawdz-wszystkie", "sprawdz-wszystkie-stopka", "natychmiastowa-toggle"];
+
+// „Sprawdź wszystkie odpowiedzi" nie ma czego odsłaniać, gdy poprawność
+// pokazuje się natychmiast — dawniej przycisk wtedy ZNIKAŁ z panelu i panel
+// skakał przy każdym przełączeniu. Od 2026-08-09 zostaje na miejscu, tylko
+// wyszarzony (ta sama zapora co w egzaminie).
+const OPCJE_TYLKO_RECZNE_SPRAWDZANIE = ["sprawdz-wszystkie", "sprawdz-wszystkie-stopka"];
+
+/* JEDYNE miejsce, które ustawia `disabled` na pozycjach panelu/stopki. Dwa
+   niezależne powody blokady sumują się tutaj, zamiast walczyć o ten sam atrybut
+   z dwóch stron (przy dwóch niezależnych setterach zakończenie egzaminu
+   odblokowywałoby „sprawdź wszystkie" niezależnie od trybu poprawności).
+   Wołane po KAŻDEJ zmianie któregokolwiek z tych dwóch stanów. */
+function odswiezBlokadyMenu() {
+    const egzamin = document.body.classList.contains("tryb-egzaminu");
+    const natychmiast = czyNatychmiastowaPoprawnosc();
+    // Powód blokady wchodzi do title, więc oryginalny title (np. objaśnienie
+    // „Poprawności") trzeba odłożyć przy pierwszym przebiegu — inaczej pierwsze
+    // odblokowanie skasowałoby go na zawsze.
+    const ustaw = (id, zablokowany, powod) => {
         const btn = document.getElementById(id);
         if (!btn) return;
-        btn.disabled = disabled;
-        btn.title = disabled ? "Niedostępne podczas próbnego egzaminu" : "";
+        if (btn.dataset.titleBazowy === undefined) btn.dataset.titleBazowy = btn.title || "";
+        btn.disabled = zablokowany;
+        btn.title = zablokowany ? powod : btn.dataset.titleBazowy;
+    };
+    OPCJE_MENU_EGZAMIN.forEach(id => ustaw(id, egzamin, "Niedostępne podczas próbnego egzaminu"));
+    // Druga zapora nakłada się na pierwszą: w egzaminie „sprawdź wszystkie" jest
+    // już zablokowany wyżej, więc bierzemy sumę powodów, a nie ostatni z nich.
+    OPCJE_TYLKO_RECZNE_SPRAWDZANIE.forEach(id => {
+        const btn = document.getElementById(id);
+        if (!btn || btn.disabled) return; // egzamin ma pierwszeństwo w komunikacie
+        ustaw(id, natychmiast, "Dostępne, gdy „Poprawność” jest ustawiona na „po «sprawdź»”");
     });
 }
 
 function enableExamMode() {
     document.body.classList.add("tryb-egzaminu");
     updateModeSwitch();
-    setExamMenuDisabled(true);
+    odswiezBlokadyMenu();
     tickExam();
     if (!egzaminInterval) egzaminInterval = setInterval(tickExam, 1000);
 }
@@ -186,7 +215,7 @@ function finishExam(czasMinal) {
     if (egzaminInterval) { clearInterval(egzaminInterval); egzaminInterval = null; }
     document.body.classList.remove("tryb-egzaminu");
     updateModeSwitch();
-    setExamMenuDisabled(false);
+    odswiezBlokadyMenu();
 
     // Tablica wzorów CKE zostaje dostępna W TRAKCIE egzaminu (jak na prawdziwej
     // maturze), ale po jego zakończeniu nie ma już powodu trzymać ją otwartą —

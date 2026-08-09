@@ -1,5 +1,47 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-09] (Opus 5 Medium) Paczka 2 „Panel boczny" z issues/plan-ui-paczki-2026-08.md
+(wszystkie pięć punktów, wersja v12 Beta):
+
+1. **„Sprawdź wszystkie odpowiedzi" nie znika i panel nie skacze.** Reguły `display:none` /
+   `body.reczne-sprawdzanie #sprawdz-wszystkie` w style/exam.css usunięte; pozycja jest teraz
+   stale w panelu, a przy poprawności „natychmiast" tylko `disabled`. Potwierdzone pomiarem:
+   `top` sąsiedniej pozycji przed i po przełączeniu = 337.78 px, bez zmiany.
+2. **„Poprawność" wyszarzona w egzaminie** — `natychmiastowa-toggle` dopisany do
+   `OPCJE_MENU_EGZAMIN` (w egzaminie poprawność jest i tak ukryta, więc przełączanie „kiedy ją
+   pokazać" niczego nie zmieniało).
+   Mechanizm z punktów 1–2 to jedna funkcja `odswiezBlokadyMenu()` w app/exam.js, która zastąpiła
+   `setExamMenuDisabled()`: dwa niezależne powody blokady (egzamin, tryb poprawności) sumują się
+   w jednym miejscu, bo przy dwóch osobnych setterach koniec egzaminu odblokowywałby „sprawdź
+   wszystkie" niezależnie od trybu poprawności. Funkcja odkłada oryginalny `title` w
+   `dataset.titleBazowy`, żeby odblokowanie go nie skasowało. Wołana też z
+   `odswiezTrybPoprawnosci()` w app/bootstrap.js. Wygląd `:disabled` przeniesiony z exam.css do
+   sheet.css jako `#sidebar button:disabled` (blokada nie jest już tylko egzaminacyjna).
+3. **Przełączniki przestały wyglądać na wyłączone**: etykieta wiersza ustawienia
+   `--text-faint-2` → `--text-muted` (#909090→#555 / #8c8c8c→#bcbcbc), nieaktywna kropka stanu
+   `--border-muted` → `--border-strong`. To warunek konieczny punktów 1–2: „wyszarzone" musi
+   teraz znaczyć „wyłączone", a nie „domyślne".
+4. **Bleeding/bloom stanów przełącznika**: przyczyną była WAGA, nie kontrast tła. Lora jest
+   szeryfowa i mocno kontrastowa; jej odmiana 600 przy 12px zlepiała szeryfy w plamę (najgorzej
+   jasny tekst na ciemnym). Zdiagnozowane porównaniem 600/400 × 12/13px w powiększeniu ×5 na
+   pojedynczym wierszu. Fix: `.sidebar-ustawienie .wartosc` → `font-weight: 400` przy tym samym
+   12px (zero ryzyka dla szerokości wiersza); hierarchię wobec etykiety trzyma teraz kolor
+   (--text vs --text-muted) i kropki.
+5. **Swipe w lewo zwija panel na telefonie** (app/bootstrap.js). Listenery touchstart/move/
+   cancel/end wyłącznie na `#sidebar`, wszystkie `passive: true` i bez `preventDefault()` — gest
+   tylko obserwuje dotyk, więc nie może przechwycić ani pionowego scrolla panelu, ani
+   przeciągania po treści zadania. Progi: ≥60px w poziomie, ≤45px w pionie, |dx| > 1,5·|dy|,
+   ≤700 ms, ≥0,25 px/ms; dotyk zaczęty <24px od prawej krawędzi jest ignorowany (strefa
+   systemowego gestu „do przodu"), drugi palec kasuje gest. Przetestowane 7 scenariuszy dotyku
+   w Playwright (hasTouch, CDP Input.dispatchTouchEvent): swipe w lewo zwija; scroll pionowy,
+   muśnięcie, wolne przeciąganie, ukos, swipe w prawo i start przy prawej krawędzi — nie zwijają.
+
+Weryfikacja: tools/zrzuty.js --przed/--po (16 ujęć) + własne zbliżenia na `#sidebar` i pojedyncze
+wiersze w ×4/×5, jasny i ciemny, ćwiczenia i egzamin; osobny test funkcjonalny przejść stanu
+(ćwiczenia → egzamin → koniec egzaminu → zmiana poprawności) bez błędów JS.
+Płynność gestu na prawdziwym telefonie i odczucie „w sam raz mocne" idą na listę TESTOWANIE HENRICH.
+[css, ui, panel-boczny, sidebar, dotyk, gesty, egzamin, kontrast, typografia]
+
 [ZROBIONE 2026-08-09] (Sonnet 5 High) Paczka 1 „Drobnica" z issues/plan-ui-paczki-2026-08.md:
 napis „Sprawdź obliczenia" → „Sprawdzanie obliczeń" (render.js + exam.js + template.html +
 ARCHITECTURE.md/OVERVIEW.md); pigułka punktowa `.exercise-score` przy każdym zadaniu przysunięta

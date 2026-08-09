@@ -82,6 +82,76 @@ if (sidebar) {
     });
 }
 
+/* ===== GEST: PRZECIĄGNIĘCIE W LEWO ZWIJA PANEL (tylko telefon) =====
+   Na telefonie panel zajmuje całą szerokość (style/responsive.css), więc nie ma
+   gdzie kliknąć „obok", żeby go zamknąć — zostaje strzałka w rogu. Ten gest jest
+   skrótem do tego samego.
+
+   Cztery rzeczy, których ten kod świadomie NIE robi:
+     • nie woła preventDefault() i wszystkie listenery są `passive: true` —
+       przewijanie panelu (#sidebar ma overflow-y: auto) i strony musi zostać
+       dokładnie takie jak było; gest tylko OBSERWUJE dotyk;
+     • nie wisi na document, tylko na #sidebar — przeciąganie po treści zadania
+       (np. po obrazku czy widżecie) nigdy tu nie trafi;
+     • nie reaguje na dotyk zaczęty przy PRAWEJ krawędzi ekranu — tam zaczyna się
+       systemowy gest „do przodu" w przeglądarce, a jego kierunek (w lewo) jest
+       identyczny z naszym;
+     • nie reaguje na multitouch (pinch/zoom) — drugi palec kasuje gest.
+
+   Próg jest celowo podwójny: sam dystans przepuszczałby powolne „muśnięcia"
+   przy przewijaniu ukosem, a sama prędkość — krótkie szarpnięcia. Do tego
+   dochodzi warunek kierunku (poziomo musi być wyraźnie więcej niż pionowo),
+   który odsiewa zwykły scroll palcem ustawionym pod kątem. */
+const SWIPE_MIN_DYSTANS = 60;      // px w poziomie
+const SWIPE_MAX_PION = 45;         // px w pionie — powyżej to już scroll
+const SWIPE_MIN_PREDKOSC = 0.25;   // px/ms (60px w ≤240ms wystarcza)
+const SWIPE_MAX_CZAS = 700;        // ms — dłuższe przeciąganie to nie gest, tylko manewr
+const SWIPE_MARGINES_KRAWEDZI = 24; // px od prawej krawędzi — strefa gestu przeglądarki
+
+if (sidebar) {
+    let gest = null;
+
+    sidebar.addEventListener("touchstart", (e) => {
+        // Warunki wejścia sprawdzamy PRZY STARCIE dotyku: później (po obrocie
+        // ekranu, przy zamknięciu panelu w międzyczasie) gest i tak przepadnie
+        // na sprawdzeniu w touchend.
+        if (e.touches.length !== 1 || !czyTelefon() || !czySidebarOtwarty()) {
+            gest = null;
+            return;
+        }
+        const t = e.touches[0];
+        if (t.clientX > window.innerWidth - SWIPE_MARGINES_KRAWEDZI) {
+            gest = null; // strefa systemowego „do przodu"
+            return;
+        }
+        gest = { x: t.clientX, y: t.clientY, czas: Date.now() };
+    }, { passive: true });
+
+    // Drugi palec w trakcie = to nie jest przeciągnięcie (zoom, przypadkowy chwyt).
+    sidebar.addEventListener("touchmove", (e) => {
+        if (gest && e.touches.length > 1) gest = null;
+    }, { passive: true });
+
+    sidebar.addEventListener("touchcancel", () => { gest = null; }, { passive: true });
+
+    sidebar.addEventListener("touchend", (e) => {
+        const start = gest;
+        gest = null;
+        if (!start || !czySidebarOtwarty()) return;
+        const t = e.changedTouches && e.changedTouches[0];
+        if (!t) return;
+        const dx = t.clientX - start.x;          // ujemne = w lewo
+        const dy = t.clientY - start.y;
+        const dt = Math.max(1, Date.now() - start.czas);
+        if (dx > -SWIPE_MIN_DYSTANS) return;     // za krótko albo w prawo
+        if (Math.abs(dy) > SWIPE_MAX_PION) return;
+        if (Math.abs(dx) < Math.abs(dy) * 1.5) return; // za mało „poziomy"
+        if (dt > SWIPE_MAX_CZAS) return;
+        if (Math.abs(dx) / dt < SWIPE_MIN_PREDKOSC) return;
+        zamknijSidebar(false);
+    }, { passive: true });
+}
+
 // "Zresetuj arkusz": kasuje zapisany postęp i przeładowuje stronę — punkty,
 // kolory odpowiedzi i wpisy wracają do zera jedną, wspólną drogą (świeży render).
 document.getElementById("reset-scores").addEventListener("click", () => {
@@ -151,6 +221,10 @@ function odswiezTrybPoprawnosci() {
     const on = czyNatychmiastowaPoprawnosc();
     document.body.classList.toggle("reczne-sprawdzanie", !on);
     ustawWartosc(natychmiastowaToggle, on ? WARTOSC_NATYCHMIAST : "po „sprawdź”");
+    // „Sprawdź wszystkie odpowiedzi" nie znika już przy przełączeniu (panel
+    // skakał) — o jego stanie decyduje odswiezBlokadyMenu() w app/exam.js,
+    // które sumuje ten tryb z trybem egzaminu.
+    odswiezBlokadyMenu();
 }
 odswiezTrybPoprawnosci();
 if (natychmiastowaToggle) {
