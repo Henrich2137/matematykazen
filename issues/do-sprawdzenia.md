@@ -10,10 +10,11 @@ zrzutem Playwrighta — każda sesja dopisuje tu 1–3 pozycje po swojej paczce.
   zrzucie 390px szerokości wygląda dobrze, ale „w sam raz vs. za dużo" to kwestia dotyku/wzroku
   na prawdziwym ekranie, nie piksela na screenshotcie.
 
-- **Przesunięcie `#total-score` (suma punktów w prawym górnym rogu) o 40px w lewo na bardzo
-  wąskich telefonach** (np. iPhone SE / starsze Androidy ~360px szerokości) — testowane tylko
-  na 390px (iPhone 12/13/14). Sprawdzić, czy pigułka nie zaczyna kolidować z logo po lewej
-  stronie na węższych ekranach.
+- **Pigułka punktacji przy zadaniu (`.exercise-score`, „0 / 1 pkt") na bardzo wąskich
+  telefonach** (iPhone SE / starsze Androidy, ~360px) — przysunięta o 40px bliżej treści
+  (`right: -120px` → `-80px`), sprawdzona na 1280px i 390px. Na węższych ekranach badge
+  przechodzi na inne pozycjonowanie (`style/responsive.css`), więc warto zerknąć, czy nie
+  nachodzi na treść zadania.
 
 - **Stopka arkusza i landing na prawdziwym telefonie**: nowa linijka „© 2026 Henrich2137 ·
   Licencja" — sprawdzić, czy link faktycznie otwiera się wygodnie (obszar dotyku, nie tylko
