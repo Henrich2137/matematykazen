@@ -114,6 +114,8 @@ Every commit (local or cloud) gets a `Co-Authored-By:` trailer in the form **`Lo
 - Skills only appear **after a Claude Code session restart**.
 - `vendor/superpowers/` holds only `LICENSE` (MIT) + `NOTICE.md` — a slot for skills that might later be copied and fine-tuned. It deliberately contains **no plugin code**; don't copy the plugin in there "for tidiness".
 
+**Własne skille projektu** żyją w `.claude/skills/<nazwa>/SKILL.md` (tracked, jadą z repo, widoczne po restarcie sesji). Dziś jest jeden: **`weryfikacja`** (2026-08-09) — trzy zasady wyprowadzone z realnych wpadek: raport subagenta sprawdzasz własnym narzędziem, narzędzie diagnostyczne dostaje zapadkę na swój cichy błąd, własny błąd prostujesz jednym zdaniem. Nie edytuj skilli superpowers zamiast tego — te siedzą w cache'u pluginu poza repo i giną przy reinstalacji.
+
 ## Running / previewing
 
 No build or test tooling. **Serve the directory with a static file server** (e.g. `npx serve`, `python -m http.server`) — since the exercises.json migration the exam page loads its data with `fetch`, which does not work over `file://` (the page then shows a message explaining exactly this; index.html alone still opens fine from a file). No linter/test suite — verify changes by opening the page and clicking through the exercise(s) you touched.
