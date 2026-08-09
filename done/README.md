@@ -18,6 +18,11 @@ Do szukania używaj najpierw tego indeksu (tagi niżej), potem grepa po konkretn
 
 
 == 04-biezace.md — partia OTWARTA (2026-07-27 → ?) ==
+- 2026-08-09 (Opus 5) — devcontainer nie wstawał (`Permission denied` na `/vscode/vscode-server/bin`):
+  wolumen `vscode` tworzony przez rozszerzenie miał uid sprzed `--userns=keep-id`, po `podman prune`
+  podpiął się pod niego świeży kontener; naprawa = `podman rm` kontenera + `podman volume rm vscode`
+  + rebuild; wykluczone obraz i SELinux; spis wolumenów, których nie wolno prune'ować
+  [devcontainer, podman, keep-id, wolumeny, srodowisko]
 - 2026-08-07 (Opus 5 Medium) — narzędzia, bez zmian w kodzie strony: auto-fetch + auto-pull przy starcie
   VS Code natywnymi mechanizmami (`.vscode/tasks.json` runOn folderOpen + `git.autofetch`), świadomie
   zamiast gitdoc.pullOnOpen; plugin superpowers 6.2.0 faktycznie zainstalowany w scope project

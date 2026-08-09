@@ -1,5 +1,43 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-09] (Opus 5) Devcontainer nie wstawał: `mkdir: cannot create directory
+'/vscode/vscode-server/bin': Permission denied`. Diagnoza i naprawa, zero zmian w plikach repo.
+
+PRZYCZYNA. Rozszerzenie Dev Containers samo tworzy nazwany wolumen `vscode` montowany pod
+`/vscode` (cache serwera VS Code między przebudowami) — nie ma go w `devcontainer.json`, dzieje
+się pod spodem. Ten wolumen powstał 2026-08-06 z właścicielem ns-uid 1000 = host uid **525287**,
+czyli tak, jakby tworzył go kontener BEZ `--userns=keep-id`. Tymczasem właściwy devcontainer
+działa Z keep-id (`remoteUser: node` + `updateRemoteUserUID: false` → rozszerzenie dokłada
+`--userns=keep-id` pod podmanem), gdzie `node` = host uid **1000**. Rozjazd uid → brak zapisu
+do `/vscode`. Potwierdzone liczbowo: `UidMap ["0:1:1000","1000:0:1","1001:1001:64536"]` —
+`1000:0:1` to właśnie keep-id. Dla porównania wolumen `matematykazen-claude-config` był i jest
+zdrowy (host uid 1000), bo Dockerfile chownuje `/home/node/.claude`, a podman przy pierwszym
+montowaniu robi copy-up i przenosi na wolumen właściciela katalogu z obrazu.
+
+WYZWALACZ. Henrich robił porządki na dysku (`podman prune` i podobne). `system prune -a` nie
+kasuje nazwanych wolumenów, ale usunął stary, DZIAŁAJĄCY kontener — a rozszerzenie utworzyło
+nowy, który podpiął się pod stary wolumen z 6 sierpnia o niepasującym uid. Poszlaka: ostatni
+zapis w `matematykazen-claude-config` to 08-08 16:39, a kontener powstał 09-08 00:51, czyli
+najpewniej nigdy poprawnie nie wystartował.
+
+NAPRAWA. `podman rm <kontener>` (zatrzymany kontener w stanie `exited` nadal trzyma referencję
+do wolumenu i blokuje `volume rm` — to NIE jest hibernacja), potem `podman volume rm vscode`
+(bezpieczne: wolumen miał 0 bajtów, to wyłącznie cache binarki serwera), potem rebuild z VS Code.
+Po odtworzeniu wolumen miał już poprawnego właściciela (host uid 1000), a ostatecznie środowisko
+wstało po restarcie hosta. Wykluczone po drodze: obraz kontenera (nowy kontener, ten sam poprawny
+obraz) oraz SELinux (host `Enforcing`, ale kontener dostaje `--security-opt label=disable`).
+
+CZEGO NIE RUSZAĆ przy przyszłym sprzątaniu: wolumenu `matematykazen-claude-config` (tam siedzi
+`.credentials.json` z logowaniem Claude Code, `projects/`, `sessions/`) ani wolumenu `open-webui`
+(2,9 GB, obca usługa). `podman volume prune` i `system prune -a --volumes` są NIEBEZPIECZNE —
+gdy devcontainer nie działa, jego wolumen liczy się jako nieużywany i leci. Wolumeny usuwać
+zawsze imiennie. Gdyby problem wrócił, utwardzenie to `RUN mkdir -p /vscode && chown -R
+node:node /vscode` w `.devcontainer/Dockerfile` przed `USER node` (ten sam mechanizm copy-up,
+który uratował `/home/node/.claude`); awaryjnie `podman volume create vscode` +
+`podman unshare chown 0:0 <mountpoint>` (ns 0 = host 1000 = `node` pod keep-id).
+Uwaga na przyszłość: rozszerzenie WZNAWIA istniejący kontener po etykietach
+`devcontainer.local_folder` — samo „Reopen in Container" nie tworzy nowego, dopiero `podman rm`.
+
 [ZROBIONE 2026-08-07] (Opus 5 Medium) Konfiguracja narzędzi, zero zmian w kodzie strony:
 
 1. Auto-fetch + auto-pull przy starcie VS Code. `.vscode/settings.json` → `git.autofetch: true`
