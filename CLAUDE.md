@@ -86,6 +86,10 @@ Both files are tracked, so they travel with the repo and behave identically insi
 
 Consequence for the assistant: local `master` is often already up to date at session start, but a background fetch **does not touch the working tree**, so still run `git fetch` before reasoning about history in a long session.
 
+## Commit attribution (added 2026-08-09)
+
+Every commit (local or cloud) gets a `Co-Authored-By:` trailer in the form **`Local/Cloud Model Effort`** — e.g. `Co-Authored-By: Local Opus 5 Medium <noreply@anthropic.com>` or `Co-Authored-By: Cloud Sonnet 5 High <noreply@anthropic.com>`. No prefix in the commit message/subject — that convention was dropped in favor of this trailer.
+
 ## Claude Code — plugins / skills (added 2026-08-07)
 
 `.claude/settings.json` is tracked in the repo and declares `enabledPlugins`, so the plugin travels with the repo:
@@ -115,10 +119,10 @@ No build or test tooling. **Serve the directory with a static file server** (e.g
 ## User notes
 
 - Ostrzegaj mnie przed włączeniem ciężkiego zadania np subagent-heavy sessions, które ostatnio wciągnęły mi 60% session limit dosyć szybko gdy robiłem code-review ultra
+- Odpowiadaj zwięźle — krótsze wypowiedzi, mniej technicznego żargonu; tłumacz pojęcia techniczne prostymi słowami zamiast zakładać, że są znane.
 - Gdy treść do tego pasuje (wyjaśnienia, oceny, listy opcji, podsumowania), prezentuj informacje w punktach w stylu TODO.md — pogrubiony nagłówek/tytuł punktu, pod nim zagnieżdżone podpunkty z detalami — zamiast ciągłej prozy z nagłówkami. Tabelki i inne wizualne reprezentacje też mile widziane, jeśli pasują do treści. W takich zestawieniach można też używać kolorowych emotikonek jako oznaczeń stanu/oceny (np. ❌/✅ dla „niepotrzebne"/„potrzebne", „nie działa"/„działa"). ⭐ tylko dla faktycznej skali ocen (np. „4/5 gwiazdek") — NIE jako zamiennik neutralnego/nieokreślonego stanu. Do stanu neutralnego/„zależy od Ciebie" używaj 🟨 (żółty kwadrat) — trzeci stan obok ✅/❌. Nie dotyczy to nastrojowych emotikon/buźek (np. :), 🙂) — tych unikaj zawsze, także w punktach/tabelkach. Poza oznaczeniami stanu/oceny obowiązuje domyślny zakaz emoji z sekcji "Tone and style".
 
 ## Cloud sessions / routines
 
 - Pushuj do najnowszej gałęzi z najnowszymi zmianami — nawet jeśli to jest `master` — zamiast tworzyć nową gałąź. Można to pominąć tylko jeśli użytkownik wyraźnie zażyczy sobie inaczej w prompcie.
-- Każdego commita rozpoczynaj prefiksem z nazwą modelu i poziomem wysiłku, który go wykonał, np. `Sonnet High Cloud: ...` lub `Opus Medium Cloud: ...`.
 - Nie zaglądaj do brancha `backup-przed-squash-gitdoc` (lokalnie ani `origin/`) — to tylko archiwalny backup sprzed squasha autozapisów gitdoc. Wyjątek: gdy chcesz sprawdzić bardzo szczegółową historię automatycznych commitów generowanych przez gitdoca.
