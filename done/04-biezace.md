@@ -1,5 +1,11 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-09] (Sonnet 5) Test v14 przez Henricha — 2 z 3 punktów potwierdzone bez zastrzeżeń,
+trzeci (dynamiczny podgląd hoveru) i pole „ostateczna odpowiedź" przepisane na nowe punkty w
+TODO.md → DO ZROBIENIA:
+- Hover myszą (tło na chrome, ramka na odpowiedziach ABCD/PF/„N pkt") — Henrich: „jest dobrze".
+- Jasny motyw, poprawka kontrastu WCAG drobnych szarych tekstów — Henrich: „jest dobrze".
+
 [ZROBIONE 2026-08-09] (Fable 5) Paczka 4 „Spójność UI, etap 2" — audyt całego style/, v14 Beta.
 
 Zamknięte wszystkie punkty z issues/ui-spojnosc-etap2.md (plik przeniesiony do done/ui-spojnosc-etap2.md):

@@ -3,7 +3,27 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.
 
-  - nic
+  - Paczka drobiazgów UI (hover panelu / kontrolki odpowiedzi na telefonie / dark mode
+    grafik) — omówione i doprecyzowane w rozmowie z Sonnetem, spec:
+    [docs/superpowers/specs/2026-08-09-paczka-ui-drobiazgi-design.md](docs/superpowers/specs/2026-08-09-paczka-ui-drobiazgi-design.md).
+
+    - Usunąć dynamiczny podgląd „wartość → następna" (np. „wszystkie → wypełnione") z hoveru
+      przycisków panelu (Wskaźniki/Punktacja/Motyw), bo odejmuje intuicyjności — Henrich, v14.
+      Zamiast tego obecnie wybrana opcja ma być widoczna cały czas, niezależnie od hoveru.
+      (`.wartosc-podglad`, `app/state.js:91-100`)
+      Kod archiwizowany w issues/, nie po prostu skasowany.
+
+    - Kontrolki odpowiedzi (pole „ostateczna odpowiedź"/fill-in, przyciski P/F) na telefonie:
+      NIE zwykłe zmniejszenie szerokości/marginesów — pivot na layout pionowy (treść nad,
+      kontrolka pod), z mniejszym marginesem z lewej i przesunięciem w prawo/mniejszym
+      marginesem z prawej. Szczegóły w spec.
+
+    - Zrobić grafiki do zadań do dark mode: pełne odwrócenie kolorów (świadomie zaakceptowany
+      kompromis — kolorowe elementy wyjdą w zamienionych barwach), dotyczy też wideo.
+      Startowa wartość filtra wyliczana z jasności `--bg`, potem dostrojona empirycznie.
+      (Tańszy tymczasowy fix opisany też w issues/dark-mode-obrazki-wideo.md.)
+
+    - Przycisk "Sprawdź wszystkie odpowiedzi" powinien być umieszczony jako podpunkt pod "Poprawność"? (podobnie jak to wygląda z opcjami dot. trybu egzaminu)
 
 
 <br>
@@ -19,18 +39,13 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + TESTOWANIE HENRICH:
 
-  - (v14) Hover myszą: menu/pigułki/strzałka panelu podświetlają się teraz TŁEM, a odpowiedzi ABCD/PF/„N pkt" ciemniejszą RAMKĄ (nowość — wcześniej nie reagowały wcale). Pojeździj kursorem i oceń, czy to rozróżnienie dobrze się czuje.
+  - nic
 
-  - (v14) Jasny motyw: drobne szare teksty (suma punktów w rogu, stopka, podpisy pod przyciskami na landingu) są odrobinę ciemniejsze (poprawka kontrastu WCAG). Oceń, czy nadal wyglądają dyskretnie, czy już za bardzo rzucają się w oczy.
-
-  - (v14) Pola wpisywane (zad. 10, „ostateczna odpowiedź") są o ~4px wyższe (ujednolicony padding). Rzut oka na telefonie, czy wpisywanie i układ wierszy nadal wyglądają dobrze.
 
 <br>
 
 
 + DLA HENRICHA:
-
-  - Wykminić, jak zrobić grafiki do zadań do dark mode, można np. masowo odwrócić kolory i zmienić krzywą tak, aby zamiast czarnego tła był odpowiedni kolor szarego. (Tańszy tymczasowy fix: CSS filter na `.question img`/wideo — patrz issues/dark-mode-obrazki-wideo.md)
 
   - Przerenderować w Manimie ostatni krok zad 2 (zad2/zad2rozw_step6.mp4): klatka końcowa pokazuje 5⁻⁴, a poprawny wynik to 5⁴ (5⁻¹ · 5⁵ = 5⁴). Komentarz pod filmem tymczasowo prostuje błąd.
 
@@ -51,13 +66,9 @@ Oto plik który tworzy Henrich (ja, użytkownik).
         - ALBO: niewidzialne, wtedy opcja w menu powinna być szara z wybranym
         - ALBO: widoczne przyklejone do prawej strony z lekkim marginesem. powinny też być odpowiednio małe aby nie zasłaniały treści.
 
-      - Czy zmiena wielkości okienka PDF w każdym rogu i krawędzi byłaby skomplikowana do implementacji
+    - Czy zmiena wielkości okienka PDF w każdym rogu i krawędzi byłaby skomplikowana do implementacji
 
-      - Strona na telefonie wygląda jakby była przybliżona (troche jakby na komputerze naklikać Ctrl + = albo Ctrl + ScrollUP) ale może to jest tylko u mnie.
-
-    - Przycisk "Sprawdź wszystkie odpowiedzi" powinien być umieszczony jako podpunkt pod "Poprawność"?
-
-    - Do sekcji „oceń się" z checkboxami powinno być dodane kryteria sukcesu dopiero po kliknięciu rozwiązania. Ale jeszcze nie mam pomysłu, jak to skomponować, aby miało sens. (Częściowo załatwia to zwijany box z DO ZROBIENIA — wrócić do tematu po tamtej zmianie.)
+    - Strona na telefonie wygląda jakby była przybliżona (troche jakby na komputerze naklikać Ctrl + = albo Ctrl + ScrollUP) ale może to jest tylko u mnie.
 
   - "Pokaż potrzebne wzory" powinien mieć możliwośc wyboru wielu podpunktów?, kropek?, a formulasPage w zadaniach powinien się zmienić na formulasPages (s na końcu). Powinno być wiele lokacji wzorów do przywołania pod jednym zadaniem. 
     - Zad 9. dopisać str 7 (wyróżnik Δ, obok już wpisanej str 8 ze wzorem na x1,x2)
@@ -84,13 +95,11 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
   - Po kliknięciu prevStepButton animacja powinna odpalać się od tyłu (jeżeli to możliwe aby odtwarzać animacje od tyłu, można też renderować każdą od tyłu)
 
-  - Funkcjonalność otwierania tablicy wzorów w nowej karcie o raz Dodać przełącznik "miejsce otwarcia: nowa karta / wew. okienko" pod "Otwórz tablice wzorów"
+  - Funkcjonalność otwierania tablicy wzorów w nowej karcie oraz Dodać przełącznik "miejsce otwarcia: nowa karta / wew. okienko" pod "Otwórz tablice wzorów"
 
   - sprawdzić merytorykę arkuszy (na końcu, przed rozpowszechnieniem)
 
   - wysyłanie całego localStorage przez użytkownika podczas zgłaszania błędu jest a bit scatchy też troche niebezpiczne
-
-  - 
 
 <br>
 
@@ -100,19 +109,23 @@ Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz is
 
   + SONNET DOPISAŁ:
 
-    - Tryb testowy dla zgłaszania błędów (app/report.js): przycisk „Wyślij zgłoszenie" zamieniony na „Wyślij zgłoszenie lokalnie" (np. pod `?test-zgloszenie=1`, wzorem `?test-egzamin=1`), który loguje payload do konsoli/localStorage zamiast robić fetch do Formspree — żeby testować całą ścieżkę (walidacja, honeypot, throttling, toast) bez zużywania miesięcznego limitu 50 zgłoszeń.
+    - Tryb testowy dla zgłaszania błędów (app/report.js): przycisk „Wyślij zgłoszenie" zamieniony na „Wyślij zgłoszenie lokalnie" 
+      - (np. pod `?test-zgloszenie=1`, wzorem `?test-egzamin=1`), który loguje payload do konsoli/localStorage zamiast robić fetch do Formspree — żeby testować całą ścieżkę (walidacja, honeypot, throttling, toast) bez zużywania miesięcznego limitu 50 zgłoszeń.
 
     - Formularz zgłoszenia na telefonie jest wysoki: 8 pigułek kategorii idzie po jednej na wiersz (~340 px), więc obowiązkowe pole opisu jest daleko w dole. Do rozważenia: dwie pigułki w rzędzie, skrócone nazwy albo opis nad kategoriami. (nie ma dramatu, jest w miare ok)
 
 
-  + OPUS DOPISAŁ (Opus 5, medium):
+  + Opus 5, medium
 
-    - Gdy Henrich zdecyduje się upublicznić imię i nazwisko, trzeba podmienić pseudonim `Henrich2137` na dane osobowe w dwóch miejscach: `LICENSE.md` (linie 1–2: copyright + Required Notice) i `CONTRIBUTING.md` (punkt 2 zgody na licencjonowanie wkładu). CLA na pseudonim jest słabsze dowodowo niż na nazwisko.
+    - Gdy Henrich zdecyduje się upublicznić imię i nazwisko, trzeba podmienić pseudonim `Henrich2137` na dane osobowe w poniższych miejscach. CLA na pseudonim jest słabsze dowodowo niż na nazwisko.
+      - `LICENSE.md` (linie 1–2: copyright + Required Notice)
+      - `CONTRIBUTING.md` (punkt 2 zgody na licencjonowanie wkładu
+      - stopki plikach html
 
     - Gdy ruszy domena matematykazen.pl, podmień URL w `LICENSE.md:2` (Required Notice — ta linia jest kopiowana przez każdego redystrybutora) i `README.md`; w OVERVIEW.md domena jest już opisana jako plan Fazy 2.
 
 
-  + OPUS DOPISAŁ (Opus 5, high) — devcontainer, 2026-08-06:
+  + Opus 5, high — devcontainer, 2026-08-06:
 
     - Sprawdzić nowy devcontainer na Kubuntu/Dockerze. Zmiany testowałem tylko pod rootless podmanem na Bazzite; `docker exec --privileged` działa tak samo, ale nie miałem jak tego odpalić.
 
