@@ -78,29 +78,136 @@ while read -r cidr; do
     ipset add allowed-domains "$cidr"
 done < <(echo "$gh_ranges" | jq -r '(.web + .api + .git)[]' | aggregate -q)
 
-# Resolve and add other allowed domains
-for domain in \
-    "registry.npmjs.org" \
-    "api.anthropic.com" \
-    "sentry.io" \
-    "marketplace.visualstudio.com" \
-    "vscode.blob.core.windows.net" \
-    "update.code.visualstudio.com"; do
+# Resolve and add other allowed domains.
+#
+# Lista jest ROZDZIELONA na dwie, bo nie każda domena jest tak samo ważna:
+#
+# KRYTYCZNE — bez nich sesja nie ma sensu (git, model, pakiety, rozszerzenia).
+# Nierozwiązana domena przerywa skrypt, a że postStartCommand jest fail-closed,
+# to znaczy "nie wchodzisz do kontenera". Tak ma być: lepiej nie wejść, niż
+# pracować w środowisku, w którym połowa narzędzi milczy.
+#
+# TREŚCIOWE — źródła arkuszy i kluczy CKE. Te serwisy bywają chwilowo
+# niedostępne, a to żaden powód, żeby zablokować wejście do kontenera. Brak
+# rozwiązania daje OSTRZEŻENIE i lecimy dalej; jedyny skutek to tyle, że ruch
+# do tej domeny nie zostanie przepuszczony w tej sesji (firewall zostaje
+# szczelny — nie otwieramy niczego "na wszelki wypadek").
+#
+# Czego tu ŚWIADOMIE NIE MA:
+# - github.io / GitHub Pages — już przepuszczone przez zakres 185.199.108.0/22
+#   z api.github.com/meta (pole .web). Dopisanie pola .pages nie zmienia ani
+#   jednego wpisu w ipsecie — sprawdzone 2026-08-09.
+# - matematykazen.pl — domena jeszcze nie istnieje w DNS, więc dopisanie jej
+#   dziś = pewny `exit 1` i zablokowana sesja. Dodać dopiero, gdy ruszy.
+# - formspree.io — anycast Cloudflare. Filtrujemy po IP, nie po SNI, więc
+#   wpuszczenie tych adresów otwiera kawałek współdzielonej infrastruktury.
+#   Formularz zgłoszeń i tak testuje się w przeglądarce na hoście.
+CRITICAL_DOMAINS=(
+    "registry.npmjs.org"
+    "api.anthropic.com"
+    "sentry.io"
+    "marketplace.visualstudio.com"
+    "vscode.blob.core.windows.net"
+    "update.code.visualstudio.com"
+)
+
+# www.cke.gov.pl to CNAME na apex (ten sam adres) — wpis jest redundantny,
+# trzymany wyłącznie na wypadek, gdyby CKE kiedyś rozdzieliło te hosty.
+CONTENT_DOMAINS=(
+    "cke.gov.pl"
+    "www.cke.gov.pl"
+    "arkusze.pl"
+    "zpe.gov.pl"      # Zintegrowana Platforma Edukacyjna (MEN)
+    "ore.edu.pl"      # Ośrodek Rozwoju Edukacji — podstawa programowa
+    "men.gov.pl"      # rozporządzenia, komunikaty o formule egzaminu
+
+    # ODKOMENTUJ, GDY matematykazen.pl RUSZY. Dziś domena nie istnieje w DNS.
+    # Siedzi na liście treściowej, więc nie wywaliłaby skryptu (dostałaby tylko
+    # ostrzeżenie), ale wisiałby tu martwy wpis mylący przy każdej diagnozie.
+    # "matematykazen.pl"
+
+    # KANDYDACI — bezpieczni, ale niepotrzebni na dziś. Każdy ma własny,
+    # pojedynczy adres IP, więc odkomentowanie wpuszcza dokładnie ten serwer
+    # i nic poza nim. Odkomentuj, gdy zaczniesz ściągać arkusze z konkretnej
+    # okręgowej komisji (OKE publikują je równolegle do CKE).
+    # "oke.waw.pl"
+    # "oke.krakow.pl"
+    # "oke.poznan.pl"
+    # "oke.wroc.pl"
+    # "oke.gda.pl"
+    # "oke.lomza.pl"
+    # "oke.jaworzno.pl"
+
+    # ODRZUCONE ŚWIADOMIE — odkomentuj TYLKO wtedy, gdy coś konkretnego przez
+    # nie nie działa, i wiedząc, co dokładnie otwierasz. Powód odrzucenia jest
+    # ten sam dla pierwszych czterech: filtrujemy po docelowym IP, nie po SNI,
+    # więc wpuszczenie adresu współdzielonego anycastu CDN-a otwiera kawałek
+    # infrastruktury obsługującej tysiące cudzych serwisów — a same adresy
+    # jeszcze do tego rotują, więc lista i tak potrafi się zdezaktualizować.
+    #
+    # "formspree.io"              # anycast Cloudflare (172.66.x). Backend
+    #                             # formularza zgłoszeń z app/report.js.
+    #                             # Odkomentuj, gdybyś chciał testować wysyłkę
+    #                             # zgłoszeń Z WNĘTRZA kontenera — normalnie
+    #                             # klika się to w przeglądarce na hoście.
+    # "pypi.org"                  # anycast Fastly (151.101.x). Odkomentuj,
+    # "files.pythonhosted.org"    # gdyby Manim albo inne narzędzia pythonowe
+    #                             # miały renderować wideo w kontenerze;
+    #                             # POTRZEBNE SĄ OBA naraz (metadane + pliki).
+    # "developer.mozilla.org"     # anycast Fastly. Dokumentacja CSS/JS.
+    #                             # Odkomentuj, jeśli chcesz do niej sięgać
+    #                             # z kontenera zamiast z przeglądarki hosta.
+    #
+    # "katex.org"                 # dedykowane IP, więc bezpieczne — po prostu
+    #                             # zbędne: KaTeX jest zwendorowany w vendor/,
+    #                             # a aktualizacja idzie z registry.npmjs.org.
+    # "nodejs.org"                # anycast Cloudflare, a Node jest w obrazie.
+    # "console.anthropic.com"     # przydatne tylko w przeglądarce, której
+    #                             # w kontenerze nie ma.
+    #
+    # NIE DODAWAJ: statsig.anthropic.com — ta nazwa w ogóle się nie rozwiązuje
+    # (sprawdzone 2026-08-09), Claude Code działa bez niej.
+    # NIE DODAWAJ: cdn.jsdelivr.net, unpkg.com, fonts.googleapis.com — wprost
+    # sprzeczne z offline-first tego projektu, który wendoruje KaTeX właśnie
+    # po to, żeby nie zależeć od CDN-ów.
+)
+
+# $1 = domena, $2 = "critical" | "content"
+add_domain() {
+    local domain=$1 mode=$2 ips ip
     echo "Resolving $domain..."
     ips=$(dig +noall +answer A "$domain" | awk '$4 == "A" {print $5}')
     if [ -z "$ips" ]; then
-        echo "ERROR: Failed to resolve $domain"
-        exit 1
-    fi
-    
-    while read -r ip; do
-        if [[ ! "$ip" =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
-            echo "ERROR: Invalid IP from DNS for $domain: $ip"
+        if [ "$mode" = "critical" ]; then
+            echo "ERROR: Failed to resolve $domain"
             exit 1
         fi
+        echo "UWAGA: nie udało się rozwiązać $domain — pomijam (ruch tam będzie zablokowany)"
+        return 0
+    fi
+
+    while read -r ip; do
+        if [[ ! "$ip" =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
+            if [ "$mode" = "critical" ]; then
+                echo "ERROR: Invalid IP from DNS for $domain: $ip"
+                exit 1
+            fi
+            echo "UWAGA: podejrzany adres z DNS dla $domain: $ip — pomijam"
+            continue
+        fi
         echo "Adding $ip for $domain"
-        ipset add allowed-domains "$ip"
+        # -exist, bo różne domeny potrafią wskazywać ten sam adres (np.
+        # www.cke.gov.pl to CNAME na cke.gov.pl). Bez tego `ipset add` zwraca
+        # błąd na duplikacie i pod `set -e` zabija cały skrypt.
+        ipset add allowed-domains "$ip" -exist
     done < <(echo "$ips")
+}
+
+for domain in "${CRITICAL_DOMAINS[@]}"; do
+    add_domain "$domain" critical
+done
+for domain in "${CONTENT_DOMAINS[@]}"; do
+    add_domain "$domain" content
 done
 
 # Get host IP from default route

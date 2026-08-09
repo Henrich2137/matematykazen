@@ -42,9 +42,14 @@ RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhisto
 # Set `DEVCONTAINER` environment variable to help with orientation
 ENV DEVCONTAINER=true
 
-# Create workspace and config directories and set permissions
-RUN mkdir -p /workspace /home/node/.claude && \
-  chown -R node:node /workspace /home/node/.claude
+# Create workspace and config directories and set permissions.
+# /home/node/.config/gh MUSI powstać tutaj, mimo że montuje się na nie wolumen:
+# podman inicjalizuje nowy, pusty wolumen zawartością i właścicielem katalogu z
+# obrazu. Gdyby tej ścieżki w obrazie nie było, wolumen powstałby jako root:root
+# i `gh` (działający jako node) nie zapisałby do niego tokenu. Ta sama zasada
+# co przy /home/node/.claude.
+RUN mkdir -p /workspace /home/node/.claude /home/node/.config/gh && \
+  chown -R node:node /workspace /home/node/.claude /home/node/.config
 
 WORKDIR /workspace
 

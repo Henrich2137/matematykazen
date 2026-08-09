@@ -29,6 +29,24 @@
   "mounts": [
     "source=matematykazen-claude-config,target=/home/node/.claude,type=volume",
 
+    // Logowanie `gh` przeżywa przebudowę obrazu. Bez tego ~/.config/gh leży w
+    // warstwie zapisywalnej kontenera i ginie przy każdym rebuildzie, więc
+    // `gh auth login` trzeba by powtarzać w kółko.
+    //
+    // Dlaczego wolumen, a nie bind hostowego ~/.config/gh: na hoście `gh`
+    // trzyma token w KEYRINGU, a hosts.yml zawiera samą nazwę użytkownika —
+    // podmontowanie go dałoby w kontenerze usera bez tokenu, czyli nic.
+    //
+    // Uwaga: w kontenerze nie ma keyringu, więc token leży tu plaintextem.
+    // To nie jest regres — dotąd leżał plaintextem dokładnie tak samo, tyle że
+    // w efemerycznej warstwie kontenera.
+    //
+    // Czego to NIE dotyczy: `git push`/`pull` działa niezależnie od `gh`, bo
+    // Dev Containers wstrzykuje do ~/.gitconfig własny credential helper
+    // pytający hosta przez socket. Copilot w VS Code też nie wymaga logowania
+    // po rebuildzie — jego sesja żyje po stronie hosta, nie w kontenerze.
+    "source=matematykazen-gh-config,target=/home/node/.config/gh,type=volume",
+
     // .devcontainer TYLKO DO ODCZYTU — nakłada się na zamontowane repo i
     // przykrywa ten katalog. Bez tego kontener mógłby podmienić własną
     // konfigurację, a `host-firewall.sh` wykonuje się NA HOŚCIE jako Ty:

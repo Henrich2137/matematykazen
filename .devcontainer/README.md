@@ -175,6 +175,38 @@ Jeśli to zacznie uwierać, można zamontować read-only tylko sam
 `host-firewall.sh` zamiast całego katalogu — to on jest naprawdę groźny, bo
 wykonuje się na hoście. Ochrona słabsza, tarcie mniejsze.
 
+### Logowanie `gh` przeżywa przebudowę (wolumen)
+
+`~/.config/gh` w kontenerze to **wolumen** `matematykazen-gh-config`, dokładnie
+jak `~/.claude`. Bez tego katalog leżałby w warstwie zapisywalnej kontenera
+i ginął przy każdym rebuildzie, więc `gh auth login` trzeba by powtarzać
+w kółko.
+
+Dlaczego wolumen, a nie bind hostowego `~/.config/gh`: na hoście `gh` trzyma
+token w **keyringu**, a `hosts.yml` zawiera samą nazwę użytkownika bez
+`oauth_token`. Podmontowanie tego pliku dałoby w kontenerze usera bez tokenu,
+czyli nic.
+
+`/home/node/.config/gh` jest przy tym **pre-tworzony w `Dockerfile`** i chown-owany
+na `node`. To nie jest nadmiarowe: podman inicjalizuje nowy, pusty wolumen
+zawartością i właścicielem katalogu z obrazu — gdyby tej ścieżki w obrazie nie
+było, wolumen powstałby jako `root:root` i `gh` (działający jako `node`) nie
+zapisałby do niego tokenu.
+
+W kontenerze nie ma keyringu, więc token leży tam plaintextem. To nie regres —
+dotąd leżał plaintextem tak samo, tyle że w efemerycznej warstwie kontenera.
+
+**Czego to nie dotyczy** (i co nigdy nie wymagało logowania po rebuildzie):
+
+- `git push`/`pull` — Dev Containers wstrzykuje do `~/.gitconfig` w kontenerze
+  własny credential helper (`…/vscode-remote-containers-….js`), który pyta host
+  przez socket. Działa nawet przy wylogowanym `gh`.
+- Copilot w VS Code — sesja GitHub żyje po stronie hosta (UI), nie w kontenerze;
+  w `~/.vscode-server/data/User/globalStorage/` nie ma nawet `state.vscdb`.
+
+Reset logowania, gdyby kiedyś trzeba: `podman volume rm matematykazen-gh-config`
+przy zatrzymanym kontenerze.
+
 ### Brama `/32`, nie `/24`
 
 Oryginał przepuszczał całą podsieć bramy, bo pod Dockerem bramą jest most
@@ -184,10 +216,64 @@ bramy.
 
 ## Co firewall przepuszcza
 
-Zakresy IP GitHuba (pobierane z `api.github.com/meta`), `registry.npmjs.org`,
-`api.anthropic.com`, `sentry.io`, trzy domeny VS Code, DNS do własnego resolwera,
-localhost i bramę. Wszystko inne dostaje `REJECT`. Filtrowanie jest **po
-docelowym IP**, nie po porcie.
+Zakresy IP GitHuba (pobierane z `api.github.com/meta`), DNS do własnego
+resolwera, localhost i bramę, plus dwie listy domen w `init-firewall.sh`.
+Wszystko inne dostaje `REJECT`. Filtrowanie jest **po docelowym IP**, nie po
+porcie ani po SNI — to dlatego domeny na współdzielonym anycaście CDN-a są
+problematyczne: wpuszczenie ich adresu otwiera kawałek cudzej infrastruktury.
+
+Listy są dwie, bo nie każda domena jest tak samo ważna:
+
+- **`CRITICAL_DOMAINS`** — `registry.npmjs.org`, `api.anthropic.com`,
+  `sentry.io` i trzy domeny VS Code. Nierozwiązana domena przerywa skrypt, a że
+  `postStartCommand` jest fail-closed, oznacza to brak wejścia do kontenera.
+  Tak ma być: lepiej nie wejść, niż pracować z połową milczących narzędzi.
+- **`CONTENT_DOMAINS`** — źródła treści i materiałów: `cke.gov.pl`,
+  `www.cke.gov.pl`, `arkusze.pl`, `zpe.gov.pl`, `ore.edu.pl`, `men.gov.pl`. Te
+  serwisy bywają chwilowo niedostępne, więc brak rozwiązania daje tylko
+  ostrzeżenie i skrypt leci dalej. Firewall zostaje szczelny — pominięta domena
+  po prostu nie jest przepuszczona w tej sesji.
+
+Pod aktywnymi wpisami w `CONTENT_DOMAINS` leży **blok zakomentowanych domen**:
+kandydaci (serwisy OKE) oraz świadomie odrzuceni, każdy z powodem odrzucenia
+i warunkiem, w którym warto go odkomentować. Jeśli coś w kontenerze przestanie
+działać z powodu sieci, zacznij od przejrzenia tego bloku — jest tam opisane,
+co dana domena obsługuje.
+
+### DO ZROBIENIA: odkomentować `matematykazen.pl`, gdy domena ruszy
+
+W `CONTENT_DOMAINS` czeka zakomentowany wpis `matematykazen.pl`. Dziś domena
+**nie istnieje w DNS** (`dig +short A matematykazen.pl` nie zwraca nic), więc
+trzymanie jej aktywnej byłoby martwym wpisem mylącym przy diagnozie. Gdy
+`matematykazen.pl` zacznie działać — odkomentuj tę linię. Ten sam moment
+dotyczy `Required Notice:` w `LICENSE.md`, które też wskazuje jeszcze na GitHub
+Pages (patrz `TODO.md`).
+
+### Czego na liście świadomie nie ma
+
+Wszystkie poniższe siedzą w `init-firewall.sh` jako **zakomentowane wpisy**
+z powodem odrzucenia — nie trzeba ich odtwarzać od zera, wystarczy zdjąć `#`.
+
+- **`henrich2137.github.io` / GitHub Pages** — nie trzeba nic dodawać. Domena
+  rozwiązuje się na `185.199.108–111.153`, a to mieści się w zakresie
+  `185.199.108.0/22`, który już wchodzi z pola `.web` w `api.github.com/meta`.
+  Sprawdzone 2026-08-09: dorzucenie pola `.pages` do zapytania `jq` nie zmienia
+  ani jednego wpisu w ipsecie (58 → 58).
+- **`formspree.io`** — anycast Cloudflare (`172.66.x`). Filtr po IP otworzyłby
+  współdzieloną infrastrukturę, a adresy i tak rotują. Formularz zgłoszeń
+  testuje się w przeglądarce na hoście.
+- **`pypi.org` / `files.pythonhosted.org` / `developer.mozilla.org`** — anycast
+  Fastly (`151.101.x`), ta sama uwaga. Do rozważenia dopiero, gdyby Manim albo
+  inne narzędzia pythonowe miały działać w kontenerze.
+- **`statsig.anthropic.com`** — w ogóle się nie rozwiązuje; Claude Code działa
+  bez tego.
+- **CDN-y frontendowe** (`cdn.jsdelivr.net`, `unpkg.com`, `fonts.googleapis.com`)
+  — sprzeczne z offline-first tego projektu, który wendoruje KaTeX właśnie po to.
+
+Kandydaci z dedykowanym, pojedynczym IP, gotowi do dopisania, gdyby się przydali:
+`zpe.gov.pl`, `ore.edu.pl`, `men.gov.pl` oraz serwisy okręgowych komisji
+(`oke.waw.pl`, `oke.krakow.pl`, `oke.poznan.pl`, `oke.wroc.pl`, `oke.gda.pl`,
+`oke.lomza.pl`, `oke.jaworzno.pl`).
 
 ## Czego to NIE chroni
 
@@ -233,6 +319,10 @@ Objawy i przyczyny:
 `COPY` i te pod nią). `host-firewall.sh` działa na hoście, a
 `verify-firewall.sh` uruchamia się z podmontowanego repo — te dwa nie wymagają
 przebudowy, wystarczy „Reopen".
+
+Zmiany w `Dockerfile` i w `mounts` w `devcontainer.json` też wymagają
+**Rebuild Container** — samo „Reopen" nie doda nowego wolumenu do istniejącego
+kontenera.
 
 `--no-cache` przyda się tylko wtedy, gdy zechcesz odświeżyć wersję Claude Code
 albo pakiety systemowe — warstwa `npm install -g @anthropic-ai/claude-code` jest
