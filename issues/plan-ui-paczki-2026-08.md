@@ -36,10 +36,14 @@ w cudzy punkt „przy okazji" psuje następnej sesji punkt odniesienia.
    w tytule);
 2. przeniesieniem zrobionych punktów z TODO.md do bieżącego pliku w `done/`
    (patrz `done/README.md`) — TODO.md ma zostać krótki;
-3. dopisaniem **1–3 pozycji** do `issues/do-sprawdzenia.md` — wyłącznie rzeczy, których
-   **nie dało się zweryfikować zrzutem**: dotyk, odczucie „za blade / w sam raz", realne
-   renderowanie na sprzęcie Henricha. Cel dla całego planu to 8–12 pozycji łącznie, do
-   przeklikania w kwadrans. Nie dopisuj tam tego, co potwierdziłeś zrzutem.
+3. dopisaniem **1–3 pozycji do `TODO.md`, sekcja `TESTOWANIE HENRICH:`** — wyłącznie rzeczy,
+   których **nie dało się zweryfikować zrzutem**: dotyk, odczucie „za blade / w sam raz",
+   realne renderowanie na sprzęcie Henricha. Nie zakładaj na to osobnego pliku w `issues/` —
+   Henrich tam nie zagląda. Napisz to samo w podsumowaniu dla niego. Nie wpisuj tego, co
+   potwierdziłeś zrzutem;
+4. **podbiciem numeru wersji** (`#wersja` w `template.html` ORAZ `.landing-wersja`
+   w `index.html` — muszą się zgadzać) i **wypchnięciem commita na `origin`**. Bez tego Henrich
+   ogląda na telefonie starą stronę. Patrz `CLAUDE.md`, sekcja „Oddawanie pracy do testów".
 
 **Pułapki testowe** (z sesji 1 audytu, nadal aktualne):
 - pierwszy `.exercise-container` w DOM to **pusty szablon** — w testach bierz `.nth(1)`;

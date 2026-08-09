@@ -86,6 +86,14 @@ Both files are tracked, so they travel with the repo and behave identically insi
 
 Consequence for the assistant: local `master` is often already up to date at session start, but a background fetch **does not touch the working tree**, so still run `git fetch` before reasoning about history in a long session.
 
+## Oddawanie pracy do testów (added 2026-08-09)
+
+Zasady od Henricha, po pierwszej paczce, w której każda z nich została złamana. Dotyczą momentu, w którym kończysz porcję pracy i mówisz „sprawdź".
+
+- **Rzeczy do sprawdzenia przez Henricha piszesz w DWÓCH miejscach: w oknie czatu i w `TODO.md` w sekcji `TESTOWANIE HENRICH:`.** Nie zakładaj na to osobnego pliku w `issues/` — Henrich tam nie zagląda, a `TODO.md` czyta najczęściej. (Plik `issues/do-sprawdzenia.md` istniał krótko 2026-08-09 i został z tego powodu usunięty.) Wpis ma mówić, co kliknąć i czego szukać — nie streszczać zmiany.
+- **Zanim oddasz cokolwiek do testów, a już zwłaszcza na telefonie: podbij numer wersji, zacommituj i zsynchronizuj z `origin`.** Bez pusha Henrich ogląda na telefonie starą stronę i szuka błędu, którego nie ma. Bez podbitej wersji nie ma jak stwierdzić, którą wersję właściwie widzi. Numer siedzi w dwóch miejscach naraz — `#wersja` w `template.html` i `.landing-wersja` w `index.html` — i musi się zgadzać w obu.
+- **Granulacja commitów: jedna paczka zmian = jeden commit**, nawet jeśli dotyka wielu plików i jest duży. Rozdzielaj dopiero wtedy, gdy tematyka naprawdę się rozjeżdża (instalacja Playwrighta ≠ transkrypt tablicy wzorów). Zmiana wyglądu strony obejmująca HTML i CSS naraz to jeden commit, nie trzy.
+
 ## Commit attribution (added 2026-08-09)
 
 Every commit (local or cloud) gets a `Co-Authored-By:` trailer in the form **`Local/Cloud Model Effort`** — e.g. `Co-Authored-By: Local Opus 5 Medium <noreply@anthropic.com>` or `Co-Authored-By: Cloud Sonnet 5 High <noreply@anthropic.com>`. No prefix in the commit message/subject — that convention was dropped in favor of this trailer.
