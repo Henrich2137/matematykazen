@@ -10,6 +10,9 @@ zrzutem Playwrighta — każda sesja dopisuje tu 1–3 pozycje po swojej paczce.
   zrzucie 390px szerokości wygląda dobrze, ale „w sam raz vs. za dużo" to kwestia dotyku/wzroku
   na prawdziwym ekranie, nie piksela na screenshotcie.
 
+  HENRICH: brakuje pusha zebym mógł sprawdzić na tel, a ja sie dziwie co sie dzieje
+
+
 - **Pigułka punktacji przy zadaniu (`.exercise-score`, „0 / 1 pkt") na bardzo wąskich
   telefonach** (iPhone SE / starsze Androidy, ~360px) — przysunięta o 40px bliżej treści
   (`right: -120px` → `-80px`), sprawdzona na 1280px i 390px. Na węższych ekranach badge
