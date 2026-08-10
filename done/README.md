@@ -18,6 +18,22 @@ Do szukania używaj najpierw tego indeksu (tagi niżej), potem grepa po konkretn
 
 
 == 04-biezace.md — partia OTWARTA (2026-07-27 → ?) ==
+- 2026-08-10 (Sonnet 5, high) — v15, paczka drobiazgów UI z docs/superpowers/specs/2026-08-09-paczka-ui-drobiazgi-design.md
+  + 2 dodatkowe punkty z tej samej sekcji TODO.md: (1) usunięty hoverowy podgląd „wartość → następna"
+  w panelu ustawień, wartość widoczna cały czas (kod archiwalny w issues/archiwum-hover-podglad.md);
+  (2) kontrolki odpowiedzi (fillIn/P-F/ostateczna odpowiedź) na telefonie: pivot z poziomego na pionowy
+  przez flex-wrap + flex-basis:100% na etykiecie (bez zmiany flex-direction, żeby dwa przyciski P/F
+  zostały obok siebie), kontrolka pod spodem z małym marginesem z lewej zamiast wyśrodkowania —
+  naprawia zad. 10/11 (issues/dark-mode-obrazki-wideo.md zamknięte przy okazji punktu 3); (3) dark mode:
+  `--filtr-grafik-zadan: invert(92%)` (wyliczone z jasności --bg #141414 ≈ 7,8%, sprawdzone pixel-perfect
+  w Playwright — biel PNG po odwróceniu ląduje dokładnie na rgb(20,20,20)) na `.question img` i na
+  img/video w `.solution-step-by-step-container`; (4) „Sprawdź wszystkie odpowiedzi" przeniesiony jako
+  podpunkt (`.sidebar-sub`, klasa uogólniona z `.sidebar-ustawienie.sidebar-sub`) pod „Poprawność”,
+  wzorem Zegara/Wskaźników pod egzaminem; (5) pigułki kategorii w formularzu zgłoszenia błędu na
+  telefonie: `flex: 1 1 calc(50% - 4px)` zamiast pełnej szerokości — dwie w rzędzie, opis błędu bliżej
+  góry ekranu. Zweryfikowane w Playwright (tools/zrzuty.js + ręczne zrzuty per-zadanie) na desktopie,
+  telefonie (390px) i szerokości pośredniej (700px), w obu motywach — zero błędów JS
+  [css, ui, dark-mode, mobile, sidebar, formularz]
 - 2026-08-09 (Opus 5) — devcontainer nie wstawał (`Permission denied` na `/vscode/vscode-server/bin`):
   wolumen `vscode` tworzony przez rozszerzenie miał uid sprzed `--userns=keep-id`, po `podman prune`
   podpiął się pod niego świeży kontener; naprawa = `podman rm` kontenera + `podman volume rm vscode`

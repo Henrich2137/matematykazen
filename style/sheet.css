@@ -378,30 +378,15 @@ body.sidebar-otwarty #sidebar-linia {
    na ciemnym tle). Zdiagnozowane porównaniem 600/400 w powiększeniu ×5 —
    przyczyną była waga, nie kontrast tła. Waga 400 przy tym samym rozmiarze jest
    ostra; hierarchię wobec etykiety utrzymuje --text vs --text-muted i kropki. */
-.sidebar-ustawienie .wartosc,
-.sidebar-ustawienie .wartosc-podglad {
+.sidebar-ustawienie .wartosc {
     font-size: 12px;
     white-space: nowrap;
     color: var(--text);
     font-weight: 400;
 }
-.sidebar-ustawienie .wartosc-podglad {
-    display: none;
-    font-size: 12px;
-    font-weight: 400;
-    color: var(--text-faint);
-}
-/* Podgląd „auto → jasny" po najechaniu — TYLKO na wskaźnikach z hoverem.
-   Na dotyku ta reguła w ogóle się nie stosuje, dlatego o stanie informują
-   przede wszystkim wartość i kropki. */
-@media (hover: hover) {
-    .sidebar-ustawienie:hover:not(:disabled) .wartosc {
-        display: none;
-    }
-    .sidebar-ustawienie:hover:not(:disabled) .wartosc-podglad {
-        display: inline;
-    }
-}
+/* Do 2026-08-10 hover pokazywał tu podgląd „auto → jasny" (.wartosc-podglad),
+   chowając .wartosc — Henrich: odejmowało to intuicyjności, więc wartość jest
+   teraz widoczna zawsze. Usunięty kod: issues/archiwum-hover-podglad.md. */
 
 /* Kropki stanu (○○●) — ile stanów ma przełącznik i który jest aktywny.
    Generowane z data-stany przez ustawWartosc() (app/state.js). */
@@ -422,19 +407,20 @@ body.sidebar-otwarty #sidebar-linia {
     background-color: var(--text);
 }
 
-/* Sub-opcje egzaminu (Zegar, Wskaźniki samooceny): wcięte pod ikoną pozycji
-   nadrzędnej, mniejszy font, lżejsza ikona — wcięcie ma być widać także wtedy,
-   gdy etykieta jest krótka. To NIE osobny typ kontrolki, tylko ten sam wzorzec. */
-.sidebar-ustawienie.sidebar-sub {
+/* Sub-opcje (Zegar/Wskaźniki pod egzaminem, „Sprawdź wszystkie" pod
+   Poprawność): wcięte pod pozycją nadrzędną, mniejszy font, lżejsza ikona —
+   wcięcie ma być widać także wtedy, gdy etykieta jest krótka. To NIE osobny
+   typ kontrolki, tylko ten sam wzorzec — działa i na .sidebar-ustawienie
+   (przełącznik z wartością), i na .sidebar-akcja (zwykły przycisk). */
+.sidebar-sub {
     height: 34px;
     padding-left: 26px;
     font-size: 12px;
 }
-.sidebar-ustawienie.sidebar-sub .wartosc,
-.sidebar-ustawienie.sidebar-sub .wartosc-podglad {
+.sidebar-ustawienie.sidebar-sub .wartosc {
     font-size: 11px;
 }
-.sidebar-ustawienie.sidebar-sub .sidebar-ikona {
+.sidebar-sub .sidebar-ikona {
     opacity: 0.7;
 }
 
@@ -620,6 +606,8 @@ body.sidebar-otwarty #sidebar-linia {
     display: block;
     max-width: 100%;
     margin: 15px auto;
+    /* Odwrócenie w dark mode — patrz --filtr-grafik-zadan w style/base.css. */
+    filter: var(--filtr-grafik-zadan);
 }
 .exercise-score {
     /*  Henrich: te cztery linijki przekleiłem z total-score aby było spójniej */
@@ -1193,6 +1181,8 @@ body.sidebar-otwarty #sidebar-linia {
     width: 420px;
     height: 180px;
     cursor: pointer;
+    /* Odwrócenie w dark mode — patrz --filtr-grafik-zadan w style/base.css. */
+    filter: var(--filtr-grafik-zadan);
 }
 /* Kontener filmu kroku — pozwala nałożyć ikonkę ▶ i pasek postępu na film. */
 .step-video {
@@ -1248,6 +1238,8 @@ body.sidebar-otwarty #sidebar-linia {
     display: block;
     max-width: 320px;
     margin: auto;
+    /* Odwrócenie w dark mode — patrz --filtr-grafik-zadan w style/base.css. */
+    filter: var(--filtr-grafik-zadan);
 }
 .solution-step-by-step-container:empty {
     display: none;

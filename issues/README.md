@@ -11,7 +11,6 @@ Zasady:
 ## Aktywne
 
 - [dwie-karty-tryb-egzaminu.md](dwie-karty-tryb-egzaminu.md) — dwie karty tego samego arkusza blokują "zakończ egzamin"
-- [dark-mode-obrazki-wideo.md](dark-mode-obrazki-wideo.md) — obrazki CKE i wideo z Manima świecą na biało w dark mode
 - [dark-mode-wskazniki-scroll.md](dark-mode-wskazniki-scroll.md) — kropki wskaźników "gumkują" przy scrollowaniu
 - [dokumentacja-exam-mode-luka.md](dokumentacja-exam-mode-luka.md) — ARCHITECTURE.md nie opisuje połowy trybu egzaminu
 - [numer-zadania-podnumer.md](numer-zadania-podnumer.md) — regex numeru zadania gubi podnumery (12.1 vs 12.2)
@@ -23,6 +22,10 @@ Zasady:
 ## Opisy konstrukcji (nie problemy)
 
 - [playwright-podglad.md](playwright-podglad.md) — Playwright + Chromium w kontenerze: skąd się bierze przeglądarka i jak podbić wersję
+
+## Archiwum (kod usunięty, ale trzymany na wypadek powrotu)
+
+- [archiwum-hover-podglad.md](archiwum-hover-podglad.md) — usunięty hover-podgląd „wartość → następna" w panelu ustawień
 
 ## Plany
 

@@ -54,7 +54,7 @@ function czyTelefon() {
                                      („Otwórz…" ↔ „Schowaj…"),
      • ustawWartosc(btn, wartosc)  — dla USTAWIEŃ: przestawia data-stan (jedyne
                                      źródło prawdy o pozycji w cyklu), tekst
-                                     wartości, kropki i podgląd next-state.
+                                     wartości i kropki.
 
    Cykl stanów jest opisany DEKLARATYWNIE w atrybutach przycisku w template.html:
      data-stany   — pełna lista etykiet, od lewej do prawej. Konwencja: skrajnie
@@ -63,8 +63,10 @@ function czyTelefon() {
      data-kierunek — "lewo" (domyślnie: klik UJMUJE o stopień, bo domyślny stan
                     siedzi na prawym końcu) albo "prawo" dla Motywu, który nie
                     jest skalą „więcej/mniej" i zostaje przy kolejności z kodu.
-   Dzięki temu kropki, podgląd po najechaniu i sam cykl nie mogą się rozjechać —
-   wszystkie trzy czytają tę samą listę. */
+   Dzięki temu kropki i sam cykl nie mogą się rozjechać — obie czytają tę samą
+   listę. (Do 2026-08-10 był tu też hoverowy podgląd „wartość → następna" w
+   .wartosc-podglad — usunięty na życzenie Henricha, bo odejmował
+   intuicyjności; kod archiwalny w issues/archiwum-hover-podglad.md.) */
 function ustawEtykiete(btn, tekst) {
     if (!btn) return;
     const el = btn.querySelector(".etykieta");
@@ -93,14 +95,9 @@ function ustawWartosc(btn, wartosc) {
     btn.dataset.stan = wartosc;
     const w = btn.querySelector(".wartosc");
     if (w) w.textContent = wartosc;
-    const podglad = btn.querySelector(".wartosc-podglad");
-    if (podglad) {
-        const nast = nastepnyStan(btn);
-        podglad.textContent = nast ? `${wartosc} → ${nast}` : wartosc;
-    }
     // Kropki stanu: generowane z data-stany, nigdy nie wpisywane ręcznie w HTML.
     // Na telefonie to ONE rozwiązują cykl — bez nich tapnięcie jest klikaniem
-    // w ciemno (podgląd po najechaniu tam się nie stosuje).
+    // w ciemno.
     const kropki = btn.querySelector(".kropki");
     if (!kropki) return;
     const stany = stanyPrzycisku(btn);

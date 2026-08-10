@@ -46,6 +46,13 @@
     --canvas-bg: #fff;        /* płótno widżetów — ciemnieje razem z motywem (patrz PALETA WIDŻETÓW) */
     --overlay-bg: rgba(255, 255, 255, 0.88); /* nakładka podsumowania egzaminu */
 
+    /* Grafiki zadań (PNG z CKE) i wideo rozwiązań (Manim) mają nieprzezroczyste
+       BIAŁE tło u źródła — w jasnym motywie to niewidoczne (tło strony i tak
+       białe), więc tu `none`. W ciemnym motywie dostają filtr odwracający
+       kolory, żeby nie świecić białym prostokątem na karcie — patrz oba ciemne
+       bloki niżej i issues/dark-mode-obrazki-wideo.md. */
+    --filtr-grafik-zadan: none;
+
     /* Tekst (od najciemniejszego do najjaśniejszego) */
     --text: #111;
     --text-soft: #444;        /* teksty landingu */
@@ -210,6 +217,16 @@
            widżet jest treścią zadania, nie osobną kartą. Dawniej #1c1c1c — o 8
            jednostek jaśniejsze niż tło, co dawało widoczny prostokąt. */
         --canvas-bg: #141414;
+
+        /* Odwrócenie kolorów PNG/MP4 o białym tle (issues/dark-mode-obrazki-wideo.md).
+           Punkt startowy z jasności --bg: #141414 = rgb(20,20,20) ≈ 7,8% jasności,
+           więc biel (100%) ma po odwróceniu wylądować na ≈ 92,2% odwrócenia, żeby
+           trafić w ten sam poziom szarości co tło karty (100% − 7,8% ≈ 92%).
+           Świadomie BEZ hue-rotate(180deg): kolorowe elementy (czerwone/niebieskie
+           linie na wykresach) wychodzą w zamienionych barwach — zaakceptowany
+           kompromis (spec: paczka UI drobiazgi, punkt 3), prostszy niż też
+           kompensować odcień tylko po to, żeby nie trafić z powrotem w oryginalny. */
+        --filtr-grafik-zadan: invert(92%);
 
         /* Paleta widżetów — ciemna (patrz blok w :root). Akcenty (zielony, czerwony,
            niebieski, fiolet) biorą się z --correct/--incorrect/--accent-* i mają już

@@ -129,6 +129,41 @@
         padding: 0 8px;
     }
 
+    /* Kontrolki odpowiedzi (pole fillIn, para P/F, „ostateczna odpowiedź") na
+       wąskim ekranie: pivot z poziomego na pionowy. Poziomo treść/etykieta
+       dzieliła wiersz ze sztywno-szeroką kontrolką i przy dłuższych etykietach
+       (np. zad. 10 — cztery zdania do uzupełnienia) łamała się na wąski,
+       ledwo czytelny pasek zamiast normalnie zawijać się na całą szerokość
+       karty (zgłoszone przez Henricha). Technika: flex-wrap zamiast zmiany
+       flex-direction na column — .pf-row ma DWA przyciski jako rodzeństwo
+       etykiety, nie jeden wspólny kontener, więc column rozbiłby je na dwie
+       osobne linie zamiast zostawić obok siebie pod treścią; wymuszenie
+       etykiecie pełnej szerokości wiersza (flex-basis: 100%) zrzuca resztę na
+       kolejną linię, gdzie i tak lądują razem, w oryginalnej kolejności. */
+    .fill-in-row,
+    .pf-row {
+        flex-wrap: wrap;
+        row-gap: 6px;
+    }
+    .fill-in-label,
+    .pf-text {
+        flex: 1 1 100%;
+    }
+    /* Kontrolka pod spodem: NIE wyśrodkowana na szerokość karty (pływałaby z
+       dala od etykiety nad nią) — mały margines z lewej, bliżej krawędzi jak
+       treść nad nią, z odrobiną przesunięcia w prawo zamiast pełnego
+       przyklejenia do 0. .final-answer-row już się zawija na tej szerokości
+       (input 160px + przycisk „Sprawdź" nie mieszczą się razem w karcie na
+       telefonie), więc dostaje to samo traktowanie zamiast wyśrodkowania. */
+    .fill-in-row .fill-in-input,
+    .final-answer-row .final-answer-input,
+    .pf-row button:first-of-type {
+        margin-left: 8px;
+    }
+    .final-answer-row {
+        justify-content: flex-start;
+    }
+
     /* Panele PDF na prawie całą szerokość ekranu. */
     #tablica-wzorow-panel,
     #zasady-oceniania-panel {
@@ -173,11 +208,18 @@
         font-size: 18px;
         margin-right: 44px; /* krzyżyk ✕ */
     }
-    /* Pigułki kategorii na pełną szerokość rzędu, po jednej/dwie — nazwy są
-       długie („Prawidłowa odpowiedź jest nieprawidłowa"), więc na telefonie
-       lepiej czytają się jako lista niż jako poszatkowana siatka. */
+    /* Pigułki kategorii: do 2026-08-10 pełna szerokość rzędu (jedna na linię) —
+       przy 8 pigułkach obowiązkowy opis błędu lądował daleko na dole ekranu
+       (Henrich, TODO.md). Teraz każda ma połowę szerokości rzędu: krótkie
+       nazwy („Inne", „Widżet nie działa") mieszczą się w jednej linijce po
+       dwie obok siebie, długie („Prawidłowa odpowiedź jest nieprawidłowa")
+       łamią się na dwie linijki zamiast zajmować cały wiersz — świadomie
+       "niedoskonała, ale krótsza" siatka zamiast listy. calc(...) odejmuje
+       połowę gap (8px), żeby dwie pigułki + odstęp zmieściły się bez
+       przelewania na trzecią kolumnę. */
     .zglos-blad-kategorie button {
-        flex: 1 1 100%;
+        flex: 1 1 calc(50% - 4px);
+        font-size: 13px;
         text-align: center;
     }
     /* Akcje na pełną szerokość — łatwiej trafić palcem niż w mały przycisk

@@ -3,29 +3,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.
 
-  - Paczka drobiazgów UI (hover panelu / kontrolki odpowiedzi na telefonie / dark mode
-    grafik) — omówione i doprecyzowane w rozmowie z Sonnetem, spec:
-    [docs/superpowers/specs/2026-08-09-paczka-ui-drobiazgi-design.md](docs/superpowers/specs/2026-08-09-paczka-ui-drobiazgi-design.md).
-
-    - Usunąć dynamiczny podgląd „wartość → następna" (np. „wszystkie → wypełnione") z hoveru
-      przycisków panelu (Wskaźniki/Punktacja/Motyw), bo odejmuje intuicyjności — Henrich, v14.
-      Zamiast tego obecnie wybrana opcja ma być widoczna cały czas, niezależnie od hoveru.
-      (`.wartosc-podglad`, `app/state.js:91-100`)
-      Kod archiwizowany w issues/, nie po prostu skasowany.
-
-    - Kontrolki odpowiedzi (pole „ostateczna odpowiedź"/fill-in, przyciski P/F) na telefonie:
-      NIE zwykłe zmniejszenie szerokości/marginesów — pivot na layout pionowy (treść nad,
-      kontrolka pod), z mniejszym marginesem z lewej i przesunięciem w prawo/mniejszym
-      marginesem z prawej. Szczegóły w spec.
-
-    - Zrobić grafiki do zadań do dark mode: pełne odwrócenie kolorów (świadomie zaakceptowany
-      kompromis — kolorowe elementy wyjdą w zamienionych barwach), dotyczy też wideo.
-      Startowa wartość filtra wyliczana z jasności `--bg`, potem dostrojona empirycznie.
-      (Tańszy tymczasowy fix opisany też w issues/dark-mode-obrazki-wideo.md.)
-
-    - Przycisk "Sprawdź wszystkie odpowiedzi" powinien być umieszczony jako podpunkt pod "Poprawność"? (podobnie jak to wygląda z opcjami dot. trybu egzaminu)
-
-    - Formularz zgłoszenia na telefonie jest wysoki: 8 pigułek kategorii idzie po jednej na wiersz (~340 px), więc obowiązkowe pole opisu jest daleko w dole. Do rozważenia: dwie pigułki w rzędzie szczególnie te gdzie są krótkie nazwy. Nie przekombinuj tego. zrób tak aby na pewno działało, nie musi być idealnie. Niektóre pigułki mogą być po prostu mniejsze czy coś.
+  - nic
 
 <br>
 
@@ -40,7 +18,27 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + TESTOWANIE HENRICH:
 
-  - nic
+  - Paczka drobiazgów UI (v15), spod spec docs/superpowers/specs/2026-08-09-paczka-ui-drobiazgi-design.md
+    + 2 dodatkowe punkty z tej samej sekcji DO ZROBIENIA:
+
+    - Panel boczny (☰): najedź myszką na Wskaźniki/Punktacja/Motyw/Poprawność — aktualna wartość
+      ma być widoczna cały czas, hover nic już tam nie zamienia.
+
+    - Telefon (albo zwężone okno przeglądarki): otwórz zad. 10 w arkuszu grudzień 2024 — cztery
+      pola do wpisania mają być POD treścią zdania, nie ściśnięte obok niej. To samo dla P/F
+      w zad. 11.
+
+    - Telefon + dark mode: rysunek w zad. 10/11 oraz wideo rozwiązania krok po kroku (zad. 1) nie
+      powinny świecić na biało — powinny wtopić się w ciemną kartę (kolory na rysunku/wideo wyjdą
+      zamienione, np. fioletowy wykres na zielono — to świadomy kompromis, nie błąd).
+
+    - Panel boczny: „Sprawdź wszystkie odpowiedzi" jest teraz podpunktem pod „Poprawność" (wcięty,
+      mniejszy) zamiast osobnej pozycji wyżej w menu — sprawdź, czy dobrze wygląda i czy dalej
+      działa tak jak wcześniej (w tym: czy nadal się wyszarza przy „natychmiast").
+
+    - Formularz „Zgłoś błąd" na telefonie: 8 pigułek kategorii idzie teraz po dwie w rzędzie
+      zamiast jedna pod drugą — sprawdź, czy da się wygodnie trafić kciukiem i czy długie nazwy
+      (np. „Prawidłowa odpowiedź jest nieprawidłowa") nadal się dobrze czyta na dwóch liniach.
 
 
 <br>
@@ -115,7 +113,16 @@ Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz is
     - Tryb testowy dla zgłaszania błędów (app/report.js): przycisk „Wyślij zgłoszenie" zamieniony na „Wyślij zgłoszenie lokalnie" 
       - (np. pod `?test-zgloszenie=1`, wzorem `?test-egzamin=1`), który loguje payload do konsoli/localStorage zamiast robić fetch do Formspree — żeby testować całą ścieżkę (walidacja, honeypot, throttling, toast) bez zużywania miesięcznego limitu 50 zgłoszeń.
 
-    
+  + Sonnet 5, high — paczka drobiazgów UI (v15, 2026-08-10):
+
+    - Dwa z pięciu punktów tej paczki nie były w spec docu, tylko dopisane obok niego w TODO.md
+      z pytajnikiem/bez konkretnej decyzji projektowej. Zrobiłem je własnym osądem, warto zerknąć:
+      „Sprawdź wszystkie odpowiedzi" jako podpunkt pod „Poprawność" — przeniosłem 1:1 wzorem
+      Zegara/Wskaźników pod egzaminem (ta sama klasa `.sidebar-sub`, teraz uogólniona z
+      `.sidebar-ustawienie.sidebar-sub` na `.sidebar-sub` żeby działała też na `.sidebar-akcja`).
+      Pigułki formularza zgłoszenia — wybrałem jednolite `flex: 1 1 calc(50% - 4px)` (zawsze dwie
+      w rzędzie, długie nazwy łamią się na dwie linijki) zamiast różnicować szerokość per pigułka —
+      prostsze i zgodne z „nie przekombinuj" z TODO, ale to była moja decyzja, nie Twoja specyfikacja.
 
 
   + Opus 5, medium

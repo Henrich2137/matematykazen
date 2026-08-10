@@ -139,7 +139,7 @@
              (vX Beta, X += 1 — np. v10 Beta → v11 Beta → …), żeby po
              odświeżeniu na telefonie było widać, czy strona wczytała już
              nową wersję. Ta sama wartość musi być w .landing-logo w index.html. -->
-        <a id="logo" href="index.html"><b>Matematyka Zen</b> <span id="wersja">v14 Beta</span></a>
+        <a id="logo" href="index.html"><b>Matematyka Zen</b> <span id="wersja">v15 Beta</span></a>
         <!-- Strzałka otwierająca panel boczny — następca przycisku „⋯". Ten sam
              przycisk zamyka (obraca się o 180°); JS przestawia aria-expanded
              i aria-label. -->
@@ -222,7 +222,6 @@
             <svg class="sidebar-ikona" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3.5 2"/></svg>
             <span class="etykieta">Zegar</span>
             <span class="wartosc" aria-live="polite">na wierzchu</span>
-            <span class="wartosc-podglad" aria-hidden="true"></span>
             <span class="kropki" aria-hidden="true"></span>
         </button>
         <button id="wskazniki-tryb-toggle" type="button" class="sidebar-ustawienie sidebar-sub"
@@ -235,21 +234,9 @@
                  egzamin" i sąsiedztwo „Zegara"; pełne zdanie jest w title. -->
             <span class="etykieta">Wskaźniki</span>
             <span class="wartosc" aria-live="polite">wszystkie</span>
-            <span class="wartosc-podglad" aria-hidden="true"></span>
             <span class="kropki" aria-hidden="true"></span>
         </button>
 
-        <button id="sprawdz-wszystkie" type="button" class="sidebar-akcja">
-            <svg class="sidebar-ikona" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l4.5 4.5L19.5 6.5"/></svg>
-            <span class="etykieta">Sprawdź wszystkie odpowiedzi</span>
-            <!-- Potwierdzenie kliknięcia (issues/sprawdz-wszystkie-pola-i-komunikat.md):
-                 260px nie mieści zdania obok etykiety, więc tu tylko ✓ przy prawej
-                 krawędzi wiersza (margin-left: auto w sheet.css); prawdziwy tekst
-                 idzie do aria-label, żeby czytnik ekranu ogłosił sensowny komunikat,
-                 nie sam glif. role="status"+aria-live w HTML na stałe (nie dopisywane
-                 JS-em), żeby zmiana treści była zawsze wychwycona. -->
-            <span id="sprawdz-wszystkie-status-sidebar" class="sprawdz-status-sidebar" role="status" aria-live="polite"></span>
-        </button>
         <button id="show-all-solutions" type="button" class="sidebar-akcja">
             <svg class="sidebar-ikona" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg>
             <span class="etykieta">Pokaż wszystkie rozwiązania</span>
@@ -268,7 +255,6 @@
             <svg class="sidebar-ikona" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 0 0 17z" fill="currentColor" stroke="none"/></svg>
             <span class="etykieta">Motyw</span>
             <span class="wartosc" aria-live="polite">auto</span>
-            <span class="wartosc-podglad" aria-hidden="true"></span>
             <span class="kropki" aria-hidden="true"></span>
         </button>
         <button id="score-switch-button" type="button" class="sidebar-ustawienie"
@@ -276,7 +262,6 @@
             <svg class="sidebar-ikona" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 20V11M12 20V4.5M17.5 20v-6.5"/></svg>
             <span class="etykieta">Punktacja</span>
             <span class="wartosc" aria-live="polite">wszystko</span>
-            <span class="wartosc-podglad" aria-hidden="true"></span>
             <span class="kropki" aria-hidden="true"></span>
         </button>
         <button id="natychmiastowa-toggle" type="button" class="sidebar-ustawienie"
@@ -287,15 +272,28 @@
                  Sama wartość („natychmiast" / „po „sprawdź"") dopowiada, o co chodzi. -->
             <span class="etykieta">Poprawność</span>
             <span class="wartosc" aria-live="polite">natychmiast</span>
-            <span class="wartosc-podglad" aria-hidden="true"></span>
             <span class="kropki" aria-hidden="true"></span>
+        </button>
+        <!-- Podpunkt pod „Poprawność" (Henrich, TODO.md) — ten sam wzorzec co
+             sub-opcje egzaminu wyżej (Zegar/Wskaźniki): sidebar-akcja, ale
+             wcięta i mniejsza, żeby czytać się jak dopisek do ustawienia nad
+             nią, nie kolejna równorzędna pozycja menu. -->
+        <button id="sprawdz-wszystkie" type="button" class="sidebar-akcja sidebar-sub">
+            <svg class="sidebar-ikona" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l4.5 4.5L19.5 6.5"/></svg>
+            <span class="etykieta">Sprawdź wszystkie odpowiedzi</span>
+            <!-- Potwierdzenie kliknięcia (issues/sprawdz-wszystkie-pola-i-komunikat.md):
+                 260px nie mieści zdania obok etykiety, więc tu tylko ✓ przy prawej
+                 krawędzi wiersza (margin-left: auto w sheet.css); prawdziwy tekst
+                 idzie do aria-label, żeby czytnik ekranu ogłosił sensowny komunikat,
+                 nie sam glif. role="status"+aria-live w HTML na stałe (nie dopisywane
+                 JS-em), żeby zmiana treści była zawsze wychwycona. -->
+            <span id="sprawdz-wszystkie-status-sidebar" class="sprawdz-status-sidebar" role="status" aria-live="polite"></span>
         </button>
         <button id="zglos-blad-toggle" type="button" class="sidebar-ustawienie"
                 data-stany="wył.,wł." data-stan="wł.">
             <svg class="sidebar-ikona" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5l8.5 15H3.5z"/><path d="M12 10v4.2"/><circle cx="12" cy="17" r=".7" fill="currentColor" stroke="none"/></svg>
             <span class="etykieta">Zgłoś błąd pod zadaniem</span>
             <span class="wartosc" aria-live="polite">wł.</span>
-            <span class="wartosc-podglad" aria-hidden="true"></span>
             <span class="kropki" aria-hidden="true"></span>
         </button>
     </nav>
