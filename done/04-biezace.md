@@ -28,9 +28,21 @@ było ostatnią barierą, więc te dwie zmiany muszą iść razem.
 istniało od 2026-08-07, ale VS Code przy każdym otwarciu pytał „Allow Automatic Tasks in Folder?"
 i do czasu odpowiedzi nie pullował. Brakowało `"task.allowAutomaticTasks": "on"` w GLOBALNYCH
 (User) ustawieniach — tego przełącznika nie da się ustawić z workspace'u i to jest celowe,
-inaczej repo przyznawałoby sobie samo prawo do uruchamiania poleceń. Dopisane w OBU hostowych
-`settings.json` (natywny `~/.config/Code/User/` i Flatpak `~/.var/app/com.visualstudio.code/`),
-bo na tej maszynie utrzymywane są obie instalacje. W `tasks.json` został komentarz o tej zależności.
+inaczej repo przyznawałoby sobie samo prawo do uruchamiania poleceń. Dopisane w `~/.config/Code/User/
+settings.json`. W `tasks.json` został komentarz o tej zależności.
+
+**Przy okazji: skasowane osierocone dane po flatpakowym VS Code** (852 MB w
+`~/.var/app/com.visualstudio.code/`). Sam flatpak był już odinstalowany — zostały po nim tylko
+dane, ostatnio używane 2026-08-06. Zweryfikowane przed kasowaniem: `flatpak list` nie zna tej
+aplikacji; z 14 rozszerzeń tylko 4 nie miały odpowiednika natywnie (GitLens, Containers, gitdoc,
+Claude Code — wszystkie wracają z marketplace'u); `History/` zawierało wyłącznie stare wersje
+`settings.json` i `.devcontainer/devcontainer.json` (ten drugi i tak jest w gicie);
+`workspaceStorage/` dotyczyło tylko tego repo (stan UI, nie treść). Ustawienia, snippety i lista
+rozszerzeń zachowane w `~/backup-vscode-flatpak/`. Dwa ustawienia istniały TYLKO we flatpaku
+i nie zostały przeniesione świadomie (do decyzji Henricha, są w backupie):
+`chat.viewSessions.orientation: "stacked"` i `chat.agent.sandbox.enabled: "on"`; do tego
+`terminal.integrated.gpuAcceleration: "off"`, które natywnie jest zakomentowane.
+Zostaje jedna instalacja — natywna przez rpm-ostree.
 
 Dokumentacja: `.devcontainer/README.md` — sekcja „Brama `/32`, nie `/24`" przepisana na
 „Brama: `/24` → `/32` → tylko port 53" (z historią obu zawężeń), sekcja „`.devcontainer/`

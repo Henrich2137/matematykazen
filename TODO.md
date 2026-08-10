@@ -57,8 +57,12 @@ Oto plik który tworzy Henrich (ja, użytkownik).
       prostokąty.
 
   - VS Code na hoście: przy otwarciu folderu ma się już NIE pytać „Allow Automatic Tasks in Folder?",
-    tylko po cichu zrobić `git pull --ff-only`. Sprawdź na obu instalacjach, jeśli używasz obu
-    (natywna przez rpm-ostree i Flatpak — ustawienie dopisane w obu).
+    tylko po cichu zrobić `git pull --ff-only`.
+
+  - Po skasowaniu danych po flatpakowym VS Code (852 MB, aplikacja i tak była odinstalowana):
+    dwa ustawienia istniały tylko tam i NIE zostały przeniesione — `chat.viewSessions.orientation:
+    "stacked"` i `chat.agent.sandbox.enabled: "on"`. Jeśli ich brak zacznie uwierać, są
+    w `~/backup-vscode-flatpak/settings.json`. Backup możesz skasować, gdy uznasz, że niepotrzebny.
 
 
 <br>
