@@ -25,6 +25,7 @@ Wyjątek od zasady „jeden plik = jeden problem": rzeczy, które nie są zepsut
 ale mają na tyle nieoczywistą konstrukcję, że bez notatki nikt jej nie odtworzy.
 
 - [playwright-podglad.md](playwright-podglad.md) — Playwright + Chromium w kontenerze (przeglądarka z bindu hosta, przypięta wersja i jak ją podbić)
+- [flatpak-osierocone-dane.md](flatpak-osierocone-dane.md) — dane po odinstalowanych flatpakach zostają w `~/.var/app` (przepis: jak znaleźć, jak sprawdzić przed kasowaniem, których ustawień nie przenosić)
 
 ## Opisy konstrukcji (nie problemy)
 

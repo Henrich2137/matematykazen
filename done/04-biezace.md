@@ -38,11 +38,15 @@ aplikacji; z 14 rozszerzeń tylko 4 nie miały odpowiednika natywnie (GitLens, C
 Claude Code — wszystkie wracają z marketplace'u); `History/` zawierało wyłącznie stare wersje
 `settings.json` i `.devcontainer/devcontainer.json` (ten drugi i tak jest w gicie);
 `workspaceStorage/` dotyczyło tylko tego repo (stan UI, nie treść). Ustawienia, snippety i lista
-rozszerzeń zachowane w `~/backup-vscode-flatpak/`. Dwa ustawienia istniały TYLKO we flatpaku
-i nie zostały przeniesione świadomie (do decyzji Henricha, są w backupie):
-`chat.viewSessions.orientation: "stacked"` i `chat.agent.sandbox.enabled: "on"`; do tego
-`terminal.integrated.gpuAcceleration: "off"`, które natywnie jest zakomentowane.
-Zostaje jedna instalacja — natywna przez rpm-ostree.
+rozszerzeń zachowane w `~/backup-vscode-flatpak/` (8 kB; Henrich zdecydował 2026-08-10, że tych
+ustawień nie potrzebuje, ale backup na razie zostaje). Dwa ustawienia istniały TYLKO we flatpaku
+i nie zostały przeniesione: `chat.viewSessions.orientation: "stacked"` i
+`chat.agent.sandbox.enabled: "on"`; do tego `terminal.integrated.gpuAcceleration: "off"`, które
+natywnie jest zakomentowane. Zostaje jedna instalacja — natywna przez rpm-ostree.
+
+Przepis na powtórkę (jak wykryć sieroty w `~/.var/app`, jak sprawdzić dane przed kasowaniem
+i których ustawień NIE przenosić — `flatpak-spawn --host podman` zepsułby natywne devcontenery)
+zapisany w **issues/flatpak-osierocone-dane.md**.
 
 Dokumentacja: `.devcontainer/README.md` — sekcja „Brama `/32`, nie `/24`" przepisana na
 „Brama: `/24` → `/32` → tylko port 53" (z historią obu zawężeń), sekcja „`.devcontainer/`

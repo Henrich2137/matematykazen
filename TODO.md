@@ -59,10 +59,11 @@ Oto plik który tworzy Henrich (ja, użytkownik).
   - VS Code na hoście: przy otwarciu folderu ma się już NIE pytać „Allow Automatic Tasks in Folder?",
     tylko po cichu zrobić `git pull --ff-only`.
 
-  - Po skasowaniu danych po flatpakowym VS Code (852 MB, aplikacja i tak była odinstalowana):
-    dwa ustawienia istniały tylko tam i NIE zostały przeniesione — `chat.viewSessions.orientation:
-    "stacked"` i `chat.agent.sandbox.enabled: "on"`. Jeśli ich brak zacznie uwierać, są
-    w `~/backup-vscode-flatpak/settings.json`. Backup możesz skasować, gdy uznasz, że niepotrzebny.
+  - Backup `~/backup-vscode-flatpak/` (8 kB) po skasowanych danych flatpakowego VS Code — do
+    usunięcia, gdy uznasz, że już niepotrzebny. Dwa ustawienia istniały tylko tam i świadomie
+    ich nie przeniosłem (`chat.viewSessions.orientation`, `chat.agent.sandbox.enabled`).
+    Cały przepis — jak znaleźć takie sieroty i czego przy nich pilnować — w
+    `issues/flatpak-osierocone-dane.md`.
 
 
 <br>
