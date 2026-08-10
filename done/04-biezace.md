@@ -44,6 +44,10 @@ i nie zostały przeniesione: `chat.viewSessions.orientation: "stacked"` i
 `chat.agent.sandbox.enabled: "on"`; do tego `terminal.integrated.gpuAcceleration: "off"`, które
 natywnie jest zakomentowane. Zostaje jedna instalacja — natywna przez rpm-ostree.
 
+Tego samego dnia skasowane też osiem pozostałych sierot w `~/.var/app` (EasyEffects, Geekbench
+i sześć pustych skorup po przeglądarkach, ~328 kB) — zysk symboliczny, ale `~/.var/app` jest
+teraz wiarygodną listą zainstalowanych aplikacji: 23 katalogi, zero sierot.
+
 Przepis na powtórkę (jak wykryć sieroty w `~/.var/app`, jak sprawdzić dane przed kasowaniem
 i których ustawień NIE przenosić — `flatpak-spawn --host podman` zepsułby natywne devcontenery)
 zapisany w **issues/flatpak-osierocone-dane.md**.

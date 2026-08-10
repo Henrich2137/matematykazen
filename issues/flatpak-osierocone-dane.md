@@ -94,20 +94,21 @@ w `~/backup-vscode-flatpak/settings.json`, gdyby kiedyś zabrakło):
   z dopiskiem Henricha „warto to sprawdzić jeśli sideview nie działa". Jeśli manim-sideview
   zacznie się krzaczyć, to pierwsza rzecz do odkomentowania.
 
-## Pozostałe sieroty w `~/.var/app` (stan 2026-08-10)
+## Pozostałe sieroty — posprzątane 2026-08-10
 
-Zostawione świadomie — razem niecałe 330 kB, nie ma czego odzyskiwać:
+Po VS Code skasowano jeszcze osiem drobnych sierot: `com.github.wwmm.easyeffects` (283 kB),
+`com.geekbench.Geekbench6` (45 kB) oraz sześć **pustych** skorup po przeglądarkach
+(`org.chromium.Chromium`, `net.waterfox.waterfox`, `io.gitlab.librewolf-community`,
+`io.github.ungoogled_software.ungoogled_chromium`, `com.google.ChromeDev`, `com.google.Chrome`).
+Razem ~328 kB — zysk symboliczny, chodziło o to, żeby `~/.var/app` dało się czytać jako
+wiarygodną listę „co jest zainstalowane".
 
-| rozmiar | katalog |
-|---|---|
-| 283 kB | `com.github.wwmm.easyeffects` |
-| 45 kB | `com.geekbench.Geekbench6` |
-| 0 B | `org.chromium.Chromium` |
-| 0 B | `net.waterfox.waterfox` |
-| 0 B | `io.gitlab.librewolf-community` |
-| 0 B | `io.github.ungoogled_software.ungoogled_chromium` |
-| 0 B | `com.google.ChromeDev` |
-| 0 B | `com.google.Chrome` |
+Stan po sprzątaniu: **23 katalogi, każdy z zainstalowaną aplikacją, zero sierot** (zweryfikowane
+pętlą z sekcji „Jak znaleźć sieroty").
+
+Na przyszłość: realny zysk miejsca daje nie to, tylko `flatpak uninstall --unused` — nieużywane
+runtime'y idą w gigabajty, dane aplikacji zwykle w kilobajty. Wyjątkiem są aplikacje, które
+trzymają w danych własne wtyczki/rozszerzenia (jak VS Code — 621 MB samych rozszerzeń).
 
 ## Powiązane
 
