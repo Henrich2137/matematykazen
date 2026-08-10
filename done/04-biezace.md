@@ -1,5 +1,51 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-10] (Opus 5 High) Kontener, paczka trzech zmian: brama w firewallu zawężona
+do samego DNS, `.vscode/` read-only, automatyczny pull przy starcie faktycznie działa.
+
+**1. Firewall — brama tylko 53/udp + 53/tcp** (`.devcontainer/init-firewall.sh`).
+Były tam dwie bezwarunkowe reguły (`-A INPUT -s $HOST_IP -j ACCEPT` i `-A OUTPUT -d $HOST_IP`),
+czyli WSZYSTKIE porty bramy. Pod pastą bramą jest prawdziwy router, więc skan `192.168.1.1`
+z kontenera pokazywał otwarte 80, 443, 445 (SMB) i 631 (IPP) — panel WWW, udziały plików
+i drukarka. Zastąpione dwiema regułami OUTPUT na port 53. Ruch zwrotny NIE dostał własnej
+reguły: sprawdzone, że łańcuch INPUT ma niżej `ESTABLISHED,RELATED`, a conntrack śledzi także
+UDP. TCP obok UDP jest konieczne — odpowiedzi >512 B (flaga TC) wymuszają ponowienie po TCP.
+Reguła na 53 w ogóle zostaje tylko jako zabezpieczenie przenośności: pod pastą resolwerem
+z `resolv.conf` jest `169.254.1.1` (nie brama), więc te dwie linie są tam martwe — ale gdy
+resolwerem jest sam router, są jedyną furtką. Istniejący bezpiecznik (`dig api.github.com` →
+przy braku odpowiedzi przywraca ogólną regułę UDP 53 przez `-I`) pilnuje teraz OBU zawężeń
+naraz, bo testuje efekt końcowy, a nie to, która reguła przepuściła pakiet.
+
+**2. `.vscode/` montowane readonly** (`.devcontainer/devcontainer.json`), tak jak `.devcontainer/`.
+Powód mniej oczywisty niż przy tamtym katalogu: `tasks.json` ma `"runOn": "folderOpen"`, czyli
+polecenie powłoki uruchamiane przez VS Code SAMO, bez pytania, przy każdym otwarciu folderu.
+Kontener mógłby podmienić `git pull --ff-only` na dowolną komendę i poczekać — a odpali się ona
+tam, gdzie folder zostanie otwarty, czyli na hoście, poza izolacją, przy otwarciu repo lokalnie.
+Sprzężenie z punktem 3 jest tu istotne: włączenie `task.allowAutomaticTasks` usuwa pytanie, które
+było ostatnią barierą, więc te dwie zmiany muszą iść razem.
+
+**3. Automatyczny `git pull` przy starcie faktycznie się odpala.** Zadanie z `runOn: folderOpen`
+istniało od 2026-08-07, ale VS Code przy każdym otwarciu pytał „Allow Automatic Tasks in Folder?"
+i do czasu odpowiedzi nie pullował. Brakowało `"task.allowAutomaticTasks": "on"` w GLOBALNYCH
+(User) ustawieniach — tego przełącznika nie da się ustawić z workspace'u i to jest celowe,
+inaczej repo przyznawałoby sobie samo prawo do uruchamiania poleceń. Dopisane w OBU hostowych
+`settings.json` (natywny `~/.config/Code/User/` i Flatpak `~/.var/app/com.visualstudio.code/`),
+bo na tej maszynie utrzymywane są obie instalacje. W `tasks.json` został komentarz o tej zależności.
+
+Dokumentacja: `.devcontainer/README.md` — sekcja „Brama `/32`, nie `/24`" przepisana na
+„Brama: `/24` → `/32` → tylko port 53" (z historią obu zawężeń), sekcja „`.devcontainer/`
+tylko do odczytu" rozszerzona o `.vscode/`, w „Czego to NIE chroni" punkt o panelu WWW routera
+przekreślony jako nieaktualny i dopisany punkt o DNS jako kanale danych, w „Diagnostyka" trzy
+nowe objawy (DNS po zmianie reguł bramy — z komendami i opisem bezpiecznika; brak dostępu do
+LAN-u jako zamierzony; brak zapisu do `.devcontainer`/`.vscode`). TODO.md: z punktu o świadomie
+niedomkniętych dziurach usunięta część (1) o bramie, część (2) o GitHubie/npm została.
+
+NIEZWERYFIKOWANE W MOMENCIE ZAPISU: zmiany robione z hosta (`.devcontainer/` jest w kontenerze
+readonly), a `init-firewall.sh` jest kopiowany do obrazu, więc wszystko wymaga Rebuild Container.
+Lista rzeczy do sprawdzenia po przebudowie trafiła do TODO.md → TESTOWANIE HENRICH.
+
+[tagi: devcontainer, firewall, iptables, dns, podman, pasta, bezpieczenstwo, vscode, zadania]
+
 [ZROBIONE 2026-08-09] (Sonnet 5) Test v14 przez Henricha — 2 z 3 punktów potwierdzone bez zastrzeżeń,
 trzeci (dynamiczny podgląd hoveru) i pole „ostateczna odpowiedź" przepisane na nowe punkty w
 TODO.md → DO ZROBIENIA:

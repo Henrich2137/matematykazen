@@ -1,4 +1,13 @@
 {
+  // WYMAGA "task.allowAutomaticTasks": "on" w GLOBALNYCH (User) ustawieniach
+  // VS Code. Bez tego "runOn": "folderOpen" nie odpala się po cichu — VS Code
+  // przy każdym otwarciu folderu pyta "Allow Automatic Tasks in Folder?"
+  // i dopóki nie odpowiesz, pulla nie ma. Tego przełącznika NIE da się ustawić
+  // z workspace'u (czyli stąd) i to jest celowe: inaczej samo repo przyznawałoby
+  // sobie prawo do uruchamiania poleceń przy otwarciu.
+  //
+  // Ten katalog jest w kontenerze montowany READONLY (patrz devcontainer.json)
+  // właśnie dlatego, że to pole uruchamia polecenie powłoki bez pytania.
   "version": "2.0.0",
   "tasks": [
     {

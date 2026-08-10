@@ -40,6 +40,26 @@ Oto plik który tworzy Henrich (ja, użytkownik).
       zamiast jedna pod drugą — sprawdź, czy da się wygodnie trafić kciukiem i czy długie nazwy
       (np. „Prawidłowa odpowiedź jest nieprawidłowa") nadal się dobrze czyta na dwóch liniach.
 
+  - Kontener: firewall + Playwright + read-only `.vscode` (2026-08-10). WYMAGA **Rebuild Container**
+    (zwykłego, bez `--no-cache`) — bez tego nic z tego nie zadziała. Po przebudowie, w terminalu
+    W KONTENERZE:
+
+    - `dig +short github.com` → ma zwrócić adresy. Jeśli w logu firewalla widać „UWAGA: DNS nie
+      działa po zawężeniu", zawężenie bramy poszło źle — patrz `.devcontainer/README.md`,
+      sekcja „Diagnostyka".
+    - `curl -m 5 http://192.168.1.1` → ma NIE przejść (timeout albo „Connection refused"). Wcześniej
+      otwierał panel routera. To samo dotyczy SMB (445) i drukarki (631).
+    - `git push` / `npm ping` / `curl -sI https://cke.gov.pl` → mają nadal działać.
+    - `bash .devcontainer/verify-firewall.sh` → ma zakończyć się sukcesem.
+    - `touch .vscode/test` → ma odbić się o „Read-only file system" (to jest cel, nie błąd).
+    - Playwright: `NODE_PATH=/usr/local/share/npm-global/lib/node_modules node -e "require('playwright').chromium.launch().then(b=>b.close()).then(()=>console.log('OK'))"`
+      → „OK". Potem zrzut arkusza przez `tools/zrzuty.js`; polski tekst ma być widoczny, nie puste
+      prostokąty.
+
+  - VS Code na hoście: przy otwarciu folderu ma się już NIE pytać „Allow Automatic Tasks in Folder?",
+    tylko po cichu zrobić `git pull --ff-only`. Sprawdź na obu instalacjach, jeśli używasz obu
+    (natywna przez rpm-ostree i Flatpak — ustawienie dopisane w obu).
+
 
 <br>
 
@@ -143,7 +163,7 @@ Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz is
 
     - `sudo` w kontenerze przestało działać (świadomie, `--cap-drop=ALL` bez wyjątków). Jeśli okaże się potrzebne do czegoś realnego, trzeba dodać `--cap-add=SETUID --cap-add=SETGID` — ale NIE `NET_ADMIN`, bo to znów pozwoli rozbroić firewall od środka.
 
-    - Świadomie NIEdomknięte dziury w firewallu, do ewentualnej decyzji: (1) brama `/32` jest przepuszczona, więc z kontenera widać panel WWW routera — zostawione, bo zawężanie tego groziło zepsuciem DNS; (2) dozwolone domeny (GitHub, npm) są z natury kanałem na dane — nie da się usunąć bez odcięcia gita.
+    - Świadomie NIEdomknięta dziura w firewallu, do ewentualnej decyzji: dozwolone domeny (GitHub, npm) są z natury kanałem na dane — nie da się usunąć bez odcięcia gita. (Punkt o przepuszczonej bramie/panelu routera zniknął stąd 2026-08-10 — brama jest już zawężona do samego portu 53, patrz `.devcontainer/README.md`, sekcja „Brama: `/24` → `/32` → tylko port 53".)
 
 
   + OPUS DOPISAŁ (Opus 5, medium) — po paczce z 2026-08-06:

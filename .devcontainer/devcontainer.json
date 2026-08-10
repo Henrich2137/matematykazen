@@ -57,6 +57,20 @@
     // przejdą z wnętrza kontenera.
     "source=${localWorkspaceFolder}/.devcontainer,target=/workspaces/matematykazen/.devcontainer,type=bind,readonly",
 
+    // .vscode TYLKO DO ODCZYTU — z tego samego powodu co .devcontainer wyżej,
+    // tylko wektor jest inny i mniej oczywisty: tutejszy tasks.json ma zadanie
+    // z "runOn": "folderOpen", czyli polecenie powłoki, które VS Code odpala
+    // SAM, bez pytania, przy każdym otwarciu tego folderu. Kontener mógłby
+    // podmienić `git pull --ff-only` na dowolną komendę i po prostu poczekać.
+    // Odpali się ona tam, gdzie folder zostanie otwarty — a więc na hoście,
+    // poza całą izolacją, gdy otworzysz repo lokalnie zamiast w kontenerze.
+    // settings.json jest drugim, słabszym wektorem (choćby ścieżki do podmana).
+    //
+    // Konsekwencje identyczne jak przy .devcontainer: zmiany w .vscode robisz
+    // z hosta, a `checkout`/`pull` ruszający ten katalog przerwie się w połowie
+    // i trzeba go dokończyć z hosta (`git checkout -- .vscode`).
+    "source=${localWorkspaceFolder}/.vscode,target=/workspaces/matematykazen/.vscode,type=bind,readonly",
+
     // Chromium dla Playwrighta — do oglądania własnych zmian w CSS zrzutami
     // ekranu (patrz issues/playwright-podglad.md).
     //

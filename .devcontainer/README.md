@@ -139,7 +139,7 @@ firewall jednym `curl -6`. Dziś kontener ma tylko ULA bez trasy globalnej, wię
 to zabezpieczenie na zapas. Blok jest miękki — brak `ip6tables` daje ostrzeżenie,
 nie wywala skryptu.
 
-### `.devcontainer/` tylko do odczytu
+### `.devcontainer/` i `.vscode/` tylko do odczytu
 
 Repo jest podmontowane do zapisu, więc bez tego kontener mógłby podmienić własną
 konfigurację. Najgroźniejszy jest `host-firewall.sh`, bo wykonuje się **na
@@ -147,6 +147,20 @@ hoście jako Ty** — podmieniony oznacza dowolny kod poza całą izolacją przy
 następnym otwarciu kontenera. Podmiana `devcontainer.json` pozwoliłaby przy
 następnej przebudowie dorzucić `runArgs` (zamontować `/`, przywrócić
 `NET_ADMIN`), a podmiana `verify-firewall.sh` — uciszyć alarm.
+
+**`.vscode/` doszło z tego samego powodu (2026-08-10), choć wektor jest mniej
+oczywisty.** `tasks.json` ma zadanie z `"runOn": "folderOpen"` — czyli polecenie
+powłoki, które VS Code odpala **sam, bez pytania**, przy każdym otwarciu tego
+folderu. Kontener mógłby podmienić `git pull --ff-only` na cokolwiek i po prostu
+czekać. Odpali się to tam, gdzie folder zostanie otwarty, a więc **na hoście,
+poza izolacją**, gdy kiedyś otworzysz repo lokalnie zamiast w kontenerze.
+`settings.json` jest drugim, słabszym wektorem (choćby ścieżki do podmana).
+
+Zwróć uwagę na sprzężenie: `"runOn": "folderOpen"` działa po cichu tylko dlatego,
+że w globalnych ustawieniach VS Code stoi `"task.allowAutomaticTasks": "on"` —
+czyli sam wyłączyłeś pytanie, które normalnie byłoby ostatnią barierą przed
+uruchomieniem takiego polecenia. Tym bardziej ten plik nie może być zapisywalny
+z kontenera.
 
 Dlatego `mounts` nakłada na ten katalog drugi, `readonly`. Pliki nadal się
 czytają i **uruchamiają** (sprawdzone: `verify-firewall.sh` odpala się z takiego
@@ -207,17 +221,44 @@ dotąd leżał plaintextem tak samo, tyle że w efemerycznej warstwie kontenera.
 Reset logowania, gdyby kiedyś trzeba: `podman volume rm matematykazen-gh-config`
 przy zatrzymanym kontenerze.
 
-### Brama `/32`, nie `/24`
+### Brama: `/24` → `/32` → tylko port 53
 
-Oryginał przepuszczał całą podsieć bramy, bo pod Dockerem bramą jest most
-dockerowy. Pod rootless podmanem z pastą kontener widzi **prawdziwą sieć
-lokalną**, więc `/24` otwierało cały LAN i usługi na hoście. Zawężone do samej
-bramy.
+Zawężana dwukrotnie i warto rozumieć oba kroki, bo mylą się przy diagnozie.
+
+Oryginał przepuszczał **całą podsieć bramy**, bo pod Dockerem bramą jest most
+dockerowy — czyli w praktyce sam host. Pod rootless podmanem z pastą kontener
+widzi **prawdziwą sieć lokalną**, więc `/24` otwierało cały LAN i usługi na
+hoście. Pierwsze zawężenie: tylko sama brama (`/32`).
+
+To wciąż było za dużo, bo brama to prawdziwy router — a `/32` bez podania portu
+otwiera **wszystkie** jego porty. Skan `192.168.1.1` z wnętrza kontenera pokazał
+otwarte `80`, `443`, `445` (SMB) i `631` (IPP): nie tylko panel WWW, ale też
+udziały plików i drukarkę. Do niczego w tym kontenerze niepotrzebne. Drugie
+zawężenie (2026-08-10): przechodzi już **wyłącznie `53/udp` i `53/tcp`**.
+
+Dlaczego akurat 53 zostaje, skoro DNS ma wyżej własne reguły z `resolv.conf`:
+w konfiguracjach, w których **resolwerem jest sam router**, oba miejsca wskazują
+ten sam adres i ta reguła jest tylko duplikatem — ale gdy `resolv.conf` pokazuje
+co innego (pod pastą `169.254.1.1`, pod Dockerem `127.0.0.11`), zostaje ona
+jedyną furtką na wypadek, gdyby zapytania jednak trafiały do bramy. Koszt zerowy,
+a alternatywą jest kontener bez DNS, czyli — przy fail-closed `postStartCommand`
+— sesja, która się nie podnosi.
+
+TCP obok UDP nie jest ozdobą: odpowiedź powyżej 512 B (albo ustawiona flaga TC)
+wymusza ponowienie zapytania po TCP, więc bez tej reguły część nazw rozwiązywałaby
+się zależnie od rozmiaru odpowiedzi.
+
+Ruch zwrotny **nie ma** własnej reguły — łańcuch `INPUT` ma niżej
+`ESTABLISHED,RELATED`, a conntrack śledzi także przepływy UDP.
+
+Jeśli DNS przestanie działać po zmianach w tych regułach → patrz „Diagnostyka"
+niżej; jest bezpiecznik, który sam się włącza i pisze o tym w logu.
 
 ## Co firewall przepuszcza
 
 Zakresy IP GitHuba (pobierane z `api.github.com/meta`), DNS do własnego
-resolwera, localhost i bramę, plus dwie listy domen w `init-firewall.sh`.
+resolwera, localhost oraz **port 53 na bramie i nic poza nim** (patrz „Brama:
+`/24` → `/32` → tylko port 53"), plus dwie listy domen w `init-firewall.sh`.
 Wszystko inne dostaje `REJECT`. Filtrowanie jest **po docelowym IP**, nie po
 porcie ani po SNI — to dlatego domeny na współdzielonym anycaście CDN-a są
 problematyczne: wpuszczenie ich adresu otwiera kawałek cudzej infrastruktury.
@@ -286,7 +327,15 @@ Warto mieć świadomość, bo część przecieków omija firewall z definicji:
   i X11 rozszerzenie nie ma przełącznika (sprawdzone w wersji 0.463.0).
 - **Dozwolone domeny jako kanał danych** — mając dostęp do GitHuba można wypchnąć
   dane do repo czy gista. Nie da się usunąć bez odcięcia gita.
-- **Panel WWW routera** — brama jest przepuszczona, więc jest widoczna.
+- **DNS jako kanał danych** — zapytania do własnego serwera autorytatywnego
+  z danymi w etykietach to klasyczny tunel, którego filtr po IP nie widzi.
+  Zawężenie do resolwera z `resolv.conf` podnosi poprzeczkę (trzeba przejść
+  przez cudzy rekurencyjny), ale nie zamyka kanału. Port 53 musi być otwarty,
+  żeby cokolwiek działało.
+- ~~**Panel WWW routera**~~ — **już nieaktualne** (2026-08-10). Do bramy
+  przechodzi wyłącznie port 53, więc panel WWW, SMB ani IPP routera nie są
+  z kontenera osiągalne. Szczegóły w sekcji „Brama: `/24` → `/32` → tylko
+  port 53" wyżej.
 - **`--security-opt label=disable`** — rozszerzenie samo wyłącza konfinację
   SELinuksa dla kontenera. To utrata warstwy, nie dziura: namespace'y i tak
   odcinają dostęp do niezamontowanych plików.
@@ -311,6 +360,31 @@ Objawy i przyczyny:
 - **VS Code otwiera pusty katalog** — rozjechał się `workspaceFolder`.
 - **`sudo: unable to change to root gid`** — ktoś dodał `--cap-drop=ALL` bez
   SETUID/SETGID, a coś nadal próbuje używać `sudo`.
+- **DNS nie działa po zmianie reguł bramy** — czyli `dig github.com` milczy,
+  a `curl` do dozwolonych domen zwraca „Could not resolve host". W skrypcie jest
+  **bezpiecznik**: po nałożeniu reguł sprawdza on `dig api.github.com` i przy
+  braku odpowiedzi sam przywraca ogólną regułę UDP 53, wypisując
+  `UWAGA: DNS nie działa po zawężeniu — przywracam ogólną regułę UDP 53`.
+  Jeśli widzisz tę linię, kontener jedzie z jedną znaną słabością zamiast
+  w ogóle nie wstać. Ustal, dokąd naprawdę chodzi DNS:
+
+  ```bash
+  cat /etc/resolv.conf          # kto jest resolwerem (pasta: 169.254.1.1)
+  ip route | grep default       # kto jest bramą — to samo IP czy inne?
+  iptables -L OUTPUT -n -v      # która reguła 53 łapie pakiety (licznik pkts)
+  dig +short github.com
+  ```
+
+  Najczęstsza przyczyna: resolwer z `resolv.conf` to nie brama i nie ma dla
+  niego reguły (albo `resolv.conf` zmieniło się po starcie kontenera).
+- **Nie widać czegoś w LAN-ie (NAS, drukarka, panel routera)** — to jest
+  **zamierzone**, nie awaria. Patrz sekcja „Brama: `/24` → `/32` → tylko
+  port 53". Kontener ma dostawać się tylko do internetu z listy, nie do sieci
+  domowej. Jeśli naprawdę potrzebujesz konkretnej usługi w LAN-ie, dopisz do
+  `init-firewall.sh` regułę na **ten jeden adres i port**, nie na całą bramę.
+- **Nie da się zapisać do `.devcontainer/` lub `.vscode/` z kontenera** — też
+  zamierzone, oba katalogi są montowane `readonly`. Patrz sekcja
+  „`.devcontainer/` i `.vscode/` tylko do odczytu".
 
 ## Zmiany wymagające przebudowy
 

@@ -220,12 +220,34 @@ fi
 # UWAGA: oryginał (pisany pod Dockera) rozszerzał adres bramy na całe /24, bo
 # tam bramą jest most dockerowy. Pod rootless podmanem z pastą kontener widzi
 # PRAWDZIWĄ sieć lokalną, więc /24 otwierałoby dostęp do całego LAN-u i do usług
-# na hoście. Przepuszczamy tylko samą bramę (/32).
-echo "Gateway detected as: $HOST_IP (przepuszczamy /32, nie całe /24)"
+# na hoście. Zawężone najpierw do samej bramy (/32), a od 2026-08-10 dodatkowo
+# do jednego portu — patrz niżej.
+echo "Gateway detected as: $HOST_IP (przepuszczamy wyłącznie 53/udp + 53/tcp)"
 
-# Set up remaining iptables rules
-iptables -A INPUT -s "$HOST_IP" -j ACCEPT
-iptables -A OUTPUT -d "$HOST_IP" -j ACCEPT
+# BRAMA: TYLKO DNS, nie cały host.
+#
+# Wcześniej szło tu bezwarunkowe ACCEPT na cały adres bramy w obie strony. Pod
+# pastą bramą jest PRAWDZIWY router w LAN, więc to otwierało każdy jego port —
+# skan 192.168.1.1 z wnętrza kontenera pokazał otwarte 80, 443, 445 (SMB)
+# i 631 (IPP), czyli nie tylko panel WWW, ale też udziały plików i drukarkę.
+# Żadna z tych usług nie jest do niczego w tym kontenerze potrzebna.
+#
+# Zostaje 53, bo w konfiguracjach, w których resolwerem z /etc/resolv.conf jest
+# sam router, blok DNS wyżej wpisałby regułę na dokładnie ten adres i ta linia
+# byłaby tylko duplikatem — ale gdy resolv.conf pokazuje coś innego (pod pastą
+# jest tam 169.254.1.1, pod Dockerem 127.0.0.11), to ta reguła jest jedyną
+# furtką na wypadek, gdyby rozwiązywanie nazw jednak trafiało do bramy. Koszt
+# jest zerowy, a bez niej ryzykujemy kontener bez DNS, czyli sesję, która się
+# nie podnosi (postStartCommand jest fail-closed).
+#
+# TCP obok UDP, bo odpowiedź powyżej 512 B (albo ustawiona flaga TC) wymusza
+# ponowienie zapytania po TCP — bez tej reguły część nazw rozwiązywałaby się
+# losowo, zależnie od rozmiaru odpowiedzi.
+#
+# Ruchu zwrotnego NIE wpuszczamy osobną regułą: łańcuch INPUT ma niżej
+# ESTABLISHED,RELATED, a conntrack śledzi także przepływy UDP.
+iptables -A OUTPUT -p udp --dport 53 -d "$HOST_IP" -j ACCEPT
+iptables -A OUTPUT -p tcp --dport 53 -d "$HOST_IP" -j ACCEPT
 
 # Set default policies to DROP first
 iptables -P INPUT DROP
@@ -248,6 +270,12 @@ iptables -A OUTPUT -j REJECT --reject-with icmp-admin-prohibited
 # niż sesja, która się nie podnosi — postStartCommand jest fail-closed, więc
 # zepsuty DNS oznaczałby brak możliwości pracy.
 # Reguły wchodzą przez -I (na początek łańcucha), bo -A trafiłoby za REJECT.
+#
+# Bezpiecznik pilnuje OBU zawężeń DNS naraz — tego z resolv.conf i tego na
+# bramie — bo testuje efekt końcowy (`dig` faktycznie odpowiada), a nie to,
+# która reguła go przepuściła. Jeśli w logu widzisz poniższe OSTRZEŻENIE,
+# znaczy to, że kontener jedzie z ogólnym UDP 53 i warto sprawdzić, dokąd
+# naprawdę chodzi DNS: `cat /etc/resolv.conf` + `iptables -L OUTPUT -n -v`.
 if ! dig +short +time=3 +tries=1 api.github.com 2>/dev/null | grep -qE '^[0-9]+\.'; then
     echo "UWAGA: DNS nie działa po zawężeniu — przywracam ogólną regułę UDP 53"
     iptables -I OUTPUT -p udp --dport 53 -j ACCEPT

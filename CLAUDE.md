@@ -82,7 +82,11 @@ The repo configures two **native VS Code** features, deliberately chosen over `g
 - `.vscode/settings.json` → `"git.autofetch": true` — background `git fetch` every ~3 min. Fetch only, never merges; the visible effect is just the „↓N" counter in Source Control.
 - `.vscode/tasks.json` → a `git pull --ff-only` task with `"runOn": "folderOpen"` — pulls **once, when the folder is opened**. `--ff-only` is the safety: it can never overwrite local commits or create a merge; on diverged branches it simply fails and reveals the terminal.
 
-Both files are tracked, so they travel with the repo and behave identically inside and outside the devcontainer (that parity is the point). On a fresh machine/profile VS Code asks once — „Allow Automatic Tasks in Folder?" — and the task won't run until it's allowed.
+Both files are tracked, so they travel with the repo and behave identically inside and outside the devcontainer (that parity is the point).
+
+**`runOn: folderOpen` only fires silently when the machine's *global* (User) `settings.json` has `"task.allowAutomaticTasks": "on"`** — otherwise VS Code asks „Allow Automatic Tasks in Folder?" on every open and does not pull until answered. That switch **cannot be set from workspace settings**, by design: a repo must not be able to grant itself permission to run commands. It was set on this machine 2026-08-10, in both host installs (native `~/.config/Code/User/` and Flatpak `~/.var/app/com.visualstudio.code/…`). On a fresh machine/profile it has to be set again — the repo cannot carry it.
+
+Because that removes the only interactive barrier in front of a shell command VS Code runs by itself, **`.vscode/` is mounted `readonly` in the devcontainer** (same treatment as `.devcontainer/`, added the same day) so the container cannot rewrite the task it will later run. Consequence: edit `.vscode/` from the host, and a `checkout`/`pull` touching it from inside the container will half-fail exactly like it does for `.devcontainer/` — see `.devcontainer/README.md`, section „`.devcontainer/` i `.vscode/` tylko do odczytu".
 
 Consequence for the assistant: local `master` is often already up to date at session start, but a background fetch **does not touch the working tree**, so still run `git fetch` before reasoning about history in a long session.
 
