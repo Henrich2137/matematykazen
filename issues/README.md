@@ -19,6 +19,13 @@ Zasady:
 - [wskazniki-reload-faza-oceniania.md](wskazniki-reload-faza-oceniania.md) — wskaźniki „oceń się" znikają po odświeżeniu strony po egzaminie
 - [zadania-nie-renderuja-sie-mobile.md](zadania-nie-renderuja-sie-mobile.md) — zadania nie renderują się na telefonie (Pixel 7a/GrapheneOS, Firefox i Brave)
 
+## Nie problemy, tylko opisy działania
+
+Wyjątek od zasady „jeden plik = jeden problem": rzeczy, które nie są zepsute,
+ale mają na tyle nieoczywistą konstrukcję, że bez notatki nikt jej nie odtworzy.
+
+- [playwright-podglad.md](playwright-podglad.md) — Playwright + Chromium w kontenerze (przeglądarka z bindu hosta, przypięta wersja i jak ją podbić)
+
 ## Opisy konstrukcji (nie problemy)
 
 - [playwright-podglad.md](playwright-podglad.md) — Playwright + Chromium w kontenerze: skąd się bierze przeglądarka i jak podbić wersję
