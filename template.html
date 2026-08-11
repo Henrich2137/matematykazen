@@ -139,7 +139,7 @@
              (vX Beta, X += 1 — np. v10 Beta → v11 Beta → …), żeby po
              odświeżeniu na telefonie było widać, czy strona wczytała już
              nową wersję. Ta sama wartość musi być w .landing-logo w index.html. -->
-        <a id="logo" href="index.html"><b>Matematyka Zen</b> <span id="wersja">v19 Beta</span></a>
+        <a id="logo" href="index.html"><b>Matematyka Zen</b> <span id="wersja">v20 Beta</span></a>
         <!-- Strzałka otwierająca panel boczny — następca przycisku „⋯". Ten sam
              przycisk zamyka (obraca się o 180°); JS przestawia aria-expanded
              i aria-label. -->
@@ -289,6 +289,17 @@
                  JS-em), żeby zmiana treści była zawsze wychwycona. -->
             <span id="sprawdz-wszystkie-status-sidebar" class="sprawdz-status-sidebar" role="status" aria-live="polite"></span>
         </button>
+        <!-- Prędkość filmów „krok po kroku". Etykiety ułamkowe (¼×, ½×), bo
+             data-stany rozdziela stany przecinkiem — „0,25×" rozpadłoby się na
+             dwa stany. Pełne brzmienie jest w title. -->
+        <button id="predkosc-wideo-toggle" type="button" class="sidebar-ustawienie"
+                title="Prędkość filmów w rozwiązaniach krok po kroku (0,25× – 4×)"
+                data-stany="¼×,½×,1×,2×,4×" data-stan="1×">
+            <svg class="sidebar-ikona" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="7.5"/><path d="M12 13l4-3.5"/><path d="M9 3.5h6"/></svg>
+            <span class="etykieta">Prędkość filmów</span>
+            <span class="wartosc" aria-live="polite">1×</span>
+            <span class="kropki" aria-hidden="true"></span>
+        </button>
         <button id="zglos-blad-toggle" type="button" class="sidebar-ustawienie"
                 data-stany="wył.,wł." data-stan="wł.">
             <svg class="sidebar-ikona" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5l8.5 15H3.5z"/><path d="M12 10v4.2"/><circle cx="12" cy="17" r=".7" fill="currentColor" stroke="none"/></svg>
@@ -417,13 +428,44 @@
 
                 <div class="solution-text-container"></div>
 
+                <!-- Odtwarzacz krok po kroku, trzy rzędy pod filmem (TODO.md):
+                     ROW 1 kropki ze stanem i paskiem postępu w odstępie między
+                     kropką bieżącą a następną, ROW 2 przyciski, ROW 3 zwijane
+                     wyjaśnienie. Kropki i odcinki buduje zbudujKropki()
+                     w app/steps.js — jest ich o jedną więcej niż filmów. -->
                 <div class="solution-step-by-step-container">
                     <div class="steps-content"></div>
-                    <div class="steps-nav">
-                        <button class="step-prev light-button">◄</button>
-                        <span class="step-counter"></span>
-                        <button class="step-next light-button">►</button>
+
+                    <div class="steps-dots-row">
+                        <button class="steps-scroll steps-scroll-lewo" type="button"
+                                aria-label="Przewiń kroki w lewo">‹</button>
+                        <div class="steps-dots-okno">
+                            <div class="steps-dots"></div>
+                        </div>
+                        <button class="steps-scroll steps-scroll-prawo" type="button"
+                                aria-label="Przewiń kroki w prawo">›</button>
+                        <!-- Licznik „3 / 6" zniknął z widoku (zastąpiły go kropki),
+                             ale zostaje dla czytników ekranu i dla zgłoszeń błędów —
+                             krokRozwiazania() w app/report.js czyta go z DOM. -->
+                        <span class="step-counter" role="status" aria-live="polite"></span>
                     </div>
+
+                    <div class="steps-nav">
+                        <button class="step-prev light-button" type="button"
+                                aria-label="Poprzedni krok">◄</button>
+                        <button class="step-play light-button" type="button"
+                                aria-label="Odtwórz"></button>
+                        <button class="step-next light-button" type="button"
+                                aria-label="Następny krok">►</button>
+                    </div>
+
+                    <details class="step-explain">
+                        <summary class="step-explain-toggle">
+                            <span class="gdy-zwiniete">Pokaż wyjaśnienie kroku</span>
+                            <span class="gdy-rozwiniete">Schowaj wyjaśnienie kroku</span>
+                        </summary>
+                        <div class="step-explain-tresc"></div>
+                    </details>
                 </div>
 
                 <div class="solution-interactive-container" ></div>

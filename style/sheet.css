@@ -1181,12 +1181,18 @@ body.sidebar-otwarty #sidebar-linia {
    kontener. Wcześniej przy 608px dostępnych zajmował 420 i 188px marnowało się
    bez powodu. Górna granica 640px pilnuje, żeby na bardzo szerokich ekranach
    nie zejść poniżej podwójnej gęstości pikseli (źródło ma 1280px szerokości). */
+/* Proporcje kadru bierzemy Z PLIKU (--proporcje-filmu ustawia app/steps.js po
+   wczytaniu metadanych), a 16/9 to tylko wartość na czas ładowania. Powód:
+   zad. 2 jest już w nowym kadrze 16:9, ale zad. 1 i 3 wciąż mają stare 21:9 —
+   wtłoczone na siłę w 16:9 zostawiały ~80 px martwego pasa nad i pod obrazem
+   (w ciemnym motywie widocznego jako ciemne belki). Sztywna wartość na starcie
+   rezerwuje miejsce, więc karta nie skacze, zanim film się wczyta. */
 .solution-step-by-step-container video {
     display: block;
     width: 100%;
     max-width: 640px;
     height: auto;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: var(--proporcje-filmu, 16 / 9);
     margin: 0 auto;
     cursor: pointer;
     /* Odwrócenie w dark mode — patrz --filtr-grafik-zadan w style/base.css. */
@@ -1257,29 +1263,209 @@ body.sidebar-otwarty #sidebar-linia {
        kroków blok nie zmieniał wysokości. Teraz film sam trzyma stałą wysokość:
        ma `aspect-ratio: 16/9` przy `width: 100%`, więc zależy wyłącznie od
        szerokości kontenera, ta sama dla każdego kroku. Zmienny został tylko
-       podpis, a jego dwie linijki rezerwuje `.step-comment` niżej.
+       Podpis pod filmem zniknął (2026-08-11) — opis kroku przeniósł
+       się do zwijanego wyjaśnienia w ROW 3.
        Stała liczba pikseli byłaby tu wręcz szkodliwa — przy szerokim ekranie
        film ma ~342px wysokości i 250px nic by nie rezerwowało. */
     margin: 10px 0;
     text-align: center;
 }
-/* Rezerwuje miejsce na ~2 linijki podpisu pod krokiem, żeby krótkie i puste
-   komentarze zajmowały tyle samo miejsca i nawigacja nie skakała. */
-.step-comment {
+/* ROW 1 — kropki stanu z paskiem postępu w odstępie (przebudowa 2026-08-11).
+   Model: kropka = stan działania, odcinek między kropkami = krok. Pasek, który
+   był belką pod filmem, wypełnia teraz odcinek bieżącego kroku. */
+.steps-dots-row {
+    position: relative; /* kotwica dla schowanego .step-counter */
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 12px 0 6px;
+}
+/* Okno przewijania: powyżej siedmiu kropek pasek jedzie w poziomie zamiast się
+   ściskać. Pasek przewijania chowamy — od tego są strzałki po bokach. */
+.steps-dots-okno {
+    flex: 1;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+.steps-dots-okno::-webkit-scrollbar {
+    display: none;
+}
+.steps-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100%;
+    width: max-content;
+    /* Bez poziomego paddingu: przy siedmiu kropkach dokładał 8 px i pasek
+       zaczynał się przewijać, choć wg TODO ma się przewijać dopiero POWYŻEJ
+       siedmiu. */
+    padding: 8px 0;
+}
+/* Pole dotyku 44px (Henrich: dzisiejsze strzałki są za małe na kciuk) uzyskane
+   paddingiem — sama kropka zostaje mała. box-sizing: content-box, żeby padding
+   nie zjadł średnicy. */
+.step-dot {
+    flex: none;
+    box-sizing: content-box;
+    width: 10px;
+    height: 10px;
+    padding: 17px 8px;
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+    background-clip: content-box;
+    cursor: pointer;
+    /* Sama kropka rysowana tłem obszaru treści: pole dotyku jest większe niż to,
+       co widać. */
+    background-image: radial-gradient(circle, var(--border-muted) 0 50%, transparent 50%);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 10px 10px;
+}
+.step-dot.odwiedzona {
+    background-image: radial-gradient(circle, var(--text-faint) 0 50%, transparent 50%);
+}
+.step-dot.biezaca {
+    background-image: radial-gradient(circle, var(--text) 0 50%, transparent 50%);
+    background-size: 15px 15px;
+}
+.step-dot:hover {
+    background-size: 15px 15px;
+}
+/* Odcinek między dwiema kropkami = jeden krok. Cienka kreska zawsze, wypełnienie
+   tylko w kroku bieżącym (--postep ustawia rysujPostep w app/steps.js). */
+.step-link {
+    position: relative;
+    flex: 1 1 18px;
+    min-width: 14px;
+    height: 2px;
+    background-color: var(--border-muted);
+    --postep: 0%;
+}
+.step-link-fill {
     display: block;
-    min-height: 2.8em;
-    margin-top: 8px;
-    line-height: 1.4;
+    width: var(--postep);
+    height: 100%;
+    background-color: var(--text);
 }
-/* Krok bez komentarza dostaje dyskretny wypełniacz-separator zamiast pustki. */
-.step-comment:empty::before {
-    content: "· · ·";
-    color: var(--border-muted);
-    letter-spacing: 4px;
+/* Strzałki przewijania kropek — pokazywane przez zbudujKropki() dopiero powyżej
+   siedmiu kropek. */
+.steps-scroll {
+    flex: none;
+    width: 32px;
+    height: 44px;
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: 20px;
+    line-height: 1;
+    color: var(--text-faint);
+    cursor: pointer;
 }
+.steps-scroll:hover {
+    color: var(--text);
+}
+/* Licznik „3 / 6" zniknął z widoku — zostaje wyłącznie dla czytników ekranu
+   i dla zgłoszeń błędów (app/report.js czyta go z DOM). */
+.step-counter {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+/* ROW 2 — przyciski. Pole dotyku min. 44px w obu wymiarach (Henrich). */
 .steps-nav {
-    margin: 10px 0 30px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 4px 0 10px;
+}
+/* Pole dotyku 44×44 (dzisiejsze strzałki były na to za małe — Henrich).
+   Podkreślenie z .light-button:hover na samym glifie wyglądałoby jak błąd,
+   więc zamiast niego zmiana koloru. */
+.steps-nav button {
+    width: auto;
+    min-width: 44px;
+    min-height: 44px;
+    margin: 0;
+    font-size: 18px;
+    color: var(--text-faint);
+}
+.steps-nav button:hover:not(:disabled) {
+    text-decoration: none;
+    color: var(--text);
+}
+.steps-nav button:disabled {
+    opacity: 0.35;
+    cursor: default;
+}
+/* Start/pauza w kółku — bez tego przycisk „odtwórz" (▶) i „następny krok" (►)
+   są dwoma prawie identycznymi trójkątami obok siebie. Kółko robi z niego
+   wyraźnie inną, główną kontrolkę. */
+.step-play {
+    width: 44px;
+    border: 1px solid var(--border-strong);
+    border-radius: 50%;
+    font-size: 15px;
+    color: var(--text);
+}
+.step-play:hover:not(:disabled) {
+    background-color: var(--bg-muted);
+}
+.step-play::before {
+    content: "▶";
+}
+.step-play.gra::before {
+    content: "❚❚";
+    letter-spacing: -2px;
+}
+/* ROW 3 — zwijane wyjaśnienie kroku. Wzorowane na „Sprawdzaniu obliczeń"
+   (.ocena-box), ale BEZ ramki, żeby nie odcinało się od bloku z krokami
+   (Henrich, TODO.md). Zajęło miejsce pola "text", które wcześniej było
+   podpisem pod filmem. */
+.step-explain {
+    max-width: 520px;
+    margin: 0 auto 24px;
+    text-align: left;
+}
+.step-explain-toggle {
+    display: flex;
+    align-items: center;
+    padding: 10px 4px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-faint);
+    cursor: pointer;
+    list-style: none;
+}
+.step-explain-toggle::-webkit-details-marker {
+    display: none;
+}
+.step-explain-toggle::after {
+    content: "›";
+    margin-left: auto;
+    font-size: 18px;
+    line-height: 1;
+    color: var(--text-faint);
+    transition: transform 150ms ease;
+}
+.step-explain[open] > .step-explain-toggle::after {
+    transform: rotate(90deg);
+}
+.step-explain-toggle:hover {
+    color: var(--text);
+}
+.step-explain:not([open]) .gdy-rozwiniete,
+.step-explain[open] .gdy-zwiniete {
+    display: none;
+}
+.step-explain-tresc {
+    padding: 0 4px 8px;
+    line-height: 1.5;
 }
 .solution-interactive-container {
     padding-bottom: 30px;

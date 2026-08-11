@@ -79,11 +79,18 @@ Manim — powstaje z gotowego pliku, więc nie może się z nim rozjechać).
 
 ## Rewersy — czego nie widać na pierwszy rzut oka
 
-Plan: na każdy krok dwa pliki, zwykły i puszczony od tyłu. Rewersu **nie
-renderuje Manim** — powstaje z gotowego pliku:
+**Zrobione 2026-08-11** dla wszystkich trzech zadań z krokami (zad. 1, 2 i 3 —
+razem 23 kroki i 23 rewersy). Odtwarza to jedną komendą `tools/rewersy.sh`:
 
 ```
-ffmpeg -i stepN.mp4 -vf reverse -an stepN-rewers.mp4
+tools/rewersy.sh matura/2024-grudzien/media/zad2/krok-po-kroku
+```
+
+Pod spodem to nadal jedna linijka ffmpeg — rewersu **nie renderuje Manim**,
+powstaje z gotowego pliku, więc nie może się z nim rozjechać:
+
+```
+ffmpeg -i stepN.mp4 -vf "reverse,tpad=stop_mode=clone:stop_duration=0.25" -an stepNreverse.mp4
 ```
 
 Trzy rzeczy, które przy tym wybuchną, jeśli się o nich nie pomyśli:
@@ -93,16 +100,25 @@ Trzy rzeczy, które przy tym wybuchną, jeśli się o nich nie pomyśli:
    0,25 s bezruchu na starcie cofki, a rewers kończy się dokładnie w tej klatce,
    której przeglądarka nie zdąży namalować (patrz pułapka 1 wyżej). Efekt byłby
    ten sam co w v18: po cofnięciu na ekranie zostaje niepełny obraz.
-   **Wniosek: każdy krok musi mieć przytrzymanie po OBU stronach** — `self.wait`
-   na początku i na końcu — albo rewers trzeba domykać osobno (`tpad`).
+   **Rozwiązane przez `tpad`**, nie przez przerabianie scen: filtr klonuje
+   ostatnią klatkę rewersu przez 0,25 s, więc przytrzymanie jest po obu stronach
+   bez dotykania Manima. Działa też dla zad. 1 i 3, które przytrzymania na końcu
+   nie mają w ogóle (to stary format sprzed poprawki).
 2. **Rewers kroku 1 kończy się pustym kadrem**, bo krok 1 rysuje działanie od
-   zera. Cofnięcie z pierwszej kropki prowadzi więc do stanu „nic nie ma".
-   Do rozstrzygnięcia przy UI, czy z kropki 0 w ogóle da się cofnąć.
+   zera. Cofnięcie z pierwszej kropki prowadziłoby do stanu „nic nie ma" —
+   dlatego w odtwarzaczu z kropki 0 nie da się cofnąć (decyzja Henricha).
 3. **`-an` jest istotne** — pliki nie mają ścieżki dźwiękowej, a bez tej flagi
    ffmpeg potrafi dołożyć pustą i niepotrzebnie zwiększyć wagę.
 
-Nazewnictwo (do potwierdzenia u Henricha): `stepN.mp4` + `stepN-rewers.mp4`,
-w katalogu `krok-po-kroku/`.
+Nazewnictwo (potwierdzone przez Henricha 2026-08-11): `stepN.mp4` +
+`stepNreverse.mp4`, w katalogu `krok-po-kroku/`. Odtwarzacz **nie czyta nazwy
+rewersu z danych** — dokłada `reverse` przed rozszerzeniem nazwy z pola `src`,
+więc `exercises.json` wymienia tylko plik w przód.
+
+Zmierzone po wygenerowaniu (23 kroki): rewers ma dokładnie tyle klatek co
+oryginał plus 0,25 s (15 przy 60 fps, 30 przy 120), a SSIM końca kroku wobec
+startu rewersu i startu kroku wobec końca rewersu wynosi ≥ 0,9994 — przy szumie
+samej kompresji rzędu 0,9996.
 
 ## Pasek postępu między kropkami
 
@@ -128,6 +144,33 @@ pod filmem.
 - **Zanim porównasz cokolwiek**, sprawdź `ffprobe`, czy oba pliki mają te same
   wymiary i liczbę klatek. Inaczej „porównanie" przejdzie na niewłaściwym
   materiale.
+- **Miej wzorzec spoza przeglądarki.** Odczyt pikseli mówi, CO widać, ale nie
+  mówi, czy to właściwa klatka. Wyciągnij tę samą klatkę z pliku
+  (`ffmpeg -vf "select=eq(n\,K)"`) i porównaj liczbę ciemnych pikseli oraz ich
+  prostokąt. Tak wyszło 2026-08-11, że kliknięcie ostatniej kropki pokazuje
+  PIERWSZĄ klatkę ostatniego kroku: odtwarzacz raportował 3354 ciemne piksele
+  w prostokącie (466, 310, 813, 409), a plik miał w ostatniej klatce 1557
+  w (594, 309, 685, 410). Bez wzorca „coś się wyświetla" wyglądałoby poprawnie.
+
+## Pułapka podglądu: `python3 -m http.server` nie umie przewijać wideo
+
+`SimpleHTTPRequestHandler` **nie obsługuje żądań zakresowych** (`Range`), a bez
+nich przeglądarka nie ma jak skoczyć w środek filmu: `video.seekable` zostaje
+puste (`seekable.end(0) === 0`), każde ustawienie `currentTime` cicho wraca do
+zera, a film daje się tylko odtworzyć od początku.
+
+To wygląda dokładnie jak błąd w kodzie odtwarzacza i kosztowało 2026-08-11
+sporo czasu na szukanie nieistniejącej usterki. Do pracy nad czymkolwiek, co
+przewija film (kropki, rewersy od bieżącej klatki), użyj serwera z obsługą
+Range, np.:
+
+```
+npx http-server -p 8000 -a 127.0.0.1
+```
+
+Sprawdzenie: `curl -s -o /dev/null -w "%{http_code}" -r 0-100 <url-filmu>`
+ma zwrócić **206**, nie 200. GitHub Pages Range obsługuje, więc produkcji to
+nie dotyczy — tylko lokalnego podglądu.
 
 ## Odtwarzanie z prędkością 4× gubi klatki
 
@@ -139,16 +182,17 @@ Uznane za akceptowalne, bo 4× to tryb „przewiń", nie „oglądaj". Pomiar ro
 w kontenerze, na procesorze desktopowym — **telefon i Safari nie były
 sprawdzone**.
 
-## Docelowa struktura plików (paczka A, jeszcze nie wdrożona)
+## Struktura plików (wdrożona 2026-08-11)
 
 ```
 matura/<arkusz>/media/zadN/krok-po-kroku/
-├── krok1.mp4
-├── krok1-rewers.mp4
+├── step1.mp4
+├── step1reverse.mp4
 └── ...
 ```
 
-Dziś pliki wciąż leżą płasko jako `media/zadN/zadNrozw_stepM.mp4`.
+Poprzednio płasko, jako `media/zadN/zadNrozw_stepM.mp4`. Podfolder jest
+konieczny, bo rewersy podwajają liczbę plików i mieszały się z rysunkami.
 `manimations/` **zostaje na wierzchu repo** — decyzja Henricha: produkcja ma być
 oddzielona od statycznej strony, żeby przyszła gałąź hostingowa nie ciągnęła
 za sobą źródeł animacji.

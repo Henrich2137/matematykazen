@@ -350,6 +350,12 @@ html.theme-dark {
     /* Aktywny segment: CIEMNIEJSZY od bieli (dawniej tło --text ≈ #e6e6e6). */
     --segment-bg: #303030;
     --segment-text: #e6e6e6;
+
+    /* Odwrócenie PNG/MP4 o białym tle — patrz komentarz przy tej samej zmiennej
+       w bloku systemowym wyżej. Brakowało jej tutaj, więc RĘCZNIE wymuszony
+       ciemny motyw zostawiał rysunki i filmy świecące na biało, choć ten sam
+       motyw wybrany przez system odwracał je poprawnie (2026-08-11). */
+    --filtr-grafik-zadan: invert(92%);
 }
 
 body {

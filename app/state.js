@@ -164,6 +164,21 @@ function czyZegarWidoczny() {
     try { return localStorage.getItem(KLUCZ_ZEGAR_WIDOCZNY) !== "0"; } catch (e) { return true; }
 }
 
+// Prędkość odtwarzania filmów „krok po kroku" (ustawienie GLOBALNE, jak wyżej).
+// Etykiety w panelu są ułamkowe (¼×, ½×), bo data-stany rozdziela stany
+// PRZECINKIEM, a „0,25×" rozpadłoby się na dwa stany.
+// UWAGA z pomiarów (issues/krok-po-kroku-produkcja.md): przy 4× dekoder gubi
+// część klatek materiału 120 fps i obraz jest skokowy — to tryb „przewiń",
+// nie „oglądaj".
+const KLUCZ_PREDKOSC_WIDEO = "matematykazen-predkosc-wideo";
+const PREDKOSCI_WIDEO = { "¼×": 0.25, "½×": 0.5, "1×": 1, "2×": 2, "4×": 4 };
+function predkoscWideo() {
+    try {
+        const v = parseFloat(localStorage.getItem(KLUCZ_PREDKOSC_WIDEO));
+        return v > 0 ? v : 1;
+    } catch (e) { return 1; }
+}
+
 // Rejestr zadań zamkniętych do zbiorczego „sprawdź wszystkie odpowiedzi". Każdy
 // wpis: { ocen, maZaznaczenie, czySprawdzone } — patrz app/render.js (typy
 // ABCD/PF/multiSelect). Przycisk w menu ⋯ i w stopce (app/bootstrap.js)

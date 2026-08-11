@@ -1,4 +1,4 @@
-Ostatnia weryfikacja  23:30  09.08.2026 
+Ostatnia weryfikacja  18:40  11.08.2026 
 
 # Matematyka Zen
 
@@ -15,6 +15,7 @@ Zobacz na żywo: https://henrich2137.github.io/matematykazen/
 ## Funkcje
 
 - Dwa typy zadań: zamknięte (ABCD, prawda/fałsz, wielokrotny wybór, uzupełnianie) oceniane automatycznie na bieżąco, oraz otwarte — rozwiązywane poza platformą, punktowane przez ucznia z checklisty kryteriów CKE (patrz samoocena niżej).
+- Rozwiązania „krok po kroku": krótkie animacje matematyczne (Manim) odtwarzane stan po stanie. Pod filmem pasek kropek — kropka to stan działania, film to przejście między dwoma stanami — z paskiem postępu w odstępie między kropką bieżącą a następną. Kropki są klikalne, krok da się cofnąć (osobny plik puszczony od tyłu, bo przeglądarki nie odtwarzają wideo wstecz), prędkość regulowana od 0,25× do 4×, obsługa przesuwaniem palca i strzałkami klawiatury. Wyjaśnienie kroku (opis + wzór) chowa się pod przyciskiem, żeby widok domyślny był minimalistyczny.
 - Tablica wzorów (oficjalny PDF CKE) w przesuwnym, skalowalnym okienku.
 - Zasady oceniania (klucz odpowiedzi CKE) w analogicznym, osobnym okienku.
 - Tryb próbnego egzaminu — 170 min z zegarem, ukrywa podpowiedzi/wyniki na czas trwania, podsumowanie po zakończeniu.

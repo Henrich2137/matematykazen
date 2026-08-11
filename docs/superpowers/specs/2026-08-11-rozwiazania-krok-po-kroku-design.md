@@ -1,9 +1,15 @@
 # Rozwiązania krok po kroku — nowy kształt
 
 Data: 2026-08-11
-Status: ustalenia z brainstormingu. **Zatwierdzony zakres pierwszej paczki: A + D
-ograniczone do zadania 2** (patrz „Podział na paczki"). Paczki B i C czekają, aż
-prototyp na zadaniu 2 zadziała i zostanie obejrzany na telefonie.
+Status: **wdrożone w v20** — paczki A, C i rewersy z B są zrobione dla wszystkich
+trzech zadań z krokami (zad. 1, 2 i 3). Otwarte zostaje przerenderowanie scen
+zad. 1 i 3 do nowego kadru (paczka D poza zadaniem 2) oraz skrypt cięcia sceny
+na kroki z paczki B. Przebieg i pomiary: `done/04-biezace.md`, wpis z 2026-08-11.
+
+Uwaga do treści niżej: kilka decyzji doprecyzował potem Henrich w TODO.md i to
+one obowiązują — pod filmem NIE ma zawsze widocznej linijki podpisu (całe pole
+`text` chowa się pod przyciskiem ROW 3), a nazwy plików to `stepN.mp4` +
+`stepNreverse.mp4`, nie `krokN.mp4` / `krokN-rewers.mp4`.
 
 ## Skąd to się wzięło
 
@@ -126,10 +132,10 @@ Projekt dotyka czterech niezależnych warstw, każdej o innym sposobie testowani
 
 | Paczka | Zakres | Status |
 |---|---|---|
-| **A. Dane i pliki** | nowy kształt `solutionStepByStep` (osobno podpis, osobno rozwijany opis z wzorem), katalogi `media/zadN/krok-po-kroku/`, migracja istniejącego | **zatwierdzona** |
-| **B. Potok renderu** | `manim.cfg` na 16:9/720p/120 fps, konwencje scen po wyjęciu wzoru, skrypt: kroki + rewersy + kopiowanie na miejsce | później |
-| **C. Odtwarzacz** | kropki, przyciski, swipe, klawiatura, rewers, prędkość w ustawieniach, szerokość i marginesy | później |
-| **D. Przerobienie scen** | nowy kadr i nowy podział treści | **tylko zadanie 2** + CSS, jako prototyp |
+| **A. Dane i pliki** | katalogi `media/zadN/krok-po-kroku/`, nazwy `stepN.mp4`, migracja istniejącego | **zrobione (v20)** |
+| **B. Potok renderu** | `manim.cfg` na 16:9/720p/120 fps, konwencje scen po wyjęciu wzoru, skrypt: kroki + rewersy + kopiowanie na miejsce | **rewersy zrobione** (`tools/rewersy.sh`); cięcie sceny na kroki wciąż ręczne |
+| **C. Odtwarzacz** | kropki, przyciski, swipe, klawiatura, rewers, prędkość w ustawieniach, szerokość i marginesy | **zrobione (v20)** |
+| **D. Przerobienie scen** | nowy kadr i nowy podział treści | zad. 2 zrobione; **zad. 1 i 3 wciąż 21:9** |
 
 Kolejność jest wymuszona: odtwarzacz z kropkami i rewersem nie ma czego
 odtwarzać, dopóki rewersy nie istnieją. Zadanie 2 idzie pierwsze jako pilot —

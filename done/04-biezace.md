@@ -10,6 +10,67 @@ telefonie, prostokąt jaśniejszy od tła w Chrome/Brave na desktopie, całkiem 
 w Samsung Internet (własny wymuszony dark mode). Rozpoznanie: issues/dark-mode-inwersja-przegladarki.md
 [ui, dark-mode, mobile, odbior]
 
+[ZROBIONE 2026-08-11] (Cloud Opus 5 High) Odtwarzacz „krok po kroku" przebudowany w całości — v20 Beta.
+Zamknięte całą sekcją „Rozwiązanie krok po kroku" z TODO.md wraz z blokiem „Z SESJI 2026-08-11" i trzema
+pytaniami, na które Henrich odpowiedział w tym samym pliku. Projekt: `docs/superpowers/specs/2026-08-11-rozwiazania-krok-po-kroku-design.md`.
+
+- **Rewersy i nowe nazewnictwo.** Pliki przeniesione z `media/zadN/zadNrozw_stepM.mp4` do
+  `media/zadN/krok-po-kroku/stepM.mp4`, obok każdego `stepMreverse.mp4`. Objęte wszystkie trzy
+  zadania z krokami: zad. 1 (9), zad. 2 (6), zad. 3 (8) — razem 23 kroki i 23 rewersy.
+  Rewers robi ffmpeg z gotowego pliku (nie Manim), z `tpad` doklejającym 0,25 s bezruchu na KOŃCU —
+  bez tego przytrzymanie stanu końcowego ląduje na początku cofki, a rewers kończy się klatką,
+  której przeglądarka nie zdąży namalować. Odtwarza to `tools/rewersy.sh`.
+  Zweryfikowane pomiarem: liczba klatek zgadza się co do sztuki (+15 przy 60 fps, +30 przy 120),
+  a SSIM końca kroku wobec startu rewersu i odwrotnie ≥ 0,9994 na wszystkich 23 krokach.
+
+- **Model interfejsu: kropka = STAN, film = PRZEJŚCIE**, stąd kropek jest o jedną więcej niż filmów.
+  Głowica stoi na kropce, na której naprawdę jesteśmy — na lewej, dopóki film leci, na prawej po
+  dobiegnięciu; w rewersie tak samo, tylko w drugą stronę. **Rysunek ROW 1 w TODO.md sam sobie
+  przeczy** („po skończeniu 3. kroku" ma pełny pasek po prawej od O, „po obejrzeniu całości" po
+  lewej) — przyjąłem wariant bez wyjątku (O przeskakuje po dobiegnięciu filmu) i wypisałem to
+  do potwierdzenia w sekcji TESTOWANIE HENRICH.
+
+- **ROW 1** kropki w trzech stanach, klikalne (skok do pierwszej klatki kroku, film zatrzymany),
+  ostatnia kropka = stan końcowy. Pasek postępu przeniesiony spod filmu w odstęp między kropką
+  bieżącą a następną; pętla `requestAnimationFrame` chodzi tylko w trakcie odtwarzania i sama się
+  kończy. Powyżej siedmiu kropek pasek przewija się w poziomie strzałkami po bokach — poziomy
+  padding musiał zejść do zera, bo przy dokładnie siedmiu dokładał 8 px i przewijanie włączało się
+  o jedną kropkę za wcześnie. **ROW 2** ◄ / start-pauza / ►, pole dotyku 44×44; start-pauza dostał
+  obwódkę, bo inaczej ▶ i ► to dwa prawie identyczne trójkąty obok siebie. **ROW 3** zwijane
+  „Pokaż/Schowaj wyjaśnienie kroku" zajęło miejsce pola `text` — zgodnie z odpowiedzią Henricha
+  pod filmem nie został żaden zawsze widoczny podpis.
+
+- **Cofanie ◄** odtwarza `stepMreverse.mp4` od klatki odpowiadającej bieżącej pozycji (czas t w
+  wersji w przód = `dlugoscPrzod - t` w rewersie) i zatrzymuje się na początku kroku; kliknięte już
+  na pierwszej klatce cofa cały poprzedni krok. Z kropki 0 nie cofa nic. Do tego przesuwanie palcem,
+  klawiatura ← → (działa na odtwarzaczu ostatnio dotykanym — arkusz ma wiele zadań) i prędkość
+  0,25×–4× w panelu bocznym, z etykietami ułamkowymi, bo `data-stany` rozdziela stany przecinkiem.
+
+- **Zdjęte:** `markCorrectAnswer` przy ostatnim kroku (Henrich uznał za mylące) i podpis pod filmem.
+  Licznik „3 / 6" został, ale niewidoczny — czyta go `krokRozwiazania()` w `app/report.js`.
+
+- **Dwa formaty naraz.** Zad. 1 i 3 mają filmy wciąż w 21:9 (840×360, 60 fps), zad. 2 już w 16:9.
+  Kadr bierze proporcje z pliku (`--proporcje-filmu` z `videoWidth/videoHeight`), więc martwy pas
+  nad i pod starymi filmami spadł z 81 px do 0. Przerobienie samych scen zad. 1 i 3 zostaje otwarte.
+
+- **Błąd złapany odczytem pikseli, nie zrzutem ekranu:** kliknięcie ostatniej kropki pokazywało
+  PIERWSZĄ klatkę ostatniego kroku (3354 ciemne piksele w prostokącie 466,310,813,409) zamiast stanu
+  końcowego (1557 w 594,309,685,410). Przewinięcie zamawiane na odłączonym elemencie nie zdążało
+  przed awaryjnym `setTimeout`, więc czas jest teraz egzekwowany ponownie po wstawieniu do DOM.
+  Po poprawce klatka zgadza się z plikiem co do prostokąta we wszystkich trzech zadaniach.
+
+- **Pułapka narzędziowa, która wyglądała jak błąd w kodzie:** `python3 -m http.server` nie obsługuje
+  żądań zakresowych, więc `video.seekable` zostaje puste i każde ustawienie `currentTime` cicho wraca
+  do zera. Dopisane do CLAUDE.md i `issues/krok-po-kroku-produkcja.md`.
+
+[ZROBIONE 2026-08-11] (Cloud Opus 5 High) Ręcznie wymuszony ciemny motyw odwraca wreszcie rysunki i filmy.
+`html.theme-dark` nie miał `--filtr-grafik-zadan`, choć blok systemowy (`@media prefers-color-scheme: dark`)
+ma go od początku, a komentarz nad obiema paletami mówi, że są identyczne. Skutek: ciemny WYBRANY PRZEZ
+SYSTEM przygaszał białe PNG/MP4 poprawnie, a ten sam motyw WYMUSZONY RĘCZNIE zostawiał je świecące na biało.
+Zmierzone w Chromium: `getComputedStyle(video).filter` dawało `none` przy `html.theme-dark` i `invert(0.92)`
+przy motywie systemowym; po poprawce oba dają `invert(0.92)`. Znalezione przy przebudowie odtwarzacza —
+to prawdopodobny powód, dla którego punkt o świecącym wideo z paczki v15 mógł wyglądać na niezrobiony.
+
 [ZROBIONE 2026-08-11] (Local Opus 5 Medium) Zadanie 2 przerenderowane w całości w kontenerze — v16 Beta.
 Pierwsze użycie pipeline'u do prawdziwej pracy, nie do testu. Wszystkie 6 kroków (`zad2rozw_step1..6.mp4`)
 podmienione na rendery kontenerowe; stare pliki usunięte.
