@@ -5,7 +5,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
   - Rozwiązanie krok po kroku:
     - Na każdy krok przypadną 2 pliki mp4: zwykły i reverse (puszczony od tyłu)
-    - zmienić koncepcję nazewnictwa plików na stepN.mp4
+    - zmienić koncepcję nazewnictwa plików na prostrzą np: stepN.mp4 i stepNreverse.mo4
     - Dojście do końcowego kroku nie powinno niby zaznaczać odpowiedzi, bo jest to mylące. Cofnij ten mechanizm
     - przenieść pasek, który był pod filmem, pomiędzy kropki oznaczające obecny i najbliższy przyszły krok
     - zostawić funkcjonalność zatrzymywania kliknięciem w film.
@@ -14,12 +14,27 @@ Oto plik który tworzy Henrich (ja, użytkownik).
         - krok za nami, odwiedzony
         - krok obecny (tylko jeden w danym momencie)
         - krok przed nami, nieodwiedzony
+      - graficzne przedstawienie ROW 1:
+        - Legenda:
+          O to obecny bombel
+          o to bomble / kropki / kółka
+          ~ to zakolorowana cześć bara postępu video (ile obejrzałem)
+          - to niezakolorowana cześć bara postępu video (ile zostało)
+
+        - Powiedzmy, że mamy 6 kroków:
+          - zaraz po otorzeniu menu powinniśmi widzieć pierwszy krok
+            O~--o o o o o
+          - po skończeniu 3. kroku:
+            o o O~~~o o o
+          - Po obejrzeniu calości:
+            o o o o o~~~O
+          - po obejrzeniu ostatniego kroku od tyłu (podobnie powinno się zatrzymać po obejrzeniu dowolnego kroku od tyłu)
+          - o o o o O---o 
       - ROW 2 Przyciski
         - POPRZEDNI KROK - Otwiera krok od tyłu (swipe to right i leftArrow)
         - START/PAUZA (kliknięcie/dotknięcie video)
         - NASTĘPNY KROK (swipe to left i rightArrow)
       - ROW 3 Przycisk "Pokaż/Schowaj wyjaśnienie kroku" Podobny do „Sprawdzanie obliczeń", tylko bez ramki, która oddziela go od diva z rozwiązaniem krok po kroku. Zajmie on miejsce pola "text" w exercises.json
-
     - Z SESJI 2026-08-11 (dopisał Opus — tylko to, co wyszło z roboty przy zad. 2).
       Projekt: docs/superpowers/specs/2026-08-11-rozwiazania-krok-po-kroku-design.md
       Pułapki produkcji filmów (w tym rewersy): issues/krok-po-kroku-produkcja.md
@@ -43,10 +58,15 @@ Oto plik który tworzy Henrich (ja, użytkownik).
       - PYTANIA (potrzebna decyzja Henricha):
         - Czy pod filmem zostaje jakakolwiek zawsze widoczna linijka opisu, skoro ROW 3 chowa "text"?
           Bez niej zwinięty krok nie mówi, co się w nim dzieje — zostaje sam obraz.
+          - HENRICH: Nie. "text" ma być wyświetlany na dole, po rozwinięciu
         - Co pokazuje KROPKA 0? Film 1 rysuje działanie od pustego ekranu, więc stanem 0 jest pusty
           kadr. Czy z kropki 0 da się cofnąć?
+          - HENRICH: Kropka 0 oznacza początek pierwszego kroku. Tak, jeżeli jesteśmy dalej niż na 1 klatce filmiku. Odtwarzanie w tył zawsze powinno zatrzymać się na początku obecnego kroku (chyba ze zostało kliknięte napierwszej klatce, wtedy powinno zacząć odtwarzanie poprzedniego)
         - Czy kropki są klikalne (skok do stanu), czy tylko pokazują postęp?
+          - Są klikalne. Przenosi to do pierwszej klatki danego kroku.
 
+
++ NIE REALIZUJ:
   - Naprawić dziwne działanie odwracania kolorów grafik na niektórych przeglądarkach
     - Pixel 7a GrapheneOS: 
       - Samsung Browser zmienia tło strony wedle własnego pomysłu a odwracanie kolorów w ogóle nie działa
