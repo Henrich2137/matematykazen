@@ -154,6 +154,9 @@ function pokazKrok(ctx, idx, { wstecz = false, czas = 0, graj = true } = {}) {
 
 // Kropka, na której stoi głowica: dopóki film bieżącego kroku nie dobiegł końca,
 // jesteśmy na lewej kropce odcinka; po dobiegnięciu — na prawej.
+// W trakcie COFANIA głowica siedzi od razu na lewej kropce (czyli na początku
+// kroku, do którego zmierzamy) — Henrich po testach v20: „od razu po kliknięciu
+// cofnij powinna podświetlić się kropka, która określa początek filmiku".
 function biezacaKropka(ctx) {
     return ctx.uKonca ? ctx.krok + 1 : ctx.krok;
 }
@@ -161,8 +164,6 @@ function biezacaKropka(ctx) {
 // Pozycja w SKALI KROKU: 0 = pierwsza klatka, dlugoscPrzod = ostatnia.
 // Rewers liczy czas od końca kroku, więc trzeba go odwrócić.
 function pozycjaWKroku(ctx, video) {
-    // Rewers ma pierwszeństwo przed uKonca: w trakcie cofki głowica wciąż stoi na
-    // kropce, z której wyruszyła, ale pasek ma pokazywać realny postęp filmu.
     if (ctx.wstecz && video) return Math.max(0, ctx.dlugoscPrzod - video.currentTime);
     if (ctx.uKonca) return ctx.dlugoscPrzod;
     return video ? video.currentTime : 0;
@@ -177,11 +178,13 @@ function odswiezNawigacje(ctx) {
         kropka.classList.toggle("odwiedzona", i <= ctx.maxKropka && i !== biezaca);
         kropka.setAttribute("aria-current", i === biezaca ? "step" : "false");
     });
-    // Pasek wypełnia odcinek TYLKO bieżącego kroku — pozostałe zostają samą
-    // cienką kreską (szkic ROW 1 Henricha w TODO.md).
+    // Odcinki NA LEWO od głowicy są w całości wypełnione (Henrich po testach v20),
+    // odcinek bieżącego kroku pokazuje realny postęp filmu (pisze go rysujPostep),
+    // a te przed nami zostają pustą kreską.
     ctx.kropkiBox.querySelectorAll(".step-link").forEach((link, i) => {
         link.classList.toggle("biezacy", i === ctx.krok);
-        if (i !== ctx.krok) link.style.setProperty("--postep", "0%");
+        if (i < biezaca) link.style.setProperty("--postep", "100%");
+        else if (i !== ctx.krok) link.style.setProperty("--postep", "0%");
     });
 
     odswiezPrzyciski(ctx);
@@ -224,6 +227,16 @@ function rysujPostep(ctx, video) {
 function podepnijSterowanieWideo(ctx, video) {
     if (!video) return;
 
+    // Ten element obsługuje DOKŁADNIE tę podmianę kroku, w której powstał.
+    // Bez tej pieczątki pętla postępu STAREGO filmu dopisywała swoją pozycję do
+    // odcinka NOWEGO kroku: po kliknięciu kropki w trakcie odtwarzania film
+    // skakał poprawnie na t=0, ale pasek zostawał tam, gdzie był (zmierzone
+    // 2026-08-11: odcinek nowego kroku pokazywał 55% przy pustym filmie).
+    // `video.isConnected` tego nie łapie — stary element jest jeszcze w DOM,
+    // dopóki replaceChildren go nie wymieni.
+    const mojToken = ctx.swapToken;
+    const aktualny = () => ctx.swapToken === mojToken;
+
     const tempo = predkoscWideo();
     video.defaultPlaybackRate = tempo;
     video.playbackRate = tempo;
@@ -256,17 +269,28 @@ function podepnijSterowanieWideo(ctx, video) {
 
     let raf = 0;
     const petla = () => {
-        if (!video.isConnected || video.paused || video.ended) { raf = 0; return; }
+        if (!aktualny() || !video.isConnected || video.paused || video.ended) { raf = 0; return; }
         rysujPostep(ctx, video);
         odswiezPrzyciski(ctx);
         raf = requestAnimationFrame(petla);
     };
 
-    video.addEventListener("play", () => { syncState(); if (!raf) raf = requestAnimationFrame(petla); });
-    video.addEventListener("pause", () => { syncState(); rysujPostep(ctx, video); odswiezPrzyciski(ctx); });
+    video.addEventListener("play", () => {
+        if (!aktualny()) return;
+        syncState();
+        if (!raf) raf = requestAnimationFrame(petla);
+    });
+    video.addEventListener("pause", () => {
+        if (!aktualny()) return;
+        syncState();
+        rysujPostep(ctx, video);
+        odswiezPrzyciski(ctx);
+    });
     video.addEventListener("ended", () => {
+        if (!aktualny()) return;
         // Dobiegnięcie do końca przesuwa głowicę na sąsiednią kropkę: w przód na
-        // prawą (stan po kroku), w rewersie na lewą (początek kroku).
+        // prawą (stan po kroku). W rewersie głowica już tam stoi (patrz
+        // biezacaKropka), więc zostaje bez zmian.
         ctx.uKonca = !ctx.wstecz;
         syncState();
         odswiezNawigacje(ctx);
@@ -277,13 +301,25 @@ function podepnijSterowanieWideo(ctx, video) {
     rysujPostep(ctx, video);
 }
 
+// Start/pauza NIGDY nie odpala rewersu (Henrich po testach v20). Kliknięty
+// w trakcie cofania najpierw je zatrzymuje w miejscu, a dopiero drugi klik rusza
+// stamtąd DO PRZODU.
 function przelaczOdtwarzanie(ctx) {
     const video = ctx.stepsContent.querySelector("video");
     if (!video) return;
-    if (video.ended) {
-        // Skończony film odtwarzamy od nowa (tak jak ikonka ↺).
-        video.currentTime = 0;
+
+    if (ctx.wstecz) {
+        if (!video.paused) { video.pause(); return; }
+        const poz = pozycjaWKroku(ctx, video);
         ctx.uKonca = false;
+        pokazKrok(ctx, ctx.krok, { czas: poz, graj: true });
+        return;
+    }
+    if (video.ended) {
+        // Skończony film odtwarzamy od nowa — to ten sam przycisk, tyle że
+        // z ikoną „odtwórz ponownie".
+        ctx.uKonca = false;
+        video.currentTime = 0;
         video.play().catch(() => {});
     } else if (video.paused) {
         video.play().catch(() => {});
@@ -292,24 +328,19 @@ function przelaczOdtwarzanie(ctx) {
     }
 }
 
-// ► — głowica przesuwa się o JEDNĄ kropkę w prawo: stojąc w środku kroku
-// dogrywamy go do końca, stojąc już na kropce wchodzimy w kolejny krok.
+// ► — skok na POCZĄTEK następnego kroku, także w trakcie odtwarzania: przycisk
+// ma pozwalać pominąć krok, a nie tylko dograć go do końca (Henrich po testach
+// v20). Początek kroku k+1 to ta sama klatka co koniec kroku k, więc nic
+// z rozwiązania nie ucieka — pomijana jest sama animacja.
 function krokDalej(ctx) {
-    const video = ctx.stepsContent.querySelector("video");
-    if (ctx.wstecz) {
-        // Byliśmy w cofce — wracamy do wersji w przód od tego samego miejsca.
-        const poz = pozycjaWKroku(ctx, video);
-        ctx.uKonca = false;
-        pokazKrok(ctx, ctx.krok, { czas: poz, graj: true });
+    if (ctx.krok >= ctx.steps.length - 1) {
+        // Na ostatnim kroku „dalej" prowadzi już tylko do stanu końcowego.
+        if (!ctx.uKonca) skoczDoKropki(ctx, ctx.steps.length);
         return;
     }
-    if (ctx.uKonca) {
-        if (ctx.krok >= ctx.steps.length - 1) return;
-        ctx.uKonca = false;
-        pokazKrok(ctx, ctx.krok + 1, { czas: 0, graj: true });
-        return;
-    }
-    if (video) video.play().catch(() => {});
+    ctx.uKonca = false;
+    ctx.dlugoscPrzod = 0;
+    pokazKrok(ctx, ctx.krok + 1, { czas: 0, graj: true });
 }
 
 // ◄ — odtwarzanie wstecz zawsze zatrzymuje się na POCZĄTKU obecnego kroku;
@@ -319,10 +350,11 @@ function krokWstecz(ctx) {
     const video = ctx.stepsContent.querySelector("video");
     const pozycja = pozycjaWKroku(ctx, video);
 
-    // uKonca zostaje nietknięte: w trakcie cofki głowica stoi na kropce, z której
-    // wyruszyła, i przeskakuje na sąsiednią dopiero, gdy rewers dobiegnie końca
-    // (obsługuje to zdarzenie „ended"). Tak samo jak przy odtwarzaniu w przód.
+    // uKonca gasimy OD RAZU, więc kropka początku kroku podświetla się w chwili
+    // kliknięcia, a nie dopiero gdy cofka dobiegnie do końca (Henrich po
+    // testach v20).
     if (pozycja > 0.001) {
+        ctx.uKonca = false;
         // Rewers startuje z klatki odpowiadającej bieżącej pozycji.
         pokazKrok(ctx, ctx.krok, {
             wstecz: true,
@@ -332,9 +364,8 @@ function krokWstecz(ctx) {
         return;
     }
     if (ctx.krok === 0) return; // kropka 0 — nie ma czego cofać
-    // Wchodzimy w poprzedni krok od jego KOŃCA, czyli stojąc na jego prawej
-    // kropce — tej samej, na której właśnie byliśmy.
-    ctx.uKonca = true;
+    // Cofamy cały poprzedni krok: głowica ląduje od razu na jego początku.
+    ctx.uKonca = false;
     ctx.dlugoscPrzod = 0; // długość poprzedniego kroku pozna dopiero jego plik
     pokazKrok(ctx, ctx.krok - 1, { wstecz: true, czas: 0, graj: true });
 }
@@ -342,15 +373,28 @@ function krokWstecz(ctx) {
 // Kliknięcie kropki — „przenosi to do pierwszej klatki danego kroku" (Henrich).
 // Ostatnia kropka nie ma własnego kroku: to stan PO ostatnim filmie, więc
 // pokazujemy zatrzymaną ostatnią klatkę.
+// Klik w kropkę, na której już stoimy, PUSZCZA krok, który się w niej zaczyna —
+// stąd `graj: tenSam` (Henrich po testach v20).
 function skoczDoKropki(ctx, i) {
-    ctx.dlugoscPrzod = 0;
+    const video = ctx.stepsContent.querySelector("video");
+    const tenSam = i === biezacaKropka(ctx);
+
     if (i >= ctx.steps.length) {
+        ctx.dlugoscPrzod = 0;
         ctx.uKonca = true;
         pokazKrok(ctx, ctx.steps.length - 1, { czas: "koniec", graj: false });
         return;
     }
+    // Właściwy film już stoi na swojej pierwszej klatce — wystarczy go puścić,
+    // bez przeładowania (uniknięcie mignięcia).
+    if (tenSam && !ctx.wstecz && ctx.krok === i && video && video.paused
+        && !video.ended && pozycjaWKroku(ctx, video) <= 0.001) {
+        video.play().catch(() => {});
+        return;
+    }
+    ctx.dlugoscPrzod = 0;
     ctx.uKonca = false;
-    pokazKrok(ctx, i, { czas: 0, graj: false });
+    pokazKrok(ctx, i, { czas: 0, graj: tenSam });
 }
 
 // Przewijanie paska kropek: powyżej siedmiu kropek pojawiają się strzałki po
