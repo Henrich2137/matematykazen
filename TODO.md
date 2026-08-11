@@ -15,21 +15,38 @@ Oto plik który tworzy Henrich (ja, użytkownik).
       - start/pauza 
         - jest krzywo, zamiast być na środku to jest lekko w lewo i w dół
         - w trybie pauzy powinien być dwoma kreseczkami pionowymi, a nie kwadratem, 
-        - gdy filmik dobiegnie do końca powinien zamienić się na ikonę restartu/powrotu (jakaś zakręcona strzałka)
+        - to JEDEN przycisk play/pauza/replay — zamienia się w ikonę restartu (zakręcona strzałka) WYŁĄCZNIE gdy film dobiegnie końca, nie osobny stały przycisk
         - wywal kółko dookoła niego
       - step-prev i step-next maja zbyt ostre strzałki, daj jakieś inne
-    - ikonkę restartu umieść na drugim miejscu, czyli między step-prev a step-play
-    - kliknięcie dot w trakcie odtwarzani powinno przenosić na początek odpowiedniego filmiku a nie w miejscu gdzie był ostatnio odtwarzany
-    - Przełącznik "Prędkość filmów" powinien nazywać się "Prędkość animacji" i powinien przewijać się od lewej do prawej a niae na odwrót. Powinny wyśietlać się wartości w ułamku dziesiętnym (0,25x, 0,5x)
-    - Rozwijany przycisk "Pokaż wyjaśnienia kroku" jest zdecydowanie za szeroki, ta perzerwa między tytułem a strzałką rozwijania jest niepotrzena. Przycisk/container powinien mieć wi≥ęcej marginesu też z góry i z dołu. A rozwinięty tekst powinien być troszkę niżej od tytułu przycisku.
+    - klik w play/pauzę PODCZAS cofania (◄, rewers): pierwszy klik zatrzymuje cofanie w miejscu (pauza), drugi klik gra do przodu od tego miejsca — play/pauza nigdy sam nie odpala rewersu
+    - kliknięcie dot W TRAKCIE odtwarzania powinno przenosić na początek odpowiedniego filmiku, nie zostawiać w miejscu ostatnio odtwarzanym — w spoczynku już działa (potwierdzone w issues/krok-po-kroku-v20-testy.md), ale podczas odtwarzania to wciąż osobny, nierozwiązany bug
+    - Przełącznik "Prędkość filmów" powinien nazywać się "Prędkość animacji". Kliknięcie w niego ma ZWIĘKSZAĆ prędkość (rosnąco: 0,25x → 0,5x → 1x → 2x → 4x → z powrotem na 0,25x), teraz robi odwrotnie. Wartości w zapisie dziesiętnym: spróbuj przecinek (0,25x), a jeśli koliduje z separatorem listy stanów w kodzie — kropka (0.25x) i tyle, nie kombinuj dalej
+    - Rozwijany przycisk "Pokaż wyjaśnienia kroku" jest zdecydowanie za szeroki, ta perzerwa między tytułem a strzałką rozwijania jest niepotrzena. Przycisk/container powinien mieć więcej marginesu też z góry i z dołu. A rozwinięty tekst powinien być troszkę niżej od tytułu przycisku.
     - podczas łądowania się filmiku powinien wypełniać to coś o jego wymiarach, jeżeli to problem to ustaw sztywno tyle ile akurat tam zajmuje normalnie ten filmik 720p i heja
     - kliknięcie tej samej kropki (dot) drugi raz powinno puścić odtwarzanie filmiku do przodu\
     
+
+  - NOWY ODTWARZACZ KROK PO KROKU (v20), zad. 1/2/3, arkusz grudzień 2024 — testy Henricha:
+  kropki (wersja B) i klik-do-kroku potwierdzone działające; cofanie ◄, pasek postępu,
+  ROW2/ROW3, prędkość, gesty i strzałki przy >7 kropkach jeszcze bez odpowiedzi.
+  Pełna checklista: issues/krok-po-kroku-v20-testy.md
+
+  - Ciemny motyw wymuszony ręcznie w panelu bocznym: rysunki/filmy mają przygasać jak przy
+    „auto" — poprawka przy okazji v20, jeszcze bez potwierdzenia Henricha.
+    issues/krok-po-kroku-v20-testy.md
+
+  - Zadanie 2 (v19), test kadru 16:9 1280×720/120fps: rozdzielczość, rozmiar filmu i
+    nawigacja na telefonie potwierdzone dobre. DO ZROBIENIA: podpis pod filmem na telefonie
+    ma za wąskie marginesy (box rozwiązania powinien być szerszy), do zweryfikowania treść
+    kroku 1/6 (wykładnik -1, potem 5, wynik \(5^4\)). issues/krok-po-kroku-v20-testy.md
+
+
   - Zmień styl nazywania podfolderów tego typu z
     2024-grudzien/media/krok-po-kroku/ na 
     2024-grudzien/media/solution-step-by-step/
     zaktualizuj referencje itd.
-    -
+  
+
 
 + NIE REALIZUJ:
   - HENTICH: ZMIEŃ STARE FILMIKI NA NOWO USTALONYU FORMAT 720p120fps, opisy w zad3 uzupełnimy potem, możesz je dopisać gdzieś tam niżej niżej w todo
@@ -61,21 +78,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 
 + TESTOWANIE HENRICH:
-
-  - NOWY ODTWARZACZ KROK PO KROKU (v20), zad. 1/2/3, arkusz grudzień 2024 — testy Henricha:
-    kropki (wersja B) i klik-do-kroku potwierdzone działające; cofanie ◄, pasek postępu,
-    ROW2/ROW3, prędkość, gesty i strzałki przy >7 kropkach jeszcze bez odpowiedzi.
-    Pełna checklista: issues/krok-po-kroku-v20-testy.md
-
-  - Ciemny motyw wymuszony ręcznie w panelu bocznym: rysunki/filmy mają przygasać jak przy
-    „auto" — poprawka przy okazji v20, jeszcze bez potwierdzenia Henricha.
-    issues/krok-po-kroku-v20-testy.md
-
-  - Zadanie 2 (v19), test kadru 16:9 1280×720/120fps: rozdzielczość, rozmiar filmu i
-    nawigacja na telefonie potwierdzone dobre. DO ZROBIENIA: podpis pod filmem na telefonie
-    ma za wąskie marginesy (box rozwiązania powinien być szerszy), do zweryfikowania treść
-    kroku 1/6 (wykładnik -1, potem 5, wynik \(5^4\)). issues/krok-po-kroku-v20-testy.md
-
   - Kontener: firewall + Playwright + read-only `.vscode` (2026-08-10). WYMAGA **Rebuild Container**
     (zwykłego, bez `--no-cache`) — bez tego nic z tego nie zadziała. Po przebudowie, w terminalu
     W KONTENERZE:
