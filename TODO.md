@@ -9,19 +9,26 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     - w zadaniu 3. widać strzałki (step-scroll) mimo, że cały bar (step-dots) się mieśći
     - wszystkie kreseczki (step-link), które są po lewej od kropki obecnego kroku powinny być zapełnione, jasne
     - kliknięcie step-prev i step-next podczas podtwarzania powinno przewijać do początku/początku następnego filmiku aby można było pominąć kroki przejść do następnego
-    
+
     - Zmień cały styl przycisków steps-nav 
       - start/pauza jest krzywo, zamiast być na środku to jest lekko w lewo i w dół, wyjeb kółko, to nie spotify
       - step-prev i step-next maja zbyt ostre strzałki, daj jakieś inne
 
 
-  - Rozwiązanie krok po kroku — ZOSTAŁO Z TEGO TEMATU (reszta zrobiona w v20, patrz done/04-biezace.md):
-    - Sceny zad. 1 i zad. 3 są wciąż w starym kadrze 21:9 (840×360, 60 fps). Odtwarzacz radzi sobie
-      z obydwoma formatami naraz (bierze proporcje z pliku), więc to nie pali się — ale dopóki tego
-      nie przerobisz, te dwa zadania nie mają zapasu klatek pod spowolnienie 0,25×.
-      Po przerenderowaniu trzeba puścić `tools/rewersy.sh` jeszcze raz z `--nadpisz`.
-    - Zad. 3 nie ma opisów kroków w danych (7 z 8 kroków ma puste "text"), więc przycisk
-      „Pokaż wyjaśnienie kroku" pokazuje się tam tylko na ostatnim kroku.
+  - Zmień styl nazywania podfolderów tego typu z
+    2024-grudzien/media/krok-po-kroku/ na 
+    2024-grudzien/media/solution-step-by-step/
+    zaktualizuj referencje itd.
+
+
+  - SPRAWDŹ CZY TO NIE JEST JUŻ PRZYPADKIEM ROZWIĄZANE
+    - Rozwiązanie krok po kroku — ZOSTAŁO Z TEGO TEMATU (reszta zrobiona w v20, patrz done/04-biezace.md):
+      - Sceny zad. 1 i zad. 3 są wciąż w starym kadrze 21:9 (840×360, 60 fps). Odtwarzacz radzi sobie
+        z obydwoma formatami naraz (bierze proporcje z pliku), więc to nie pali się — ale dopóki tego
+        nie przerobisz, te dwa zadania nie mają zapasu klatek pod spowolnienie 0,25×.
+        Po przerenderowaniu trzeba puścić `tools/rewersy.sh` jeszcze raz z `--nadpisz`.
+      - Zad. 3 nie ma opisów kroków w danych (7 z 8 kroków ma puste "text"), więc przycisk
+        „Pokaż wyjaśnienie kroku" pokazuje się tam tylko na ostatnim kroku.
 
 + NIE REALIZUJ:
 
