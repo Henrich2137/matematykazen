@@ -2,6 +2,18 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.
+  - Usprawnić Rozwiązanie krok po kroku, Ocena po testach:
+    - Przycisk start/pauza zawsze powinien odpalać filmik w standardowym kierunku, nie reverse
+    - od razu po kliknięciu cofnij powinna podświetlić sie kropka która okresla początek filmiku (ta po lewej, nie po prawej). Obecnie jest tak, że nieraz zaznacza się dopiero po skończonej animacji (jak dojdize do pooczątku filmiku)
+    - cały bar (step-dots) tych kropek jest za szeroki, powinien być węższy o ok 20%
+    - w zadaniu 3. widać strzałki (step-scroll) mimo, że cały bar (step-dots) się mieśći
+    - wszystkie kreseczki (step-link), które są po lewej od kropki obecnego kroku powinny być zapełnione, jasne
+    - kliknięcie step-prev i step-next podczas podtwarzania powinno przewijać do początku/początku następnego filmiku aby można było pominąć kroki przejść do następnego
+    
+    - Zmień cały styl przycisków steps-nav 
+      - start/pauza jest krzywo, zamiast być na środku to jest lekko w lewo i w dół, wyjeb kółko, to nie spotify
+      - step-prev i step-next maja zbyt ostre strzałki, daj jakieś inne
+
 
   - Rozwiązanie krok po kroku — ZOSTAŁO Z TEGO TEMATU (reszta zrobiona w v20, patrz done/04-biezace.md):
     - Sceny zad. 1 i zad. 3 są wciąż w starym kadrze 21:9 (840×360, 60 fps). Odtwarzacz radzi sobie
