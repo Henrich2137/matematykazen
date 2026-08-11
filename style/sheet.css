@@ -1176,10 +1176,18 @@ body.sidebar-otwarty #sidebar-linia {
     border-bottom: 1px solid var(--border-subtle); /* 2px→1px (etap 2): grubość nie niosła znaczenia */
     text-align: center;
 }
+/* Kadr 16:9 (zmiana 2026-08-11 — było sztywne 420×180, czyli 21:9).
+   `width: 100%` zamiast stałej szerokości: film dostaje CAŁE miejsce, jakie ma
+   kontener. Wcześniej przy 608px dostępnych zajmował 420 i 188px marnowało się
+   bez powodu. Górna granica 640px pilnuje, żeby na bardzo szerokich ekranach
+   nie zejść poniżej podwójnej gęstości pikseli (źródło ma 1280px szerokości). */
 .solution-step-by-step-container video {
     display: block;
-    width: 420px;
-    height: 180px;
+    width: 100%;
+    max-width: 640px;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    margin: 0 auto;
     cursor: pointer;
     /* Odwrócenie w dark mode — patrz --filtr-grafik-zadan w style/base.css. */
     filter: var(--filtr-grafik-zadan);
@@ -1245,10 +1253,13 @@ body.sidebar-otwarty #sidebar-linia {
     display: none;
 }
 .steps-content {
-    /* Wysokość dobrana tak, by film (180px) + dwie linijki komentarza mieściły
-       się bez zmiany rozmiaru. Dzięki temu przy przełączaniu stepów div ma
-       stałą wysokość, a rośnie dopiero, gdy komentarz przekroczy ~2 linijki. */
-    min-height: 250px;
+    /* Bez min-height (2026-08-11). Wcześniej było 250px, żeby przy przełączaniu
+       kroków blok nie zmieniał wysokości. Teraz film sam trzyma stałą wysokość:
+       ma `aspect-ratio: 16/9` przy `width: 100%`, więc zależy wyłącznie od
+       szerokości kontenera, ta sama dla każdego kroku. Zmienny został tylko
+       podpis, a jego dwie linijki rezerwuje `.step-comment` niżej.
+       Stała liczba pikseli byłaby tu wręcz szkodliwa — przy szerokim ekranie
+       film ma ~342px wysokości i 250px nic by nie rezerwowało. */
     margin: 10px 0;
     text-align: center;
 }

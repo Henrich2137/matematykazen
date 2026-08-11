@@ -3,6 +3,20 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.
 
+  - Rozwiązanie krok po kroku:
+    - zwiększyć na stronie tak aby miało mniej marginesów z lewej i sprawej (można też poprzez zmianę rozdzielczości)
+    - interface, menu
+      - ROW 1 Kroki ilustrowane przez: bomble / kropki / kółka. Justified od lewej do prawej pod filmem. Kropek bedzie o jedną więcej niż filmików ponieważ Każda kropka oznacza zazwyczaj koniecA/początekB. Każda kropka będzie mogła 1 na 3 style:
+        - krok za nami, odwiedzony
+        - krok obecny (tylko jeden w danym momencie)
+        - krok przed nami, nieodwiedzony
+      - ROW 2 Przyciski
+        - POPRZEDNI KROK - Otwiera krok od tyłu 
+        - START/PAUZA
+        - NASTĘPNY KROK
+      - ROW 3 Przycisk "Pokaż/Schowaj wyjaśnienie kroku" Podobny do Sprawdzanie obliczeń tylko bez ramki która oddziela go divu z rozwiązaniem krok po kroku. Gdy jest otwart powinna zostać zama strzałeczka do schodznia go gdzieś po prawej
+
+
   - Naprawić dziwne działanie odwracania kolorów grafik na niektórych przeglądarkach
     - Pixel 7a GrapheneOS: 
       - Samsung Browser zmienia tło strony wedle własnego pomysłu a odwracanie kolorów w ogóle nie działa
@@ -26,16 +40,20 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + TESTOWANIE HENRICH:
 
-  - Zadanie 2, arkusz grudzień 2024 (v16) — wszystkie 6 filmików rozwiązania to nowe rendery
-    z kontenera, stare pliki usunięte. Otwórz „Rozwiązanie krok po kroku" przy zad. 2 i przeklikaj
-    wszystkie kroki:
+  - Zadanie 2, arkusz grudzień 2024 (v18) — TEST NOWEGO KADRU. Filmy są teraz 16:9, 1280×720,
+    120 fps, a wzory pomocnicze wyszły z kadru do podpisów pod filmem. To jest test SAMEJ
+    rozdzielczości i osadzenia filmu — kropek, przycisków i rewersów jeszcze nie ma.
 
-    - Na końcu KROKU 6 ma być \(5^4\), nie \(5^{-4}\) — to była ta literówka z „DLA HENRICHA".
-      Podpis pod filmem nie prostuje już błędu, bo nie ma czego prostować.
-    - KROK 2 obejrzyj uważniej niż resztę: ma być widoczny domykający nawias z wykładnikiem
-      \((\ldots)^{-5}\) przez cały czas trwania animacji. W pierwszym podejściu go brakowało.
-    - Pozostałe kroki: sprawdź tylko, czy nic nie zniknęło i czy animacje płyną tak jak wcześniej.
-      Zmierzone są nieodróżnialne od starych, ale to pierwsze filmy na stronie zrobione w kontenerze.
+    - Film ma być zauważalnie WIĘKSZY: na komputerze 608×342 zamiast 420×180, na telefonie
+      340×191 zamiast 300×129. Na telefonie film wychodzi teraz na całą szerokość karty.
+    - Sprawdź, czy kadr nie jest za wysoki na telefonie — czy nawigacja („1 / 6" ze strzałkami)
+      mieści się na ekranie razem z filmem, bez przewijania.
+    - KROK 1 i KROK 6, po zatrzymaniu się filmu: w kroku 1 ma być widoczny wykładnik \(-5\),
+      w kroku 6 wynik \(5^4\). Przeglądarka potrafi zatrzymać obraz kilka klatek przed końcem
+      pliku i wtedy gubi ostatni dorysowany element — dołożyłem przytrzymanie stanu końcowego,
+      ale to trzeba obejrzeć na prawdziwym telefonie.
+    - Pod każdym filmem jest teraz podpis ze wzorem, który wcześniej był animowany w kadrze
+      po prawej stronie. Sprawdź, czy się dobrze czyta i czy nie jest za długi.
 
   - Paczka drobiazgów UI (v15), spod spec docs/superpowers/specs/2026-08-09-paczka-ui-drobiazgi-design.md
     + 2 dodatkowe punkty z tej samej sekcji DO ZROBIENIA:
@@ -122,6 +140,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
   + ULEPSZANIE WORKFLOW (skopiowane z NOTATKI_USERA)
     - Schedule adversarial review lub /code-review
     - Stworzyć/pobrać potrzebne mi skille do tego projektu
+    - wyłączyć skróty które powodują, że przeklikuje pytanie podczas pisania prompta
 
   - Przycisk "Rozwiązanie" w przypadku wielu rozwiązań powinien nazywać się "Rozwiązania" i mieć możliwość również rozwinięcia listy różnych rozwiązań: Zwykłe, Krok po kroku, Interaktywne
   Każdy z tych elementów byłby przyciskiem. 

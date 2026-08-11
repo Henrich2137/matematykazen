@@ -104,13 +104,21 @@
         padding-top: 56px;
     }
 
-    /* Media rozwiązań i przyciski odpowiedzi nie wychodzą poza ekran. */
+    /* Media rozwiązań i przyciski odpowiedzi nie wychodzą poza ekran.
+       Od 2026-08-11 reguła bazowa w sheet.css jest już płynna (width: 100%,
+       aspect-ratio: 16/9), więc nie ma tu czego nadpisywać — zostaje tylko
+       zdjęcie górnej granicy, żeby na telefonie film szedł na całą szerokość. */
     .solution-step-by-step-container video {
-        width: 100%;
-        max-width: 420px;
-        height: auto;
-        aspect-ratio: 420 / 180;
-        margin: auto;
+        max-width: none;
+    }
+    /* Film wychodzi poza padding panelu rozwiązania (20px z każdej strony) na
+       całą szerokość karty. Na 390px daje to 342px zamiast 300px, czyli o 14%
+       większy obraz — przy tak małym ekranie to widać. Ujemny margines zamiast
+       zdejmowania paddingu, bo padding dotyczy też tekstu rozwiązania, który
+       ma się dalej trzymać wcięcia. */
+    .solution-step-by-step-container {
+        margin-left: -20px;
+        margin-right: -20px;
     }
     .solution-step-by-step-container img {
         max-width: 100%;

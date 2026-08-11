@@ -129,7 +129,7 @@ Don't hand-roll a Playwright script for routine visual work — [tools/zrzuty.js
 ## Content notes
 
 - All user-facing content and code comments are Polish; keep new content in Polish, direct exam-prep tone.
-- Known media defect: last frame of `matura/2024-grudzien/media/zad2/zad2rozw_step6.mp4` shows 5⁻⁴ instead of 5⁴ — needs an external Manim re-render; the step caption already carries the correction.
+- Videos are now rendered **inside the devcontainer** (Manim + TeX Live live in the image) — see `manimations/README.md`. The old 5⁻⁴ defect in `zad2rozw_step6.mp4` was a typo in the scene, fixed 2026-08-11.
 
 
 ## User notes

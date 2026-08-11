@@ -90,32 +90,32 @@
             {
                 "type": "video",
                 "src": "media/zad2/zad2rozw_step1.mp4",
-                "text": ""
+                "text": "Zapisujemy działanie z zadania."
             },
             {
                 "type": "video",
                 "src": "media/zad2/zad2rozw_step2.mp4",
-                "text": ""
+                "text": "Pierwiastek zamieniamy na potęgę o wykładniku ułamkowym: \\(a^{\\frac{m}{n}}=\\sqrt[n]{a^m}\\)"
             },
             {
                 "type": "video",
                 "src": "media/zad2/zad2rozw_step3.mp4",
-                "text": ""
+                "text": "Ułamek \\(\\frac{1}{5}\\) też zapisujemy jako potęgę: \\(\\frac{a^r}{a^s}=a^{r-s}\\)"
             },
             {
                 "type": "video",
                 "src": "media/zad2/zad2rozw_step4.mp4",
-                "text": "Opuszczamy nawias, więc wykładnik \\(-5\\) musimy wymnożyć przez wykładniki obu potęg."
+                "text": "Opuszczamy nawias, więc wykładnik \\(-5\\) musimy wymnożyć przez wykładniki obu potęg: \\((a\\cdot b)^r=a^r\\cdot b^r\\) oraz \\((a^r)^s=a^{r \\cdot s}\\)"
             },
             {
                 "type": "video",
                 "src": "media/zad2/zad2rozw_step5.mp4",
-                "text": ""
+                "text": "Wymnażamy wykładniki."
             },
             {
                 "type": "video",
                 "src": "media/zad2/zad2rozw_step6.mp4",
-                "text": "\\(5^{-1+5} = 5^{4}\\), czyli odpowiedź A."
+                "text": "Mnożąc potęgi o tej samej podstawie, dodajemy wykładniki: \\(a^r\\cdot a^s=a^{r+s}\\), czyli \\(5^{-1+5}=5^{4}\\) — odpowiedź A."
             }
         ],
         "solutionWidget": null

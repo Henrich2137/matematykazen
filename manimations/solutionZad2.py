@@ -24,11 +24,13 @@ class ScenaZadania2(Scene):
 
 
 
+        # Wzory pomocnicze NIE są już rysowane w filmie (zmiana 2026-08-11).
+        # Pokazuje je strona, jako KaTeX pod filmem — patrz pole "text" przy
+        # kroku w exercises.json. Definicje zostają tutaj jako źródło wiedzy,
+        # który wzór należy do którego kroku; scena ich nie dodaje.
         for wzor in wzory:
             wzor.fill_color=BLACK
             wzor.font_size=120
-            wzor.shift(RIGHT*4.5)
-        wzory[0].font_size=50
 
         kroki = [None] * 6
 
@@ -47,22 +49,33 @@ class ScenaZadania2(Scene):
         for krok in kroki:
             krok.fill_color=BLACK
             krok.font_size=120
-            krok.shift(LEFT*4.5)
+
+        # Kadr jest teraz 16:9 i film pokazuje samo działanie, więc treść stoi
+        # na środku, a nie zepchnięta w lewo (prawa strona trzymała miejsce na
+        # wzór pomocniczy, który wyszedł z filmu).
+        #
+        # Skala jest WSPÓLNA dla wszystkich kroków i liczona z najszerszego —
+        # gdyby każdy krok dopasowywał się osobno, litery zmieniałyby rozmiar
+        # w trakcie przekształcenia, a Transform robiłby z tego zoom.
+        MARGINES = 0.85
+        najszerszy = max(krok.width for krok in kroki)
+        if najszerszy > config.frame_width * MARGINES:
+            wspolczynnik = config.frame_width * MARGINES / najszerszy
+            for krok in kroki:
+                krok.scale(wspolczynnik)
+        for krok in kroki:
+            krok.move_to(ORIGIN)
         
         
 
         """
         #STEP 1
-        self.play(Create(kroki[0]), Create(wzory[0]))
-        self.remove(wzory[0])
+        self.play(Create(kroki[0]))
 
         
         #STEP 2
         
-        wzory[1][0][3].set_color(GREEN)
-        wzory[1][0][5].set_color(GREEN)
 
-        self.add(wzory[1])
         
         kroki[0][1][0].set_color(GREEN)
         kroki[1][1][3].set_color(GREEN)
@@ -73,15 +86,11 @@ class ScenaZadania2(Scene):
         kroki[1][1][3].set_color(BLACK)
         
         self.remove(kroki[0][0], kroki[1][1], kroki[0][2], kroki[0][3]) #mozna zamiast tego self.clear()
-        self.remove(wzory[1])
         
 
 
         #STEP 3
 
-        self.add(wzory[2])
-        wzory[2][0][3].set_color(GREEN)
-        wzory[2][0][6].set_color(GREEN)
         
         self.add(kroki[1])
         kroki[1][2][3].set_color(GREEN)
@@ -97,11 +106,6 @@ class ScenaZadania2(Scene):
         
 
         #STEP 4
-        self.add(wzory[3].shift(UP))
-        self.add(wzory[4].shift(DOWN))
-        wzory[3][0][5].set_color(GREEN)
-        wzory[3][0][8].set_color(GREEN)
-        wzory[3][0][11].set_color(GREEN)
 
         
         self.add(kroki[2])
@@ -127,11 +131,9 @@ class ScenaZadania2(Scene):
         self.clear()
         #STEP 6
 
-        self.add(wzory[5])
         self.add(kroki[4])
         self.wait(1)
         self.play(ReplacementTransform(kroki[4], kroki[5]))
-        #self.play(Transform(kroki[5], kroki[5].copy().move_to(ORIGIN)), FadeOut(wzory[5]))
 
 
 """
