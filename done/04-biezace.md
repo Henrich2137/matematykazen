@@ -1,5 +1,28 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-11] (Local Opus 5 Medium) Zadanie 2 przerenderowane w całości w kontenerze — v16 Beta.
+Pierwsze użycie pipeline'u do prawdziwej pracy, nie do testu. Wszystkie 6 kroków (`zad2rozw_step1..6.mp4`)
+podmienione na rendery kontenerowe; stare pliki usunięte.
+
+- **Naprawiony błąd 5⁻⁴ w kroku 6** (pozycja z „DLA HENRICHA"): `manimations/solutionZad2.py` linia 45,
+  `MathTex(r" 5^{-4}")` → `5^{4}`. Sprawdzona klatka końcowa nowego pliku — pokazuje 5⁴. Z podpisu
+  w `exercises.json` usunięte nieaktualne już sprostowanie „(na końcu filmu błędny zapis \(5^{-4}\))".
+- **Zgodność z poprzednimi plikami**: każdy z 6 kroków ma identyczne wymiary, czas i liczbę klatek
+  (840×360, 60 fps; kroki 1–5 po 1,000 s / 60 klatek, krok 6 — 2,000 s / 120 klatek), a SSIM względem
+  starych plików wynosi 0,99911–0,99993, czyli tyle, ile wnosi sama kompresja. Nowe pliki są o 15–25%
+  lżejsze (inna wersja ffmpega, patrz wpis niżej).
+- **Ustalone przy okazji: kroki NIE są samowystarczalne.** Krok 2 wyrenderowany w izolacji wypadł
+  SSIM 0,9929 — o rząd wielkości gorzej niż reszta. Nie szum, tylko brak fragmentu obrazu: krok 2
+  przekształca wyłącznie `kroki[0][0..2]`, więc domykający nawias z wykładnikiem (`kroki[0][3]`)
+  nie trafia na scenę; w oryginalnej procedurze narysował go wcześniej krok 1. Po dodaniu jawnego
+  `self.add(kroki[0])` na wejściu — 0,999614. Pozostałe 5 kroków renderuje się w izolacji poprawnie.
+  **Konsekwencja dla warstwy 2**: cięcie na sekcje musi pilnować stanu przenoszonego między krokami,
+  a nie tylko granic czasowych. Zapisane w `manimations/README.md`.
+- Granice kroków odtworzone z bloku komentarza w `solutionZad2.py` (kroki: linie 55-57, 60-76, 80-96,
+  99-115, 122-124, 128-133 — krok 4 BEZ końcowego `clear/add/wait`, bo to przygotowanie stanu pod
+  krok 5, nie część jego wideo). Potwierdzenie poprawności granic: zgodność czasu i liczby klatek
+  ze starymi plikami we wszystkich sześciu przypadkach.
+
 [ZROBIONE 2026-08-11] (Local Opus 5 Medium) Kontener: Manim, paczka 1 — środowisko zweryfikowane.
 Spec: `docs/superpowers/specs/2026-08-11-manim-w-kontenerze-design.md` (warstwy 1 i 4). Instalacja
 poszła z hosta (`.devcontainer/` jest read-only), weryfikacja renderu z kontenera.

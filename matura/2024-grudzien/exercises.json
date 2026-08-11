@@ -115,7 +115,7 @@
             {
                 "type": "video",
                 "src": "media/zad2/zad2rozw_step6.mp4",
-                "text": "\\(5^{-1+5} = 5^{4}\\), czyli odpowiedź A (na końcu filmu błędny zapis \\(5^{-4}\\))."
+                "text": "\\(5^{-1+5} = 5^{4}\\), czyli odpowiedź A."
             }
         ],
         "solutionWidget": null

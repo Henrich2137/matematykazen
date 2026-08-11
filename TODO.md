@@ -26,6 +26,17 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + TESTOWANIE HENRICH:
 
+  - Zadanie 2, arkusz grudzień 2024 (v16) — wszystkie 6 filmików rozwiązania to nowe rendery
+    z kontenera, stare pliki usunięte. Otwórz „Rozwiązanie krok po kroku" przy zad. 2 i przeklikaj
+    wszystkie kroki:
+
+    - Na końcu KROKU 6 ma być \(5^4\), nie \(5^{-4}\) — to była ta literówka z „DLA HENRICHA".
+      Podpis pod filmem nie prostuje już błędu, bo nie ma czego prostować.
+    - KROK 2 obejrzyj uważniej niż resztę: ma być widoczny domykający nawias z wykładnikiem
+      \((\ldots)^{-5}\) przez cały czas trwania animacji. W pierwszym podejściu go brakowało.
+    - Pozostałe kroki: sprawdź tylko, czy nic nie zniknęło i czy animacje płyną tak jak wcześniej.
+      Zmierzone są nieodróżnialne od starych, ale to pierwsze filmy na stronie zrobione w kontenerze.
+
   - Paczka drobiazgów UI (v15), spod spec docs/superpowers/specs/2026-08-09-paczka-ui-drobiazgi-design.md
     + 2 dodatkowe punkty z tej samej sekcji DO ZROBIENIA:
 
@@ -78,8 +89,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 
 + DLA HENRICHA:
-
-  - Przerenderować w Manimie ostatni krok zad 2 (zad2/zad2rozw_step6.mp4): klatka końcowa pokazuje 5⁻⁴, a poprawny wynik to 5⁴ (5⁻¹ · 5⁵ = 5⁴). Komentarz pod filmem tymczasowo prostuje błąd.
 
   - pokminić sobie dydaktycznie nad arkuszem aby zadać robotę Fable
   

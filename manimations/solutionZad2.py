@@ -42,7 +42,7 @@ class ScenaZadania2(Scene):
         kroki[2] = MathTex(r"\left(", r"5^\frac{1}{5} ", r"\cdot 5^{-1}", r"\right)^{-5}")
         kroki[3] = MathTex(r" 5^{\frac{1}{5} \cdot -5}\cdot 5^{-1 \cdot -5}")
         kroki[4] = MathTex(r" 5^{-1} \cdot 5^5 ")
-        kroki[5] = MathTex(r" 5^{-4}")
+        kroki[5] = MathTex(r" 5^{4}")
 
         for krok in kroki:
             krok.fill_color=BLACK
