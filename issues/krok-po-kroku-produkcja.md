@@ -77,6 +77,42 @@ pierwszej edycji sceny. Zastąpi je skrypt z paczki B (`tools/manim-kroki.sh`),
 który ma też generować rewersy przez `ffmpeg -vf reverse` (rewersu nie renderuje
 Manim — powstaje z gotowego pliku, więc nie może się z nim rozjechać).
 
+## Rewersy — czego nie widać na pierwszy rzut oka
+
+Plan: na każdy krok dwa pliki, zwykły i puszczony od tyłu. Rewersu **nie
+renderuje Manim** — powstaje z gotowego pliku:
+
+```
+ffmpeg -i stepN.mp4 -vf reverse -an stepN-rewers.mp4
+```
+
+Trzy rzeczy, które przy tym wybuchną, jeśli się o nich nie pomyśli:
+
+1. **Przytrzymanie stanu końcowego wyląduje na POCZĄTKU rewersu.** Odwrócenie
+   zamienia końce miejscami, więc 0,25 s bezruchu z końca kroku staje się
+   0,25 s bezruchu na starcie cofki, a rewers kończy się dokładnie w tej klatce,
+   której przeglądarka nie zdąży namalować (patrz pułapka 1 wyżej). Efekt byłby
+   ten sam co w v18: po cofnięciu na ekranie zostaje niepełny obraz.
+   **Wniosek: każdy krok musi mieć przytrzymanie po OBU stronach** — `self.wait`
+   na początku i na końcu — albo rewers trzeba domykać osobno (`tpad`).
+2. **Rewers kroku 1 kończy się pustym kadrem**, bo krok 1 rysuje działanie od
+   zera. Cofnięcie z pierwszej kropki prowadzi więc do stanu „nic nie ma".
+   Do rozstrzygnięcia przy UI, czy z kropki 0 w ogóle da się cofnąć.
+3. **`-an` jest istotne** — pliki nie mają ścieżki dźwiękowej, a bez tej flagi
+   ffmpeg potrafi dołożyć pustą i niepotrzebnie zwiększyć wagę.
+
+Nazewnictwo (do potwierdzenia u Henricha): `stepN.mp4` + `stepN-rewers.mp4`,
+w katalogu `krok-po-kroku/`.
+
+## Pasek postępu między kropkami
+
+Henrich chce przenieść dzisiejszy pasek spod filmu **w odstęp między kropką
+bieżącą a następną**. Technicznie to ten sam mechanizm co dziś (pętla
+`requestAnimationFrame` w `showStep`, świadomie bez przejścia CSS — wcześniejsza
+wersja na `timeupdate` + `transition` sprawiała, że pasek jechał gumowato), tylko
+z innym celem rysowania: wypełnia się odcinek łączący dwie kropki, a nie belka
+pod filmem.
+
 ## Jak weryfikować, żeby nie dać się oszukać
 
 - **Zrzut ekranu z Playwrighta potrafi kłamać przy wideo.** Ten sam zakończony

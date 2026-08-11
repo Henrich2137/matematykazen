@@ -4,72 +4,48 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Jeżeli nie masz co robić, to rób stąd.
 
   - Rozwiązanie krok po kroku:
-    - zmienić koncepcje nazwernictwa plików na stepN.mp4
-    - zwiększyć na stronie tak aby miało mniej marginesów z lewej i sprawej (można też poprzez zmianę rozdzielczości) DONE
-    - interface, menu
-      - ROW 1 Kroki ilustrowane przez: bomble / kropki / kółka. Justified od lewej do prawej pod filmem. Kropek bedzie o jedną więcej niż filmików ponieważ Każda kropka oznacza zazwyczaj koniecA/początekB. Każda kropka będzie mogła 1 na 3 style:
+    - Na każdy krok przypadną 2 pliki mp4: zwykły i reverse (puszczony od tyłu)
+    - zmienić koncepcję nazewnictwa plików na stepN.mp4
+    - Dojście do końcowego kroku nie powinno niby zaznaczać odpowiedzi, bo jest to mylące. Cofnij ten mechanizm
+    - przenieść pasek, który był pod filmem, pomiędzy kropki oznaczające obecny i najbliższy przyszły krok
+    - zostawić funkcjonalność zatrzymywania kliknięciem w film.
+    - Nowy interfejs, menu, zamiast obecnego:
+      - ROW 1 Kroki ilustrowane przez: bomble / kropki / kółka. Rozciągnięte od lewej do prawej pod filmem. Powyżej 7 kropek powinna włączać się możliwość przewijania ich w poziomie przy pomocy strzałeczek po lewej i prawej. Kropek będzie o jedną więcej niż filmików, ponieważ każda kropka oznacza koniec kroku A / początek kroku B. Każda kropka będzie mogła mieć 1 z 3 stylów:
         - krok za nami, odwiedzony
         - krok obecny (tylko jeden w danym momencie)
         - krok przed nami, nieodwiedzony
       - ROW 2 Przyciski
-        - POPRZEDNI KROK - Otwiera krok od tyłu 
-        - START/PAUZA
-        - NASTĘPNY KROK
-      - ROW 3 Przycisk "Pokaż/Schowaj wyjaśnienie kroku" Podobny do Sprawdzanie obliczeń tylko bez ramki która oddziela go divu z rozwiązaniem krok po kroku. Gdy jest otwart powinna zostać zama strzałeczka do schodznia go gdzieś po prawej
+        - POPRZEDNI KROK - Otwiera krok od tyłu (swipe to right i leftArrow)
+        - START/PAUZA (kliknięcie/dotknięcie video)
+        - NASTĘPNY KROK (swipe to left i rightArrow)
+      - ROW 3 Przycisk "Pokaż/Schowaj wyjaśnienie kroku" Podobny do „Sprawdzanie obliczeń", tylko bez ramki, która oddziela go od diva z rozwiązaniem krok po kroku. Zajmie on miejsce pola "text" w exercises.json
 
-    - USTALENIA Z ROZMOWY 2026-08-11 (dopisał Opus — to są rzeczy, które padły w sesji,
-      a których nie ma w punktach wyżej; pełny projekt: docs/superpowers/specs/2026-08-11-rozwiazania-krok-po-kroku-design.md)
+    - Z SESJI 2026-08-11 (dopisał Opus — tylko to, co wyszło z roboty przy zad. 2).
+      Projekt: docs/superpowers/specs/2026-08-11-rozwiazania-krok-po-kroku-design.md
+      Pułapki produkcji filmów (w tym rewersy): issues/krok-po-kroku-produkcja.md
 
-      - KOLEJNOŚĆ W PIONIE: film → podpis kroku (jedna linijka, ZAWSZE widoczna) → ROW 1 kropki
-        → ROW 2 przyciski → ROW 3 wyjaśnienie. Wyjaśnienie na samym dole celowo: gdy je rozwiniesz,
-        nie spycha kropek ani przycisków poza ekran telefonu.
+      - WZORY POMOCNICZE WYSZŁY Z FILMU (zrobione dla zad. 2). Były animowane w prawej części kadru
+        i to przez nie film był 21:9, a samo działanie ledwo się mieściło. Nie cofać tego.
 
-      - PODPIS a WYJAŚNIENIE to dwie różne rzeczy. Podpis = nazwa czynności („zamieniamy pierwiastek
-        na potęgę"), zawsze widoczny, bez niego zwinięty krok nie mówi nic. Wyjaśnienie = wzór
-        pomocniczy w KaTeX + „dlaczego tak", domyślnie zwinięte.
-        UWAGA DLA NASTĘPNEGO MODELU: w exercises.json jest na razie JEDNO pole "text" na krok
-        i przy zad. 2 wrzuciłem w nie oba naraz (podpis + wzór). Przy robocie nad UI trzeba to
-        rozdzielić na dwa pola — inaczej całość zawsze będzie widoczna.
+      - W exercises.json jest JEDNO pole "text" na krok i przy zad. 2 wrzuciłem w nie naraz opis
+        czynności i wzór. Skoro ROW 3 ma zająć miejsce "text", to po włączeniu chowania zniknie
+        pod przyciskiem także opis, który dziś jest widoczny.
 
-      - WZORY POMOCNICZE WYSZŁY Z FILMU (już zrobione dla zad. 2). Kiedyś były animowane w prawej
-        części kadru — dlatego film był 21:9 i działanie ledwo się mieściło. Teraz kadr 16:9 pokazuje
-        samo działanie, a wzór jest tekstem na stronie: zaznaczalny, wyszukiwalny, czytany przez
-        czytnik ekranu.
+      - REWERSÓW JESZCZE NIE MA. Przeglądarki nie odtwarzają wideo do tyłu (ujemna prędkość nie
+        działa) — stąd drugi plik na krok. Trzeba je wygenerować przed robotą nad przyciskiem ◄.
 
-      - KROPKA = STAN, FILM = PRZEJŚCIE między stanami. Stąd bierze się Twoje „o jedną kropkę
-        więcej". Konsekwencje: kliknięcie kropki pokazuje NIERUCHOMĄ klatkę tego stanu (ostatnią
-        klatkę filmu z lewej), a „wstecz zatrzymuje się na pierwszej klatce" znaczy po prostu
-        „lądujesz dokładnie na kropce".
+      - PRĘDKOŚĆ 0,25× – 4× w panelu bocznym. app/steps.js ma już podepnijSterowanieWideo(), które
+        ustawia playbackRate w jednym miejscu. Zmierzone: przy 4× przeglądarka gubi część klatek
+        i obraz jest skokowy — nic się nie psuje, ale to tryb do przewijania, nie do oglądania.
 
-      - LOGIKA ◄ (POPRZEDNI KROK): stojąc w środku kroku — leci rewers od bieżącej klatki
-        i zatrzymuje się na kropce z lewej. Stojąc już na kropce — cofka o cały krok, też w rewersie.
-        Przeglądarki NIE POTRAFIĄ odtwarzać wideo do tyłu (ujemna prędkość nie działa), więc rewers
-        musi być osobnym plikiem. REWERSÓW JESZCZE NIE MA — trzeba je wygenerować przed robotą
-        nad tym przyciskiem.
+      - Dzisiejsze strzałki ◄ ► są za małe na kciuk. Przy przepisywaniu nawigacji dać min. 44 px.
 
-      - PRĘDKOŚĆ 0,25× – 4× w PANELU BOCZNYM (ustawienia), nie przy filmie. W app/steps.js jest już
-        podepnijSterowanieWideo(), które ustawia playbackRate w jednym miejscu.
-        Zastrzeżenie: przy 4× przeglądarka gubi część klatek i obraz jest skokowy. Nic się nie psuje,
-        film dobiega do końca — ale nie jest to tryb do oglądania, tylko do przewijania.
-
-      - STEROWANIE POZA PRZYCISKAMI: przesuwanie palcem w lewo/prawo na telefonie, strzałki ← →
-        na klawiaturze na desktopie. Pole dotyku przycisków min. 44 px — dzisiejsze strzałki ◄ ► są
-        mniejsze i na telefonie trudno w nie trafić.
-
-      - ŚWIADOMIE ODRZUCONE: pełny ekran (kadr jest mały i wektorowy, nie ma czego powiększać)
-        oraz pasek przewijania po filmie (kroki trwają 1–2 s, od tego jest pauza i ↺).
-
-      - DO ROZSTRZYGNIĘCIA PRZY ROBOCIE NAD UI (nie ustalone):
-        - Co z dzisiejszym cienkim paskiem postępu i ikoną ‖ / ↺ na filmie? Zostają obok ROW 2,
-          czy ROW 2 je zastępuje?
-        - Czy podpis kroku ma zostać widoczny, gdy wyjaśnienie jest rozwinięte?
-        - prefers-reduced-motion: pokazywać ostatnią klatkę zamiast animacji komu wyłączył animacje
-          w systemie? (tanie, a to realna grupa użytkowników)
-
-      - CZEGO NIE ZEPSUĆ: dojście do ostatniego kroku wywołuje markCorrectAnswer(), czyli to
-        przeklikanie rozwiązania do końca odsłania poprawną odpowiedź. Przy przebudowie nawigacji
-        (kropki, skoki) trzeba zdecydować, czy skok kropką na koniec ma robić to samo.
-  
+      - PYTANIA (potrzebna decyzja Henricha):
+        - Czy pod filmem zostaje jakakolwiek zawsze widoczna linijka opisu, skoro ROW 3 chowa "text"?
+          Bez niej zwinięty krok nie mówi, co się w nim dzieje — zostaje sam obraz.
+        - Co pokazuje KROPKA 0? Film 1 rysuje działanie od pustego ekranu, więc stanem 0 jest pusty
+          kadr. Czy z kropki 0 da się cofnąć?
+        - Czy kropki są klikalne (skok do stanu), czy tylko pokazują postęp?
 
   - Naprawić dziwne działanie odwracania kolorów grafik na niektórych przeglądarkach
     - Pixel 7a GrapheneOS: 
@@ -79,14 +55,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     - Bazzite: 
       - Chrome i Brave - brak matchu kolorów tła grafiki i ogólnego tła (prawopodobnie na skutenk dziwnego renderowania koloru tła na Bazzite)
       - na reszcie przeglądarek działa dobrze
-
-
-<br>
-
-
-+ NIE REALIZUJ
-
-  - nic
 
 
 <br>
