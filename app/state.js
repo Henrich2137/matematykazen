@@ -164,14 +164,15 @@ function czyZegarWidoczny() {
     try { return localStorage.getItem(KLUCZ_ZEGAR_WIDOCZNY) !== "0"; } catch (e) { return true; }
 }
 
-// Prędkość odtwarzania filmów „krok po kroku" (ustawienie GLOBALNE, jak wyżej).
-// Etykiety w panelu są ułamkowe (¼×, ½×), bo data-stany rozdziela stany
-// PRZECINKIEM, a „0,25×" rozpadłoby się na dwa stany.
+// Prędkość odtwarzania animacji „krok po kroku" (ustawienie GLOBALNE, jak wyżej).
+// Etykiety mają KROPKĘ dziesiętną, nie przecinek: data-stany rozdziela stany
+// przecinkiem, więc „0,25×" rozpadłoby się na dwa stany („0" i „25×").
+// Decyzja Henricha: wtedy kropka i tyle, bez kombinowania z separatorem.
 // UWAGA z pomiarów (issues/krok-po-kroku-produkcja.md): przy 4× dekoder gubi
 // część klatek materiału 120 fps i obraz jest skokowy — to tryb „przewiń",
 // nie „oglądaj".
 const KLUCZ_PREDKOSC_WIDEO = "matematykazen-predkosc-wideo";
-const PREDKOSCI_WIDEO = { "¼×": 0.25, "½×": 0.5, "1×": 1, "2×": 2, "4×": 4 };
+const PREDKOSCI_WIDEO = { "0.25×": 0.25, "0.5×": 0.5, "1×": 1, "2×": 2, "4×": 4 };
 function predkoscWideo() {
     try {
         const v = parseFloat(localStorage.getItem(KLUCZ_PREDKOSC_WIDEO));

@@ -289,14 +289,15 @@
                  JS-em), żeby zmiana treści była zawsze wychwycona. -->
             <span id="sprawdz-wszystkie-status-sidebar" class="sprawdz-status-sidebar" role="status" aria-live="polite"></span>
         </button>
-        <!-- Prędkość filmów „krok po kroku". Etykiety ułamkowe (¼×, ½×), bo
+        <!-- Prędkość animacji „krok po kroku". Etykiety z KROPKĄ dziesiętną, bo
              data-stany rozdziela stany przecinkiem — „0,25×" rozpadłoby się na
-             dwa stany. Pełne brzmienie jest w title. -->
+             dwa stany. data-kierunek="prawo", żeby klik ZWIĘKSZAŁ prędkość
+             (domyślny kierunek w tym panelu ujmuje o stopień). -->
         <button id="predkosc-wideo-toggle" type="button" class="sidebar-ustawienie"
-                title="Prędkość filmów w rozwiązaniach krok po kroku (0,25× – 4×)"
-                data-stany="¼×,½×,1×,2×,4×" data-stan="1×">
+                title="Prędkość animacji w rozwiązaniach krok po kroku (0,25× – 4×)"
+                data-stany="0.25×,0.5×,1×,2×,4×" data-stan="1×" data-kierunek="prawo">
             <svg class="sidebar-ikona" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="7.5"/><path d="M12 13l4-3.5"/><path d="M9 3.5h6"/></svg>
-            <span class="etykieta">Prędkość filmów</span>
+            <span class="etykieta">Prędkość animacji</span>
             <span class="wartosc" aria-live="polite">1×</span>
             <span class="kropki" aria-hidden="true"></span>
         </button>

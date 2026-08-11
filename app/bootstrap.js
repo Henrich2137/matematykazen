@@ -272,7 +272,7 @@ if (natychmiastowaToggle) {
     });
 }
 
-// Prędkość filmów „krok po kroku" (panel boczny): GLOBALNA, jak motyw czy
+// Prędkość animacji „krok po kroku" (panel boczny): GLOBALNA, jak motyw czy
 // poprawność. Ustawiamy ją na WSZYSTKICH wstawionych już filmach naraz —
 // podepnijSterowanieWideo() w app/steps.js czyta ją tylko przy wstawianiu kroku,
 // więc bez tego zmiana działałaby dopiero od następnego kroku.
