@@ -3,68 +3,13 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.
 
-  - Rozwiązanie krok po kroku:
-    - Na każdy krok przypadną 2 pliki mp4: zwykły i reverse (puszczony od tyłu)
-    - zmienić koncepcję nazewnictwa plików na prostrzą np: stepN.mp4 i stepNreverse.mo4
-    - Dojście do końcowego kroku nie powinno niby zaznaczać odpowiedzi, bo jest to mylące. Cofnij ten mechanizm
-    - przenieść pasek, który był pod filmem, pomiędzy kropki oznaczające obecny i najbliższy przyszły krok
-    - zostawić funkcjonalność zatrzymywania kliknięciem w film.
-    - Nowy interfejs, menu, zamiast obecnego:
-      - ROW 1 Kroki ilustrowane przez: bomble / kropki / kółka. Rozciągnięte od lewej do prawej pod filmem. Powyżej 7 kropek powinna włączać się możliwość przewijania ich w poziomie przy pomocy strzałeczek po lewej i prawej. Kropek będzie o jedną więcej niż filmików, ponieważ każda kropka oznacza koniec kroku A / początek kroku B. Każda kropka będzie mogła mieć 1 z 3 stylów:
-        - krok za nami, odwiedzony
-        - krok obecny (tylko jeden w danym momencie)
-        - krok przed nami, nieodwiedzony
-      - graficzne przedstawienie ROW 1:
-        - Legenda:
-          O to obecny bombel
-          o to bomble / kropki / kółka
-          ~ to zakolorowana cześć bara postępu video (ile obejrzałem)
-          - to niezakolorowana cześć bara postępu video (ile zostało)
-
-        - Powiedzmy, że mamy 6 kroków:
-          - zaraz po otorzeniu menu powinniśmi widzieć pierwszy krok
-            O~--o o o o o
-          - po skończeniu 3. kroku:
-            o o O~~~o o o
-          - Po obejrzeniu calości:
-            o o o o o~~~O
-          - po obejrzeniu ostatniego kroku od tyłu (podobnie powinno się zatrzymać po obejrzeniu dowolnego kroku od tyłu)
-          - o o o o O---o 
-      - ROW 2 Przyciski
-        - POPRZEDNI KROK - Otwiera krok od tyłu (swipe to right i leftArrow)
-        - START/PAUZA (kliknięcie/dotknięcie video)
-        - NASTĘPNY KROK (swipe to left i rightArrow)
-      - ROW 3 Przycisk "Pokaż/Schowaj wyjaśnienie kroku" Podobny do „Sprawdzanie obliczeń", tylko bez ramki, która oddziela go od diva z rozwiązaniem krok po kroku. Zajmie on miejsce pola "text" w exercises.json
-    - Z SESJI 2026-08-11 (dopisał Opus — tylko to, co wyszło z roboty przy zad. 2).
-      Projekt: docs/superpowers/specs/2026-08-11-rozwiazania-krok-po-kroku-design.md
-      Pułapki produkcji filmów (w tym rewersy): issues/krok-po-kroku-produkcja.md
-
-      - WZORY POMOCNICZE WYSZŁY Z FILMU (zrobione dla zad. 2). Były animowane w prawej części kadru
-        i to przez nie film był 21:9, a samo działanie ledwo się mieściło. Nie cofać tego.
-
-      - W exercises.json jest JEDNO pole "text" na krok i przy zad. 2 wrzuciłem w nie naraz opis
-        czynności i wzór. Skoro ROW 3 ma zająć miejsce "text", to po włączeniu chowania zniknie
-        pod przyciskiem także opis, który dziś jest widoczny.
-
-      - REWERSÓW JESZCZE NIE MA. Przeglądarki nie odtwarzają wideo do tyłu (ujemna prędkość nie
-        działa) — stąd drugi plik na krok. Trzeba je wygenerować przed robotą nad przyciskiem ◄.
-
-      - PRĘDKOŚĆ 0,25× – 4× w panelu bocznym. app/steps.js ma już podepnijSterowanieWideo(), które
-        ustawia playbackRate w jednym miejscu. Zmierzone: przy 4× przeglądarka gubi część klatek
-        i obraz jest skokowy — nic się nie psuje, ale to tryb do przewijania, nie do oglądania.
-
-      - Dzisiejsze strzałki ◄ ► są za małe na kciuk. Przy przepisywaniu nawigacji dać min. 44 px.
-
-      - PYTANIA (potrzebna decyzja Henricha):
-        - Czy pod filmem zostaje jakakolwiek zawsze widoczna linijka opisu, skoro ROW 3 chowa "text"?
-          Bez niej zwinięty krok nie mówi, co się w nim dzieje — zostaje sam obraz.
-          - HENRICH: Nie. "text" ma być wyświetlany na dole, po rozwinięciu
-        - Co pokazuje KROPKA 0? Film 1 rysuje działanie od pustego ekranu, więc stanem 0 jest pusty
-          kadr. Czy z kropki 0 da się cofnąć?
-          - HENRICH: Kropka 0 oznacza początek pierwszego kroku. Tak, jeżeli jesteśmy dalej niż na 1 klatce filmiku. Odtwarzanie w tył zawsze powinno zatrzymać się na początku obecnego kroku (chyba ze zostało kliknięte napierwszej klatce, wtedy powinno zacząć odtwarzanie poprzedniego)
-        - Czy kropki są klikalne (skok do stanu), czy tylko pokazują postęp?
-          - Są klikalne. Przenosi to do pierwszej klatki danego kroku.
-
+  - Rozwiązanie krok po kroku — ZOSTAŁO Z TEGO TEMATU (reszta zrobiona w v20, patrz done/04-biezace.md):
+    - Sceny zad. 1 i zad. 3 są wciąż w starym kadrze 21:9 (840×360, 60 fps). Odtwarzacz radzi sobie
+      z obydwoma formatami naraz (bierze proporcje z pliku), więc to nie pali się — ale dopóki tego
+      nie przerobisz, te dwa zadania nie mają zapasu klatek pod spowolnienie 0,25×.
+      Po przerenderowaniu trzeba puścić `tools/rewersy.sh` jeszcze raz z `--nadpisz`.
+    - Zad. 3 nie ma opisów kroków w danych (7 z 8 kroków ma puste "text"), więc przycisk
+      „Pokaż wyjaśnienie kroku" pokazuje się tam tylko na ostatnim kroku.
 
 + NIE REALIZUJ:
   - Naprawić dziwne działanie odwracania kolorów grafik na niektórych przeglądarkach
@@ -81,6 +26,40 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 
 + TESTOWANIE HENRICH:
+
+  - NOWY ODTWARZACZ KROK PO KROKU (v20) — zad. 1, 2 i 3, arkusz grudzień 2024.
+    Rewersy są już dla wszystkich trzech zadań, więc ◄ ma czym cofać.
+
+    - KROPKI: jest ich o jedną więcej niż filmów. Sprawdź, czy kropka „obecna" stoi tam, gdzie
+      się spodziewasz. PRZYJĄŁEM WERSJĘ B z Twojego rysunku ROW 1, bo dwie linijki rysunku
+      przeczą sobie nawzajem: „po skończeniu 3. kroku" masz pełny pasek PO PRAWEJ od O, a
+      „po obejrzeniu całości" pełny pasek PO LEWEJ od O. Zrobiłem tak, że gdy film dobiegnie
+      końca, O przeskakuje na kropkę po prawej (czyli linijka „po skończeniu 3. kroku"
+      wyglądałaby u mnie `o o o~~~O o o`). Jeśli chciałeś odwrotnie — powiedz, to jedna zmiana.
+    - Kliknij w dowolną kropkę: ma przenieść do PIERWSZEJ klatki tego kroku i zostawić film
+      zatrzymany. Ostatnia kropka = stan końcowy, czyli ostatnia klatka ostatniego filmu.
+    - ◄ w środku filmu: ma polecieć od tyłu i zatrzymać się na początku TEGO kroku. ◄ jeszcze
+      raz (już na pierwszej klatce): ma cofnąć cały poprzedni krok. Na kropce 0 ◄ jest wyszarzone.
+    - Pasek postępu jest teraz między kropkami, nie pod filmem — przy cofaniu ma się OPRÓŻNIAĆ.
+    - ROW 2: ◄ / start-pauza w kółku / ►. Kółko jest po to, żeby „odtwórz" (▶) nie wyglądał
+      identycznie jak „następny krok" (►). Sprawdź kciukiem, czy trafiasz — mają po 44 px.
+    - ROW 3 „Pokaż wyjaśnienie kroku" — pod nim siedzi całe pole "text" (opis + wzór), zgodnie
+      z Twoją odpowiedzią. Pod filmem NIE MA już żadnego zawsze widocznego podpisu.
+    - Panel boczny → „Prędkość filmów": ¼× ½× 1× 2× 4×. Napisałem ułamkami, bo lista stanów
+      rozdziela je przecinkiem i „0,25×" rozpadłoby się na dwa. Zmiana działa od razu na
+      odtwarzanym filmie. Przy 4× obraz jest skokowy — to znane i zmierzone, nie usterka.
+    - Na telefonie: przesuń palcem po filmie w lewo (następny) i w prawo (poprzedni).
+      Na komputerze strzałki ← → na klawiaturze.
+    - ZAD. 1 ma 10 kropek, ZAD. 3 ma 9 — powyżej siedmiu włączają się strzałeczki ‹ › po bokach
+      paska kropek. Zad. 2 ma dokładnie 7 i strzałek mieć NIE powinno.
+    - Dojście do ostatniego kroku NIE zaznacza już poprawnej odpowiedzi (zdjęte, jak prosiłeś).
+    - Zad. 1 i 3 mają filmy jeszcze w starym kadrze 21:9. Nie są już wciskane w pudełko 16:9 —
+      kadr dopasowuje się do pliku, więc zniknął pas ok. 80 px nad i pod obrazem.
+
+  - CIEMNY MOTYW, osobna poprawka przy okazji: jeśli WYMUSISZ ciemny w panelu bocznym (nie
+    „auto"), rysunki i filmy mają być teraz przygaszone tak samo jak przy motywie z systemu.
+    Wcześniej przy ręcznym wyborze świeciły na biało — brakowało jednej zmiennej w CSS.
+    To najpewniej powód, dla którego punkt o świecącym wideo z v15 mógł wyglądać na niezrobiony.
 
   - Zadanie 2, arkusz grudzień 2024 (v19) — TEST NOWEGO KADRU. Filmy są teraz 16:9, 1280×720,
     120 fps, a wzory pomocnicze wyszły z kadru do podpisów pod filmem. To jest test SAMEJ
@@ -197,8 +176,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
   - Przekminić i dodać zasadę dotyczącą tłumaczenia mi (Henrichowi) rzeczy (jak mam przeprowadzić test, jak wygląda projekt itd.)
 
-  - Po kliknięciu prevStepButton animacja powinna odpalać się od tyłu (jeżeli to możliwe aby odtwarzać animacje od tyłu, można też renderować każdą od tyłu)
-
   - Funkcjonalność otwierania tablicy wzorów w nowej karcie oraz Dodać przełącznik "miejsce otwarcia: nowa karta / wew. okienko" pod "Otwórz tablice wzorów"
 
   - sprawdzić merytorykę arkuszy (na końcu, przed rozpowszechnieniem)
@@ -269,6 +246,26 @@ Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz is
     - Gdy `matematykazen.pl` ruszy: odkomentować wpis w `CONTENT_DOMAINS` w `.devcontainer/init-firewall.sh` (dziś domena nie istnieje w DNS) i przy okazji poprawić `Required Notice:` w LICENSE.md, które wciąż wskazuje na GitHub Pages.
 
     - Po najbliższym Rebuild Container: zalogować się raz `gh auth login` — od teraz `~/.config/gh` siedzi w wolumenie `matematykazen-gh-config` i przeżywa przebudowy.
+
+  + OPUS DOPISAŁ (Opus 5, high) — 2026-08-11, odtwarzacz krok po kroku (v20):
+
+    - Decyzje, które podjąłem sam, bo nie było ich w Twoich punktach — do ewentualnej korekty:
+      kropka „obecna" przeskakuje na prawą po dobiegnięciu filmu (patrz TESTOWANIE wyżej);
+      odcinki między kropkami mają zawsze cienką kreskę, a wypełnia się tylko ten bieżący;
+      krok bez opisu w danych w ogóle nie pokazuje przycisku ROW 3, zamiast otwierać pustkę.
+
+    - Nazwa rewersu NIE jest w exercises.json — odtwarzacz dokłada `reverse` przed rozszerzeniem
+      nazwy z pola `src`. Wpinając nowy arkusz pamiętaj, żeby puścić `tools/rewersy.sh`, inaczej
+      ◄ nie ma czego odtworzyć (przy braku pliku krok po prostu nie cofnie się animacją).
+
+    - `python3 -m http.server` NIE nadaje się do pracy nad wideo: nie obsługuje żądań zakresowych,
+      więc przewijanie filmu cicho nie działa i wygląda to jak błąd w kodzie. Kosztowało mnie to
+      sporo szukania nieistniejącej usterki. Dopisane do CLAUDE.md i issues/krok-po-kroku-produkcja.md.
+
+    - Chromium z Playwrighta w chmurowym kontenerze NIE ODTWARZA H.264 (brak kodeka), a Chrome
+      nie da się doinstalować, bo firewall blokuje dl.google.com. Logikę odtwarzacza sprawdziłem
+      na kopiach WebM, a same pliki mp4 osobno przez ffmpeg/SSIM. Czego NIE dało się u mnie
+      sprawdzić: realnego odtwarzania tych konkretnych mp4 w przeglądarce i zachowania na telefonie.
 
   + FABLE DOPISAŁ (Fable 5, po paczce 4 „Spójność UI etap 2", 2026-08-09):
 
