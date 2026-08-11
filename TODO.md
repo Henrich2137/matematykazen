@@ -67,7 +67,13 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 
 + NIE REALIZUJ:
-  - Naprawić dziwne działanie odwracania kolorów grafik na niektórych przeglądarkach
+
+  - Zad. 10/11 na telefonie: pola/przyciski są już pod treścią zdania i jest czytelniej, ale brakuje
+    odstępu między kolejnymi zdaniami (1, 2, 3…) — zlewają się w jeden blok.
+
+  - Odwracanie kolorów grafik/wideo w dark mode (`--filtr-grafik-zadan`) działa tlyko w cześci (przeglądarek chyba)
+
+  - Naprawić dziwne działanie odwracania kolorów grafik na niektórych przeglądarkach:
     - Pixel 7a GrapheneOS: 
       - Samsung Browser zmienia tło strony wedle własnego pomysłu a odwracanie kolorów w ogóle nie działa
       - na reszcie przeglądarek działa dobrze
@@ -75,6 +81,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     - Bazzite: 
       - Chrome i Brave - brak matchu kolorów tła grafiki i ogólnego tła (prawopodobnie na skutenk dziwnego renderowania koloru tła na Bazzite)
       - na reszcie przeglądarek działa dobrze
+    - Rozpoznanie i warianty naprawy: issues/dark-mode-inwersja-przegladarki.md
 
 
 <br>
@@ -96,28 +103,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
       ale to trzeba obejrzeć na prawdziwym telefonie.
     - Pod każdym filmem jest teraz podpis ze wzorem, który wcześniej był animowany w kadrze
       po prawej stronie. Sprawdź, czy się dobrze czyta i czy nie jest za długi.
-
-  - Paczka drobiazgów UI (v15), spod spec docs/superpowers/specs/2026-08-09-paczka-ui-drobiazgi-design.md
-    + 2 dodatkowe punkty z tej samej sekcji DO ZROBIENIA:
-
-    - Panel boczny (☰): najedź myszką na Wskaźniki/Punktacja/Motyw/Poprawność — aktualna wartość
-      ma być widoczna cały czas, hover nic już tam nie zamienia.
-
-    - Telefon (albo zwężone okno przeglądarki): otwórz zad. 10 w arkuszu grudzień 2024 — cztery
-      pola do wpisania mają być POD treścią zdania, nie ściśnięte obok niej. To samo dla P/F
-      w zad. 11.
-
-    - Telefon + dark mode: rysunek w zad. 10/11 oraz wideo rozwiązania krok po kroku (zad. 1) nie
-      powinny świecić na biało — powinny wtopić się w ciemną kartę (kolory na rysunku/wideo wyjdą
-      zamienione, np. fioletowy wykres na zielono — to świadomy kompromis, nie błąd).
-
-    - Panel boczny: „Sprawdź wszystkie odpowiedzi" jest teraz podpunktem pod „Poprawność" (wcięty,
-      mniejszy) zamiast osobnej pozycji wyżej w menu — sprawdź, czy dobrze wygląda i czy dalej
-      działa tak jak wcześniej (w tym: czy nadal się wyszarza przy „natychmiast").
-
-    - Formularz „Zgłoś błąd" na telefonie: 8 pigułek kategorii idzie teraz po dwie w rzędzie
-      zamiast jedna pod drugą — sprawdź, czy da się wygodnie trafić kciukiem i czy długie nazwy
-      (np. „Prawidłowa odpowiedź jest nieprawidłowa") nadal się dobrze czyta na dwóch liniach.
 
   - Kontener: firewall + Playwright + read-only `.vscode` (2026-08-10). WYMAGA **Rebuild Container**
     (zwykłego, bez `--no-cache`) — bez tego nic z tego nie zadziała. Po przebudowie, w terminalu
@@ -278,7 +263,7 @@ Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz is
 
 + ZASADY DLA CLAUDE-A:
 
-  - tu są TYLKO otwarte punkty. Zrobione wpisy [DONE]/[ZROBIONE] przenoszone są do bieżącego pliku pod done/ — patrz done/README.md i CLAUDE.md.)
+  - tu są TYLKO otwarte punkty. Zrobione wpisy [DONE]/[ZROBIONE] przenoszone są do bieżącego pliku pod done/ patrz done/README.md i CLAUDE.md.)
 
   - TEN PLIK MA BYĆ SLEEK — krótkie hasła, jedno-dwa zdania na punkt. Żadnych ścian tekstu. Szczegóły (mechanizm, pliki, linie) idą do issues/ albo done/, a tu zostaje jedna linijka z odnośnikiem.
   Drogi Claudzie, jeżeli zmieniasz ten plik to wklejaj do odpowiedniej sekcji na dole

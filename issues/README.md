@@ -12,6 +12,7 @@ Zasady:
 
 - [dwie-karty-tryb-egzaminu.md](dwie-karty-tryb-egzaminu.md) — dwie karty tego samego arkusza blokują "zakończ egzamin"
 - [dark-mode-wskazniki-scroll.md](dark-mode-wskazniki-scroll.md) — kropki wskaźników "gumkują" przy scrollowaniu
+- [dark-mode-inwersja-przegladarki.md](dark-mode-inwersja-przegladarki.md) — odwracanie kolorów grafik/wideo w dark mode działa inaczej w Chrome/Brave (jaśniejszy prostokąt) i w ogóle nie działa w Samsung Internet
 - [dokumentacja-exam-mode-luka.md](dokumentacja-exam-mode-luka.md) — ARCHITECTURE.md nie opisuje połowy trybu egzaminu
 - [numer-zadania-podnumer.md](numer-zadania-podnumer.md) — regex numeru zadania gubi podnumery (12.1 vs 12.2)
 - [motyw-rozjezdza-sie-miedzy-kartami.md](motyw-rozjezdza-sie-miedzy-kartami.md) — dark/light mode niespójny między kartami przeglądarki

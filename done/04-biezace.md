@@ -1,5 +1,15 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ODEBRANE 2026-08-11] (Henrich, testy ręczne) Paczka drobiazgów UI v15 — 3 z 5 punktów odebrane
+bez uwag: (1) panel boczny bez hoverowego podglądu wartości („zajebiście jest"), (4) „Sprawdź
+wszystkie odpowiedzi" jako podpunkt pod „Poprawność" („bardzo dobrze"), (5) pigułki kategorii
+po dwie w rzędzie na telefonie („bardzo dobrze"). Dwa pozostałe wróciły do TODO.md:
+(2) kontrolki pod treścią zdania — czytelniej, ale brak odstępu między kolejnymi zdaniami 1/2/3…;
+(3) odwracanie kolorów grafik w dark mode — OK w Firefoksie (desktop+telefon) i Chrome na
+telefonie, prostokąt jaśniejszy od tła w Chrome/Brave na desktopie, całkiem nieczynne
+w Samsung Internet (własny wymuszony dark mode). Rozpoznanie: issues/dark-mode-inwersja-przegladarki.md
+[ui, dark-mode, mobile, odbior]
+
 [ZROBIONE 2026-08-11] (Local Opus 5 Medium) Zadanie 2 przerenderowane w całości w kontenerze — v16 Beta.
 Pierwsze użycie pipeline'u do prawdziwej pracy, nie do testu. Wszystkie 6 kroków (`zad2rozw_step1..6.mp4`)
 podmienione na rendery kontenerowe; stare pliki usunięte.
@@ -58,6 +68,7 @@ poszła z hosta (`.devcontainer/` jest read-only), weryfikacja renderu z kontene
 
 - **Wnioski o sposobie pracy** (nie o Manimie) — trzy rzeczy prawdopodobne trafiły do dokumentacji
   jako ustalone: `issues/lekcje-z-sesji.md`, wpis 2026-08-11.
+
 
 [ZROBIONE 2026-08-10] (Opus 5 High) Kontener, paczka trzech zmian: brama w firewallu zawężona
 do samego DNS, `.vscode/` read-only, automatyczny pull przy starcie faktycznie działa.
