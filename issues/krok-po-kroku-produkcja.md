@@ -83,7 +83,7 @@ Manim — powstaje z gotowego pliku, więc nie może się z nim rozjechać).
 razem 23 kroki i 23 rewersy). Odtwarza to jedną komendą `tools/rewersy.sh`:
 
 ```
-tools/rewersy.sh matura/2024-grudzien/media/zad2/krok-po-kroku
+tools/rewersy.sh matura/2024-grudzien/media/zad2/solution-step-by-step
 ```
 
 Pod spodem to nadal jedna linijka ffmpeg — rewersu **nie renderuje Manim**,
@@ -111,7 +111,7 @@ Trzy rzeczy, które przy tym wybuchną, jeśli się o nich nie pomyśli:
    ffmpeg potrafi dołożyć pustą i niepotrzebnie zwiększyć wagę.
 
 Nazewnictwo (potwierdzone przez Henricha 2026-08-11): `stepN.mp4` +
-`stepNreverse.mp4`, w katalogu `krok-po-kroku/`. Odtwarzacz **nie czyta nazwy
+`stepNreverse.mp4`, w katalogu `solution-step-by-step/`. Odtwarzacz **nie czyta nazwy
 rewersu z danych** — dokłada `reverse` przed rozszerzeniem nazwy z pola `src`,
 więc `exercises.json` wymienia tylko plik w przód.
 
@@ -185,7 +185,7 @@ sprawdzone**.
 ## Struktura plików (wdrożona 2026-08-11)
 
 ```
-matura/<arkusz>/media/zadN/krok-po-kroku/
+matura/<arkusz>/media/zadN/solution-step-by-step/
 ├── step1.mp4
 ├── step1reverse.mp4
 └── ...

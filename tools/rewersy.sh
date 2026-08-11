@@ -7,8 +7,8 @@
 # Manim — powstaje z gotowego pliku, dzięki czemu nie może się z nim rozjechać.
 #
 # UŻYCIE:
-#   tools/rewersy.sh matura/2024-grudzien/media/zad2/krok-po-kroku
-#   tools/rewersy.sh matura/2024-grudzien/media/*/krok-po-kroku
+#   tools/rewersy.sh matura/2024-grudzien/media/zad2/solution-step-by-step
+#   tools/rewersy.sh matura/2024-grudzien/media/*/solution-step-by-step
 #
 # Istniejące rewersy są pomijane; --nadpisz przelicza je od nowa.
 #

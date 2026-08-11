@@ -107,7 +107,7 @@ Rozwijany opis na samym dole, żeby jego otwarcie nie spychało nawigacji.
 
 ```
 matura/2024-grudzien/media/zad2/
-├── krok-po-kroku/
+├── solution-step-by-step/
 │   ├── krok1.mp4
 │   ├── krok1-rewers.mp4
 │   └── ...
@@ -116,7 +116,7 @@ matura/2024-grudzien/media/zad2/
 
 - Podfolder jest konieczny, bo rewersy podwajają liczbę plików (zadanie 2 to
   12 filmów zamiast 6, dziś wymieszanych z rysunkami).
-- **`krok-po-kroku/`, nie `solutions/step-by-step/`** — pośredni katalog
+- **`solution-step-by-step/`, nie `solutions/step-by-step/`** — pośredni katalog
   `solutions/` miałby przez długi czas jedno dziecko; drugi rodzaj rozwiązania
   dołoży się obok, nie pod spodem. Nazwa po polsku, bo taka jest w interfejsie
   i w `TODO.md`, a dzisiejsze `zad2rozw_step1` jest w pół drogi między językami.
@@ -132,7 +132,7 @@ Projekt dotyka czterech niezależnych warstw, każdej o innym sposobie testowani
 
 | Paczka | Zakres | Status |
 |---|---|---|
-| **A. Dane i pliki** | katalogi `media/zadN/krok-po-kroku/`, nazwy `stepN.mp4`, migracja istniejącego | **zrobione (v20)** |
+| **A. Dane i pliki** | katalogi `media/zadN/solution-step-by-step/`, nazwy `stepN.mp4`, migracja istniejącego | **zrobione (v20)** |
 | **B. Potok renderu** | `manim.cfg` na 16:9/720p/120 fps, konwencje scen po wyjęciu wzoru, skrypt: kroki + rewersy + kopiowanie na miejsce | **rewersy zrobione** (`tools/rewersy.sh`); cięcie sceny na kroki wciąż ręczne |
 | **C. Odtwarzacz** | kropki, przyciski, swipe, klawiatura, rewers, prędkość w ustawieniach, szerokość i marginesy | **zrobione (v20)** |
 | **D. Przerobienie scen** | nowy kadr i nowy podział treści | zad. 2 zrobione; **zad. 1 i 3 wciąż 21:9** |

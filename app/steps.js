@@ -26,9 +26,9 @@
 // z żadnego wczytanego pliku.
 const PRZYTRZYMANIE_REWERSU = 0.25;
 
-// Nazwa pliku rewersu powstaje z nazwy kroku — katalog krok-po-kroku/ trzyma
-// stepN.mp4 obok stepNreverse.mp4. Podmieniamy przed rozszerzeniem, nie sam
-// ".mp4", żeby to samo działało dla dowolnego kontenera.
+// Nazwa pliku rewersu powstaje z nazwy kroku — katalog solution-step-by-step/
+// trzyma stepN.mp4 obok stepNreverse.mp4. Podmieniamy przed rozszerzeniem, nie
+// sam ".mp4", żeby to samo działało dla dowolnego kontenera.
 function sciezkaRewersu(src) {
     return src.replace(/(\.[^./]+)$/, "reverse$1");
 }

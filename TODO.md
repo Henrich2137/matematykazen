@@ -42,7 +42,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 
   - Zmień styl nazywania podfolderów tego typu z
-    2024-grudzien/media/krok-po-kroku/ na 
+    2024-grudzien/media/solution-step-by-step/ na 
     2024-grudzien/media/solution-step-by-step/
     zaktualizuj referencje itd.
   

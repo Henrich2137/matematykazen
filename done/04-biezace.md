@@ -15,7 +15,7 @@ Zamknięte całą sekcją „Rozwiązanie krok po kroku" z TODO.md wraz z blokie
 pytaniami, na które Henrich odpowiedział w tym samym pliku. Projekt: `docs/superpowers/specs/2026-08-11-rozwiazania-krok-po-kroku-design.md`.
 
 - **Rewersy i nowe nazewnictwo.** Pliki przeniesione z `media/zadN/zadNrozw_stepM.mp4` do
-  `media/zadN/krok-po-kroku/stepM.mp4`, obok każdego `stepMreverse.mp4`. Objęte wszystkie trzy
+  `media/zadN/solution-step-by-step/stepM.mp4`, obok każdego `stepMreverse.mp4`. Objęte wszystkie trzy
   zadania z krokami: zad. 1 (9), zad. 2 (6), zad. 3 (8) — razem 23 kroki i 23 rewersy.
   Rewers robi ffmpeg z gotowego pliku (nie Manim), z `tpad` doklejającym 0,25 s bezruchu na KOŃCU —
   bez tego przytrzymanie stanu końcowego ląduje na początku cofki, a rewers kończy się klatką,
