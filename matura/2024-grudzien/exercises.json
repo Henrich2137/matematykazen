@@ -25,47 +25,47 @@
         "solutionStepByStep": [
             {
                 "type": "video",
-                "src": "media/zad1/zad1rozw_step1.mp4",
+                "src": "media/zad1/krok-po-kroku/step1.mp4",
                 "text": "Zaczynamy od równania z wartością bezwzględną: \\(|x + 4| = 7\\)."
             },
             {
                 "type": "video",
-                "src": "media/zad1/zad1rozw_step2.mp4",
+                "src": "media/zad1/krok-po-kroku/step2.mp4",
                 "text": "Wartość bezwzględna wynosi 7, gdy wyrażenie w środku jest równe 7 albo \\(-7\\) — stąd dwa przypadki do rozpatrzenia osobno."
             },
             {
                 "type": "video",
-                "src": "media/zad1/zad1rozw_step3.mp4",
+                "src": "media/zad1/krok-po-kroku/step3.mp4",
                 "text": "Pierwszy przypadek: \\(x + 4 = 7\\)."
             },
             {
                 "type": "video",
-                "src": "media/zad1/zad1rozw_step4.mp4",
+                "src": "media/zad1/krok-po-kroku/step4.mp4",
                 "text": "Przenosimy 4 na prawą stronę, zmieniając jego znak."
             },
             {
                 "type": "video",
-                "src": "media/zad1/zad1rozw_step5.mp4",
+                "src": "media/zad1/krok-po-kroku/step5.mp4",
                 "text": "Pierwsze rozwiązanie: \\(x_1 = 3\\)."
             },
             {
                 "type": "video",
-                "src": "media/zad1/zad1rozw_step6.mp4",
+                "src": "media/zad1/krok-po-kroku/step6.mp4",
                 "text": "Drugi przypadek: \\(x + 4 = -7\\)."
             },
             {
                 "type": "video",
-                "src": "media/zad1/zad1rozw_step7.mp4",
+                "src": "media/zad1/krok-po-kroku/step7.mp4",
                 "text": "Znowu przenosimy 4 na prawą stronę, zmieniając jego znak."
             },
             {
                 "type": "video",
-                "src": "media/zad1/zad1rozw_step8.mp4",
+                "src": "media/zad1/krok-po-kroku/step8.mp4",
                 "text": "Drugie rozwiązanie: \\(x_2 = -11\\). Mamy już obie liczby, których szukaliśmy."
             },
             {
                 "type": "video",
-                "src": "media/zad1/zad1rozw_step9.mp4",
+                "src": "media/zad1/krok-po-kroku/step9.mp4",
                 "text": "Suma obu rozwiązań: \\(x_1 + x_2 = -8\\) — to odpowiedź B."
             }
         ],
@@ -89,32 +89,32 @@
         "solutionStepByStep": [
             {
                 "type": "video",
-                "src": "media/zad2/zad2rozw_step1.mp4",
+                "src": "media/zad2/krok-po-kroku/step1.mp4",
                 "text": "Zapisujemy działanie z zadania."
             },
             {
                 "type": "video",
-                "src": "media/zad2/zad2rozw_step2.mp4",
+                "src": "media/zad2/krok-po-kroku/step2.mp4",
                 "text": "Pierwiastek zamieniamy na potęgę o wykładniku ułamkowym: \\(a^{\\frac{m}{n}}=\\sqrt[n]{a^m}\\)"
             },
             {
                 "type": "video",
-                "src": "media/zad2/zad2rozw_step3.mp4",
+                "src": "media/zad2/krok-po-kroku/step3.mp4",
                 "text": "Ułamek \\(\\frac{1}{5}\\) też zapisujemy jako potęgę: \\(\\frac{a^r}{a^s}=a^{r-s}\\)"
             },
             {
                 "type": "video",
-                "src": "media/zad2/zad2rozw_step4.mp4",
+                "src": "media/zad2/krok-po-kroku/step4.mp4",
                 "text": "Opuszczamy nawias, więc wykładnik \\(-5\\) musimy wymnożyć przez wykładniki obu potęg: \\((a\\cdot b)^r=a^r\\cdot b^r\\) oraz \\((a^r)^s=a^{r \\cdot s}\\)"
             },
             {
                 "type": "video",
-                "src": "media/zad2/zad2rozw_step5.mp4",
+                "src": "media/zad2/krok-po-kroku/step5.mp4",
                 "text": "Wymnażamy wykładniki."
             },
             {
                 "type": "video",
-                "src": "media/zad2/zad2rozw_step6.mp4",
+                "src": "media/zad2/krok-po-kroku/step6.mp4",
                 "text": "Mnożąc potęgi o tej samej podstawie, dodajemy wykładniki: \\(a^r\\cdot a^s=a^{r+s}\\), czyli \\(5^{-1+5}=5^{4}\\) — odpowiedź A."
             }
         ],
@@ -138,42 +138,42 @@
         "solutionStepByStep": [
             {
                 "type": "video",
-                "src": "media/zad3/zad3rozw_step1.mp4",
+                "src": "media/zad3/krok-po-kroku/step1.mp4",
                 "text": ""
             },
             {
                 "type": "video",
-                "src": "media/zad3/zad3rozw_step2.mp4",
+                "src": "media/zad3/krok-po-kroku/step2.mp4",
                 "text": ""
             },
             {
                 "type": "video",
-                "src": "media/zad3/zad3rozw_step3.mp4",
+                "src": "media/zad3/krok-po-kroku/step3.mp4",
                 "text": ""
             },
             {
                 "type": "video",
-                "src": "media/zad3/zad3rozw_step4.mp4",
+                "src": "media/zad3/krok-po-kroku/step4.mp4",
                 "text": ""
             },
             {
                 "type": "video",
-                "src": "media/zad3/zad3rozw_step5.mp4",
+                "src": "media/zad3/krok-po-kroku/step5.mp4",
                 "text": ""
             },
             {
                 "type": "video",
-                "src": "media/zad3/zad3rozw_step6.mp4",
+                "src": "media/zad3/krok-po-kroku/step6.mp4",
                 "text": ""
             },
             {
                 "type": "video",
-                "src": "media/zad3/zad3rozw_step7.mp4",
+                "src": "media/zad3/krok-po-kroku/step7.mp4",
                 "text": ""
             },
             {
                 "type": "video",
-                "src": "media/zad3/zad3rozw_step8.mp4",
+                "src": "media/zad3/krok-po-kroku/step8.mp4",
                 "text": "liczba \\(c \\cdot 21\\) jest podzielna przez 21 (c — cokolwiek całkowitego)"
             }
         ],
