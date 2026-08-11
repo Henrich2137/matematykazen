@@ -361,6 +361,17 @@ Objawy i przyczyny:
 
 - **Sesja nie startuje, komunikat o nienałożonym firewallu** — obserwator nie
   zadziałał. Zajrzyj do obu logów; najczęściej wystarczy odpalić skrypt ręcznie.
+  - **Najczęstszy powód po pełnej przebudowie: obserwator pilnuje tylko 180 s**
+    (`WATCH_SECONDS` w `host-firewall.sh`), a `initializeCommand` odpala go
+    **przed** budowaniem obrazu. Odkąd w obrazie siedzi TeX Live (paczka Manima,
+    2026-08-11), rebuild potrafi trwać ~10 minut — okno obserwacji zamyka się
+    długo przed startem kontenera, firewall nie zostaje nałożony i
+    `postStartCommand` słusznie przerywa sesję. W logu widać wtedy „koniec okna
+    obserwacji" bez wcześniejszego „OK: firewall nałożony". Zwykłe starty
+    (bez przebudowy) mieszczą się w 180 s bez problemu, więc lekarstwo jest
+    proste: po długim rebuildzie odpal `.devcontainer/host-firewall.sh` ręcznie
+    z hosta albo po prostu ponów „Reopen in Container" — drugie podejście idzie
+    już z cache'u.
 - **VS Code otwiera pusty katalog** — rozjechał się `workspaceFolder`.
 - **`sudo: unable to change to root gid`** — ktoś dodał `--cap-drop=ALL` bez
   SETUID/SETGID, a coś nadal próbuje używać `sudo`.
