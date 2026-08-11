@@ -4,7 +4,8 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Jeżeli nie masz co robić, to rób stąd.
 
   - Rozwiązanie krok po kroku:
-    - zwiększyć na stronie tak aby miało mniej marginesów z lewej i sprawej (można też poprzez zmianę rozdzielczości)
+    - zmienić koncepcje nazwernictwa plików na stepN.mp4
+    - zwiększyć na stronie tak aby miało mniej marginesów z lewej i sprawej (można też poprzez zmianę rozdzielczości) DONE
     - interface, menu
       - ROW 1 Kroki ilustrowane przez: bomble / kropki / kółka. Justified od lewej do prawej pod filmem. Kropek bedzie o jedną więcej niż filmików ponieważ Każda kropka oznacza zazwyczaj koniecA/początekB. Każda kropka będzie mogła 1 na 3 style:
         - krok za nami, odwiedzony
@@ -16,6 +17,59 @@ Oto plik który tworzy Henrich (ja, użytkownik).
         - NASTĘPNY KROK
       - ROW 3 Przycisk "Pokaż/Schowaj wyjaśnienie kroku" Podobny do Sprawdzanie obliczeń tylko bez ramki która oddziela go divu z rozwiązaniem krok po kroku. Gdy jest otwart powinna zostać zama strzałeczka do schodznia go gdzieś po prawej
 
+    - USTALENIA Z ROZMOWY 2026-08-11 (dopisał Opus — to są rzeczy, które padły w sesji,
+      a których nie ma w punktach wyżej; pełny projekt: docs/superpowers/specs/2026-08-11-rozwiazania-krok-po-kroku-design.md)
+
+      - KOLEJNOŚĆ W PIONIE: film → podpis kroku (jedna linijka, ZAWSZE widoczna) → ROW 1 kropki
+        → ROW 2 przyciski → ROW 3 wyjaśnienie. Wyjaśnienie na samym dole celowo: gdy je rozwiniesz,
+        nie spycha kropek ani przycisków poza ekran telefonu.
+
+      - PODPIS a WYJAŚNIENIE to dwie różne rzeczy. Podpis = nazwa czynności („zamieniamy pierwiastek
+        na potęgę"), zawsze widoczny, bez niego zwinięty krok nie mówi nic. Wyjaśnienie = wzór
+        pomocniczy w KaTeX + „dlaczego tak", domyślnie zwinięte.
+        UWAGA DLA NASTĘPNEGO MODELU: w exercises.json jest na razie JEDNO pole "text" na krok
+        i przy zad. 2 wrzuciłem w nie oba naraz (podpis + wzór). Przy robocie nad UI trzeba to
+        rozdzielić na dwa pola — inaczej całość zawsze będzie widoczna.
+
+      - WZORY POMOCNICZE WYSZŁY Z FILMU (już zrobione dla zad. 2). Kiedyś były animowane w prawej
+        części kadru — dlatego film był 21:9 i działanie ledwo się mieściło. Teraz kadr 16:9 pokazuje
+        samo działanie, a wzór jest tekstem na stronie: zaznaczalny, wyszukiwalny, czytany przez
+        czytnik ekranu.
+
+      - KROPKA = STAN, FILM = PRZEJŚCIE między stanami. Stąd bierze się Twoje „o jedną kropkę
+        więcej". Konsekwencje: kliknięcie kropki pokazuje NIERUCHOMĄ klatkę tego stanu (ostatnią
+        klatkę filmu z lewej), a „wstecz zatrzymuje się na pierwszej klatce" znaczy po prostu
+        „lądujesz dokładnie na kropce".
+
+      - LOGIKA ◄ (POPRZEDNI KROK): stojąc w środku kroku — leci rewers od bieżącej klatki
+        i zatrzymuje się na kropce z lewej. Stojąc już na kropce — cofka o cały krok, też w rewersie.
+        Przeglądarki NIE POTRAFIĄ odtwarzać wideo do tyłu (ujemna prędkość nie działa), więc rewers
+        musi być osobnym plikiem. REWERSÓW JESZCZE NIE MA — trzeba je wygenerować przed robotą
+        nad tym przyciskiem.
+
+      - PRĘDKOŚĆ 0,25× – 4× w PANELU BOCZNYM (ustawienia), nie przy filmie. W app/steps.js jest już
+        podepnijSterowanieWideo(), które ustawia playbackRate w jednym miejscu.
+        Zastrzeżenie: przy 4× przeglądarka gubi część klatek i obraz jest skokowy. Nic się nie psuje,
+        film dobiega do końca — ale nie jest to tryb do oglądania, tylko do przewijania.
+
+      - STEROWANIE POZA PRZYCISKAMI: przesuwanie palcem w lewo/prawo na telefonie, strzałki ← →
+        na klawiaturze na desktopie. Pole dotyku przycisków min. 44 px — dzisiejsze strzałki ◄ ► są
+        mniejsze i na telefonie trudno w nie trafić.
+
+      - ŚWIADOMIE ODRZUCONE: pełny ekran (kadr jest mały i wektorowy, nie ma czego powiększać)
+        oraz pasek przewijania po filmie (kroki trwają 1–2 s, od tego jest pauza i ↺).
+
+      - DO ROZSTRZYGNIĘCIA PRZY ROBOCIE NAD UI (nie ustalone):
+        - Co z dzisiejszym cienkim paskiem postępu i ikoną ‖ / ↺ na filmie? Zostają obok ROW 2,
+          czy ROW 2 je zastępuje?
+        - Czy podpis kroku ma zostać widoczny, gdy wyjaśnienie jest rozwinięte?
+        - prefers-reduced-motion: pokazywać ostatnią klatkę zamiast animacji komu wyłączył animacje
+          w systemie? (tanie, a to realna grupa użytkowników)
+
+      - CZEGO NIE ZEPSUĆ: dojście do ostatniego kroku wywołuje markCorrectAnswer(), czyli to
+        przeklikanie rozwiązania do końca odsłania poprawną odpowiedź. Przy przebudowie nawigacji
+        (kropki, skoki) trzeba zdecydować, czy skok kropką na koniec ma robić to samo.
+  
 
   - Naprawić dziwne działanie odwracania kolorów grafik na niektórych przeglądarkach
     - Pixel 7a GrapheneOS: 
@@ -40,7 +94,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + TESTOWANIE HENRICH:
 
-  - Zadanie 2, arkusz grudzień 2024 (v18) — TEST NOWEGO KADRU. Filmy są teraz 16:9, 1280×720,
+  - Zadanie 2, arkusz grudzień 2024 (v19) — TEST NOWEGO KADRU. Filmy są teraz 16:9, 1280×720,
     120 fps, a wzory pomocnicze wyszły z kadru do podpisów pod filmem. To jest test SAMEJ
     rozdzielczości i osadzenia filmu — kropek, przycisków i rewersów jeszcze nie ma.
 
