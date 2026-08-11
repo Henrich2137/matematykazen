@@ -2,6 +2,10 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.
+  - PO TESTACH NOWEGO UI ROZWIĄZANIE KROK PO KROKU:
+    - Wieszkość działa bardzo dobrze. Gratulacje!!! Dziękuję <3 >
+    - Powtórne wciśnięcie cofania nie cofa "bardziej". Filmik tylko ma lekki stutter a powinien przejść do poprzedniej "kropki" czyli początku filmu i pot następnym kliknięciu zacząć cofać następny 
+
 
   - Ciemny motyw wymuszony ręcznie w panelu bocznym: rysunki/filmy mają przygasać jak przy
     „auto" — poprawka przy okazji v20, jeszcze bez potwierdzenia Henricha.
