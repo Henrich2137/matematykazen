@@ -3,7 +3,15 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.
 
-  - nic
+  - Naprawić dziwne działanie odwracania kolorów grafik na niektórych przeglądarkach
+    - Pixel 7a GrapheneOS: 
+      - Samsung Browser zmienia tło strony wedle własnego pomysłu a odwracanie kolorów w ogóle nie działa
+      - na reszcie przeglądarek działa dobrze
+    - Windows 10: działa w pełni na wszystkich najpopularniejszych przglądarkach
+    - Bazzite: 
+      - Chrome i Brave - brak matchu kolorów tła grafiki i ogólnego tła (prawopodobnie na skutenk dziwnego renderowania koloru tła na Bazzite)
+      - na reszcie przeglądarek działa dobrze
+
 
 <br>
 
