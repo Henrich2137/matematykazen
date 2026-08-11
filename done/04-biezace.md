@@ -1,5 +1,61 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-11] (Local Opus 5 High) Odtwarzacz krok po kroku — 15 poprawek po testach v20. v21 Beta.
+Zamknięta cała sekcja „Usprawnić Rozwiązanie krok po kroku, Ocena po testach" z TODO.md plus prośba
+o zmianę nazwy podkatalogu. Testowane w Chromium DEVKONTENERA na prawdziwych plikach mp4 — w odróżnieniu
+od sesji chmurowej, gdzie Chromium nie miał H.264 i trzeba było robić kopie WebM.
+
+- **Pasek zostawał w miejscu ostatnio odtwarzanym** (punkt, który Henrich zgłosił jako „wciąż nierozwiązany
+  bug"). Reprodukcja pomiarem: klik w kropkę 3 podczas odtwarzania kroku 1 przenosił film poprawnie na
+  step4.mp4 / t=0, ale odcinek nr 3 pokazywał **55%** — pozycję STAREGO filmu. Przyczyna: pętla postępu
+  poprzedniego `<video>` czyta `ctx.krok` w chwili rysowania, a `video.isConnected` jej nie zatrzymuje, bo
+  stary element siedzi w DOM aż do `replaceChildren`. Każdy element dostaje teraz pieczątkę `swapToken`
+  i milknie, gdy przestaje być bieżący. Dotyczyło to też uchwytów play/pause/ended.
+
+- **Kropka początku kroku podświetla się od razu przy ◄**, nie po dojechaniu cofki (`uKonca` gaszone
+  w chwili kliknięcia). To odwraca decyzję z v20, gdzie głowica czekała na koniec rewersu — rysunek ROW 1
+  w TODO.md dopuszczał obie lektury, a testy rozstrzygnęły na rzecz tej.
+
+- **► pomija krok także w trakcie odtwarzania.** Wcześniej klik w trakcie nie robił nic (wołał `play()`
+  na już grającym filmie). Początek kroku k+1 to ta sama klatka co koniec kroku k, więc pomijana jest
+  wyłącznie animacja, nie kawałek rozwiązania.
+
+- **Start/pauza nigdy nie odpala rewersu**: w trakcie cofania pierwszy klik zatrzymuje je w miejscu,
+  dopiero drugi rusza stamtąd do przodu. Klik w kropkę, na której już stoimy, puszcza jej krok.
+  Odcinki na lewo od głowicy są wypełnione w całości.
+
+- **ROW 2 na inline SVG.** Glify tekstowe siedziały krzywo w polu przycisku i różniły się kształtem
+  między przeglądarkami; pauza wychodziła kwadratem. Zaokrąglone daszki dla kroków, pełny trójkąt dla
+  odtwarzania — sam kształt je rozróżnia, więc obwódka wokół środkowego przycisku (dodana w v20 właśnie
+  po to, żeby ▶ nie mylił się z ►) mogła zniknąć. Środkowy przycisk ma trzy stany w jednym: odtwórz /
+  pauza / odtwórz ponownie, przy czym restart pojawia się wyłącznie po filmie odtworzonym W PRZÓD.
+  Nakładane na film ikonki pauzy i restartu usunięte.
+
+- **Strzałki przewijania kropek liczone z faktycznego przepełnienia**, nie z liczby kropek (>7): zad. 3
+  ma dziewięć kropek, które na komputerze mieszczą się bez reszty, a strzałki i tak wisiały. Pomiar robimy
+  przy schowanych strzałkach, żeby nie zjadał własnego efektu, i powtarzamy przez `ResizeObserver`.
+
+- **Kadr rezerwowany przed wczytaniem filmu** (`aspect-ratio` na `.steps-content`, do czasu poznania
+  metadanych 16/9). Zmierzone przy sztucznie opóźnionych plikach: 608×342 już wtedy, gdy elementu
+  `<video>` jeszcze w ogóle nie ma, więc karta nie podskakuje.
+
+- **Prędkość**: „Prędkość filmów" → „Prędkość animacji", klik ZWIĘKSZA (`data-kierunek="prawo"` — domyślny
+  kierunek w tym panelu ujmuje, bo pozostałe ustawienia mają stan domyślny na prawym końcu skali).
+  Wartości dziesiętnie z KROPKĄ: `data-stany` rozdziela stany przecinkiem, więc „0,25×" rozpadłoby się
+  na dwa stany.
+
+- **ROW 3** przestał się rozciągać na całą szerokość — przycisk jest szeroki na tyle, ile zajmuje napis
+  ze strzałką (znika pusty pas między nimi), z większym marginesem nad i pod i tekstem odsuniętym od tytułu.
+
+- **Katalog `media/zadN/krok-po-kroku/` → `media/zadN/solution-step-by-step/`** (23 ścieżki w danych plus
+  skrypt, komentarze i dokumentacja). Świadomie NIE ruszone nazwy plików z tym samym członem —
+  `issues/krok-po-kroku-produkcja.md`, `issues/krok-po-kroku-v20-testy.md` i spec projektowy — bo to
+  dokumenty, do których prowadzi mnóstwo odnośników, a nie ścieżki katalogu.
+
+- Zarzut „podpis pod filmem na telefonie ma za wąskie marginesy" odpadł sam: w v20 podpisu już nie ma,
+  opis kroku siedzi w ROW 3. Zmierzone na 390 px — treść zadania ma 24 px marginesu, film i ROW 3 po 25 px.
+
+
 [ODEBRANE 2026-08-11] (Henrich, testy ręczne) Paczka drobiazgów UI v15 — 3 z 5 punktów odebrane
 bez uwag: (1) panel boczny bez hoverowego podglądu wartości („zajebiście jest"), (4) „Sprawdź
 wszystkie odpowiedzi" jako podpunkt pod „Poprawność" („bardzo dobrze"), (5) pigułki kategorii

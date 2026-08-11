@@ -3,49 +3,16 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.
 
-  - Usprawnić Rozwiązanie krok po kroku, Ocena po testach:
-    - Przycisk start/pauza zawsze powinien odpalać filmik w standardowym kierunku, nie reverse
-    - od razu po kliknięciu cofnij powinna podświetlić sie kropka która okresla początek filmiku (ta po lewej, nie po prawej). Obecnie jest tak, że nieraz zaznacza się dopiero po skończonej animacji (jak dojdize do pooczątku filmiku)
-    - cały bar (step-dots) tych kropek jest za szeroki, powinien być węższy o ok 20%
-    - w zadaniu 3. widać strzałki (step-scroll) mimo, że cały bar (step-dots) się mieśći
-    - wszystkie kreseczki (step-link), które są po lewej od kropki obecnego kroku powinny być zapełnione, jasne
-    - kliknięcie step-prev i step-next podczas podtwarzania powinno przewijać do początku/początku następnego filmiku aby można było pominąć kroki przejść do następnego
-    - Wywal te stare, migające ikonki pauzy i restartu w dolnej częsci samgo video
-    - Zmień cały styl przycisków steps-nav 
-      - start/pauza 
-        - jest krzywo, zamiast być na środku to jest lekko w lewo i w dół
-        - w trybie pauzy powinien być dwoma kreseczkami pionowymi, a nie kwadratem, 
-        - to JEDEN przycisk play/pauza/replay — zamienia się w ikonę restartu (zakręcona strzałka) WYŁĄCZNIE gdy film dobiegnie końca, nie osobny stały przycisk
-        - wywal kółko dookoła niego
-      - step-prev i step-next maja zbyt ostre strzałki, daj jakieś inne
-    - klik w play/pauzę PODCZAS cofania (◄, rewers): pierwszy klik zatrzymuje cofanie w miejscu (pauza), drugi klik gra do przodu od tego miejsca — play/pauza nigdy sam nie odpala rewersu
-    - kliknięcie dot W TRAKCIE odtwarzania powinno przenosić na początek odpowiedniego filmiku, nie zostawiać w miejscu ostatnio odtwarzanym — w spoczynku już działa (potwierdzone w issues/krok-po-kroku-v20-testy.md), ale podczas odtwarzania to wciąż osobny, nierozwiązany bug
-    - Przełącznik "Prędkość filmów" powinien nazywać się "Prędkość animacji". Kliknięcie w niego ma ZWIĘKSZAĆ prędkość (rosnąco: 0,25x → 0,5x → 1x → 2x → 4x → z powrotem na 0,25x), teraz robi odwrotnie. Wartości w zapisie dziesiętnym: spróbuj przecinek (0,25x), a jeśli koliduje z separatorem listy stanów w kodzie — kropka (0.25x) i tyle, nie kombinuj dalej
-    - Rozwijany przycisk "Pokaż wyjaśnienia kroku" jest zdecydowanie za szeroki, ta perzerwa między tytułem a strzałką rozwijania jest niepotrzena. Przycisk/container powinien mieć więcej marginesu też z góry i z dołu. A rozwinięty tekst powinien być troszkę niżej od tytułu przycisku.
-    - podczas łądowania się filmiku powinien wypełniać to coś o jego wymiarach, jeżeli to problem to ustaw sztywno tyle ile akurat tam zajmuje normalnie ten filmik 720p i heja
-    - kliknięcie tej samej kropki (dot) drugi raz powinno puścić odtwarzanie filmiku do przodu\
-    
-
-  - NOWY ODTWARZACZ KROK PO KROKU (v20), zad. 1/2/3, arkusz grudzień 2024 — testy Henricha:
-  kropki (wersja B) i klik-do-kroku potwierdzone działające; cofanie ◄, pasek postępu,
-  ROW2/ROW3, prędkość, gesty i strzałki przy >7 kropkach jeszcze bez odpowiedzi.
-  Pełna checklista: issues/krok-po-kroku-v20-testy.md
-
   - Ciemny motyw wymuszony ręcznie w panelu bocznym: rysunki/filmy mają przygasać jak przy
     „auto" — poprawka przy okazji v20, jeszcze bez potwierdzenia Henricha.
     issues/krok-po-kroku-v20-testy.md
 
-  - Zadanie 2 (v19), test kadru 16:9 1280×720/120fps: rozdzielczość, rozmiar filmu i
-    nawigacja na telefonie potwierdzone dobre. DO ZROBIENIA: podpis pod filmem na telefonie
-    ma za wąskie marginesy (box rozwiązania powinien być szerszy), do zweryfikowania treść
-    kroku 1/6 (wykładnik -1, potem 5, wynik \(5^4\)). issues/krok-po-kroku-v20-testy.md
+  - Zadanie 2 — do sprawdzenia merytoryka kroków: krok 1 i 6 (wykładnik -1, potem 5,
+    wynik \(5^4\)). issues/krok-po-kroku-v20-testy.md
+    Punkt o za wąskich marginesach podpisu pod filmem odpadł sam: w v20 podpisu już nie ma,
+    opis kroku siedzi w rozwijanym ROW 3. Zmierzone na telefonie 390 px — treść zadania ma
+    24 px marginesu, film i ROW 3 po 25 px, czyli równo. Zostaje do przeklikania na żywo.
 
-
-  - Zmień styl nazywania podfolderów tego typu z
-    2024-grudzien/media/solution-step-by-step/ na 
-    2024-grudzien/media/solution-step-by-step/
-    zaktualizuj referencje itd.
-  
 
 
 + NIE REALIZUJ:
@@ -78,6 +45,34 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 
 + TESTOWANIE HENRICH:
+
+  - ODTWARZACZ KROK PO KROKU v21 — poprawki z Twojej listy po testach v20.
+    Wszystkie 15 punktow zrobione; ponizej to, co warto kliknac, zeby to potwierdzic.
+
+    - ► W TRAKCIE ODTWARZANIA pomija krok: leci film 2, klikasz ► i od razu jestes na
+      poczatku filmu 3. Wczesniej klik w trakcie nie robil nic.
+    - ◄ podswietla kropke POCZATKU kroku od razu przy kliknieciu, nie po dojechaniu cofki.
+    - START/PAUZA w trakcie cofania: pierwszy klik ma zatrzymac cofke w miejscu, drugi
+      puscic film DO PRZODU od tego samego miejsca. Sam start/pauza nigdy nie odpala rewersu.
+    - Klik w kropke w TRAKCIE odtwarzania: film skacze na poczatek i — to bylo zepsute —
+      pasek miedzy kropkami tez wraca na zero, zamiast zostawac w starym miejscu.
+    - Klik w kropke, na ktorej juz stoisz, puszcza ten krok.
+    - Wszystkie kreski na LEWO od biezacej kropki sa wypelnione.
+    - Pasek kropek jest wezszy (80% szerokosci filmu). W zad. 3 na komputerze strzalek
+      ‹ › ma NIE byc (dziewiec kropek sie miesci), na telefonie maja byc.
+    - Przyciski: zaokraglone daszki po bokach, w srodku jeden przycisk odtworz/pauza/restart
+      bez kolka. Restart (zakrecona strzalka) tylko po dobiegnieciu filmu DO PRZODU.
+      Z filmu znikly nakladane ikonki pauzy i restartu.
+    - „Pokaz wyjasnienie kroku" jest waski, strzalka tuz przy napisie, wiecej powietrza
+      nad i pod, rozwiniety tekst nizej od tytulu.
+    - Panel boczny: „Predkosc animacji" (dawniej „filmow"). Klik ZWIEKSZA: 1x → 2x → 4x →
+      0.25x → 0.5x → 1x. Kropka dziesietna zamiast przecinka — przecinek rozdziela stany
+      w kodzie, wiec „0,25x" rozpadloby sie na dwa; tak ustaliles.
+    - Podczas wczytywania filmu karta NIE podskakuje — miejsce na kadr jest zarezerwowane
+      z gory. Najlepiej widac przy pierwszym otwarciu rozwiazania na wolnym laczu.
+    - Katalog plikow to teraz media/zadN/solution-step-by-step/ — sprawdz, czy filmy
+      i cofanie dzialaja w kazdym z trzech zadan (u mnie zero bledow 404).
+
   - Kontener: firewall + Playwright + read-only `.vscode` (2026-08-10). WYMAGA **Rebuild Container**
     (zwykłego, bez `--no-cache`) — bez tego nic z tego nie zadziała. Po przebudowie, w terminalu
     W KONTENERZE:
