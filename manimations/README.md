@@ -31,16 +31,25 @@ Ten sam skrypt (`solutionZad2.py`, `ScenaZadania2`, czyli krok 6) wyrenderowany 
 - **Parametry pliku identyczne**: 840×360, 60 fps, 120 klatek, 2,000 s, h264 High, yuv420p.
 - **SSIM średnio 0,999856**, najgorsza klatka 0,999543 (klatka 95, w środku animacji przekształcenia).
 - W powiększeniu 4× glify mają **tę samą geometrię i te same pozycje** — różnice siedzą wyłącznie na krawędziach antyaliasingu.
-- Winowajcą resztkowej różnicy jest najpewniej **ffmpeg, nie render**: pliki ważą 20 kB (kontener) vs 27 kB (host), czyli koder dobrał inny bitrate. Obawa o metryki fontu (MiKTeX vs TeX Live) **się nie potwierdziła**.
+- Skąd bierze się ta resztkowa różnica — test izolujący koder (render `--format=png`, czyli bez kompresji, jako trzeci punkt odniesienia; klatka 95):
 
-Wniosek: kontener nadaje się także do **finalnych** renderów, nie tylko do podglądu. Gdyby kiedyś jednak zależało na bit-w-bit zgodności z wcześniejszymi plikami, jedyna znana różnica do wyrównania to wersja ffmpeg.
+  | Porównanie | SSIM |
+  |---|---|
+  | bezstratny render kontenera ↔ własny MP4 kontenera (sam koder) | 0,999601 |
+  | bezstratny render kontenera ↔ MP4 z hosta | 0,999480 |
+  | MP4 kontener ↔ MP4 host | 0,999581 |
+
+  Czyli **sama kompresja H.264 wprowadza różnicę tego samego rzędu co cała różnica host↔kontener** i wystarcza do jej wyjaśnienia. Obawa o metryki fontu (MiKTeX vs TeX Live) **się nie potwierdziła**.
+- **Nie ustalono**, jaka część różnicy przypada na koder, a jaka na sam render — wymagałoby to bezstratnych klatek z hosta, a referencja istnieje wyłącznie jako H.264. Znane różnice po stronie kodera: ffmpeg 5.1.9 vs 7.1 i waga pliku 20 kB vs 27 kB.
+
+Wniosek: kontener nadaje się także do **finalnych** renderów, nie tylko do podglądu.
 
 **Zmiany w `.devcontainer/Dockerfile` robi się z hosta, nie z kontenera** — `.devcontainer/` jest w kontenerze zamontowany read-only (patrz `.devcontainer/README.md`). Po edycji trzeba przebudować obraz: Dev Containers → „Rebuild Container".
 
 ## Workflow
 
 1. Render sceny: `manim solutionZadN.py <NazwaScenyKlasy>` (bez flagi jakości, patrz wyżej) — wynik ląduje w `media/videos/solutionZadN/360p60/`.
-2. Cięcie całej sceny na kroki (`_step1.mp4`, `_step2.mp4`, …) — **nie ma jeszcze zautomatyzowanego mechanizmu**. Ustalone 2026-08-11 przez odczytanie `solutionZad2.py`: dotychczasowe pliki `_stepN.mp4` powstawały tak, że wszystkie kroki poza jednym były **zakomentowane blokiem `"""`**, a scena renderowana raz na krok. Dlatego skrypty w tym folderze leżą w repo z zakomentowaną większością treści — to nie jest porzucony kod, tylko ostatni stan tej ręcznej procedury (`solutionZad2.py` stoi na kroku 6). Docelowe rozwiązanie (sekcje `self.next_section()` w scenach + skrypt `tools/manim-kroki.sh`) jest zaprojektowane i czeka na osobną paczkę — patrz [docs/superpowers/specs/2026-08-11-manim-w-kontenerze-design.md](../docs/superpowers/specs/2026-08-11-manim-w-kontenerze-design.md), warstwy 2 i 3.
+2. Cięcie całej sceny na kroki (`_step1.mp4`, `_step2.mp4`, …) — **nie ma jeszcze zautomatyzowanego mechanizmu**. Dla **zadania 2** ustalono 2026-08-11, jak to robiono: kroki 1–5 są w `solutionZad2.py` zakomentowane jednym blokiem `"""` (linie 54–126), aktywny jest krok 6, a wyrenderowany z tego klip ma 2,000 s i 120 klatek — dokładnie tyle co `zad2rozw_step6.mp4`. Czyli nic nie było cięte: scena renderowała się raz na krok, a kroki przełączało się komentarzem. Dlatego ten plik leży w repo z zakomentowaną większością treści — to nie porzucony kod, tylko ostatni stan ręcznej procedury. **Nie wiadomo, czy tak samo robiono pozostałe zadania**: `solutionZad3.py` nie ma ani jednego bloku `"""`, a `solutionZad1.py` i `solutionZad4.py` mają, ale nie sprawdzono, czy w tej roli. Docelowe rozwiązanie (sekcje `self.next_section()` w scenach + skrypt `tools/manim-kroki.sh`) jest zaprojektowane i czeka na osobną paczkę — patrz [docs/superpowers/specs/2026-08-11-manim-w-kontenerze-design.md](../docs/superpowers/specs/2026-08-11-manim-w-kontenerze-design.md), warstwy 2 i 3.
 3. Skopiować pocięte pliki do `matura/<sheet-id>/media/zadN/` pod nazwami `zadNrozw_stepM.mp4` (nazwy lowercase, patrz CLAUDE.md).
 
 `media/` w tym folderze to cache Manim (Tex/svg, obrazy, wideo pośrednie) — odtwarzalny z plików `.py`, dlatego wyklucza go `manimations/.gitignore`.
