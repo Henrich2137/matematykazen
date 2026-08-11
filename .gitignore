@@ -1,0 +1,5 @@
+# Cache Manima (Tex/SVG, klatki, wideo pośrednie) — w całości odtwarzalny
+# z plików .py w manimations/, nie ma po co siedzieć w historii repo.
+# To samo mówi manimations/.gitignore; wpis jest tu powtórzony celowo, żeby
+# reguła była widoczna w jednym, oczywistym miejscu dla całego repo.
+manimations/media/

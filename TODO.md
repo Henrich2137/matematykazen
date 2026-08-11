@@ -64,6 +64,19 @@ Oto plik który tworzy Henrich (ja, użytkownik).
       → „OK". Potem zrzut arkusza przez `tools/zrzuty.js`; polski tekst ma być widoczny, nie puste
       prostokąty.
 
+  - Kontener: Manim (paczka 1 — środowisko), spod spec `docs/superpowers/specs/2026-08-11-manim-w-kontenerze-design.md`.
+    WYMAGA **Rebuild Container** — obraz urośnie o ok. 1,5–2 GB (TeX Live + ffmpeg + Manim), więc
+    przebudowa potrwa zauważalnie dłużej niż zwykle. Po przebudowie, w terminalu W KONTENERZE:
+
+    - `manim --version` → `Manim Community v0.18.1` (dokładnie ta wersja co na Windowsie).
+    - `cd manimations && manim -qh solutionZad2.py ScenaZadania2` → ma się skończyć bez błędu
+      i wypluć plik MP4. To jest właściwy test LaTeX-a: scena używa `MathTex`, więc jeśli przejdzie,
+      minimalny TeX Live wystarcza.
+    - Porównaj klatki tego renderu z istniejącym `matura/2024-grudzien/media/zad2/zad2rozw_step*.mp4`
+      (render z hosta). Szukamy różnic w metrykach fontu i grubości kresek. Jeśli widać różnicę,
+      kontener zostaje środowiskiem podglądu, a finalne rendery robimy dalej na hoście — wynik
+      porównania dopisujemy do `manimations/README.md`.
+
   - VS Code na hoście: przy otwarciu folderu ma się już NIE pytać „Allow Automatic Tasks in Folder?",
     tylko po cichu zrobić `git pull --ff-only`.
 

@@ -135,6 +135,64 @@ USER node
 RUN PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm install -g playwright@${PLAYWRIGHT_VERSION}
 
 
+# Manim — do renderowania animacji z manimations/ wewnątrz kontenera, żeby dało
+# się obejrzeć wynik zamiast pisać scenę w ciemno i czekać na render na hoście.
+# Render na hoście (Windows, MiKTeX) zostaje — to druga ścieżka, nie zamiennik.
+#
+# Wersja przypięta na sztywno i celowo równa tej z hosta (Manim CE 0.18.1):
+# ten sam skrypt ma dawać ten sam obraz w obu środowiskach. Rozjazd wersji
+# Manima to cichy błąd — nic nie pada, tylko klatki wychodzą inaczej i widać to
+# dopiero, gdy zmiksuje się pliki z obu źródeł w jednym arkuszu. Ta sama zasada
+# co przy PLAYWRIGHT_VERSION wyżej.
+ARG MANIM_VERSION=0.18.1
+
+USER root
+# Zależności systemowe:
+# - python3/python3-pip — Manim jest paczką pythonową, a node:20 Pythona nie ma;
+# - ffmpeg — Manim składa nim klatki w plik MP4, bez tego render nie ma wyjścia;
+# - pkg-config + libcairo2-dev + libpango1.0-dev — pycairo i ManimPango budują
+#   się ze źródeł (nie ma dla nich gotowych wheeli), więc potrzebują nagłówków,
+#   nie samych bibliotek runtime.
+#
+# LaTeX-a wymaga MathTex, czyli praktycznie każda nasza scena. Świadomie NIE
+# texlive-full (~5 GB) — to jest minimalny zestaw z dokumentacji Manima (~1–1,5
+# GB), który pokrywa wszystko, czego używają istniejące sceny (ułamki, potęgi,
+# pierwiastki). dvisvgm zamienia wyjście LaTeX-a na SVG, którym Manim rysuje.
+# Gdyby kiedyś render zapłakał o brakujący plik .sty — dopisz konkretny pakiet
+# tutaj, zamiast sięgać po texlive-full.
+#
+# --no-install-recommends jak w pozostałych blokach: wszystkie potrzebne
+# kawałki TeX Live są wymienione z nazwy, więc nie ma po co ciągnąć
+# rekomendacji (głównie dokumentacja) i puchnąć obrazu.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  python3 \
+  python3-pip \
+  ffmpeg \
+  pkg-config \
+  libcairo2-dev \
+  libpango1.0-dev \
+  texlive-latex-base \
+  texlive-latex-extra \
+  texlive-latex-recommended \
+  texlive-fonts-extra \
+  texlive-science \
+  dvisvgm \
+  && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# --break-system-packages, bo Debian 12 (baza node:20) oznacza systemowego
+# Pythona jako "externally managed" i bez tej flagi pip odmawia instalacji.
+# W obrazie jednorazowego użytku nie ma tu czego chronić — nie ma innych
+# pythonowych narzędzi, z którymi Manim mógłby wejść w konflikt.
+#
+# Ten pip install NIE potrzebuje żadnego wyjątku w firewallu, mimo że pypi.org
+# jest poza allowlistą: obraz buduje się zanim host nałoży firewall (robi to
+# host-firewall.sh na już działającym kontenerze). Po starcie kontenera Manim
+# nie pobiera już niczego, więc — inaczej niż Chromium — nie potrzebuje też
+# binda z hosta.
+RUN pip3 install --break-system-packages manim==${MANIM_VERSION}
+USER node
+
+
 # Copy and set up firewall script
 COPY init-firewall.sh /usr/local/bin/
 USER root

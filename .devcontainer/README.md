@@ -304,8 +304,12 @@ z powodem odrzucenia — nie trzeba ich odtwarzać od zera, wystarczy zdjąć `#
   współdzieloną infrastrukturę, a adresy i tak rotują. Formularz zgłoszeń
   testuje się w przeglądarce na hoście.
 - **`pypi.org` / `files.pythonhosted.org` / `developer.mozilla.org`** — anycast
-  Fastly (`151.101.x`), ta sama uwaga. Do rozważenia dopiero, gdyby Manim albo
-  inne narzędzia pythonowe miały działać w kontenerze.
+  Fastly (`151.101.x`), ta sama uwaga. Manim od 2026-08-11 **działa** w
+  kontenerze i mimo to wpis dalej nie jest potrzebny: `pip install` odpala się
+  w `Dockerfile`, czyli w czasie budowy obrazu — a firewall nakłada dopiero
+  host, skryptem `host-firewall.sh`, na już zbudowany i uruchomiony kontener.
+  Po starcie Manim nie pobiera niczego, więc pypi.org nigdy nie jest odpytywane
+  zza firewalla.
 - **`statsig.anthropic.com`** — w ogóle się nie rozwiązuje; Claude Code działa
   bez tego.
 - **CDN-y frontendowe** (`cdn.jsdelivr.net`, `unpkg.com`, `fonts.googleapis.com`)
