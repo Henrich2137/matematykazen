@@ -108,7 +108,8 @@
        Od 2026-08-11 reguła bazowa w sheet.css jest już płynna (width: 100%,
        aspect-ratio: 16/9), więc nie ma tu czego nadpisywać — zostaje tylko
        zdjęcie górnej granicy, żeby na telefonie film szedł na całą szerokość. */
-    .solution-step-by-step-container video {
+    .solution-step-by-step-container video,
+    .steps-content {
         max-width: none;
     }
     /* Film wychodzi poza padding panelu rozwiązania (20px z każdej strony) na

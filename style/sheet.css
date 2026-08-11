@@ -1198,55 +1198,10 @@ body.sidebar-otwarty #sidebar-linia {
     /* Odwrócenie w dark mode — patrz --filtr-grafik-zadan w style/base.css. */
     filter: var(--filtr-grafik-zadan);
 }
-/* Kontener filmu kroku — pozwala nałożyć ikonkę ▶ i pasek postępu na film. */
+/* Kontener filmu kroku. Nakładane na film ikonki pauzy/restartu zniknęły (2026-08-11, Henrich po testach v20): migały przy każdym zatrzymaniu, a stan odtwarzania pokazuje teraz przycisk w ROW 2. */
 .step-video {
-    position: relative;
-    display: inline-block;
-    line-height: 0;
-}
-/* Mała ikonka na dole filmu, wyśrodkowana w poziomie; widoczna tylko gdy film
-   jest zatrzymany lub skończony. Zatrzymany w trakcie → dwie pionowe kreski
-   (pauza); skończony → zakręcona strzałka „odtwórz od nowa". */
-.video-overlay-icon {
-    position: absolute;
-    left: 50%;
-    bottom: 8px;
-    transform: translateX(-50%);
-    display: none;
-    width: 12px;
-    height: 14px;
-    pointer-events: none;
-}
-.step-video.paused .video-overlay-icon,
-.step-video.ended .video-overlay-icon {
     display: block;
-}
-/* Pauza — dwie pionowe kreski (gdy zatrzymany, ale nie na końcu filmu). */
-.step-video.paused:not(.ended) .video-overlay-icon::before,
-.step-video.paused:not(.ended) .video-overlay-icon::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    width: 4px;
-    height: 100%;
-    background-color: var(--separator);
-}
-.step-video.paused:not(.ended) .video-overlay-icon::before {
-    left: 0;
-}
-.step-video.paused:not(.ended) .video-overlay-icon::after {
-    right: 0;
-}
-/* Koniec filmu — zakręcona strzałka „odtwórz od nowa". */
-.step-video.ended .video-overlay-icon::before {
-    content: "↺";
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 18px;
-    line-height: 1;
-    color: var(--overlay-icon);
+    line-height: 0;
 }
 .solution-step-by-step-container img {
     display: block;
@@ -1258,27 +1213,27 @@ body.sidebar-otwarty #sidebar-linia {
 .solution-step-by-step-container:empty {
     display: none;
 }
+/* Rezerwuje miejsce na kadr, ZANIM film się wczyta — inaczej blok ma zerową wysokość i karta podskakuje, gdy obraz wskoczy (Henrich po testach v20).
+   Proporcje bierzemy z pliku (--proporcje-filmu ustawia app/steps.js po odczytaniu metadanych); do tego czasu obowiązuje 16/9, czyli kadr, w którym są nowe filmy 720p. Wartość siedzi na .steps-content, bo to jedyny element przeżywający podmianę kroku — .step-video powstaje dopiero z filmem. */
 .steps-content {
-    /* Bez min-height (2026-08-11). Wcześniej było 250px, żeby przy przełączaniu
-       kroków blok nie zmieniał wysokości. Teraz film sam trzyma stałą wysokość:
-       ma `aspect-ratio: 16/9` przy `width: 100%`, więc zależy wyłącznie od
-       szerokości kontenera, ta sama dla każdego kroku. Zmienny został tylko
-       Podpis pod filmem zniknął (2026-08-11) — opis kroku przeniósł
-       się do zwijanego wyjaśnienia w ROW 3.
-       Stała liczba pikseli byłaby tu wręcz szkodliwa — przy szerokim ekranie
-       film ma ~342px wysokości i 250px nic by nie rezerwowało. */
-    margin: 10px 0;
+    aspect-ratio: var(--proporcje-filmu, 16 / 9);
+    max-width: 640px;   /* to samo ograniczenie co film — inaczej rezerwacja
+                           i obraz liczylyby rozna wysokosc */
+    margin: 10px auto;
     text-align: center;
 }
 /* ROW 1 — kropki stanu z paskiem postępu w odstępie (przebudowa 2026-08-11).
    Model: kropka = stan działania, odcinek między kropkami = krok. Pasek, który
    był belką pod filmem, wypełnia teraz odcinek bieżącego kroku. */
+/* Węższy niż film o mniej więcej piątą część (Henrich po testach v20) — pasek
+   rozciągnięty na całą szerokość kadru rozjeżdżał się z resztą kontrolek. */
 .steps-dots-row {
     position: relative; /* kotwica dla schowanego .step-counter */
     display: flex;
     align-items: center;
     gap: 4px;
-    margin: 12px 0 6px;
+    max-width: 80%;
+    margin: 12px auto 6px;
 }
 /* Okno przewijania: powyżej siedmiu kropek pasek jedzie w poziomie zamiast się
    ściskać. Pasek przewijania chowamy — od tego są strzałki po bokach. */
@@ -1384,15 +1339,18 @@ body.sidebar-otwarty #sidebar-linia {
     gap: 10px;
     margin: 4px 0 10px;
 }
-/* Pole dotyku 44×44 (dzisiejsze strzałki były na to za małe — Henrich).
-   Podkreślenie z .light-button:hover na samym glifie wyglądałoby jak błąd,
-   więc zamiast niego zmiana koloru. */
+/* Pole dotyku 44×44 (dawne strzałki były na to za małe — Henrich).
+   Podkreślenie z .light-button:hover na samej ikonie wyglądałoby jak błąd,
+   więc zamiast niego zmiana koloru. Flex centruje ikonę w obu osiach — glif
+   tekstowy siedział lekko w lewo i w dół. */
 .steps-nav button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: auto;
     min-width: 44px;
     min-height: 44px;
     margin: 0;
-    font-size: 18px;
     color: var(--text-faint);
 }
 .steps-nav button:hover:not(:disabled) {
@@ -1403,25 +1361,44 @@ body.sidebar-otwarty #sidebar-linia {
     opacity: 0.35;
     cursor: default;
 }
-/* Start/pauza w kółku — bez tego przycisk „odtwórz" (▶) i „następny krok" (►)
-   są dwoma prawie identycznymi trójkątami obok siebie. Kółko robi z niego
-   wyraźnie inną, główną kontrolkę. */
-.step-play {
-    width: 44px;
-    border: 1px solid var(--border-strong);
-    border-radius: 50%;
-    font-size: 15px;
-    color: var(--text);
+/* Zaokrąglone końce i złączenia — Henrich: dotychczasowe strzałki były „zbyt
+   ostre". Trójkąt odtwarzania jest wypełniony, „daszki" kroków tylko kreską:
+   to wystarcza, żeby nie myliły się ze sobą, bez obwódki wokół środkowego. */
+.step-ikona {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
-.step-play:hover:not(:disabled) {
-    background-color: var(--bg-muted);
+.step-play .step-ikona {
+    width: 26px;
+    height: 26px;
 }
-.step-play::before {
-    content: "▶";
+.ikona-play {
+    fill: currentColor;
 }
-.step-play.gra::before {
-    content: "❚❚";
-    letter-spacing: -2px;
+/* Jeden przycisk, trzy stany: odtwórz (domyślnie), pauza w trakcie grania,
+   „odtwórz ponownie" dopiero po dobiegnięciu filmu do końca. */
+.step-play .ikona-pauza,
+.step-play .ikona-odnowa,
+.step-play.gra .ikona-play,
+.step-play.koniec .ikona-play {
+    display: none;
+}
+.step-play.gra .ikona-pauza {
+    display: block;
+}
+.step-play.koniec .ikona-odnowa {
+    display: block;
+}
+.step-play.koniec.gra .ikona-odnowa {
+    display: none;
+}
+.step-play.koniec.gra .ikona-pauza {
+    display: block;
 }
 /* ROW 3 — zwijane wyjaśnienie kroku. Wzorowane na „Sprawdzaniu obliczeń"
    (.ocena-box), ale BEZ ramki, żeby nie odcinało się od bloku z krokami
@@ -1429,13 +1406,19 @@ body.sidebar-otwarty #sidebar-linia {
    podpisem pod filmem. */
 .step-explain {
     max-width: 520px;
-    margin: 0 auto 24px;
+    /* Więcej powietrza nad i pod (Henrich po testach v20). */
+    margin: 18px auto 28px;
     text-align: left;
 }
+/* Sam przycisk jest WĄSKI — szeroki na tyle, ile zajmuje napis ze strzałką.
+   Wcześniej ciągnął się na całą szerokość bloku, a strzałkę odpychał na drugi
+   koniec (margin-left: auto), przez co między tytułem a nią ział pusty pas.
+   inline-flex + wyśrodkowanie kontenerem zamiast tego. */
 .step-explain-toggle {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    padding: 10px 4px;
+    gap: 6px;
+    padding: 6px 2px;
     font-size: 14px;
     font-weight: 600;
     color: var(--text-faint);
@@ -1447,7 +1430,6 @@ body.sidebar-otwarty #sidebar-linia {
 }
 .step-explain-toggle::after {
     content: "›";
-    margin-left: auto;
     font-size: 18px;
     line-height: 1;
     color: var(--text-faint);
@@ -1463,8 +1445,10 @@ body.sidebar-otwarty #sidebar-linia {
 .step-explain[open] .gdy-zwiniete {
     display: none;
 }
+/* Treść odsunięta od tytułu, żeby rozwinięcie było widać jako osobny akapit,
+   a nie doklejoną linijkę (Henrich po testach v20). */
 .step-explain-tresc {
-    padding: 0 4px 8px;
+    padding: 6px 2px 8px;
     line-height: 1.5;
 }
 .solution-interactive-container {

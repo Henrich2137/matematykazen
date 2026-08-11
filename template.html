@@ -450,13 +450,41 @@
                         <span class="step-counter" role="status" aria-live="polite"></span>
                     </div>
 
+                    <!-- ROW 2. Ikony to inline SVG (jak w panelu bocznym) — glify
+                         tekstowe („◄", „❚❚") siedziały krzywo w polu przycisku
+                         i różniły się kształtem między przeglądarkami.
+                         Kroki to zaokrąglone „daszki", odtwarzanie to pełny
+                         trójkąt — sam kształt odróżnia nawigację od odtwarzania,
+                         więc obwódka wokół środkowego przycisku jest zbędna.
+                         Środkowy przycisk to JEDEN przycisk o trzech stanach:
+                         odtwórz / pauza / odtwórz ponownie (klasy .gra i .koniec
+                         ustawia syncState w app/steps.js). -->
                     <div class="steps-nav">
                         <button class="step-prev light-button" type="button"
-                                aria-label="Poprzedni krok">◄</button>
+                                aria-label="Poprzedni krok">
+                            <svg class="step-ikona" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M14.5 6 8.5 12l6 6"/>
+                            </svg>
+                        </button>
                         <button class="step-play light-button" type="button"
-                                aria-label="Odtwórz"></button>
+                                aria-label="Odtwórz">
+                            <svg class="step-ikona ikona-play" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M8.8 6.2 18 12l-9.2 5.8z"/>
+                            </svg>
+                            <svg class="step-ikona ikona-pauza" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M9.5 6v12M14.5 6v12"/>
+                            </svg>
+                            <svg class="step-ikona ikona-odnowa" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3"/>
+                                <path d="M19.5 4.5V9H15"/>
+                            </svg>
+                        </button>
                         <button class="step-next light-button" type="button"
-                                aria-label="Następny krok">►</button>
+                                aria-label="Następny krok">
+                            <svg class="step-ikona" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M9.5 6l6 6-6 6"/>
+                            </svg>
+                        </button>
                     </div>
 
                     <details class="step-explain">

@@ -44,7 +44,6 @@ function renderStep(step) {
                 <video playsinline preload="auto">
                     <source src="${mediaPath(step.src)}" type="video/mp4">
                 </video>
-                <div class="video-overlay-icon"></div>
             </div>
         `;
     } else if (step.type === "image") {
@@ -241,7 +240,6 @@ function podepnijSterowanieWideo(ctx, video) {
     video.defaultPlaybackRate = tempo;
     video.playbackRate = tempo;
 
-    const stepVideo = video.closest(".step-video");
 
     // Kadr dostaje proporcje z samego pliku — arkusz ma naraz filmy 16:9 (zad. 2,
     // nowy format) i 21:9 (zad. 1 i 3, jeszcze nieprzerobione). Bez tego te
@@ -258,13 +256,15 @@ function podepnijSterowanieWideo(ctx, video) {
     // funkcjonalność zatrzymywania kliknięciem w film").
     video.addEventListener("click", () => przelaczOdtwarzanie(ctx));
 
+    // Środkowy przycisk ma trzy stany: odtwórz / pauza / odtwórz ponownie.
+    // „Ponownie" tylko dla filmu w przód — rewers dobiega do początku kroku
+    // i tam naturalnym następnym ruchem jest odtworzenie w przód, nie powtórka.
     const syncState = () => {
-        if (stepVideo) {
-            stepVideo.classList.toggle("paused", video.paused);
-            stepVideo.classList.toggle("ended", video.ended && !ctx.wstecz);
-        }
+        const koniec = video.ended && !ctx.wstecz;
         ctx.playBtn.classList.toggle("gra", !video.paused);
-        ctx.playBtn.setAttribute("aria-label", video.paused ? "Odtwórz" : "Zatrzymaj");
+        ctx.playBtn.classList.toggle("koniec", koniec);
+        ctx.playBtn.setAttribute("aria-label",
+            koniec ? "Odtwórz ponownie" : (video.paused ? "Odtwórz" : "Zatrzymaj"));
     };
 
     let raf = 0;
@@ -397,8 +397,23 @@ function skoczDoKropki(ctx, i) {
     pokazKrok(ctx, i, { czas: 0, graj: tenSam });
 }
 
-// Przewijanie paska kropek: powyżej siedmiu kropek pojawiają się strzałki po
-// bokach, a bieżąca kropka jest utrzymywana w polu widzenia.
+// Strzałki przewijania pokazujemy wtedy i tylko wtedy, gdy kropki NAPRAWDĘ się
+// nie mieszczą. Wcześniej decydowała sama ich liczba (>7) i w zad. 3 strzałki
+// wisiały mimo że cały pasek był widoczny (Henrich po testach v20).
+// Mierzymy przy schowanych strzałkach, żeby wynik nie zależał od tego, czy
+// akurat są widoczne — inaczej pomiar zjadałby własny efekt.
+function odswiezStrzalkiKropek(ctx) {
+    const okno = ctx.kropkiOkno;
+    if (!okno) return;
+    ctx.przewinLewo.style.display = "none";
+    ctx.przewinPrawo.style.display = "none";
+    if (okno.scrollWidth > okno.clientWidth + 1) {
+        ctx.przewinLewo.style.display = "";
+        ctx.przewinPrawo.style.display = "";
+    }
+}
+
+// Przewijanie paska kropek: bieżąca kropka jest utrzymywana w polu widzenia.
 function przewinDoKropki(ctx, i) {
     const okno = ctx.kropkiOkno;
     if (!okno || okno.scrollWidth <= okno.clientWidth) return;
@@ -426,10 +441,13 @@ function zbudujKropki(ctx) {
         kropka.addEventListener("click", () => skoczDoKropki(ctx, i));
         ctx.kropkiBox.appendChild(kropka);
     }
-    // Strzałki przewijania mają sens dopiero powyżej siedmiu kropek.
-    const duzo = ctx.steps.length + 1 > 7;
-    ctx.przewinLewo.style.display = duzo ? "" : "none";
-    ctx.przewinPrawo.style.display = duzo ? "" : "none";
+    odswiezStrzalkiKropek(ctx);
+    // Szerokość okna zmienia się z oknem przeglądarki i przy obrocie telefonu,
+    // więc potrzebę strzałek przeliczamy na bieżąco, a nie raz przy budowie.
+    if (window.ResizeObserver && !ctx.obserwatorKropek) {
+        ctx.obserwatorKropek = new ResizeObserver(() => odswiezStrzalkiKropek(ctx));
+        ctx.obserwatorKropek.observe(ctx.kropkiOkno);
+    }
 }
 
 // Odtwarzacz, do którego odnoszą się strzałki ← → na klawiaturze. Arkusz ma
