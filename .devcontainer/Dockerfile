@@ -152,7 +152,12 @@ USER root
 # - ffmpeg — Manim składa nim klatki w plik MP4, bez tego render nie ma wyjścia;
 # - pkg-config + libcairo2-dev + libpango1.0-dev — pycairo i ManimPango budują
 #   się ze źródeł (nie ma dla nich gotowych wheeli), więc potrzebują nagłówków,
-#   nie samych bibliotek runtime.
+#   nie samych bibliotek runtime;
+# - python3-dev — nagłówki samego Pythona, z tego samego powodu. Bez niego
+#   build pada już na pycairo: "Run-time dependency python found: NO (tried
+#   pkgconfig and sysconfig)" (sprawdzone 2026-08-11 — pierwszy rebuild padł
+#   dokładnie tak). Kompilatora nie dokładamy: node:20 stoi na buildpack-deps,
+#   więc gcc/make są w obrazie od początku.
 #
 # LaTeX-a wymaga MathTex, czyli praktycznie każda nasza scena. Świadomie NIE
 # texlive-full (~5 GB) — to jest minimalny zestaw z dokumentacji Manima (~1–1,5
@@ -166,6 +171,7 @@ USER root
 # rekomendacji (głównie dokumentacja) i puchnąć obrazu.
 RUN apt-get update && apt-get install -y --no-install-recommends \
   python3 \
+  python3-dev \
   python3-pip \
   ffmpeg \
   pkg-config \

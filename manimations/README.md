@@ -21,6 +21,7 @@ Manim, ffmpeg i minimalny TeX Live siedzą w obrazie kontenera (blok w `.devcont
 
 - LaTeX to TeX Live w minimalnym zestawie z dokumentacji Manima (~1–1,5 GB), a nie `texlive-full` — pokrywa to, czego używają istniejące sceny. Gdyby render zgłosił brakujący plik `.sty`, dopisuje się konkretny pakiet w Dockerfile.
 - Instalacja nie wymaga wyjątku w firewallu (`pypi.org` jest poza allowlistą): obraz buduje się, zanim host nałoży firewall, a po starcie kontenera Manim nic już nie pobiera.
+- Przypięty jest **tylko sam Manim**. Zależności pod spodem instalują się w najnowszych wersjach i różnią się od hosta (sprawdzone 2026-08-11: kontener dostaje `ManimPango 0.6.1`, `numpy 2.4.6`, `Pillow 12.3.0`, host ma `0.6.0` / `2.2.1` / `11.0.0`). To pierwszy podejrzany, gdyby porównanie klatek pokazało różnice.
 - **Rozjazd wizualny host ↔ kontener jest możliwy** — inny silnik LaTeX (MiKTeX vs TeX Live) i inne fonty systemowe mogą dać minimalnie inne metryki liter i grubości kresek. Dopóki porównanie klatek nie zostanie zrobione, kontener traktujemy jako środowisko **podglądu**, a finalne rendery robimy na hoście.
 
 **Zmiany w `.devcontainer/Dockerfile` robi się z hosta, nie z kontenera** — `.devcontainer/` jest w kontenerze zamontowany read-only (patrz `.devcontainer/README.md`). Po edycji trzeba przebudować obraz: Dev Containers → „Rebuild Container".
