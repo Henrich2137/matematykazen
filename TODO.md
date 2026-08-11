@@ -2,6 +2,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.
+
   - Usprawnić Rozwiązanie krok po kroku, Ocena po testach:
     - Przycisk start/pauza zawsze powinien odpalać filmik w standardowym kierunku, nie reverse
     - od razu po kliknięciu cofnij powinna podświetlić sie kropka która okresla początek filmiku (ta po lewej, nie po prawej). Obecnie jest tak, że nieraz zaznacza się dopiero po skończonej animacji (jak dojdize do pooczątku filmiku)
@@ -9,29 +10,37 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     - w zadaniu 3. widać strzałki (step-scroll) mimo, że cały bar (step-dots) się mieśći
     - wszystkie kreseczki (step-link), które są po lewej od kropki obecnego kroku powinny być zapełnione, jasne
     - kliknięcie step-prev i step-next podczas podtwarzania powinno przewijać do początku/początku następnego filmiku aby można było pominąć kroki przejść do następnego
-
+    - Wywal te stare, migające ikonki pauzy i restartu w dolnej częsci samgo video
     - Zmień cały styl przycisków steps-nav 
-      - start/pauza jest krzywo, zamiast być na środku to jest lekko w lewo i w dół, wyjeb kółko, to nie spotify
+      - start/pauza 
+        - jest krzywo, zamiast być na środku to jest lekko w lewo i w dół
+        - w trybie pauzy powinien być dwoma kreseczkami pionowymi, a nie kwadratem, 
+        - gdy filmik dobiegnie do końca powinien zamienić się na ikonę restartu/powrotu (jakaś zakręcona strzałka)
+        - wywal kółko dookoła niego
       - step-prev i step-next maja zbyt ostre strzałki, daj jakieś inne
-
-
+    - ikonkę restartu umieść na drugim miejscu, czyli między step-prev a step-play
+    - kliknięcie dot w trakcie odtwarzani powinno przenosić na początek odpowiedniego filmiku a nie w miejscu gdzie był ostatnio odtwarzany
+    - Przełącznik "Prędkość filmów" powinien nazywać się "Prędkość animacji" i powinien przewijać się od lewej do prawej a niae na odwrót. Powinny wyśietlać się wartości w ułamku dziesiętnym (0,25x, 0,5x)
+    - Rozwijany przycisk "Pokaż wyjaśnienia kroku" jest zdecydowanie za szeroki, ta perzerwa między tytułem a strzałką rozwijania jest niepotrzena. Przycisk/container powinien mieć wi≥ęcej marginesu też z góry i z dołu. A rozwinięty tekst powinien być troszkę niżej od tytułu przycisku.
+    - podczas łądowania się filmiku powinien wypełniać to coś o jego wymiarach, jeżeli to problem to ustaw sztywno tyle ile akurat tam zajmuje normalnie ten filmik 720p i heja
+    - kliknięcie tej samej kropki (dot) drugi raz powinno puścić odtwarzanie filmiku do przodu\
+    
   - Zmień styl nazywania podfolderów tego typu z
     2024-grudzien/media/krok-po-kroku/ na 
     2024-grudzien/media/solution-step-by-step/
     zaktualizuj referencje itd.
-
-
-  - SPRAWDŹ CZY TO NIE JEST JUŻ PRZYPADKIEM ROZWIĄZANE
-    - Rozwiązanie krok po kroku — ZOSTAŁO Z TEGO TEMATU (reszta zrobiona w v20, patrz done/04-biezace.md):
-      - Sceny zad. 1 i zad. 3 są wciąż w starym kadrze 21:9 (840×360, 60 fps). Odtwarzacz radzi sobie
-        z obydwoma formatami naraz (bierze proporcje z pliku), więc to nie pali się — ale dopóki tego
-        nie przerobisz, te dwa zadania nie mają zapasu klatek pod spowolnienie 0,25×.
-        Po przerenderowaniu trzeba puścić `tools/rewersy.sh` jeszcze raz z `--nadpisz`.
-      - Zad. 3 nie ma opisów kroków w danych (7 z 8 kroków ma puste "text"), więc przycisk
-        „Pokaż wyjaśnienie kroku" pokazuje się tam tylko na ostatnim kroku.
+    -
 
 + NIE REALIZUJ:
-
+  - HENTICH: ZMIEŃ STARE FILMIKI NA NOWO USTALONYU FORMAT 720p120fps, opisy w zad3 uzupełnimy potem, możesz je dopisać gdzieś tam niżej niżej w todo
+    Rozwiązanie krok po kroku - ZOSTAŁO Z TEGO TEMATU (reszta zrobiona w v20, patrz done/04-biezace.md):
+    - Sceny zad. 1 i zad. 3 są wciąż w starym kadrze 21:9 (840×360, 60 fps). Odtwarzacz radzi sobie
+      z obydwoma formatami naraz (bierze proporcje z pliku), więc to nie pali się — ale dopóki tego
+      nie przerobisz, te dwa zadania nie mają zapasu klatek pod spowolnienie 0,25×.
+      Po przerenderowaniu trzeba puścić `tools/rewersy.sh` jeszcze raz z `--nadpisz`.
+    - Zad. 3 nie ma opisów kroków w danych (7 z 8 kroków ma puste "text"), więc przycisk
+      „Pokaż wyjaśnienie kroku" pokazuje się tam tylko na ostatnim kroku.
+  
   - Zad. 10/11 na telefonie: pola/przyciski są już pod treścią zdania i jest czytelniej, ale brakuje
     odstępu między kolejnymi zdaniami (1, 2, 3…) — zlewają się w jeden blok.
 
@@ -53,54 +62,19 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + TESTOWANIE HENRICH:
 
-  - NOWY ODTWARZACZ KROK PO KROKU (v20) — zad. 1, 2 i 3, arkusz grudzień 2024.
-    Rewersy są już dla wszystkich trzech zadań, więc ◄ ma czym cofać.
+  - NOWY ODTWARZACZ KROK PO KROKU (v20), zad. 1/2/3, arkusz grudzień 2024 — testy Henricha:
+    kropki (wersja B) i klik-do-kroku potwierdzone działające; cofanie ◄, pasek postępu,
+    ROW2/ROW3, prędkość, gesty i strzałki przy >7 kropkach jeszcze bez odpowiedzi.
+    Pełna checklista: issues/krok-po-kroku-v20-testy.md
 
-    - KROPKI: jest ich o jedną więcej niż filmów. Sprawdź, czy kropka „obecna" stoi tam, gdzie
-      się spodziewasz. PRZYJĄŁEM WERSJĘ B z Twojego rysunku ROW 1, bo dwie linijki rysunku
-      przeczą sobie nawzajem: „po skończeniu 3. kroku" masz pełny pasek PO PRAWEJ od O, a
-      „po obejrzeniu całości" pełny pasek PO LEWEJ od O. Zrobiłem tak, że gdy film dobiegnie
-      końca, O przeskakuje na kropkę po prawej (czyli linijka „po skończeniu 3. kroku"
-      wyglądałaby u mnie `o o o~~~O o o`). Jeśli chciałeś odwrotnie — powiedz, to jedna zmiana.
-    - Kliknij w dowolną kropkę: ma przenieść do PIERWSZEJ klatki tego kroku i zostawić film
-      zatrzymany. Ostatnia kropka = stan końcowy, czyli ostatnia klatka ostatniego filmu.
-    - ◄ w środku filmu: ma polecieć od tyłu i zatrzymać się na początku TEGO kroku. ◄ jeszcze
-      raz (już na pierwszej klatce): ma cofnąć cały poprzedni krok. Na kropce 0 ◄ jest wyszarzone.
-    - Pasek postępu jest teraz między kropkami, nie pod filmem — przy cofaniu ma się OPRÓŻNIAĆ.
-    - ROW 2: ◄ / start-pauza w kółku / ►. Kółko jest po to, żeby „odtwórz" (▶) nie wyglądał
-      identycznie jak „następny krok" (►). Sprawdź kciukiem, czy trafiasz — mają po 44 px.
-    - ROW 3 „Pokaż wyjaśnienie kroku" — pod nim siedzi całe pole "text" (opis + wzór), zgodnie
-      z Twoją odpowiedzią. Pod filmem NIE MA już żadnego zawsze widocznego podpisu.
-    - Panel boczny → „Prędkość filmów": ¼× ½× 1× 2× 4×. Napisałem ułamkami, bo lista stanów
-      rozdziela je przecinkiem i „0,25×" rozpadłoby się na dwa. Zmiana działa od razu na
-      odtwarzanym filmie. Przy 4× obraz jest skokowy — to znane i zmierzone, nie usterka.
-    - Na telefonie: przesuń palcem po filmie w lewo (następny) i w prawo (poprzedni).
-      Na komputerze strzałki ← → na klawiaturze.
-    - ZAD. 1 ma 10 kropek, ZAD. 3 ma 9 — powyżej siedmiu włączają się strzałeczki ‹ › po bokach
-      paska kropek. Zad. 2 ma dokładnie 7 i strzałek mieć NIE powinno.
-    - Dojście do ostatniego kroku NIE zaznacza już poprawnej odpowiedzi (zdjęte, jak prosiłeś).
-    - Zad. 1 i 3 mają filmy jeszcze w starym kadrze 21:9. Nie są już wciskane w pudełko 16:9 —
-      kadr dopasowuje się do pliku, więc zniknął pas ok. 80 px nad i pod obrazem.
+  - Ciemny motyw wymuszony ręcznie w panelu bocznym: rysunki/filmy mają przygasać jak przy
+    „auto" — poprawka przy okazji v20, jeszcze bez potwierdzenia Henricha.
+    issues/krok-po-kroku-v20-testy.md
 
-  - CIEMNY MOTYW, osobna poprawka przy okazji: jeśli WYMUSISZ ciemny w panelu bocznym (nie
-    „auto"), rysunki i filmy mają być teraz przygaszone tak samo jak przy motywie z systemu.
-    Wcześniej przy ręcznym wyborze świeciły na biało — brakowało jednej zmiennej w CSS.
-    To najpewniej powód, dla którego punkt o świecącym wideo z v15 mógł wyglądać na niezrobiony.
-
-  - Zadanie 2, arkusz grudzień 2024 (v19) — TEST NOWEGO KADRU. Filmy są teraz 16:9, 1280×720,
-    120 fps, a wzory pomocnicze wyszły z kadru do podpisów pod filmem. To jest test SAMEJ
-    rozdzielczości i osadzenia filmu — kropek, przycisków i rewersów jeszcze nie ma.
-
-    - Film ma być zauważalnie WIĘKSZY: na komputerze 608×342 zamiast 420×180, na telefonie
-      340×191 zamiast 300×129. Na telefonie film wychodzi teraz na całą szerokość karty.
-    - Sprawdź, czy kadr nie jest za wysoki na telefonie — czy nawigacja („1 / 6" ze strzałkami)
-      mieści się na ekranie razem z filmem, bez przewijania.
-    - KROK 1 i KROK 6, po zatrzymaniu się filmu: w kroku 1 ma być widoczny wykładnik \(-5\),
-      w kroku 6 wynik \(5^4\). Przeglądarka potrafi zatrzymać obraz kilka klatek przed końcem
-      pliku i wtedy gubi ostatni dorysowany element — dołożyłem przytrzymanie stanu końcowego,
-      ale to trzeba obejrzeć na prawdziwym telefonie.
-    - Pod każdym filmem jest teraz podpis ze wzorem, który wcześniej był animowany w kadrze
-      po prawej stronie. Sprawdź, czy się dobrze czyta i czy nie jest za długi.
+  - Zadanie 2 (v19), test kadru 16:9 1280×720/120fps: rozdzielczość, rozmiar filmu i
+    nawigacja na telefonie potwierdzone dobre. DO ZROBIENIA: podpis pod filmem na telefonie
+    ma za wąskie marginesy (box rozwiązania powinien być szerszy), do zweryfikowania treść
+    kroku 1/6 (wykładnik -1, potem 5, wynik \(5^4\)). issues/krok-po-kroku-v20-testy.md
 
   - Kontener: firewall + Playwright + read-only `.vscode` (2026-08-10). WYMAGA **Rebuild Container**
     (zwykłego, bez `--no-cache`) — bez tego nic z tego nie zadziała. Po przebudowie, w terminalu
@@ -194,7 +168,7 @@ Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz is
 
   + SONNET DOPISAŁ:
 
-    - Tryb testowy dla zgłaszania błędów (app/report.js): przycisk „Wyślij zgłoszenie" zamieniony na „Wyślij zgłoszenie lokalnie" 
+    - Tryb testowy dla zgłaszania błędów (app/report.js): przycisk „Wyślij zgłoszenie" zamieniony na „Wyślij zgłoszenie lokalnie"
       - (np. pod `?test-zgloszenie=1`, wzorem `?test-egzamin=1`), który loguje payload do konsoli/localStorage zamiast robić fetch do Formspree — żeby testować całą ścieżkę (walidacja, honeypot, throttling, toast) bez zużywania miesięcznego limitu 50 zgłoszeń.
 
   + Sonnet 5, high — paczka drobiazgów UI (v15, 2026-08-10):
@@ -213,8 +187,8 @@ Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz is
 
     - Gdy Henrich zdecyduje się upublicznić imię i nazwisko, trzeba podmienić pseudonim `Henrich2137` na dane osobowe w poniższych miejscach. CLA na pseudonim jest słabsze dowodowo niż na nazwisko.
       - `LICENSE.md` (linie 1–2: copyright + Required Notice)
-      - `CONTRIBUTING.md` (punkt 2 zgody na licencjonowanie wkładu
-      - stopki plikach html
+      - `CONTRIBUTING.md` (punkt 2 zgody na licencjonowanie wkładu)
+      - stopki w plikach html
 
     - Gdy ruszy domena matematykazen.pl, podmień URL w `LICENSE.md:2` (Required Notice — ta linia jest kopiowana przez każdego redystrybutora) i `README.md`; w OVERVIEW.md domena jest już opisana jako plan Fazy 2.
 

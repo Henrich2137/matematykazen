@@ -19,6 +19,7 @@ Zasady:
 - [ocenianie-cichy-blad-zapisu.md](ocenianie-cichy-blad-zapisu.md) — `ustawFazeOceniania()` cicho połyka błędy zapisu do localStorage
 - [wskazniki-reload-faza-oceniania.md](wskazniki-reload-faza-oceniania.md) — wskaźniki „oceń się" znikają po odświeżeniu strony po egzaminie
 - [zadania-nie-renderuja-sie-mobile.md](zadania-nie-renderuja-sie-mobile.md) — zadania nie renderują się na telefonie (Pixel 7a/GrapheneOS, Firefox i Brave)
+- [krok-po-kroku-v20-testy.md](krok-po-kroku-v20-testy.md) — checklista testów Henricha dla odtwarzacza v20 (zad. 1/2/3) i kadru 16:9 zad. 2 (v19); część potwierdzona, część otwarta
 
 ## Nie problemy, tylko opisy działania
 
