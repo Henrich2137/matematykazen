@@ -33,6 +33,9 @@ poszła z hosta (`.devcontainer/` jest read-only), weryfikacja renderu z kontene
   skrypcie, nie w renderze. Poprawka to jeden znak, a scena jest już ustawiona dokładnie na tym
   kroku, więc render naprawionego pliku da gotowy plik bez żadnego dodatkowego cięcia.
 
+- **Wnioski o sposobie pracy** (nie o Manimie) — trzy rzeczy prawdopodobne trafiły do dokumentacji
+  jako ustalone: `issues/lekcje-z-sesji.md`, wpis 2026-08-11.
+
 [ZROBIONE 2026-08-10] (Opus 5 High) Kontener, paczka trzech zmian: brama w firewallu zawężona
 do samego DNS, `.vscode/` read-only, automatyczny pull przy starcie faktycznie działa.
 

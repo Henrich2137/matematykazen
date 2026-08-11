@@ -1,8 +1,11 @@
-# Lekcje
+# Lekcje z sesji
 
-Wnioski z sesji, które warto przenieść na następne zadania — nie „co zrobiono"
-(to jest w `done/`) i nie „jak działa" (to jest w `issues/` i README-ach), tylko
-**czego ta sesja nauczyła o sposobie pracy**. Najnowsze wpisy na górze.
+Wnioski, które warto przenieść na następne zadania: **czego dana sesja nauczyła
+o sposobie pracy**. To nie jest ani „co zrobiono" (od tego jest `done/`), ani
+„jak coś działa" (od tego są pozostałe pliki w tym katalogu i README-y).
+
+Wyjątek od zasady „jeden plik w `issues/` = jeden problem" — ten plik nie opisuje
+awarii i nigdy się nie „zamyka", tylko rośnie. Najnowsze wpisy na górze.
 
 Wpisy zawierają wyłącznie rzeczy sprawdzone. Tam, gdzie czegoś nie udało się
 rozstrzygnąć, jest to napisane wprost — „nie ustalono" jest tu pełnoprawnym

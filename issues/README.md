@@ -31,6 +31,10 @@ ale mają na tyle nieoczywistą konstrukcję, że bez notatki nikt jej nie odtwo
 
 - [playwright-podglad.md](playwright-podglad.md) — Playwright + Chromium w kontenerze: skąd się bierze przeglądarka i jak podbić wersję
 
+## Lekcje (nie problem)
+
+- [lekcje-z-sesji.md](lekcje-z-sesji.md) — czego kolejne sesje nauczyły o **sposobie pracy** (nie o kodzie): co poszło nie tak w spec-ach i weryfikacjach, i jak to wykryć taniej następnym razem. Jedyny plik tutaj, który się nie zamyka — rośnie, najnowsze wpisy na górze.
+
 ## Archiwum (kod usunięty, ale trzymany na wypadek powrotu)
 
 - [archiwum-hover-podglad.md](archiwum-hover-podglad.md) — usunięty hover-podgląd „wartość → następna" w panelu ustawień
