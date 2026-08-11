@@ -386,6 +386,50 @@ Objawy i przyczyny:
   zamierzone, oba katalogi są montowane `readonly`. Patrz sekcja
   „`.devcontainer/` i `.vscode/` tylko do odczytu".
 
+## Świeża maszyna: dwa kroki, których repo nie zrobi za Ciebie
+
+Oba dotyczą rzeczy leżących **poza repozytorium**, w katalogu domowym hosta —
+przy pierwszym uruchomieniu na nowym komputerze kontener wywala się na nich,
+zanim jeszcze cokolwiek z repo zdąży się wykonać. Oba robi się **raz na
+maszynę**; przeżywają Rebuild Container, także z `--no-cache`.
+
+**1. Chromium dla Playwrighta.** `devcontainer.json` montuje hostowy
+`~/.cache/ms-playwright`, a podman przy bindzie nieistniejącej ścieżki nie
+tworzy jej po cichu, tylko odmawia startu kontenera:
+
+```
+Error: statfs /home/<user>/.cache/ms-playwright: no such file or directory
+```
+
+Przeglądarkę pobiera się na hoście komendą z
+[../issues/playwright-podglad.md](../issues/playwright-podglad.md) (~650 MB) —
+wersja musi się zgadzać z `ARG PLAYWRIGHT_VERSION` w `Dockerfile`.
+
+**2. Prawa do wolumenu `vscode`.** Ten wolumen (cache VS Code Servera, wspólny
+dla wszystkich kontenerów) dokłada **samo rozszerzenie Dev Containers** — nie ma
+go w `devcontainer.json`, więc nie da się go stamtąd skonfigurować. Rootless
+podman tworzy go jako własność hostowego uid 1000, czyli użytkownika `node`
+w kontenerze. Ale serwer instaluje **root**, a root w kontenerze to zmapowany
+subuid, który przez `--cap-drop=ALL` nie ma `DAC_OVERRIDE` — więc do katalogu
+`node` nie wejdzie:
+
+```
+mkdir: cannot create directory '/vscode/vscode-server': Permission denied
+```
+
+Pod Dockerem tego nie widać, bo tam root w kontenerze to root hosta. Jednorazowo
+na hoście:
+
+```bash
+chmod 0777 "$(podman volume inspect vscode --format '{{.Mountpoint}}')"
+```
+
+Wraca to tylko po `podman volume rm vscode`. Alternatywa, jeśli wolisz nie mieć
+katalogu 0777: ustaw `"dev.containers.cacheVolume": false` w **globalnym**
+`settings.json` — to ustawienie ma zasięg `application`, więc nie da się go
+zapisać w `.vscode/settings.json` w repo. Kosztuje ponowne rozpakowanie serwera
+przy każdej przebudowie (kilka sekund, archiwum i tak leży w cache hosta).
+
 ## Zmiany wymagające przebudowy
 
 `init-firewall.sh` jest kopiowany do obrazu, więc po jego edycji potrzebny jest
