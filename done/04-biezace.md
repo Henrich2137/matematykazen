@@ -1,5 +1,33 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-11] (Local Opus 5 Medium) Kontener: Manim, paczka 1 — środowisko zweryfikowane.
+Spec: `docs/superpowers/specs/2026-08-11-manim-w-kontenerze-design.md` (warstwy 1 i 4). Instalacja
+poszła z hosta (`.devcontainer/` jest read-only), weryfikacja renderu z kontenera.
+
+- `manim --version` → `Manim Community v0.18.1`, zgodnie z hostem. Render `solutionZad2.py`
+  (`ScenaZadania2`) przechodzi w **14,6 s**, bez błędu LaTeX-a — czyli **minimalny TeX Live
+  wystarcza** i `texlive-full` (~5 GB) nie jest potrzebny.
+- **Porównanie host ↔ kontener wypadło zgodnie.** Ten sam skrypt vs `zad2rozw_step6.mp4`:
+  identyczne parametry pliku (840×360, 60 fps, 120 klatek, 2,000 s, h264 High/yuv420p),
+  SSIM średnio 0,999856 (najgorsza klatka 0,999543), a w powiększeniu 4× ta sama geometria
+  glifów. Obawa ze spec-a o metryki fontu (MiKTeX vs TeX Live) **się nie potwierdziła** —
+  resztkowa różnica to antyaliasing na krawędziach, a jej źródłem jest najpewniej koder:
+  ffmpeg 5.1.9 w kontenerze vs 7.1 na hoście (pliki 20 kB vs 27 kB). Wniosek: kontener nadaje
+  się także do **finalnych** renderów, nie tylko do podglądu.
+- **Poprawka do instrukcji z samego spec-a**: komenda weryfikacyjna miała tam `-qh` i była błędna.
+  Flaga jakości nadpisuje `pixel_width`/`pixel_height` z `manim.cfg`, więc `-qh` renderuje
+  1920×1080 (16:9) zamiast 840×360 (21:9) — inne proporcje kadru niż pliki na stronie, a więc
+  materiał nieporównywalny. Poprawna komenda to samo `manim plik.py Scena`. Zapisane w README.
+- **Rozwiązana zagadka „cięcia na kroki"** (README miał tu od miesiąca „domysł, niepotwierdzone",
+  a spec zostawiał to warstwie 2). Odczytane wprost z `solutionZad2.py`: żadnego cięcia nie było —
+  wszystkie kroki poza jednym były **zakomentowane blokiem `"""`**, a scena renderowana raz na
+  krok. Dlatego skrypty leżą w repo z zakomentowaną większością treści; to nie jest martwy kod,
+  tylko ostatni stan ręcznej procedury. Tłumaczy też, czemu pliki `_stepN.mp4` mają po ~1 s.
+- **Znaleziona przyczyna błędu 5⁻⁴ w kroku 6 zad. 2** (pozycja „DLA HENRICHA" w TODO.md):
+  `manimations/solutionZad2.py` linia 45, `kroki[5] = MathTex(r" 5^{-4}")` — literówka w samym
+  skrypcie, nie w renderze. Poprawka to jeden znak, a scena jest już ustawiona dokładnie na tym
+  kroku, więc render naprawionego pliku da gotowy plik bez żadnego dodatkowego cięcia.
+
 [ZROBIONE 2026-08-10] (Opus 5 High) Kontener, paczka trzech zmian: brama w firewallu zawężona
 do samego DNS, `.vscode/` read-only, automatyczny pull przy starcie faktycznie działa.
 
