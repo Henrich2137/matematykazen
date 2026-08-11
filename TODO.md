@@ -66,10 +66,10 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
   - Kontener: Manim (paczka 1 — środowisko), spod spec `docs/superpowers/specs/2026-08-11-manim-w-kontenerze-design.md`.
     WYMAGA **Rebuild Container** — obraz urósł o ok. 1,5–2 GB (TeX Live + ffmpeg + Manim), a sama
-    przebudowa trwa ok. 10 minut. UWAGA: po tak długim rebuildzie sesja wywali się na
-    „firewall nie został nałożony" — obserwator firewalla pilnuje tylko 180 s i zamyka okno, zanim
-    obraz się dobuduje. To nie awaria: wystarczy ponowić „Reopen in Container" (drugie podejście
-    idzie z cache'u) albo odpalić `.devcontainer/host-firewall.sh` z hosta. Po wejściu do kontenera:
+    przebudowa trwa ok. 10 minut. (Pierwszy rebuild 2026-08-11 wywalił się na „firewall nie został
+    nałożony" — obserwator firewalla pilnował wtedy tylko 180 s i zamknął okno, zanim obraz się
+    dobudował. Poprawione: limit to 900 s, a obserwator kończy sam minutę po nałożeniu reguł, więc
+    zwykłe starty nic na tym nie tracą.) Po wejściu do kontenera:
 
     - `manim --version` → `Manim Community v0.18.1` (dokładnie ta wersja co na Windowsie).
     - `cd manimations && manim -qh solutionZad2.py ScenaZadania2` → ma się skończyć bez błędu

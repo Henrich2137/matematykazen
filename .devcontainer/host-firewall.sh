@@ -18,7 +18,7 @@
 # UŻYCIE
 #   .devcontainer/host-firewall.sh           – nałóż teraz i wypisz wynik (ręcznie)
 #   .devcontainer/host-firewall.sh --spawn   – oddaj obserwatora systemd-owi (z initializeCommand)
-#   .devcontainer/host-firewall.sh --watch   – pilnuj przez 3 min (woła to --spawn)
+#   .devcontainer/host-firewall.sh --watch   – pilnuj, aż firewall stanie (woła to --spawn)
 #
 # Wywołanie ręczne przydaje się po restarcie kontenera, gdy VS Code nie
 # przechodził przez initializeCommand.
@@ -37,8 +37,18 @@ SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 TARGET=$(realpath -m "$SCRIPT_DIR/..")
 FW_IN_CONTAINER=/usr/local/bin/init-firewall.sh
 UNIT=matematykazen-firewall-watch
-WATCH_SECONDS=180
+# Górny limit czekania, nie długość pracy: obserwator kończy sam, gdy tylko
+# firewall stoi (patrz tryb --watch). 900 s jest po to, żeby przetrwać PEŁNĄ
+# przebudowę obrazu — odkąd siedzi w nim TeX Live, potrafi ona trwać ~10 minut,
+# a przy poprzednim limicie 180 s okno zamykało się, zanim kontener wystartował,
+# i firewall nie był nakładany (zdarzyło się 2026-08-11). Przy zwykłym starcie
+# ta liczba nie ma znaczenia — obserwator znika po kilkudziesięciu sekundach.
+WATCH_SECONDS=900
 POLL_SECONDS=5
+# Ile jeszcze pilnować po nałożeniu firewalla, zanim uznamy robotę za skończoną.
+# Zapas na podmianę kontenera tuż po starcie; bez niego wychodzilibyśmy w chwili,
+# gdy VS Code może jeszcze wymienić kontener pod nami.
+GRACE_SECONDS=60
 
 CLI=""
 for candidate in podman docker; do
@@ -109,19 +119,47 @@ fi
 
 if [ "${1:-}" = "--watch" ]; then
   # Tryb dla initializeCommand: rozszerzenie odpala nas ZANIM kontener powstanie,
-  # więc czekamy, aż się pojawi. Pilnujemy przez cały okres startu, bo przy
-  # przebudowie stary kontener bywa jeszcze widoczny i zaraz znika — wtedy nowy
-  # zastanie nas gotowych. Kolejne przejścia są bezpieczne: gdy firewall już
-  # stoi, nic nie robimy.
-  log "obserwuję przez ${WATCH_SECONDS}s, repo: $TARGET, cli: $CLI"
+  # więc czekamy, aż się pojawi. Kolejne przejścia są bezpieczne: gdy firewall
+  # już stoi, nic nie robimy.
+  #
+  # Wyjście jest warunkowe, nie czasowe: kończymy GRACE_SECONDS po tym, jak
+  # firewall stanął — czyli przy zwykłym starcie po kilkudziesięciu sekundach,
+  # a pełny limit WATCH_SECONDS zużywamy tylko wtedy, gdy naprawdę trzeba, czyli
+  # gdy kontener buduje się kilkanaście minut. Dzięki temu długie okno nic nie
+  # kosztuje w codziennym użyciu.
+  #
+  # Zniknięcie pilnowanego kontenera kasuje odliczanie i wracamy do czekania:
+  # przy przebudowie stary kontener bywa jeszcze przez chwilę widoczny (i już
+  # uzbrojony), a zaraz znika — gdybyśmy liczyli grace od niego, wyszlibyśmy,
+  # zanim pojawi się nowy.
+  log "obserwuję (do ${WATCH_SECONDS}s, wyjście ${GRACE_SECONDS}s po nałożeniu firewalla), repo: $TARGET, cli: $CLI"
   deadline=$((SECONDS + WATCH_SECONDS))
+  watched_cid=""
+  grace_end=0
   while [ "$SECONDS" -lt "$deadline" ]; do
     if cid=$(find_container); then
-      is_armed "$cid" || arm "$cid"
+      # Nowy (albo pierwszy) kontener — odliczanie liczymy od zera.
+      if [ "$cid" != "$watched_cid" ]; then
+        watched_cid=$cid
+        grace_end=0
+      fi
+      if is_armed "$cid" || arm "$cid"; then
+        if [ "$grace_end" -eq 0 ]; then
+          grace_end=$((SECONDS + GRACE_SECONDS))
+        elif [ "$SECONDS" -ge "$grace_end" ]; then
+          log "firewall stoi na ${cid:0:12} od ${GRACE_SECONDS}s — kończę obserwację"
+          exit 0
+        fi
+      fi
+    else
+      # Brak kontenera: albo jeszcze się buduje, albo właśnie znika przy
+      # przebudowie. W obu przypadkach czekamy dalej, bez odliczania.
+      watched_cid=""
+      grace_end=0
     fi
     sleep "$POLL_SECONDS"
   done
-  log "koniec okna obserwacji"
+  log "koniec okna obserwacji (limit ${WATCH_SECONDS}s)"
   exit 0
 fi
 

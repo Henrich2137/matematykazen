@@ -42,8 +42,13 @@ Co się dzieje po „Reopen in Container":
 1. **`initializeCommand`** (na hoście, przed powstaniem kontenera) woła
    `host-firewall.sh --spawn`. Ten rejestruje obserwatora jako jednostkę systemd
    i wraca po ~30 ms.
-2. **Obserwator** (`--watch`, pod systemd) co 5 s przez 3 minuty szuka
-   działającego kontenera tego repo po etykiecie `devcontainer.local_folder`.
+2. **Obserwator** (`--watch`, pod systemd) co 5 s szuka działającego kontenera
+   tego repo po etykiecie `devcontainer.local_folder`. Czeka **do 15 minut**,
+   bo tyle potrafi trwać pełna przebudowa obrazu z TeX Live — ale kończy
+   **minutę po nałożeniu firewalla**, więc przy zwykłym starcie żyje kilkadziesiąt
+   sekund i długi limit nic nie kosztuje. Zniknięcie pilnowanego kontenera kasuje
+   to odliczanie: przy przebudowie stary kontener bywa jeszcze chwilę widoczny
+   i uzbrojony, a obserwator ma doczekać nowego, nie wyjść po starym.
 3. **VS Code buduje obraz i startuje kontener** — bez żadnych uprawnień
    (`--cap-drop=ALL`).
 4. **Obserwator znajduje kontener** i wchodzi do niego przez
@@ -361,17 +366,15 @@ Objawy i przyczyny:
 
 - **Sesja nie startuje, komunikat o nienałożonym firewallu** — obserwator nie
   zadziałał. Zajrzyj do obu logów; najczęściej wystarczy odpalić skrypt ręcznie.
-  - **Najczęstszy powód po pełnej przebudowie: obserwator pilnuje tylko 180 s**
-    (`WATCH_SECONDS` w `host-firewall.sh`), a `initializeCommand` odpala go
-    **przed** budowaniem obrazu. Odkąd w obrazie siedzi TeX Live (paczka Manima,
-    2026-08-11), rebuild potrafi trwać ~10 minut — okno obserwacji zamyka się
-    długo przed startem kontenera, firewall nie zostaje nałożony i
-    `postStartCommand` słusznie przerywa sesję. W logu widać wtedy „koniec okna
-    obserwacji" bez wcześniejszego „OK: firewall nałożony". Zwykłe starty
-    (bez przebudowy) mieszczą się w 180 s bez problemu, więc lekarstwo jest
-    proste: po długim rebuildzie odpal `.devcontainer/host-firewall.sh` ręcznie
-    z hosta albo po prostu ponów „Reopen in Container" — drugie podejście idzie
-    już z cache'u.
+  - **Po pełnej przebudowie** sprawdź w logu, czy nie ma „koniec okna obserwacji"
+    bez wcześniejszego „OK: firewall nałożony". Tak wygląda przekroczenie
+    `WATCH_SECONDS` — obserwator startuje **przed** budowaniem obrazu, więc
+    bardzo długi rebuild może go przeżyć. Zdarzyło się 2026-08-11 przy limicie
+    180 s, gdy obraz urósł o TeX Live i budował się ~10 minut; limit ma teraz
+    900 s i kończy się sam po nałożeniu reguł, ale gdyby kiedyś i to nie
+    starczyło, lekarstwo jest to samo: odpal `.devcontainer/host-firewall.sh`
+    ręcznie z hosta albo ponów „Reopen in Container" (drugie podejście idzie
+    już z cache'u, więc mieści się w oknie).
 - **VS Code otwiera pusty katalog** — rozjechał się `workspaceFolder`.
 - **`sudo: unable to change to root gid`** — ktoś dodał `--cap-drop=ALL` bez
   SETUID/SETGID, a coś nadal próbuje używać `sudo`.
