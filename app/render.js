@@ -1,7 +1,7 @@
 // app/render.js — loadExercises(): render wszystkich zadań z tablicy `exercises`,
 // obsługa odpowiedzi (ABCD/PF/multiSelect/open/fillIn), podpowiedzi, punktacji,
 // zapisu/odtworzenia postępu. Podsystem kroków rozwiązania jest w app/steps.js
-// (funkcje renderStep/showStep/podepnijSterowanieWideo wołane z krokiCtx).
+// (funkcje renderStep/pokazKrok/krokDalej/krokWstecz wołane z krokiCtx).
 
 // Fabryka przycisku „sprawdź" dla trybu „sprawdź później" (natychmiastowa
 // poprawność OFF). Przycisk jest tworzony LENIWIE (przy pierwszym pokaż) i
@@ -776,14 +776,21 @@ function loadExercises() {
         });
 
         // SOLUTION STEP BY STEP
-        // Właściwy podsystem kroków (renderStep/showStep/podepnijSterowanieWideo)
+        // Właściwy podsystem kroków (renderStep/pokazKrok/zbudujKropki)
         // mieszka w app/steps.js. Tu tylko zbieramy refy DOM kroków, budujemy stan
         // wspólny (krokiCtx) i podpinamy strzałki ◄/► oraz przycisk "Rozwiązanie".
         const stepsContent = solutionStepByStepContainer.querySelector(".steps-content");
         const stepsNav = solutionStepByStepContainer.querySelector(".steps-nav");
         const prevBtn = stepsNav.querySelector(".step-prev");
+        const playBtn = stepsNav.querySelector(".step-play");
         const nextBtn = stepsNav.querySelector(".step-next");
-        const stepCounter = stepsNav.querySelector(".step-counter");
+        const stepCounter = solutionStepByStepContainer.querySelector(".step-counter");
+        const kropkiBox = solutionStepByStepContainer.querySelector(".steps-dots");
+        const kropkiOkno = solutionStepByStepContainer.querySelector(".steps-dots-okno");
+        const przewinLewo = solutionStepByStepContainer.querySelector(".steps-scroll-lewo");
+        const przewinPrawo = solutionStepByStepContainer.querySelector(".steps-scroll-prawo");
+        const wyjasnienie = solutionStepByStepContainer.querySelector(".step-explain");
+        const wyjasnienieTresc = solutionStepByStepContainer.querySelector(".step-explain-tresc");
 
         const hasSteps = Array.isArray(exercise.solutionStepByStep);
         const steps = hasSteps ? exercise.solutionStepByStep : [];
@@ -814,39 +821,65 @@ function loadExercises() {
         // Rejestr dla przycisku "pokaż wszystkie rozwiązania" w pasku.
         wszystkieRozwiazania.push({ przycisk: solutionButton, panel: solutionContainer, ma: hasAnySolution });
 
-        // Stan wspólny kroków przekazywany do showStep (app/steps.js). currentStep
-        // i stepSwapToken MUSZĄ być te same dla showStep i strzałek ◄/►, dlatego
-        // trzymamy je w jednym obiekcie (nie kopiujemy wartości).
+        // Stan wspólny kroków przekazywany do app/steps.js. Musi być JEDNĄ
+        // instancją dla wszystkich elementów sterowania (kropki, przyciski,
+        // klawiatura, przesuwanie palcem), dlatego trzymamy go w obiekcie.
+        //   krok    — indeks bieżącego kroku (odcinka między kropkami)
+        //   uKonca  — czy głowica stoi na PRAWEJ kropce odcinka
+        //   wstecz  — czy w elemencie siedzi rewers, czy wersja w przód
         const krokiCtx = {
-            currentStep: 0,
-            stepSwapToken: 0,
+            krok: 0,
+            uKonca: false,
+            maxKropka: 0,
+            wstecz: false,
+            swapToken: 0,
+            dlugoscPrzod: 0,
             steps,
             stepsContent,
             prevBtn,
+            playBtn,
             nextBtn,
             stepCounter,
-            exerciseClone,
+            kropkiBox,
+            kropkiOkno,
+            przewinLewo,
+            przewinPrawo,
+            wyjasnienie,
+            wyjasnienieTresc,
         };
 
         if (hasSteps) {
-            prevBtn.addEventListener("click", () => {
-                if (krokiCtx.currentStep > 0) showStep(krokiCtx, krokiCtx.currentStep - 1);
+            zbudujKropki(krokiCtx);
+            prevBtn.addEventListener("click", () => krokWstecz(krokiCtx));
+            nextBtn.addEventListener("click", () => krokDalej(krokiCtx));
+            playBtn.addEventListener("click", () => przelaczOdtwarzanie(krokiCtx));
+            przewinLewo.addEventListener("click", () => {
+                kropkiOkno.scrollBy({ left: -kropkiOkno.clientWidth * 0.7, behavior: "smooth" });
             });
-            nextBtn.addEventListener("click", () => {
-                if (krokiCtx.currentStep < steps.length - 1) showStep(krokiCtx, krokiCtx.currentStep + 1);
+            przewinPrawo.addEventListener("click", () => {
+                kropkiOkno.scrollBy({ left: kropkiOkno.clientWidth * 0.7, behavior: "smooth" });
+            });
+            podepnijPrzesuwanie(krokiCtx, solutionStepByStepContainer);
+            // Klawiatura ← → działa na odtwarzaczu, z którym użytkownik miał
+            // ostatnio do czynienia — arkusz ma wiele zadań i bez tego nie da się
+            // powiedzieć, do którego z nich odnosi się strzałka.
+            solutionStepByStepContainer.addEventListener("pointerdown", () => {
+                aktywnyOdtwarzaczKrokow = krokiCtx;
             });
         }
 
         // Jeden handler przycisku "Rozwiązanie": chowa podpowiedź, przełącza panel
-        // rozwiązania, a gdy zadanie ma kroki — pokazuje je i renderuje bieżący krok
-        // (kroki pojawiają się dopiero po tym kliknięciu, ostatni woła markCorrectAnswer).
+        // rozwiązania, a gdy zadanie ma kroki — pokazuje je i odtwarza bieżący krok.
+        // (Dojście do ostatniego kroku NIE zaznacza już poprawnej odpowiedzi —
+        // Henrich uznał to za mylące, TODO.md.)
         solutionButton.addEventListener("click", () => {
             hintContainer.style.display = "none";
             solutionContainer.style.display = solutionContainer.style.display === "block" ? "none" : "block";
 
             if (hasSteps) {
                 solutionStepByStepContainer.style.display = "block";
-                showStep(krokiCtx, krokiCtx.currentStep);
+                aktywnyOdtwarzaczKrokow = krokiCtx;
+                pokazKrok(krokiCtx, krokiCtx.krok, { czas: 0, graj: true });
             } else {
                 solutionStepByStepContainer.style.display = "none";
             }
@@ -918,7 +951,7 @@ function loadExercises() {
 
         // KaTeX: renderujemy wzory w całym zbudowanym zadaniu (treść, odpowiedzi,
         // podpowiedź, rozwiązania). Kroki step-by-step renderują się osobno w
-        // showStep(), bo ich HTML powstaje dopiero przy przełączaniu kroków.
+        // pokazKrok(), bo ich HTML powstaje dopiero przy przełączaniu kroków.
         // W try, żeby ewentualny błąd renderowania wzoru nie ukrył zadania —
         // gorzej wyświetlony wzór jest lepszy niż brak całego zadania.
         try {

@@ -272,6 +272,31 @@ if (natychmiastowaToggle) {
     });
 }
 
+// Prędkość filmów „krok po kroku" (panel boczny): GLOBALNA, jak motyw czy
+// poprawność. Ustawiamy ją na WSZYSTKICH wstawionych już filmach naraz —
+// podepnijSterowanieWideo() w app/steps.js czyta ją tylko przy wstawianiu kroku,
+// więc bez tego zmiana działałaby dopiero od następnego kroku.
+const predkoscToggle = document.getElementById("predkosc-wideo-toggle");
+function odswiezPredkoscWideo(etykieta) {
+    ustawWartosc(predkoscToggle, etykieta);
+    const tempo = PREDKOSCI_WIDEO[etykieta] || 1;
+    try { localStorage.setItem(KLUCZ_PREDKOSC_WIDEO, String(tempo)); } catch (e) {}
+    document.querySelectorAll(".step-video video").forEach(v => {
+        v.defaultPlaybackRate = tempo;
+        v.playbackRate = tempo;
+    });
+}
+if (predkoscToggle) {
+    // Odtworzenie zapisanego wyboru: z localStorage mamy liczbę, w panelu
+    // potrzebna jest etykieta.
+    const zapisana = predkoscWideo();
+    const etykieta = Object.keys(PREDKOSCI_WIDEO).find(k => PREDKOSCI_WIDEO[k] === zapisana) || "1×";
+    ustawWartosc(predkoscToggle, etykieta);
+    predkoscToggle.addEventListener("click", () => {
+        odswiezPredkoscWideo(nastepnyStan(predkoscToggle));
+    });
+}
+
 // „Sprawdź wszystkie odpowiedzi" (panel boczny + kopia w stopce arkusza):
 // odsłania ocenę wszystkich zadań (ABCD/PF/multiSelect/fillIn/finalAnswer —
 // patrz rejestracje w oczekujaceSprawdzenia w app/render.js), które mają

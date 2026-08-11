@@ -239,8 +239,9 @@ function odpowiedzPoprawna(karta) {
 }
 
 // Który krok rozwiązania był na ekranie. Licznik „3 / 7" i tak jest renderowany
-// przez showStep (app/steps.js), więc czytamy go z DOM — obiekt ctx ze steps.js
-// jest lokalny per zadanie i nieosiągalny stąd.
+// przez odswiezNawigacje (app/steps.js) — od 2026-08-11 jest niewidoczny, bo
+// zastąpiły go kropki, ale nadal wypełniany. Czytamy go z DOM, bo obiekt ctx
+// ze steps.js jest lokalny per zadanie i nieosiągalny stąd.
 function krokRozwiazania(karta) {
     if (!karta) return "brak";
     const solutionOtwarte = karta.querySelector(".solution-container");
