@@ -26,47 +26,47 @@
             {
                 "type": "video",
                 "src": "media/zad1/solution-step-by-step/step1.mp4",
-                "text": "Zaczynamy od równania z wartością bezwzględną: \\(|x + 4| = 7\\)."
+                "text": "Zapisujemy \\(|x + 4| = 7\\)."
             },
             {
                 "type": "video",
                 "src": "media/zad1/solution-step-by-step/step2.mp4",
-                "text": "Wartość bezwzględna wynosi 7, gdy wyrażenie w środku jest równe 7 albo \\(-7\\) — stąd dwa przypadki do rozpatrzenia osobno."
+                "text": "Wartość bezwzględna działa tak, że w środku kresek może siedzieć \\(7\\) albo \\(-7\\), a i tak wyjdzie \\(7\\):\\[\\left|7\\right| = 7 \\qquad \\left|-7\\right| = 7\\]Więc jeśli wiemy, że w kreskach jest coś, co daje 7, to owo coś jest równe \\(7\\) albo \\(-7\\).<br>U nas tym czymś jest \\(x+4\\), więc mamy dwa przypadki do policzenia osobno."
             },
             {
                 "type": "video",
                 "src": "media/zad1/solution-step-by-step/step3.mp4",
-                "text": "Pierwszy przypadek: \\(x + 4 = 7\\)."
+                "text": "Bierzemy pierwszy przypadek."
             },
             {
                 "type": "video",
                 "src": "media/zad1/solution-step-by-step/step4.mp4",
-                "text": "Przenosimy 4 na prawą stronę, zmieniając jego znak."
+                "text": "Odejmujemy 4 od obu stron. W praktyce wygląda to tak, że czwórka przechodzi na prawo i zmienia znak."
             },
             {
                 "type": "video",
                 "src": "media/zad1/solution-step-by-step/step5.mp4",
-                "text": "Pierwsze rozwiązanie: \\(x_1 = 3\\)."
+                "text": "Pierwsze rozwiązanie gotowe."
             },
             {
                 "type": "video",
                 "src": "media/zad1/solution-step-by-step/step6.mp4",
-                "text": "Drugi przypadek: \\(x + 4 = -7\\)."
+                "text": "Teraz drugi przypadek."
             },
             {
                 "type": "video",
                 "src": "media/zad1/solution-step-by-step/step7.mp4",
-                "text": "Znowu przenosimy 4 na prawą stronę, zmieniając jego znak."
+                "text": "Tak samo jak przed chwilą: czwórka idzie na prawo i zmienia znak."
             },
             {
                 "type": "video",
                 "src": "media/zad1/solution-step-by-step/step8.mp4",
-                "text": "Drugie rozwiązanie: \\(x_2 = -11\\). Mamy już obie liczby, których szukaliśmy."
+                "text": "Drugie rozwiązanie gotowe. Mamy obie liczby, o które chodziło."
             },
             {
                 "type": "video",
                 "src": "media/zad1/solution-step-by-step/step9.mp4",
-                "text": "Suma obu rozwiązań: \\(x_1 + x_2 = -8\\) — to odpowiedź B."
+                "text": "Zadanie pyta o sumę tych liczb, więc je dodajemy. Odpowiedź <b>B</b>."
             }
         ],
         "solutionWidget": "widgetOsLiczbowa"
@@ -95,17 +95,17 @@
             {
                 "type": "video",
                 "src": "media/zad2/solution-step-by-step/step2.mp4",
-                "text": "Pierwiastek zamieniamy na potęgę o wykładniku ułamkowym: \\(a^{\\frac{m}{n}}=\\sqrt[n]{a^m}\\)"
+                "text": "Pierwiastek to inaczej potęga o wykładniku ułamkowym:\\[\\sqrt[n]{a^m}=a^{\\frac{m}{n}}\\]czyli \\(\\sqrt[5]{5}=5^{\\frac{1}{5}}\\)."
             },
             {
                 "type": "video",
                 "src": "media/zad2/solution-step-by-step/step3.mp4",
-                "text": "Ułamek \\(\\frac{1}{5}\\) też zapisujemy jako potęgę: \\(\\frac{a^r}{a^s}=a^{r-s}\\)"
+                "text": "\\(\\frac{1}{5}\\) też zapisujemy jako potęgę. Dzieląc potęgi o tej samej podstawie, odejmujemy wykładniki:\\[\\frac{a^r}{a^s}=a^{r-s}\\]czyli \\(\\frac{1}{5}=5^{-1}\\)."
             },
             {
                 "type": "video",
                 "src": "media/zad2/solution-step-by-step/step4.mp4",
-                "text": "Opuszczamy nawias, więc wykładnik \\(-5\\) musimy wymnożyć przez wykładniki obu potęg: \\((a\\cdot b)^r=a^r\\cdot b^r\\) oraz \\((a^r)^s=a^{r \\cdot s}\\)"
+                "text": "Opuszczamy nawias. Wykładnik \\(-5\\) trzeba wtedy wymnożyć przez wykładniki obu potęg ze środka:\\[(a\\cdot b)^r=a^r\\cdot b^r \\qquad (a^r)^s=a^{r \\cdot s}\\]"
             },
             {
                 "type": "video",
@@ -115,7 +115,7 @@
             {
                 "type": "video",
                 "src": "media/zad2/solution-step-by-step/step6.mp4",
-                "text": "Mnożąc potęgi o tej samej podstawie, dodajemy wykładniki: \\(a^r\\cdot a^s=a^{r+s}\\), czyli \\(5^{-1+5}=5^{4}\\) — odpowiedź A."
+                "text": "Mnożąc potęgi o tej samej podstawie, dodajemy wykładniki:\\[a^r\\cdot a^s=a^{r+s}\\]czyli \\(5^{-1+5}=5^{4}\\). Odpowiedź <b>A</b>."
             }
         ],
         "solutionWidget": null
@@ -139,42 +139,42 @@
             {
                 "type": "video",
                 "src": "media/zad3/solution-step-by-step/step1.mp4",
-                "text": "Zaczynamy od liczby z zadania: \\(2^{100} + 4^{49} + 16^{24}\\)."
+                "text": "Zapisujemy liczbę z zadania."
             },
             {
                 "type": "video",
                 "src": "media/zad3/solution-step-by-step/step2.mp4",
-                "text": "Wszystkie trzy podstawy są potęgami dwójki, więc zapisujemy je przez samą dwójkę: \\(4 = 2^{2}\\) oraz \\(16 = 2^{4}\\)."
+                "text": "Wszystkie trzy podstawy są potęgami dwójki, więc zapisujemy je przez samą dwójkę:\\[4 = 2^{2} \\qquad 16 = 2^{4}\\]"
             },
             {
                 "type": "video",
                 "src": "media/zad3/solution-step-by-step/step3.mp4",
-                "text": "Opuszczamy nawiasy — potęgę potęgi liczymy mnożąc wykładniki: \\((a^{r})^{s} = a^{r \\cdot s}\\), czyli \\((2^{2})^{49} = 2^{98}\\) i \\((2^{4})^{24} = 2^{96}\\)."
+                "text": "Opuszczamy nawiasy. Potęgę potęgi liczymy, mnożąc wykładniki:\\[(a^{r})^{s} = a^{r \\cdot s}\\]czyli \\((2^{2})^{49} = 2^{98}\\) oraz \\((2^{4})^{24} = 2^{96}\\)."
             },
             {
                 "type": "video",
                 "src": "media/zad3/solution-step-by-step/step4.mp4",
-                "text": "Szukamy tego, co wspólne. Najmniejszy wykładnik to 96, więc dwa pozostałe rozbijamy na sumę z dziewięćdziesiątką szóstką: \\(100 = 96 + 4\\) i \\(98 = 96 + 2\\)."
+                "text": "Szukamy czegoś wspólnego. Najmniejszy wykładnik to 96, więc dwa pozostałe rozbijamy na sumę, w której 96 się pojawia:\\[100 = 96 + 4 \\qquad 98 = 96 + 2\\]"
             },
             {
                 "type": "video",
                 "src": "media/zad3/solution-step-by-step/step5.mp4",
-                "text": "Sumę w wykładniku rozdzielamy na iloczyn potęg: \\(a^{r+s} = a^{r} \\cdot a^{s}\\). Teraz \\(2^{96}\\) stoi w każdym składniku."
+                "text": "Sumę w wykładniku rozdzielamy na iloczyn potęg:\\[a^{r+s} = a^{r} \\cdot a^{s}\\]Teraz \\(2^{96}\\) stoi w każdym składniku."
             },
             {
                 "type": "video",
                 "src": "media/zad3/solution-step-by-step/step6.mp4",
-                "text": "Wyłączamy \\(2^{96}\\) przed nawias — to ten sam ruch co wyłączanie wspólnego czynnika w zwykłej sumie."
+                "text": "Wyłączamy \\(2^{96}\\) przed nawias. To ten sam ruch, co w zwykłej sumie:\\[3a+3b=3(a+b)\\]"
             },
             {
                 "type": "video",
                 "src": "media/zad3/solution-step-by-step/step7.mp4",
-                "text": "Liczymy, co zostało w nawiasie: \\(2^{4} = 16\\) oraz \\(2^{2} = 4\\)."
+                "text": "Liczymy, co zostało w nawiasie:\\[2^{4} = 16 \\qquad 2^{2} = 4\\]"
             },
             {
                 "type": "video",
                 "src": "media/zad3/solution-step-by-step/step8.mp4",
-                "text": "W nawiasie wychodzi \\(16 + 4 + 1 = 21\\), czyli cała liczba to \\(2^{96} \\cdot 21\\). A \\(2^{96}\\) jest liczbą całkowitą, więc iloczyn jest wielokrotnością 21 — i o to było pytanie."
+                "text": "W nawiasie wychodzi \\(16 + 4 + 1 = 21\\), czyli cała liczba to \\(2^{96} \\cdot 21\\).<br>\\(2^{96}\\) jest liczbą całkowitą, więc iloczyn dzieli się przez 21. O to właśnie chodziło."
             }
         ],
         "solutionWidget": null
@@ -203,17 +203,17 @@
             {
                 "type": "video",
                 "src": "media/zad4/solution-step-by-step/step2.mp4",
-                "text": "Współczynnik stojący przed logarytmem wciągamy do środka jako wykładnik: \\(r\\log_a x=\\log_a x^{r}\\), czyli \\(6\\log_{7}y=\\log_{7}y^{6}\\)."
+                "text": "Liczbę stojącą przed logarytmem można wciągnąć do środka jako wykładnik:\\[r\\log_a x=\\log_a x^{r}\\]czyli \\(6\\log_{7}y=\\log_{7}y^{6}\\)."
             },
             {
                 "type": "video",
                 "src": "media/zad4/solution-step-by-step/step3.mp4",
-                "text": "Suma logarytmów o <b>tej samej podstawie</b> to logarytm iloczynu: \\(\\log_a x+\\log_a y=\\log_a(x\\cdot y)\\)."
+                "text": "Suma logarytmów o <b>tej samej podstawie</b> to logarytm iloczynu:\\[\\log_a x+\\log_a y=\\log_a(x\\cdot y)\\]"
             },
             {
                 "type": "video",
                 "src": "media/zad4/solution-step-by-step/step4.mp4",
-                "text": "Kropkę mnożenia zwyczajowo pomijamy — \\(\\log_{7}\\left(xy^{6}\\right)\\) to odpowiedź <b>D</b>."
+                "text": "Kropkę mnożenia zwyczajowo pomijamy. Zostaje \\(\\log_{7}\\left(xy^{6}\\right)\\), czyli odpowiedź <b>D</b>."
             }
         ],
         "solutionWidget": null
@@ -237,22 +237,22 @@
             {
                 "type": "video",
                 "src": "media/zad5/solution-step-by-step/step1.mp4",
-                "text": "Podstawiamy dane do wzoru na procent składany \\(P=P_0\\cdot(1+p)^{n}\\): kapitał początkowy 60 000 zł, dwa lata, wynik 67 925,76 zł."
+                "text": "Wzór na procent składany:\\[P=P_0\\cdot(1+p)^{n}\\]Podstawiamy dane: na start 60 000 zł, dwa lata, na koniec 67 925,76 zł."
             },
             {
                 "type": "video",
                 "src": "media/zad5/solution-step-by-step/step2.mp4",
-                "text": "Dzielimy obie strony przez 60 000, żeby zostawić po lewej samą potęgę."
+                "text": "Dzielimy obie strony przez 60 000, żeby po lewej została sama potęga."
             },
             {
                 "type": "video",
                 "src": "media/zad5/solution-step-by-step/step3.mp4",
-                "text": "Liczymy dzielenie: \\(67\\,925{,}76 : 60\\,000 = 1{,}132096\\)."
+                "text": "Liczymy dzielenie:\\[67\\,925{,}76 : 60\\,000 = 1{,}132096\\]"
             },
             {
                 "type": "video",
                 "src": "media/zad5/solution-step-by-step/step4.mp4",
-                "text": "Pierwiastkujemy obie strony. Bierzemy wartość dodatnią, bo \\(1+p>0\\) — kapitał na lokacie nie może być ujemny."
+                "text": "Pierwiastkujemy obie strony.<br>Pierwiastek daje dwie możliwości, dodatnią i ujemną, ale tutaj bierzemy tylko dodatnią: \\(1+p\\) mówi, ile razy urósł kapitał, a to nie może wyjść na minus."
             },
             {
                 "type": "video",
@@ -262,7 +262,7 @@
             {
                 "type": "video",
                 "src": "media/zad5/solution-step-by-step/step6.mp4",
-                "text": "Zamieniamy ułamek dziesiętny na procent: \\(0{,}064 = 6{,}4\\%\\) — odpowiedź <b>B</b>."
+                "text": "\\(p\\) wyszło ułamkiem dziesiętnym, a odpowiedzi są w procentach. Zamiana to mnożenie przez 100:\\[0{,}064 = 6{,}4\\%\\]Odpowiedź <b>B</b>."
             }
         ],
         "solutionWidget": "widgetProcentSkladany"
@@ -291,27 +291,27 @@
             {
                 "type": "video",
                 "src": "media/zad6/solution-step-by-step/step2.mp4",
-                "text": "Mianownik rozkładamy ze wzoru skróconego mnożenia: \\(a^{2}-b^{2}=(a-b)(a+b)\\), czyli \\(x^{2}-1=(x-1)(x+1)\\). Dopiero w tej postaci widać, co da się skrócić."
+                "text": "Mianownik rozkładamy wzorem skróconego mnożenia:\\[a^{2}-b^{2}=(a-b)(a+b)\\]czyli \\(x^{2}-1=(x-1)(x+1)\\).<br>Dopiero w takiej postaci widać, co da się skrócić."
             },
             {
                 "type": "video",
                 "src": "media/zad6/solution-step-by-step/step3.mp4",
-                "text": "Dzielenie przez ułamek to mnożenie przez jego odwrotność — drugi ułamek odwracamy."
+                "text": "Dzielenie przez ułamek to mnożenie przez ułamek odwrotny, więc drugi ułamek odwracamy."
             },
             {
                 "type": "video",
                 "src": "media/zad6/solution-step-by-step/step4.mp4",
-                "text": "Skracamy \\((x+1)\\) oraz jedno \\(x\\) z \\(x^{2}\\). Po to były założenia \\(x \\ne -1,\\,0,\\,1\\) — dzięki nim nic tutaj nie jest zerem."
+                "text": "Skracamy \\((x+1)\\) oraz jedno \\(x\\) z \\(x^{2}\\).<br>Po to były w zadaniu założenia \\(x \\ne -1,\\,0,\\,1\\): dzięki nim żadne z tych wyrażeń nie jest zerem, a przez zero skracać nie wolno."
             },
             {
                 "type": "video",
                 "src": "media/zad6/solution-step-by-step/step5.mp4",
-                "text": "Mnożąc ułamki, mnożymy licznik przez licznik i mianownik przez mianownik."
+                "text": "Mnożąc ułamki, mnożymy licznik przez licznik, a mianownik przez mianownik."
             },
             {
                 "type": "video",
                 "src": "media/zad6/solution-step-by-step/step6.mp4",
-                "text": "Wymnażamy mianownik: \\(3x(x-1)=3x^{2}-3x\\) — to odpowiedź <b>B</b>."
+                "text": "Wymnażamy mianownik:\\[3x(x-1)=3x^{2}-3x\\]Odpowiedź <b>B</b>."
             }
         ],
         "solutionWidget": null
@@ -335,12 +335,12 @@
             {
                 "type": "video",
                 "src": "media/zad7/solution-step-by-step/step1.mp4",
-                "text": "Zapisujemy układ z zadania. Niewiadome to tutaj \\(a\\) i \\(b\\), a nie \\(x\\) i \\(y\\) — te akurat znamy."
+                "text": "Zapisujemy układ z zadania.<br>Uwaga: szukamy \\(a\\) i \\(b\\), a \\(x\\) oraz \\(y\\) akurat znamy."
             },
             {
                 "type": "video",
                 "src": "media/zad7/solution-step-by-step/step2.mp4",
-                "text": "Skoro para \\(x=-1\\), \\(y=6\\) jest rozwiązaniem, to po podstawieniu oba równania muszą być prawdziwe."
+                "text": "Skoro para \\(x=-1\\), \\(y=6\\) jest rozwiązaniem, to po podstawieniu oba równania muszą się zgadzać."
             },
             {
                 "type": "video",
@@ -350,22 +350,22 @@
             {
                 "type": "video",
                 "src": "media/zad7/solution-step-by-step/step4.mp4",
-                "text": "Przenosimy liczby na prawą stronę, zmieniając im znak: \\(20-18=2\\) oraz \\(5+1=6\\)."
+                "text": "Liczby przenosimy na prawą stronę, a przeniesiony składnik zmienia znak:\\[20-18=2 \\qquad 5+1=6\\]"
             },
             {
                 "type": "video",
                 "src": "media/zad7/solution-step-by-step/step5.mp4",
-                "text": "Pierwsze równanie mnożymy przez \\(-1\\), drugie dzielimy przez 6."
+                "text": "Pierwsze równanie mnożymy przez \\(-1\\), drugie dzielimy przez 6. Zostają same \\(a\\) i \\(b\\)."
             },
             {
                 "type": "video",
                 "src": "media/zad7/solution-step-by-step/step6.mp4",
-                "text": "Zadanie pyta o \\(a\\cdot b\\), a nie o samo \\(a\\) czy \\(b\\) — wstawiamy obie wyliczone wartości."
+                "text": "Zadanie pyta o iloczyn \\(a\\cdot b\\), a nie o samo \\(a\\) czy \\(b\\), więc wstawiamy obie wyliczone wartości."
             },
             {
                 "type": "video",
                 "src": "media/zad7/solution-step-by-step/step7.mp4",
-                "text": "\\((-2)\\cdot 1 = -2\\) — odpowiedź <b>A</b>."
+                "text": "\\((-2)\\cdot 1 = -2\\). Odpowiedź <b>A</b>."
             }
         ],
         "solutionWidget": null
@@ -400,32 +400,32 @@
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step2.mp4",
-                "text": "W drugim mianowniku wyłączamy 2 przed nawias: \\(2x-2=2(x-1)\\). Teraz widać, że w obu mianownikach siedzi ten sam nawias \\((x-1)\\)."
+                "text": "W drugim mianowniku wyłączamy 2 przed nawias:\\[2x-2=2(x-1)\\]Teraz widać, że w obu mianownikach siedzi ten sam nawias \\((x-1)\\)."
             },
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step3.mp4",
-                "text": "Mianownik nie może być zerem, więc \\(x-1\\ne 0\\), czyli \\(x\\ne 1\\). Bez zapisania tego założenia klucz CKE odbiera punkt, nawet przy dobrym wyniku."
+                "text": "Przez zero dzielić nie wolno, więc mianownik nie może być zerem:\\[x-1\\ne 0 \\quad \\Rightarrow \\quad x\\ne 1\\]Bez zapisania tego założenia klucz CKE odbiera punkt, nawet przy dobrym wyniku."
             },
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step4.mp4",
-                "text": "Mnożymy obie strony przez \\(2(x-1)\\) — mianowniki się skracają i zostaje równanie bez ułamków."
+                "text": "Mnożymy obie strony przez \\(2(x-1)\\). Mianowniki się skracają i zostaje równanie bez ułamków."
             },
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step5.mp4",
-                "text": "Opuszczamy nawias: \\(2(x+3)=2x+6\\)."
+                "text": "Opuszczamy nawias:\\[2(x+3)=2x+6\\]"
             },
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step6.mp4",
-                "text": "Iksy na lewo, liczby na prawo — każdy przeniesiony składnik zmienia znak."
+                "text": "Iksy na lewo, liczby na prawo. Każdy przeniesiony składnik zmienia znak."
             },
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step7.mp4",
-                "text": "Zostaje \\(x=-6\\). Sprawdzamy jeszcze założenie: \\(-6\\ne 1\\), więc wynik należy do dziedziny i jest rozwiązaniem równania."
+                "text": "Zostaje \\(x=-6\\).<br>Sprawdzamy jeszcze założenie: \\(-6\\ne 1\\), więc wynik mieści się w dziedzinie i jest rozwiązaniem."
             }
         ],
         "solutionWidget": null
@@ -460,17 +460,17 @@
             {
                 "type": "video",
                 "src": "media/zad9/solution-step-by-step/step2.mp4",
-                "text": "Wymnażamy nawias: \\(x(x-6)=x^{2}-6x\\)."
+                "text": "Wymnażamy nawias:\\[x(x-6)=x^{2}-6x\\]"
             },
             {
                 "type": "video",
                 "src": "media/zad9/solution-step-by-step/step3.mp4",
-                "text": "Przenosimy 7 na lewą stronę, żeby po prawej zostało zero — bez tego nie ma jak korzystać z miejsc zerowych."
+                "text": "Przenosimy 7 na lewą stronę, żeby po prawej zostało zero. Dopiero wtedy da się skorzystać z miejsc zerowych."
             },
             {
                 "type": "video",
                 "src": "media/zad9/solution-step-by-step/step4.mp4",
-                "text": "Wyróżnik \\(\\Delta=b^{2}-4ac\\), gdzie \\(a=1\\), \\(b=-6\\), \\(c=-7\\). Uwaga na znaki: \\(c\\) jest ujemne, więc \\(-4ac\\) wychodzi na plus."
+                "text": "Wyróżnik liczymy ze wzoru:\\[\\Delta=b^{2}-4ac\\]U nas \\(a=1\\), \\(b=-6\\), \\(c=-7\\).<br>Uwaga na znaki: \\(c\\) jest ujemne, więc \\(-4ac\\) wychodzi na plus."
             },
             {
                 "type": "video",
@@ -480,7 +480,7 @@
             {
                 "type": "video",
                 "src": "media/zad9/solution-step-by-step/step6.mp4",
-                "text": "Miejsca zerowe: \\(x_{1,2}=\\frac{-b\\pm\\sqrt{\\Delta}}{2a}\\). Skoro \\(b=-6\\), to \\(-b=6\\)."
+                "text": "Miejsca zerowe liczymy ze wzoru:\\[x_{1,2}=\\frac{-b\\pm\\sqrt{\\Delta}}{2a}\\]Skoro \\(b=-6\\), to \\(-b=6\\)."
             },
             {
                 "type": "video",
@@ -490,7 +490,7 @@
             {
                 "type": "video",
                 "src": "media/zad9/solution-step-by-step/step8.mp4",
-                "text": "Współczynnik przy \\(x^{2}\\) jest dodatni, więc ramiona paraboli idą w górę i wartości \\(\\le 0\\) są <b>między</b> miejscami zerowymi. Przedział domknięty, bo nierówność jest nieostra: \\(x\\in\\langle -1,\\ 7\\rangle\\)."
+                "text": "Współczynnik przy \\(x^{2}\\) jest dodatni, więc ramiona paraboli idą do góry, a wartości \\(\\le 0\\) leżą <b>między</b> miejscami zerowymi.<br>Przedział jest domknięty, bo nierówność jest nieostra:\\[x\\in\\langle -1,\\ 7\\rangle\\]"
             }
         ],
         "solutionWidget": "widgetNierownoscKwadratowa"

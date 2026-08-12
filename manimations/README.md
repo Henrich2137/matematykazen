@@ -62,3 +62,41 @@ Wniosek: kontener nadaje się także do **finalnych** renderów, nie tylko do po
 4. Wygenerować rewersy: `tools/rewersy.sh matura/<sheet-id>/media/zadN/solution-step-by-step`. Robi to ffmpeg z gotowych plików, nie Manim — przycisk ◄ w odtwarzaczu odtwarza `stepMreverse.mp4`. Pułapki (m.in. konieczne przytrzymanie na końcu rewersu) opisuje [issues/krok-po-kroku-produkcja.md](../issues/krok-po-kroku-produkcja.md).
 
 `media/` w tym folderze to cache Manim (Tex/svg, obrazy, wideo pośrednie) — odtwarzalny z plików `.py`, dlatego wyklucza go `manimations/.gitignore`.
+
+## Jak ma wyglądać animacja (zasady Henricha, 2026-08-12)
+
+Wszystkie trzy wyszły z jego przeglądu zadań 3, 5 i 6 (v27). Łamie je automatyczne
+`TransformMatchingShapes` bez nadzoru — Manim paruje wtedy kształty po podobieństwie, więc
+szóstka z `60\,000` potrafi polecieć do licznika ułamka zamiast do mianownika, a nawias
+`(1+p)^2` zamiast przesunąć się, znika i pojawia się na nowo. **Sprawdzaj każdy krok okiem
+na gotowym pliku, a nie po samym „wyrenderowało się bez błędu".**
+
+1. **Ciągłość między krokami.** Ostatnia klatka kroku N musi wyglądać dokładnie tak jak
+   pierwsza klatka kroku N+1 — bo w odtwarzaczu to jest jedno i to samo miejsce, uczeń
+   zatrzymuje się na nim i dopiero potem puszcza dalej. Wszelkie podświetlenia zdejmuj
+   **przed** końcowym `self.wait(0.25)`, nie po nim. Jeśli coś ma zostać podświetlone przez
+   kilka kroków (np. założenie \(x\ne 1\)), to musi być podświetlone w obu filmach.
+   Sprawdzalne maszynowo: ostatnia klatka `stepN.mp4` kontra pierwsza klatka `stepN+1.mp4`.
+2. **Ruch ma odpowiadać rachunkowi.** Element, który w rachunku wędruje w konkretne miejsce,
+   ma tam dolecieć — a nie zniknąć i pojawić się gdzie indziej. Przy dłuższych wyrażeniach
+   nie licz na automatyczne parowanie: wskazuj pary indeksami glifów (wzorzec z `solutionZad4.py`).
+3. **Kolor to wskazówka, nie ozdoba.** Kolorem (czyli czymkolwiek poza czernią/bielą)
+   oznaczasz **tylko to, na co uczeń ma spojrzeć**: składnik przenoszony na drugą stronę,
+   czynnik, który się skraca. Znak, który się pojawia albo znika, może być czerwony.
+   Nie koloruje się całego wyrażenia „bo się w nim coś zmieniło".
+
+## Jak pisać opisy kroków (ROW 3, pole `text` w exercises.json)
+
+Też zasady Henricha (2026-08-12). Priorytetem jest to, żeby uczeń zrozumiał, a nie żeby
+zapis był formalnie poprawny.
+
+- **Nie opisuj słowami tego, co widać na filmie.** „Zaczynamy od równania z wartością
+  bezwzględną: \(|x+4|=7\)" nie mówi nic ponad obraz. Wystarczy „Zapisujemy \(|x+4|=7\)".
+- **Tłumacz to, co naprawdę wymaga tłumaczenia, ale po ludzku.** Nie „wyrażenie pod modułem
+  przyjmuje wartości przeciwne", tylko pokazane na liczbach, czym ta wartość bezwzględna
+  właściwie jest. Żargonu tyle, ile uczeń musi znać na maturze, reszta zwykłymi słowami.
+- **Krótkie linijki, wzór w osobnym wierszu.** Pole `text` trafia do DOM przez `innerHTML`,
+  więc `<br>` i `\[ … \]` działają. Zbity akapit czyta się gorzej niż cztery linijki.
+- **Żadnych myślników ani podkreśleń poza wzorami.** `-`, `—`, `_` mylą się z minusem,
+  zwłaszcza w zdaniu, w którym obok stoi liczba ujemna. Zamiast myślnika: przecinek, kropka
+  albo nowa linijka.

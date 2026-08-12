@@ -16,24 +16,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
       - i wiele, wiele przykłądów można mnożyć prawdopodobnie wynikających z próby pójścia na skróty, przyjrzej się jak są zrobione animacje poprzednich zadań
     - Zad 6. same shit as above
 
-    - Zapisz gdzieś zasadę, aby nie mnożyć niepotrzebnych słów pisząc wyjaśnienia. Priorytetem jest zrozumienie ucznia. Przykłady:
-      - Zad 1
-        - krok 1
-          - Nie marnuj słów na: "Zaczynamy od równania z wartością bezwzględną: ∣x+4∣=7"
-          - Kiedy jest to tak proste do zrozumienia jak: "Zapisujemy ∣x+4∣=7"
-        - krok 2
-          - Tutaj jest rzeczywiście potrzebne wyjaśnienie, ale ma zbyt dużo matematycznych terminów, za minus myli się z myślnikiem: "Wartość bezwzględna wynosi 7, gdy wyrażenie w środku jest równe 7 albo −7−7 — stąd dwa przypadki do rozpatrzenia osobno."
-          - Trzeba pisać bardziej zrozumiale dla ucznia: 
-            "Wartość bezględna działa tak, że w środku nawiasów || możesz mieć -7 albo 7. Tak czy siak wyjdzie ci całość równa się 7 czyli:
-            |-7| = 7
-            |7| = 7
-            Idąc tą logiką, jeżeli wiemy, że
-            |coś| = 7
-            to oznacza, żę:
-            coś = 7 lub  coś = -7
-            a tym cosiem w tym wypadku jest akurat x+4"
-      
-
 <br>
 
 
@@ -201,6 +183,23 @@ Oto plik który tworzy Henrich (ja, użytkownik).
       słabsze, a te przed tobą najsłabsze
       - sprawdź w obu motywach, bo „mocniejsza" znaczy jaśniejsza w ciemnym i ciemniejsza
         w jasnym
+
+
+  - v29, opisy kroków przepisane w zad. 1–9 (51 opisów) wg twoich zasad
+
+    - przeczytaj opisy pod filmami i powiedz, czy tak mają brzmieć — najważniejszy jest
+      zad. 1 krok 2, bo to twój przykład i po nim ustawiłem resztę
+      - opisy są teraz łamane na krótkie linijki, a wzory stoją w osobnych wierszach
+      - z pierwszych kroków zniknęły zdania w rodzaju „zaczynamy od równania z wartością
+        bezwzględną", zostało samo „zapisujemy"
+      - poza wzorami nie ma już myślników ani podkreśleń
+
+    - sprawdź na telefonie, czy długie opisy się mieszczą i nic nie ucieka poza ekran
+      - u mnie strona nie przewija się w bok przy żadnym z nich
+
+    - zasady, wedle których to pisałem, siedzą w manimations/README.md (dwie nowe sekcje
+      na końcu) — jeśli któraś jest źle spisana, popraw ją tam, bo z niej będę korzystał
+      przy następnych arkuszach
 
 
 

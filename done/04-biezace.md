@@ -1,5 +1,32 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-12] (Local Opus 5 High) Opisy kroków (pole `text`) przepisane w zad. 1–9
+plus spisanie zasad, wedle których mają powstawać. v29 Beta.
+
+- **Zasady od Henricha, spisane w `manimations/README.md`** (dwie nowe sekcje: „Jak ma
+  wyglądać animacja" i „Jak pisać opisy kroków"), z jednozdaniowym odnośnikiem w CLAUDE.md.
+  Cztery reguły dla opisów: nie opisuj słowami tego, co widać na filmie; tłumacz po chłopsku,
+  nie językiem podręcznika; krótkie linijki i wzór w osobnym wierszu; **żadnych myślników
+  ani podkreśleń poza wzorami**, bo mylą się z minusem (Henrich: „za minus myli się
+  z myślnikiem"). Trzy reguły dla animacji zapisane przy okazji, do wykonania w następnej
+  paczce.
+
+- **51 opisów przepisanych** w zad. 1–9. Wzorcem był przykład Henricha z zad. 1 krok 2:
+  zamiast „wyrażenie w środku jest równe 7 albo \(-7\)" pokazane na liczbach, co ta wartość
+  bezwzględna właściwie robi, i dopiero z tego dwa przypadki.
+
+- **Podmiana surowym tekstem, nie `json.dump`** — diff to dokładnie 51 zmienionych linii przy
+  ~5 tys. linii pliku. Skrypt szukał starej wartości przez `json.dumps(stary)`, sprawdzał, że
+  występuje dokładnie raz, i na końcu parsował plik z powrotem. (Poprzednim razem `json.dump`
+  przeformatował 800+ linii i trzeba było cofać.)
+
+- **Weryfikacja:** wszystkie 87 wzorów z opisów przepuszczone przez wersję KaTeX z `vendor/`
+  z `throwOnError: true`; ten sam skrypt szukał myślników i podkreśleń poza wzorami. Zrzuty
+  rozwiniętego ROW 3 na 390 px dla trzech najdłuższych opisów: `scrollWidth` równy szerokości
+  okna, czyli nic nie rozpycha strony (`.katex-display` ma własny `overflow-x`). Przy okazji
+  poprawione `|-7|`, gdzie KaTeX robił z minusa znak dwuargumentowy i wstawiał odstępy —
+  `\left|-7\right|`.
+
 [ZROBIONE 2026-08-12] (Local Opus 5 High) Odtwarzacz krok po kroku — trzy poprawki z listy
 DO ZROBIENIA Henricha. v28 Beta.
 
