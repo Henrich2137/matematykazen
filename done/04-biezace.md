@@ -1,5 +1,29 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-12] (Local Opus 5 High) Rozwiązania krok po kroku do zad. 5, 7 i 9. v27 Beta. Po tej paczce kroki mają zadania **1–9**, czyli komplet od początku arkusza.
+
+- Trzy zadania dobrane pod tę formę animacji i z trzech różnych działów:
+  - **zad. 5** (procent składany), 6 kroków: podstawienie do \(P_0(1+p)^n\) → dzielenie obu
+    stron → policzony ułamek → pierwiastek (z uzasadnieniem, czemu tylko dodatni) →
+    odjęcie jedynki → zamiana na procent.
+  - **zad. 7** (układ z parametrami), 7 kroków: oba równania jadą **równolegle, jedno pod
+    drugim** przez cały film — sedno tego zadania jest takie, że nie ma tu układu do
+    rozwiązywania, tylko dwa niezależne równania z jedną niewiadomą każde. Osobny krok na
+    samo wstawienie do \(a\cdot b\), bo tam ludzie gubią punkt, odpowiadając wartością \(a\).
+  - **zad. 9** (nierówność kwadratowa, OTWARTE na 2 pkt), 8 kroków pod klucz CKE: postać
+    z zerem po prawej, wyróżnik (z ostrzeżeniem o znaku \(c\)), miejsca zerowe = 1 pkt,
+    zapis przedziału = 1 pkt.
+
+- **Świadomy podział pracy w zad. 9:** film robi sam rachunek i NIE rysuje paraboli, bo
+  zadanie ma już widżet `widgetNierownoscKwadratowa`, który pokazuje wykres interaktywnie
+  tuż pod odtwarzaczem. Sprawdzone zrzutem — jedno uzupełnia drugie, zamiast dublować.
+
+- Scenariusze najpierw jako `.md` do sprawdzenia merytoryki (`zad5-kroki.md`, `zad7-kroki.md`,
+  `zad9-kroki.md`), z tabelką „kryterium z klucza → krok" tam, gdzie zadanie jest otwarte.
+  `\begin{cases}` renderuje się w Manimie bez dodatków.
+
+- `tools/test-krokow.js` na wszystkich trzech: bez zastrzeżeń.
+
 [ZROBIONE 2026-08-12] (Local Opus 5 High) Odtwarzacz krok po kroku: koniec cofki, zawieszanie przy klikaniu w kropkę, pobieranie filmów z góry. v26 Beta. Trzy punkty zgłoszone przez Henricha.
 
 - **Koniec rewersu ≡ pierwsza klatka zwykłego filmu.** Zgłoszenie brzmiało: „końcowa klatka

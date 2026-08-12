@@ -233,7 +233,38 @@
         "formulasPage": 10,
         "solutionText": "Podstawiamy do wzoru na procent składany: \\(60\\,000 \\cdot (1 + p)^{2} = 67\\,925{,}76\\), stąd \\((1 + p)^{2} = 1{,}132096\\), czyli \\(1 + p = 1{,}064\\) i \\(\\boldsymbol{p = 6{,}4\\%}\\) — odpowiedź <b>B</b>.",
         "solutionTextMore": "\\[\\begin{aligned} (1 + p)^{2} &= \\tfrac{67\\,925{,}76}{60\\,000} = 1{,}132096 \\\\ 1 + p &= \\sqrt{1{,}132096} = 1{,}064 \\\\ p &= 0{,}064 = \\boldsymbol{6{,}4\\%} \\end{aligned}\\] Warto zauważyć, że wystarczyło sprawdzić odpowiedzi: \\(60\\,000 \\cdot 1{,}064^{2} = 67\\,925{,}76\\) zł. ✓",
-        "solutionStepByStep": null,
+        "solutionStepByStep": [
+            {
+                "type": "video",
+                "src": "media/zad5/solution-step-by-step/step1.mp4",
+                "text": "Podstawiamy dane do wzoru na procent składany \\(P=P_0\\cdot(1+p)^{n}\\): kapitał początkowy 60 000 zł, dwa lata, wynik 67 925,76 zł."
+            },
+            {
+                "type": "video",
+                "src": "media/zad5/solution-step-by-step/step2.mp4",
+                "text": "Dzielimy obie strony przez 60 000, żeby zostawić po lewej samą potęgę."
+            },
+            {
+                "type": "video",
+                "src": "media/zad5/solution-step-by-step/step3.mp4",
+                "text": "Liczymy dzielenie: \\(67\\,925{,}76 : 60\\,000 = 1{,}132096\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad5/solution-step-by-step/step4.mp4",
+                "text": "Pierwiastkujemy obie strony. Bierzemy wartość dodatnią, bo \\(1+p>0\\) — kapitał na lokacie nie może być ujemny."
+            },
+            {
+                "type": "video",
+                "src": "media/zad5/solution-step-by-step/step5.mp4",
+                "text": "Odejmujemy 1 od obu stron i zostaje samo \\(p\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad5/solution-step-by-step/step6.mp4",
+                "text": "Zamieniamy ułamek dziesiętny na procent: \\(0{,}064 = 6{,}4\\%\\) — odpowiedź <b>B</b>."
+            }
+        ],
         "solutionWidget": "widgetProcentSkladany"
     },
     {
@@ -300,7 +331,43 @@
         "formulasPage": null,
         "solutionText": "Po podstawieniu \\(x = -1\\), \\(y = 6\\): z pierwszego równania \\(-a + 18 = 20\\), więc \\(\\boldsymbol{a = -2}\\); z drugiego \\(-1 + 6b = 5\\), więc \\(\\boldsymbol{b = 1}\\). Zatem \\(a \\cdot b = \\boldsymbol{-2}\\) — odpowiedź <b>A</b>.",
         "solutionTextMore": "\\[\\begin{aligned} a \\cdot (-1) + 3 \\cdot 6 &= 20 \\\\ -a + 18 &= 20 \\\\ -a &= 2 \\\\ a &= \\boldsymbol{-2} \\end{aligned}\\]\\[\\begin{aligned} (-1) + b \\cdot 6 &= 5 \\\\ 6b &= 6 \\\\ b &= \\boldsymbol{1} \\end{aligned}\\]\\[a \\cdot b = (-2) \\cdot 1 = \\boldsymbol{-2}\\]",
-        "solutionStepByStep": null,
+        "solutionStepByStep": [
+            {
+                "type": "video",
+                "src": "media/zad7/solution-step-by-step/step1.mp4",
+                "text": "Zapisujemy układ z zadania. Niewiadome to tutaj \\(a\\) i \\(b\\), a nie \\(x\\) i \\(y\\) — te akurat znamy."
+            },
+            {
+                "type": "video",
+                "src": "media/zad7/solution-step-by-step/step2.mp4",
+                "text": "Skoro para \\(x=-1\\), \\(y=6\\) jest rozwiązaniem, to po podstawieniu oba równania muszą być prawdziwe."
+            },
+            {
+                "type": "video",
+                "src": "media/zad7/solution-step-by-step/step3.mp4",
+                "text": "Liczymy, co się da: \\(3\\cdot 6=18\\) w pierwszym równaniu, \\(b\\cdot 6=6b\\) w drugim."
+            },
+            {
+                "type": "video",
+                "src": "media/zad7/solution-step-by-step/step4.mp4",
+                "text": "Przenosimy liczby na prawą stronę, zmieniając im znak: \\(20-18=2\\) oraz \\(5+1=6\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad7/solution-step-by-step/step5.mp4",
+                "text": "Pierwsze równanie mnożymy przez \\(-1\\), drugie dzielimy przez 6."
+            },
+            {
+                "type": "video",
+                "src": "media/zad7/solution-step-by-step/step6.mp4",
+                "text": "Zadanie pyta o \\(a\\cdot b\\), a nie o samo \\(a\\) czy \\(b\\) — wstawiamy obie wyliczone wartości."
+            },
+            {
+                "type": "video",
+                "src": "media/zad7/solution-step-by-step/step7.mp4",
+                "text": "\\((-2)\\cdot 1 = -2\\) — odpowiedź <b>A</b>."
+            }
+        ],
         "solutionWidget": null
     },
     {
@@ -384,7 +451,48 @@
         "formulasPage": 8,
         "solutionText": "Po uporządkowaniu: \\(x^{2} - 6x - 7 \\le 0\\). Miejsca zerowe: \\(x = -1\\) i \\(x = 7\\), ramiona paraboli w górę, więc rozwiązaniem jest przedział \\(\\boldsymbol{\\langle -1,\\ 7\\rangle}\\).",
         "solutionTextMore": "\\[x^{2} - 6x - 7 \\le 0\\]\\[\\Delta = 36 + 28 = 64, \\quad \\sqrt{\\Delta} = 8\\]\\[x_1 = \\frac{6 - 8}{2} = -1, \\quad x_2 = \\frac{6 + 8}{2} = 7\\]Współczynnik przy \\(x^{2}\\) jest dodatni → parabola ma ramiona w górę → wartości \\(\\le 0\\) przyjmuje <b>między</b> miejscami zerowymi: \\(\\boldsymbol{x \\in \\langle -1,\\ 7\\rangle}\\).",
-        "solutionStepByStep": null,
+        "solutionStepByStep": [
+            {
+                "type": "video",
+                "src": "media/zad9/solution-step-by-step/step1.mp4",
+                "text": "Zapisujemy nierówność z zadania."
+            },
+            {
+                "type": "video",
+                "src": "media/zad9/solution-step-by-step/step2.mp4",
+                "text": "Wymnażamy nawias: \\(x(x-6)=x^{2}-6x\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad9/solution-step-by-step/step3.mp4",
+                "text": "Przenosimy 7 na lewą stronę, żeby po prawej zostało zero — bez tego nie ma jak korzystać z miejsc zerowych."
+            },
+            {
+                "type": "video",
+                "src": "media/zad9/solution-step-by-step/step4.mp4",
+                "text": "Wyróżnik \\(\\Delta=b^{2}-4ac\\), gdzie \\(a=1\\), \\(b=-6\\), \\(c=-7\\). Uwaga na znaki: \\(c\\) jest ujemne, więc \\(-4ac\\) wychodzi na plus."
+            },
+            {
+                "type": "video",
+                "src": "media/zad9/solution-step-by-step/step5.mp4",
+                "text": "\\(36+28=64\\), a \\(\\sqrt{64}=8\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad9/solution-step-by-step/step6.mp4",
+                "text": "Miejsca zerowe: \\(x_{1,2}=\\frac{-b\\pm\\sqrt{\\Delta}}{2a}\\). Skoro \\(b=-6\\), to \\(-b=6\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad9/solution-step-by-step/step7.mp4",
+                "text": "Wychodzi \\(x_{1}=-1\\) oraz \\(x_{2}=7\\). Za samo to klucz CKE daje punkt."
+            },
+            {
+                "type": "video",
+                "src": "media/zad9/solution-step-by-step/step8.mp4",
+                "text": "Współczynnik przy \\(x^{2}\\) jest dodatni, więc ramiona paraboli idą w górę i wartości \\(\\le 0\\) są <b>między</b> miejscami zerowymi. Przedział domknięty, bo nierówność jest nieostra: \\(x\\in\\langle -1,\\ 7\\rangle\\)."
+            }
+        ],
         "solutionWidget": "widgetNierownoscKwadratowa"
     },
     {

@@ -136,6 +136,26 @@ Oto plik który tworzy Henrich (ja, użytkownik).
       - jeśli masz w telefonie włączony „oszczędzanie danych", pobierania celowo nie ma
 
 
+  - v27, kolejne trzy rozwiązania krok po kroku — zad. 5, 7 i 9 (znów mój wybór)
+    - po tej paczce kroki mają zadania 1–9, czyli komplet od początku arkusza
+    - scenariusze do sprawdzenia merytoryki: manimations/zad5-kroki.md, zad7-kroki.md, zad9-kroki.md
+
+    - zad. 5 (procent składany) — sprawdź zwłaszcza krok z pierwiastkowaniem: w opisie
+      pod filmem tłumaczę, dlaczego bierzemy tylko wartość dodatnią
+
+    - zad. 7 (układ z parametrami) — oba równania jadą jedno pod drugim przez cały film,
+      żeby było widać, że to dwa niezależne rachunki, a nie układ do rozwiązywania
+      - zobacz, czy klamra z dwoma równaniami nie jest za mała na telefonie
+
+    - zad. 9 (nierówność kwadratowa, otwarte na 2 pkt) — film robi sam rachunek i NIE rysuje
+      paraboli, bo tuż pod nim jest już widżet, który pokazuje ją interaktywnie
+      - powiedz, czy to dobry podział, czy jednak parabola ma być też w filmie
+
+    - w zad. 5, 7 i 9 klatka, na której krok się zatrzymuje, bywa w całości zielona
+      (to wynik danego kroku) — ta sama wątpliwość co przy zad. 6 i 8, jedna decyzja
+      załatwi wszystkie
+
+
   - kontener: firewall + Playwright + read-only `.vscode` (2026-08-10), wymaga zwykłego Rebuild Container (bez `--no-cache`) — bez tego nic z tego nie zadziała; po przebudowie, w terminalu w kontenerze:
     - `dig +short github.com` — ma zwrócić adresy (jeśli w logu firewalla widać „UWAGA: DNS nie działa po zawężeniu", zawężenie bramy poszło źle, patrz `.devcontainer/README.md`, sekcja „Diagnostyka").
     - `curl -m 5 http://192.168.1.1` — ma nie przejść (timeout albo „Connection refused"); wcześniej otwierał panel routera, to samo dotyczy SMB (445) i drukarki (631).
