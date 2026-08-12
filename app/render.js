@@ -867,6 +867,19 @@ function loadExercises() {
                 kropkiOkno.scrollBy({ left: kropkiOkno.clientWidth * 0.7, behavior: "smooth" });
             });
             podepnijPrzesuwanie(krokiCtx, solutionStepByStepContainer);
+            // Filmy zadania ściągamy w tle, gdy tylko użytkownik do niego dojedzie
+            // — zanim kliknie „Rozwiązanie". Obserwujemy przycisk, a nie sam
+            // odtwarzacz: odtwarzacz jest schowany (display:none), więc nigdy nie
+            // zameldowałby się jako widoczny. Zapas 300 px sprawia, że pobieranie
+            // rusza chwilę przed wjechaniem karty w ekran.
+            if (window.IntersectionObserver) {
+                const obserwatorWidocznosci = new IntersectionObserver((wpisy) => {
+                    if (!wpisy.some((w) => w.isIntersecting)) return;
+                    obserwatorWidocznosci.disconnect(); // komplet zamawia się raz
+                    zaplanujPobranieFilmow(krokiCtx);
+                }, { rootMargin: "300px" });
+                obserwatorWidocznosci.observe(solutionButton);
+            }
             // Klawiatura ← → działa na odtwarzaczu, z którym użytkownik miał
             // ostatnio do czynienia — arkusz ma wiele zadań i bez tego nie da się
             // powiedzieć, do którego z nich odnosi się strzałka.

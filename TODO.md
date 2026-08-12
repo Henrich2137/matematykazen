@@ -118,6 +118,24 @@ Oto plik który tworzy Henrich (ja, użytkownik).
         za dużo koloru
 
 
+
+  - v26, odtwarzacz krok po kroku — trzy rzeczy z twojego zgłoszenia
+
+    - dojedź cofką do końca (poczekaj, aż film od tyłu sam się zatrzyma) i sprawdź dwa
+      przyciski — koniec cofki ma się zachowywać dokładnie jak pierwsza klatka zwykłego filmu
+      - ◄ ma zacząć cofać POPRZEDNI krok
+      - ► ma odtworzyć TEN SAM krok do przodu, czyli to samo co środkowy przycisk
+
+    - poklikaj szybko w jedną kropkę (zwłaszcza w pierwszą, w zad. 4) — odtwarzacz nie ma
+      się zacinać na przygaszonym kadrze
+      - u mnie stary kod stał tak 5,6 s, teraz 1,6 s, czyli tyle, ile trwa samo pobranie
+
+    - wejdź na arkusz i poczekaj chwilę, nic nie klikając, potem otwórz rozwiązanie
+      z krokami — filmy mają być już pobrane, więc przewijanie kropkami ma być natychmiastowe
+      - pobieranie rusza, gdy zadanie wjedzie na ekran, a nie dopiero po kliknięciu
+      - jeśli masz w telefonie włączony „oszczędzanie danych", pobierania celowo nie ma
+
+
   - kontener: firewall + Playwright + read-only `.vscode` (2026-08-10), wymaga zwykłego Rebuild Container (bez `--no-cache`) — bez tego nic z tego nie zadziała; po przebudowie, w terminalu w kontenerze:
     - `dig +short github.com` — ma zwrócić adresy (jeśli w logu firewalla widać „UWAGA: DNS nie działa po zawężeniu", zawężenie bramy poszło źle, patrz `.devcontainer/README.md`, sekcja „Diagnostyka").
     - `curl -m 5 http://192.168.1.1` — ma nie przejść (timeout albo „Connection refused"); wcześniej otwierał panel routera, to samo dotyczy SMB (445) i drukarki (631).

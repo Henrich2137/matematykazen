@@ -100,7 +100,11 @@ http.createServer((req, res) => {
         const naglowki = {
             'Content-Type': TYPY[path.extname(plik).toLowerCase()] || 'application/octet-stream',
             'Accept-Ranges': 'bytes',
-            'Cache-Control': 'no-store',
+            // Wideo wolno cache'ować, reszty nie. Odtwarzacz pobiera filmy z góry
+            // w tle właśnie po to, żeby wylądowały w cache'u przeglądarki — przy
+            // `no-store` ten mechanizm nie miałby czego przetestować. Kod strony
+            // (html/js/css) zostaje niecache'owany, żeby zmiany były widać od razu.
+            'Cache-Control': /\.(mp4|webm)$/i.test(plik) ? 'max-age=60' : 'no-store',
         };
         const wyslijOdpowiedz = () => {
             const zakres = req.headers.range && /bytes=(\d*)-(\d*)/.exec(req.headers.range);

@@ -58,6 +58,32 @@ function biezaceWideo(ctx) {
     return wPodmianie(ctx) ? null : ctx.stepsContent.querySelector("video");
 }
 
+// Rewers dobiegł do końca, czyli STOIMY NA PIERWSZEJ KLATCE tego kroku — tyle że
+// w elemencie siedzi jeszcze plik puszczony od tyłu. Dla użytkownika to ten sam
+// stan co pierwsza klatka zwykłego filmu i wszystkie przyciski mają się tak
+// zachowywać (Henrich po testach v25).
+function naPoczatkuPoCofce(ctx, video) {
+    return ctx.wstecz && !!video && video.ended;
+}
+
+// Jawne zwolnienie porzuconego elementu <video>. Przeglądarka trzyma ograniczoną
+// pulę jednocześnie ładowanych mediów; element unieważniony tokenem nadal wisi
+// na łączu i zajmuje jedno miejsce. Przy szybkim klikaniu w kropkę potrafiło to
+// zagłodzić element, na który faktycznie czekamy — odtwarzacz wyglądał wtedy na
+// zawieszony (Henrich, zad. 4, podwójny klik w pierwszą kropkę).
+function zwolnijWideo(video) {
+    if (!video) return;
+    try {
+        video.pause();
+        const zrodlo = video.querySelector("source");
+        if (zrodlo) zrodlo.removeAttribute("src");
+        video.removeAttribute("src");
+        video.load(); // dopiero to faktycznie przerywa pobieranie
+    } catch (blad) {
+        // Element mógł już zostać rozebrany — nie ma czego zwalniać.
+    }
+}
+
 function renderStep(step) {
     if (!step) return "";
     if (step.type === "video") {
@@ -119,6 +145,9 @@ function przygotujKrok(ctx, idx, wstecz, czas, gotowe) {
     if (wstecz) {
         video.querySelector("source").src = mediaPath(sciezkaRewersu(step.src));
     }
+    // Zapamiętany po to, żeby następna podmiana mogła go zwolnić, jeśli ta
+    // jeszcze nie zdążyła się skończyć.
+    ctx.oczekujacyElement = video;
 
     let wywolane = false;
     let straznik = 0;
@@ -137,12 +166,20 @@ function przygotujKrok(ctx, idx, wstecz, czas, gotowe) {
 
     if (czas) ustawCzasWideo(video, czas, () => zglos(false));
     else video.addEventListener("loadeddata", () => zglos(false), { once: true });
-    // Strażnik na wypadek łącza, które ani nie odpowiada, ani nie zrywa. Był
-    // 1,5 s i przy wolnym łączu wpuszczał do kadru element bez jednej klatki —
-    // kadr na moment gasł, a potem obraz wskakiwał drugi raz. Teraz limit jest
-    // na tyle długi, że dochodzi do głosu dopiero przy realnym zawieszeniu, a do
-    // tego czasu użytkownik widzi przygaszony poprzedni kadr (klasa „podmiana").
-    straznik = setTimeout(() => zglos(video.readyState < 1), 8000);
+
+    // Strażnik liczy BEZRUCH, a nie całkowity czas ładowania. Stała 1,5 s przy
+    // wolnym łączu wpuszczała do kadru element bez ani jednej klatki (kadr gasł
+    // i obraz wskakiwał drugi raz), a stała 8 s przy zaciętym pobieraniu wyglądała
+    // jak zawieszenie odtwarzacza. Dopóki lecą zdarzenia „progress", plik się
+    // ściąga i czekamy dalej; poddajemy się dopiero po 5 s ciszy.
+    const BEZRUCH = 5000;
+    const odlicz = () => {
+        clearTimeout(straznik);
+        straznik = setTimeout(() => zglos(video.readyState < 1), BEZRUCH);
+    };
+    ["progress", "loadedmetadata", "canplay", "suspend"].forEach((z) =>
+        video.addEventListener(z, odlicz));
+    odlicz();
     video.load();
 }
 
@@ -162,6 +199,11 @@ function pokazKrok(ctx, idx, { wstecz = false, czas = 0, graj = true } = {}) {
     // Zamiar grania trzymamy w ctx, a nie w domknięciu: „play" kliknięty w trakcie
     // ładowania ma go odwrócić, a nie sterować filmem, który zaraz zniknie.
     ctx.grajPoPodmianie = graj;
+    // Poprzednia, jeszcze niezakończona podmiana jest unieważniana tokenem, ale
+    // jej <video> nadal wisi na łączu — zwalniamy je jawnie, żeby nie zajmowało
+    // miejsca w puli mediów przeglądarki (patrz zwolnijWideo).
+    zwolnijWideo(ctx.oczekujacyElement);
+    ctx.oczekujacyElement = null;
     const swapToken = ++ctx.swapToken;
 
     odswiezNawigacje(ctx);
@@ -172,7 +214,8 @@ function pokazKrok(ctx, idx, { wstecz = false, czas = 0, graj = true } = {}) {
     ctx.stepsContent.classList.add(ctx.stepsContent.childElementCount ? "podmiana" : "laduje");
 
     przygotujKrok(ctx, idx, wstecz, czas, (box, video, blad) => {
-        if (swapToken !== ctx.swapToken) return; // w międzyczasie wybrano co innego
+        if (swapToken !== ctx.swapToken) { zwolnijWideo(video); return; } // wybrano co innego
+        ctx.oczekujacyElement = null;
         // Rewersu nie ma (nieprzerobiony arkusz) — cofka nie ma czego odtworzyć.
         // Zamiast pustego kadru ląduje od razu tam, gdzie i tak by się skończyła:
         // na pierwszej klatce kroku. Powtórka nie zapętli się, bo idzie już
@@ -202,13 +245,11 @@ function pokazKrok(ctx, idx, { wstecz = false, czas = 0, graj = true } = {}) {
         odswiezNawigacje(ctx);
     });
 
-    // Podgrzewamy film następnego kroku, żeby przełączenie mniej migało.
-    const nastepny = ctx.steps[idx + 1];
-    if (nastepny && nastepny.type === "video") {
-        const preload = document.createElement("video");
-        preload.preload = "auto";
-        preload.src = mediaPath(nastepny.src);
-    }
+    // Reszta filmów zadania idzie do wspólnej kolejki pobierania (patrz niżej).
+    // Zastąpiło to podgrzewanie samego następnego kroku osobnym, niczyim
+    // elementem <video>: tamto zajmowało miejsce w puli mediów przeglądarki,
+    // a i tak nie pomagało krokom dalszym niż o jeden.
+    zaplanujPobranieFilmow(ctx, { pilne: true });
 }
 
 // Kropka, na której stoi głowica: dopóki film bieżącego kroku nie dobiegł końca,
@@ -421,6 +462,14 @@ function przelaczOdtwarzanie(ctx) {
 // v20). Początek kroku k+1 to ta sama klatka co koniec kroku k, więc nic
 // z rozwiązania nie ucieka — pomijana jest sama animacja.
 function krokDalej(ctx) {
+    // Wyjątek: stoimy na pierwszej klatce kroku PO cofce. „Dalej" ma wtedy puścić
+    // TEN SAM krok do przodu — dokładnie to samo, co start/pauza — a nie
+    // przeskoczyć do następnego. Inaczej krok, do którego użytkownik właśnie się
+    // cofnął, zostałby pominięty (Henrich po testach v25).
+    if (naPoczatkuPoCofce(ctx, biezaceWideo(ctx))) {
+        przelaczOdtwarzanie(ctx);
+        return;
+    }
     if (ctx.krok >= ctx.steps.length - 1) {
         // Na ostatnim kroku „dalej" prowadzi już tylko do stanu końcowego.
         if (!ctx.uKonca) skoczDoKropki(ctx, ctx.steps.length);
@@ -438,12 +487,18 @@ function krokWstecz(ctx) {
     const video = biezaceWideo(ctx);
     const pozycja = pozycjaWKroku(ctx, video);
 
-    // JUŻ COFAMY → doskakujemy na pierwszą klatkę bieżącego kroku i stajemy
-    // (Henrich po testach v21). Wcześniej drugie ◄ w trakcie cofki startowało
-    // rewers jeszcze raz od nowego miejsca i obraz się zacinał.
-    // Pokazujemy plik W PRZÓD na czasie 0 — to ta sama klatka co koniec rewersu,
-    // ale zostawia nas w stanie, z którego start/pauza rusza naturalnie naprzód.
-    if (ctx.wstecz) {
+    // COFKA JESZCZE LECI (albo stanęła w środku) → doskakujemy na pierwszą klatkę
+    // bieżącego kroku i stajemy (Henrich po testach v21). Wcześniej drugie ◄
+    // w trakcie cofki startowało rewers jeszcze raz od nowego miejsca i obraz się
+    // zacinał. Pokazujemy plik W PRZÓD na czasie 0 — to ta sama klatka co koniec
+    // rewersu, ale zostawia nas w stanie, z którego start/pauza rusza naprzód.
+    //
+    // Gdy cofka DOBIEGŁA już do końca, ten warunek celowo nie łapie: jesteśmy
+    // wtedy na pierwszej klatce kroku i ◄ ma cofnąć KROK POPRZEDNI, tak samo jak
+    // wciśnięte na pierwszej klatce zwykłego filmu (Henrich po testach v25).
+    // Pozycja wychodzi wtedy 0, więc obsługa spada niżej, do gałęzi „cofamy cały
+    // poprzedni krok".
+    if (ctx.wstecz && !naPoczatkuPoCofce(ctx, video)) {
         ctx.uKonca = false;
         pokazKrok(ctx, ctx.krok, { czas: 0, graj: false });
         return;
@@ -570,6 +625,81 @@ function zbudujKropki(ctx) {
         });
         ctx.obserwatorKropek.observe(ctx.kropkiOkno.parentElement);
     }
+}
+
+// ——— POBIERANIE FILMÓW W TLE ———
+//
+// Bez tego każdy krok ściąga się dopiero w chwili, gdy użytkownik go zażąda —
+// przy słabym łączu widać wtedy przygaszony kadr przy KAŻDYM przejściu. Zamiast
+// tego bierzemy cały komplet z góry, gdy tylko zadanie wjedzie w pole widzenia.
+//
+// Kolejka jest JEDNA na całą stronę i obsługiwana po jednym pliku. Arkusz ma
+// kilka zadań z filmami; równoległe ściąganie wszystkiego naraz odbierałoby pasmo
+// właśnie temu krokowi, który użytkownik ogląda w tej chwili.
+const kolejkaFilmow = [];
+const pobraneFilmy = new Set();
+let robotnikPobierania = false;
+
+// Tryb oszczędzania danych i bardzo wolne łącza: komplet filmów jednego zadania
+// to kilkaset kB, a arkusza — kilka MB. Kto włączył oszczędzanie, ten nie chce
+// płacić za filmy, których może nigdy nie otworzyć.
+function oszczedzanieDanych() {
+    const s = navigator.connection;
+    return !!(s && (s.saveData || /(^|-)2g$/.test(s.effectiveType || "")));
+}
+
+// Wrzuca komplet filmów zadania do kolejki. `pilne` = użytkownik właśnie otworzył
+// to rozwiązanie, więc jego pliki idą na czoło kolejki przed zadaniami, do których
+// tylko przewinął.
+function zaplanujPobranieFilmow(ctx, { pilne = false } = {}) {
+    if (oszczedzanieDanych()) return;
+
+    const wPrzod = [];
+    const rewersy = [];
+    ctx.steps.forEach((step) => {
+        if (!step || step.type !== "video" || !step.src) return;
+        wPrzod.push(mediaPath(step.src));
+        rewersy.push(mediaPath(sciezkaRewersu(step.src)));
+    });
+    // Kolejność zamówiona przez Henricha: najpierw wszystkie filmy w przód
+    // (1, 2, 3…), dopiero potem rewersy. Oglądanie do przodu jest regułą,
+    // cofanie wyjątkiem, więc rewersy mogą poczekać na swoją kolej.
+    const urle = [...wPrzod, ...rewersy].filter((u) => !pobraneFilmy.has(u));
+    if (!urle.length) return;
+
+    // Ten sam plik nie stoi w kolejce dwa razy — przy „pilne" po prostu zmienia
+    // miejsce na czoło.
+    urle.forEach((u) => {
+        const i = kolejkaFilmow.indexOf(u);
+        if (i >= 0) kolejkaFilmow.splice(i, 1);
+    });
+    if (pilne) kolejkaFilmow.unshift(...urle);
+    else kolejkaFilmow.push(...urle);
+
+    ruszPobieranie();
+}
+
+function ruszPobieranie() {
+    if (robotnikPobierania) return;
+    const url = kolejkaFilmow.shift();
+    if (!url) return;
+    if (pobraneFilmy.has(url)) { ruszPobieranie(); return; }
+
+    robotnikPobierania = true;
+    // Zwykły fetch, a NIE <video preload="auto">: chodzi o to, żeby plik wylądował
+    // w cache'u przeglądarki, z którego skorzysta dopiero później tworzony element
+    // <video>. Bufor podgrzewanego elementu jest jego prywatny i nowemu nic by nie
+    // dał. Wymaga to serwera pozwalającego cache'ować pliki — GitHub Pages pozwala.
+    // Odpowiedź trzeba przeczytać do końca (blob), inaczej wpis w cache'u nie
+    // powstanie.
+    fetch(url, { priority: "low", credentials: "omit" })
+        .then((odp) => (odp.ok ? odp.blob() : null))
+        .catch(() => null)
+        .then(() => {
+            pobraneFilmy.add(url); // także po błędzie — nie dobijamy się w kółko
+            robotnikPobierania = false;
+            ruszPobieranie();
+        });
 }
 
 // Odtwarzacz, do którego odnoszą się strzałki ← → na klawiaturze. Arkusz ma

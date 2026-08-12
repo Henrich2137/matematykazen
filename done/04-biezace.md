@@ -1,5 +1,40 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-12] (Local Opus 5 High) Odtwarzacz krok po kroku: koniec cofki, zawieszanie przy klikaniu w kropkę, pobieranie filmów z góry. v26 Beta. Trzy punkty zgłoszone przez Henricha.
+
+- **Koniec rewersu ≡ pierwsza klatka zwykłego filmu.** Zgłoszenie brzmiało: „końcowa klatka
+  video reverse nie reaguje mechanicznie tak samo jak pierwsza klatka zwykłego video".
+  Faktycznie: `krokWstecz` sprawdzało samo `ctx.wstecz`, więc po dobiegnięciu cofki ◄ tylko
+  doskakiwało na pierwszą klatkę zamiast cofać krok POPRZEDNI, a ► przeskakiwało do
+  następnego kroku, zamiast odtworzyć TEN SAM w przód. Doszedł predykat
+  `naPoczatkuPoCofce()`; ► w tym stanie deleguje wprost do `przelaczOdtwarzanie()`, więc oba
+  przyciski nie mają jak się rozjechać.
+
+- **Zawieszanie po podwójnym kliknięciu w kropkę — moja regresja z v23.** Wydłużyłem wtedy
+  strażnik ładowania z 1,5 s na sztywne 8 s. Porzucone przy szybkim klikaniu elementy
+  `<video>` nadal wisiały na łączu i zajmowały miejsce w niewielkiej puli jednocześnie
+  ładowanych mediów, głodząc ten element, na który odtwarzacz faktycznie czekał. Odtworzone
+  na dławionym łączu: **5,6 s** w stanie „ładuję" po czterech kliknięciach w pierwszą kropkę
+  zad. 4; po poprawce **1,6 s**, czyli tyle, ile trwa samo pobranie. Dwie zmiany: porzucony
+  element jest jawnie zwalniany (`zwolnijWideo` — zdjęcie źródła + `load()`), a strażnik
+  liczy teraz BEZRUCH (5 s bez zdarzenia `progress`), a nie łączny czas ładowania.
+
+- **Filmy pobierają się z góry, w tle.** Start, gdy zadanie wjedzie w pole widzenia
+  (`IntersectionObserver` na przycisku „Rozwiązanie", zapas 300 px), z wskoczeniem na czoło
+  kolejki, gdy rozwiązanie zostanie faktycznie otwarte. Jedna kolejka na całą stronę, po
+  jednym pliku naraz, w kolejności zamówionej przez Henricha: najpierw wszystkie filmy
+  w przód, potem wszystkie rewersy. Zwykły `fetch`, nie `<video preload>` — chodzi o cache
+  przeglądarki, z którego skorzysta dopiero PÓŹNIEJ tworzony element; bufor podgrzewanego
+  elementu jest jego prywatny. Wyłączone przy `saveData` i przy łączu 2g. Zastąpiło to
+  podgrzewanie samego następnego kroku niczyim elementem `<video>`.
+
+- **Testy tych zachowań są w repo.** `tools/test-krokow.js` dostał blok deterministyczny obok
+  losowego: koniec cofki + ◄, koniec cofki + ►, seria kliknięć w kropkę z limitem czasu
+  powrotu do spoczynku. Sprawdzone, że **padają na kodzie sprzed poprawki** (dokładnie te dwa
+  komunikaty) i przechodzą po niej. Przy okazji `tools/serwer.js` pozwala teraz cache'ować
+  wideo (`max-age=60`), a kodu strony nadal nie — inaczej nie dałoby się przetestować
+  pobierania z góry.
+
 [ZROBIONE 2026-08-12] (Local Opus 5 High) Filmy krok po kroku: zad. 1–4 w nowym kadrze, cięcie na kroki zautomatyzowane. v24 Beta.
 
 - **Cięcie sceny na kroki robi teraz sam render.** `manim --save_sections` plus

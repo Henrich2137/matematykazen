@@ -63,6 +63,8 @@ const czytajStan = zad => zad.evaluate(el => {
         plik: video ? (video.currentSrc || '').split('/').pop() : '',
         wstecz: /reverse/.test(video ? video.currentSrc : ''),
         laduje: tresc.classList.contains('laduje') || tresc.classList.contains('podmiana'),
+        koniec: video ? video.ended : false,
+        pauza: video ? video.paused : true,
         pusty: tresc.childElementCount === 0,
     };
 });
@@ -123,9 +125,76 @@ async function przebieg(browser, zadanie, ziarno) {
     return { naruszenia, bledy };
 }
 
+// Konkretne zachowania, których losowe klikanie nie sprawdzi, bo trzeba trafić
+// w dokładny stan. Wszystkie dotyczą jednej zasady: KONIEC REWERSU to ten sam
+// stan co PIERWSZA KLATKA zwykłego filmu i przyciski mają reagować tak samo.
+async function zachowania(browser, zadanie) {
+    const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+    await page.goto(`http://127.0.0.1:${PORT}/template.html?arkusz=${ARKUSZ}`);
+    await page.waitForSelector('.exercise-container', { state: 'attached' });
+    const zad = page.locator('.exercise-container').nth(zadanie + 1);
+    await zad.locator('.solution-button').click();
+    await zad.locator('.steps-content video').waitFor({ timeout: 15000 });
+
+    const czekajAz = async (warunek, limit = 15000) => {
+        const t0 = Date.now();
+        let s = await czytajStan(zad);
+        while (Date.now() - t0 < limit && !warunek(s)) { await spij(100); s = await czytajStan(zad); }
+        return s;
+    };
+    const doKoncaCofki = () => czekajAz((s) => s.wstecz && s.plik && !s.laduje && s.koniec);
+    const doSpoczynku = () => czekajAz((s) => !s.laduje);
+
+    const zle = [];
+    // Ustaw się na początku kroku 4 i cofnij cały krok 3 — na końcu cofki stoimy
+    // na pierwszej klatce kroku 3.
+    const ustawSie = async () => {
+        await zad.locator('.step-dot').nth(3).click({ force: true });
+        await doSpoczynku();
+        await zad.locator('.step-prev').click({ force: true });
+        return doKoncaCofki();
+    };
+
+    if (!(await ustawSie()).koniec) {
+        zle.push('nie udało się doprowadzić cofki do końca — reszta zachowań niesprawdzona');
+    } else {
+        await zad.locator('.step-prev').click({ force: true });
+        let s = await doSpoczynku();
+        if (!(s.plik === 'step2reverse.mp4' && !s.pauza)) {
+            zle.push(`◄ po dobiegnięciu cofki: oczekiwano cofania POPRZEDNIEGO kroku (step2reverse.mp4, gra), jest ${s.plik}${s.pauza ? ' (pauza)' : ''}`);
+        }
+        await ustawSie();
+        await zad.locator('.step-next').click({ force: true });
+        s = await doSpoczynku();
+        if (!(s.plik === 'step3.mp4' && !s.wstecz && !s.pauza)) {
+            zle.push(`► po dobiegnięciu cofki: oczekiwano TEGO SAMEGO kroku w przód (step3.mp4, gra), jest ${s.plik}${s.pauza ? ' (pauza)' : ''}`);
+        }
+    }
+
+    // Szybkie klikanie w jedną kropkę nie może zostawić odtwarzacza w „ładuję".
+    // Porzucone elementy <video> zajmowały miejsce w puli mediów przeglądarki
+    // i głodziły ten, na który czekamy (zmierzone: 5,6 s zawieszenia).
+    const kropka = zad.locator('.step-dot').first();
+    for (let i = 0; i < 6; i++) { await kropka.click({ force: true }); await spij(80); }
+    const t0 = Date.now();
+    await doSpoczynku();
+    const czekanie = Date.now() - t0;
+    if (czekanie > 4000) zle.push(`po serii kliknięć w kropkę odtwarzacz wracał do spoczynku ${czekanie} ms (limit 4000)`);
+
+    await page.close();
+    return zle;
+}
+
 (async () => {
     const browser = await chromium.launch({ args: ['--autoplay-policy=no-user-gesture-required'] });
     let padlo = 0;
+
+    // Zachowania sprawdzamy na zad. 1 — ma najwięcej kroków i komplet rewersów.
+    const zleZachowania = await zachowania(browser, 0);
+    padlo += zleZachowania.length;
+    console.log(`zachowania (koniec rewersu, klikanie w kropkę): ${zleZachowania.length ? 'ŹLE' : 'ok'}`);
+    zleZachowania.forEach((w) => console.log('    ' + w));
+
     for (const zadanie of ZADANIA) {
         for (const ziarno of ZIARNA) {
             const { naruszenia, bledy } = await przebieg(browser, zadanie, ziarno);
