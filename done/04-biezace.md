@@ -1,5 +1,50 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-12] (Local Opus 5 High) Odtwarzacz krok po kroku — 5 poprawek po testach v21 + naprawa własnej regresji. v22 Beta.
+
+- **Błąd `ResizeObserver loop completed with undelivered notifications`** — regresja z v21, moja.
+  Henrich zobaczył baner na Pixelu 7a i w symulacji Pixela 7 (zad. 3). Przyczyna:
+  `odswiezStrzalkiKropek()` mierzyło dostępne miejsce, **chowając najpierw strzałki** — a te
+  siedzą w tym samym wierszu co okno kropek, więc każdy pomiar zmieniał układ i budził
+  obserwatora od nowa; zapis szedł w dodatku wprost z jego uchwytu. Teraz pomiar niczego nie
+  przestawia (porównanie „ile kropki chcą" z szerokością całego wiersza, niezależną od
+  strzałek), zapis idzie tylko przy realnej zmianie stanu i jest odłożony do najbliższej klatki,
+  a obserwowany jest wiersz, nie okno.
+  **Metodycznie ważne:** pierwsza wersja testu pokazywała „0 błędów" także na WADLIWYM kodzie,
+  więc nic nie dowodziła. Ten błąd trzeba łapać tak, jak łapie go strona — zdarzeniem `error`
+  na `window`, nie `pageerror` Playwrighta. Po poprawieniu testu: stary kod 2 błędy + ten sam
+  baner co u Henricha, nowy zero.
+
+- **Przycisk ◄ ma trzy zachowania** zależne od stanu filmu. Doszło brakujące trzecie: wciśnięty
+  gdy film już się cofa, doskakuje na pierwszą klatkę kroku i staje (wcześniej startował rewers
+  od nowego miejsca i obraz się zacinał). Pokazywany jest wtedy plik w przód na czasie zero — ta
+  sama klatka co koniec rewersu, ale stan, z którego start/pauza rusza naturalnie naprzód.
+
+- **Pasek kropek mieści więcej kropek**: szerokość 80% → 96%, ale odzyskane miejsce poszło
+  w kropki, nie w rozciągnięcie (padding kropki 8→5 px, odcinki 18/14→14/10, strzałki 32→24,
+  gap 4→2). Wyszło lepiej, niż zakładałem: zad. 1 z dziesięcioma kropkami mieści się w całości
+  na telefonie 390 px, więc przewijanie w ogóle się nie włącza. Pionowy padding kropki nietknięty
+  — to on daje 44 px wysokości pola dotyku.
+
+- **ROW 3 wyśrodkowany**, rozwinięty tekst zostaje wyrównany do lewej (to akapit do czytania)
+  i dostaje na telefonie własny padding — jechał razem z filmem poza padding podokna i kleił się
+  do krawędzi ekranu.
+
+- **Podokna bliżej krawędzi na telefonie**: boczne wcięcie karty 16→10 px, padding podokien
+  20/22→12 px, ujemny margines filmu −20→−12 px, żeby sięgał dokładnie krawędzi karty. Zmierzone
+  na 390 px: ramka 18 px od krawędzi zamiast 25.
+
+- **Puls tła w miejscu kadru na czas ładowania.** Czysty CSS, bez dodatkowego elementu i bez
+  skryptu. Zwłoka 200 ms zrobiona `animation-delay` przy starcie z przezroczystości, więc przy
+  szybkim łączu nic nie mrugnie; `prefers-reduced-motion` zostawia samo statyczne tło. Klasa
+  `.laduje` siada **tylko gdy kadr jest pusty** — przy zmianie kroku podwójny bufor trzyma na
+  ekranie poprzedni film i puls migałby nad gotowym obrazem.
+
+- Uwaga do historii: pierwsze podejście do commitów wrzuciło trzy tematy do commita opisującego
+  jeden (`git add app/steps.js` bierze cały plik). Poprawione przed pushem — commity zostały
+  rozbite tak, żeby opis zgadzał się z zawartością.
+
+
 [ZROBIONE 2026-08-12] (Henrich — testy) v21 odebrane. Henrich przeklikał całą sekcję TESTOWANIE HENRICH
 dla odtwarzacza krok po kroku (arkusz 2024-grudzień, wszystkie trzy zadania z wideo). Potwierdzone jako
 działające: skok ► w trakcie odtwarzania, natychmiastowe podświetlenie kropki przy ◄, start/pauza

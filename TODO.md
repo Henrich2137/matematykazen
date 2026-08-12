@@ -2,48 +2,11 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.
-  - PO TESTACH v21 (odtwarzacz krok po kroku) — poprawki zamówione przez Henricha:
 
-    - przycisk prev-step "<" ma mieć trzy zachowania zależne od stanu filmu (zastępuje stary punkt
-      o powtórnym wciśnięciu cofania, które dziś tylko stutteruje):
-      - film leci do przodu albo stoi zapauzowany w środku kroku → puść rewers od tego samego miejsca
-      - film leci do tyłu → przeskocz na 1. klatkę bieżącego kroku i zapauzuj
-      - stoi na 1. klatce → puść rewers poprzedniego kroku
+<br>
 
-    - pasek kropek (`steps-dots-row`) ma być szerszy — mniejsze marginesy/padding albo większa
-      szerokość, byle wersja przewijana mieściła więcej kropek.
 
-    - przycisk „pokaż wyjaśnienie kroku" — wyśrodkować; rozwinięty tekst na telefonie jest przyklejony
-      do lewej krawędzi, potrzebuje marginesu.
-
-    - podokna na telefonie (rozwiązania, formularz zgłoszenia błędu, sprawdzanie obliczeń) — zmniejszyć
-      wcięcie z zewnątrz, czyli odstęp między ramką podokna a krawędzią ekranu.
-
-    - miejsce na kadr filmu ma pokazywać animację ładowania: niskokontrastową względem tła i odpaloną
-      dopiero po ~200 ms, żeby nie mrugała przy szybkim łączu. Formę wybiera Claude — ma być tania
-      w implementacji i niezawodna.
-
-  - PO TESTACH NOWEGO UI ROZWIĄZANIE KROK PO KROKU:
-    - Wieszkość działa bardzo dobrze. Gratulacje!!! Dziękuję <3 >
-    - Pixel7aGraoheneOs Chrome:
-      ⚠ Wystąpił błąd strony (pokaż ten tekst autorowi): • ResizeObserver loop completed with undelivered notifications.
-      (https://henrich2137.github.io/matematykazen/template.html?arkusz=2024-grudzien:0)
-      
-      CHROME SYMULACJA PIXEL 7 ZAD 3:
-      a Wystąpił błąd strony (pokaż ten tekst autorowi):
-      + ResizeObserver loop completed with
-      undelivered notifications.
-      (https: //henrich2137.github.io/matematykazen/
-      template. html ?arkusz=2024-grudzien:0)
-      + ResizeObserver loop completed with
-      undelivered notifications.
-      (https: //henrich2137.github.io/matematykazen/
-      template. html ?arkusz=2024-grudzien:0)
-      + ResizeObserver loop completed with
-      undelivered notifications.
-      (https: //henrich2137.github.io/matematykazen/
-      template. html ?arkusz=2024-grudzien:0)
-
++ NIE REALIZUJ:
   - Ciemny motyw wymuszony ręcznie w panelu bocznym: rysunki/filmy mają przygasać jak przy
     „auto" — poprawka przy okazji v20, jeszcze bez potwierdzenia Henricha.
     issues/krok-po-kroku-v20-testy.md
@@ -54,9 +17,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     opis kroku siedzi w rozwijanym ROW 3. Zmierzone na telefonie 390 px — treść zadania ma
     24 px marginesu, film i ROW 3 po 25 px, czyli równo. Zostaje do przeklikania na żywo.
 
-
-
-+ NIE REALIZUJ:
   - spraw aby przycisk do rozwijania side-bara był nad przyciemieniem tła na telefonie. Nie ma być przyciemiony aby użytkownik wiedział, że jest możliwy do kliknięcia.
 
   - ZMIEŃ STARE FILMIKI NA NOWO USTALONYU FORMAT 720p120fps, opisy w zad3 uzupełnimy potem, możesz je dopisać gdzieś tam niżej niżej w todo
@@ -88,6 +48,33 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 
 + TESTOWANIE HENRICH
+
+  - v22, odtwarzacz krok po kroku — poprawki z twoich testów v21, arkusz grudzień 2024
+
+    - poklikaj zadania z krokami na telefonie i poobracaj ekran — czerwony baner
+      „ResizeObserver loop completed with undelivered notifications" nie ma się już pojawić
+      ani razu (to była moja regresja z v21, najmocniej wychodziła w zad. 3)
+
+    - sprawdź trzy zachowania przycisku cofania
+      - kliknięty w trakcie odtwarzania albo na pauzie w środku kroku — puszcza film od tyłu
+        od tego samego miejsca
+      - kliknięty jeszcze raz, gdy film już się cofa — doskakuje na pierwszą klatkę kroku
+        i zatrzymuje się (wcześniej się zacinał)
+      - kliknięty na pierwszej klatce — cofa poprzedni krok
+
+    - otwórz zad. 1 na telefonie — wszystkie dziesięć kropek ma się zmieścić bez przewijania,
+      więc strzałki po bokach paska nie powinny się w ogóle pokazać
+      - przy okazji sprawdź, czy kropki nie zrobiły się za ciasne dla kciuka
+
+    - przycisk „pokaż wyjaśnienie kroku" ma być wyśrodkowany, a rozwinięty tekst na telefonie
+      ma mieć margines i nie kleić się do krawędzi ekranu
+
+    - na telefonie ramka podokna (rozwiązanie, „sprawdzanie obliczeń", formularz zgłoszenia)
+      siedzi 18 px od krawędzi zamiast 25 — zobacz, czy to nie za blisko
+
+    - otwórz rozwiązanie z krokami pierwszy raz — w miejscu filmu ma pulsować delikatne tło,
+      ale dopiero po chwili; przy szybkim łączu nie powinno mrugnąć ani razu
+
 <br> Claude zapisuje małymi litery. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 
   - kontener: firewall + Playwright + read-only `.vscode` (2026-08-10), wymaga zwykłego Rebuild Container (bez `--no-cache`) — bez tego nic z tego nie zadziała; po przebudowie, w terminalu w kontenerze:
