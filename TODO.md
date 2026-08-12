@@ -56,6 +56,8 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     - ► W TRAKCIE ODTWARZANIA pomija krok: leci film 2, klikasz ► i od razu jestes na
       poczatku filmu 3. Wczesniej klik w trakcie nie robil nic.
     - ◄ podswietla kropke POCZATKU kroku od razu przy kliknieciu, nie po dojechaniu cofki.
+
+    
     - START/PAUZA w trakcie cofania: pierwszy klik ma zatrzymac cofke w miejscu, drugi
       puscic film DO PRZODU od tego samego miejsca. Sam start/pauza nigdy nie odpala rewersu.
     - Klik w kropke w TRAKCIE odtwarzania: film skacze na poczatek i — to bylo zepsute —
