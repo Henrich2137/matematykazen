@@ -1,4 +1,4 @@
-Ostatnia weryfikacja  18:40  11.08.2026 
+Ostatnia weryfikacja  14:20  12.08.2026 
 
 # Matematyka Zen
 
@@ -8,7 +8,7 @@ Zobacz na żywo: https://henrich2137.github.io/matematykazen/
 
 ## Arkusze maturalne
 
-- **2024 grudzień (próbna)** — kompletny: wszystkie 30 zadań, podpowiedzi, rozwiązania (tekst + wideo krok po kroku), 9 interaktywnych widżetów, odpowiedzi zweryfikowane z oficjalnym kluczem CKE.
+- **2024 grudzień (próbna)** — kompletny: wszystkie 30 zadań, podpowiedzi, rozwiązania (tekst + wideo krok po kroku przy sześciu zadaniach: 1, 2, 3, 4, 6 i 8), 9 interaktywnych widżetów, odpowiedzi zweryfikowane z oficjalnym kluczem CKE.
 - **2026 maj** — wpięty jako same zadania z odpowiedziami do sprawdzenia; bez podpowiedzi, rozwiązań, wideo i widżetów.
 - **2025 maj** — jeszcze niewpięty: same PDF-y arkusza i klucza, bez danych na stronie.
 
