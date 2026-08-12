@@ -121,8 +121,15 @@ function pokazKrok(ctx, idx, { wstecz = false, czas = 0, graj = true } = {}) {
 
     odswiezNawigacje(ctx);
 
+    // Znak ładowania TYLKO wtedy, gdy kadr jest pusty. Przy zmianie kroku
+    // podwójny bufor trzyma na ekranie poprzedni film aż do podmiany, więc
+    // migałby nad gotowym obrazem. Samo opóźnienie ~200 ms robi CSS
+    // (animation-delay), żeby przy szybkim łączu nic nie mrugnęło.
+    if (!ctx.stepsContent.childElementCount) ctx.stepsContent.classList.add("laduje");
+
     przygotujKrok(ctx, idx, wstecz, czas, (box, video) => {
         if (swapToken !== ctx.swapToken) return; // w międzyczasie wybrano co innego
+        ctx.stepsContent.classList.remove("laduje");
         ctx.stepsContent.replaceChildren(...box.childNodes);
         if (video && isFinite(video.duration)) {
             ctx.dlugoscPrzod = wstecz
@@ -350,6 +357,17 @@ function krokWstecz(ctx) {
     const video = ctx.stepsContent.querySelector("video");
     const pozycja = pozycjaWKroku(ctx, video);
 
+    // JUŻ COFAMY → doskakujemy na pierwszą klatkę bieżącego kroku i stajemy
+    // (Henrich po testach v21). Wcześniej drugie ◄ w trakcie cofki startowało
+    // rewers jeszcze raz od nowego miejsca i obraz się zacinał.
+    // Pokazujemy plik W PRZÓD na czasie 0 — to ta sama klatka co koniec rewersu,
+    // ale zostawia nas w stanie, z którego start/pauza rusza naturalnie naprzód.
+    if (ctx.wstecz) {
+        ctx.uKonca = false;
+        pokazKrok(ctx, ctx.krok, { czas: 0, graj: false });
+        return;
+    }
+
     // uKonca gasimy OD RAZU, więc kropka początku kroku podświetla się w chwili
     // kliknięcia, a nie dopiero gdy cofka dobiegnie do końca (Henrich po
     // testach v20).
@@ -398,19 +416,32 @@ function skoczDoKropki(ctx, i) {
 }
 
 // Strzałki przewijania pokazujemy wtedy i tylko wtedy, gdy kropki NAPRAWDĘ się
-// nie mieszczą. Wcześniej decydowała sama ich liczba (>7) i w zad. 3 strzałki
-// wisiały mimo że cały pasek był widoczny (Henrich po testach v20).
-// Mierzymy przy schowanych strzałkach, żeby wynik nie zależał od tego, czy
-// akurat są widoczne — inaczej pomiar zjadałby własny efekt.
+// nie mieszczą (w zad. 3 dziewięć kropek mieści się na komputerze bez reszty,
+// a decydowała sama ich liczba — Henrich po testach v20).
+//
+// POMIAR NIE MOŻE NICZEGO PRZESTAWIAĆ. Pierwsza wersja chowała strzałki, żeby
+// zmierzyć miejsce „bez nich" — a że strzałki są w tym samym wierszu co okno
+// kropek, każdy pomiar zmieniał układ i budził ResizeObserver od nowa.
+// Chrome ucinał to po kilku obrotach błędem „ResizeObserver loop completed with
+// undelivered notifications", który Henrich zobaczył na Pixelu 7a (v21).
+// Zamiast tego porównujemy szerokość, jakiej kropki CHCĄ, z szerokością całego
+// wiersza — ta druga nie zależy od tego, czy strzałki akurat widać:
+//   • strzałki widoczne, kropki się nie mieszczą → scrollWidth to realna
+//     szerokość treści, więc porównanie jest wprost;
+//   • kropki się mieszczą → scrollWidth schodzi do szerokości okna, która jest
+//     nie większa niż wiersz, więc wynik wychodzi „nie trzeba" — i słusznie,
+//     bo bez strzałek miejsca będzie tylko więcej.
 function odswiezStrzalkiKropek(ctx) {
     const okno = ctx.kropkiOkno;
-    if (!okno) return;
-    ctx.przewinLewo.style.display = "none";
-    ctx.przewinPrawo.style.display = "none";
-    if (okno.scrollWidth > okno.clientWidth + 1) {
-        ctx.przewinLewo.style.display = "";
-        ctx.przewinPrawo.style.display = "";
-    }
+    const wiersz = okno && okno.parentElement;
+    if (!wiersz) return;
+
+    const trzeba = ctx.kropkiBox.scrollWidth > wiersz.clientWidth + 1;
+    if (trzeba === ctx.strzalkiWidoczne) return; // bez zmiany nie ruszamy DOM
+
+    ctx.strzalkiWidoczne = trzeba;
+    ctx.przewinLewo.style.display = trzeba ? "" : "none";
+    ctx.przewinPrawo.style.display = trzeba ? "" : "none";
 }
 
 // Przewijanie paska kropek: bieżąca kropka jest utrzymywana w polu widzenia.
@@ -441,12 +472,22 @@ function zbudujKropki(ctx) {
         kropka.addEventListener("click", () => skoczDoKropki(ctx, i));
         ctx.kropkiBox.appendChild(kropka);
     }
+    ctx.strzalkiWidoczne = undefined; // po przebudowie kropek liczymy od nowa
     odswiezStrzalkiKropek(ctx);
-    // Szerokość okna zmienia się z oknem przeglądarki i przy obrocie telefonu,
+    // Szerokość wiersza zmienia się z oknem przeglądarki i przy obrocie telefonu,
     // więc potrzebę strzałek przeliczamy na bieżąco, a nie raz przy budowie.
+    // Zapis odkładamy do najbliższej klatki: przestawienie czegokolwiek wprost
+    // w uchwycie ResizeObserver jest właśnie tym, na co Chrome krzyczy
+    // „loop completed with undelivered notifications".
     if (window.ResizeObserver && !ctx.obserwatorKropek) {
-        ctx.obserwatorKropek = new ResizeObserver(() => odswiezStrzalkiKropek(ctx));
-        ctx.obserwatorKropek.observe(ctx.kropkiOkno);
+        ctx.obserwatorKropek = new ResizeObserver(() => {
+            if (ctx.rafStrzalek) return;
+            ctx.rafStrzalek = requestAnimationFrame(() => {
+                ctx.rafStrzalek = 0;
+                odswiezStrzalkiKropek(ctx);
+            });
+        });
+        ctx.obserwatorKropek.observe(ctx.kropkiOkno.parentElement);
     }
 }
 
