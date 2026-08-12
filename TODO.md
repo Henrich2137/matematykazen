@@ -1,6 +1,9 @@
 Oto plik który tworzy Henrich (ja, użytkownik).
 
 + DO ZROBIENIA
+
+- PUŚĆIĆ ZAPAUZOWANĄ SESJĘ, MOŻNA POWIEDZIEĆ COŚ W STYLU: ZRÓB TYLKO TO CO NAJWAŻNIEJSZE A DODATKOWE RZECZY ZOSTAW NA KIEDY INDZIEJ
+
 <br> Jeżeli nie masz co robić, to rób stąd.
   - Błędy w filmach — ZOSTAŁO (zad. 3, 5 i 6 poprawione w v30):
     - Zad 4. wygląda wzorowo, ale łamie zasadę ciągłości klatek: zielona szóstka zostaje
