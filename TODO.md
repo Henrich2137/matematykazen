@@ -3,6 +3,16 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.
 
+  - ZMIEŃ STARE FILMIKI NA NOWO USTALONYU FORMAT 720p120fps, opisy w zad3 uzupełnimy potem, możesz je dopisać gdzieś tam niżej niżej w todo
+    Rozwiązanie krok po kroku - ZOSTAŁO Z TEGO TEMATU (reszta zrobiona w v20, patrz done/04-biezace.md):
+    - Sceny zad. 1 i zad. 3 są wciąż w starym kadrze 21:9 (840×360, 60 fps). Odtwarzacz radzi sobie
+      z obydwoma formatami naraz (bierze proporcje z pliku), więc to nie pali się — ale dopóki tego
+      nie przerobisz, te dwa zadania nie mają zapasu klatek pod spowolnienie 0,25×.
+      Po przerenderowaniu trzeba puścić `tools/rewersy.sh` jeszcze raz z `--nadpisz`.
+    - Zad. 3 nie ma opisów kroków w danych (7 z 8 kroków ma puste "text"), więc przycisk
+      „Pokaż wyjaśnienie kroku" pokazuje się tam tylko na ostatnim kroku.
+  
+
 <br>
 
 
@@ -19,14 +29,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
   - spraw aby przycisk do rozwijania side-bara był nad przyciemieniem tła na telefonie. Nie ma być przyciemiony aby użytkownik wiedział, że jest możliwy do kliknięcia.
 
-  - ZMIEŃ STARE FILMIKI NA NOWO USTALONYU FORMAT 720p120fps, opisy w zad3 uzupełnimy potem, możesz je dopisać gdzieś tam niżej niżej w todo
-    Rozwiązanie krok po kroku - ZOSTAŁO Z TEGO TEMATU (reszta zrobiona w v20, patrz done/04-biezace.md):
-    - Sceny zad. 1 i zad. 3 są wciąż w starym kadrze 21:9 (840×360, 60 fps). Odtwarzacz radzi sobie
-      z obydwoma formatami naraz (bierze proporcje z pliku), więc to nie pali się — ale dopóki tego
-      nie przerobisz, te dwa zadania nie mają zapasu klatek pod spowolnienie 0,25×.
-      Po przerenderowaniu trzeba puścić `tools/rewersy.sh` jeszcze raz z `--nadpisz`.
-    - Zad. 3 nie ma opisów kroków w danych (7 z 8 kroków ma puste "text"), więc przycisk
-      „Pokaż wyjaśnienie kroku" pokazuje się tam tylko na ostatnim kroku.
   
   - Zad. 10/11 na telefonie: pola/przyciski są już pod treścią zdania i jest czytelniej, ale brakuje
     odstępu między kolejnymi zdaniami (1, 2, 3…) — zlewają się w jeden blok.
@@ -48,6 +50,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 
 + TESTOWANIE HENRICH
+<br> Claude zapisuje małymi litery. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 
   - v22, odtwarzacz krok po kroku — poprawki z twoich testów v21, arkusz grudzień 2024
 
@@ -75,7 +78,26 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     - otwórz rozwiązanie z krokami pierwszy raz — w miejscu filmu ma pulsować delikatne tło,
       ale dopiero po chwili; przy szybkim łączu nie powinno mrugnąć ani razu
 
-<br> Claude zapisuje małymi litery. HENRICH ZAPISUJE WIELKIMI LITERAMI.
+
+  - v23, odtwarzacz krok po kroku — kroki gubiły się przy wolnym łączu; wszystko poniżej
+    najlepiej sprawdzić na telefonie na komórkowym internecie albo z włączonym dławieniem sieci
+
+    - wciśnij ◄ kilka razy pod rząd — licznik, kropki i pasek mają się cofać po jednym kroku
+      na kliknięcie i nigdy nie pokazywać czegoś innego niż film, który widzisz
+
+    - kliknij kropkę daleko z przodu i patrz na kadr — stary obraz ma delikatnie pulsować
+      (przygasać), dopóki nowy krok się nie wczyta
+      - przy szybkim łączu nie powinno mrugnąć ani razu
+
+    - wciśnij środkowy przycisk (odtwórz) w chwili, gdy krok się jeszcze wczytuje — film ma
+      ruszyć sam, gdy tylko wejdzie, a nie stanąć na pierwszej klatce
+
+    - poklikaj ► kilka razy szybko przy słabym zasięgu — kadr nie ma na moment gasnąć
+      ani pokazywać obrazu dwa razy
+
+    - przewijaj i cofaj do woli przez minutę, a potem zostaw stronę w spokoju — odtwarzacz
+      nie ma zostać zawieszony na przygaszonym kadrze
+
 
   - kontener: firewall + Playwright + read-only `.vscode` (2026-08-10), wymaga zwykłego Rebuild Container (bez `--no-cache`) — bez tego nic z tego nie zadziała; po przebudowie, w terminalu w kontenerze:
     - `dig +short github.com` — ma zwrócić adresy (jeśli w logu firewalla widać „UWAGA: DNS nie działa po zawężeniu", zawężenie bramy poszło źle, patrz `.devcontainer/README.md`, sekcja „Diagnostyka").
@@ -111,6 +133,13 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + INNE NOTATKI, DO PRZEKMINIENIA:
   
+  + ULEPSZANIE WORKFLOW (skopiowane z NOTATKI_USERA)
+    - Schedule adversarial review lub /code-review
+    - Stworzyć/pobrać potrzebne mi skille do tego projektu
+    - wyłączyć skróty które powodują, że przeklikuje pytanie podczas pisania prompta
+    - rozkminić, poszukać, poinstalować, pouczyć się - pluginy różne:
+      - frontend-design@claude-plugins-official czy jakoś tak
+      - superpowers
   + UI
 
     - "Wskaźniki" (oceń się):
@@ -133,10 +162,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     - Zad 24. dopisać str 27 (jest tam rysunek ostrosłupa, obok już wpisanej str 11 z tangensem)
     - Zad 30. dopisać str 26 (pole całkowite prostopadłościanu [12.2], obok już wpisanej str 8 z wierzchołkiem paraboli)
 
-  + ULEPSZANIE WORKFLOW (skopiowane z NOTATKI_USERA)
-    - Schedule adversarial review lub /code-review
-    - Stworzyć/pobrać potrzebne mi skille do tego projektu
-    - wyłączyć skróty które powodują, że przeklikuje pytanie podczas pisania prompta
 
   - Przycisk "Rozwiązanie" w przypadku wielu rozwiązań powinien nazywać się "Rozwiązania" i mieć możliwość również rozwinięcia listy różnych rozwiązań: Zwykłe, Krok po kroku, Interaktywne
   Każdy z tych elementów byłby przyciskiem. 
@@ -241,6 +266,8 @@ Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz is
       nie da się doinstalować, bo firewall blokuje dl.google.com. Logikę odtwarzacza sprawdziłem
       na kopiach WebM, a same pliki mp4 osobno przez ffmpeg/SSIM. Czego NIE dało się u mnie
       sprawdzić: realnego odtwarzania tych konkretnych mp4 w przeglądarce i zachowania na telefonie.
+      - SPROSTOWANIE 2026-08-12 (Opus 5, high): w kontenerze LOKALNYM H.264 odtwarza się bez
+        problemu — sprawdzone na plikach arkusza. Ograniczenie dotyczyło tylko chmury.
 
   + FABLE DOPISAŁ (Fable 5, po paczce 4 „Spójność UI etap 2", 2026-08-09):
 

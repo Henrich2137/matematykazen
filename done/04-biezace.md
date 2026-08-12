@@ -1,5 +1,47 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-12] (Local Opus 5 High) Odtwarzacz krok po kroku — wielokrotne cofanie i odtwarzanie przy słabym łączu. v23 Beta.
+
+- **Jedna przyczyna pod obydwoma objawami z TODO.** Podmiana kroku TRWA: `pokazKrok()` ustawia
+  `ctx.krok`/`ctx.wstecz` w chwili kliknięcia, ale nowy film musi jeszcze przyjść z sieci —
+  i przez cały ten czas w kadrze siedzi **poprzedni** krok. Każdy element sterowania czytał go
+  przez `querySelector("video")` tak, jakby należał do nowego stanu. Zmierzone Playwrightem na
+  serwerze dławionym do 60 kB/s (skrypty w scratchpadzie sesji, serwer z obsługą `Range`):
+  kropki i licznik uciekały o kilka kroków przed obrazem (licznik „6 / 9" przy widocznym
+  `step2.mp4`), pasek postępu nowego odcinka rysował się z `currentTime` starego filmu, „play"
+  pauzował film, który za sekundę znikał, i zostawiał przychodzący krok zatrzymany na zerowej
+  klatce, a ◄ podejmował decyzje na podstawie pozycji w zupełnie innym kroku.
+
+- **Naprawa: drugi licznik.** `swapToken` to podmiana ZAMÓWIONA, `tokenNaEkranie` — POKAZANA,
+  a różnica między nimi (`wPodmianie()`) znaczy „krok się jeszcze ładuje". Wtedy
+  `biezaceWideo()` zwraca `null` (przez nie idzie już całe sterowanie), `pozycjaWKroku()` zwraca
+  pozycję zamówioną zamiast czasu obcego filmu (`Infinity` = „koniec kroku, długości jeszcze nie
+  znamy" — tak startuje cofka całego poprzedniego kroku), a zamiar grania siedzi w
+  `ctx.grajPoPodmianie`, więc play/pauza w trakcie ładowania **odwraca zamiar**, zamiast ruszać
+  skazany element.
+
+- **Strażnik 1,5 s → 8 s + obsługa `error`.** Stary limit przy wolnym łączu wpuszczał do kadru
+  element bez ani jednej zdekodowanej klatki: obraz gasł i przychodził drugi raz. Teraz podmiana
+  czeka na klatkę, a kończy się wcześniej tylko na błędzie pliku — brak rewersu (nieprzerobiony
+  arkusz) ląduje od razu na pierwszej klatce kroku, czyli tam, gdzie cofka i tak by się
+  skończyła. Sprawdzone przez chwilowe schowanie `step4reverse.mp4`.
+
+- **Widać, że się ładuje.** Puls tła (`.laduje`) był niewidoczny, gdy w kadrze wisiał poprzedni
+  krok — bo tło siedzi ZA filmem. Doszła klasa `.podmiana`, która pulsuje przezroczystością
+  samego obrazu, z tą samą zwłoką 200 ms, więc przy szybkim łączu nadal nic nie mruga
+  (zmierzone: opacity 1 → 0,47 → 1, klasa znika w chwili wejścia kroku).
+
+- **Czym to sprawdzone.** Test losowy (40 kliknięć ◄/►/play/kropka z losowymi odstępami)
+  z niezmiennikami: plik w kadrze musi pasować do licznika, odtwarzacz nie może zostać
+  w stanie „ładuję", kadr nie może zostać pusty. 18 przebiegów × 3 prędkości łącza
+  (natychmiastowe / 60 kB/s / 12 kB/s) × 3 zadania — zero naruszeń, zero błędów JS.
+  Przy okazji odhaczone dwa punkty z TESTOWANIA v22: 10 kropek mieści się na 390 i 360 px bez
+  strzałek, a obracanie ekranu w trzech zadaniach nie wywołuje już błędu ResizeObservera.
+
+- **Ustalenie sprzętowe:** Chromium z Playwrighta W TYM kontenerze **odtwarza H.264** — notatka
+  z 2026-08-11 o braku kodeka dotyczyła kontenera chmurowego. Filmy mp4 z arkusza da się więc
+  testować wprost, bez kopii WebM. Warunek: serwer z obsługą żądań zakresowych.
+
 [ZROBIONE 2026-08-12] (Local Opus 5 High) Odtwarzacz krok po kroku — 5 poprawek po testach v21 + naprawa własnej regresji. v22 Beta.
 
 - **Błąd `ResizeObserver loop completed with undelivered notifications`** — regresja z v21, moja.

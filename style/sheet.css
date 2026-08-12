@@ -1237,11 +1237,29 @@ body.sidebar-otwarty #sidebar-linia {
     50%  { background-color: var(--bg-muted); }
     100% { background-color: transparent; }
 }
-/* Użytkownik prosi o brak animacji → zostaje samo statyczne tło. */
+/* To samo, ale gdy w kadrze wisi jeszcze POPRZEDNI krok (podwójny bufor).
+   Puls tła byłby wtedy schowany za filmem, więc przygasa sam obraz — czytelny
+   znak „ładuję następny", zamiast pozornie zamrożonej strony przy wolnym łączu.
+   Ta sama zwłoka 200 ms co wyżej: przy szybkim łączu nie zdąży nic mrugnąć. */
+.steps-content.podmiana .step-video,
+.steps-content.podmiana img {
+    animation: przygaszenie-kadru 1.4s ease-in-out 200ms infinite;
+}
+@keyframes przygaszenie-kadru {
+    0%   { opacity: 1; }
+    50%  { opacity: 0.45; }
+    100% { opacity: 1; }
+}
+/* Użytkownik prosi o brak animacji → zostaje samo statyczne tło/przygaszenie. */
 @media (prefers-reduced-motion: reduce) {
     .steps-content.laduje {
         animation: none;
         background-color: var(--bg-muted);
+    }
+    .steps-content.podmiana .step-video,
+    .steps-content.podmiana img {
+        animation: none;
+        opacity: 0.6;
     }
 }
 

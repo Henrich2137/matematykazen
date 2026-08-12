@@ -16,8 +16,21 @@
 // treść puszczoną od tyłu plus przytrzymanie doklejone na końcu, więc czas t
 // w wersji w przód odpowiada czasowi (dlugoscPrzod - t) w rewersie.
 //
+// PODMIANA KROKU TRWA W CZASIE (2026-08-12). Nowy plik ładuje się z sieci, więc
+// między kliknięciem a pojawieniem się obrazu mija cała runda do serwera. Przez
+// ten czas ctx opisuje już krok DOCELOWY, a w kadrze siedzi jeszcze POPRZEDNI
+// film — dlatego żaden element sterowania nie może czytać `querySelector("video")`
+// wprost. Od tego jest biezaceWideo(), które w trakcie podmiany zwraca null,
+// i pozycjaWKroku(), które wtedy podaje pozycję ZAMÓWIONĄ, nie tę z obcego filmu.
+// Bez tego przy wolnym łączu kropki i licznik uciekały o kilka kroków przed
+// obrazem, pasek postępu nowego odcinka rysował się z czasu starego filmu,
+// „play" pauzował film, który za chwilę znikał, a ◄ podejmował decyzje na
+// podstawie pozycji w zupełnie innym kroku (zmierzone Playwrightem na łączu
+// dławionym do 60 kB/s).
+//
 // Kształt ctx budowanego per-zadanie w render.js:
-//   { krok, uKonca, maxKropka, wstecz, swapToken, dlugoscPrzod, steps,
+//   { krok, uKonca, maxKropka, wstecz, swapToken, tokenNaEkranie,
+//     pozycjaZamowiona, grajPoPodmianie, dlugoscPrzod, steps,
 //     stepsContent, prevBtn, playBtn, nextBtn, kropkiBox, kropkiOkno,
 //     przewinLewo, przewinPrawo, wyjasnienie, wyjasnienieTresc }
 
@@ -31,6 +44,18 @@ const PRZYTRZYMANIE_REWERSU = 0.25;
 // sam ".mp4", żeby to samo działało dla dowolnego kontenera.
 function sciezkaRewersu(src) {
     return src.replace(/(\.[^./]+)$/, "reverse$1");
+}
+
+// Czy zamówiona podmiana kroku jeszcze nie weszła na ekran.
+function wPodmianie(ctx) {
+    return ctx.swapToken !== ctx.tokenNaEkranie;
+}
+
+// Film, którym WOLNO sterować: ten w kadrze, ale tylko gdy należy do bieżącego
+// stanu. W trakcie podmiany w kadrze wisi poprzedni krok — dla sterowania jest
+// go tyle co nic.
+function biezaceWideo(ctx) {
+    return wPodmianie(ctx) ? null : ctx.stepsContent.querySelector("video");
 }
 
 function renderStep(step) {
@@ -96,17 +121,28 @@ function przygotujKrok(ctx, idx, wstecz, czas, gotowe) {
     }
 
     let wywolane = false;
-    const zglos = () => {
+    let straznik = 0;
+    const zglos = (blad) => {
         if (wywolane) return;
         wywolane = true;
-        gotowe(box, video);
+        clearTimeout(straznik);
+        gotowe(box, video, blad);
     };
 
-    if (czas) ustawCzasWideo(video, czas, zglos);
-    else video.addEventListener("loadeddata", zglos, { once: true });
-    // Awaryjnie: gdyby plik ładował się wyjątkowo długo albo nie istniał
-    // (np. brak rewersu), krok i tak ma się pokazać.
-    setTimeout(zglos, 1500);
+    // Brak pliku (np. nieprzerobiony rewers) — błąd ląduje na <source>, a przy
+    // niektórych ścieżkach także na <video>; słuchamy obu i zgłaszamy od razu,
+    // zamiast czekać na strażnika.
+    video.addEventListener("error", () => zglos(true), { once: true });
+    video.querySelector("source").addEventListener("error", () => zglos(true), { once: true });
+
+    if (czas) ustawCzasWideo(video, czas, () => zglos(false));
+    else video.addEventListener("loadeddata", () => zglos(false), { once: true });
+    // Strażnik na wypadek łącza, które ani nie odpowiada, ani nie zrywa. Był
+    // 1,5 s i przy wolnym łączu wpuszczał do kadru element bez jednej klatki —
+    // kadr na moment gasł, a potem obraz wskakiwał drugi raz. Teraz limit jest
+    // na tyle długi, że dochodzi do głosu dopiero przy realnym zawieszeniu, a do
+    // tego czasu użytkownik widzi przygaszony poprzedni kadr (klasa „podmiana").
+    straznik = setTimeout(() => zglos(video.readyState < 1), 8000);
     video.load();
 }
 
@@ -117,20 +153,37 @@ function przygotujKrok(ctx, idx, wstecz, czas, gotowe) {
 function pokazKrok(ctx, idx, { wstecz = false, czas = 0, graj = true } = {}) {
     ctx.krok = idx;
     ctx.wstecz = wstecz;
+    // Dokąd zmierzamy, w SKALI KROKU (0 = pierwsza klatka). Nieskończoność
+    // oznacza „koniec kroku, długości jeszcze nie znamy" — tak jest przy cofaniu
+    // całego poprzedniego kroku i przy skoku na stan końcowy.
+    if (czas === "koniec") ctx.pozycjaZamowiona = Infinity;
+    else if (wstecz) ctx.pozycjaZamowiona = ctx.dlugoscPrzod ? Math.max(0, ctx.dlugoscPrzod - czas) : Infinity;
+    else ctx.pozycjaZamowiona = czas;
+    // Zamiar grania trzymamy w ctx, a nie w domknięciu: „play" kliknięty w trakcie
+    // ładowania ma go odwrócić, a nie sterować filmem, który zaraz zniknie.
+    ctx.grajPoPodmianie = graj;
     const swapToken = ++ctx.swapToken;
 
     odswiezNawigacje(ctx);
 
-    // Znak ładowania TYLKO wtedy, gdy kadr jest pusty. Przy zmianie kroku
-    // podwójny bufor trzyma na ekranie poprzedni film aż do podmiany, więc
-    // migałby nad gotowym obrazem. Samo opóźnienie ~200 ms robi CSS
-    // (animation-delay), żeby przy szybkim łączu nic nie mrugnęło.
-    if (!ctx.stepsContent.childElementCount) ctx.stepsContent.classList.add("laduje");
+    // Pusty kadr → puls tła. Kadr z poprzednim krokiem → delikatne przygaszenie
+    // (puls byłby pod filmem niewidoczny). Jedno i drugie odpala się dopiero po
+    // ~200 ms, opóźnieniem w CSS, żeby przy szybkim łączu nic nie mrugnęło.
+    ctx.stepsContent.classList.add(ctx.stepsContent.childElementCount ? "podmiana" : "laduje");
 
-    przygotujKrok(ctx, idx, wstecz, czas, (box, video) => {
+    przygotujKrok(ctx, idx, wstecz, czas, (box, video, blad) => {
         if (swapToken !== ctx.swapToken) return; // w międzyczasie wybrano co innego
-        ctx.stepsContent.classList.remove("laduje");
+        // Rewersu nie ma (nieprzerobiony arkusz) — cofka nie ma czego odtworzyć.
+        // Zamiast pustego kadru ląduje od razu tam, gdzie i tak by się skończyła:
+        // na pierwszej klatce kroku. Powtórka nie zapętli się, bo idzie już
+        // w przód.
+        if (blad && wstecz) {
+            pokazKrok(ctx, idx, { wstecz: false, czas: 0, graj: false });
+            return;
+        }
+        ctx.stepsContent.classList.remove("laduje", "podmiana");
         ctx.stepsContent.replaceChildren(...box.childNodes);
+        ctx.tokenNaEkranie = swapToken; // od tej chwili kadr znów opisuje stan
         if (video && isFinite(video.duration)) {
             ctx.dlugoscPrzod = wstecz
                 ? video.duration - PRZYTRZYMANIE_REWERSU
@@ -142,9 +195,9 @@ function pokazKrok(ctx, idx, { wstecz = false, czas = 0, graj = true } = {}) {
             // wykonuje się na pewno (patrz komentarz przy przygotujKrok).
             ustawCzasWideo(video, czas, () => {
                 rysujPostep(ctx, video);
-                if (graj) video.play().catch(() => {});
+                if (ctx.grajPoPodmianie) video.play().catch(() => {});
             });
-            if (graj && !czas) video.play().catch(() => {});
+            if (ctx.grajPoPodmianie && !czas) video.play().catch(() => {});
         }
         odswiezNawigacje(ctx);
     });
@@ -170,6 +223,9 @@ function biezacaKropka(ctx) {
 // Pozycja w SKALI KROKU: 0 = pierwsza klatka, dlugoscPrzod = ostatnia.
 // Rewers liczy czas od końca kroku, więc trzeba go odwrócić.
 function pozycjaWKroku(ctx, video) {
+    // W trakcie podmiany kadr należy jeszcze do poprzedniego kroku — jego czas
+    // nie mówi nic o tym, gdzie jesteśmy. Liczy się pozycja zamówiona.
+    if (wPodmianie(ctx)) return ctx.pozycjaZamowiona;
     if (ctx.wstecz && video) return Math.max(0, ctx.dlugoscPrzod - video.currentTime);
     if (ctx.uKonca) return ctx.dlugoscPrzod;
     return video ? video.currentTime : 0;
@@ -192,6 +248,9 @@ function odswiezNawigacje(ctx) {
         if (i < biezaca) link.style.setProperty("--postep", "100%");
         else if (i !== ctx.krok) link.style.setProperty("--postep", "0%");
     });
+    // Odcinek bieżącego kroku pisze rysujPostep — także tutaj, bo inaczej przy
+    // zmianie kroku zostawałby z wypełnieniem poprzedniego.
+    rysujPostep(ctx, biezaceWideo(ctx));
 
     odswiezPrzyciski(ctx);
 
@@ -212,7 +271,7 @@ function odswiezNawigacje(ctx) {
 // ◄ gaśnie tylko na pierwszej klatce pierwszego kroku — tam nie ma już czego
 // cofać. ► gaśnie na samym końcu ostatniego.
 function odswiezPrzyciski(ctx) {
-    const video = ctx.stepsContent.querySelector("video");
+    const video = biezaceWideo(ctx);
     ctx.prevBtn.disabled = ctx.krok === 0 && pozycjaWKroku(ctx, video) <= 0.001;
     ctx.nextBtn.disabled = ctx.krok === ctx.steps.length - 1 && ctx.uKonca;
 }
@@ -224,10 +283,28 @@ function odswiezPrzyciski(ctx) {
 function rysujPostep(ctx, video) {
     const link = ctx.kropkiBox.querySelectorAll(".step-link")[ctx.krok];
     if (!link) return;
+    const poz = pozycjaWKroku(ctx, video);
     const dlugosc = ctx.dlugoscPrzod;
-    if (!isFinite(dlugosc) || !dlugosc) return;
-    const proc = Math.max(0, Math.min(100, (pozycjaWKroku(ctx, video) / dlugosc) * 100));
+    let proc;
+    // Długości kroku nie znamy dopóki nie wczyta się jego plik. Wtedy liczy się
+    // tylko to, z którego końca odcinka startujemy: „koniec" (Infinity) rysujemy
+    // pełnym paskiem, początek — pustym. Wcześniej odcinek zostawał wtedy
+    // z wartością POPRZEDNIEGO kroku.
+    if (poz === Infinity) proc = 100;
+    else if (!isFinite(dlugosc) || !dlugosc) proc = 0;
+    else proc = Math.max(0, Math.min(100, (poz / dlugosc) * 100));
     link.style.setProperty("--postep", proc.toFixed(1) + "%");
+}
+
+// Środkowy przycisk ma trzy stany: odtwórz / pauza / odtwórz ponownie.
+// Wydzielone z podepnijSterowanieWideo, bo w trakcie ładowania kroku nie ma
+// jeszcze filmu, którego stan można by odczytać — a przycisk i tak musi pokazać,
+// czy krok zagra po wejściu.
+function ustawIkoneGrania(ctx, gra, koniec) {
+    ctx.playBtn.classList.toggle("gra", gra);
+    ctx.playBtn.classList.toggle("koniec", koniec);
+    ctx.playBtn.setAttribute("aria-label",
+        koniec ? "Odtwórz ponownie" : (gra ? "Zatrzymaj" : "Odtwórz"));
 }
 
 function podepnijSterowanieWideo(ctx, video) {
@@ -263,16 +340,10 @@ function podepnijSterowanieWideo(ctx, video) {
     // funkcjonalność zatrzymywania kliknięciem w film").
     video.addEventListener("click", () => przelaczOdtwarzanie(ctx));
 
-    // Środkowy przycisk ma trzy stany: odtwórz / pauza / odtwórz ponownie.
-    // „Ponownie" tylko dla filmu w przód — rewers dobiega do początku kroku
-    // i tam naturalnym następnym ruchem jest odtworzenie w przód, nie powtórka.
-    const syncState = () => {
-        const koniec = video.ended && !ctx.wstecz;
-        ctx.playBtn.classList.toggle("gra", !video.paused);
-        ctx.playBtn.classList.toggle("koniec", koniec);
-        ctx.playBtn.setAttribute("aria-label",
-            koniec ? "Odtwórz ponownie" : (video.paused ? "Odtwórz" : "Zatrzymaj"));
-    };
+    // „Odtwórz ponownie" tylko dla filmu w przód — rewers dobiega do początku
+    // kroku i tam naturalnym następnym ruchem jest odtworzenie w przód, nie
+    // powtórka.
+    const syncState = () => ustawIkoneGrania(ctx, !video.paused, video.ended && !ctx.wstecz);
 
     let raf = 0;
     const petla = () => {
@@ -312,6 +383,16 @@ function podepnijSterowanieWideo(ctx, video) {
 // w trakcie cofania najpierw je zatrzymuje w miejscu, a dopiero drugi klik rusza
 // stamtąd DO PRZODU.
 function przelaczOdtwarzanie(ctx) {
+    // Krok się jeszcze ładuje: w kadrze wisi poprzedni film. Pauzowanie go nie
+    // miałoby sensu (i tak za chwilę zniknie), a użytkownik pyta o to, co się
+    // wczytuje — więc odwracamy ZAMIAR. Bez tego przy wolnym łączu „play"
+    // kończył się filmem zatrzymanym na pierwszej klatce (zmierzone).
+    if (wPodmianie(ctx)) {
+        ctx.grajPoPodmianie = !ctx.grajPoPodmianie;
+        ustawIkoneGrania(ctx, ctx.grajPoPodmianie, false);
+        return;
+    }
+
     const video = ctx.stepsContent.querySelector("video");
     if (!video) return;
 
@@ -354,7 +435,7 @@ function krokDalej(ctx) {
 // kliknięte już na pierwszej klatce cofa cały poprzedni krok (odpowiedź
 // Henricha w TODO.md).
 function krokWstecz(ctx) {
-    const video = ctx.stepsContent.querySelector("video");
+    const video = biezaceWideo(ctx);
     const pozycja = pozycjaWKroku(ctx, video);
 
     // JUŻ COFAMY → doskakujemy na pierwszą klatkę bieżącego kroku i stajemy
@@ -394,7 +475,7 @@ function krokWstecz(ctx) {
 // Klik w kropkę, na której już stoimy, PUSZCZA krok, który się w niej zaczyna —
 // stąd `graj: tenSam` (Henrich po testach v20).
 function skoczDoKropki(ctx, i) {
-    const video = ctx.stepsContent.querySelector("video");
+    const video = biezaceWideo(ctx);
     const tenSam = i === biezacaKropka(ctx);
 
     if (i >= ctx.steps.length) {

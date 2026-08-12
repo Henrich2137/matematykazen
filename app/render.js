@@ -827,12 +827,19 @@ function loadExercises() {
         //   krok    — indeks bieżącego kroku (odcinka między kropkami)
         //   uKonca  — czy głowica stoi na PRAWEJ kropce odcinka
         //   wstecz  — czy w elemencie siedzi rewers, czy wersja w przód
+        //   swapToken / tokenNaEkranie — numer zamówionej i numer POKAZANEJ
+        //     podmiany kroku; różnica między nimi znaczy „krok się jeszcze
+        //     ładuje", a wtedy film w kadrze należy do poprzedniego stanu
+        //     (patrz nagłówek app/steps.js)
         const krokiCtx = {
             krok: 0,
             uKonca: false,
             maxKropka: 0,
             wstecz: false,
             swapToken: 0,
+            tokenNaEkranie: 0,
+            pozycjaZamowiona: 0,
+            grajPoPodmianie: false,
             dlugoscPrzod: 0,
             steps,
             stepsContent,
