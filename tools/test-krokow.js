@@ -58,6 +58,7 @@ function losowanie(ziarno) {
 const czytajStan = zad => zad.evaluate(el => {
     const video = el.querySelector('.steps-content video');
     const tresc = el.querySelector('.steps-content');
+    const kropki = [...el.querySelectorAll('.step-dot')];
     return {
         licznik: el.querySelector('.step-counter').textContent.trim(),
         plik: video ? (video.currentSrc || '').split('/').pop() : '',
@@ -66,6 +67,9 @@ const czytajStan = zad => zad.evaluate(el => {
         koniec: video ? video.ended : false,
         pauza: video ? video.paused : true,
         pusty: tresc.childElementCount === 0,
+        kropka: kropki.findIndex(k => k.classList.contains('biezaca')),
+        czas: video ? video.currentTime : 0,
+        dlugosc: video && isFinite(video.duration) ? video.duration : 0,
     };
 });
 
@@ -99,6 +103,14 @@ async function przebieg(browser, zadanie, ziarno) {
         }
         if (st.wstecz !== st.plik.includes('reverse')) {
             naruszenia.push(`${gdzie}: kierunek nie zgadza się z plikiem (${st.plik})`);
+        }
+        // Duża kropka pokazuje POCZĄTEK filmu, który jest w kadrze, czyli kropkę
+        // o numerze (krok - 1) w liczeniu od zera. Wyjątek tylko na ostatnim
+        // kroku, gdzie po dobiegnięciu filmu głowica przechodzi na ostatnią
+        // kropkę (Henrich po testach v27).
+        const ostatni = nr === kropek - 1;
+        if (st.kropka !== nr - 1 && !(ostatni && st.kropka === nr)) {
+            naruszenia.push(`${gdzie}: licznik ${st.licznik}, a duża kropka na ${st.kropka}`);
         }
     };
 
@@ -168,6 +180,41 @@ async function zachowania(browser, zadanie) {
         s = await doSpoczynku();
         if (!(s.plik === 'step3.mp4' && !s.wstecz && !s.pauza)) {
             zle.push(`► po dobiegnięciu cofki: oczekiwano TEGO SAMEGO kroku w przód (step3.mp4, gra), jest ${s.plik}${s.pauza ? ' (pauza)' : ''}`);
+        }
+    }
+
+    // Duża kropka po obejrzeniu filmu do przodu zostaje na POCZĄTKU tego filmu,
+    // a nie przeskakuje na jego koniec (Henrich po testach v27).
+    await zad.locator('.step-dot').first().click({ force: true });
+    await doSpoczynku();
+    await zad.locator('.step-play').click({ force: true });
+    const poFilmie = await czekajAz((s) => !s.laduje && !s.wstecz && s.koniec, 30000);
+    if (!poFilmie.koniec) {
+        zle.push('nie udało się dograć kroku 1 do końca — położenie kropki niesprawdzone');
+    } else if (poFilmie.kropka !== 0) {
+        zle.push(`po obejrzeniu kroku 1 duża kropka jest na ${poFilmie.kropka}, a ma zostać na 0`);
+    }
+
+    // ► w TRAKCIE cofki (jeszcze nie na końcu) ma tylko odwrócić kierunek i zostać
+    // w tym samym miejscu filmu, a nie przeskoczyć do następnego kroku
+    // (Henrich po testach v27). Sprawdzamy trzy rzeczy naraz: ten sam krok,
+    // kierunek w przód i zbliżony czas w skali kroku.
+    await zad.locator('.step-dot').nth(3).click({ force: true });
+    await doSpoczynku();
+    await zad.locator('.step-prev').click({ force: true });
+    let wCofce = await czekajAz((s) => s.wstecz && !s.laduje && !s.pauza && s.czas > 0.2);
+    if (!wCofce.wstecz || wCofce.pauza) {
+        zle.push('nie udało się złapać trwającej cofki — zachowanie ► w cofce niesprawdzone');
+    } else {
+        const pozycjaPrzed = wCofce.dlugosc - wCofce.czas; // czas liczony od początku kroku
+        await zad.locator('.step-next').click({ force: true });
+        const s = await czekajAz((st) => !st.laduje && !st.wstecz && st.czas > 0);
+        if (s.plik !== 'step3.mp4' || s.wstecz) {
+            zle.push(`► w trakcie cofki: oczekiwano TEGO SAMEGO kroku w przód (step3.mp4), jest ${s.plik}`);
+        } else if (s.pauza) {
+            zle.push('► w trakcie cofki: film stanął zamiast grać dalej w przód');
+        } else if (Math.abs(s.czas - pozycjaPrzed) > 1.2) {
+            zle.push(`► w trakcie cofki: skok w czasie — było ${pozycjaPrzed.toFixed(2)} s, jest ${s.czas.toFixed(2)} s`);
         }
     }
 

@@ -2,7 +2,37 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.
+  - Błędy w filmach:
+    - Zad 3. Dodać rozjaśnienie przyciemienia części równania w kroku 4, obecnie jest niespójnie:
+      - krok 4 kończy się na wyrażeniu po części przyciemionym
+      - krok 5 brak przyciemień
+    - Zad 4. wygląda wzorowo, możliwe, że akurat udało się to zrobić poprzez różnice kolorów i niewielka ilość elementów, uważaj natomiast z bardziej skomplikowanymi wyrażeniami
+    - Zad 5. Animacje nie maja sensu, cyfry i znaki tańczą bez ładu i składu:
+      - krok 2: 
+        - 6 z 60 000 wędruję na góre ułamka - powinno na dół.
+        - i podobnie z innymi 6
+        - za dużo jest tam pokolorowane
+        - (n + p)^2 po części znika a potem się pojawia zamist się zwyczajnie przesunąć
+      - i wiele, wiele przykłądów można mnożyć prawdopodobnie wynikających z próby pójścia na skróty, przyjrzej się jak są zrobione animacje poprzednich zadań
+    - Zad 6. same shit as above
 
+    - Zapisz gdzieś zasadę, aby nie mnożyć niepotrzebnych słów pisząc wyjaśnienia. Priorytetem jest zrozumienie ucznia. Przykłady:
+      - Zad 1
+        - krok 1
+          - Nie marnuj słów na: "Zaczynamy od równania z wartością bezwzględną: ∣x+4∣=7"
+          - Kiedy jest to tak proste do zrozumienia jak: "Zapisujemy ∣x+4∣=7"
+        - krok 2
+          - Tutaj jest rzeczywiście potrzebne wyjaśnienie, ale ma zbyt dużo matematycznych terminów, za minus myli się z myślnikiem: "Wartość bezwzględna wynosi 7, gdy wyrażenie w środku jest równe 7 albo −7−7 — stąd dwa przypadki do rozpatrzenia osobno."
+          - Trzeba pisać bardziej zrozumiale dla ucznia: 
+            "Wartość bezględna działa tak, że w środku nawiasów || możesz mieć -7 albo 7. Tak czy siak wyjdzie ci całość równa się 7 czyli:
+            |-7| = 7
+            |7| = 7
+            Idąc tą logiką, jeżeli wiemy, że
+            |coś| = 7
+            to oznacza, żę:
+            coś = 7 lub  coś = -7
+            a tym cosiem w tym wypadku jest akurat x+4"
+      
 
 <br>
 
@@ -156,13 +186,21 @@ Oto plik który tworzy Henrich (ja, użytkownik).
       załatwi wszystkie
 
 
-  - kontener: firewall + Playwright + read-only `.vscode` (2026-08-10), wymaga zwykłego Rebuild Container (bez `--no-cache`) — bez tego nic z tego nie zadziała; po przebudowie, w terminalu w kontenerze:
-    - `dig +short github.com` — ma zwrócić adresy (jeśli w logu firewalla widać „UWAGA: DNS nie działa po zawężeniu", zawężenie bramy poszło źle, patrz `.devcontainer/README.md`, sekcja „Diagnostyka").
-    - `curl -m 5 http://192.168.1.1` — ma nie przejść (timeout albo „Connection refused"); wcześniej otwierał panel routera, to samo dotyczy SMB (445) i drukarki (631).
-    - `git push` / `npm ping` / `curl -sI https://cke.gov.pl` — mają nadal działać.
-    - `bash .devcontainer/verify-firewall.sh` — ma zakończyć się sukcesem.
-    - `touch .vscode/test` — ma odbić się o „Read-only file system" (to jest cel, nie błąd).
-    - playwright: `NODE_PATH=/usr/local/share/npm-global/lib/node_modules node -e "require('playwright').chromium.launch().then(b=>b.close()).then(()=>console.log('OK'))"` — ma wypisać „OK", potem zrzut arkusza przez `tools/zrzuty.js` ma pokazać polski tekst, nie puste prostokąty.
+
+  - v28, odtwarzacz krok po kroku — trzy poprawki z twojej listy DO ZROBIENIA
+
+    - obejrzyj krok do końca i popatrz na pasek — duża kropka ma zostać na POCZĄTKU
+      obejrzanego filmu, a nie przeskoczyć na jego koniec
+      - jedyny wyjątek: sam koniec ostatniego kroku, tam głowica przechodzi na ostatnią
+        kropkę, żeby dało się pokazać koniec rozwiązania
+
+    - wciśnij ◄, a w trakcie cofania wciśnij ► — film ma tylko zmienić kierunek i grać
+      dalej z tego samego miejsca, bez skoku do następnego kroku
+
+    - popatrz na kreski między kropkami — bieżąca ma być najmocniejsza, przerobione
+      słabsze, a te przed tobą najsłabsze
+      - sprawdź w obu motywach, bo „mocniejsza" znaczy jaśniejsza w ciemnym i ciemniejsza
+        w jasnym
 
 
 

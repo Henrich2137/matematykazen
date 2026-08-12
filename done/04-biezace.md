@@ -1,5 +1,45 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-12] (Local Opus 5 High) Odtwarzacz krok po kroku — trzy poprawki z listy
+DO ZROBIENIA Henricha. v28 Beta.
+
+- **Głowica zostaje na początku obejrzanego filmu** (`biezacaKropka` w app/steps.js). Było:
+  po `ended` kropka przeskakiwała na `krok + 1`, czyli na koniec obejrzanego odcinka.
+  Jest: zawsze lewa kropka odcinka, tak samo jak przy cofce. Jedyny wyjątek to koniec
+  OSTATNIEGO kroku — tam nie ma już następnego filmu, więc głowica idzie na ostatnią kropkę
+  (decyzja Henricha po moim pytaniu: „kropka zmienia się na dużą dopiero po dotarciu do
+  ostatniej klatki"). Wypełnienie odcinka zostaje pełne, bo pisze je `rysujPostep` z `uKonca`,
+  nie z położenia głowicy.
+
+- **► w trakcie cofki tylko odwraca kierunek** (`krokDalej`). Było: przeskok do następnego
+  kroku, czyli krok, który się właśnie oglądało od tyłu, wypadał. Jest: przeładowanie tego
+  samego kroku w przód na pozycji, do której doszedł rewers, i granie dalej — jednym
+  kliknięciem to, co wcześniej wymagało pauzy i play. Wyjątek z v25 (skończona cofka → ten
+  sam krok od pierwszej klatki) wypada z tego SAM, bo pozycja wynosi wtedy 0; osobna gałąź
+  `naPoczatkuPoCofce` w `krokDalej` przestała być potrzebna.
+
+- **Trzy stopnie kontrastu na pasku** (style/sheet.css). Było: przerobione i bieżący odcinek
+  malowane tym samym `--text`. Jest: pusty `--border-muted` → przerobiony `--text-faint` →
+  bieżący `--text`. Henrich: „obecna linia ma być bardziej uwydatniona, bardziej kontrastowa"
+  (mówił w kontekście ciemnego motywu, w jasnym wychodzi to odwrotnie kolorystycznie —
+  tokeny załatwiają to same).
+
+- **Test najpierw czerwony.** Do `tools/test-krokow.js` doszły: niezmiennik położenia dużej
+  kropki (sprawdzany po każdym losowym ruchu) oraz dwa zachowania deterministyczne
+  (kropka po dograniu kroku do końca, ► w trakcie trwającej cofki — z porównaniem czasu
+  w skali kroku, tolerancja 1,2 s). Na kodzie sprzed poprawki wszystkie trzy padają
+  i odtwarzają dokładnie zgłoszenie Henricha; po poprawce: zad. 1–4 × 3 ziarna na szybkim
+  serwerze i zad. 1 i 4 na dławionym (250 ms, 80 kB/s) — bez zastrzeżeń.
+
+- Wygląd paska sprawdzony zrzutem w obu motywach.
+
+[SPRAWDZONE 2026-08-12] (Local Opus 5 High) Checklista kontenera z 2026-08-10 (firewall +
+Playwright + read-only `.vscode`) — odpalona z wnętrza kontenera, wszystko przechodzi, więc
+punkt znika z TESTOWANIE HENRICH. `dig +short github.com` zwraca adresy; `curl` na 192.168.1.1
+nie przechodzi; `curl -sI https://cke.gov.pl` daje 200; `npm ping` odpowiada; `git push` działał
+w tej sesji; `verify-firewall.sh` kończy się sukcesem; `findmnt` na `.vscode` pokazuje `ro`;
+Chromium z Playwrighta startuje. Henrich robił Rebuild Container tego samego dnia.
+
 [ZROBIONE 2026-08-12] (Local Opus 5 High) Rozwiązania krok po kroku do zad. 5, 7 i 9. v27 Beta. Po tej paczce kroki mają zadania **1–9**, czyli komplet od początku arkusza.
 
 - Trzy zadania dobrane pod tę formę animacji i z trzech różnych działów:

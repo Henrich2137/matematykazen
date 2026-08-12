@@ -7,8 +7,9 @@
 //   kropka = STAN działania, film = PRZEJŚCIE między stanami.
 // Stąd kropek jest o jedną więcej niż filmów: N filmów → N+1 kropek, a odcinek
 // między kropką k a k+1 to krok k (0-indeksowany). Głowica („O" w szkicu
-// Henricha w TODO.md) stoi na kropce, na której faktycznie jesteśmy: dopóki film
-// nie dobiegnie końca — na lewej kropce odcinka, po dobiegnięciu — na prawej.
+// Henricha w TODO.md) stoi na LEWEJ kropce odcinka, czyli na początku filmu,
+// który jest w kadrze — także po jego dobiegnięciu do końca (patrz
+// biezacaKropka; wyjątkiem jest tylko koniec ostatniego kroku).
 // Pasek postępu wypełnia odcinek bieżącego kroku, a nie belkę pod filmem.
 //
 // Odtwarzanie wstecz to OSOBNY PLIK (stepNreverse.mp4) — przeglądarki nie
@@ -252,13 +253,16 @@ function pokazKrok(ctx, idx, { wstecz = false, czas = 0, graj = true } = {}) {
     zaplanujPobranieFilmow(ctx, { pilne: true });
 }
 
-// Kropka, na której stoi głowica: dopóki film bieżącego kroku nie dobiegł końca,
-// jesteśmy na lewej kropce odcinka; po dobiegnięciu — na prawej.
-// W trakcie COFANIA głowica siedzi od razu na lewej kropce (czyli na początku
-// kroku, do którego zmierzamy) — Henrich po testach v20: „od razu po kliknięciu
-// cofnij powinna podświetlić się kropka, która określa początek filmiku".
+// Kropka, na której stoi głowica: ZAWSZE lewa kropka odcinka, czyli początek
+// filmu, który jest w kadrze — także po jego dobiegnięciu do końca (Henrich
+// po testach v27: „kropka początku filmu powinna zostać zaznaczona, obecnie
+// źle zaznacza się następna"). Zgadza się to z zachowaniem cofki, gdzie głowica
+// od razu siedzi na początku kroku (Henrich po testach v20).
+// Jedyny wyjątek: koniec OSTATNIEGO kroku. Nie ma tam już następnego filmu,
+// więc głowica przechodzi na ostatnią kropkę i widać, że rozwiązanie się skończyło.
 function biezacaKropka(ctx) {
-    return ctx.uKonca ? ctx.krok + 1 : ctx.krok;
+    const ostatniKrok = ctx.krok === ctx.steps.length - 1;
+    return ctx.uKonca && ostatniKrok ? ctx.krok + 1 : ctx.krok;
 }
 
 // Pozycja w SKALI KROKU: 0 = pierwsza klatka, dlugoscPrzod = ostatnia.
@@ -462,12 +466,19 @@ function przelaczOdtwarzanie(ctx) {
 // v20). Początek kroku k+1 to ta sama klatka co koniec kroku k, więc nic
 // z rozwiązania nie ucieka — pomijana jest sama animacja.
 function krokDalej(ctx) {
-    // Wyjątek: stoimy na pierwszej klatce kroku PO cofce. „Dalej" ma wtedy puścić
-    // TEN SAM krok do przodu — dokładnie to samo, co start/pauza — a nie
-    // przeskoczyć do następnego. Inaczej krok, do którego użytkownik właśnie się
-    // cofnął, zostałby pominięty (Henrich po testach v25).
-    if (naPoczatkuPoCofce(ctx, biezaceWideo(ctx))) {
-        przelaczOdtwarzanie(ctx);
+    // Wyjątek: cofka. „Dalej" NIE zmienia wtedy kroku, tylko odwraca kierunek
+    // i zostaje w tym samym miejscu filmu (Henrich po testach v27) — wychodzi
+    // to samo, co pauza i ponowne odtworzenie, tylko jednym kliknięciem.
+    // Gdy cofka dobiegła już do końca, pozycja wynosi 0, więc ten sam kod puszcza
+    // krok od pierwszej klatki, czyli robi to, co ma robić „►" na początku kroku
+    // (Henrich po testach v25). Bez tego krok, do którego użytkownik właśnie się
+    // cofnął, zostałby pominięty.
+    if (ctx.wstecz) {
+        ctx.uKonca = false;
+        pokazKrok(ctx, ctx.krok, {
+            czas: pozycjaWKroku(ctx, biezaceWideo(ctx)),
+            graj: true,
+        });
         return;
     }
     if (ctx.krok >= ctx.steps.length - 1) {

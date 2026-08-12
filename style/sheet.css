@@ -1343,10 +1343,19 @@ body.sidebar-otwarty #sidebar-linia {
     background-color: var(--border-muted);
     --postep: 0%;
 }
+/* Trzy stopnie kontrastu, od najsłabszego: odcinek pusty (--border-muted, tło
+   .step-link) → odcinek już przerobiony (--text-faint) → odcinek bieżący
+   (--text). Bieżący ma być NAJMOCNIEJSZY, żeby od razu było widać, gdzie się
+   jest — Henrich po testach v27: „obecna linia powinna być bardziej uwydatniona,
+   bardziej kontrastowa". W ciemnym motywie znaczy to jaśniejsza, w jasnym
+   ciemniejsza; tokeny odwracają się same. */
 .step-link-fill {
     display: block;
     width: var(--postep);
     height: 100%;
+    background-color: var(--text-faint);
+}
+.step-link.biezacy .step-link-fill {
     background-color: var(--text);
 }
 /* Strzałki przewijania kropek — pokazywane przez zbudujKropki() dopiero powyżej
