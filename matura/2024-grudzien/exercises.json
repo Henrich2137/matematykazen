@@ -301,16 +301,21 @@
             {
                 "type": "video",
                 "src": "media/zad6/solution-step-by-step/step4.mp4",
-                "text": "Skracamy \\((x+1)\\) oraz jedno \\(x\\) z \\(x^{2}\\).<br>Po to były w zadaniu założenia \\(x \\ne -1,\\,0,\\,1\\): dzięki nim żadne z tych wyrażeń nie jest zerem, a przez zero skracać nie wolno."
+                "text": "Skracamy \\((x+1)\\), bo stoi i na dole po lewej, i na górze po prawej.<br>Po to było w zadaniu założenie \\(x \\ne -1\\): dzięki niemu \\((x+1)\\) nie jest zerem, a przez zero skracać nie wolno."
             },
             {
                 "type": "video",
                 "src": "media/zad6/solution-step-by-step/step5.mp4",
-                "text": "Mnożąc ułamki, mnożymy licznik przez licznik, a mianownik przez mianownik."
+                "text": "Teraz skracamy \\(x\\) z \\(x^{2}\\). Po lewej w liczniku zostaje 1, a po prawej z \\(x^{2}\\) zostaje samo \\(x\\).<br>Tu z kolei potrzebne było założenie \\(x \\ne 0\\)."
             },
             {
                 "type": "video",
                 "src": "media/zad6/solution-step-by-step/step6.mp4",
+                "text": "Mnożąc ułamki, mnożymy licznik przez licznik, a mianownik przez mianownik."
+            },
+            {
+                "type": "video",
+                "src": "media/zad6/solution-step-by-step/step7.mp4",
                 "text": "Wymnażamy mianownik:\\[3x(x-1)=3x^{2}-3x\\]Odpowiedź <b>B</b>."
             }
         ],

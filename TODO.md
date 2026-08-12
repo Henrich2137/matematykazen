@@ -2,19 +2,13 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.
-  - Błędy w filmach:
-    - Zad 3. Dodać rozjaśnienie przyciemienia części równania w kroku 4, obecnie jest niespójnie:
-      - krok 4 kończy się na wyrażeniu po części przyciemionym
-      - krok 5 brak przyciemień
-    - Zad 4. wygląda wzorowo, możliwe, że akurat udało się to zrobić poprzez różnice kolorów i niewielka ilość elementów, uważaj natomiast z bardziej skomplikowanymi wyrażeniami
-    - Zad 5. Animacje nie maja sensu, cyfry i znaki tańczą bez ładu i składu:
-      - krok 2: 
-        - 6 z 60 000 wędruję na góre ułamka - powinno na dół.
-        - i podobnie z innymi 6
-        - za dużo jest tam pokolorowane
-        - (n + p)^2 po części znika a potem się pojawia zamist się zwyczajnie przesunąć
-      - i wiele, wiele przykłądów można mnożyć prawdopodobnie wynikających z próby pójścia na skróty, przyjrzej się jak są zrobione animacje poprzednich zadań
-    - Zad 6. same shit as above
+  - Błędy w filmach — ZOSTAŁO (zad. 3, 5 i 6 poprawione w v30):
+    - Zad 4. wygląda wzorowo, ale łamie zasadę ciągłości klatek: zielona szóstka zostaje
+      na ostatniej klatce kroku 2, a krok 3 startuje czarny (SSIM 0,9990)
+    - Zad 2, 7, 8 i 9 były robione tą samą metodą co 5 i 6, więc trzeba przejrzeć ich
+      animacje; tools/styk-klatek.sh pokazuje, w których krokach nie zgadzają się styki
+    - Zad 3 krok 6 kończy się szarym nawiasem domykającym; reszta przyciemnień już się
+      rozjaśnia na końcu kroku
 
 <br>
 
@@ -113,10 +107,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
       ostatnim) — przeczytaj, czy się zgadzają z tym, co widać na filmie
       - wzory pomocnicze zniknęły z samego filmu i siedzą w opisach, tak jak w zad. 2
 
-    - zad. 3, kroki 2, 4 i 6 zatrzymują się na zapisie w większości szarym, z czarnym tylko
-      tym fragmentem, który się zmienił — to zachowanie sprzed moich zmian, ale teraz widać
-      je dłużej; powiedz, czy ma tak zostać, czy na koniec kroku wszystko ma wracać do czerni
-
     - zad. 4 (logarytmy) ma nowe rozwiązanie krok po kroku, cztery kroki — sprawdź całość,
       to jedyne z tej paczki, którego wcześniej nie było
       - scenariusz, który zatwierdziłeś, leży w manimations/zad4-kroki.md
@@ -125,9 +115,8 @@ Oto plik który tworzy Henrich (ja, użytkownik).
       - scenariusze do sprawdzenia merytoryki: manimations/zad6-kroki.md i zad8-kroki.md
       - zad. 8 jest otwarte na 3 pkt, więc kroki są ułożone pod klucz CKE: założenie \(x\ne1\)
         ma własny krok i zostaje pod równaniem do końca — zobacz, czy tak jest czytelnie
-      - w obu na zielono podświetla się CAŁY ułamek, którego dotyczy krok, a nie sam
-        zmieniany kawałek (przy \(\frac{}{}\) trudno o precyzyjniejsze) — powiedz, jeśli to
-        za dużo koloru
+      - w zad. 8 na zielono podświetla się CAŁY ułamek, którego dotyczy krok (zad. 6 jest
+        już poprawione w v30, zostało samo 8)
 
 
 
@@ -201,6 +190,30 @@ Oto plik który tworzy Henrich (ja, użytkownik).
       na końcu) — jeśli któraś jest źle spisana, popraw ją tam, bo z niej będę korzystał
       przy następnych arkuszach
 
+
+  - v30, filmy krok po kroku — zad. 5 i 6 przerobione od zera, zad. 3 rozjaśnione
+
+    - zad. 5 krok 2 — 60 000 ma zjechać POD kreskę ułamka, a nie do licznika, a (1+p)^2
+      ma się przesunąć w lewo, a nie zniknąć i pojawić się na nowo
+      - to był twój przykład, więc zacznij od niego
+
+    - zad. 5 i 6 w całości — czy ruch znaków zgadza się z rachunkiem
+      - koloru jest teraz mniej: zielone jest tylko to, co się faktycznie rusza albo zmienia,
+        a nie całe wyrażenie
+      - żaden krok nie kończy się już na kolorowej klatce, kolor gaśnie przed końcem filmu
+
+    - zad. 6 ma teraz SIEDEM kroków zamiast sześciu — skracanie rozbiłem na dwa
+      - najpierw znika \((x+1)\), potem \(x\) z \(x^{2}\)
+      - w jednym kroku działy się cztery rzeczy naraz i nie dało się tego pokazać uczciwie
+      - powiedz, czy tak jest lepiej, czy wolisz z powrotem sześć
+
+    - zad. 6 krok 4 — skracane \((x+1)\) są najpierw przekreślane na czerwono, tak jak
+      na kartce, i dopiero potem znikają
+
+    - zad. 3 kroki 2, 4 i 6 — przyciemniona część zapisu ma się rozjaśniać PRZED końcem
+      kroku, więc następny film startuje z tego samego obrazu
+      - w kroku 6 został jeszcze szary nawias domykający, to jedyne miejsce, gdzie się
+        nie zgadza
 
 
 <br>

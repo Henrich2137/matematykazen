@@ -137,8 +137,17 @@ class ScenaZadania3(Scene):
         #self.play(Transform(kroki[0][0][0:5], kroki[1][0][0:5]), Transform(kroki[0][0][5], kroki[1][0][5:9]), Transform(kroki[0][0][6:9], kroki[1][0][9:12]), Transform(kroki[0][0][9:11], kroki[1][0][12:15]), Transform(kroki[0][0][11:], kroki[1][0][15:]))
         self.play(TransformSplit(0, [0, 5, 6, 9, 11], [0, 5, 9, 12, 15]))
 
+        # ROZJAŚNIENIE na koniec kroku (Henrich, 2026-08-12). Na ekranie siedzą
+        # kawałki kroki[0][0] przekształcone w kroki[1] — i to one trzymają szary
+        # kolor, bo Transform interpoluje barwę do celu. Samo pomalowanie kroki[1]
+        # na czarno niczego nie zmieniało: to nie ten obiekt jest w kadrze.
+        # Bez tego krok kończył się na wpół przyciemnionym zapisie, a następny
+        # startował czysty — w odtwarzaczu to jest ta sama klatka, więc było widać
+        # przeskok. Pilnuje tego tools/styk-klatek.sh.
+        self.wait(0.35)
+        self.play(kroki[0][0].animate.set_color(BLACK), run_time=0.4)
         kroki[1][0][:].set_color(BLACK)
-        
+
         self.wait(0.25)
         self.clear()
 
@@ -177,6 +186,9 @@ class ScenaZadania3(Scene):
         self.play(TransformSplit(2, [0, 1, 4, 6, 8, 10], [0, 1, 5, 7, 11, 13]))
 
         
+        # Rozjaśnienie na koniec kroku — patrz komentarz przy kroku 2.
+        self.wait(0.35)
+        self.play(kroki[2][0].animate.set_color(BLACK), run_time=0.4)
         kroki[3][0][:].set_color(BLACK)
         self.wait(0.25)
         self.clear()
@@ -218,9 +230,18 @@ class ScenaZadania3(Scene):
 
         self.play(ReplacementTransform(temp_krok, kroki[4]))
         self.wait(1)
-        self.play(TransformSplitPAIRS(4, [0, 4,  4, 7,  7, 11,  11, 14,  14, 18,  18, 99], 
+        self.play(TransformSplitPAIRS(4, [0, 4,  4, 7,  7, 11,  11, 14,  14, 18,  18, 99],
                                          [0, 5,  5, 8,  0,  3,   8, 11,   0,  3,  11, 99]))
-        
+
+        # Trzy kopie 2^96 zjeżdżają na to samo miejsce (o to chodzi w wyłączaniu
+        # przed nawias), ale Transform zostawia wszystkie trzy w scenie. Na klatce
+        # spoczynku zapis robił się przez to grubszy niż pierwsza klatka kroku 7 —
+        # wychodziło to na SSIM 0,9990. Dwie nadmiarowe kopie usuwamy.
+        self.remove(*kroki[4][0][7:11], *kroki[4][0][14:18])
+
+        # Rozjaśnienie na koniec kroku — patrz komentarz przy kroku 2.
+        self.wait(0.35)
+        self.play(kroki[4][0].animate.set_color(BLACK), run_time=0.4)
         kroki[5][0][:].set_color(BLACK)
 
         self.wait(0.25)

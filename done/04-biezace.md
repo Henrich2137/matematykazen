@@ -1,5 +1,47 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-12] (Local Opus 5 High) Filmy krok po kroku: zad. 5 i 6 napisane od nowa,
+zad. 3 rozjaśnione. v30 Beta. **Paczka przerwana w połowie na prośbę Henricha (limit sesji)** —
+co zostało, jest w TODO.md pod „Błędy w filmach — ZOSTAŁO".
+
+- **Diagnoza.** Zgłoszenie brzmiało „animacje nie mają sensu, cyfry i znaki tańczą bez ładu
+  i składu". Winne było `TransformMatchingShapes`: paruje glify po PODOBIEŃSTWIE KSZTAŁTU,
+  więc przy dwóch szóstkach w kadrze sam wybiera, która dokąd leci. Stąd szóstka z `60\,000`
+  w liczniku ułamka zamiast w mianowniku. Zad. 4, które Henrich uznał za wzorowe, jako jedyne
+  miało pary wypisane ręcznie.
+
+- **`manimations/_wspolne.py`** (nowy) — wspólne klocki: `ustaw_kroki` (wspólna skala),
+  `rozbij_ulamek` (licznik/kreska/mianownik wyłuskane po współrzędnej y, bo manim nie obiecuje
+  kolejności glifów `\frac`), `zapal` (podświetlenie JAKO animacja, żeby pierwsza klatka kroku
+  była jeszcze czysta), `zakoncz_krok` i `rozjasnij_scene` (gaszenie koloru przed przytrzymaniem).
+
+- **`tools/styk-klatek.sh`** (nowy) — porównuje ostatnią klatkę kroku N z pierwszą klatką
+  kroku N+1 (ffmpeg + SSIM, próg 0,999). To jest maszynowe pilnowanie zasady ciągłości.
+  Przy pierwszym uruchomieniu znalazł dokładnie to, co zgłosił Henrich (zad. 3: 2→3, 4→5, 6→7),
+  plus niezgłoszone: zad. 2 (2→3), 4 (2→3), 7 (5→6), 8 (1→2, 2→3), 9 (7→8).
+
+- **`tools/wgraj-kroki.sh`** (nowy) — cztery kroki workflow z README (render → kopia → rewersy
+  → sprawdzenie styków) jednym poleceniem. Ważny szczegół: rewersy przelicza z `--nadpisz`,
+  bo po przerenderowaniu sceny stare pliki `stepNreverse.mp4` pokazują POPRZEDNIĄ wersję
+  animacji, a zwykłe `rewersy.sh` po cichu je pomija.
+
+- **zad. 5 od nowa** — każda para „skąd → dokąd" wypisana wprost. 60 000 zjeżdża pod kreskę,
+  \((1+p)^2\) przesuwa się w lewo, kropka mnożenia znika. Kolor już tylko na tym, co się rusza.
+
+- **zad. 6 od nowa** — ułamki trzymane jako osobne mobiekty, żeby dało się przenieść licznik
+  pod kreskę i odwrotnie (krok 3, odwracanie ułamka). **Skracanie rozbite na dwa kroki**
+  (najpierw \((x+1)\), potem \(x\) z \(x^2\)) — w jednym działy się cztery rzeczy naraz.
+  Kroków jest przez to siedem, nie sześć; `exercises.json` i opisy zaktualizowane.
+  Skracane czynniki są najpierw przekreślane na czerwono, tak jak na kartce.
+
+- **zad. 3** — dodane rozjaśnienie na końcu kroków 2, 4 i 6. Pułapka: samo pomalowanie
+  następnego kroku na czarno nic nie dawało, bo w kadrze siedzą kawałki kroku POPRZEDNIEGO
+  przekształcone w cel, a `Transform` interpoluje do koloru celu. Trzeba animować obiekt,
+  który jest na ekranie.
+
+- **Zostało do zrobienia:** zad. 2, 4, 7, 8 i 9 (ta sama metoda, więc te same wątpliwości),
+  oraz szary nawias domykający na końcu kroku 6 zad. 3.
+
 [ZROBIONE 2026-08-12] (Local Opus 5 High) Opisy kroków (pole `text`) przepisane w zad. 1–9
 plus spisanie zasad, wedle których mają powstawać. v29 Beta.
 
