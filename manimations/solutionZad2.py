@@ -68,15 +68,31 @@ class ScenaZadania2(Scene):
         
         
 
-        """
+        # KROKI JAKO SEKCJE (przebudowa 2026-08-12). Wcześniej kroki przełączało
+        # się komentarzem `"""` i renderowało po jednym — stąd w repo leżała wersja
+        # z zakomentowaną większością treści, która NIE odtwarzała wgranych plików
+        # (nie miała m.in. przytrzymań `self.wait(0.25)`). Teraz scena jedzie w całości,
+        # a `self.next_section` wyznacza granice kroków: `manim --save_sections`
+        # zapisuje każdy krok osobnym plikiem. Efekt uboczny, który jest tu ZALETĄ:
+        # kroki nie muszą być samowystarczalne, bo stan wejściowy przynosi
+        # poprzednia sekcja — to był problem opisany w README (krok 2 renderowany
+        # w izolacji gubił domykający nawias).
+        #
+        # KAŻDA sekcja kończy się `self.wait(0.25)` — bez tego przeglądarka
+        # zatrzymuje obraz kilka klatek przed końcem pliku i ostatni element
+        # animacji nie zostaje na ekranie (patrz README, punkt 0 workflow).
+
+        self.next_section("krok1")
         #STEP 1
         self.play(Create(kroki[0]))
+        self.wait(0.25)
 
-        
+
+        self.next_section("krok2")
         #STEP 2
-        
 
-        
+
+
         kroki[0][1][0].set_color(GREEN)
         kroki[1][1][3].set_color(GREEN)
 
@@ -85,13 +101,17 @@ class ScenaZadania2(Scene):
         kroki[0][1][0].set_color(BLACK)
         kroki[1][1][3].set_color(BLACK)
         
+        # Przytrzymanie MUSI iść przed sprzątaniem sceny — po `self.remove` kadr
+        # jest pusty, więc 0,25 s trzymałoby białą planszę i to ona zostawałaby
+        # uczniowi na ekranie (złapane porównaniem SSIM z wgranym plikiem).
+        self.wait(0.25)
         self.remove(kroki[0][0], kroki[1][1], kroki[0][2], kroki[0][3]) #mozna zamiast tego self.clear()
-        
 
 
+        self.next_section("krok3")
         #STEP 3
 
-        
+
         self.add(kroki[1])
         kroki[1][2][3].set_color(GREEN)
         kroki[2][2][1].set_color(GREEN)
@@ -102,12 +122,14 @@ class ScenaZadania2(Scene):
         kroki[1][2][1].set_color(BLACK)
         kroki[2][2][1].set_color(BLACK)
 
+        self.wait(0.25)
         self.clear()
-        
 
+
+        self.next_section("krok4")
         #STEP 4
 
-        
+
         self.add(kroki[2])
         kroki[2][3][1:3].set_color(GREEN)
         kroki[3][0][5:7].set_color(GREEN)
@@ -118,22 +140,29 @@ class ScenaZadania2(Scene):
         kroki[3][0][5:7].set_color(BLACK)
         kroki[3][0][12:14].set_color(BLACK)
 
+        self.wait(0.25)
         self.clear()
         self.add(kroki[3])
-        self.wait(1)
 
 
+        self.next_section("krok5")
         #STEP 5
-        self.play(ReplacementTransform(kroki[3], kroki[4]))        
+        self.play(ReplacementTransform(kroki[3], kroki[4]))
         self.add(kroki[4])
+        self.wait(0.25)
 
-        """
-        self.clear()
+
+        self.next_section("krok6")
         #STEP 6
-
+        # Sekunda bezruchu na wejściu jest CELOWA i była w wgranym pliku
+        # (step6.mp4 ma 2,25 s = 1 s postoju + 1 s animacji + 0,25 s przytrzymania):
+        # to ostatni krok, w którym z dwóch potęg robi się wynik, i warto dać
+        # chwilę na spojrzenie na punkt wyjścia.
+        self.clear()
         self.add(kroki[4])
         self.wait(1)
         self.play(ReplacementTransform(kroki[4], kroki[5]))
+        self.wait(0.25)
 
 
 """

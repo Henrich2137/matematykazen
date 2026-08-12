@@ -139,42 +139,42 @@
             {
                 "type": "video",
                 "src": "media/zad3/solution-step-by-step/step1.mp4",
-                "text": ""
+                "text": "Zaczynamy od liczby z zadania: \\(2^{100} + 4^{49} + 16^{24}\\)."
             },
             {
                 "type": "video",
                 "src": "media/zad3/solution-step-by-step/step2.mp4",
-                "text": ""
+                "text": "Wszystkie trzy podstawy są potęgami dwójki, więc zapisujemy je przez samą dwójkę: \\(4 = 2^{2}\\) oraz \\(16 = 2^{4}\\)."
             },
             {
                 "type": "video",
                 "src": "media/zad3/solution-step-by-step/step3.mp4",
-                "text": ""
+                "text": "Opuszczamy nawiasy — potęgę potęgi liczymy mnożąc wykładniki: \\((a^{r})^{s} = a^{r \\cdot s}\\), czyli \\((2^{2})^{49} = 2^{98}\\) i \\((2^{4})^{24} = 2^{96}\\)."
             },
             {
                 "type": "video",
                 "src": "media/zad3/solution-step-by-step/step4.mp4",
-                "text": ""
+                "text": "Szukamy tego, co wspólne. Najmniejszy wykładnik to 96, więc dwa pozostałe rozbijamy na sumę z dziewięćdziesiątką szóstką: \\(100 = 96 + 4\\) i \\(98 = 96 + 2\\)."
             },
             {
                 "type": "video",
                 "src": "media/zad3/solution-step-by-step/step5.mp4",
-                "text": ""
+                "text": "Sumę w wykładniku rozdzielamy na iloczyn potęg: \\(a^{r+s} = a^{r} \\cdot a^{s}\\). Teraz \\(2^{96}\\) stoi w każdym składniku."
             },
             {
                 "type": "video",
                 "src": "media/zad3/solution-step-by-step/step6.mp4",
-                "text": ""
+                "text": "Wyłączamy \\(2^{96}\\) przed nawias — to ten sam ruch co wyłączanie wspólnego czynnika w zwykłej sumie."
             },
             {
                 "type": "video",
                 "src": "media/zad3/solution-step-by-step/step7.mp4",
-                "text": ""
+                "text": "Liczymy, co zostało w nawiasie: \\(2^{4} = 16\\) oraz \\(2^{2} = 4\\)."
             },
             {
                 "type": "video",
                 "src": "media/zad3/solution-step-by-step/step8.mp4",
-                "text": "liczba \\(c \\cdot 21\\) jest podzielna przez 21 (c — cokolwiek całkowitego)"
+                "text": "W nawiasie wychodzi \\(16 + 4 + 1 = 21\\), czyli cała liczba to \\(2^{96} \\cdot 21\\). A \\(2^{96}\\) jest liczbą całkowitą, więc iloczyn jest wielokrotnością 21 — i o to było pytanie."
             }
         ],
         "solutionWidget": null
@@ -194,7 +194,28 @@
         "formulasPage": 5,
         "solutionText": "\\(\\log_{7} x + 6\\log_{7} y = \\log_{7} x + \\log_{7} y^{6} = \\boldsymbol{\\log_{7}\\left(xy^{6}\\right)}\\) — odpowiedź <b>D</b>.",
         "solutionTextMore": "Najpierw „chowamy\" 6 do logarytmu: \\(6\\log_{7} y = \\log_{7} y^{6}\\) (własność \\(\\log_a x^{b} = b\\log_a x\\), czytana od prawej). <br><br> Potem sumę logarytmów o tej samej podstawie zamieniamy na logarytm iloczynu: \\(\\log_{7} x + \\log_{7} y^{6} = \\log_{7}\\left(x \\cdot y^{6}\\right)\\).",
-        "solutionStepByStep": null,
+        "solutionStepByStep": [
+            {
+                "type": "video",
+                "src": "media/zad4/solution-step-by-step/step1.mp4",
+                "text": "Zapisujemy wyrażenie z zadania."
+            },
+            {
+                "type": "video",
+                "src": "media/zad4/solution-step-by-step/step2.mp4",
+                "text": "Współczynnik stojący przed logarytmem wciągamy do środka jako wykładnik: \\(r\\log_a x=\\log_a x^{r}\\), czyli \\(6\\log_{7}y=\\log_{7}y^{6}\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad4/solution-step-by-step/step3.mp4",
+                "text": "Suma logarytmów o <b>tej samej podstawie</b> to logarytm iloczynu: \\(\\log_a x+\\log_a y=\\log_a(x\\cdot y)\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad4/solution-step-by-step/step4.mp4",
+                "text": "Kropkę mnożenia zwyczajowo pomijamy — \\(\\log_{7}\\left(xy^{6}\\right)\\) to odpowiedź <b>D</b>."
+            }
+        ],
         "solutionWidget": null
     },
     {

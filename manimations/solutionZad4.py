@@ -1,205 +1,105 @@
-from manim import * 
+from manim import *
 
 
+# Zadanie 4 — log_7 x + 6 log_7 y = log_7(x y^6), odpowiedź D.
+#
+# Scenariusz kroków był ustalony i zatwierdzony PRZED napisaniem tego pliku —
+# leży w manimations/zad4-kroki.md (treść, cztery kroki, opisy pod film,
+# wyjaśnienie błędnych odpowiedzi). Jeśli zmieniasz tu przebieg, popraw i tam.
+#
+# Render (bez flagi jakości — kadr i fps biorą się z manim.cfg):
+#     manim --save_sections solutionZad4.py Zad4
+# Każdy krok ląduje osobnym plikiem w media/videos/solutionZad4/720p120/sections/.
 class Zad4(Scene):
-        
+
     def construct(self):
         GREEN = "#0AB32F"
-        GRAY = "#A6A6A6"
 
-        def TransformSplitPAIRS(step, indexs1, indexs2):
-            if len(indexs1) % 2 != 0 or len(indexs2) != len(indexs1):
-                raise ValueError("ZŁA DŁUGOŚĆ LISTY INDEXS, MUSZĄ BYĆ PARZYSTE I TAKIE SAME")
-            
-            transforms = []
-            for i in range(len(indexs1)):
-                if( i != len(indexs1) - 1  and  i%2 == 0):
-                    transforms.append(
-                        Transform(
-                            kroki[step][0][indexs1[i]:indexs1[i+1]], 
-                            kroki[step+1][0][indexs2[i]:indexs2[i+1]], 
-                            run_time=1.4
-                        )
-                    )
-                    
-            return transforms
-
-
-        kroki = [None] * 20
-        
-        kroki[0] = MathTex(r"\log_{7}x + 6\log_{7}y")
-        kroki[1] = MathTex(r"\log_{7}x + \log_{7}(y^6)")
-        kroki[2] = MathTex(r"\log_{7}(x \cdot y^6)")
-        kroki[2] = MathTex(r"\log_{7}(xy^6)")
+        # Kolejne stany zapisu. Kropka na pasku pod filmem = jeden z nich,
+        # film = przejście między dwoma sąsiednimi.
+        kroki = [None] * 4
+        kroki[0] = MathTex(r"\log_{7}x + 6\log_{7}y")        # 12 glifów: log_7 x + 6 log_7 y
+        kroki[1] = MathTex(r"\log_{7}x + \log_{7}(y^6)")     # 14 glifów: doszły nawiasy
+        kroki[2] = MathTex(r"\log_{7}(x \cdot y^6)")         # 10 glifów
+        kroki[3] = MathTex(r"\log_{7}(xy^6)")                #  9 glifów: bez kropki mnożenia
 
         for krok in kroki:
-            if krok:
-                krok.fill_color=BLACK
-                krok.font_size=100
-                
+            krok.fill_color = BLACK
+            krok.font_size = 110
 
-        wzory = [None] * 20
+        # Skala WSPÓLNA dla wszystkich kroków, liczona z najszerszego — osobne
+        # dopasowanie każdego kroku zmieniałoby wielkość liter w trakcie
+        # przekształcenia, a Transform robiłby z tego zoom. Tak samo w zad. 1–3.
+        MARGINES = 0.85
+        najszerszy = max(krok.width for krok in kroki)
+        if najszerszy > config.frame_width * MARGINES:
+            wspolczynnik = config.frame_width * MARGINES / najszerszy
+            for krok in kroki:
+                krok.scale(wspolczynnik)
+        for krok in kroki:
+            krok.move_to(ORIGIN)
 
-        wzory[0] = MathTex(r"a\log_x r = \log_x(r^a)")
-        wzory[1] = MathTex(r"\log_a(x\cdot y)=\log_ax+\log_ay")
-        
-        for wzor in wzory:
-            if wzor:
-                wzor.fill_color=BLACK
-                wzor.font_size=100
-        
+        # Wzory pomocnicze nie są rysowane w filmie (zasada z 2026-08-11) —
+        # pokazuje je strona pod filmem, z pola "text" przy kroku w exercises.json.
+        # Oba potrzebne tu wzory to [3.2] z tablic (s. 5):
+        #   krok 2 → log_a x^r = r · log_a x   (czytane od prawej)
+        #   krok 3 → log_a x + log_a y = log_a(x · y)
 
-        #STEP 1
-        #self.play(Create(kroki[0]))
-        #self.wait(1)
-        self.clear
-        
-        
-        #STEP 2
-        self.add(kroki[0])
+        # Każda sekcja kończy się `self.wait(0.25)` — bez tego przeglądarka
+        # zatrzymuje obraz kilka klatek przed końcem pliku i ostatni element
+        # animacji nie zostaje na ekranie (README, punkt 0 workflow).
 
-        temp_krok = kroki[0].copy().move_to(UP*1.5+LEFT*2.15)
-        temp_krok[0][6].set_color(GREEN)       
-        wzory[0].move_to(DOWN*1.5+RIGHT*2.15)
-        wzory[0][0][0].set_color(GREEN)
-        wzory[0][0][13].set_color(GREEN)
+        self.next_section("krok1")
+        # KROK 1 — wyrażenie z zadania wjeżdża w kadr.
+        self.play(Create(kroki[0]))
+        self.wait(0.25)
 
-        #self.play(Transform(kroki[0], temp_krok), Create(wzory[0]))
-        #self.wait(0.2)
-
-
-        #STEP 3
-        kroki[1].move_to(UP*1.5+LEFT*2.15)
+        self.next_section("krok2")
+        # KROK 2 — szóstka sprzed logarytmu przelatuje na miejsce wykładnika
+        # przy y. Na zielono to, co się rusza: szóstka tu i tam.
+        kroki[0][0][6].set_color(GREEN)
         kroki[1][0][12].set_color(GREEN)
-
-        #self.play(TransformSplitPAIRS(0, [0, 6, 6, 7, 7, 11, 11, 99], [0, 6, 12, 13, 6, 10, 11, 12]), FadeIn(kroki[1][0][10:14:3]))
-        #self.wait(0.2)
-        
+        self.play(
+            Transform(kroki[0][0][0:6], kroki[1][0][0:6]),      # log_7 x +  — bez zmian
+            Transform(kroki[0][0][6], kroki[1][0][12]),         # 6 → wykładnik
+            Transform(kroki[0][0][7:11], kroki[1][0][6:10]),    # drugie log_7
+            Transform(kroki[0][0][11], kroki[1][0][11]),        # y
+            FadeIn(kroki[1][0][10], kroki[1][0][13]),           # nawiasy wokół y^6
+            run_time=1.4,
+        )
+        self.wait(0.25)
+        # Zieleń zdejmujemy dopiero po przytrzymaniu: to ona pokazuje, co się
+        # przed chwilą stało, i ma zostać na klatce, którą widzi uczeń.
         self.clear()
-        self.add(kroki[1], wzory[0])
-        temp_krok = kroki[1].copy()
-        temp_krok.move_to(ORIGIN).set_color(BLACK)
-        
-        #self.play(Transform(kroki[1], temp_krok), FadeOut(wzory[0], shift=DOWN*5))
-        
+        kroki[1][0][12].set_color(BLACK)
+
+        self.next_section("krok3")
+        # KROK 3 — dwa logarytmy o tej samej podstawie zbiegają się w jeden,
+        # a plus zamienia się w kropkę mnożenia.
+        self.add(kroki[1])
+        kroki[1][0][5].set_color(GREEN)
+        kroki[2][0][6].set_color(GREEN)
+        self.play(
+            Transform(kroki[1][0][0:4], kroki[2][0][0:4]),      # log_7 zostaje
+            Transform(kroki[1][0][4], kroki[2][0][5]),          # x wchodzi do nawiasu
+            Transform(kroki[1][0][5], kroki[2][0][6]),          # + → ·
+            FadeOut(kroki[1][0][6:10]),                         # drugie log_7 znika
+            Transform(kroki[1][0][10], kroki[2][0][4]),         # nawias otwierający
+            Transform(kroki[1][0][11:14], kroki[2][0][7:10]),   # y^6 z nawiasem zamykającym
+            run_time=1.4,
+        )
+        self.wait(0.25)
         self.clear()
+        kroki[2][0][6].set_color(BLACK)
 
-
-        #STEP 4
-        self.add(kroki[1].move_to(ORIGIN).set_color(BLACK))
-        self.play(Transform(kroki[1], kroki[1].copy().move_to(UP*1.5)), Create(wzory[1].move_to(DOWN*1.5)))
-        self.play(Transform(kroki[1], kroki[1].copy().shift(RIGHT*1.7)), Transform(wzory[1], wzory[1].copy().shift(LEFT*1.7)))
-        
-        self.wait(1)
-        
-        """
-        #self.add(index_labels(kroki[0][0]).shift(UP))
-        temp_krok = MathTex()
-        temp_krok = kroki[2].copy()
-        self.add(temp_krok)
-        #kroki[2][0][:].set_color(GRAY)
-        #kroki[3][0][:].set_color(GRAY)
-        kroki[2][0][1:3].set_color(GREEN)
-        kroki[3][0][3:5].set_color(GREEN)
-        self.play(ReplacementTransform(temp_krok, kroki[2]))
-        self.wait(1)
-
-        self.play(TransformSplitPAIRS(2, [0, 1, 1, 3, 3, 5], [0, 1, 3, 5, 1, 3]))
-        self.clear()
-
-        self.add(kroki[3])
-        self.play(FadeToColor(kroki[3], color=BLACK))
-        kroki[3][0][:].set_color(BLACK)
-        self.clear()
-        
-
-        #STEP 5
-        #self.add(index_labels(kroki[3][0]).shift(UP))
-
-        temp_krok = kroki[3].copy()
-        self.add(temp_krok)
-        kroki[3][0][2:].set_color(GREEN)
-        kroki[4][0][2:].set_color(GREEN)
-        self.play(ReplacementTransform(temp_krok, kroki[3]))
-        self.wait(1)
-        
-        self.play(TransformSplitPAIRS(3, [0, 2, 2, 99], [0, 2, 2, 99]))
-        
-        self.play(FadeToColor(kroki[4], color=BLACK))
-        kroki[4][0][:].set_color(BLACK)
-        self.clear()
-        temp_krok = kroki[4].copy()
-        self.play(ReplacementTransform(temp_krok, kroki[4].move_to(DOWN*2.3+LEFT*4).set_color(GRAY)))
-        self.clear()
-        
-        """
-        
-        """
-        #STEP 6 COŚ TU SIĘ GRUBO ZJEBAŁO Z KROKI 1
-        kroki[4].fill_color=GRAY
-        self.add(kroki[4].move_to(DOWN*2.3+LEFT*4))
-        
-
-        self.play(Create(kroki[8]))
-        #z jakiegoś powodu zamiast kroki[1] pojawia się krok 2 i animuje go zupełnia jak krok 2 -> 3
-        self.play(TransformSplitPAIRS(8, [0, 6, 6, 99], [0, 0, 0, 99]))
-        self.clear()
-        
-        
-        #STEP 7
-        kroki[4].fill_color=GRAY
-        self.add(kroki[4].move_to(DOWN*2.3+LEFT*4))
-        
-        temp_krok = kroki[9].copy()
-        self.add(temp_krok)
-        kroki[9][0][1:3].set_color(GREEN)
-        kroki[10][0][4:6].set_color(GREEN)
-        self.play(ReplacementTransform(temp_krok, kroki[9]))
-
-        self.play(TransformSplitPAIRS(9, [0, 1, 1, 3, 3, 6], [0, 1, 4, 6, 1, 4]))
-        
-        self.clear()
-        
-
-        
-        #STEP 8
-        kroki[4].fill_color=GRAY
-        self.add(kroki[4].move_to(DOWN*2.3+LEFT*4))
-
-        temp_krok = kroki[10].copy()
-        self.add(temp_krok)
-        kroki[10][0][2:99].set_color(GREEN)
-        kroki[11][0][2:99].set_color(GREEN)
-
-        
-        self.play(FadeTransform(temp_krok, kroki[10]))
-
-        self.add(kroki[10])
-        self.play(TransformSplitPAIRS(10, [0, 2, 2, 99], [0, 2, 2, 99]))
-
-        temp_krok = kroki[11].copy()
-        temp_krok.set_color(BLACK)
-
-        self.play(FadeTransform(kroki[11], temp_krok))
-        self.clear()
-        
-
-        kroki[11].set_color(BLACK)
-        self.play(Transform(kroki[11].copy(), kroki[11].shift(RIGHT*4)), Transform(kroki[4].copy(), kroki[4].shift(UP*2.3).set_color(BLACK)))
-        self.clear()
-        
-
-        
-        #STEP 9
-        self.add(kroki[4].move_to(LEFT*4))
-        self.add(kroki[11].move_to(RIGHT*4))
-        self.wait(1)
-        self.play(Transform(kroki[4][0][0:2], kroki[12][0][0:3]), Transform(kroki[4][0][2:99],  kroki[12][0][5:7]), Transform(kroki[11][0][0:2],  kroki[12][0][3:5]), Transform(kroki[11][0][2:99],  kroki[12][0][7:99]))
-        self.wait(1)
-        self.clear()
-        
-        self.add(kroki[12])
-        self.play(TransformSplitPAIRS(12, [0, 6, 6, 99], [0, 6, 6, 99]))
-        self.clear()
-
-        """
+        self.next_section("krok4")
+        # KROK 4 — kropkę mnożenia zwyczajowo pomijamy; dopiero taki zapis
+        # wygląda dokładnie jak odpowiedź D w arkuszu.
+        self.add(kroki[2])
+        self.play(
+            Transform(kroki[2][0][0:6], kroki[3][0][0:6]),
+            FadeOut(kroki[2][0][6], scale=0.3),                 # kropka znika
+            Transform(kroki[2][0][7:10], kroki[3][0][6:9]),     # y^6 dosuwa się do x
+            run_time=1.4,
+        )
+        self.wait(0.25)

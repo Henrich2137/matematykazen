@@ -3,15 +3,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.
 
-  - ZMIEŃ STARE FILMIKI NA NOWO USTALONYU FORMAT 720p120fps, opisy w zad3 uzupełnimy potem, możesz je dopisać gdzieś tam niżej niżej w todo
-    Rozwiązanie krok po kroku - ZOSTAŁO Z TEGO TEMATU (reszta zrobiona w v20, patrz done/04-biezace.md):
-    - Sceny zad. 1 i zad. 3 są wciąż w starym kadrze 21:9 (840×360, 60 fps). Odtwarzacz radzi sobie
-      z obydwoma formatami naraz (bierze proporcje z pliku), więc to nie pali się — ale dopóki tego
-      nie przerobisz, te dwa zadania nie mają zapasu klatek pod spowolnienie 0,25×.
-      Po przerenderowaniu trzeba puścić `tools/rewersy.sh` jeszcze raz z `--nadpisz`.
-    - Zad. 3 nie ma opisów kroków w danych (7 z 8 kroków ma puste "text"), więc przycisk
-      „Pokaż wyjaśnienie kroku" pokazuje się tam tylko na ostatnim kroku.
-  
 
 <br>
 
@@ -97,6 +88,26 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
     - przewijaj i cofaj do woli przez minutę, a potem zostaw stronę w spokoju — odtwarzacz
       nie ma zostać zawieszony na przygaszonym kadrze
+
+
+  - v24, filmy krok po kroku — zad. 1 i 3 przerenderowane w nowym kadrze, zad. 4 zrobione od zera
+
+    - zad. 1 i zad. 3: filmy mają być w kadrze 16:9 jak w zad. 2, bez czarnych pasów
+      i bez zmiany wielkości liter w trakcie przekształcenia
+      - treść przekształceń jest ta sama co wcześniej — porównałem klatka w klatkę,
+        więc szukaj raczej wyglądu niż matematyki
+
+    - zad. 3 ma teraz opisy pod filmem przy każdym z ośmiu kroków (wcześniej tylko przy
+      ostatnim) — przeczytaj, czy się zgadzają z tym, co widać na filmie
+      - wzory pomocnicze zniknęły z samego filmu i siedzą w opisach, tak jak w zad. 2
+
+    - zad. 3, kroki 2, 4 i 6 zatrzymują się na zapisie w większości szarym, z czarnym tylko
+      tym fragmentem, który się zmienił — to zachowanie sprzed moich zmian, ale teraz widać
+      je dłużej; powiedz, czy ma tak zostać, czy na koniec kroku wszystko ma wracać do czerni
+
+    - zad. 4 (logarytmy) ma nowe rozwiązanie krok po kroku, cztery kroki — sprawdź całość,
+      to jedyne z tej paczki, którego wcześniej nie było
+      - scenariusz, który zatwierdziłeś, leży w manimations/zad4-kroki.md
 
 
   - kontener: firewall + Playwright + read-only `.vscode` (2026-08-10), wymaga zwykłego Rebuild Container (bez `--no-cache`) — bez tego nic z tego nie zadziała; po przebudowie, w terminalu w kontenerze:

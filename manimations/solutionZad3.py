@@ -49,16 +49,20 @@ class ScenaZadania3(Scene):
         
         
 
+        # Wzory pomocnicze NIE są już rysowane w filmie (ujednolicone z zad. 2
+        # 2026-08-12; zmiana zasady jest z 2026-08-11). Pokazuje je strona, jako
+        # KaTeX pod filmem — patrz pole "text" przy kroku w exercises.json.
+        # Definicje zostają tutaj jako źródło wiedzy, który wzór należy do którego
+        # kroku; scena ich nie dodaje.
+        #   krok 3 → (a^r)^s = a^{r·s}
+        #   krok 5 → a^r · a^s = a^{r+s}
         wzory = [MathTex()] * 6
-        #wzory[0] jest pusty albo mozna wstawić tu prosty wzór na potęgę
         wzory[1] = MathTex(r"(a^r)^s=a^{r \cdot s}")
         wzory[2] = MathTex(r"a^r\cdot a^s=a^{r+s}")
 
-        
         for wzor in wzory:
             wzor.fill_color=BLACK
             wzor.font_size=100
-            wzor.shift(RIGHT*4.5)
 
 
         
@@ -77,19 +81,45 @@ class ScenaZadania3(Scene):
         for krok in kroki:
             krok.fill_color=BLACK
             krok.font_size=90
-            krok.shift(LEFT*4.5)
 
+        # Ten krok jest najdłuższy (trzy iloczyny), więc od początku był pisany
+        # mniejszą czcionką.
         kroki[4].font_size=75
 
+        # Kadr od 2026-08-11 jest 16:9 (1280x720), a nie 21:9 (840x360) — patrz
+        # manim.cfg. Treść stoi teraz na ŚRODKU: przesunięcie w lewo (LEFT*4.5)
+        # trzymało z prawej miejsce na wzór pomocniczy, a ten wyszedł z filmu.
+        # Skala jest WSPÓLNA dla wszystkich kroków i liczona z najszerszego — gdyby
+        # każdy krok dopasowywał się osobno, litery zmieniałyby rozmiar w trakcie
+        # przekształcenia, a Transform robiłby z tego zoom. Względne różnice
+        # wielkości (krok 5 mniejszy) zostają, bo mnożymy wszystko tak samo.
+        MARGINES = 0.85
+        najszerszy = max(krok.width for krok in kroki)
+        if najszerszy > config.frame_width * MARGINES:
+            wspolczynnik = config.frame_width * MARGINES / najszerszy
+            for krok in kroki:
+                krok.scale(wspolczynnik)
+        for krok in kroki:
+            krok.move_to(ORIGIN)
+
         
         
+        # KROKI JAKO SEKCJE (przebudowa 2026-08-12) — render:
+        #     manim --save_sections solutionZad3.py ScenaZadania3
+        # kładzie każdy krok osobnym plikiem w sections/. Każda sekcja kończy się
+        # `self.wait(0.25)` PRZED sprzątaniem sceny: bez przytrzymania przeglądarka
+        # gubi ostatnie klatki, a po `self.clear()` trzymałoby się białą planszę.
+
+        self.next_section("krok1")
         #STEP 1
         #self.add(Text("STEP 1", font_size=70, color=BLACK).shift(UP*2))
         self.play(Create(kroki[0]))
+        self.wait(0.25)
         self.clear()
         
         
         
+        self.next_section("krok2")
         #STEP 2
         #self.add(Text("STEP 2", font_size=70, color=BLACK).shift(UP*2))
         temp_krok = kroki[0].copy()
@@ -109,21 +139,24 @@ class ScenaZadania3(Scene):
 
         kroki[1][0][:].set_color(BLACK)
         
+        self.wait(0.25)
         self.clear()
 
 
+        self.next_section("krok3")
         #STEP 3
         #self.add(Text("STEP 3", font_size=70, color=BLACK).shift(UP*2))
         
         self.add(kroki[1])
         
-        self.play(Create(wzory[1]))
         self.play(TransformSplit(1, [0, 7, 11, 14], 
                                     [0, 6, 8, 10]))
+        self.wait(0.25)
         self.clear()
 
 
 
+        self.next_section("krok4")
         #STEP 4
         #self.add(Text("STEP 4", font_size=70, color=BLACK).shift(UP*2))
         
@@ -145,26 +178,29 @@ class ScenaZadania3(Scene):
 
         
         kroki[3][0][:].set_color(BLACK)
+        self.wait(0.25)
         self.clear()
         
 
 
 
+        self.next_section("krok5")
         #STEP 5
         #self.add(Text("STEP 5", font_size=70, color=BLACK).shift(UP*2))
         self.add(kroki[3])
-        self.play(Create(wzory[2]))
         
         #self.add(index_labels(kroki[3][0]))
         self.wait(1)
         self.play(TransformSplit(3, [0, 3, 5, 9, 11, 13], [0, 3, 6, 10, 13, 17]))
 
+        self.wait(0.25)
         self.clear()
 
 
     
     
         
+        self.next_section("krok6")
         #STEP 6
 
         temp_krok = kroki[4].copy()
@@ -187,28 +223,29 @@ class ScenaZadania3(Scene):
         
         kroki[5][0][:].set_color(BLACK)
 
+        self.wait(0.25)
         self.clear()
 
+        self.next_section("krok7")
         #STEP 7
         #self.add(Text("STEP 7", font_size=70, color=BLACK).shift(UP*2))
         #self.add(index_labels(kroki[5][0]).shift(UP*.5))
 
         self.add(kroki[5])
         self.play(TransformSplit(5, [0, 5], [0, 5]))
+        self.wait(0.25)
         self.clear()
 
 
 
+        self.next_section("krok8")
         #STEP 8
         #self.add(Text("STEP 8", font_size=70, color=BLACK).shift(UP*2))
         self.add(kroki[6])
         self.play(TransformSplit(6, [0, 4], [0, 4]))
+        self.wait(0.25)
         self.clear()
 
-        #STEP 9
-
-        self.add(kroki[6])
-        self.clear()
 
         
 

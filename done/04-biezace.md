@@ -1,5 +1,39 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-12] (Local Opus 5 High) Filmy krok po kroku: zad. 1–4 w nowym kadrze, cięcie na kroki zautomatyzowane. v24 Beta.
+
+- **Cięcie sceny na kroki robi teraz sam render.** `manim --save_sections` plus
+  `self.next_section("krokN")` w scenie kładzie każdy krok osobnym plikiem. Wcześniej kroki
+  przełączało się komentarzem `"""` i renderowało po jednym — dlatego w repo leżały skrypty
+  z zakomentowaną większością treści. Przy okazji wyszło, że `solutionZad2.py` w tej postaci
+  **nie odtwarzał** wgranych plików (brak przytrzymań `self.wait(0.25)`). Po przepisaniu na
+  sekcje sześć kroków zad. 2 wychodzi **identycznych co do piksela** (SSIM 1,000000) z tym,
+  co wisi na stronie — to był test całej metody.
+  Znika też problem opisany w manimations/README: krok nie musi być samowystarczalny, bo
+  scena jedzie w całości i sekcja tylko tnie gotowy materiał.
+
+- **Pułapka złapana SSIM-em:** `self.wait(0.25)` musi iść PRZED `self.clear()`/`self.remove()`.
+  Po wyczyszczeniu sceny przytrzymanie trzyma białą planszę — i to ona zostaje na ekranie,
+  bo przeglądarka zatrzymuje film kilka klatek przed końcem. Krok 2 zad. 2 wypadał wtedy
+  0,9967 zamiast 1,0.
+
+- **Zad. 1 i zad. 3 przerenderowane** ze starego kadru 21:9 (840×360, 60 fps) na 1280×720
+  @120. Treść przekształceń bez zmian — zestawione klatka po klatce z poprzednimi plikami.
+  Doszło wspólne skalowanie kroków pod węższy kadr (jeden współczynnik z najszerszego kroku,
+  jak w zad. 2) i w zad. 3 wyjęcie wzorów pomocniczych z filmu na stronę, zgodnie z zasadą
+  z 2026-08-11. Rewersy przeliczone `tools/rewersy.sh --nadpisz`.
+
+- **Zad. 3 dostało opisy wszystkich ośmiu kroków** (miało jeden, przy ostatnim) — punkt
+  z TODO „opisy w zad3 uzupełnimy potem".
+
+- **Zad. 4 (logarytmy) zrobione od zera**: scenariusz najpierw w `manimations/zad4-kroki.md`
+  (LaTeX-em, do czytania w podglądzie — Henrich zatwierdził przed pisaniem kodu), potem scena,
+  render, rewersy i wpięcie w exercises.json. Cztery kroki: wciągnięcie szóstki jako wykładnika,
+  suma logarytmów → logarytm iloczynu, opuszczenie kropki mnożenia.
+
+- **Sprawdzone w przeglądarce:** `tools/test-krokow.js` na wszystkich czterech zadaniach
+  (losowe klikanie + niezmienniki) — bez zastrzeżeń.
+
 [ZROBIONE 2026-08-12] (Local Opus 5 High) Odtwarzacz krok po kroku — wielokrotne cofanie i odtwarzanie przy słabym łączu. v23 Beta.
 
 - **Jedna przyczyna pod obydwoma objawami z TODO.** Podmiana kroku TRWA: `pokazKrok()` ustawia
