@@ -2,10 +2,47 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.
+  - PO TESTACH v21 (odtwarzacz krok po kroku) — poprawki zamówione przez Henricha:
+
+    - przycisk prev-step "<" ma mieć trzy zachowania zależne od stanu filmu (zastępuje stary punkt
+      o powtórnym wciśnięciu cofania, które dziś tylko stutteruje):
+      - film leci do przodu albo stoi zapauzowany w środku kroku → puść rewers od tego samego miejsca
+      - film leci do tyłu → przeskocz na 1. klatkę bieżącego kroku i zapauzuj
+      - stoi na 1. klatce → puść rewers poprzedniego kroku
+
+    - pasek kropek (`steps-dots-row`) ma być szerszy — mniejsze marginesy/padding albo większa
+      szerokość, byle wersja przewijana mieściła więcej kropek.
+
+    - przycisk „pokaż wyjaśnienie kroku" — wyśrodkować; rozwinięty tekst na telefonie jest przyklejony
+      do lewej krawędzi, potrzebuje marginesu.
+
+    - podokna na telefonie (rozwiązania, formularz zgłoszenia błędu, sprawdzanie obliczeń) — zmniejszyć
+      wcięcie z zewnątrz, czyli odstęp między ramką podokna a krawędzią ekranu.
+
+    - miejsce na kadr filmu ma pokazywać animację ładowania: niskokontrastową względem tła i odpaloną
+      dopiero po ~200 ms, żeby nie mrugała przy szybkim łączu. Formę wybiera Claude — ma być tania
+      w implementacji i niezawodna.
+
   - PO TESTACH NOWEGO UI ROZWIĄZANIE KROK PO KROKU:
     - Wieszkość działa bardzo dobrze. Gratulacje!!! Dziękuję <3 >
-    - Powtórne wciśnięcie cofania nie cofa "bardziej". Filmik tylko ma lekki stutter a powinien przejść do poprzedniej "kropki" czyli początku filmu i pot następnym kliknięciu zacząć cofać następny 
-
+    - Pixel7aGraoheneOs Chrome:
+      ⚠ Wystąpił błąd strony (pokaż ten tekst autorowi): • ResizeObserver loop completed with undelivered notifications.
+      (https://henrich2137.github.io/matematykazen/template.html?arkusz=2024-grudzien:0)
+      
+      CHROME SYMULACJA PIXEL 7 ZAD 3:
+      a Wystąpił błąd strony (pokaż ten tekst autorowi):
+      + ResizeObserver loop completed with
+      undelivered notifications.
+      (https: //henrich2137.github.io/matematykazen/
+      template. html ?arkusz=2024-grudzien:0)
+      + ResizeObserver loop completed with
+      undelivered notifications.
+      (https: //henrich2137.github.io/matematykazen/
+      template. html ?arkusz=2024-grudzien:0)
+      + ResizeObserver loop completed with
+      undelivered notifications.
+      (https: //henrich2137.github.io/matematykazen/
+      template. html ?arkusz=2024-grudzien:0)
 
   - Ciemny motyw wymuszony ręcznie w panelu bocznym: rysunki/filmy mają przygasać jak przy
     „auto" — poprawka przy okazji v20, jeszcze bez potwierdzenia Henricha.
@@ -20,7 +57,9 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 
 + NIE REALIZUJ:
-  - HENTICH: ZMIEŃ STARE FILMIKI NA NOWO USTALONYU FORMAT 720p120fps, opisy w zad3 uzupełnimy potem, możesz je dopisać gdzieś tam niżej niżej w todo
+  - spraw aby przycisk do rozwijania side-bara był nad przyciemieniem tła na telefonie. Nie ma być przyciemiony aby użytkownik wiedział, że jest możliwy do kliknięcia.
+
+  - ZMIEŃ STARE FILMIKI NA NOWO USTALONYU FORMAT 720p120fps, opisy w zad3 uzupełnimy potem, możesz je dopisać gdzieś tam niżej niżej w todo
     Rozwiązanie krok po kroku - ZOSTAŁO Z TEGO TEMATU (reszta zrobiona w v20, patrz done/04-biezace.md):
     - Sceny zad. 1 i zad. 3 są wciąż w starym kadrze 21:9 (840×360, 60 fps). Odtwarzacz radzi sobie
       z obydwoma formatami naraz (bierze proporcje z pliku), więc to nie pali się — ale dopóki tego
@@ -48,61 +87,17 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br>
 
 
-+ TESTOWANIE HENRICH:
++ TESTOWANIE HENRICH
+<br> Claude zapisuje małymi litery. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 
-  - ODTWARZACZ KROK PO KROKU v21 — poprawki z Twojej listy po testach v20.
-    Wszystkie 15 punktow zrobione; ponizej to, co warto kliknac, zeby to potwierdzic.
+  - kontener: firewall + Playwright + read-only `.vscode` (2026-08-10), wymaga zwykłego Rebuild Container (bez `--no-cache`) — bez tego nic z tego nie zadziała; po przebudowie, w terminalu w kontenerze:
+    - `dig +short github.com` — ma zwrócić adresy (jeśli w logu firewalla widać „UWAGA: DNS nie działa po zawężeniu", zawężenie bramy poszło źle, patrz `.devcontainer/README.md`, sekcja „Diagnostyka").
+    - `curl -m 5 http://192.168.1.1` — ma nie przejść (timeout albo „Connection refused"); wcześniej otwierał panel routera, to samo dotyczy SMB (445) i drukarki (631).
+    - `git push` / `npm ping` / `curl -sI https://cke.gov.pl` — mają nadal działać.
+    - `bash .devcontainer/verify-firewall.sh` — ma zakończyć się sukcesem.
+    - `touch .vscode/test` — ma odbić się o „Read-only file system" (to jest cel, nie błąd).
+    - playwright: `NODE_PATH=/usr/local/share/npm-global/lib/node_modules node -e "require('playwright').chromium.launch().then(b=>b.close()).then(()=>console.log('OK'))"` — ma wypisać „OK", potem zrzut arkusza przez `tools/zrzuty.js` ma pokazać polski tekst, nie puste prostokąty.
 
-    - ► W TRAKCIE ODTWARZANIA pomija krok: leci film 2, klikasz ► i od razu jestes na
-      poczatku filmu 3. Wczesniej klik w trakcie nie robil nic.
-    - ◄ podswietla kropke POCZATKU kroku od razu przy kliknieciu, nie po dojechaniu cofki.
-
-    
-    - START/PAUZA w trakcie cofania: pierwszy klik ma zatrzymac cofke w miejscu, drugi
-      puscic film DO PRZODU od tego samego miejsca. Sam start/pauza nigdy nie odpala rewersu.
-    - Klik w kropke w TRAKCIE odtwarzania: film skacze na poczatek i — to bylo zepsute —
-      pasek miedzy kropkami tez wraca na zero, zamiast zostawac w starym miejscu.
-    - Klik w kropke, na ktorej juz stoisz, puszcza ten krok.
-    - Wszystkie kreski na LEWO od biezacej kropki sa wypelnione.
-    - Pasek kropek jest wezszy (80% szerokosci filmu). W zad. 3 na komputerze strzalek
-      ‹ › ma NIE byc (dziewiec kropek sie miesci), na telefonie maja byc.
-    - Przyciski: zaokraglone daszki po bokach, w srodku jeden przycisk odtworz/pauza/restart
-      bez kolka. Restart (zakrecona strzalka) tylko po dobiegnieciu filmu DO PRZODU.
-      Z filmu znikly nakladane ikonki pauzy i restartu.
-    - „Pokaz wyjasnienie kroku" jest waski, strzalka tuz przy napisie, wiecej powietrza
-      nad i pod, rozwiniety tekst nizej od tytulu.
-    - Panel boczny: „Predkosc animacji" (dawniej „filmow"). Klik ZWIEKSZA: 1x → 2x → 4x →
-      0.25x → 0.5x → 1x. Kropka dziesietna zamiast przecinka — przecinek rozdziela stany
-      w kodzie, wiec „0,25x" rozpadloby sie na dwa; tak ustaliles.
-    - Podczas wczytywania filmu karta NIE podskakuje — miejsce na kadr jest zarezerwowane
-      z gory. Najlepiej widac przy pierwszym otwarciu rozwiazania na wolnym laczu.
-    - Katalog plikow to teraz media/zadN/solution-step-by-step/ — sprawdz, czy filmy
-      i cofanie dzialaja w kazdym z trzech zadan (u mnie zero bledow 404).
-
-  - Kontener: firewall + Playwright + read-only `.vscode` (2026-08-10). WYMAGA **Rebuild Container**
-    (zwykłego, bez `--no-cache`) — bez tego nic z tego nie zadziała. Po przebudowie, w terminalu
-    W KONTENERZE:
-
-    - `dig +short github.com` → ma zwrócić adresy. Jeśli w logu firewalla widać „UWAGA: DNS nie
-      działa po zawężeniu", zawężenie bramy poszło źle — patrz `.devcontainer/README.md`,
-      sekcja „Diagnostyka".
-    - `curl -m 5 http://192.168.1.1` → ma NIE przejść (timeout albo „Connection refused"). Wcześniej
-      otwierał panel routera. To samo dotyczy SMB (445) i drukarki (631).
-    - `git push` / `npm ping` / `curl -sI https://cke.gov.pl` → mają nadal działać.
-    - `bash .devcontainer/verify-firewall.sh` → ma zakończyć się sukcesem.
-    - `touch .vscode/test` → ma odbić się o „Read-only file system" (to jest cel, nie błąd).
-    - Playwright: `NODE_PATH=/usr/local/share/npm-global/lib/node_modules node -e "require('playwright').chromium.launch().then(b=>b.close()).then(()=>console.log('OK'))"`
-      → „OK". Potem zrzut arkusza przez `tools/zrzuty.js`; polski tekst ma być widoczny, nie puste
-      prostokąty.
-
-  - VS Code na hoście: przy otwarciu folderu ma się już NIE pytać „Allow Automatic Tasks in Folder?",
-    tylko po cichu zrobić `git pull --ff-only`.
-
-  - Backup `~/backup-vscode-flatpak/` (8 kB) po skasowanych danych flatpakowego VS Code — do
-    usunięcia, gdy uznasz, że już niepotrzebny. Dwa ustawienia istniały tylko tam i świadomie
-    ich nie przeniosłem (`chat.viewSessions.orientation`, `chat.agent.sandbox.enabled`).
-    Cały przepis — jak znaleźć takie sieroty i czego przy nich pilnować — w
-    `issues/flatpak-osierocone-dane.md`.
 
 
 <br>
@@ -111,7 +106,19 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + DLA HENRICHA:
 
   - pokminić sobie dydaktycznie nad arkuszem aby zadać robotę Fable
-  
+
+
+<br>
+
+
++ DO ZROBIENIA HOŚCIE (POZA KONTENEREM)
+
+  - dopisać pythona do extentions aby był też po rebuildzie itd.
+
+  - przy otwarciu folderu ma się już nie pytać „Allow Automatic Tasks in Folder?", tylko po cichu zrobić `git pull --ff-only`.
+
+  - na bazzite: backup `~/backup-vscode-flatpak/` (8 kB) po skasowanych danych flatpakowego VS Code — do usunięcia, gdy uznasz, że już niepotrzebny (dwa ustawienia istniały tylko tam i świadomie ich nie przeniosłem: `chat.viewSessions.orientation`, `chat.agent.sandbox.enabled`); cały przepis w `issues/flatpak-osierocone-dane.md`.
+
 <br>
 
 
@@ -267,6 +274,15 @@ Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz is
 
   - Robiąc notatki w sekcji DO REALIZACJI Dopisane przez CLAUDA napisz jakim modelem jesteś i na jakim efforcie, Jeżeli czytasz notatki np Sonneta na low to ufaj im mniej niż tym zrobionym przez Opusa na High
 
-+ DO ZROBIENIA HOŚCIE (POZA KONTENEREM)
+  - Wpisy w sekcji TESTOWANIE HENRICH piszesz prostym zdaniem, małymi literami (normalna polska ortografia, wielka litera tylko tam gdzie gramatycznie należy — początek zdania, nazwy własne). Bez nagłówków typu ORYGINALNY PUNKT / DOCELOWA WERSJA, bez CAPS LOCKA dla podkreślenia słów. Domyślnie jedna linijka: co kliknąć → czego się spodziewać, np. „kliknij next-step w trakcie odtwarzania filmu — powinien przeskoczyć do początku następnego filmu".
+    - Gdy jeden punkt obejmuje kilka rzeczy do sprawdzenia naraz, rozbij go: krótka linijka wiodąca, pod nią zagnieżdżone podpunkty, po jednej rzeczy na podpunkt. Drugi poziom zagnieżdżenia tylko wtedy, gdy szczegóły dotyczą jednego konkretnego podpunktu, np.:
 
-  - dopisać pythona do extentions aby był też po rebuildzie itd.
+          - sprawdź wygląd przycisków
+            - po bokach zaokrąglone daszki
+            - na środku jeden przycisk odtwórz/pauza/restart
+              - bez kółka
+              - restart (zakręcona strzałka) pokazuje się tylko po dobiegnięciu filmu do końca
+            - nakładane ikonki pauzy/restartu na filmie mają zniknąć
+
+    - Pustą linijkę zostawiaj pod każdym punktem, a w długich listach pełnych podpunktów także pod podpunktami — żeby się nie zlewały w blok. W krótkiej liście paru jednolinijkowców nie trzeba.
+

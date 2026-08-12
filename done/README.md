@@ -18,6 +18,10 @@ Do szukania używaj najpierw tego indeksu (tagi niżej), potem grepa po konkretn
 
 
 == 04-biezace.md — partia OTWARTA (2026-07-27 → ?) ==
+- 2026-08-12 (Henrich — testy) — odbiór v21 odtwarzacza krok po kroku: cała sekcja TESTOWANIE HENRICH
+  przeklikana i potwierdzona (►/◄, start-pauza w cofce, kropki, ROW 2, prędkości, brak 404); pięć uwag
+  z testów to nie błędy, tylko nowe zamówienie — wróciły do TODO.md jako „PO TESTACH v21"
+  [krok-po-kroku, wideo, ui, testy, odbior]
 - 2026-08-10 (Sonnet 5, high) — v15, paczka drobiazgów UI z docs/superpowers/specs/2026-08-09-paczka-ui-drobiazgi-design.md
   + 2 dodatkowe punkty z tej samej sekcji TODO.md: (1) usunięty hoverowy podgląd „wartość → następna"
   w panelu ustawień, wartość widoczna cały czas (kod archiwalny w issues/archiwum-hover-podglad.md);

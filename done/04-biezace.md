@@ -1,5 +1,17 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-12] (Henrich — testy) v21 odebrane. Henrich przeklikał całą sekcję TESTOWANIE HENRICH
+dla odtwarzacza krok po kroku (arkusz 2024-grudzień, wszystkie trzy zadania z wideo). Potwierdzone jako
+działające: skok ► w trakcie odtwarzania, natychmiastowe podświetlenie kropki przy ◄, start/pauza
+w trakcie cofania, klik w kropkę (obcą i bieżącą) bez resetu paska, wypełnione odcinki na lewo od głowicy,
+węższy pasek kropek i strzałki ‹ › tylko wtedy, gdy trzeba, nowy wygląd przycisków ROW 2 (daszki + jeden
+przycisk odtwórz/pauza/restart, bez nakładek na filmie), cykl prędkości 1x → 2x → 4x → 0.25x → 0.5x → 1x
+z kropką dziesiętną, zarezerwowane miejsce na kadr (karta nie podskakuje), brak 404 po przenosinach
+do `media/zadN/solution-step-by-step/`. Pięć uwag z tych testów NIE jest błędami v21, tylko zamówieniem
+kolejnej porcji — wróciły do TODO.md jako „PO TESTACH v21": trzystanowy prev-step „<", szerszy pasek
+kropek, wyśrodkowany przycisk „pokaż wyjaśnienie kroku" + margines tekstu na telefonie, węższe wcięcia
+podokien na telefonie, animacja ładowania filmu po ~200 ms.  [krok-po-kroku, wideo, ui, testy, odbior]
+
 [ZROBIONE 2026-08-11] (Local Opus 5 High) Odtwarzacz krok po kroku — 15 poprawek po testach v20. v21 Beta.
 Zamknięta cała sekcja „Usprawnić Rozwiązanie krok po kroku, Ocena po testach" z TODO.md plus prośba
 o zmianę nazwy podkatalogu. Testowane w Chromium DEVKONTENERA na prawdziwych plikach mp4 — w odróżnieniu

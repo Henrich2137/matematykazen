@@ -14,25 +14,18 @@ MatematykaZen is an interactive platform for learning math for the Polish "matur
 
 [OVERVIEW.md](OVERVIEW.md) — a standalone, Polish-language project summary (opis projektu, arkusze, funkcje, model biznesowy) maintained by Claude web (projekt „Matematyka Zen" na claude.ai) for use outside this repo, starting with an "Ostatnia aktualizacja" timestamp line. **ZASADA: aktualizuj datę i treść tego pliku po każdej większej zmianie, która może wpłynąć na jego treść** (nowy arkusz, nowa funkcja, zmiana modelu biznesowego itp.) — nie czekaj, aż użytkownik o to poprosi.
 
-## Licensing / contributions (added 2026-08-02)
+## Licensing / contributions
 
-Root-level meta files, all Polish except the license text itself:
-
-- `LICENSE.md` — **PolyForm Noncommercial 1.0.0**, official text verbatim (don't reword it), preceded by the copyright + `Required Notice:` lines and followed by Polish notes after the `---`: CKE exercises/keys are **not** covered by the license, pointer to CONTRIBUTING.md, commercial-license contact.
-- `CONTRIBUTING.md` — how to contribute + the **CLA**: opening a PR grants the owner a broad, irrevocable, *also commercial* license to the contribution, so a future license change (Faza 3 in OVERVIEW.md) isn't blocked by contributors' copyright.
-- `README.md` — repo front page (what the project is, how to serve it locally, „Licencja" section).
-- `.github/PULL_REQUEST_TEMPLATE.md` — checklist + a bold line binding the PR author to the CLA (relative link `../CONTRIBUTING.md`).
-
-Two placeholders are deliberate and tracked in TODO.md (`OPUS DOPISAŁ`): the owner is named by the pseudonym **`Henrich2137`** (LICENSE.md lines 1–2 + CONTRIBUTING.md point 2 — change both together if the real name is ever published), and the `Required Notice:` URL points at GitHub Pages until `matematykazen.pl` actually goes live. That notice line is copied by every redistributor, so it must never carry a dead link.
+The repo is **PolyForm Noncommercial 1.0.0** (`LICENSE.md` — official text verbatim, don't reword it) plus a **CLA** in `CONTRIBUTING.md`; CKE exercises/keys are **not** covered by the license. Two deliberate placeholders (owner pseudonym `Henrich2137`, `Required Notice:` URL on GitHub Pages) must be changed in pairs — details, file-by-file, in [issues/licencja-i-cla.md](issues/licencja-i-cla.md). Read it before touching any of those files.
 
 ## What this is
 
 A static Polish-language practice site for CKE "matura podstawowa" exam sheets. No backend, no build system, no package manager.
 
-**Migration in progress since 2026-07-10 (see TODO.md for status):** moving from one hardcoded exam-sheet page to multiple sheets sharing a single renderer. Target structure:
+Structure (since the 2026-07-10 migration from one hardcoded page to many sheets sharing a single renderer):
 
 - [index.html](index.html) — landing page, pure static HTML (`.landing-*` styles), links to each sheet.
-- `template.html` (root; replaces the old `matematykazen.html`) — the shared exam-sheet renderer, now the **single** page that renders *any* sheet: hidden exercise `<template>` + at the bottom a run of `<script src>` tags (`widgets/_helpers.js`, the nine `widgets/*.js` widget files, `widgets/_registry.js`, then the ten `app/*.js` files) that render exercises from a sheet's data file and wire up all interactivity. Which sheet is chosen by the `?arkusz=<id>` URL param (`<id>` = folder name under `matura/`); the per-sheet `matura/<id>/index.html` copies were removed.
+- `template.html` (root) — the shared exam-sheet renderer, the **single** page that renders *any* sheet: hidden exercise `<template>` + at the bottom a run of `<script src>` tags (`widgets/_helpers.js`, the nine `widgets/*.js` widget files, `widgets/_registry.js`, then the ten `app/*.js` files) that render exercises from a sheet's data file and wire up all interactivity. Which sheet is chosen by the `?arkusz=<id>` URL param (`<id>` = folder name under `matura/`); the per-sheet `matura/<id>/index.html` copies were removed.
 - `matura/<sheet-id>/` (e.g. `matura/2024-grudzien/`, `matura/2026-maj/`) — one folder per exam sheet: its `exercises.json`, its `media/zadN/` assets (PNG images + Manim-produced MP4 solution videos; keep filenames **lowercase**) and its four source PDFs/extracts under fixed names (`arkusz.pdf`/`.txt`, `odpowiedzi.pdf`/`.txt` — same in every sheet, so paths are predictable from the id alone). All asset paths in `exercises.json` are **sheet-relative** and joined to the folder by `mediaPath()` in `app/state.js`. **[matura/README.md](matura/README.md) is the source of truth** for which sheets exist and what the exam actually is (poziom podstawowy, Formuła 2023, próbna vs właściwa, CKE symbol, wired or not) — read it there, don't duplicate the list here.
 - [app/](app/) — app logic, split (2026-07-23) into classic (non-module) scripts sharing one global scope — **load order matters**, `template.html` lists them in the required order: `state.js` (globals, `mediaPath`/`renderMath`, `SHEET_ID`) → `theme.js` (jasny/ciemny/auto) → `exam.js` (tryb egzaminu, timer) → `indicators.js` (wskaźniki „oceń się") → `panels.js` (PDF-panele tablicy wzorów/zasad oceniania) → `answers.js` (`normalizeAnswer`/`markCorrectAnswer`) → `steps.js` (rozwiązania krok po kroku, double-buffer wideo — shared mutable state like `currentStep`/`stepSwapToken` passed via a `ctx` object, not closures) → `report.js` (zgłaszanie błędów: dyskretny link pod zadaniem + formularz rozwijany **w karcie zadania** — jeden wspólny węzeł przenoszony przez `insertBefore` — obowiązkowy opis (3–2000 znaków, limit pilnowany i w `maxlength`, i w JS), pigułki kategorii, → Formspree AJAX ręcznym `fetch`em (świadomie bez SDK z CDN — offline-first), toggle w menu, honeypot + throttling; `dodajLinkZgloszenia` wołane z render.js, więc ładowane przed nim) → `render.js` (`loadExercises` — renderowanie wszystkich typów zadań) → `bootstrap.js` (panel boczny `#sidebar` — następca menu „⋯", usuniętego 2026-07-27 — `startSheet()`, **loaded last**). Reads the `?arkusz=<id>` URL param into `SHEET_ID` to pick the sheet (`matura/<id>/exercises.json`), key its localStorage and resolve its media/PDF paths (`mediaPath`).
 - [widgets/](widgets/) — the interactive answer widgets, one file per widget (e.g. `widgets/osLiczbowa.js` → `widgetOsLiczbowa`), plus `widgets/_helpers.js` (shared `wg*` helpers, loaded first) and `widgets/_registry.js` (the `WIDZETY` name→function registry, loaded last of the three groups). In the repo **root-level directory** (one shared copy for all sheets). **All loaded before `app/*.js`** because `loadExercises` (in `app/render.js`) reads `WIDZETY` (classic scripts sharing the global scope, so load order matters).
@@ -49,52 +42,18 @@ Plus `vendor/katex/` — KaTeX vendored for fully offline math rendering (don't 
 
 **Done items do not stay in TODO.md.** When an item is completed, move it (marked `[DONE]`/`[ZROBIONE]` with the date and a short note on how it was solved) into the **current** file under [done/](done/) — see [done/README.md](done/README.md) for which file is current and the split rule (one file per merged partia, not per calendar period) — and delete it from TODO.md, so TODO.md stays short and cheap to load. **Do not read files under done/ by default** — open one only when you genuinely need project history: a broader view of the project, debugging a harder problem, or checking whether/how something was already solved before. Start from `done/README.md`'s tagged index rather than opening files blind. (Older names `todo1DONE.md`/`todo2.md`/`todo3.md`/`todo.md`/`todoDONE.md`/`TODODONE.md`/root `DONE.md` no longer exist — their content was merged/renamed/split into TODO.md and `done/`.)
 
-## Git / gitdoc
+## Git
 
-**STATUS AS OF 2026-08-01: gitdoc is currently DISABLED for this repo — verify before trusting anything below.** `gitdoc.enabled` defaults to `false` and is not set anywhere: it's absent from both `.vscode/settings.json` (emptied by commit `3a985b5`, "usunięcie settingsów z repo i przeniesienie do user settings") and the global user settings.json (`C:\Users\<user>\AppData\Roaming\Code\User\settings.json`) — the "move to user settings" never actually happened, the key was just deleted. **`git status` / `git log` timing should NOT be assumed to include gitdoc auto-commits right now.**
-
-Important mechanical fact (source: `out/config.js` in the installed extension), which explains why this happened and constrains any fix: **`gitdoc.enabled` can only ever be set at `ConfigurationTarget.Workspace`** — the extension's own setter hard-codes it:
-```js
-set enabled(value) {
-    config().update(ENABLED_KEY, value, vscode.ConfigurationTarget.Workspace);
-}
-```
-The Enable/Disable command (and thus the GitDoc UI toggle) always writes to **this repo's `.vscode/settings.json`**, never to global user settings — so putting `gitdoc.enabled: true` in the global file doesn't compose the way the rest of gitdoc's settings do; if you want gitdoc back on, set it back in `.vscode/settings.json` (or re-toggle via the UI), not in the global user settings.json. Global user settings.json is still the right place for the *other* `gitdoc.*` keys (delay/push/pull behavior) if you ever want to override them, since only `enabled` has this workspace-only restriction.
-
-**When gitdoc IS enabled**, the behavior described below applies — but as of this writing every one of these values (`autoPush: "onCommit"`, `autoPull: "onPush"`, `pullOnOpen: true`, `commitOnClose: true`, `pushMode: "forcePush"`, `autoCommitDelay: 30000`) is just the **extension's built-in default** — none of them are explicitly set in any settings.json found on this machine. Don't assume a settings file documents them; they come from the extension itself (`out/config.js`).
-
-If/when re-enabled, expect:
-- gitdoc auto-commits on every save (timestamp-only messages, no prefix) and **immediately pushes each one to `origin`** (`autoPush: "onCommit"` default) — this bypasses the "confirm before push" rule for those commits specifically, because they're not something the assistant initiated.
-- `git log` on this repo would routinely show a run of bare-timestamp commits between two "real" (prefixed, authored) commits — these are gitdoc, not the assistant, even during an assistant session (e.g. Henrich editing TODO.md in the editor mid-session).
-- Before squashing a range of commits for the assistant's own work, check `git show --stat` on each one — don't assume every commit in the range is the assistant's; a gitdoc auto-commit from Henrich's own edits can land in the middle of the range (happened 2026-07-26, see `done/03-2026-07-27.md`).
-- Because autoPush is immediate, treat any commit as **already on `origin`** unless proven otherwise — there is no local-only staging window to rely on.
-
-Verified against the installed extension (`vsls-contrib.gitdoc-0.2.3`, VS Code 1.130.0) on 2026-07-26 (mechanics) and 2026-08-01 (enabled-state + config-target check), in case the commit cadence is ever tuned:
-- **`gitdoc.autoCommitDelay` (default 30000 ms) is a debounce, not an interval** (`out/watcher.js`: `debounce(() => commit(repo), autoCommitDelay)`, timer reset on every repo-state change). Raising it to e.g. 20 min means "commit 20 min after the *last* edit", not "commit every 20 min" — during continuous editing nothing is committed at all until you pause (or close VS Code, which `commitOnClose` catches).
-- The debounced function is cached per repository object in a `commitMap` that is never cleared, so **a changed `autoCommitDelay` only takes effect after `Developer: Reload Window`**, not on settings save.
-- There is **no "commit every N saves"** option — the only knobs are `autoCommitDelay`, `filePattern` (which files trigger a commit), `excludeBranches`, and fully manual mode (`gitdoc.enabled: false` + the `GitDoc: Commit` command).
-- `gitdoc.pushMode` defaults to **`"forcePush"`** — worth knowing before diagnosing any odd `origin` history.
-
-### Auto-fetch / auto-pull (added 2026-08-07) — nothing to do with gitdoc
-
-The repo configures two **native VS Code** features, deliberately chosen over `gitdoc.pullOnOpen`: gitdoc is all-or-nothing, so turning it on for pull-on-open would drag back auto-commit + `forcePush` (disabled on purpose, see above).
-
-- `.vscode/settings.json` → `"git.autofetch": true` — background `git fetch` every ~3 min. Fetch only, never merges; the visible effect is just the „↓N" counter in Source Control.
-- `.vscode/tasks.json` → a `git pull --ff-only` task with `"runOn": "folderOpen"` — pulls **once, when the folder is opened**. `--ff-only` is the safety: it can never overwrite local commits or create a merge; on diverged branches it simply fails and reveals the terminal.
-
-Both files are tracked, so they travel with the repo and behave identically inside and outside the devcontainer (that parity is the point).
-
-**`runOn: folderOpen` only fires silently when the machine's *global* (User) `settings.json` has `"task.allowAutomaticTasks": "on"`** — otherwise VS Code asks „Allow Automatic Tasks in Folder?" on every open and does not pull until answered. That switch **cannot be set from workspace settings**, by design: a repo must not be able to grant itself permission to run commands. It was set on this machine 2026-08-10, in `~/.config/Code/User/settings.json` — the **native (rpm-ostree) install, which is the only one left**: the Flatpak VS Code had already been uninstalled and its 852 MB of orphaned data under `~/.var/app/com.visualstudio.code/` was deleted the same day (settings + extension list kept in `~/backup-vscode-flatpak/`). Don't reintroduce the Flatpak path in docs or config — its `dev.containers.dockerPath` needed `flatpak-spawn --host podman`, the native one uses plain `podman`. On a fresh machine/profile the switch has to be set again — the repo cannot carry it.
-
-Because that removes the only interactive barrier in front of a shell command VS Code runs by itself, **`.vscode/` is mounted `readonly` in the devcontainer** (same treatment as `.devcontainer/`, added the same day) so the container cannot rewrite the task it will later run. Consequence: edit `.vscode/` from the host, and a `checkout`/`pull` touching it from inside the container will half-fail exactly like it does for `.devcontainer/` — see `.devcontainer/README.md`, section „`.devcontainer/` i `.vscode/` tylko do odczytu".
-
-Consequence for the assistant: local `master` is often already up to date at session start, but a background fetch **does not touch the working tree**, so still run `git fetch` before reasoning about history in a long session.
+- **gitdoc is DISABLED** (verified 2026-08-01) — no auto-commits, no auto-push. Every commit in the log is a human's or the assistant's.
+- **Auto-fetch is on** (`git.autofetch` + a `git pull --ff-only` task on folder open), so local `master` is often already current at session start — but a background fetch doesn't touch the working tree, so still run `git fetch` before reasoning about history in a long session.
+- **`.vscode/` and `.devcontainer/` are mounted read-only in the devcontainer** — edit them from the host; a `checkout`/`pull` touching them from inside the container half-fails (see `.devcontainer/README.md`).
+- Mechanics of all three (why gitdoc can only be enabled per-workspace, what would happen if it were re-enabled, `forcePush`, the `autoCommitDelay` debounce, the `task.allowAutomaticTasks` requirement): [issues/git-i-gitdoc.md](issues/git-i-gitdoc.md).
 
 ## Oddawanie pracy do testów (added 2026-08-09)
 
 Zasady od Henricha, po pierwszej paczce, w której każda z nich została złamana. Dotyczą momentu, w którym kończysz porcję pracy i mówisz „sprawdź".
 
-- **Rzeczy do sprawdzenia przez Henricha piszesz w DWÓCH miejscach: w oknie czatu i w `TODO.md` w sekcji `TESTOWANIE HENRICH:`.** Nie zakładaj na to osobnego pliku w `issues/` — Henrich tam nie zagląda, a `TODO.md` czyta najczęściej. (Plik `issues/do-sprawdzenia.md` istniał krótko 2026-08-09 i został z tego powodu usunięty.) Wpis ma mówić, co kliknąć i czego szukać — nie streszczać zmiany.
+- **Rzeczy do sprawdzenia przez Henricha piszesz w DWÓCH miejscach: w oknie czatu i w `TODO.md` w sekcji `TESTOWANIE HENRICH:`.** Nie zakładaj na to osobnego pliku w `issues/` — Henrich tam nie zagląda, a `TODO.md` czyta najczęściej. (Plik `issues/do-sprawdzenia.md` istniał krótko 2026-08-09 i został z tego powodu usunięty.) Wpis ma mówić, co kliknąć i czego szukać — nie streszczać zmiany. Zasady formatowania tych wpisów są w TODO.md, sekcja „ZASADY DLA CLAUDE-A".
 - **Zanim oddasz cokolwiek do testów, a już zwłaszcza na telefonie: podbij numer wersji, zacommituj i zsynchronizuj z `origin`.** Bez pusha Henrich ogląda na telefonie starą stronę i szuka błędu, którego nie ma. Bez podbitej wersji nie ma jak stwierdzić, którą wersję właściwie widzi. Numer siedzi w dwóch miejscach naraz — `#wersja` w `template.html` i `.landing-wersja` w `index.html` — i musi się zgadzać w obu. **Podbijaj wersję głównie przed czymś, co Henrich ma faktycznie przetestować w przeglądarce** (zmiana widoczna na stronie) — po zmianach, które strony jako takiej nie dotyczą (np. porządki w repo, dokumentacja, konfiguracja gita), podbicie można pominąć.
 - **Granulacja commitów: jedna paczka zmian = jeden commit**, nawet jeśli dotyka wielu plików i jest duży. Rozdzielaj dopiero wtedy, gdy tematyka naprawdę się rozjeżdża (instalacja Playwrighta ≠ transkrypt tablicy wzorów). Zmiana wyglądu strony obejmująca HTML i CSS naraz to jeden commit, nie trzy.
 
@@ -102,21 +61,9 @@ Zasady od Henricha, po pierwszej paczce, w której każda z nich została złama
 
 Every commit (local or cloud) gets a `Co-Authored-By:` trailer in the form **`Local/Cloud Model Effort`** — e.g. `Co-Authored-By: Local Opus 5 Medium <noreply@anthropic.com>` or `Co-Authored-By: Cloud Sonnet 5 High <noreply@anthropic.com>`. No prefix in the commit message/subject — that convention was dropped in favor of this trailer.
 
-## Claude Code — plugins / skills (added 2026-08-07)
+## Claude Code — plugins / skills
 
-`.claude/settings.json` is tracked in the repo and declares `enabledPlugins`, so the plugin travels with the repo:
-
-```json
-{ "enabledPlugins": { "superpowers@claude-plugins-official": true } }
-```
-
-- **superpowers** ([obra/superpowers](https://github.com/obra/superpowers), MIT, Jesse Vincent) — 14 skills (`brainstorming`, `systematic-debugging`, `test-driven-development`, `writing-plans`, `using-git-worktrees`, …). Installed at **scope `project`**, deliberately not `user`: it should apply to this repo, not to every one of Henrich's projects.
-- Installed from Anthropic's official marketplace `claude-plugins-official`, not from the upstream `superpowers-marketplace`. The official entry pins a SHA (`44c9b2d` = v6.2.0) — checked 2026-08-07: that is exactly the same commit as upstream HEAD at the time, so pinning costs nothing and guards against code being swapped under a tag.
-- **Search trap**: superpowers is **not** a subdirectory in the local marketplace cache (`~/.claude/plugins/marketplaces/claude-plugins-official/`) — neither in `plugins/` nor `external_plugins/`, because its `marketplace.json` entry uses a `url` source that is cloned only at install time. An `ls` over those directories falsely suggests the plugin isn't there (this misled me on 2026-08-07).
-- The plugin's code lives in the user cache (`~/.claude/plugins/cache/…`), **not in the repo** — a fresh machine has to fetch it from GitHub. Inside the container that passes the firewall (GitHub ranges are allowlisted).
-- It installs a **`SessionStart` hook** (`startup|clear|compact`, synchronous) that runs at every session start, `/clear` and compaction.
-- Skills only appear **after a Claude Code session restart**.
-- `vendor/superpowers/` holds only `LICENSE` (MIT) + `NOTICE.md` — a slot for skills that might later be copied and fine-tuned. It deliberately contains **no plugin code**; don't copy the plugin in there "for tidiness".
+`.claude/settings.json` (tracked) enables the **superpowers** plugin at scope `project`, so it travels with the repo; its 14 skills (`brainstorming`, `systematic-debugging`, `writing-plans`, …) only appear **after a Claude Code session restart**. Install details, the marketplace-cache search trap and why `vendor/superpowers/` holds no plugin code: [issues/claude-code-pluginy.md](issues/claude-code-pluginy.md).
 
 ## Running / previewing
 

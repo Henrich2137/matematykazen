@@ -8,7 +8,7 @@ Stan od 2026-08-07: plugin jest **faktycznie zainstalowany** (v6.2.0, scope
 `project`, z oficjalnego marketplace'u `claude-plugins-official`) i deklarowany
 w `.claude/settings.json` → `enabledPlugins`. Jego kod mieszka w cache
 użytkownika (`~/.claude/plugins/cache/…`), **nie tutaj** — nie kopiuj go do tego
-folderu „dla porządku". Szczegóły: CLAUDE.md, sekcja „Claude Code — plugins / skills".
+folderu „dla porządku". Szczegóły: `issues/claude-code-pluginy.md`.
 
 Licencja: MIT (Jesse Vincent), patrz `LICENSE` w tym folderze — dotyczy tylko
 tego, co ewentualnie tu wyląduje, nie reszty repo matematykazen.
