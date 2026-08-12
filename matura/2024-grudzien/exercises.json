@@ -251,7 +251,38 @@
         "formulasPage": 7,
         "solutionText": "Zamieniamy dzielenie na mnożenie przez odwrotność i skracamy: \\(\\frac{x}{(x-1)(x+1)} \\cdot \\frac{x+1}{3x^{2}} = \\boldsymbol{\\frac{1}{3x(x-1)} = \\frac{1}{3x^{2}-3x}}\\) — odpowiedź <b>B</b>.",
         "solutionTextMore": "Po kolei: <br><br> 1. Mianownik pierwszego ułamka rozkładamy ze wzoru skróconego mnożenia: \\(x^{2} - 1 = (x - 1)(x + 1)\\). <br><br> 2. Dzielenie zamieniamy na mnożenie przez odwrotność: \\(\\cdot\\ \\frac{x+1}{3x^{2}}\\). <br><br> 3. Skracamy \\((x + 1)\\) oraz jedno \\(x\\): zostaje \\(\\frac{1}{3x(x-1)}\\), czyli po wymnożeniu mianownika \\(\\frac{1}{3x^{2}-3x}\\). <br><br> Założenia \\(x \\ne -1,\\ 0,\\ 1\\) gwarantują, że nic po drodze nie dzieliło przez zero.",
-        "solutionStepByStep": null,
+        "solutionStepByStep": [
+            {
+                "type": "video",
+                "src": "media/zad6/solution-step-by-step/step1.mp4",
+                "text": "Zapisujemy wyrażenie z zadania."
+            },
+            {
+                "type": "video",
+                "src": "media/zad6/solution-step-by-step/step2.mp4",
+                "text": "Mianownik rozkładamy ze wzoru skróconego mnożenia: \\(a^{2}-b^{2}=(a-b)(a+b)\\), czyli \\(x^{2}-1=(x-1)(x+1)\\). Dopiero w tej postaci widać, co da się skrócić."
+            },
+            {
+                "type": "video",
+                "src": "media/zad6/solution-step-by-step/step3.mp4",
+                "text": "Dzielenie przez ułamek to mnożenie przez jego odwrotność — drugi ułamek odwracamy."
+            },
+            {
+                "type": "video",
+                "src": "media/zad6/solution-step-by-step/step4.mp4",
+                "text": "Skracamy \\((x+1)\\) oraz jedno \\(x\\) z \\(x^{2}\\). Po to były założenia \\(x \\ne -1,\\,0,\\,1\\) — dzięki nim nic tutaj nie jest zerem."
+            },
+            {
+                "type": "video",
+                "src": "media/zad6/solution-step-by-step/step5.mp4",
+                "text": "Mnożąc ułamki, mnożymy licznik przez licznik i mianownik przez mianownik."
+            },
+            {
+                "type": "video",
+                "src": "media/zad6/solution-step-by-step/step6.mp4",
+                "text": "Wymnażamy mianownik: \\(3x(x-1)=3x^{2}-3x\\) — to odpowiedź <b>B</b>."
+            }
+        ],
         "solutionWidget": null
     },
     {
@@ -293,7 +324,43 @@
         "formulasPage": null,
         "solutionText": "Założenie: \\(x \\ne 1\\). Po pomnożeniu obu stron przez \\(2(x - 1)\\) dostajemy \\(2(x + 3) = x\\), czyli \\(\\boldsymbol{x = -6}\\) (należy do dziedziny).",
         "solutionTextMore": "\\(2x - 2 = 2(x - 1)\\), więc dziedzina: \\(x \\ne 1\\).\\[\\frac{x+3}{x-1} = \\frac{x}{2(x-1)} \\quad \\Big/ \\cdot\\ 2(x-1)\\]\\[\\begin{aligned} 2(x + 3) &= x \\\\ 2x + 6 &= x \\\\ x &= \\boldsymbol{-6} \\end{aligned}\\]\\(-6 \\ne 1\\), więc rozwiązaniem równania jest \\(\\boldsymbol{x = -6}\\).",
-        "solutionStepByStep": null,
+        "solutionStepByStep": [
+            {
+                "type": "video",
+                "src": "media/zad8/solution-step-by-step/step1.mp4",
+                "text": "Zapisujemy równanie z zadania."
+            },
+            {
+                "type": "video",
+                "src": "media/zad8/solution-step-by-step/step2.mp4",
+                "text": "W drugim mianowniku wyłączamy 2 przed nawias: \\(2x-2=2(x-1)\\). Teraz widać, że w obu mianownikach siedzi ten sam nawias \\((x-1)\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad8/solution-step-by-step/step3.mp4",
+                "text": "Mianownik nie może być zerem, więc \\(x-1\\ne 0\\), czyli \\(x\\ne 1\\). Bez zapisania tego założenia klucz CKE odbiera punkt, nawet przy dobrym wyniku."
+            },
+            {
+                "type": "video",
+                "src": "media/zad8/solution-step-by-step/step4.mp4",
+                "text": "Mnożymy obie strony przez \\(2(x-1)\\) — mianowniki się skracają i zostaje równanie bez ułamków."
+            },
+            {
+                "type": "video",
+                "src": "media/zad8/solution-step-by-step/step5.mp4",
+                "text": "Opuszczamy nawias: \\(2(x+3)=2x+6\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad8/solution-step-by-step/step6.mp4",
+                "text": "Iksy na lewo, liczby na prawo — każdy przeniesiony składnik zmienia znak."
+            },
+            {
+                "type": "video",
+                "src": "media/zad8/solution-step-by-step/step7.mp4",
+                "text": "Zostaje \\(x=-6\\). Sprawdzamy jeszcze założenie: \\(-6\\ne 1\\), więc wynik należy do dziedziny i jest rozwiązaniem równania."
+            }
+        ],
         "solutionWidget": null
     },
     {

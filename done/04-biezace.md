@@ -34,6 +34,19 @@ Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady form
 - **Sprawdzone w przeglądarce:** `tools/test-krokow.js` na wszystkich czterech zadaniach
   (losowe klikanie + niezmienniki) — bez zastrzeżeń.
 
+- **Dwa dodatkowe zadania (v25), wybrane przeze mnie jako najlepiej pasujące do tej formy
+  animacji — czyste łańcuchy przekształceń:**
+  - **zad. 6** (dzielenie wyrażeń wymiernych), 6 kroków: rozkład \(x^2-1\) ze wzoru
+    skróconego mnożenia → dzielenie na mnożenie przez odwrotność → skrócenie \((x+1)\) i \(x\)
+    → połączenie ułamków → wymnożony mianownik.
+  - **zad. 8** (równanie wymierne, OTWARTE na 3 pkt), 7 kroków ułożonych pod klucz CKE:
+    każde kryterium z klucza ma swój krok, a założenie \(x\ne1\) dostaje własny krok i zostaje
+    pod równaniem do końca — bo to za nie jest osobny punkt.
+  - Scenariusze najpierw w `manimations/zad6-kroki.md` i `zad8-kroki.md`, tak jak przy zad. 4.
+  - Przejścia robi `TransformMatchingShapes`, a nie ręczne mapowanie indeksów glifów:
+    przy ułamkach zmieniających budowę (rosnące kreski, pojawiające się nawiasy) mapowanie
+    indeksów jest bardzo kruche, a tu wystarczy, żeby te same symbole przejechały na miejsce.
+
 [ZROBIONE 2026-08-12] (Local Opus 5 High) Odtwarzacz krok po kroku — wielokrotne cofanie i odtwarzanie przy słabym łączu. v23 Beta.
 
 - **Jedna przyczyna pod obydwoma objawami z TODO.** Podmiana kroku TRWA: `pokazKrok()` ustawia

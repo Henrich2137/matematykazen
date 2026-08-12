@@ -109,6 +109,14 @@ Oto plik który tworzy Henrich (ja, użytkownik).
       to jedyne z tej paczki, którego wcześniej nie było
       - scenariusz, który zatwierdziłeś, leży w manimations/zad4-kroki.md
 
+    - zad. 6 i zad. 8 też dostały rozwiązania krok po kroku (dwa zadania wybrane przeze mnie)
+      - scenariusze do sprawdzenia merytoryki: manimations/zad6-kroki.md i zad8-kroki.md
+      - zad. 8 jest otwarte na 3 pkt, więc kroki są ułożone pod klucz CKE: założenie \(x\ne1\)
+        ma własny krok i zostaje pod równaniem do końca — zobacz, czy tak jest czytelnie
+      - w obu na zielono podświetla się CAŁY ułamek, którego dotyczy krok, a nie sam
+        zmieniany kawałek (przy \(\frac{}{}\) trudno o precyzyjniejsze) — powiedz, jeśli to
+        za dużo koloru
+
 
   - kontener: firewall + Playwright + read-only `.vscode` (2026-08-10), wymaga zwykłego Rebuild Container (bez `--no-cache`) — bez tego nic z tego nie zadziała; po przebudowie, w terminalu w kontenerze:
     - `dig +short github.com` — ma zwrócić adresy (jeśli w logu firewalla widać „UWAGA: DNS nie działa po zawężeniu", zawężenie bramy poszło źle, patrz `.devcontainer/README.md`, sekcja „Diagnostyka").
