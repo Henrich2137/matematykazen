@@ -94,11 +94,23 @@
         max-width: none;
     }
 
-    /* Karta zadania wypełnia ekran zamiast sztywnych 650px + 50px paddingu. */
+    /* Karta zadania wypełnia ekran zamiast sztywnych 650px + 50px paddingu.
+       Boczne wcięcie 16→10 px (Henrich po testach v21): to ono tworzy odstęp
+       między ramką podokna (rozwiązanie, „Sprawdzanie obliczeń", formularz
+       zgłoszenia) a krawędzią ekranu — na telefonie było go za dużo. */
     .exercise-container {
         width: auto;
         max-width: 650px;
-        padding: 40px 16px;
+        padding: 40px 10px;
+    }
+    /* Same podokna też oddają część własnego wcięcia, żeby zysk trafił do
+       treści, a nie do ramki. */
+    .solution-container,
+    .hint-container {
+        padding: 20px 12px;
+    }
+    .zglos-blad-okno {
+        padding: 20px 12px;
     }
     #exercises-wrapper {
         padding-top: 56px;
@@ -118,8 +130,16 @@
        zdejmowania paddingu, bo padding dotyczy też tekstu rozwiązania, który
        ma się dalej trzymać wcięcia. */
     .solution-step-by-step-container {
-        margin-left: -20px;
-        margin-right: -20px;
+        /* Tyle, ile wynosi boczny padding podokna wyżej — film sięga dokładnie
+           krawędzi karty i ani piksela dalej. */
+        margin-left: -12px;
+        margin-right: -12px;
+    }
+    /* Rozwinięte wyjaśnienie kroku jedzie razem z filmem poza padding podokna,
+       więc bez tego kleiłoby się do krawędzi ekranu (Henrich po testach v21). */
+    .step-explain {
+        padding-left: 12px;
+        padding-right: 12px;
     }
     .solution-step-by-step-container img {
         max-width: 100%;

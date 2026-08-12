@@ -1222,17 +1222,42 @@ body.sidebar-otwarty #sidebar-linia {
     margin: 10px auto;
     text-align: center;
 }
+/* Znak ładowania kadru: delikatny puls tła w zarezerwowanym miejscu na film.
+   Wybrany zamiast kręciołka, bo to czysty CSS — bez dodatkowego elementu
+   i bez skryptu, więc nie ma się co zepsuć. Klasę zdejmuje pokazKrok()
+   w chwili wstawienia filmu.
+   ZWŁOKA 200 ms zrobiona animation-delay przy starcie z przezroczystości: przy
+   szybkim łączu film pojawia się wcześniej i nic nie mrugnie (Henrich po
+   testach v21). Kontrast celowo niski — to tło, nie komunikat. */
+.steps-content.laduje {
+    animation: puls-ladowania 1.4s ease-in-out 200ms infinite;
+}
+@keyframes puls-ladowania {
+    0%   { background-color: transparent; }
+    50%  { background-color: var(--bg-muted); }
+    100% { background-color: transparent; }
+}
+/* Użytkownik prosi o brak animacji → zostaje samo statyczne tło. */
+@media (prefers-reduced-motion: reduce) {
+    .steps-content.laduje {
+        animation: none;
+        background-color: var(--bg-muted);
+    }
+}
+
 /* ROW 1 — kropki stanu z paskiem postępu w odstępie (przebudowa 2026-08-11).
    Model: kropka = stan działania, odcinek między kropkami = krok. Pasek, który
    był belką pod filmem, wypełnia teraz odcinek bieżącego kroku. */
-/* Węższy niż film o mniej więcej piątą część (Henrich po testach v20) — pasek
-   rozciągnięty na całą szerokość kadru rozjeżdżał się z resztą kontrolek. */
+/* Szerokość: 80% z v21 okazało się za ciasne dla wersji przewijanej — mieściło
+   za mało kropek naraz (Henrich po testach v21). Wracamy prawie do pełnej
+   szerokości kadru, ale odzyskane miejsce idzie w KROPKI, nie w rozciągnięcie:
+   niżej ścieśnione są odstępy kropek, odcinków i strzałek. */
 .steps-dots-row {
     position: relative; /* kotwica dla schowanego .step-counter */
     display: flex;
     align-items: center;
-    gap: 4px;
-    max-width: 80%;
+    gap: 2px;
+    max-width: 96%;
     margin: 12px auto 6px;
 }
 /* Okno przewijania: powyżej siedmiu kropek pasek jedzie w poziomie zamiast się
@@ -1264,7 +1289,10 @@ body.sidebar-otwarty #sidebar-linia {
     box-sizing: content-box;
     width: 10px;
     height: 10px;
-    padding: 17px 8px;
+    /* Poziomy padding 8→5 px (Henrich po testach v21: „byle wersja przewijana
+       mieściła więcej kropek"). Pionowy zostaje — to on daje 44 px wysokości
+       pola dotyku. */
+    padding: 17px 5px;
     border: none;
     border-radius: 0;
     background-color: transparent;
@@ -1291,8 +1319,8 @@ body.sidebar-otwarty #sidebar-linia {
    tylko w kroku bieżącym (--postep ustawia rysujPostep w app/steps.js). */
 .step-link {
     position: relative;
-    flex: 1 1 18px;
-    min-width: 14px;
+    flex: 1 1 14px;
+    min-width: 10px;
     height: 2px;
     background-color: var(--border-muted);
     --postep: 0%;
@@ -1307,7 +1335,7 @@ body.sidebar-otwarty #sidebar-linia {
    siedmiu kropek. */
 .steps-scroll {
     flex: none;
-    width: 32px;
+    width: 24px;
     height: 44px;
     padding: 0;
     border: none;
@@ -1408,7 +1436,9 @@ body.sidebar-otwarty #sidebar-linia {
     max-width: 520px;
     /* Więcej powietrza nad i pod (Henrich po testach v20). */
     margin: 18px auto 28px;
-    text-align: left;
+    /* Sam przycisk wyśrodkowany pod przyciskami ROW 2 (Henrich po testach v21);
+       rozwinięty tekst zostaje wyrównany do lewej, bo to akapit do czytania. */
+    text-align: center;
 }
 /* Sam przycisk jest WĄSKI — szeroki na tyle, ile zajmuje napis ze strzałką.
    Wcześniej ciągnął się na całą szerokość bloku, a strzałkę odpychał na drugi
@@ -1450,6 +1480,7 @@ body.sidebar-otwarty #sidebar-linia {
 .step-explain-tresc {
     padding: 6px 2px 8px;
     line-height: 1.5;
+    text-align: left;
 }
 .solution-interactive-container {
     padding-bottom: 30px;
