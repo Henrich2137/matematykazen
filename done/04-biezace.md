@@ -1,5 +1,30 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-13] (Henrich — testy) Odbiór odtwarzacza krok po kroku, paczki v22, v23, v26 i v28.
+Sekcje testowe tych czterech wersji skasowane z TODO.md; niesprawdzone zostały v24, v27, v29, v30.
+
+- **Potwierdzone jako działające:** cofka wciśnięta w trakcie odtwarzania i drugi raz w trakcie cofania;
+  koniec cofki (◄ cofa poprzedni krok, ► odtwarza ten sam do przodu); ◄ przerwane przez ► zmienia tylko
+  kierunek; kilka ◄ pod rząd; szybkie ► przy słabym łączu; odtwórz wciśnięty w trakcie wczytywania;
+  minuta losowego klikania kończy się spoczynkiem; duża kropka zostaje na początku obejrzanego filmu;
+  gradacja kresek między kropkami w obu motywach.
+
+- **Nie działa, wróciło do TODO.md jako DO ZROBIENIA:** opóźnienie pulsowania (Henrich: „ta chwila albo
+  jest za krótka, albo nie istnieje") — miga przy każdej zmianie kierunku, a przy spamowaniu ► wygląda
+  jak wieczne ładowanie; prefetch filmów (Chrome: płaski wykres sieci przy czekaniu, spajki dopiero przy
+  klikaniu, w logach zapis do cache bez odczytu). Decyzja Henricha: pulsowanie wyrzucić w całości,
+  w zamian trzy kropki / kółko na dole kadru po ~500 ms.
+
+- **Nowe zamówienia z tych testów:** wyciąć długie `wait()` na początku i końcu każdego kroku (najmocniej
+  w zad. 1); rozsunąć i powiększyć ◄ ►. Plus zgłoszony crash strony przy spamowaniu next-step
+  (Brave na Bazzite, kod błędu 5) — do odtworzenia.
+
+- **Uwaga do sposobu pisania testów:** dwa punkty (koniec cofki w v26, „licznik" w v23) były dla Henricha
+  niezrozumiałe — w v23 nie ma na ekranie żadnego licznika, o którym pisałem. Wpis testowy ma mówić, co
+  kliknąć i co ma się stać, bez odwołań do nazw z kodu. Zasada jest już w TODO.md („ZASADY DLA CLAUDE-A").
+
+[krok-po-kroku, wideo, ui, testy, odbior]
+
 [ZROBIONE 2026-08-12] (Local Opus 5 High) Filmy krok po kroku: zad. 5 i 6 napisane od nowa,
 zad. 3 rozjaśnione. v30 Beta. **Paczka przerwana w połowie na prośbę Henricha (limit sesji)** —
 co zostało, jest w TODO.md pod „Błędy w filmach — ZOSTAŁO".

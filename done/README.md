@@ -18,6 +18,10 @@ Do szukania używaj najpierw tego indeksu (tagi niżej), potem grepa po konkretn
 
 
 == 04-biezace.md — partia OTWARTA (2026-07-27 → ?) ==
+- 2026-08-13 (Henrich — testy) — odbiór v22/v23/v26/v28 odtwarzacza: sterowanie ◄ ► potwierdzone
+  w komplecie, sekcje testowe skasowane z TODO.md; niedziałające pulsowanie i prefetch plus trzy nowe
+  zamówienia (waity w filmach, większe ◄ ►, crash przy spamowaniu next-step) wróciły do DO ZROBIENIA
+  [krok-po-kroku, wideo, ui, testy, odbior]
 - 2026-08-12 (Henrich — testy) — odbiór v21 odtwarzacza krok po kroku: cała sekcja TESTOWANIE HENRICH
   przeklikana i potwierdzona (►/◄, start-pauza w cofce, kropki, ROW 2, prędkości, brak 404); pięć uwag
   z testów to nie błędy, tylko nowe zamówienie — wróciły do TODO.md jako „PO TESTACH v21"

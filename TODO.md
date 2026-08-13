@@ -2,8 +2,25 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.
-  
-  - PUŚĆIĆ ZAPAUZOWANĄ SESJĘ, MOŻNA POWIEDZIEĆ COŚ W STYLU: ZRÓB TYLKO TO CO NAJWAŻNIEJSZE A DODATKOWE RZECZY ZOSTAW NA KIEDY INDZIEJ
+
+  - Kroki mają za długie „czekania" na początku i na końcu filmu (wait() w Manimie) — wyciąć.
+    Małe waity w środku kroku, między pojedynczymi animacjami, są okej. Najmocniej widać w zad. 1.
+
+  - Wczytywanie filmów: albo pobierać je dużo wcześniej niż w chwili kliknięcia, albo zbić framerate.
+    - pulsowanie kadru jest irytujące — wyrzucić je
+    - zamiast niego prosta, minimalistyczna animacja na dole ekranu (trzy kropki albo kółko jak na YT),
+      pokazująca się dopiero po ~500 ms
+    - dziś pulsowanie miga przy każdej zmianie kierunku i przy spamowaniu ► wygląda, jakby strona
+      ładowała się bez końca
+
+  - Prefetch filmów nie działa (testowane na Chrome): przy czekaniu wykres sieci jest płaski, spajki
+    pojawiają się dopiero przy klikaniu. W logach widać zapis do cache, ale odtwarzacz z niego nie
+    korzysta.
+
+  - Przyciski ◄ i ► rozsunąć bardziej na boki i lekko powiększyć — mają być łatwe do trafienia palcem.
+
+  - Strona się wysypała przy szybkim spamowaniu next-step (Brave na Bazzite, kod błędu 5) — do
+    odtworzenia i naprawy.
 
   - Błędy w filmach — ZOSTAŁO (zad. 3, 5 i 6 poprawione w v30):
     - Zad 4. wygląda wzorowo, ale łamie zasadę ciągłości klatek: zielona szóstka zostaje
@@ -58,13 +75,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
       „ResizeObserver loop completed with undelivered notifications" nie ma się już pojawić
       ani razu (to była moja regresja z v21, najmocniej wychodziła w zad. 3)
 
-    - sprawdź trzy zachowania przycisku cofania
-      - kliknięty w trakcie odtwarzania albo na pauzie w środku kroku — puszcza film od tyłu
-        od tego samego miejsca
-      - kliknięty jeszcze raz, gdy film już się cofa — doskakuje na pierwszą klatkę kroku
-        i zatrzymuje się (wcześniej się zacinał)
-      - kliknięty na pierwszej klatce — cofa poprzedni krok
-
     - otwórz zad. 1 na telefonie — wszystkie dziesięć kropek ma się zmieścić bez przewijania,
       więc strzałki po bokach paska nie powinny się w ogóle pokazać
       - przy okazji sprawdź, czy kropki nie zrobiły się za ciasne dla kciuka
@@ -74,29 +84,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
     - na telefonie ramka podokna (rozwiązanie, „sprawdzanie obliczeń", formularz zgłoszenia)
       siedzi 18 px od krawędzi zamiast 25 — zobacz, czy to nie za blisko
-
-    - otwórz rozwiązanie z krokami pierwszy raz — w miejscu filmu ma pulsować delikatne tło,
-      ale dopiero po chwili; przy szybkim łączu nie powinno mrugnąć ani razu
-
-
-  - v23, odtwarzacz krok po kroku — kroki gubiły się przy wolnym łączu; wszystko poniżej
-    najlepiej sprawdzić na telefonie na komórkowym internecie albo z włączonym dławieniem sieci
-
-    - wciśnij ◄ kilka razy pod rząd — licznik, kropki i pasek mają się cofać po jednym kroku
-      na kliknięcie i nigdy nie pokazywać czegoś innego niż film, który widzisz
-
-    - kliknij kropkę daleko z przodu i patrz na kadr — stary obraz ma delikatnie pulsować
-      (przygasać), dopóki nowy krok się nie wczyta
-      - przy szybkim łączu nie powinno mrugnąć ani razu
-
-    - wciśnij środkowy przycisk (odtwórz) w chwili, gdy krok się jeszcze wczytuje — film ma
-      ruszyć sam, gdy tylko wejdzie, a nie stanąć na pierwszej klatce
-
-    - poklikaj ► kilka razy szybko przy słabym zasięgu — kadr nie ma na moment gasnąć
-      ani pokazywać obrazu dwa razy
-
-    - przewijaj i cofaj do woli przez minutę, a potem zostaw stronę w spokoju — odtwarzacz
-      nie ma zostać zawieszony na przygaszonym kadrze
 
 
   - v24, filmy krok po kroku — zad. 1 i 3 przerenderowane w nowym kadrze, zad. 4 zrobione od zera
@@ -123,23 +110,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 
 
-  - v26, odtwarzacz krok po kroku — trzy rzeczy z twojego zgłoszenia
-
-    - dojedź cofką do końca (poczekaj, aż film od tyłu sam się zatrzyma) i sprawdź dwa
-      przyciski — koniec cofki ma się zachowywać dokładnie jak pierwsza klatka zwykłego filmu
-      - ◄ ma zacząć cofać POPRZEDNI krok
-      - ► ma odtworzyć TEN SAM krok do przodu, czyli to samo co środkowy przycisk
-
-    - poklikaj szybko w jedną kropkę (zwłaszcza w pierwszą, w zad. 4) — odtwarzacz nie ma
-      się zacinać na przygaszonym kadrze
-      - u mnie stary kod stał tak 5,6 s, teraz 1,6 s, czyli tyle, ile trwa samo pobranie
-
-    - wejdź na arkusz i poczekaj chwilę, nic nie klikając, potem otwórz rozwiązanie
-      z krokami — filmy mają być już pobrane, więc przewijanie kropkami ma być natychmiastowe
-      - pobieranie rusza, gdy zadanie wjedzie na ekran, a nie dopiero po kliknięciu
-      - jeśli masz w telefonie włączony „oszczędzanie danych", pobierania celowo nie ma
-
-
   - v27, kolejne trzy rozwiązania krok po kroku — zad. 5, 7 i 9 (znów mój wybór)
     - po tej paczce kroki mają zadania 1–9, czyli komplet od początku arkusza
     - scenariusze do sprawdzenia merytoryki: manimations/zad5-kroki.md, zad7-kroki.md, zad9-kroki.md
@@ -159,22 +129,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
       (to wynik danego kroku) — ta sama wątpliwość co przy zad. 6 i 8, jedna decyzja
       załatwi wszystkie
 
-
-
-  - v28, odtwarzacz krok po kroku — trzy poprawki z twojej listy DO ZROBIENIA
-
-    - obejrzyj krok do końca i popatrz na pasek — duża kropka ma zostać na POCZĄTKU
-      obejrzanego filmu, a nie przeskoczyć na jego koniec
-      - jedyny wyjątek: sam koniec ostatniego kroku, tam głowica przechodzi na ostatnią
-        kropkę, żeby dało się pokazać koniec rozwiązania
-
-    - wciśnij ◄, a w trakcie cofania wciśnij ► — film ma tylko zmienić kierunek i grać
-      dalej z tego samego miejsca, bez skoku do następnego kroku
-
-    - popatrz na kreski między kropkami — bieżąca ma być najmocniejsza, przerobione
-      słabsze, a te przed tobą najsłabsze
-      - sprawdź w obu motywach, bo „mocniejsza" znaczy jaśniejsza w ciemnym i ciemniejsza
-        w jasnym
 
 
   - v29, opisy kroków przepisane w zad. 1–9 (51 opisów) wg twoich zasad
