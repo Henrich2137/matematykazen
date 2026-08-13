@@ -3,3 +3,8 @@
 # To samo mówi manimations/.gitignore; wpis jest tu powtórzony celowo, żeby
 # reguła była widoczna w jednym, oczywistym miejscu dla całego repo.
 manimations/media/
+
+# Osobista konfiguracja Claude Code (np. pluginy włączone tylko lokalnie
+# przez /plugin, scope project) — w odróżnieniu od .claude/settings.json,
+# który jedzie z repo (np. superpowers).
+.claude/settings.local.json

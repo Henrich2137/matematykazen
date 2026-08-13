@@ -1,10 +1,10 @@
 Oto plik który tworzy Henrich (ja, użytkownik).
 
 + DO ZROBIENIA
-
-- PUŚĆIĆ ZAPAUZOWANĄ SESJĘ, MOŻNA POWIEDZIEĆ COŚ W STYLU: ZRÓB TYLKO TO CO NAJWAŻNIEJSZE A DODATKOWE RZECZY ZOSTAW NA KIEDY INDZIEJ
-
 <br> Jeżeli nie masz co robić, to rób stąd.
+  
+  - PUŚĆIĆ ZAPAUZOWANĄ SESJĘ, MOŻNA POWIEDZIEĆ COŚ W STYLU: ZRÓB TYLKO TO CO NAJWAŻNIEJSZE A DODATKOWE RZECZY ZOSTAW NA KIEDY INDZIEJ
+
   - Błędy w filmach — ZOSTAŁO (zad. 3, 5 i 6 poprawione w v30):
     - Zad 4. wygląda wzorowo, ale łamie zasadę ciągłości klatek: zielona szóstka zostaje
       na ostatniej klatce kroku 2, a krok 3 startuje czarny (SSIM 0,9990)
@@ -224,6 +224,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + DLA HENRICHA:
 
+
   - pokminić sobie dydaktycznie nad arkuszem aby zadać robotę Fable
 
 
@@ -238,11 +239,17 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
   - na bazzite: backup `~/backup-vscode-flatpak/` (8 kB) po skasowanych danych flatpakowego VS Code — do usunięcia, gdy uznasz, że już niepotrzebny (dwa ustawienia istniały tylko tam i świadomie ich nie przeniosłem: `chat.viewSessions.orientation`, `chat.agent.sandbox.enabled`); cały przepis w `issues/flatpak-osierocone-dane.md`.
 
+  - Obczaić te problemy z pluginami github, frontend-design, chrome-costam-mcp
+    - rozpoznanie każdego z trzech: `issues/claude-code-pluginy.md`
+    - chrome-devtools-mcp wymaga Rebuild Container po poprawce w Dockerfile:
+      `issues/chrome-devtools-mcp-cache-eacces.md`
+
+
 <br>
 
 
 + INNE NOTATKI, DO PRZEKMINIENIA:
-
+  
   + ULEPSZANIE WORKFLOW (skopiowane z NOTATKI_USERA)
     - Schedule adversarial review lub /code-review
     - Stworzyć/pobrać potrzebne mi skille do tego projektu
@@ -250,6 +257,21 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     - rozkminić, poszukać, poinstalować, pouczyć się - pluginy różne:
       - frontend-design@claude-plugins-official czy jakoś tak
       - superpowers
+
+  Przed Fable:
+    - Obgadać z Opusem czy używać Fable z superpowers, subagentami itd.
+      - Subagentci: Czy powinienem puścić Fable mając duży zapas limitu aby Opusy i Sonnety będące subagentami mogły z niego korzystać odciążając fable?
+
+    
+  - Fable:
+    - Analiza kosztów długoterminowych - Symulacja: co się stanie przy 1k, 10k, 100k użytkowników na danym stacku (koszty, limity, throttling)
+    - Punkty krytyczne (failure points)
+    - Weryfikacja poprawności matematycznej
+    - Lista checkboxów "Sprawdzanie rozwiązania"
+    - Interaktywne rozwiązania matury 2026
+    - Usprawnienie struntury projektu
+
+
   + UI
 
     - "Wskaźniki" (oceń się):
@@ -391,10 +413,9 @@ Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz is
 
 + ZASADY DLA CLAUDE-A:
 
-  - tu są TYLKO otwarte punkty. Zrobione wpisy [DONE]/[ZROBIONE] przenoszone są do bieżącego pliku pod done/ patrz done/README.md i CLAUDE.md.)
+  - tu są TYLKO otwarte punkty. Zrobione wpisy [DONE]/[ZROBIONE] przenoszone są do bieżącego pliku pod done/ (patrz done/README.md i CLAUDE.md)
 
   - TEN PLIK MA BYĆ SLEEK — krótkie hasła, jedno-dwa zdania na punkt. Żadnych ścian tekstu. Szczegóły (mechanizm, pliki, linie) idą do issues/ albo done/, a tu zostaje jedna linijka z odnośnikiem.
-  Drogi Claudzie, jeżeli zmieniasz ten plik to wklejaj do odpowiedniej sekcji na dole
 
   - Zawsze sprawdzaj, testuj czy wprowadzone przez ciebie zmiany działają zanim zrobisz ostatni commit.
 
