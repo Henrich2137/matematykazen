@@ -28,6 +28,11 @@ Oto plik który tworzy Henrich (ja, użytkownik).
   - usunąć całkowicie „solutionTextMore" — z wszystkich exercises.json i z template.html/JS,
     nie ma już żadnego odbiorcy
 
+  - panel boczny, lewy górny róg (po testach v32):
+    - strzałka wychodzi nad welon tylko w ciemnym motywie — w jasnym dalej przygaszona
+    - zdjąć biały prostokąt tła spod logo (Henrichowi nie leży); logo nie musi wychodzić
+      nad welon, wystarczy sama strzałka — więc i problem przebijającej treści zadania znika
+
   - Błędy w filmach — ZOSTAŁO (zad. 3, 5 i 6 poprawione w v30):
     - Zad 4. wygląda wzorowo, ale łamie zasadę ciągłości klatek: zielona szóstka zostaje
       na ostatniej klatce kroku 2, a krok 3 startuje czarny (SSIM 0,9990)
@@ -72,34 +77,33 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + TESTOWANIE HENRICH
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 
-  v32 — cztery drobiazgi UI + strzałka panelu (Opus 5, medium):
-
-  - otwórz rozwiązanie krok po kroku w zad. 1 i sprawdź przyciski pod filmem
-    - ◄ i ► są dużo szerzej rozsunięte niż dotąd (48 px odstępu zamiast 10)
-    - wszystkie trzy ikony są tej samej wielkości (26 px), daszki zrównane z trójkątem play
-    - na telefonie sprawdź, czy da się je trafić kciukiem bez celowania
-
-  - w tym samym miejscu spójrz na pasek kropek nad przyciskami
-    - skrajne kropki nie stykają się już z krawędzią, mają po 8 px luzu
-    - przy dziesięciu kropkach pasek dalej ma się mieścić bez przewijania
-
-  - rozwiń „pokaż wyjaśnienie kroku" pod filmem
-    - tekst zaczyna się z takim samym wcięciem jak tekst zwykłego rozwiązania
-    - na telefonie oba akapity powinny startować dokładnie w tej samej pionowej linii
-
-  - otwórz panel boczny na telefonie i spójrz na lewy górny róg
-    - strzałka i logo nie są już przygaszone welonem, tylko jasne jak sam panel
-    - kliknięcie w strzałkę zamyka panel (wcześniej zamykał go welon pod spodem, więc efekt
-      był ten sam i usterki nie było widać)
-    - prawa pigułka z punktami zostaje przygaszona — tak ma być
-    - logo ma teraz widoczny biały prostokąt tła; bez niego spod napisu wychodzi treść zadania,
-      więc zostawiłem, ale jeśli Ci nie leży, powiedz
+  v32 — reszta po odbiorze (Opus 5, medium):
 
   - wejdź na telefonie w dowolne zadanie otwarte (np. zad. 3) i rozwiń wszystko naraz
     - ramka „sprawdzanie obliczeń", pole na notatki, rozwiązanie i formularz zgłoszenia błędu
       mają teraz jedną wspólną szerokość, wcześniej dwie pierwsze były węższe
     - przy okazji zerknij na zadania zamknięte: przyciski A/B/C/D są odrobinę szersze,
       sprawdź czy nic nie wychodzi poza ekran
+
+
+  kontener — dopiero PO Rebuild Container (Opus 5, medium):
+
+  - otwórz folder projektu od nowa i popatrz, czy VS Code pyta „Allow Automatic Tasks in Folder?"
+    - nie powinien; zamiast pytania ma po cichu pójść `git pull --ff-only`
+    - przełącznik był już ustawiony 12.08 w ustawieniach użytkownika, punkt wisiał w TODO
+      chyba niepotrzebnie — jeśli pytanie dalej wyskakuje, napisz, bo to znaczy coś innego
+
+  - otwórz w kontenerze dowolny plik `.py` z `manimations/`
+    - kolorowanie i podpowiedzi mają działać od razu, bez doklikiwania rozszerzenia
+
+  - w terminalu kontenera: `ls -ld ~/.cache` ma pokazać właściciela `node`, nie `root`
+    - potem spróbuj chrome-devtools-mcp na lokalnym serwerze (`node tools/serwer.js`) —
+      otwarcie strony nie powinno już rzucać EACCES
+
+  - w terminalu kontenera: `claude mcp list`
+    - wpis `github` ma być ✔ zamiast „HTTP 400: Authorization header badly formatted"
+    - jeśli dalej 400, sprawdź `echo $GITHUB_PERSONAL_ACCESS_TOKEN` — pusto oznacza,
+      że `gh` nie jest zalogowany w nowym kontenerze (`gh auth login`)
 
 
 
@@ -117,16 +121,13 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + DO ZROBIENIA HOŚCIE (POZA KONTENEREM)
 
-  - dopisać pythona do extentions aby był też po rebuildzie itd.
+  - zrobić Rebuild Container — czekają na niego trzy gotowe poprawki w `.devcontainer/`:
+    rozszerzenie Pythona, właściciel `~/.cache` (chrome-devtools-mcp) i token dla pluginu
+    github. Co potem przeklikać: sekcja TESTOWANIE HENRICH.
 
-  - przy otwarciu folderu ma się już nie pytać „Allow Automatic Tasks in Folder?", tylko po cichu zrobić `git pull --ff-only`.
-
-  - na bazzite: backup `~/backup-vscode-flatpak/` (8 kB) po skasowanych danych flatpakowego VS Code — do usunięcia, gdy uznasz, że już niepotrzebny (dwa ustawienia istniały tylko tam i świadomie ich nie przeniosłem: `chat.viewSessions.orientation`, `chat.agent.sandbox.enabled`); cały przepis w `issues/flatpak-osierocone-dane.md`.
-
-  - Obczaić te problemy z pluginami github, frontend-design, chrome-costam-mcp
-    - rozpoznanie każdego z trzech: `issues/claude-code-pluginy.md`
-    - chrome-devtools-mcp wymaga Rebuild Container po poprawce w Dockerfile:
-      `issues/chrome-devtools-mcp-cache-eacces.md`
+  - plugin frontend-design działa, ale jego włącznik siedzi w `.claude/settings.local.json`
+    (poza gitem) — do decyzji, czy przenieść do `.claude/settings.json`, żeby jechał z repo
+    jak superpowers (`issues/claude-code-pluginy.md`)
 
 
 <br>

@@ -1,6 +1,12 @@
 # chrome-devtools-mcp: EACCES przy tworzeniu ~/.cache/chrome-devtools-mcp
 
-Status: OTWARTE. Znalezione 2026-08-13 przy pierwszym teście po instalacji pluginu
+Status: **POPRAWIONE W DOCKERFILE 2026-08-14 (Opus 5, medium), czeka na Rebuild Container**
+— dopóki Henrich nie przebuduje kontenera, działa stary obraz i błąd jest ten sam.
+Zastosowany wariant 1 z tabeli niżej: `/home/node/.cache` powstaje teraz w obrazie razem
+z `.claude`/`.config` i dostaje `chown node:node`. Przypuszczenie o przyczynie (niżej)
+potwierdzi dopiero test po przebudowie — jeśli EACCES wróci, trzeba szukać dalej.
+
+Znalezione 2026-08-13 przy pierwszym teście po instalacji pluginu
 `chrome-devtools-mcp@claude-plugins-official` (`/plugin`, kontener na Bazzite).
 
 ## Co się dzieje

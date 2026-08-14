@@ -48,8 +48,16 @@ ENV DEVCONTAINER=true
 # obrazu. Gdyby tej ścieżki w obrazie nie było, wolumen powstałby jako root:root
 # i `gh` (działający jako node) nie zapisałby do niego tokenu. Ta sama zasada
 # co przy /home/node/.claude.
-RUN mkdir -p /workspace /home/node/.claude /home/node/.config/gh && \
-  chown -R node:node /workspace /home/node/.claude /home/node/.config
+#
+# /home/node/.cache jest tu z innego powodu: powstawał wcześniej jako root:root
+# (tworzył go runtime przy montowaniu bindu ~/.cache/ms-playwright), więc node nie
+# mógł założyć w nim NICZEGO nowego. Wywracało to każde narzędzie, które chce sobie
+# zrobić własny podkatalog cache'a — pierwszy padł chrome-devtools-mcp
+# (EACCES: mkdir '/home/node/.cache/chrome-devtools-mcp', issues/chrome-devtools-mcp-cache-eacces.md).
+# Katalog istniejący w obrazie zachowuje swojego właściciela przy montowaniu bindu
+# na podkatalog, więc to wystarczy.
+RUN mkdir -p /workspace /home/node/.claude /home/node/.config/gh /home/node/.cache && \
+  chown -R node:node /workspace /home/node/.claude /home/node/.config /home/node/.cache
 
 WORKDIR /workspace
 
@@ -198,6 +206,32 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN pip3 install --break-system-packages manim==${MANIM_VERSION}
 USER node
 
+
+# Token dla pluginu `github` Claude Code. Ten plugin gada z api.githubcopilot.com
+# osobnym serwerem MCP i NIE czyta logowania `gh` — chce gotowej zmiennej, a bez
+# niej wysyła pusty nagłówek "Bearer " i dostaje HTTP 400
+# (issues/claude-code-pluginy.md, sekcja „github").
+#
+# W REPO NIE MA ŻADNEGO TOKENU — jest tu tylko polecenie, które czyta go u siebie.
+# Kto sklonuje repo, dostanie tę samą linijkę, ale u niego zwróci ona jego własny
+# token albo pustkę; niczyich uprawnień to nie rozdaje.
+#
+# Kolejność źródeł:
+# 1. ~/.config/gh/mcp-token — jeśli ten plik istnieje, bierzemy go. Miejsce na
+#    osobny, wąski token (fine-grained PAT tylko do tego repo), gdyby oddawanie
+#    pluginowi pełnych uprawnień `gh` było za szerokie. Plik leży na wolumenie
+#    matematykazen-gh-config, więc przeżywa rebuildy i nigdy nie widzi go git.
+# 2. `gh auth token` — token z normalnego logowania, czyli pełne uprawnienia
+#    Henricha do GitHuba. Uwaga: zmienna środowiskowa jest widoczna dla każdego
+#    procesu w kontenerze, nie tylko dla pluginu.
+# Gdy nie ma ani jednego, ani drugiego, zmienna wychodzi pusta — czyli dokładnie
+# tak jak dziś, nic się nie psuje.
+#
+# Dopisane do OBU rc-ków: zsh jest domyślną powłoką, ale VS Code i część narzędzi
+# odpalają bash.
+RUN for rc in /home/node/.zshrc /home/node/.bashrc; do \
+  printf '\n# Token dla pluginu github Claude Code (patrz .devcontainer/Dockerfile)\nexport GITHUB_PERSONAL_ACCESS_TOKEN="$(cat ~/.config/gh/mcp-token 2>/dev/null || gh auth token 2>/dev/null)"\n' >> "$rc"; \
+  done
 
 # Copy and set up firewall script
 COPY init-firewall.sh /usr/local/bin/

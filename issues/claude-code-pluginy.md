@@ -59,9 +59,10 @@ jak frontend-design (`.claude/settings.local.json`, poza gitem). MCP server (`np
 chrome-devtools-mcp@1.7.0`), 5 skilli (debugowanie ogólne, a11y, LCP, wycieki pamięci,
 troubleshooting).
 
-- **Nie działa dziś w tym kontenerze** — `EACCES` przy zapisie do `~/.cache`, wymaga
-  Rebuild Container po zmianie w `.devcontainer/Dockerfile`. Pełna diagnoza, przyczyna
-  i warianty naprawy: [chrome-devtools-mcp-cache-eacces.md](chrome-devtools-mcp-cache-eacces.md).
+- **`EACCES` przy zapisie do `~/.cache`** — poprawione w `.devcontainer/Dockerfile`
+  2026-08-14 (`/home/node/.cache` zakładane w obrazie i chownowane na `node`), ale
+  **działa dopiero po Rebuild Container**. Pełna diagnoza i warianty naprawy:
+  [chrome-devtools-mcp-cache-eacces.md](chrome-devtools-mcp-cache-eacces.md).
 
 ## github
 
@@ -77,11 +78,19 @@ server GitHuba (`https://api.githubcopilot.com/mcp/`, HTTP, nie stdio).
   token (`gh auth status` → zalogowany jako Henrich2137), ale ten plugin go nie czyta,
   bo to osobny serwer MCP, nie wrapper na `gh` CLI. `claude mcp login` też nie pomaga —
   ten serwer autoryzuje się statycznym nagłówkiem z configu, nie OAuth-em.
-- Do naprawy: ustawić `GITHUB_PERSONAL_ACCESS_TOKEN` w środowisku kontenera (np.
-  `containerEnv` w `devcontainer.json`, albo `.bashrc`) — wartością może być świeży PAT
-  z uprawnieniami repo, albo `$(gh auth token)`, jeśli ma wystarczyć do repo/issues/PR.
-  Świadomie NIE zrobione automatycznie w tej sesji — to wstawienie/przechowywanie
-  sekretu, decyzja do Henricha.
+- **Naprawione w `.devcontainer/Dockerfile` 2026-08-14** (Opus 5, medium, decyzja Henricha),
+  działa **po Rebuild Container**: do `~/.zshrc` i `~/.bashrc` dopisywany jest
+  `export GITHUB_PERSONAL_ACCESS_TOKEN="$(cat ~/.config/gh/mcp-token 2>/dev/null || gh auth token 2>/dev/null)"`.
+  - W repo **nie ma sekretu** — jest polecenie, które czyta token lokalnie. U kogoś innego
+    zwróci jego własny token albo pustkę, więc klon repo nie dostaje niczyich uprawnień.
+  - Domyślne źródło to zwykłe logowanie `gh`, czyli **pełne uprawnienia Henricha**, i po
+    eksporcie widzi je każdy proces w kontenerze, nie tylko plugin. Żeby zawęzić, wystarczy
+    położyć wąski fine-grained PAT w `~/.config/gh/mcp-token` (wolumen
+    `matematykazen-gh-config`, poza gitem) — ma pierwszeństwo przed `gh auth token`.
+  - Gdy `gh` nie jest zalogowany i pliku nie ma, zmienna wychodzi pusta i jest jak dotąd.
+  - Jeśli po przebudowie `claude mcp list` dalej pokazuje 400, sprawdź `echo
+    $GITHUB_PERSONAL_ACCESS_TOKEN` w tym samym terminalu — pusto oznacza brak logowania
+    `gh`, a nie błąd w tej konstrukcji.
 
 ## vendor/superpowers/
 

@@ -128,7 +128,13 @@
         // Serwer statyczny. Od migracji na exercises.json strona laduje dane
         // fetchem, ktory nie dziala po file:// — bez serwera arkusz sie nie
         // otworzy. VS Code sam przekieruje port na hosta.
-        "ritwickdey.LiveServer"
+        "ritwickdey.LiveServer",
+        // Python — sceny Manima w manimations/ sa pythonowe, a sam Manim jest
+        // instalowany w obrazie (Dockerfile, pip3 install manim). Bez tego wpisu
+        // rozszerzenie trzeba bylo doklikiwac recznie po kazdym Rebuild Container.
+        // Ciagnie za soba Pylance i debugpy (extension pack), wiec ich nie
+        // wypisujemy osobno.
+        "ms-python.python"
       ]
     }
   }

@@ -85,8 +85,10 @@ to jest pułapka, bo wyglądają na zwykłe różnice w `diff`ie:
 Flatpakowy VS Code siedzi w piaskownicy i musi wołać podmana **przez `flatpak-spawn --host`**.
 Natywny woła go wprost. Skopiowanie tych linii do natywnej instalacji zepsułoby devcontainery.
 
-**Ustawienia, które istniały tylko we flatpaku i świadomie ich nie przeniesiono** (są
-w `~/backup-vscode-flatpak/settings.json`, gdyby kiedyś zabrakło):
+**Ustawienia, które istniały tylko we flatpaku i świadomie ich nie przeniesiono** (spisane
+tutaj w całości — sam backup `~/backup-vscode-flatpak/` został skasowany 2026-08-14, decyzją
+Henricha, bo poza tymi trzema liniami nie było w nim nic, czego nie ma w bieżących
+ustawieniach; `snippets/` był pusty, a `rozszerzenia.txt` to była lista nazw paczek):
 
 - `"chat.viewSessions.orientation": "stacked"`
 - `"chat.agent.sandbox.enabled": "on"`

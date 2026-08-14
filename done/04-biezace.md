@@ -1,5 +1,40 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-14] (Opus 5, medium, na hoście) Zadania z sekcji „DO ZROBIENIA HOŚCIE" + odbiór testów v32.
+[devcontainer, pluginy, host, testy, odbior]
+
+- **Odbiór v32 (Henrich):** przyciski ◄ ► pod filmem, wyrównanie ikon, marginesy paska kropek
+  i wcięcie tekstu w „pokaż wyjaśnienie kroku" — potwierdzone, skasowane z TODO.md. Dwie uwagi
+  wróciły do DO ZROBIENIA: strzałka wychodzi nad welon tylko w ciemnym motywie, a biały prostokąt
+  tła pod logo ma zniknąć (logo nie musi wychodzić nad welon — wtedy odpada też problem
+  przebijającej treści zadania, opisany we wpisie niżej). Ostatni punkt v32 (wspólna szerokość
+  ramek na telefonie) czeka na przeklikanie.
+
+- **Rozszerzenie Pythona** (`.devcontainer/devcontainer.json`): dopisane `ms-python.python`,
+  żeby przeżywało Rebuild Container. Pylance i debugpy przychodzą z nim jako extension pack,
+  więc nie są wypisane osobno. Marketplace jest na allowliście firewalla, instalacja przejdzie.
+
+- **`~/.cache` należało do roota** (`.devcontainer/Dockerfile`): dołożone do istniejącego
+  `mkdir -p … && chown -R node:node`. To wariant 1 z `issues/chrome-devtools-mcp-cache-eacces.md`
+  — naprawia całą klasę problemu, nie tylko chrome-devtools-mcp. Wymaga Rebuild Container.
+
+- **Plugin `github`** (HTTP 400, pusty nagłówek Bearer): Dockerfile dopisuje do `~/.zshrc`
+  i `~/.bashrc` `export GITHUB_PERSONAL_ACCESS_TOKEN="$(cat ~/.config/gh/mcp-token || gh auth token)"`.
+  W repo nie ląduje żaden sekret — token czytany jest lokalnie z zalogowanego `gh`; `mcp-token`
+  to furtka na węższy PAT, gdyby pełne uprawnienia `gh` były za szerokie (pytanie Henricha
+  w trakcie sesji: klon repo NIE dostaje jego uprawnień).
+
+- **„Allow Automatic Tasks in Folder?"** — punkt okazał się nieaktualny: `task.allowAutomaticTasks:
+  "on"` siedzi w `~/.config/Code/User/settings.json` od 2026-08-12. Do potwierdzenia przy
+  najbliższym otwarciu folderu.
+
+- **Backup `~/backup-vscode-flatpak/`** skasowany (decyzja Henricha). Weryfikacja przed
+  kasowaniem: flatpaka nie ma w systemie, `snippets/` puste, a jedyna unikatowa treść
+  (trzy osierocone ustawienia) jest przepisana do `issues/flatpak-osierocone-dane.md`.
+
+- **frontend-design** zostaje jedynym otwartym punktem sekcji hosta: działa, ale jego włącznik
+  jest w nieśledzonym `.claude/settings.local.json` — do decyzji, czy ma jechać z repo.
+
 [ZROBIONE 2026-08-14] (Opus 5, medium, lokalnie) v32 — strzałka panelu bocznego nad przyciemnieniem.
 Punkt leżał w sekcji NIE REALIZUJ; Henrich kazał go wziąć po tym, jak testy regresji v31 pokazały,
 że klik w strzałkę jest przechwytywany.
