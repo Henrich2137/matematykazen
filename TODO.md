@@ -88,11 +88,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
   kontener — dopiero PO Rebuild Container (Opus 5, medium):
 
-  - otwórz folder projektu od nowa i popatrz, czy VS Code pyta „Allow Automatic Tasks in Folder?"
-    - nie powinien; zamiast pytania ma po cichu pójść `git pull --ff-only`
-    - przełącznik był już ustawiony 12.08 w ustawieniach użytkownika, punkt wisiał w TODO
-      chyba niepotrzebnie — jeśli pytanie dalej wyskakuje, napisz, bo to znaczy coś innego
-
   - otwórz w kontenerze dowolny plik `.py` z `manimations/`
     - kolorowanie i podpowiedzi mają działać od razu, bez doklikiwania rozszerzenia
 

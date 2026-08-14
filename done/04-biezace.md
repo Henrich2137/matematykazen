@@ -25,8 +25,8 @@ Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady form
   w trakcie sesji: klon repo NIE dostaje jego uprawnień).
 
 - **„Allow Automatic Tasks in Folder?"** — punkt okazał się nieaktualny: `task.allowAutomaticTasks:
-  "on"` siedzi w `~/.config/Code/User/settings.json` od 2026-08-12. Do potwierdzenia przy
-  najbliższym otwarciu folderu.
+  "on"` siedzi w `~/.config/Code/User/settings.json` od 2026-08-12. **Potwierdzone
+  2026-08-14** — Henrich: „nigdy nie widziałem tego pytania". Punkt skreślony z testów.
 
 - **Backup `~/backup-vscode-flatpak/`** skasowany (decyzja Henricha). Weryfikacja przed
   kasowaniem: flatpaka nie ma w systemie, `snippets/` puste, a jedyna unikatowa treść
