@@ -19,8 +19,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
     - Prefetch filmów nie działa (testowane na Chrome): przy czekaniu wykres sieci jest płaski, spajki pojawiają się dopiero przy klikaniu. W logach widać zapis do cache, ale odtwarzacz z niego nie korzysta.
 
-    - Strona się wysypała przy szybkim spamowaniu next-step (Brave na Bazzite, kod błędu 5) — do odtworzenia i naprawy. HENRICH: CHYABA JEST TO JUŻ NAPRAWIONE, NIE WIDZĘ BŁĘDÓW, PRZETESTUJ JESZCZE I JAK PRZEJDZIE TEST TO WYWAL TEN PUNKT.
-
     - Zad. 1, kropki kroków: przy większej liczbie kroków niż mieści pasek ma być można
       przewijać (dziś sprawdzone tylko dla dziesięciu, które mieszczą się bez przewijania)
       - kropki są na granicy wygody dla kciuka na telefonie — rozważyć lekkie powiększenie

@@ -1245,3 +1245,16 @@ Weryfikacja: Playwright, zrzuty light/dark × 1440/1280/390 + pomiary computed s
 - TYTUŁ ARKUSZA: .sheet-title-heading dostał max-width: 32% (456px przy 1440px) + margin: 0 auto —
   typowy tytuł CKE zawija się na dwie wyśrodkowane linie zamiast ciągnąć się przez cały ekran.
   Pod 720px ograniczenie zdjęte (max-width: none), bo 32% z 390px zostawiłoby po dwa słowa w linii.
+
+[ZROBIONE 2026-08-14] (Opus 5, medium, lokalnie) Wysypywanie się strony przy szybkim spamowaniu
+next-step (Brave na Bazzite, kod błędu 5) — punkt zamknięty jako nieodtwarzalny. Henrich nie widział
+już błędu, testy to potwierdziły; naprawa siedzi w wcześniejszych poprawkach odtwarzacza (tokeny
+podmiany kroku, jedno żądanie na łączu), nic nowego nie było trzeba zmieniać.
+Weryfikacja (nowych zmian w kodzie NIE ma):
+- tools/test-krokow.js na szybkim serwerze (tools/serwer.js 8000), 40 ruchów × ziarna 3/11/29,
+  zad. 1–3 → bez zastrzeżeń;
+- to samo na łączu dławionym (--wolno=1200 --bps=60000, port 8001), 25 ruchów × ziarna 3/11 → bez zastrzeżeń;
+- celowany skrypt spamujący samo ► : 120 kliknięć z odstępem 30–90 ms na każdym z zadań 1–3
+  (360 kliknięć łącznie) — zero pageerror, zero crashy, video.error puste, odtwarzacz kończy
+  na ostatnim kroku (step9/step6/step8). Jedyny wpis w konsoli to ERR_ADDRESS_UNREACHABLE
+  z zasobu spoza strony (firewall kontenera), nie z odtwarzacza.
