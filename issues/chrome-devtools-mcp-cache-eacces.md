@@ -81,6 +81,24 @@ jest niepotrzebne.
 
 ### Naprawa: symlink zamieniony na wrapper (decyzja Henricha)
 
+**Stan: wklejone na hoście do `.devcontainer/Dockerfile` 2026-08-14 (Opus 5, medium),
+czeka już tylko na Rebuild Container.** Sprawdzone na hoście przed oddaniem, na obrazie
+kontenera z `--cap-drop=ALL` i tym samym bindem:
+
+- build przechodzi, wygenerowany plik to dokładnie `#!/bin/sh` + `exec … --no-sandbox
+  --headless=new "$@"` — apostrofy zadziałały, `$@` przeżyło,
+- `--version` → `Google Chrome for Testing 151.0.7922.34`,
+- `--dump-dom "data:text/html,<h1>dziala</h1>"` → zwraca gotowy DOM, czyli piaskownica
+  faktycznie przestaje przeszkadzać (to samo polecenie bez `--no-sandbox` padało).
+
+Do bloku doszła jedna linijka ponad to, co było w notatce z kontenera: **`rm -f
+/opt/google/chrome/chrome` przed zapisem**. Bez niego przebudowa na obrazie, gdzie leży
+jeszcze stary złamany symlink, wywala się na `cannot create …: Directory nonexistent` —
+przekierowanie `>` idzie za symlinkiem, a jego cel przychodzi dopiero z bindem. Przy
+budowie od zera linijka nic nie zmienia, ale kosztuje zero i oszczędza jeden cykl
+przebudowy zgadywania.
+
+
 Flag pluginowi narzucić nie umiemy (jego `args` są poza repo), więc dokłada je **sama
 binarka**. W `.devcontainer/Dockerfile` zamiast `ln -s`:
 

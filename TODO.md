@@ -111,31 +111,10 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + DO ZROBIENIA HOŚCIE (POZA KONTENEREM)
 
-  - zamienić w `.devcontainer/Dockerfile` symlink Chrome'a na wrapper i zrobić Rebuild
-    Container. Symlink sam w sobie zadziałał (`--version` odpowiada), ale plugin i tak
-    nie otwiera strony: Chrome chce zamknąć procesy potomne w chroocie, a kontener ma
-    `--cap-drop=ALL`. Playwright chodzi, bo sam dokłada `--no-sandbox`; plugin tego nie
-    robi i nie mamy jak mu podać flag, więc dokłada je sama binarka. Gotowe polecenie
-    (zastępuje dzisiejsze `mkdir -p /opt/google/chrome && ln -s …`, sprawdzone w sesji):
-
-    ```dockerfile
-    RUN mkdir -p /opt/google/chrome && \
-      printf '#!/bin/sh\nexec /home/node/.cache/ms-playwright/chromium-%s/chrome-linux64/chrome --no-sandbox --headless=new "$@"\n' "${CHROMIUM_BUILD}" > /opt/google/chrome/chrome && \
-      chmod 755 /opt/google/chrome/chrome
-    ```
-
-    Apostrofy wokół formatu są istotne — w cudzysłowie powłoka budująca obraz zjadłaby
-    `$@` i wrapper przestałby przekazywać argumenty. Reszta bloku komentarza nad tym
-    `RUN`-em zostaje bez zmian; warto tylko poprawić w nim zdanie o „złamanym symlinku",
-    bo wrapper żadnym symlinkiem już nie jest. Tło i dowody:
-    `issues/chrome-devtools-mcp-cache-eacces.md`, sekcje „Symlink to za mało" i „Naprawa".
-
-    Po przebudowie zostaje jedno sprawdzenie z sekcji TESTOWANIE HENRICH wyżej.
-
-    — Opus 5, medium, sesja w kontenerze 2026-08-14. Flagi sprawdzone doświadczalnie
-    ręcznym klientem MCP po stdio, samo polecenie `printf` też uruchomione i zweryfikowane;
-    niesprawdzone zostaje wyłącznie to, czego z kontenera nie da się dotknąć — czy
-    `.devcontainer/Dockerfile` po edycji na hoście zbuduje się bez błędu.
+  - zrobić Rebuild Container — wrapper Chrome'a jest już wklejony do
+    `.devcontainer/Dockerfile` i sprawdzony na hoście (build przechodzi, wrapper otwiera
+    stronę przy `--cap-drop=ALL`). Po przebudowie zostaje jedno sprawdzenie z sekcji
+    TESTOWANIE HENRICH wyżej. Tło: `issues/chrome-devtools-mcp-cache-eacces.md`
 
   - plugin frontend-design działa, ale jego włącznik siedzi w `.claude/settings.local.json`
     (poza gitem) — do decyzji, czy przenieść do `.claude/settings.json`, żeby jechał z repo

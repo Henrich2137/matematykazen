@@ -148,17 +148,35 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Google. Zamiast tego podstawiamy Chromium, które i tak już tu jest — to ten
 # sam silnik, przychodzi read-only bindem z hosta (patrz wyżej).
 #
-# Symlink jest w chwili budowania ZŁAMANY (cel pojawia się dopiero przy starcie
-# kontenera, razem z bindem) i to jest w porządku — `ln -s` nie sprawdza celu.
+# Nie symlink, tylko WRAPPER, i to z powodu, który wyszedł dopiero na żywo: sam
+# symlink startował, ale plugin nie otwierał strony. Piaskownica Chrome'a zamyka
+# procesy potomne w chroocie (`sys_chroot`), a kontener ma `--cap-drop=ALL`, więc
+# nie ma do tego prawa. Playwright chodzi tu od zawsze, bo sam dokłada
+# `--no-sandbox`; plugin tego nie robi, a jego argumentów nie mamy jak zmienić
+# (siedzą w cache'u pluginu, poza repo) — więc flagi dokłada sama „binarka".
+# `--headless=new` przy okazji pilnuje, żeby przeglądarka nigdy nie wystawiła okna
+# na ekran hosta przez przekazane sockety X11/Waylanda.
+#
+# Format `printf` MUSI być w apostrofach: w cudzysłowie powłoka budująca obraz
+# rozwinęłaby `$@` do pustego napisu i wrapper przestałby przekazywać argumenty
+# Puppeteera. Numer builda wchodzi osobnym argumentem (`%s`), więc apostrofy
+# niczemu nie przeszkadzają.
+#
+# Ścieżka w środku wskazuje na bind, którego przy budowaniu jeszcze nie ma — i to
+# jest w porządku, wrapper to zwykły plik tekstowy, nikt celu nie sprawdza.
 # Profil przeglądarki idzie do zapisywalnego ~/.cache/chrome-devtools-mcp,
 # więc read-only bind niczemu nie przeszkadza.
 #
 # Gdy ścieżka się rozjedzie (podbity Playwright), objawem jest ten sam komunikat
 # co przed tą poprawką: „Could not find Google Chrome executable for channel
 # 'stable'". Wtedy popraw CHROMIUM_BUILD wyżej. issues/chrome-devtools-mcp-cache-eacces.md
-RUN mkdir -p /opt/google/chrome && \
-  ln -s "/home/node/.cache/ms-playwright/chromium-${CHROMIUM_BUILD}/chrome-linux64/chrome" \
-  /opt/google/chrome/chrome
+# `rm -f` przed zapisem nie jest ozdobnikiem: gdyby pod tą ścieżką leżał jeszcze
+# stary, ZŁAMANY symlink (tak było przed tą poprawką), przekierowanie `>` poszłoby
+# za nim i build padłby na „cannot create …: Directory nonexistent" — cel symlinka
+# przychodzi przecież dopiero z bindem. Przy budowie od zera nic to nie zmienia.
+RUN mkdir -p /opt/google/chrome && rm -f /opt/google/chrome/chrome && \
+  printf '#!/bin/sh\nexec /home/node/.cache/ms-playwright/chromium-%s/chrome-linux64/chrome --no-sandbox --headless=new "$@"\n' "${CHROMIUM_BUILD}" > /opt/google/chrome/chrome && \
+  chmod 755 /opt/google/chrome/chrome
 USER node
 
 # PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1, bo inaczej postinstall próbuje ściągnąć
