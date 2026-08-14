@@ -301,17 +301,22 @@ Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz is
 
   - Zadania powinny być oddzielone pustą linijką, chyba, że są to podzadania i składają się na jedno duże zadanie.
 
-  - Robiąc notatki w sekcji DO REALIZACJI Dopisane przez CLAUDA napisz jakim modelem jesteś i na jakim efforcie, Jeżeli czytasz notatki np Sonneta na low to ufaj im mniej niż tym zrobionym przez Opusa na High
+  - Robiąc notatki w sekcji DOPISANE PRZEZ CLAUDA, nie pisz tam dużo, technikalia należą do issues. Napisz jakim modelem jesteś i na jakim efforcie. Jeżeli czytasz notatki np. Sonneta Low to ufaj im mniej niż tym zrobionym przez Opusa na High
 
-  - Wpisy w sekcji TESTOWANIE HENRICH piszesz prostym zdaniem, małymi literami (normalna polska ortografia, wielka litera tylko tam gdzie gramatycznie należy — początek zdania, nazwy własne). Bez nagłówków typu ORYGINALNY PUNKT / DOCELOWA WERSJA, bez CAPS LOCKA dla podkreślenia słów. Domyślnie jedna linijka: co kliknąć → czego się spodziewać, np. „kliknij next-step w trakcie odtwarzania filmu — powinien przeskoczyć do początku następnego filmu".
+  - do sekcji TESTOWANIE HENRICH wpisuj tylko NAJWAŻNIEJSZE rzeczy, których jednocześnie nie da się przetestować podczas sesji Claude-a (np. w playwrigcht, chrome-devtools-mcp itd.)
+
+  - Wpisy w sekcji TESTOWANIE HENRICH piszesz prostym zdaniem, małymi literami (normalna polska ortografia, wielka litera tylko tam gdzie gramatycznie należy — początek zdania, nazwy własne). Bez CAPS LOCKA dla podkreślenia słów. Domyślnie jedna linijka: co kliknąć → czego się spodziewać, np. „kliknij next-step w trakcie odtwarzania filmu — powinien przeskoczyć do początku następnego filmu".
     - Gdy jeden punkt obejmuje kilka rzeczy do sprawdzenia naraz, rozbij go: krótka linijka wiodąca, pod nią zagnieżdżone podpunkty, po jednej rzeczy na podpunkt. Drugi poziom zagnieżdżenia tylko wtedy, gdy szczegóły dotyczą jednego konkretnego podpunktu, np.:
+      - sprawdź wygląd przycisków
+        - po bokach zaokrąglone daszki
+        - na środku jeden przycisk odtwórz/pauza/restart
+          - bez kółka
+          - restart (zakręcona strzałka) pokazuje się tylko po dobiegnięciu filmu do końca
+        - nakładane ikonki pauzy/restartu na filmie mają zniknąć
 
-          - sprawdź wygląd przycisków
-            - po bokach zaokrąglone daszki
-            - na środku jeden przycisk odtwórz/pauza/restart
-              - bez kółka
-              - restart (zakręcona strzałka) pokazuje się tylko po dobiegnięciu filmu do końca
-            - nakładane ikonki pauzy/restartu na filmie mają zniknąć
+    - Podobną strukturę podpunktów do powyższej stosuj w całym tym pliku.
 
-    - Pustą linijkę zostawiaj pod każdym punktem, a w długich listach pełnych podpunktów także pod podpunktami — żeby się nie zlewały w blok. W krótkiej liście paru jednolinijkowców nie trzeba.
+    - Pustą linijkę zostawiaj pod każdym punktem, a w długich listach pełnych podpunktów także pod podpunktami — żeby się nie zlewały w blok. Po całej długiej liście zrób dwie linijki odstępu. W krótkiej liście paru jednolinijkowców w środku nie trzeba, a nakońcu wystarczy jedna linijka.
+
+ 
 
