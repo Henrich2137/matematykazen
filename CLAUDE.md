@@ -88,6 +88,13 @@ Don't hand-roll a Playwright script for routine visual work — [tools/zrzuty.js
 
 - Ostrzegaj mnie przed włączeniem ciężkiego zadania np subagent-heavy sessions, które ostatnio wciągnęły mi 60% session limit dosyć szybko gdy robiłem code-review ultra
 - Odpowiadaj zwięźle — krótsze wypowiedzi, mniej technicznego żargonu; tłumacz pojęcia techniczne prostymi słowami zamiast zakładać, że są znane.
+- **Pisz prosto — to jest ważniejsze niż precyzja techniczna.** Henrich jest nauczycielem matematyki, nie inżynierem od kontenerów. Zasady:
+  - **Zacznij od tego, co to znaczy DLA NIEGO**, a dopiero potem (i tylko jeśli trzeba) jak to działa pod spodem. Nie odwrotnie.
+  - **Nie wklejaj surowych nazw z systemu jako wyjaśnienia.** `CapEff: 0000...0`, `GITHUB_PERSONAL_ACCESS_TOKEN`, `--cap-drop=ALL` to nie jest odpowiedź na pytanie „czy jest bezpiecznie". Jeśli nazwa musi paść (bo trzeba coś wkleić w terminal), najpierw powiedz zwykłym zdaniem, co to jest.
+  - **Używaj porównań z życia** zamiast definicji. Klucz do mieszkania, zapasowe koło, zamknięte drzwi — to działa lepiej niż poprawna definicja.
+  - **Jedna myśl na punkt.** Jeśli w punkcie są trzy średniki i nawias, to jest za długi.
+  - **Kończ zdaniem, co z tym zrobić**: „nic nie musisz", „to jedna komenda u Ciebie", „daj znać, zrobię".
+  - Techniczne szczegóły i dowody idą do plików (`issues/`, `done/`) — tam mają być dokładne. W czacie ma być zrozumiale.
 - Gdy treść do tego pasuje (wyjaśnienia, oceny, listy opcji, podsumowania), prezentuj informacje w punktach w stylu TODO.md — pogrubiony nagłówek/tytuł punktu, pod nim zagnieżdżone podpunkty z detalami — zamiast ciągłej prozy z nagłówkami. Tabelki i inne wizualne reprezentacje też mile widziane, jeśli pasują do treści. W takich zestawieniach można też używać kolorowych emotikonek jako oznaczeń stanu/oceny (np. ❌/✅ dla „niepotrzebne"/„potrzebne", „nie działa"/„działa"). ⭐ tylko dla faktycznej skali ocen (np. „4/5 gwiazdek") — NIE jako zamiennik neutralnego/nieokreślonego stanu. Do stanu neutralnego/„zależy od Ciebie" używaj 🟨 (żółty kwadrat) — trzeci stan obok ✅/❌. Nie dotyczy to nastrojowych emotikon/buźek (np. :), 🙂) — tych unikaj zawsze, także w punktach/tabelkach. Poza oznaczeniami stanu/oceny obowiązuje domyślny zakaz emoji z sekcji "Tone and style".
 
 ## Cloud sessions / routines
