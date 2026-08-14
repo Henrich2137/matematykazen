@@ -60,9 +60,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + DO ZROBIENIA HOŚCIE (POZA KONTENEREM)
 
-  - plugin frontend-design działa, ale jego włącznik siedzi w `.claude/settings.local.json`
-    (poza gitem) — do decyzji, czy przenieść do `.claude/settings.json`, żeby jechał z repo
-    jak superpowers (`issues/claude-code-pluginy.md`)
 
 
 <br>

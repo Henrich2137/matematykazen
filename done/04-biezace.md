@@ -1,5 +1,17 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-14] (Opus 5, medium) Plugin frontend-design przeniesiony do `.claude/settings.json` — jedzie z repo.
+[pluginy, konfiguracja]
+
+Decyzja Henricha. Włącznik siedział w `.claude/settings.local.json` (poza gitem), więc na
+nowej maszynie trzeba by go doklikiwać. Teraz jest obok `superpowers`, czyli przychodzi
+razem z klonem repo. Plugin dotyczy wyglądu strony, więc należy do projektu, nie do jednego
+stanowiska.
+
+W `settings.local.json` **zostają świadomie** `chrome-devtools-mcp` i `github` — oba są
+narzędziami tego konkretnego kontenera, a nie projektu: pierwszy zależy od wrappera Chrome'a
+w obrazie, drugi od tokenu Henricha. Klon repo dostałby je niedziałające.
+
 [ZROBIONE 2026-08-14] (Henrich — testy) odbiór v32: jedna wspólna szerokość ramki „sprawdzanie obliczeń" / pola na notatki / rozwiązania / formularza zgłoszenia błędu, i odrobinę szersze przyciski A/B/C/D w zadaniach zamkniętych — oba potwierdzone na telefonie, bez błędów.
 [ui, css, mobile, testy, odbior]
 
