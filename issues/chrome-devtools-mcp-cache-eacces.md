@@ -21,19 +21,42 @@ Google Chrome'a**. Jest wyłącznie Chromium Playwrighta, przychodzący read-onl
 z hosta: `/home/node/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome`
 (działa — `tools/zrzuty.js` i `tools/test-krokow.js` chodzą na nim bez zarzutu).
 
-`chrome-devtools-mcp` przyjmuje `--executablePath` (oraz `--headless`), więc technicznie
-wystarczyłoby wskazać mu tamtą binarkę. Kłopot jest z MIEJSCEM na tę flagę: `args`
-serwera siedzą w `~/.claude/plugins/cache/claude-plugins-official/chrome-devtools-mcp/<wersja>/.claude-plugin/plugin.json`
+`chrome-devtools-mcp` przyjmuje `--executablePath` (oraz `--headless`), ale flagi nie ma
+gdzie wpisać: `args` serwera siedzą w
+`~/.claude/plugins/cache/claude-plugins-official/chrome-devtools-mcp/<wersja>/.claude-plugin/plugin.json`
 — poza repo i nadpisywane przy każdej aktualizacji pluginu.
 
 | Wariant | Uwagi |
 |---|---|
-| Własny wpis `chrome-devtools` w repo (`.mcp.json`) z `--executablePath` i `--headless`, plugin wyłączony | ✅ jedzie z repo, przeżywa aktualizacje · 🟨 dublujemy to, co daje plugin, i trzeba pilnować wersji `chrome-devtools-mcp@x` samemu |
-| Doinstalować Google Chrome w `.devcontainer/Dockerfile` | ✅ plugin działa bez żadnych sztuczek · ❌ ~150 MB obrazu, kolejny Rebuild Container po stronie hosta, a repozytorium Google trzeba by wpuścić przez firewall |
-| Zostawić jak jest | ✅ zero pracy · ❌ plugin bezużyteczny, ale Playwright i tak pokrywa zrzuty ekranu i testy odtwarzacza |
+| **Symlink `/opt/google/chrome/chrome` → Chromium z `ms-playwright`** (WYBRANY) | ✅ plugin działa bez własnych plików i bez flag · ✅ zero MB obrazu, zero zmian w firewallu · 🟨 ścieżka ma numer builda, przy podbiciu Playwrighta trzeba poprawić `CHROMIUM_BUILD` |
+| Własny wpis `chrome-devtools` w repo (`.mcp.json`) z `--executablePath` i `--headless`, plugin wyłączony | 🟨 dublujemy to, co daje plugin, i trzeba pilnować wersji `chrome-devtools-mcp@x` samemu; ta sama krucha ścieżka |
+| Doinstalować Google Chrome w `.devcontainer/Dockerfile` | ✅ plugin działa bez żadnych sztuczek · ❌ ~150 MB obrazu i repozytorium Google do wpuszczenia przez firewall |
+| Zostawić jak jest | ✅ zero pracy · ❌ plugin bezużyteczny (Playwright i tak pokrywa zrzuty ekranu i testy odtwarzacza) |
 
-Do decyzji Henricha. Uwaga na read-only bind: Chromium z `ms-playwright` jest tylko do
-odczytu, więc profil (`--user-data-dir`) musi zostać tam, gdzie jest domyślnie
+### Wdrożony symlink (2026-08-14, Opus 5, medium — decyzja Henricha)
+
+W `.devcontainer/Dockerfile`, w bloku `USER root` przy bibliotekach Chromium:
+`mkdir -p /opt/google/chrome && ln -s /home/node/.cache/ms-playwright/chromium-${CHROMIUM_BUILD}/chrome-linux64/chrome /opt/google/chrome/chrome`,
+gdzie `CHROMIUM_BUILD` to nowy `ARG` obok `PLAYWRIGHT_VERSION` (dziś `1234`). Przy budowaniu
+symlink jest złamany — cel przychodzi dopiero z bindem przy starcie kontenera.
+
+**Działa dopiero po Rebuild Container**, ale sam symlink sprawdzony na hoście na już
+zbudowanym obrazie (`podman run` z tym samym bindem, symlink założony ręcznie):
+
+```
+cel istnieje i jest wykonywalny
+/opt/google/chrome/chrome --version → Google Chrome for Testing 151.0.7922.34
+```
+
+Czyli binarka Playwrighta przedstawia się jako **Chrome for Testing**, nie „Chromium" —
+kanał „stable", którego szuka plugin, powinien go przyjąć.
+
+Do sprawdzenia po Rebuildzie: czy plugin startuje **headful** (bez flagi `--headless` nie
+mamy jak mu tego narzucić). Kontener dostaje od VS Code sockety X11/Waylanda, więc może
+przejść; jeśli nie, wraca wariant z własnym `.mcp.json` i jawnym `--headless`.
+
+Uwaga na read-only bind: Chromium z `ms-playwright` jest tylko do odczytu, więc profil
+(`--user-data-dir`) musi zostać tam, gdzie jest domyślnie
 (`~/.cache/chrome-devtools-mcp/chrome-profile`) — to już jest zapisywalne.
 
 Znalezione 2026-08-13 przy pierwszym teście po instalacji pluginu

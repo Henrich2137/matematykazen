@@ -86,6 +86,17 @@ Oto plik który tworzy Henrich (ja, użytkownik).
       sprawdź czy nic nie wychodzi poza ekran
 
 
+  kontener — po kolejnym Rebuild Container (Opus 5, medium):
+
+  - w terminalu kontenera: `/opt/google/chrome/chrome --version`
+    - ma odpowiedzieć „Google Chrome for Testing 151…", a nie „No such file or directory"
+
+  - poproś Claude'a w kontenerze o otwarcie strony przez chrome-devtools-mcp
+    - nie powinno już być „Could not find Google Chrome executable"
+    - gdyby wyszło, że przeglądarka chce się pokazać na ekranie i nie umie, napisz —
+      wtedy trzeba jej dołożyć tryb bez okna
+
+
 
 <br>
 
@@ -100,6 +111,10 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 
 + DO ZROBIENIA HOŚCIE (POZA KONTENEREM)
+
+  - jeszcze jeden Rebuild Container — w Dockerfile czeka symlink podstawiający Chromium
+    Playwrighta pod `/opt/google/chrome/chrome`, żeby ruszył plugin chrome-devtools-mcp
+    (`issues/chrome-devtools-mcp-cache-eacces.md`)
 
   - plugin frontend-design działa, ale jego włącznik siedzi w `.claude/settings.local.json`
     (poza gitem) — do decyzji, czy przenieść do `.claude/settings.json`, żeby jechał z repo

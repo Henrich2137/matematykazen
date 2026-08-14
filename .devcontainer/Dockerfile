@@ -103,6 +103,11 @@ RUN npm install -g @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}
 # przy rozjeździe Playwright odmawia startu. Podbicie = pobranie nowej wersji na
 # hoście + zmiana tej liczby, oba naraz.
 ARG PLAYWRIGHT_VERSION=1.62.1
+# Numer builda Chromium, który przynosi ta wersja Playwrighta (katalog
+# ~/.cache/ms-playwright/chromium-<build>). NIE jest to numer wersji Playwrighta
+# ani Chrome'a — zmienia się razem z PLAYWRIGHT_VERSION, więc podbijaj obie liczby
+# naraz i sprawdź na hoście: ls ~/.cache/ms-playwright
+ARG CHROMIUM_BUILD=1234
 
 USER root
 # Biblioteki systemowe Chromium, lista z samego Playwrighta
@@ -135,6 +140,25 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   fonts-dejavu-core \
   fonts-noto-color-emoji \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Chrome dla pluginu chrome-devtools-mcp. Plugin szuka binarki pod sztywną
+# ścieżką kanału „stable" (/opt/google/chrome/chrome) i bez niej odmawia startu,
+# a prawdziwego Chrome'a w tym obrazie nie ma i mieć nie chcemy: to +150 MB,
+# auto-aktualizująca się przeglądarka i dziura w firewallu na repozytorium
+# Google. Zamiast tego podstawiamy Chromium, które i tak już tu jest — to ten
+# sam silnik, przychodzi read-only bindem z hosta (patrz wyżej).
+#
+# Symlink jest w chwili budowania ZŁAMANY (cel pojawia się dopiero przy starcie
+# kontenera, razem z bindem) i to jest w porządku — `ln -s` nie sprawdza celu.
+# Profil przeglądarki idzie do zapisywalnego ~/.cache/chrome-devtools-mcp,
+# więc read-only bind niczemu nie przeszkadza.
+#
+# Gdy ścieżka się rozjedzie (podbity Playwright), objawem jest ten sam komunikat
+# co przed tą poprawką: „Could not find Google Chrome executable for channel
+# 'stable'". Wtedy popraw CHROMIUM_BUILD wyżej. issues/chrome-devtools-mcp-cache-eacces.md
+RUN mkdir -p /opt/google/chrome && \
+  ln -s "/home/node/.cache/ms-playwright/chromium-${CHROMIUM_BUILD}/chrome-linux64/chrome" \
+  /opt/google/chrome/chrome
 USER node
 
 # PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1, bo inaczej postinstall próbuje ściągnąć
