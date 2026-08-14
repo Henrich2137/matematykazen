@@ -3,27 +3,29 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.
 
-  - Kroki mają za długie „czekania" na początku i na końcu filmu (wait() w Manimie) — wyciąć.
-    Małe waity w środku kroku, między pojedynczymi animacjami, są okej. Najmocniej widać w zad. 1.
+  - Na telefonie, odczas odpalonego sidebara logo powinno być ono przygaszone, z tyłu i nieklikalne. Klijknięcie powinno powodować wyłączenie sidebara (bo pomiędzy jest welon czy coś)
 
-  - Wczytywanie filmów: albo pobierać je dużo wcześniej niż w chwili kliknięcia, albo zbić framerate.
-    - pulsowanie kadru jest irytujące — wyrzucić je
-    - zamiast niego prosta, minimalistyczna animacja na dole ekranu (trzy kropki albo kółko jak na YT),
-      pokazująca się dopiero po ~500 ms
-    - dziś pulsowanie miga przy każdej zmianie kierunku i przy spamowaniu ► wygląda, jakby strona
-      ładowała się bez końca
+  - Rozwiązanie krok po kroku:
+    
+    - Kroki mają za długie „czekania" na początku i na końcu filmu (wait() w Manimie) — wyciąć.
+      Małe waity w środku kroku, między pojedynczymi animacjami, są okej. Najmocniej widać w zad. 1.
 
-  - Prefetch filmów nie działa (testowane na Chrome): przy czekaniu wykres sieci jest płaski, spajki
-    pojawiają się dopiero przy klikaniu. W logach widać zapis do cache, ale odtwarzacz z niego nie
-    korzysta.
+    - Wczytywanie filmów: albo pobierać je dużo wcześniej niż w chwili kliknięcia, albo zbić framerate.
+      - pulsowanie kadru jest irytujące — wyrzucić je
+      - zamiast niego prosta, minimalistyczna animacja na dole ekranu (trzy kropki albo kółko jak na YT),
+        pokazująca się dopiero po ~500 ms
+      - dziś pulsowanie miga przy każdej zmianie kierunku i przy spamowaniu ► wygląda, jakby strona
+        ładowała się bez końca
 
-  - Strona się wysypała przy szybkim spamowaniu next-step (Brave na Bazzite, kod błędu 5) — do
-    odtworzenia i naprawy.
+    - Prefetch filmów nie działa (testowane na Chrome): przy czekaniu wykres sieci jest płaski, spajki pojawiają się dopiero przy klikaniu. W logach widać zapis do cache, ale odtwarzacz z niego nie korzysta.
 
-  - Zad. 1, kropki kroków: przy większej liczbie kroków niż mieści pasek ma być można
-    przewijać (dziś sprawdzone tylko dla dziesięciu, które mieszczą się bez przewijania)
-    - kropki są na granicy wygody dla kciuka na telefonie — rozważyć lekkie powiększenie
-      (w v31 zrobione tylko marginesy boczne, rozmiar bez zmian)
+    - Strona się wysypała przy szybkim spamowaniu next-step (Brave na Bazzite, kod błędu 5) — do odtworzenia i naprawy. HENRICH: CHYABA JEST TO JUŻ NAPRAWIONE, NIE WIDZĘ BŁĘDÓW, PRZETESTUJ JESZCZE I JAK PRZEJDZIE TEST TO WYWAL TEN PUNKT.
+
+    - Zad. 1, kropki kroków: przy większej liczbie kroków niż mieści pasek ma być można
+      przewijać (dziś sprawdzone tylko dla dziesięciu, które mieszczą się bez przewijania)
+      - kropki są na granicy wygody dla kciuka na telefonie — rozważyć lekkie powiększenie
+        (w v31 zrobione tylko marginesy boczne, rozmiar bez zmian)
+    
 
   - usunąć całkowicie „solutionTextMore" — z wszystkich exercises.json i z template.html/JS,
     nie ma już żadnego odbiorcy
@@ -32,43 +34,8 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     - strzałka wychodzi nad welon tylko w ciemnym motywie — w jasnym dalej przygaszona
     - zdjąć biały prostokąt tła spod logo (Henrichowi nie leży); logo nie musi wychodzić
       nad welon, wystarczy sama strzałka — więc i problem przebijającej treści zadania znika
+  HENRICH: TUTAJ TEŻ JUŻ JEST ZROBIONE, do odprawy
 
-  - Błędy w filmach — ZOSTAŁO (zad. 3, 5 i 6 poprawione w v30):
-    - Zad 4. wygląda wzorowo, ale łamie zasadę ciągłości klatek: zielona szóstka zostaje
-      na ostatniej klatce kroku 2, a krok 3 startuje czarny (SSIM 0,9990)
-    - Zad 2, 7, 8 i 9 były robione tą samą metodą co 5 i 6, więc trzeba przejrzeć ich
-      animacje; tools/styk-klatek.sh pokazuje, w których krokach nie zgadzają się styki
-    - Zad 3 krok 6 kończy się szarym nawiasem domykającym; reszta przyciemnień już się
-      rozjaśnia na końcu kroku
-
-<br>
-
-
-+ NIE REALIZUJ:
-  - Ciemny motyw wymuszony ręcznie w panelu bocznym: rysunki/filmy mają przygasać jak przy
-    „auto" — poprawka przy okazji v20, jeszcze bez potwierdzenia Henricha.
-    issues/krok-po-kroku-v20-testy.md
-
-  - Zadanie 2 — do sprawdzenia merytoryka kroków: krok 1 i 6 (wykładnik -1, potem 5,
-    wynik \(5^4\)). issues/krok-po-kroku-v20-testy.md
-    Punkt o za wąskich marginesach podpisu pod filmem odpadł sam: w v20 podpisu już nie ma,
-    opis kroku siedzi w rozwijanym ROW 3. Zmierzone na telefonie 390 px — treść zadania ma
-    24 px marginesu, film i ROW 3 po 25 px, czyli równo. Zostaje do przeklikania na żywo.
-
-  - Zad. 10/11 na telefonie: pola/przyciski są już pod treścią zdania i jest czytelniej, ale brakuje
-    odstępu między kolejnymi zdaniami (1, 2, 3…) — zlewają się w jeden blok.
-
-  - Odwracanie kolorów grafik/wideo w dark mode (`--filtr-grafik-zadan`) działa tlyko w cześci (przeglądarek chyba)
-
-  - Naprawić dziwne działanie odwracania kolorów grafik na niektórych przeglądarkach:
-    - Pixel 7a GrapheneOS: 
-      - Samsung Browser zmienia tło strony wedle własnego pomysłu a odwracanie kolorów w ogóle nie działa
-      - na reszcie przeglądarek działa dobrze
-    - Windows 10: działa w pełni na wszystkich najpopularniejszych przglądarkach
-    - Bazzite: 
-      - Chrome i Brave - brak matchu kolorów tła grafiki i ogólnego tła (prawopodobnie na skutenk dziwnego renderowania koloru tła na Bazzite)
-      - na reszcie przeglądarek działa dobrze
-    - Rozpoznanie i warianty naprawy: issues/dark-mode-inwersja-przegladarki.md
 
 
 <br>
@@ -76,15 +43,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + TESTOWANIE HENRICH
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
-
-  v32 — reszta po odbiorze (Opus 5, medium):
-
-  - wejdź na telefonie w dowolne zadanie otwarte (np. zad. 3) i rozwiń wszystko naraz
-    - ramka „sprawdzanie obliczeń", pole na notatki, rozwiązanie i formularz zgłoszenia błędu
-      mają teraz jedną wspólną szerokość, wcześniej dwie pierwsze były węższe
-    - przy okazji zerknij na zadania zamknięte: przyciski A/B/C/D są odrobinę szersze,
-      sprawdź czy nic nie wychodzi poza ekran
-
+<br> Mój telefon na chrome ma "okno": 485x945 
 
 
 
@@ -92,7 +51,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 
 + DLA HENRICHA:
-
 
   - pokminić sobie dydaktycznie nad arkuszem aby zadać robotę Fable
 
@@ -112,7 +70,36 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + INNE NOTATKI, DO PRZEKMINIENIA:
   
-  + Zweryfikować poprawność:
+  Przed Fable:
+    - Obgadać z Opusem czy używać Fable z superpowers, subagentami itd.
+      - Subagentci: Czy powinienem puścić Fable mając duży zapas limitu aby Opusy i Sonnety będące subagentami mogły z niego korzystać odciążając fable?
+
+    
+  - Fable:
+    - Analiza kosztów długoterminowych - Symulacja: co się stanie przy 1k, 10k, 100k użytkowników na danym stacku (koszty, limity, throttling)
+    - Punkty krytyczne (failure points)
+    - Weryfikacja poprawności matematycznej
+    - Lista checkboxów "Sprawdzanie rozwiązania"
+    - Interaktywne rozwiązania matury 2026
+    - Usprawnienie struntury projektu
+
+
+  + Zweryfikować poprawność matematyczną:
+
+    - Błędy w filmach — ZOSTAŁO (zad. 3, 5 i 6 poprawione w v30):
+      - Zad 4. wygląda wzorowo, ale łamie zasadę ciągłości klatek: zielona szóstka zostaje
+        na ostatniej klatce kroku 2, a krok 3 startuje czarny (SSIM 0,9990)
+      - Zad 2, 7, 8 i 9 były robione tą samą metodą co 5 i 6, więc trzeba przejrzeć ich
+        animacje; tools/styk-klatek.sh pokazuje, w których krokach nie zgadzają się styki
+      - Zad 3 krok 6 kończy się szarym nawiasem domykającym; reszta przyciemnień już się
+        rozjaśnia na końcu kroku
+
+    - Zadanie 2 — do sprawdzenia merytoryka kroków: krok 1 i 6 (wykładnik -1, potem 5,
+    wynik \(5^4\)). issues/krok-po-kroku-v20-testy.md
+    Punkt o za wąskich marginesach podpisu pod filmem odpadł sam: w v20 podpisu już nie ma,
+    opis kroku siedzi w rozwijanym ROW 3. Zmierzone na telefonie 390 px — treść zadania ma
+    24 px marginesu, film i ROW 3 po 25 px, czyli równo. Zostaje do przeklikania na żywo.
+
     - Zad 9 -> Sprawdzanie obliczeń -> Pierwszy checkbox
 
     - poprawność matematyczna treści w arkuszu — rozwiązania krok po kroku (zad. 1–9,
@@ -155,24 +142,11 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
   + ULEPSZANIE WORKFLOW (skopiowane z NOTATKI_USERA)
     - Schedule adversarial review lub /code-review
-    - Stworzyć/pobrać potrzebne mi skille do tego projektu
     - wyłączyć skróty które powodują, że przeklikuje pytanie podczas pisania prompta
     - rozkminić, poszukać, poinstalować, pouczyć się - pluginy różne:
       - frontend-design@claude-plugins-official czy jakoś tak
       - superpowers
-
-  Przed Fable:
-    - Obgadać z Opusem czy używać Fable z superpowers, subagentami itd.
-      - Subagentci: Czy powinienem puścić Fable mając duży zapas limitu aby Opusy i Sonnety będące subagentami mogły z niego korzystać odciążając fable?
-
-    
-  - Fable:
-    - Analiza kosztów długoterminowych - Symulacja: co się stanie przy 1k, 10k, 100k użytkowników na danym stacku (koszty, limity, throttling)
-    - Punkty krytyczne (failure points)
-    - Weryfikacja poprawności matematycznej
-    - Lista checkboxów "Sprawdzanie rozwiązania"
-    - Interaktywne rozwiązania matury 2026
-    - Usprawnienie struntury projektu
+    - Przekminić i dodać zasadę dotyczącą tłumaczenia mi (Henrichowi) rzeczy (jak mam przeprowadzić test, jak wygląda projekt itd.)
 
 
   + UI
@@ -198,6 +172,20 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
     - Przekminić i postprzątać trzy rodzaje tekstu które dodają tylko bałaganu w rozwiązaniu.
 
+    - Zad. 10/11 na telefonie: zdania i przyciski P/F
+      - brakuje odstępu między kolejnymi zdaniami (1, 2, 3…). Zlewają się w jeden blok
+      - są za bardzo przyklejone do lewej. Powinny się formatować jak reszta treści zadania.
+
+    - Odwracanie kolorów grafik/wideo w dark mode (`--filtr-grafik-zadan`) działa nierówno między przeglądarkami:
+      - Pixel 7a GrapheneOS:
+        - Samsung Browser zmienia tło strony wedle własnego pomysłu, a odwracanie kolorów w ogóle nie działa
+        - na reszcie przeglądarek działa dobrze
+      - Windows 10: działa w pełni na wszystkich najpopularniejszych przeglądarkach
+      - Bazzite:
+        - Chrome i Brave — brak matchu kolorów tła grafiki i ogólnego tła (prawdopodobnie na skutek dziwnego renderowania koloru tła na Bazzite)
+        - na reszcie przeglądarek działa dobrze
+      - rozpoznanie i warianty naprawy: issues/dark-mode-inwersja-przegladarki.md
+
 
   - "Pokaż potrzebne wzory" powinien mieć możliwośc wyboru wielu podpunktów?, kropek?, a formulasPage w zadaniach powinien się zmienić na formulasPages (s na końcu). Powinno być wiele lokacji wzorów do przywołania pod jednym zadaniem. 
     - Zad 9. dopisać str 7 (wyróżnik Δ, obok już wpisanej str 8 ze wzorem na x1,x2)
@@ -208,18 +196,14 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     - Zad 30. dopisać str 26 (pole całkowite prostopadłościanu [12.2], obok już wpisanej str 8 z wierzchołkiem paraboli)
 
 
-  - Przycisk "Zresetuj ustawienia" z popup-em do potwierdzenie. Podświetlajacy się na czerwono po najechaniu i widoczny na dole side panelu aby przypadkiem go nie kliknąć.
+  - Przycisk "Zresetuj ustawienia" z popup-em do potwierdzenie. Podświetlajacy się na czerwono po najechaniu i widoczny na samym dole side-bar-a.
+  
   - Wsparcie, donate-y itd.
-
     - W index.html dodać sekcję o autorze i link do Patronite
     - Na githubie w ustawieniach repo też można coś podpiąć chyba ale trzeba sprawdizć czy byłoby to fair.
 
-  - Przekminić i dodać zasadę dotyczącą tłumaczenia mi (Henrichowi) rzeczy (jak mam przeprowadzić test, jak wygląda projekt itd.)
-
-  
-  - sprawdzić merytorykę arkuszy (na końcu, przed rozpowszechnieniem)
-
   - wysyłanie całego localStorage przez użytkownika podczas zgłaszania błędu jest a bit scatchy też troche niebezpiczne
+
 
 <br>
 

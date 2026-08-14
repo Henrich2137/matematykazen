@@ -1,5 +1,8 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-14] (Henrich — testy) odbiór v32: jedna wspólna szerokość ramki „sprawdzanie obliczeń" / pola na notatki / rozwiązania / formularza zgłoszenia błędu, i odrobinę szersze przyciski A/B/C/D w zadaniach zamkniętych — oba potwierdzone na telefonie, bez błędów.
+[ui, css, mobile, testy, odbior]
+
 [ZROBIONE 2026-08-14] (Opus 5, medium) chrome-devtools-mcp wreszcie otwiera strony — trzy warstwy problemu zdjęte.
 [devcontainer, pluginy, chrome, testy]
 
