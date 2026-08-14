@@ -1279,9 +1279,14 @@ body.sidebar-otwarty #sidebar-linia {
     margin: 12px auto 6px;
 }
 /* Okno przewijania: powyżej siedmiu kropek pasek jedzie w poziomie zamiast się
-   ściskać. Pasek przewijania chowamy — od tego są strzałki po bokach. */
+   ściskać. Pasek przewijania chowamy — od tego są strzałki po bokach.
+   Margines 8 px z obu stron (Henrich, TODO): krańcowe kropki nie stykają się
+   z krawędzią paska. Margines TU, a nie padding na .steps-dots — tamten ma
+   min-width: 100% przy content-box, więc poziomy padding dokładałby się do
+   szerokości i uruchamiał przewijanie przedwcześnie (patrz komentarz niżej). */
 .steps-dots-okno {
     flex: 1;
+    margin: 0 8px;
     overflow-x: auto;
     scrollbar-width: none;
 }
@@ -1386,12 +1391,16 @@ body.sidebar-otwarty #sidebar-linia {
     clip-path: inset(50%);
     white-space: nowrap;
 }
-/* ROW 2 — przyciski. Pole dotyku min. 44px w obu wymiarach (Henrich). */
+/* ROW 2 — przyciski. Pole dotyku min. 44px w obu wymiarach (Henrich).
+   Odstęp 10→48 px (Henrich, TODO): strzałki mają być rozsunięte na tyle, żeby
+   kciuk trafiał w nie bez celowania i nie mylił ich ze środkowym play. Trójka
+   zostaje wyśrodkowana — na telefonie 3×44 px + 2×48 px = 228 px, czyli mieści
+   się w karcie (354 px przy ekranie 390 px) z zapasem. */
 .steps-nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 48px;
     margin: 4px 0 10px;
 }
 /* Pole dotyku 44×44 (dawne strzałki były na to za małe — Henrich).
@@ -1418,19 +1427,18 @@ body.sidebar-otwarty #sidebar-linia {
 }
 /* Zaokrąglone końce i złączenia — Henrich: dotychczasowe strzałki były „zbyt
    ostre". Trójkąt odtwarzania jest wypełniony, „daszki" kroków tylko kreską:
-   to wystarcza, żeby nie myliły się ze sobą, bez obwódki wokół środkowego. */
+   to wystarcza, żeby nie myliły się ze sobą, bez obwódki wokół środkowego.
+   22→26 px (Henrich, TODO): daszki kroków zrównane z trójkątem play — jedna
+   wielkość dla wszystkich trzech ikon, więc osobna reguła dla .step-play
+   przestała być potrzebna. Pole dotyku zostaje 44×44 (.steps-nav button). */
 .step-ikona {
-    width: 22px;
-    height: 22px;
+    width: 26px;
+    height: 26px;
     fill: none;
     stroke: currentColor;
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
-}
-.step-play .step-ikona {
-    width: 26px;
-    height: 26px;
 }
 .ikona-play {
     fill: currentColor;
@@ -1503,9 +1511,15 @@ body.sidebar-otwarty #sidebar-linia {
     display: none;
 }
 /* Treść odsunięta od tytułu, żeby rozwinięcie było widać jako osobny akapit,
-   a nie doklejoną linijkę (Henrich po testach v20). */
+   a nie doklejoną linijkę (Henrich po testach v20).
+   Lewe wcięcie 30 px = tyle samo, co .solution-text-container (Henrich, TODO:
+   „sformatować tak jak solution-text-container"). Na telefonie oba akapity
+   startują wtedy dokładnie w tym samym miejscu: 18 px karty + 12 px podokna
+   + 30 px wcięcia. Pionowe odstępy zostają małe — 30 px z rozwiązania odcina
+   tekst od ramki podokna, a tu nad tekstem jest sam przycisk zwijania.
+   Reszta typografii (18 px, kolor, rodzina) jest już wspólna, bo dziedziczona. */
 .step-explain-tresc {
-    padding: 6px 2px 8px;
+    padding: 8px 0 10px 30px;
     line-height: 1.5;
     text-align: left;
 }

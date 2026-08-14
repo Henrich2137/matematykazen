@@ -1,5 +1,58 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-14] (Opus 5, medium, lokalnie) v31 — cztery drobiazgi UI wybrane przez Henricha
+z listy „samotnych michałków". Same style, zero zmian w JS. Weryfikacja: Playwright (pomiary
+computed style + zrzuty 390/1440 px) i tools/test-krokow.js (zad. 1–3, ziarna 3 i 11) — bez zastrzeżeń.
+
+- **◄ ► rozsunięte i powiększone** (style/sheet.css, `.steps-nav`, `.step-ikona`): odstęp 10 → 48 px,
+  ikony 22 → 26 px. Henrich wybrał wariant „stały większy odstęp" (trójka zostaje wyśrodkowana)
+  zamiast rozrzucania strzałek na krawędzie kadru. Skoro wszystkie trzy ikony mają teraz 26 px,
+  osobna reguła `.step-play .step-ikona` zniknęła jako zbędna. Pole dotyku bez zmian (44×44).
+
+- **Marginesy paska kropek** (`.steps-dots-okno`): po 8 px z każdej strony, żeby skrajne kropki nie
+  stykały się z krawędzią. Margines na oknie przewijania, NIE padding na `.steps-dots` — ten drugi
+  dokłada się do `min-width: 100%` przy content-box i uruchamiał przewijanie już przy siedmiu
+  kropkach (pułapka opisana w komentarzu w sheet.css od 2026-08-11). Powiększenia kropek Henrich
+  nie chciał — punkt „rozważyć lekkie powiększenie" został w TODO.md.
+
+- **Wcięcie wyjaśnienia kroku** (`.step-explain-tresc`): padding `6px 2px 8px` → `8px 0 10px 30px`.
+  Reszta typografii była już wspólna z `.solution-text-container` (18 px, ten sam kolor i rodzina —
+  wszystko dziedziczone), różniło je wyłącznie lewe wcięcie. Na telefonie oba akapity startują teraz
+  w tym samym miejscu: 18 px karty + 12 px podokna + 30 px wcięcia. Pionowych 30 px z rozwiązania
+  celowo nie kopiowałem — tam odcinają tekst od ramki podokna, tu nad tekstem jest sam przycisk zwijania.
+
+- **Szerokość ramki „sprawdzanie obliczeń" na telefonie** (style/responsive.css, `.answers-container`
+  → `width: 100%` pod 720 px): przyczyną było bazowe `.button-container { width: 90% }` (sheet.css),
+  które ścinało cały blok odpowiedzi do 319 px, gdy rozwiązanie i formularz zgłoszenia miały 354 px.
+  Zmierzone po zmianie: `.ocena-box`, `.open-answer`, `.solution-container` i `.zglos-blad-okno`
+  mają komplet 354 px i lewą krawędź na 18 px. Efekt uboczny, świadomy: przyciski A/B/C/D zadań
+  zamkniętych są na telefonie o te 35 px szersze (na desktopie 90% zostaje — trzyma siatkę w kolumnie).
+
+[krok-po-kroku, ui, mobile, css]
+
+[ZROBIONE 2026-08-14] (Henrich — testy) Odbiór reszty v22 (kropki/panele/formatowanie) i v24
+(filmy zad. 1/3/4/6/8). Sekcje testowe obu wersji skasowane z TODO.md; niesprawdzone zostały
+v27, v29, v30.
+
+- **Potwierdzone jako działające:** czerwony baner „ResizeObserver loop..." już się nie pojawia
+  (regresja z v21 naprawiona); dziesięć kropek zad. 1 mieści się na telefonie bez przewijania;
+  rozwiązanie i formularz zgłoszenia błędu mają już właściwy margines (25 px) na telefonie;
+  filmy zad. 1 i 3 w kadrze 16:9 bez czarnych pasów, treść przekształceń zgodna klatka w klatkę.
+
+- **v24 — potwierdzone wizualnie, merytoryka odłożona:** opisy kroków zad. 3 (osiem kroków),
+  wzory pomocnicze przeniesione do opisów, nowe kroki zad. 4 (logarytmy) i zad. 6/8 — wszystko
+  wygląda dobrze, ale dokładną weryfikację matematyczną Henrich robi później, przy pełnym
+  sprawdzeniu merytoryki arkusza (patrz TODO.md, sekcja „INNE NOTATKI").
+
+- **Nowe zamówienia z tych testów, wróciły do TODO.md jako DO ZROBIENIA:** przewijanie paska
+  kropek przy większej liczbie kroków niż się mieści + opcjonalnie marginesy boczne żeby
+  krańcowe kropki nie stykały krawędzi (kropki są dziś na granicy wygody dla kciuka); sformatować
+  „step-explain-tresc" jak „solution-text-container"; usunąć całkowicie „solutionTextMore" z
+  exercises.json i kodu; poszerzyć panel „sprawdzanie obliczeń" na telefonie do tej samej
+  szerokości (25 px) co reszta podokien.
+
+[krok-po-kroku, wideo, ui, testy, odbior]
+
 [ZROBIONE 2026-08-13] (Henrich — testy) Odbiór odtwarzacza krok po kroku, paczki v22, v23, v26 i v28.
 Sekcje testowe tych czterech wersji skasowane z TODO.md; niesprawdzone zostały v24, v27, v29, v30.
 

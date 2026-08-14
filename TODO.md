@@ -17,10 +17,16 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     pojawiają się dopiero przy klikaniu. W logach widać zapis do cache, ale odtwarzacz z niego nie
     korzysta.
 
-  - Przyciski ◄ i ► rozsunąć bardziej na boki i lekko powiększyć — mają być łatwe do trafienia palcem.
-
   - Strona się wysypała przy szybkim spamowaniu next-step (Brave na Bazzite, kod błędu 5) — do
     odtworzenia i naprawy.
+
+  - Zad. 1, kropki kroków: przy większej liczbie kroków niż mieści pasek ma być można
+    przewijać (dziś sprawdzone tylko dla dziesięciu, które mieszczą się bez przewijania)
+    - kropki są na granicy wygody dla kciuka na telefonie — rozważyć lekkie powiększenie
+      (w v31 zrobione tylko marginesy boczne, rozmiar bez zmian)
+
+  - usunąć całkowicie „solutionTextMore" — z wszystkich exercises.json i z template.html/JS,
+    nie ma już żadnego odbiorcy
 
   - Błędy w filmach — ZOSTAŁO (zad. 3, 5 i 6 poprawione w v30):
     - Zad 4. wygląda wzorowo, ale łamie zasadę ciągłości klatek: zielona szóstka zostaje
@@ -67,110 +73,29 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 
 + TESTOWANIE HENRICH
-<br> Claude zapisuje małymi litery. HENRICH ZAPISUJE WIELKIMI LITERAMI.
+<br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 
-  - v22, odtwarzacz krok po kroku — poprawki z twoich testów v21, arkusz grudzień 2024
+  v31 — cztery drobiazgi UI (Opus 5, medium):
 
-    - poklikaj zadania z krokami na telefonie i poobracaj ekran — czerwony baner
-      „ResizeObserver loop completed with undelivered notifications" nie ma się już pojawić
-      ani razu (to była moja regresja z v21, najmocniej wychodziła w zad. 3)
+  - otwórz rozwiązanie krok po kroku w zad. 1 i sprawdź przyciski pod filmem
+    - ◄ i ► są dużo szerzej rozsunięte niż dotąd (48 px odstępu zamiast 10)
+    - wszystkie trzy ikony są tej samej wielkości (26 px), daszki zrównane z trójkątem play
+    - na telefonie sprawdź, czy da się je trafić kciukiem bez celowania
 
-    - otwórz zad. 1 na telefonie — wszystkie dziesięć kropek ma się zmieścić bez przewijania,
-      więc strzałki po bokach paska nie powinny się w ogóle pokazać
-      - przy okazji sprawdź, czy kropki nie zrobiły się za ciasne dla kciuka
+  - w tym samym miejscu spójrz na pasek kropek nad przyciskami
+    - skrajne kropki nie stykają się już z krawędzią, mają po 8 px luzu
+    - przy dziesięciu kropkach pasek dalej ma się mieścić bez przewijania
 
-    - przycisk „pokaż wyjaśnienie kroku" ma być wyśrodkowany, a rozwinięty tekst na telefonie
-      ma mieć margines i nie kleić się do krawędzi ekranu
+  - rozwiń „pokaż wyjaśnienie kroku" pod filmem
+    - tekst zaczyna się z takim samym wcięciem jak tekst zwykłego rozwiązania
+    - na telefonie oba akapity powinny startować dokładnie w tej samej pionowej linii
 
-    - na telefonie ramka podokna (rozwiązanie, „sprawdzanie obliczeń", formularz zgłoszenia)
-      siedzi 18 px od krawędzi zamiast 25 — zobacz, czy to nie za blisko
+  - wejdź na telefonie w dowolne zadanie otwarte (np. zad. 3) i rozwiń wszystko naraz
+    - ramka „sprawdzanie obliczeń", pole na notatki, rozwiązanie i formularz zgłoszenia błędu
+      mają teraz jedną wspólną szerokość, wcześniej dwie pierwsze były węższe
+    - przy okazji zerknij na zadania zamknięte: przyciski A/B/C/D są odrobinę szersze,
+      sprawdź czy nic nie wychodzi poza ekran
 
-
-  - v24, filmy krok po kroku — zad. 1 i 3 przerenderowane w nowym kadrze, zad. 4 zrobione od zera
-
-    - zad. 1 i zad. 3: filmy mają być w kadrze 16:9 jak w zad. 2, bez czarnych pasów
-      i bez zmiany wielkości liter w trakcie przekształcenia
-      - treść przekształceń jest ta sama co wcześniej — porównałem klatka w klatkę,
-        więc szukaj raczej wyglądu niż matematyki
-
-    - zad. 3 ma teraz opisy pod filmem przy każdym z ośmiu kroków (wcześniej tylko przy
-      ostatnim) — przeczytaj, czy się zgadzają z tym, co widać na filmie
-      - wzory pomocnicze zniknęły z samego filmu i siedzą w opisach, tak jak w zad. 2
-
-    - zad. 4 (logarytmy) ma nowe rozwiązanie krok po kroku, cztery kroki — sprawdź całość,
-      to jedyne z tej paczki, którego wcześniej nie było
-      - scenariusz, który zatwierdziłeś, leży w manimations/zad4-kroki.md
-
-    - zad. 6 i zad. 8 też dostały rozwiązania krok po kroku (dwa zadania wybrane przeze mnie)
-      - scenariusze do sprawdzenia merytoryki: manimations/zad6-kroki.md i zad8-kroki.md
-      - zad. 8 jest otwarte na 3 pkt, więc kroki są ułożone pod klucz CKE: założenie \(x\ne1\)
-        ma własny krok i zostaje pod równaniem do końca — zobacz, czy tak jest czytelnie
-      - w zad. 8 na zielono podświetla się CAŁY ułamek, którego dotyczy krok (zad. 6 jest
-        już poprawione w v30, zostało samo 8)
-
-
-
-  - v27, kolejne trzy rozwiązania krok po kroku — zad. 5, 7 i 9 (znów mój wybór)
-    - po tej paczce kroki mają zadania 1–9, czyli komplet od początku arkusza
-    - scenariusze do sprawdzenia merytoryki: manimations/zad5-kroki.md, zad7-kroki.md, zad9-kroki.md
-
-    - zad. 5 (procent składany) — sprawdź zwłaszcza krok z pierwiastkowaniem: w opisie
-      pod filmem tłumaczę, dlaczego bierzemy tylko wartość dodatnią
-
-    - zad. 7 (układ z parametrami) — oba równania jadą jedno pod drugim przez cały film,
-      żeby było widać, że to dwa niezależne rachunki, a nie układ do rozwiązywania
-      - zobacz, czy klamra z dwoma równaniami nie jest za mała na telefonie
-
-    - zad. 9 (nierówność kwadratowa, otwarte na 2 pkt) — film robi sam rachunek i NIE rysuje
-      paraboli, bo tuż pod nim jest już widżet, który pokazuje ją interaktywnie
-      - powiedz, czy to dobry podział, czy jednak parabola ma być też w filmie
-
-    - w zad. 5, 7 i 9 klatka, na której krok się zatrzymuje, bywa w całości zielona
-      (to wynik danego kroku) — ta sama wątpliwość co przy zad. 6 i 8, jedna decyzja
-      załatwi wszystkie
-
-
-
-  - v29, opisy kroków przepisane w zad. 1–9 (51 opisów) wg twoich zasad
-
-    - przeczytaj opisy pod filmami i powiedz, czy tak mają brzmieć — najważniejszy jest
-      zad. 1 krok 2, bo to twój przykład i po nim ustawiłem resztę
-      - opisy są teraz łamane na krótkie linijki, a wzory stoją w osobnych wierszach
-      - z pierwszych kroków zniknęły zdania w rodzaju „zaczynamy od równania z wartością
-        bezwzględną", zostało samo „zapisujemy"
-      - poza wzorami nie ma już myślników ani podkreśleń
-
-    - sprawdź na telefonie, czy długie opisy się mieszczą i nic nie ucieka poza ekran
-      - u mnie strona nie przewija się w bok przy żadnym z nich
-
-    - zasady, wedle których to pisałem, siedzą w manimations/README.md (dwie nowe sekcje
-      na końcu) — jeśli któraś jest źle spisana, popraw ją tam, bo z niej będę korzystał
-      przy następnych arkuszach
-
-
-  - v30, filmy krok po kroku — zad. 5 i 6 przerobione od zera, zad. 3 rozjaśnione
-
-    - zad. 5 krok 2 — 60 000 ma zjechać POD kreskę ułamka, a nie do licznika, a (1+p)^2
-      ma się przesunąć w lewo, a nie zniknąć i pojawić się na nowo
-      - to był twój przykład, więc zacznij od niego
-
-    - zad. 5 i 6 w całości — czy ruch znaków zgadza się z rachunkiem
-      - koloru jest teraz mniej: zielone jest tylko to, co się faktycznie rusza albo zmienia,
-        a nie całe wyrażenie
-      - żaden krok nie kończy się już na kolorowej klatce, kolor gaśnie przed końcem filmu
-
-    - zad. 6 ma teraz SIEDEM kroków zamiast sześciu — skracanie rozbiłem na dwa
-      - najpierw znika \((x+1)\), potem \(x\) z \(x^{2}\)
-      - w jednym kroku działy się cztery rzeczy naraz i nie dało się tego pokazać uczciwie
-      - powiedz, czy tak jest lepiej, czy wolisz z powrotem sześć
-
-    - zad. 6 krok 4 — skracane \((x+1)\) są najpierw przekreślane na czerwono, tak jak
-      na kartce, i dopiero potem znikają
-
-    - zad. 3 kroki 2, 4 i 6 — przyciemniona część zapisu ma się rozjaśniać PRZED końcem
-      kroku, więc następny film startuje z tego samego obrazu
-      - w kroku 6 został jeszcze szary nawias domykający, to jedyne miejsce, gdzie się
-        nie zgadza
 
 
 <br>
@@ -204,6 +129,47 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + INNE NOTATKI, DO PRZEKMINIENIA:
   
+  + Zweryfikować poprawność:
+    - Zad 9 -> Sprawdzanie obliczeń -> Pierwszy checkbox
+
+    - poprawność matematyczna treści w arkuszu — rozwiązania krok po kroku (zad. 1–9,
+      komplet po v27) i ich opisy pod filmem
+
+      - opisy pod filmami (v29, 51 sztuk, wg zasad z manimations/README.md): krótkie linijki,
+        wzory w osobnych wierszach, bez wstępów typu „zaczynamy od…”, bez myślników/podkreśleń
+        poza wzorami — sprawdzić brzmienie i czy nic nie ucieka poza ekran na telefonie
+
+      - zad. 1
+        - Rozwiązanie krok po kroku:
+          - krok 2 — Twój przykład, na nim wzorowana reszta opisów (v29), przeczytać najpierw
+
+      - zad. 3
+        - Rozwiązanie krok po kroku:
+          - kroki 2, 4 i 6 — przyciemniona część zapisu ma się rozjaśniać PRZED końcem kroku (v30)
+
+      - zad. 5
+        - Rozwiązanie krok po kroku (przerobiona od zera w v30):
+          - krok z pierwiastkowaniem — sprawdzić wyjaśnienie, dlaczego bierzemy tylko wartość dodatnią
+          - 60 000 ma zjechać POD kreskę ułamka, a \((1+p)^2\) przesuwa się w lewo (nie znika/pojawia)
+          - całość (razem z zad. 6) — czy ruch znaków zgadza się z rachunkiem; kolor tylko na tym,
+            co się faktycznie zmienia, gaśnie przed końcem filmu
+
+      - zad. 6
+        - Rozwiązanie krok po kroku (przerobiona od zera w v30):
+          - teraz SIEDEM kroków zamiast sześciu (skracanie rozbite na dwa: najpierw \((x+1)\),
+            potem \(x\) z \(x^2\)) — czy tak jest lepiej, czy wrócić do sześciu
+          - krok 4 — skracane \((x+1)\) przekreślane na czerwono, jak na kartce, dopiero potem znikają
+
+      - zad. 7
+        - Rozwiązanie krok po kroku:
+          - oba równania układu jadą jedno pod drugim przez cały film — sprawdzić, czy klamra
+            z dwoma równaniami nie jest za mała na telefonie
+
+      - zad. 9
+        - Rozwiązanie krok po kroku:
+          - film robi sam rachunek, NIE rysuje paraboli (widżet niżej już ją pokazuje interaktywnie)
+            — czy to dobry podział, czy parabola ma być też w filmie
+
   + ULEPSZANIE WORKFLOW (skopiowane z NOTATKI_USERA)
     - Schedule adversarial review lub /code-review
     - Stworzyć/pobrać potrzebne mi skille do tego projektu

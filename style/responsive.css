@@ -112,6 +112,16 @@
     .zglos-blad-okno {
         padding: 20px 12px;
     }
+    /* Blok odpowiedzi na pełną szerokość karty. Bazowe .button-container ma
+       width: 90% (style/sheet.css) — na telefonie ścinało to ramkę
+       „Sprawdzania obliczeń" i pole na notatki do 319 px, podczas gdy
+       rozwiązanie i formularz zgłoszenia mają 354 px, więc trzy ramki jednej
+       karty stały w trzech różnych miejscach (Henrich, TODO). 90% ma sens na
+       desktopie, gdzie trzyma siatkę przycisków A/B/C/D w węższej kolumnie;
+       na 390 px ta rezerwa jest tylko stratą miejsca. */
+    .answers-container {
+        width: 100%;
+    }
     #exercises-wrapper {
         padding-top: 56px;
     }
