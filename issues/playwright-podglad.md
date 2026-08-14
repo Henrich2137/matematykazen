@@ -93,6 +93,15 @@ page.on('console', m => {
 });
 ```
 
+## Wideo H.264 — działa lokalnie, nie działało w chmurze
+
+Chromium Playwrighta **odtwarza w tym kontenerze filmy `.mp4` (H.264)** — sprawdzone
+2026-08-12 wprost na plikach arkusza, więc kroki rozwiązania testuje się na oryginałach,
+bez kombinowania z kopiami WebM. Ograniczenie z 2026-08-11 dotyczyło tylko **kontenera
+chmurowego**: tam Chromium nie miało kodeka, a Chrome'a nie dało się doinstalować, bo
+firewall blokuje `dl.google.com`. Jeśli kiedyś odezwie się to samo w chmurze — logikę
+odtwarzacza da się sprawdzić na kopiach WebM, a same pliki mp4 osobno przez ffmpeg/SSIM.
+
 ## Czego tu NIE ma
 
 Tylko Chromium. Firefox i WebKit potrzebowałyby własnych zestawów bibliotek systemowych i kolejnych setek MB — jeśli kiedyś będą potrzebne, dochodzą do komendy `install` i do listy pakietów w Dockerfile.

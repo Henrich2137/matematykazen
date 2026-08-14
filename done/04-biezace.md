@@ -1,5 +1,38 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-14] (Opus 5, high) Sprzątanie sekcji „DOPISANE PRZEZ CLAUDE-A" w TODO.md.
+[porzadki, todo, dokumentacja]
+
+Rozdysponowane wg komentarzy Henricha pisanych WIELKIMI LITERAMI. Gdzie co poszło:
+
+- **na górę, do „HENRICH MÓWI MA TO SENS"** (skrócone do jednej-dwóch linijek): domena
+  matematykazen.pl jako FAZA 2.3 (URL „Required Notice" w LICENSE.md + wpis w firewallu
+  kontenera — dwa punkty złączone w jeden, bo mają ten sam wyzwalacz), kaskada progów
+  w kryteriach zadań 4-punktowych, tryb testowy zgłoszeń `?test-zgloszenie=1`, podmiana
+  pseudonimu na nazwisko.
+- **do `DO ZROBIENIA HOŚCIE`**: sprawdzenie devcontainera na Kubuntu/Dockerze (wymaga
+  drugiej maszyny, więc nie jest to zadanie dla modelu w kontenerze).
+- **do `NIE REALIZUJ, CZEKAJĄ W KOLEJCE`**: martwe `finalAnswer.label` w danych — obok
+  bliźniaczego `solutionTextMore`.
+- **do `ULEPSZANIE WORKFLOW`**: „stworzyć własne skille pod ten projekt" (z punktu o skillach
+  zostało tylko to; pobieranie i wpinanie jest zrobione). Przy okazji zdjęte stamtąd trzy
+  pozycje oznaczone DONE — plugin frontend-design, superpowers i zasada o tłumaczeniu.
+- **skasowane jako już opisane gdzie trzeba**: trzy notatki o devcontainerze (sockety VS Code,
+  `sudo` bez SETUID/SETGID, dozwolone domeny jako kanał danych) — wszystkie trzy są
+  w `.devcontainer/README.md`, sekcje „Czego to NIE chroni" i „`--cap-drop=ALL` bez wyjątków";
+  nazwa rewersu dokładana przez odtwarzacz — `issues/krok-po-kroku-produkcja.md`; awaryjne
+  przyciski „0..N pkt" bez `gradingCriteria` — `ARCHITECTURE.md`; decyzje projektowe z paczki
+  v15 (Sonnet) i z odtwarzacza v20 — opisane w tym pliku przy swoich wpisach, a Henrich je
+  przyjął po testach.
+- **przeniesione do plików**: ostrzeżenie o `python3 -m http.server` przy pracy nad wideo →
+  `manimations/README.md`, punkt 5 workflow (Henrich prosił, żeby leżało tam, gdzie się
+  renderuje filmy); H.264 w Chromium — działa lokalnie, nie działało w chmurze →
+  `issues/playwright-podglad.md`; kontrast `--text-faint-2/-3` i cienie kropek wskaźników →
+  `ARCHITECTURE_CSS.md`, przy opisie tokenów.
+
+[ZROBIONE 2026-08-14] (Henrich — testy) odbiór v32, panel boczny w lewym górnym rogu: strzałka nad welonem działa w obu motywach, biały prostokąt tła pod logo zostaje (zdjęcie go przepuszczało treść zadania spod napisu — wariant odrzucony przy v32). Punkt zamknięty.
+[ui, sidebar, testy, odbior]
+
 [ZROBIONE 2026-08-14] (Opus 5, high) v33 — wczytywanie kroków: prefetch, który naprawdę działa, i kropki zamiast pulsowania kadru.
 [krok-po-kroku, wideo, wydajnosc, ui, css]
 

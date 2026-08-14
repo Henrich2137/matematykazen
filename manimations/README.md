@@ -63,6 +63,8 @@ Wniosek: kontener nadaje się także do **finalnych** renderów, nie tylko do po
 
 `media/` w tym folderze to cache Manim (Tex/svg, obrazy, wideo pośrednie) — odtwarzalny z plików `.py`, dlatego wyklucza go `manimations/.gitignore`.
 
+5. Obejrzeć wynik na stronie **wyłącznie przez `node tools/serwer.js 8000`**. `python3 -m http.server` **nie nadaje się do pracy nad wideo**: nie obsługuje żądań zakresowych (`Range`), a bez nich przeglądarka nie potrafi przewinąć filmu — `video.seekable` zostaje pusty, a każde ustawienie `currentTime` cicho wraca do zera. Wygląda to jak błąd w kodzie odtwarzacza i raz już nim nie było (2026-08-11, sporo straconego czasu). Sprawdzian: `curl -s -o /dev/null -w "%{http_code}\n" -r 0-100 <url filmu>` ma zwrócić **206**, nie 200.
+
 ## Jak ma wyglądać animacja (zasady Henricha, 2026-08-12)
 
 Wszystkie trzy wyszły z jego przeglądu zadań 3, 5 i 6 (v27). Łamie je automatyczne

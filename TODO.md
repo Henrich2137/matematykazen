@@ -4,19 +4,8 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.
 
-  - Posprzątaj w sekcji "DOPISANE PRZEZ CLAUDE-A" wg komentarzy henricha napisanych WIELKIMI LITERAMI. 
-    - Punkty oznaczone jako "NA GÓRĘ" dopisz zgodnie z zasadami w podsekcji "HENRICH MÓWI "MA TO SENS", STĄD MOŻE WESPNĄ SIĘ JESZCZE WYŻEJ".
-    - Z punktami oznaczonymi do archiwizacji zrób to co uważasz: todo/ issues/ lub inne pliki .md albo wyrzuć w zapomienie jeśli miałoby wprowadzać w błąd.
-
-  - Odpraw poniższy punkt do done. To jest już zrobione:
-    - panel boczny, lewy górny róg (po testach v32):
-      - strzałka wychodzi nad welon tylko w ciemnym motywie — w jasnym dalej przygaszona
-      - zdjąć biały prostokąt tła spod logo (Henrichowi nie leży); logo nie musi wychodzić
-        nad welon, wystarczy sama strzałka — więc i problem przebijającej treści zadania znika
-    HENRICH: TUTAJ TEŻ JUŻ JEST ZROBIONE, do odprawy
-
-  - Dodatkowo: jeśli skończysz ładnie te wszystkie rzeczy do wykonaj poniższe punkty oznaczone jako "DODATKOWO"
-
+  - nic. Zostaje jeszcze punkt oznaczony "DODATKOWO" w kolejce niżej
+    (logo pod welonem przy otwartym panelu bocznym na telefonie).
 
 
 <br>
@@ -37,6 +26,9 @@ Oto plik który tworzy Henrich (ja, użytkownik).
   
   - usunąć całkowicie „solutionTextMore" — z wszystkich exercises.json i z template.html/JS,
     nie ma już żadnego odbiorcy
+
+  - to samo do decyzji z „finalAnswer.label": renderer je ignoruje (świadomie, od 2026-08-06),
+    a pole nadal siedzi w danych wszystkich arkuszy
   
   DODATKOWO
   - Na telefonie, odczas odpalonego sidebara logo powinno być ono przygaszone, z tyłu i nieklikalne. Klijknięcie powinno powodować wyłączenie sidebara (bo pomiędzy jest welon czy coś)
@@ -74,7 +66,8 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + DO ZROBIENIA HOŚCIE (POZA KONTENEREM)
 
-  - nic
+  - sprawdzić devcontainer na Kubuntu/Dockerze — testowany był tylko pod rootless podmanem
+    na Bazzite (opis środowiska: .devcontainer/README.md)
 
 
 <br>
@@ -156,11 +149,8 @@ Oto plik który tworzy Henrich (ja, użytkownik).
   + ULEPSZANIE WORKFLOW
     - Schedule adversarial review lub /code-review
     - wyłączyć skróty które powodują, że przeklikuje pytanie podczas pisania prompta
-    - rozkminić, poszukać, poinstalować, pouczyć się - pluginy różne:
-      - frontend-design@claude-plugins-official DONE
-      - superpowers DONE
-    - Przekminić i dodać zasadę dotyczącą tłumaczenia mi (Henrichowi) rzeczy
-      - jak mam przeprowadzić test DONE
+    - stworzyć własne skille pod ten projekt (np. wpinanie nowego arkusza, weryfikacja
+      formulasPage) — gotowe pluginy są już wpięte
 
   + UI
 
@@ -223,121 +213,34 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + DOPISANE PRZEZ CLAUDE-A
 <br> Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz issues/README.md.
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI, ZAZWYCZAJ NA KOŃCU PUNKTU.
-  
+
   + HENRICH MÓWI "MA TO SENS", STĄD MOŻE WESPNĄ SIĘ JESZCZE WYŻEJ:
-    
-    - FAZA 2.3
-      - WKLEJ NP. DOT. MATEMATYKAZEN.PL
-    
+
+    - FAZA 2.3 — gdy ruszy matematykazen.pl:
+
+      - podmienić URL w LICENSE.md:2 („Required Notice" — tę linijkę kopiuje każdy
+        redystrybutor) oraz w README.md; dziś oba wskazują na GitHub Pages
+
+      - odkomentować wpis matematykazen.pl w CONTENT_DOMAINS w .devcontainer/init-firewall.sh
+        (dziś domeny nie ma w DNS)
+
     - FAZA 3.
       - WKLEJ CO TAM PODPASUJE
 
-    - WKLEJ TU INNE OZNACZONE "NA GÓRE"
-  
-  
-  + SONNET DOPISAŁ:
+    - INNE:
 
-    - Tryb testowy dla zgłaszania błędów (app/report.js): przycisk „Wyślij zgłoszenie" zamieniony na „Wyślij zgłoszenie lokalnie"
-      - (np. pod `?test-zgloszenie=1`, wzorem `?test-egzamin=1`), który loguje payload do konsoli/localStorage zamiast robić fetch do Formspree — żeby testować całą ścieżkę (walidacja, honeypot, throttling, toast) bez zużywania miesięcznego limitu 50 zgłoszeń.
-      DO SKRÓCENIA, NA GÓRE
-      
-  + Sonnet 5, high — paczka drobiazgów UI (v15, 2026-08-10):
+      - kryteria zadań 4-punktowych to kaskada progów z klucza CKE, więc uczeń, który zaznaczy
+        sam „poprawny wynik", dostanie 1 pkt zamiast 4 — czy wyższy próg ma sam zaznaczać niższe?
 
-    - Dwa z pięciu punktów tej paczki nie były w spec docu, tylko dopisane obok niego w TODO.md
-      z pytajnikiem/bez konkretnej decyzji projektowej. Zrobiłem je własnym osądem, warto zerknąć:
-      „Sprawdź wszystkie odpowiedzi" jako podpunkt pod „Poprawność" — przeniosłem 1:1 wzorem
-      Zegara/Wskaźników pod egzaminem (ta sama klasa `.sidebar-sub`, teraz uogólniona z
-      `.sidebar-ustawienie.sidebar-sub` na `.sidebar-sub` żeby działała też na `.sidebar-akcja`).
-      Pigułki formularza zgłoszenia — wybrałem jednolite `flex: 1 1 calc(50% - 4px)` (zawsze dwie
-      w rzędzie, długie nazwy łamią się na dwie linijki) zamiast różnicować szerokość per pigułka —
-      prostsze i zgodne z „nie przekombinuj" z TODO, ale to była moja decyzja, nie Twoja specyfikacja.
-      DO SPRAWDZENIA, PRZENIESIENIA / ARCHIWIZACJI / WYRZUCENIA I/LUB AKTUALIZACJI
+      - tryb testowy zgłaszania błędów pod ?test-zgloszenie=1 (wzorem ?test-egzamin=1): zapis
+        do konsoli zamiast wysyłki, żeby testy nie zjadały limitu 50 zgłoszeń na miesiąc
+
+      - gdy zdecydujesz się upublicznić imię i nazwisko: podmienić pseudonim Henrich2137
+        w LICENSE.md, CONTRIBUTING.md i stopkach html — CLA na pseudonim jest słabsze
+        dowodowo (issues/licencja-i-cla.md)
 
 
-  + Opus 5, medium
-
-    - Gdy Henrich zdecyduje się upublicznić imię i nazwisko, trzeba podmienić pseudonim `Henrich2137` na dane osobowe w poniższych miejscach. CLA na pseudonim jest słabsze dowodowo niż na nazwisko.
-      - `LICENSE.md` (linie 1–2: copyright + Required Notice)
-      - `CONTRIBUTING.md` (punkt 2 zgody na licencjonowanie wkładu)
-      - stopki w plikach html
-    DO SKRÓCENIA, NA GÓRE
-
-    - Gdy ruszy domena matematykazen.pl, podmień URL w `LICENSE.md:2` (Required Notice — ta linia jest kopiowana przez każdego redystrybutora) i `README.md`; w OVERVIEW.md domena jest już opisana jako plan Fazy 2.
-    DO SKRÓCENIA, NA GÓRE
-
-  + Opus 5, high — devcontainer, 2026-08-06:
-
-    - Sprawdzić nowy devcontainer na Kubuntu/Dockerze. Zmiany testowałem tylko pod rootless podmanem na Bazzite; `docker exec --privileged` działa tak samo, ale nie miałem jak tego odpalić.
-    DO SPRAWDZENIA, PRZENIESIENIA / ARCHIWIZACJI / WYRZUCENIA I/LUB AKTUALIZACJI
-
-    - VS Code wpuszcza do kontenera socket ssh-agenta, gpg-agenta, X11 i Waylanda oraz podpina git credential helper hosta — omija to firewall (to nie jest ruch sieciowy). Wyłączalne tylko częściowo: `dev.containers.mountWaylandSocket: false` i `dev.containers.gitCredentialHelperConfigLocation: "none"` (uwaga: to drugie zabierze pushowanie po HTTPS bez tokena w kontenerze). Dla ssh-agenta i X11 rozszerzenie nie ma przełącznika — sprawdziłem package.json wersji 0.463.0.
-    DO SPRAWDZENIA, PRZENIESIENIA / ARCHIWIZACJI / WYRZUCENIA I/LUB AKTUALIZACJI
-
-    - `sudo` w kontenerze przestało działać (świadomie, `--cap-drop=ALL` bez wyjątków). Jeśli okaże się potrzebne do czegoś realnego, trzeba dodać `--cap-add=SETUID --cap-add=SETGID` — ale NIE `NET_ADMIN`, bo to znów pozwoli rozbroić firewall od środka.
-    DO SPRAWDZENIA, PRZENIESIENIA / ARCHIWIZACJI / WYRZUCENIA I/LUB AKTUALIZACJI
-
-    - Świadomie NIEdomknięta dziura w firewallu, do ewentualnej decyzji: dozwolone domeny (GitHub, npm) są z natury kanałem na dane — nie da się usunąć bez odcięcia gita. (Punkt o przepuszczonej bramie/panelu routera zniknął stąd 2026-08-10 — brama jest już zawężona do samego portu 53, patrz `.devcontainer/README.md`, sekcja „Brama: `/24` → `/32` → tylko port 53".)
-    DO SPRAWDZENIA, PRZENIESIENIA / ARCHIWIZACJI / WYRZUCENIA I/LUB AKTUALIZACJI
-
-  + OPUS DOPISAŁ (Opus 5, medium) — po paczce z 2026-08-06:
-
-    - Zadania otwarte bez `gradingCriteria` w danych nadal renderują stare przyciski „0..N pkt" (awaryjna ścieżka w app/render.js). Dziś takich zadań nie ma — przy wpinaniu NOWEGO arkusza trzeba pamiętać o kryteriach, inaczej zadanie po cichu wróci do starego UI.
-    DO SPRAWDZENIA
-
-    - `finalAnswer.label` w exercises.json nie ma już odbiorcy (renderer je ignoruje). Zostawione we wszystkich arkuszach — do decyzji, czy kiedyś wyczyścić dane.
-    DO SPRAWDZENIA
-
-    - Kryteria dla zadań 4-punktowych są kaskadą progów z klucza CKE, więc uczeń, który zaznaczy tylko „poprawny wynik", dostanie 1 pkt zamiast 4. Do przemyślenia, czy zaznaczenie wyższego progu nie powinno automatycznie zaznaczać niższych.
-    NA GÓRĘ
-
-  + OPUS DOPISAŁ (Opus 5, medium) — 2026-08-07, narzędzia:
-
-    - Skille superpowers są już wpięte (scope project, jadą z repo) — szczegóły w CLAUDE.md, sekcja „Claude Code — plugins / skills". Widać je dopiero PO RESTARCIE sesji Claude Code. Z punktu „Stworzyć/pobrać potrzebne mi skille" zostaje więc już tylko „stworzyć": własne skille pod ten projekt (np. wpinanie nowego arkusza, weryfikacja formulasPage).
-    DO SPRAWDZENIA, PRZENIESIENIA / ARCHIWIZACJI / WYRZUCENIA I/LUB AKTUALIZACJI
-
-    - Dwa punkty z „ULEPSZANIE WORKFLOW" wyglądają na zrobione i chyba należą do done/ — zostawiam decyzję Tobie, bo to Twoja sekcja: „uruchomienie całego VS Code w Dev Container" (zrobione 2026-08-06) i część „pobrać skille" (2026-08-07).
-    DO PRZENIESIENIA / ARCHIWIZACJI / WYRZUCENIA I/LUB AKTUALIZACJI
-
-
-  + OPUS DOPISAŁ (Opus 5, medium) — 2026-08-09, kontener:
-
-    - Gdy `matematykazen.pl` ruszy: odkomentować wpis w `CONTENT_DOMAINS` w `.devcontainer/init-firewall.sh` (dziś domena nie istnieje w DNS) i przy okazji poprawić `Required Notice:` w LICENSE.md, które wciąż wskazuje na GitHub Pages.
-    NA GÓRĘ
-
-  + OPUS DOPISAŁ (Opus 5, high) — 2026-08-11, odtwarzacz krok po kroku (v20):
-
-    - Decyzje, które podjąłem sam, bo nie było ich w Twoich punktach — do ewentualnej korekty:
-      - kropka „obecna" przeskakuje na prawą po dobiegnięciu filmu (patrz TESTOWANIE wyżej); JUŻ CHYBA NIE
-      - odcinki między kropkami mają zawsze cienką kreskę, a wypełnia się tylko ten bieżący;
-      - krok bez opisu w danych w ogóle nie pokazuje przycisku ROW 3, zamiast otwierać pustkę.
-    JEST OKEJ, DO PRZENIESIENIA / ARCHIWIZACJI / WYRZUCENIA I/LUB AKTUALIZACJI
-
-
-    - Nazwa rewersu NIE jest w exercises.json — odtwarzacz dokłada `reverse` przed rozszerzeniem
-      nazwy z pola `src`. Wpinając nowy arkusz pamiętaj, żeby puścić `tools/rewersy.sh`, inaczej
-      ◄ nie ma czego odtworzyć (przy braku pliku krok po prostu nie cofnie się animacją).
-
-
-    - `python3 -m http.server` NIE nadaje się do pracy nad wideo: nie obsługuje żądań zakresowych,
-      więc przewijanie filmu cicho nie działa i wygląda to jak błąd w kodzie. Kosztowało mnie to
-      sporo szukania nieistniejącej usterki. Dopisane do CLAUDE.md i issues/krok-po-kroku-produkcja.md.
-      ZAPISZ W WIDOCZNYM MIEJSCU DLA SIEBIE NP W README MANIMATIONS CZY COS
-
-    - Chromium z Playwrighta w chmurowym kontenerze NIE ODTWARZA H.264 (brak kodeka), a Chrome
-      nie da się doinstalować, bo firewall blokuje dl.google.com. Logikę odtwarzacza sprawdziłem
-      na kopiach WebM, a same pliki mp4 osobno przez ffmpeg/SSIM. Czego NIE dało się u mnie
-      sprawdzić: realnego odtwarzania tych konkretnych mp4 w przeglądarce i zachowania na telefonie.
-      - SPROSTOWANIE 2026-08-12 (Opus 5, high): w kontenerze LOKALNYM H.264 odtwarza się bez
-        problemu — sprawdzone na plikach arkusza. Ograniczenie dotyczyło tylko chmury.
-    DO PRZENIESIENIA / ARCHIWIZACJI / WYRZUCENIA I/LUB AKTUALIZACJI
-
-  + FABLE DOPISAŁ (Fable 5, po paczce 4 „Spójność UI etap 2", 2026-08-09):
-
-    - W jasnym motywie --text-faint-2 (#909090, 3.3:1) i --text-faint-3 (#999, 2.8:1) są poniżej WCAG AA (4.5:1) przy 13–14px tekstach (etykiety „miejsce na notatki"/samooceny, uchwyty paneli PDF). Paczka 4 poprawiła tylko --text-faint (mierzone elementy landingu i stopek); te dwa tokeny do decyzji — przyciemnienie zmieni sporo drobnych etykiet naraz.
-    NIC Z TEGO NIE ROZUMIEM, NIE WYGLĄDA NA SPECJALNIE ISTOTNE, DO PRZENIESIENIA / ARCHIWIZACJI / WYRZUCENIA I/LUB AKTUALIZACJI
-
-    - Cienie kropek wskaźników (0 1px 4px w exam.css) świadomie zostały poza tokenem — dwa drobne, powiązane znaczeniowo wystąpienia; tokenizować dopiero, gdyby doszło trzecie.
-    DO PRZENIESIENIA / ARCHIWIZACJI / WYRZUCENIA I/LUB AKTUALIZACJI
+  (poniżej modele dopisują nowe punkty, każdy pod własnym nagłówkiem z modelem i effortem)
 
 
 <br>
