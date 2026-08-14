@@ -131,7 +131,7 @@
        aspect-ratio: 16/9), więc nie ma tu czego nadpisywać — zostaje tylko
        zdjęcie górnej granicy, żeby na telefonie film szedł na całą szerokość. */
     .solution-step-by-step-container video,
-    .steps-content {
+    .steps-kadr {
         max-width: none;
     }
     /* Film wychodzi poza padding panelu rozwiązania (20px z każdej strony) na

@@ -15,6 +15,8 @@ Oto plik który tworzy Henrich (ja, użytkownik).
         nad welon, wystarczy sama strzałka — więc i problem przebijającej treści zadania znika
     HENRICH: TUTAJ TEŻ JUŻ JEST ZROBIONE, do odprawy
 
+  - Dodatkowo: jeśli skończysz ładnie te wszystkie rzeczy do wykonaj poniższe punkty oznaczone jako "DODATKOWO"
+
 
 
 <br>
@@ -27,24 +29,16 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     - Kroki mają za długie „czekania" na początku i na końcu filmu (wait() w Manimie) — wyciąć.
       Małe waity w środku kroku, między pojedynczymi animacjami, są okej. Najmocniej widać w zad. 1.
 
-    - Wczytywanie filmów: albo pobierać je dużo wcześniej niż w chwili kliknięcia, albo zbić framerate.
-      - pulsowanie kadru jest irytujące — wyrzucić je
-      - zamiast niego prosta, minimalistyczna animacja na dole ekranu (trzy kropki albo kółko jak na YT),
-        pokazująca się dopiero po ~500 ms
-      - dziś pulsowanie miga przy każdej zmianie kierunku i przy spamowaniu ► wygląda, jakby strona
-        ładowała się bez końca
-
-    - Prefetch filmów nie działa (testowane na Chrome): przy czekaniu wykres sieci jest płaski, spajki pojawiają się dopiero przy klikaniu. W logach widać zapis do cache, ale odtwarzacz z niego nie korzysta.
-
     - Zad. 1, kropki kroków: przy większej liczbie kroków niż mieści pasek ma być można
       przewijać (dziś sprawdzone tylko dla dziesięciu, które mieszczą się bez przewijania)
       - kropki są na granicy wygody dla kciuka na telefonie — rozważyć lekkie powiększenie
         (w v31 zrobione tylko marginesy boczne, rozmiar bez zmian)
-    
 
+  
   - usunąć całkowicie „solutionTextMore" — z wszystkich exercises.json i z template.html/JS,
     nie ma już żadnego odbiorcy
-
+  
+  DODATKOWO
   - Na telefonie, odczas odpalonego sidebara logo powinno być ono przygaszone, z tyłu i nieklikalne. Klijknięcie powinno powodować wyłączenie sidebara (bo pomiędzy jest welon czy coś)
 
 
@@ -55,7 +49,16 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945 
 
-  - nic
+  - wczytywanie kroków (v33)
+
+    - wejdź w „Rozwiązanie" w zad. 1 i przeklikaj ► kilka razy — kadr nie ma już ani pulsować, ani przygasać
+
+    - poczekaj na krok przy słabym zasięgu — na dole filmu mają się pokazać trzy kropki, dopiero po pół sekundy
+
+    - spamuj ► i ◄ — kropki nie powinny migać przy każdym kliknięciu
+
+    - wejdź w zadanie, odczekaj kilka sekund przed kliknięciem „Rozwiązanie", potem przeklikaj kroki —
+      powinny wchodzić natychmiast, bez czekania na film
 
 
 <br>
@@ -83,15 +86,15 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     - Obgadać z Opusem czy używać Fable z superpowers, subagentami itd.
       - Subagentci: Czy powinienem puścić Fable mając duży zapas limitu aby Opusy i Sonnety będące subagentami mogły z niego korzystać odciążając fable?
 
-    
   - Fable:
+    - Interaktywne rozwiązania matury 2026
+    - Lista checkboxów "Sprawdzanie rozwiązania"
+    - Weryfikacja poprawności matematycznej
+    - Usprawnienie struntury projektu
     - Analiza kosztów długoterminowych - Symulacja: co się stanie przy 1k, 10k, 100k użytkowników na danym stacku (koszty, limity, throttling)
     - Punkty krytyczne (failure points)
-    - Weryfikacja poprawności matematycznej
-    - Lista checkboxów "Sprawdzanie rozwiązania"
-    - Interaktywne rozwiązania matury 2026
-    - Usprawnienie struntury projektu
-
+    
+    
 
   + Zweryfikować poprawność matematyczną:
 

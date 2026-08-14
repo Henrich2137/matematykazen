@@ -1,5 +1,37 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-14] (Opus 5, high) v33 — wczytywanie kroków: prefetch, który naprawdę działa, i kropki zamiast pulsowania kadru.
+[krok-po-kroku, wideo, wydajnosc, ui, css]
+
+Dwa punkty „DODATKOWO" z TODO.md, oba o czekaniu na film.
+
+1. **Prefetch nie docierał do odtwarzacza** (zgłoszenie Henricha: „w logach widać zapis do
+   cache, ale odtwarzacz z niego nie korzysta"). Pobieranie w tle było zwykłym `fetch`em
+   liczącym na to, że `<video>` weźmie plik z cache'u HTTP przeglądarki. `<video>` pyta
+   jednak ŻĄDANIEM ZAKRESOWYM, a to trafia w cache tylko przy komplecie warunków (walidator
+   od serwera, cache'owalna odpowiedź, brak „Disable cache" w DevTools, chętna przeglądarka).
+   Teraz pobrany plik zostaje u nas jako `Blob`, a `<video>` dostaje adres `blob:` — podmiana
+   kroku nie kosztuje ani jednego bajtu z sieci. Zmierzone Playwrightem: po otwarciu
+   rozwiązania i pięciu przejściach **0 żądań mp4** (wcześniej jedno na krok).
+   Budżet pamięci 64 MB z LRU (cały arkusz 2024-grudzień to ~9 MB), nigdy nie zwalniamy
+   adresu, który siedzi w kadrze. Do tego priorytet dla widza: gdy odtwarzacz sam musi
+   sięgnąć do sieci, kolejka **przerywa** swoje pobranie i milknie na 2 s, a przerwany plik
+   wraca na jej czoło — na wolnym łączu pasmo idzie do filmu, na który ktoś patrzy.
+   `<video>` niesie teraz `data-plik` ze ścieżką, bo z „blob:…" nie widać, który to krok
+   (czyta to tools/test-krokow.js).
+
+2. **Pulsowanie kadru wyrzucone.** Zamiast pulsu tła i przygaszania obrazu jest
+   `.steps-ladowanie`: trzy kropki w pigułce przy dolnej krawędzi kadru, wchodzące dopiero
+   po 500 ms (`transition-delay`), gasnące natychmiast. Obraz zostaje nietknięty, więc nic
+   już nie miga przy zmianie kierunku ani przy spamowaniu ►. Wskaźnik musiał zamieszkać
+   poza `.steps-content` (ten dostaje `replaceChildren` przy każdej podmianie), stąd nowa
+   owijka `.steps-kadr` — przejęła też ograniczenie szerokości i margines, żeby margines nie
+   przeciekał poza kadr.
+
+Sprawdzone: tools/test-krokow.js na szybkim i na zdławionym serwerze (60 kB/s) — komplet bez
+zastrzeżeń; geometria kadru bez zmian (608×342 desktop, 447×251 telefon, brak poziomego
+scrolla); zrzuty kropek w obu motywach, nad pustym kadrem i nad poprzednim krokiem.
+
 [ZROBIONE 2026-08-14] (Opus 5, medium) Plugin frontend-design przeniesiony do `.claude/settings.json` — jedzie z repo.
 [pluginy, konfiguracja]
 

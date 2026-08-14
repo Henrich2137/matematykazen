@@ -139,7 +139,7 @@
              (vX Beta, X += 1 — np. v10 Beta → v11 Beta → …), żeby po
              odświeżeniu na telefonie było widać, czy strona wczytała już
              nową wersję. Ta sama wartość musi być w .landing-logo w index.html. -->
-        <a id="logo" href="index.html"><b>Matematyka Zen</b> <span id="wersja">v32 Beta</span></a>
+        <a id="logo" href="index.html"><b>Matematyka Zen</b> <span id="wersja">v33 Beta</span></a>
         <!-- Strzałka otwierająca panel boczny — następca przycisku „⋯". Ten sam
              przycisk zamyka (obraca się o 180°); JS przestawia aria-expanded
              i aria-label. -->
@@ -435,7 +435,19 @@
                      wyjaśnienie. Kropki i odcinki buduje zbudujKropki()
                      w app/steps.js — jest ich o jedną więcej niż filmów. -->
                 <div class="solution-step-by-step-container">
-                    <div class="steps-content"></div>
+                    <!-- Kadr = miejsce zarezerwowane na film (.steps-content, jego
+                         treść wymienia pokazKrok) plus wskaźnik ładowania leżący
+                         NAD nim. Wskaźnik musi być poza .steps-content, bo tamten
+                         przy każdej podmianie kroku dostaje replaceChildren. -->
+                    <div class="steps-kadr">
+                        <div class="steps-content"></div>
+                        <!-- Trzy kropki zamiast dawnego pulsowania kadru (Henrich,
+                             TODO): pokazują się dopiero po ~500 ms, opóźnieniem
+                             w CSS, więc przy szybkim łączu nic nie mruga. -->
+                        <div class="steps-ladowanie" aria-hidden="true">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
 
                     <div class="steps-dots-row">
                         <button class="steps-scroll steps-scroll-lewo" type="button"

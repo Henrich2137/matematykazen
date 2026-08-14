@@ -780,6 +780,7 @@ function loadExercises() {
         // mieszka w app/steps.js. Tu tylko zbieramy refy DOM kroków, budujemy stan
         // wspólny (krokiCtx) i podpinamy strzałki ◄/► oraz przycisk "Rozwiązanie".
         const stepsContent = solutionStepByStepContainer.querySelector(".steps-content");
+        const kadr = solutionStepByStepContainer.querySelector(".steps-kadr");
         const stepsNav = solutionStepByStepContainer.querySelector(".steps-nav");
         const prevBtn = stepsNav.querySelector(".step-prev");
         const playBtn = stepsNav.querySelector(".step-play");
@@ -843,6 +844,7 @@ function loadExercises() {
             dlugoscPrzod: 0,
             steps,
             stepsContent,
+            kadr,
             prevBtn,
             playBtn,
             nextBtn,

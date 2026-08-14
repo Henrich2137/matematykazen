@@ -1226,49 +1226,66 @@ body.sidebar-otwarty #sidebar-linia {
 }
 /* Rezerwuje miejsce na kadr, ZANIM film się wczyta — inaczej blok ma zerową wysokość i karta podskakuje, gdy obraz wskoczy (Henrich po testach v20).
    Proporcje bierzemy z pliku (--proporcje-filmu ustawia app/steps.js po odczytaniu metadanych); do tego czasu obowiązuje 16/9, czyli kadr, w którym są nowe filmy 720p. Wartość siedzi na .steps-content, bo to jedyny element przeżywający podmianę kroku — .step-video powstaje dopiero z filmem. */
-.steps-content {
-    aspect-ratio: var(--proporcje-filmu, 16 / 9);
+/* Kadr: kotwica (position: relative) dla wskaźnika ładowania. Ograniczenie
+   szerokości i margines siedzą TUTAJ, a nie na .steps-content — inaczej
+   margines przeciekłby poza kadr (position: relative nie tworzy BFC) i kropki
+   ładowania lądowałyby 10px pod dolną krawędzią filmu. */
+.steps-kadr {
+    position: relative;
     max-width: 640px;   /* to samo ograniczenie co film — inaczej rezerwacja
                            i obraz liczylyby rozna wysokosc */
     margin: 10px auto;
+}
+.steps-content {
+    aspect-ratio: var(--proporcje-filmu, 16 / 9);
     text-align: center;
 }
-/* Znak ładowania kadru: delikatny puls tła w zarezerwowanym miejscu na film.
-   Wybrany zamiast kręciołka, bo to czysty CSS — bez dodatkowego elementu
-   i bez skryptu, więc nie ma się co zepsuć. Klasę zdejmuje pokazKrok()
-   w chwili wstawienia filmu.
-   ZWŁOKA 200 ms zrobiona animation-delay przy starcie z przezroczystości: przy
-   szybkim łączu film pojawia się wcześniej i nic nie mrugnie (Henrich po
-   testach v21). Kontrast celowo niski — to tło, nie komunikat. */
-.steps-content.laduje {
-    animation: puls-ladowania 1.4s ease-in-out 200ms infinite;
+/* Znak ładowania kroku: trzy pulsujące kropki w pigułce przy dolnej krawędzi
+   kadru (zamiana 2026-08-14, Henrich po testach v32). Poprzednik — puls tła
+   plus przygaszanie całego obrazu — migał przy każdej zmianie kierunku i przy
+   spamowaniu ►, przez co strona wyglądała, jakby ładowała się bez końca.
+   Kropki nie ruszają obrazu: leżą NAD nim, jak kręciołek w odtwarzaczu wideo.
+   ZWŁOKA 500 ms zrobiona transition-delay (Henrich, TODO): przy szybkim łączu
+   krok podmienia się wcześniej i nic nie zdąży mrugnąć. Zgaszenie jest
+   natychmiastowe — opóźnienie ma tylko pojawienie się. */
+.steps-ladowanie {
+    position: absolute;
+    left: 50%;
+    bottom: 8px;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 5px;
+    padding: 6px 9px;
+    border-radius: var(--radius-pigulka);
+    background-color: var(--bg);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 120ms ease;
 }
-@keyframes puls-ladowania {
-    0%   { background-color: transparent; }
-    50%  { background-color: var(--bg-muted); }
-    100% { background-color: transparent; }
+.steps-kadr.laduje .steps-ladowanie {
+    opacity: 1;
+    transition: opacity 150ms ease 500ms;
 }
-/* To samo, ale gdy w kadrze wisi jeszcze POPRZEDNI krok (podwójny bufor).
-   Puls tła byłby wtedy schowany za filmem, więc przygasa sam obraz — czytelny
-   znak „ładuję następny", zamiast pozornie zamrożonej strony przy wolnym łączu.
-   Ta sama zwłoka 200 ms co wyżej: przy szybkim łączu nie zdąży nic mrugnąć. */
-.steps-content.podmiana .step-video,
-.steps-content.podmiana img {
-    animation: przygaszenie-kadru 1.4s ease-in-out 200ms infinite;
+.steps-ladowanie span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--text-faint);
+    animation: kropki-ladowania 1.2s ease-in-out infinite;
 }
-@keyframes przygaszenie-kadru {
-    0%   { opacity: 1; }
-    50%  { opacity: 0.45; }
-    100% { opacity: 1; }
+.steps-ladowanie span:nth-child(2) {
+    animation-delay: 0.16s;
 }
-/* Użytkownik prosi o brak animacji → zostaje samo statyczne tło/przygaszenie. */
+.steps-ladowanie span:nth-child(3) {
+    animation-delay: 0.32s;
+}
+@keyframes kropki-ladowania {
+    0%, 70%, 100% { opacity: 0.3; }
+    35%           { opacity: 1; }
+}
+/* Użytkownik prosi o brak animacji → pigułka pokazuje się, ale kropki stoją. */
 @media (prefers-reduced-motion: reduce) {
-    .steps-content.laduje {
-        animation: none;
-        background-color: var(--bg-muted);
-    }
-    .steps-content.podmiana .step-video,
-    .steps-content.podmiana img {
+    .steps-ladowanie span {
         animation: none;
         opacity: 0.6;
     }

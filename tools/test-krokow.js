@@ -58,12 +58,17 @@ function losowanie(ziarno) {
 const czytajStan = zad => zad.evaluate(el => {
     const video = el.querySelector('.steps-content video');
     const tresc = el.querySelector('.steps-content');
+    const kadr = el.querySelector('.steps-kadr');
     const kropki = [...el.querySelectorAll('.step-dot')];
+    // Nazwę pliku czytamy z data-plik, NIE z currentSrc: film wzięty z pobrania
+    // w tle ma src w postaci „blob:…", z którego nie wynika, który to krok
+    // (app/steps.js, sekcja „POBIERANIE FILMÓW W TLE").
+    const plik = video ? (video.dataset.plik || video.currentSrc || '') : '';
     return {
         licznik: el.querySelector('.step-counter').textContent.trim(),
-        plik: video ? (video.currentSrc || '').split('/').pop() : '',
-        wstecz: /reverse/.test(video ? video.currentSrc : ''),
-        laduje: tresc.classList.contains('laduje') || tresc.classList.contains('podmiana'),
+        plik: plik.split('/').pop(),
+        wstecz: /reverse/.test(plik),
+        laduje: kadr.classList.contains('laduje'),
         koniec: video ? video.ended : false,
         pauza: video ? video.paused : true,
         pusty: tresc.childElementCount === 0,

@@ -91,10 +91,14 @@ function renderStep(step) {
         // Sterowanie (klik = pauza/play, ikonka stanu, prędkość) podpinamy do
         // realnego elementu w podepnijSterowanieWideo() — właściwości JS nie
         // przetrwałyby serializacji do stringa HTML.
+        // `data-plik` niesie ŚCIEŻKĘ pliku także wtedy, gdy src jest adresem
+        // blob: (film wzięty z pobrania w tle) — czyta ją zwolnijBlobFilmu
+        // i tools/test-krokow.js, bo z „blob:…" nie da się odczytać, który to krok.
+        const sciezka = mediaPath(step.src);
         return `
             <div class="step-video">
-                <video playsinline preload="auto">
-                    <source src="${mediaPath(step.src)}" type="video/mp4">
+                <video playsinline preload="auto" data-plik="${sciezka}">
+                    <source src="${zrodloFilmu(sciezka)}" type="video/mp4">
                 </video>
             </div>
         `;
@@ -144,8 +148,13 @@ function przygotujKrok(ctx, idx, wstecz, czas, gotowe) {
         return;
     }
     if (wstecz) {
-        video.querySelector("source").src = mediaPath(sciezkaRewersu(step.src));
+        const sciezka = mediaPath(sciezkaRewersu(step.src));
+        video.dataset.plik = sciezka;
+        video.querySelector("source").src = zrodloFilmu(sciezka);
     }
+    // Ten plik bierze na siebie odtwarzacz — kolejka pobierania w tle nie ma go
+    // już po co ściągać drugi raz (patrz odtwarzaczBierzePlik).
+    odtwarzaczBierzePlik(video.dataset.plik);
     // Zapamiętany po to, żeby następna podmiana mogła go zwolnić, jeśli ta
     // jeszcze nie zdążyła się skończyć.
     ctx.oczekujacyElement = video;
@@ -209,10 +218,10 @@ function pokazKrok(ctx, idx, { wstecz = false, czas = 0, graj = true } = {}) {
 
     odswiezNawigacje(ctx);
 
-    // Pusty kadr → puls tła. Kadr z poprzednim krokiem → delikatne przygaszenie
-    // (puls byłby pod filmem niewidoczny). Jedno i drugie odpala się dopiero po
-    // ~200 ms, opóźnieniem w CSS, żeby przy szybkim łączu nic nie mrugnęło.
-    ctx.stepsContent.classList.add(ctx.stepsContent.childElementCount ? "podmiana" : "laduje");
+    // Znak ładowania: trzy kropki przy dolnej krawędzi kadru. Obraz zostaje
+    // nietknięty — dawne pulsowanie tła i przygaszanie klatki migały przy każdej
+    // zmianie kierunku (Henrich, TODO). Zwłokę ~500 ms robi CSS.
+    ctx.kadr.classList.add("laduje");
 
     przygotujKrok(ctx, idx, wstecz, czas, (box, video, blad) => {
         if (swapToken !== ctx.swapToken) { zwolnijWideo(video); return; } // wybrano co innego
@@ -225,7 +234,7 @@ function pokazKrok(ctx, idx, { wstecz = false, czas = 0, graj = true } = {}) {
             pokazKrok(ctx, idx, { wstecz: false, czas: 0, graj: false });
             return;
         }
-        ctx.stepsContent.classList.remove("laduje", "podmiana");
+        ctx.kadr.classList.remove("laduje");
         ctx.stepsContent.replaceChildren(...box.childNodes);
         ctx.tokenNaEkranie = swapToken; // od tej chwili kadr znów opisuje stan
         if (video && isFinite(video.duration)) {
@@ -647,9 +656,77 @@ function zbudujKropki(ctx) {
 // Kolejka jest JEDNA na całą stronę i obsługiwana po jednym pliku. Arkusz ma
 // kilka zadań z filmami; równoległe ściąganie wszystkiego naraz odbierałoby pasmo
 // właśnie temu krokowi, który użytkownik ogląda w tej chwili.
+//
+// ŚCIĄGNIĘTY PLIK TRZYMAMY U SIEBIE (2026-08-14), jako blob z własnym adresem
+// `blob:`, i to jego dostaje potem <video>. Wcześniej liczyliśmy na to, że
+// przeglądarka poda elementowi <video> plik ze swojego cache'u HTTP — i tego
+// właśnie zabrakło: <video> pyta o plik ŻĄDANIEM ZAKRESOWYM („Range: bytes=0-"),
+// a taki ruch trafia do cache'u tylko wtedy, gdy wszystko się zgadza: serwer dał
+// walidator (ETag/Last-Modified) i nagłówek pozwalający cache'ować, w DevTools
+// nie jest zaznaczone „Disable cache", a przeglądarka w ogóle godzi się serwować
+// zakres z pełnej odpowiedzi (Safari z tym oszczędza). Wystarczy, że jeden
+// warunek nie wyjdzie i cała robota prefetcha idzie w kosz — dokładnie to
+// zgłosił Henrich („w logach widać zapis do cache, ale odtwarzacz z niego nie
+// korzysta"). Adres blob: nie zależy od żadnego z tych warunków: jest to plik,
+// który już mamy w pamięci karty.
+//
+// Cena to pamięć, więc trzymamy się budżetu (patrz BUDZET_FILMOW): cały arkusz
+// 2024-grudzień to ~9 MB filmów, ale przyszły arkusz może być cięższy.
 const kolejkaFilmow = [];
-const pobraneFilmy = new Set();
+// url pliku → { adres: "blob:…", rozmiar } albo null („nie pobieraj, odtwarzacz
+// wziął to na siebie"). Kolejność wstawiania = kolejność zwalniania (LRU).
+const pobraneFilmy = new Map();
+const BUDZET_FILMOW = 64 * 1024 * 1024;
+let pamiecFilmow = 0;
 let robotnikPobierania = false;
+let przerywaczPobierania = null; // AbortController pobrania trwającego w tle
+let wstrzymaneDo = 0;            // do kiedy łącze należy do odtwarzacza
+let timerWznowienia = 0;
+// Ile czasu pobieranie w tle ma się nie odzywać po tym, jak odtwarzacz sam
+// sięgnął po plik z sieci. Tyle wystarcza, żeby krótki krok zdążył się wczytać
+// nawet na wolnym łączu; potem kolejka wraca do pracy.
+const PAUZA_DLA_ODTWARZACZA = 2000;
+
+// Czym nakarmić <video>: pobranym plikiem, jeśli już go mamy, w przeciwnym razie
+// zwykłym adresem (przeglądarka ściągnie sama).
+function zrodloFilmu(url) {
+    const wpis = pobraneFilmy.get(url);
+    return (wpis && wpis.adres) || url;
+}
+
+// Odtwarzacz sięga właśnie po ten plik. Jeśli mamy go u siebie — nic się nie
+// dzieje, kadr wypełni się bez sieci. Jeśli nie, to element <video> zaraz zacznie
+// go ciągnąć i CAŁE łącze należy się jemu: przerywamy pobieranie w tle i dajemy
+// mu chwilę spokoju. Bez tego na wolnym łączu kolejka i odtwarzacz ciągną
+// równolegle, a użytkownik czeka dwa razy dłużej na to, co widzi.
+function odtwarzaczBierzePlik(url) {
+    if (!url || pobraneFilmy.get(url)) return; // plik już u nas — sieć niepotrzebna
+
+    wstrzymaneDo = Date.now() + PAUZA_DLA_ODTWARZACZA;
+    if (przerywaczPobierania) przerywaczPobierania.abort();
+
+    if (pobraneFilmy.has(url)) return; // już odhaczony jako „bierze odtwarzacz"
+    // Z kolejki wypada, żeby nie ściągać drugi raz tego samego pliku.
+    const i = kolejkaFilmow.indexOf(url);
+    if (i >= 0) kolejkaFilmow.splice(i, 1);
+    pobraneFilmy.set(url, null);
+}
+
+// Zwalnianie najstarszych plików po przekroczeniu budżetu. Pomijamy te, które
+// siedzą właśnie w jakimś <video> — cofnięcie adresu blob: w trakcie
+// odtwarzania urwałoby film.
+function pilnujBudzetu() {
+    if (pamiecFilmow <= BUDZET_FILMOW) return;
+    const wKadrze = new Set(
+        Array.from(document.querySelectorAll("video[data-plik]")).map((v) => v.dataset.plik));
+    for (const [url, wpis] of pobraneFilmy) {
+        if (pamiecFilmow <= BUDZET_FILMOW) break;
+        if (!wpis || !wpis.adres || wKadrze.has(url)) continue;
+        URL.revokeObjectURL(wpis.adres);
+        pamiecFilmow -= wpis.rozmiar;
+        pobraneFilmy.delete(url);
+    }
+}
 
 // Tryb oszczędzania danych i bardzo wolne łącza: komplet filmów jednego zadania
 // to kilkaset kB, a arkusza — kilka MB. Kto włączył oszczędzanie, ten nie chce
@@ -692,23 +769,48 @@ function zaplanujPobranieFilmow(ctx, { pilne = false } = {}) {
 
 function ruszPobieranie() {
     if (robotnikPobierania) return;
+    // Łącze jest chwilowo oddane odtwarzaczowi — wracamy, gdy pauza minie.
+    const doPauzy = wstrzymaneDo - Date.now();
+    if (doPauzy > 0) {
+        if (!timerWznowienia) {
+            timerWznowienia = setTimeout(() => { timerWznowienia = 0; ruszPobieranie(); }, doPauzy);
+        }
+        return;
+    }
     const url = kolejkaFilmow.shift();
     if (!url) return;
     if (pobraneFilmy.has(url)) { ruszPobieranie(); return; }
 
     robotnikPobierania = true;
-    // Zwykły fetch, a NIE <video preload="auto">: chodzi o to, żeby plik wylądował
-    // w cache'u przeglądarki, z którego skorzysta dopiero później tworzony element
-    // <video>. Bufor podgrzewanego elementu jest jego prywatny i nowemu nic by nie
-    // dał. Wymaga to serwera pozwalającego cache'ować pliki — GitHub Pages pozwala.
-    // Odpowiedź trzeba przeczytać do końca (blob), inaczej wpis w cache'u nie
-    // powstanie.
-    fetch(url, { priority: "low", credentials: "omit" })
+    przerywaczPobierania = new AbortController();
+    let przerwane = false;
+    // Zwykły fetch, a NIE <video preload="auto">: bufor podgrzewanego elementu
+    // jest jego prywatny i nowemu elementowi nic by nie dał. Odpowiedź czytamy
+    // do końca (blob) i TRZYMAMY — adres blob: dostaje potem <video>, więc
+    // wyświetlenie kroku nie wymaga już ani jednego bajtu z sieci (patrz komentarz
+    // nad kolejką). `credentials: "omit"` bo to zwykłe pliki statyczne.
+    fetch(url, { priority: "low", credentials: "omit", signal: przerywaczPobierania.signal })
         .then((odp) => (odp.ok ? odp.blob() : null))
-        .catch(() => null)
-        .then(() => {
-            pobraneFilmy.add(url); // także po błędzie — nie dobijamy się w kółko
+        .catch((blad) => { przerwane = !!blad && blad.name === "AbortError"; return null; })
+        .then((blob) => {
             robotnikPobierania = false;
+            przerywaczPobierania = null;
+            // Przerwane pobranie wraca na czoło kolejki: plik nadal jest nam
+            // potrzebny, tylko nie teraz. Kolejkę wznowi timer pauzy.
+            if (przerwane) {
+                if (!pobraneFilmy.has(url)) kolejkaFilmow.unshift(url);
+                ruszPobieranie();
+                return;
+            }
+            // Wpis powstaje TAKŻE po błędzie (jako null) — nie dobijamy się
+            // w kółko do pliku, którego nie ma (np. nieprzerobiony rewers).
+            if (blob && blob.size && !pobraneFilmy.get(url)) {
+                pobraneFilmy.set(url, { adres: URL.createObjectURL(blob), rozmiar: blob.size });
+                pamiecFilmow += blob.size;
+                pilnujBudzetu();
+            } else if (!pobraneFilmy.has(url)) {
+                pobraneFilmy.set(url, null);
+            }
             ruszPobieranie();
         });
 }
