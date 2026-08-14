@@ -1,9 +1,26 @@
 Oto plik który tworzy Henrich (ja, użytkownik).
 
+
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.
 
-  - Na telefonie, odczas odpalonego sidebara logo powinno być ono przygaszone, z tyłu i nieklikalne. Klijknięcie powinno powodować wyłączenie sidebara (bo pomiędzy jest welon czy coś)
+  - Posprzątaj w sekcji "DOPISANE PRZEZ CLAUDE-A" wg komentarzy henricha napisanych WIELKIMI LITERAMI. 
+    - Punkty oznaczone jako "NA GÓRĘ" dopisz zgodnie z zasadami w podsekcji "HENRICH MÓWI "MA TO SENS", STĄD MOŻE WESPNĄ SIĘ JESZCZE WYŻEJ".
+    - Z punktami oznaczonymi do archiwizacji zrób to co uważasz: todo/ issues/ lub inne pliki .md albo wyrzuć w zapomienie jeśli miałoby wprowadzać w błąd.
+
+  - Odpraw poniższy punkt do done. To jest już zrobione:
+    - panel boczny, lewy górny róg (po testach v32):
+      - strzałka wychodzi nad welon tylko w ciemnym motywie — w jasnym dalej przygaszona
+      - zdjąć biały prostokąt tła spod logo (Henrichowi nie leży); logo nie musi wychodzić
+        nad welon, wystarczy sama strzałka — więc i problem przebijającej treści zadania znika
+    HENRICH: TUTAJ TEŻ JUŻ JEST ZROBIONE, do odprawy
+
+
+
+<br>
+
+
++ NIE REALIZUJ, CZEKAJĄ W KOLEJCE:
 
   - Rozwiązanie krok po kroku:
     
@@ -28,12 +45,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
   - usunąć całkowicie „solutionTextMore" — z wszystkich exercises.json i z template.html/JS,
     nie ma już żadnego odbiorcy
 
-  - panel boczny, lewy górny róg (po testach v32):
-    - strzałka wychodzi nad welon tylko w ciemnym motywie — w jasnym dalej przygaszona
-    - zdjąć biały prostokąt tła spod logo (Henrichowi nie leży); logo nie musi wychodzić
-      nad welon, wystarczy sama strzałka — więc i problem przebijającej treści zadania znika
-  HENRICH: TUTAJ TEŻ JUŻ JEST ZROBIONE, do odprawy
-
+  - Na telefonie, odczas odpalonego sidebara logo powinno być ono przygaszone, z tyłu i nieklikalne. Klijknięcie powinno powodować wyłączenie sidebara (bo pomiędzy jest welon czy coś)
 
 
 <br>
@@ -43,6 +55,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945 
 
+  - nic
 
 
 <br>
@@ -58,6 +71,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + DO ZROBIENIA HOŚCIE (POZA KONTENEREM)
 
+  - nic
 
 
 <br>
@@ -135,14 +149,15 @@ Oto plik który tworzy Henrich (ja, użytkownik).
           - film robi sam rachunek, NIE rysuje paraboli (widżet niżej już ją pokazuje interaktywnie)
             — czy to dobry podział, czy parabola ma być też w filmie
 
-  + ULEPSZANIE WORKFLOW (skopiowane z NOTATKI_USERA)
+
+  + ULEPSZANIE WORKFLOW
     - Schedule adversarial review lub /code-review
     - wyłączyć skróty które powodują, że przeklikuje pytanie podczas pisania prompta
     - rozkminić, poszukać, poinstalować, pouczyć się - pluginy różne:
-      - frontend-design@claude-plugins-official czy jakoś tak
-      - superpowers
-    - Przekminić i dodać zasadę dotyczącą tłumaczenia mi (Henrichowi) rzeczy (jak mam przeprowadzić test, jak wygląda projekt itd.)
-
+      - frontend-design@claude-plugins-official DONE
+      - superpowers DONE
+    - Przekminić i dodać zasadę dotyczącą tłumaczenia mi (Henrichowi) rzeczy
+      - jak mam przeprowadzić test DONE
 
   + UI
 
@@ -199,18 +214,30 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
   - wysyłanie całego localStorage przez użytkownika podczas zgłaszania błędu jest a bit scatchy też troche niebezpiczne
 
-
 <br>
 
 
-+ DOPISANE PRZEZ CLAUDA
-Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz issues/README.md.
++ DOPISANE PRZEZ CLAUDE-A
+<br> Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz issues/README.md.
+<br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI, ZAZWYCZAJ NA KOŃCU PUNKTU.
+  
+  + HENRICH MÓWI "MA TO SENS", STĄD MOŻE WESPNĄ SIĘ JESZCZE WYŻEJ:
+    
+    - FAZA 2.3
+      - WKLEJ NP. DOT. MATEMATYKAZEN.PL
+    
+    - FAZA 3.
+      - WKLEJ CO TAM PODPASUJE
 
+    - WKLEJ TU INNE OZNACZONE "NA GÓRE"
+  
+  
   + SONNET DOPISAŁ:
 
     - Tryb testowy dla zgłaszania błędów (app/report.js): przycisk „Wyślij zgłoszenie" zamieniony na „Wyślij zgłoszenie lokalnie"
       - (np. pod `?test-zgloszenie=1`, wzorem `?test-egzamin=1`), który loguje payload do konsoli/localStorage zamiast robić fetch do Formspree — żeby testować całą ścieżkę (walidacja, honeypot, throttling, toast) bez zużywania miesięcznego limitu 50 zgłoszeń.
-
+      DO SKRÓCENIA, NA GÓRE
+      
   + Sonnet 5, high — paczka drobiazgów UI (v15, 2026-08-10):
 
     - Dwa z pięciu punktów tej paczki nie były w spec docu, tylko dopisane obok niego w TODO.md
@@ -221,6 +248,7 @@ Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz is
       Pigułki formularza zgłoszenia — wybrałem jednolite `flex: 1 1 calc(50% - 4px)` (zawsze dwie
       w rzędzie, długie nazwy łamią się na dwie linijki) zamiast różnicować szerokość per pigułka —
       prostsze i zgodne z „nie przekombinuj" z TODO, ale to była moja decyzja, nie Twoja specyfikacja.
+      DO SPRAWDZENIA, PRZENIESIENIA / ARCHIWIZACJI / WYRZUCENIA I/LUB AKTUALIZACJI
 
 
   + Opus 5, medium
@@ -229,54 +257,68 @@ Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz is
       - `LICENSE.md` (linie 1–2: copyright + Required Notice)
       - `CONTRIBUTING.md` (punkt 2 zgody na licencjonowanie wkładu)
       - stopki w plikach html
+    DO SKRÓCENIA, NA GÓRE
 
     - Gdy ruszy domena matematykazen.pl, podmień URL w `LICENSE.md:2` (Required Notice — ta linia jest kopiowana przez każdego redystrybutora) i `README.md`; w OVERVIEW.md domena jest już opisana jako plan Fazy 2.
-
+    DO SKRÓCENIA, NA GÓRE
 
   + Opus 5, high — devcontainer, 2026-08-06:
 
     - Sprawdzić nowy devcontainer na Kubuntu/Dockerze. Zmiany testowałem tylko pod rootless podmanem na Bazzite; `docker exec --privileged` działa tak samo, ale nie miałem jak tego odpalić.
+    DO SPRAWDZENIA, PRZENIESIENIA / ARCHIWIZACJI / WYRZUCENIA I/LUB AKTUALIZACJI
 
     - VS Code wpuszcza do kontenera socket ssh-agenta, gpg-agenta, X11 i Waylanda oraz podpina git credential helper hosta — omija to firewall (to nie jest ruch sieciowy). Wyłączalne tylko częściowo: `dev.containers.mountWaylandSocket: false` i `dev.containers.gitCredentialHelperConfigLocation: "none"` (uwaga: to drugie zabierze pushowanie po HTTPS bez tokena w kontenerze). Dla ssh-agenta i X11 rozszerzenie nie ma przełącznika — sprawdziłem package.json wersji 0.463.0.
+    DO SPRAWDZENIA, PRZENIESIENIA / ARCHIWIZACJI / WYRZUCENIA I/LUB AKTUALIZACJI
 
     - `sudo` w kontenerze przestało działać (świadomie, `--cap-drop=ALL` bez wyjątków). Jeśli okaże się potrzebne do czegoś realnego, trzeba dodać `--cap-add=SETUID --cap-add=SETGID` — ale NIE `NET_ADMIN`, bo to znów pozwoli rozbroić firewall od środka.
+    DO SPRAWDZENIA, PRZENIESIENIA / ARCHIWIZACJI / WYRZUCENIA I/LUB AKTUALIZACJI
 
     - Świadomie NIEdomknięta dziura w firewallu, do ewentualnej decyzji: dozwolone domeny (GitHub, npm) są z natury kanałem na dane — nie da się usunąć bez odcięcia gita. (Punkt o przepuszczonej bramie/panelu routera zniknął stąd 2026-08-10 — brama jest już zawężona do samego portu 53, patrz `.devcontainer/README.md`, sekcja „Brama: `/24` → `/32` → tylko port 53".)
-
+    DO SPRAWDZENIA, PRZENIESIENIA / ARCHIWIZACJI / WYRZUCENIA I/LUB AKTUALIZACJI
 
   + OPUS DOPISAŁ (Opus 5, medium) — po paczce z 2026-08-06:
 
     - Zadania otwarte bez `gradingCriteria` w danych nadal renderują stare przyciski „0..N pkt" (awaryjna ścieżka w app/render.js). Dziś takich zadań nie ma — przy wpinaniu NOWEGO arkusza trzeba pamiętać o kryteriach, inaczej zadanie po cichu wróci do starego UI.
+    DO SPRAWDZENIA
 
     - `finalAnswer.label` w exercises.json nie ma już odbiorcy (renderer je ignoruje). Zostawione we wszystkich arkuszach — do decyzji, czy kiedyś wyczyścić dane.
+    DO SPRAWDZENIA
 
     - Kryteria dla zadań 4-punktowych są kaskadą progów z klucza CKE, więc uczeń, który zaznaczy tylko „poprawny wynik", dostanie 1 pkt zamiast 4. Do przemyślenia, czy zaznaczenie wyższego progu nie powinno automatycznie zaznaczać niższych.
-
+    NA GÓRĘ
 
   + OPUS DOPISAŁ (Opus 5, medium) — 2026-08-07, narzędzia:
 
     - Skille superpowers są już wpięte (scope project, jadą z repo) — szczegóły w CLAUDE.md, sekcja „Claude Code — plugins / skills". Widać je dopiero PO RESTARCIE sesji Claude Code. Z punktu „Stworzyć/pobrać potrzebne mi skille" zostaje więc już tylko „stworzyć": własne skille pod ten projekt (np. wpinanie nowego arkusza, weryfikacja formulasPage).
+    DO SPRAWDZENIA, PRZENIESIENIA / ARCHIWIZACJI / WYRZUCENIA I/LUB AKTUALIZACJI
 
     - Dwa punkty z „ULEPSZANIE WORKFLOW" wyglądają na zrobione i chyba należą do done/ — zostawiam decyzję Tobie, bo to Twoja sekcja: „uruchomienie całego VS Code w Dev Container" (zrobione 2026-08-06) i część „pobrać skille" (2026-08-07).
+    DO PRZENIESIENIA / ARCHIWIZACJI / WYRZUCENIA I/LUB AKTUALIZACJI
+
 
   + OPUS DOPISAŁ (Opus 5, medium) — 2026-08-09, kontener:
 
     - Gdy `matematykazen.pl` ruszy: odkomentować wpis w `CONTENT_DOMAINS` w `.devcontainer/init-firewall.sh` (dziś domena nie istnieje w DNS) i przy okazji poprawić `Required Notice:` w LICENSE.md, które wciąż wskazuje na GitHub Pages.
+    NA GÓRĘ
 
   + OPUS DOPISAŁ (Opus 5, high) — 2026-08-11, odtwarzacz krok po kroku (v20):
 
     - Decyzje, które podjąłem sam, bo nie było ich w Twoich punktach — do ewentualnej korekty:
-      kropka „obecna" przeskakuje na prawą po dobiegnięciu filmu (patrz TESTOWANIE wyżej);
-      odcinki między kropkami mają zawsze cienką kreskę, a wypełnia się tylko ten bieżący;
-      krok bez opisu w danych w ogóle nie pokazuje przycisku ROW 3, zamiast otwierać pustkę.
+      - kropka „obecna" przeskakuje na prawą po dobiegnięciu filmu (patrz TESTOWANIE wyżej); JUŻ CHYBA NIE
+      - odcinki między kropkami mają zawsze cienką kreskę, a wypełnia się tylko ten bieżący;
+      - krok bez opisu w danych w ogóle nie pokazuje przycisku ROW 3, zamiast otwierać pustkę.
+    JEST OKEJ, DO PRZENIESIENIA / ARCHIWIZACJI / WYRZUCENIA I/LUB AKTUALIZACJI
+
 
     - Nazwa rewersu NIE jest w exercises.json — odtwarzacz dokłada `reverse` przed rozszerzeniem
       nazwy z pola `src`. Wpinając nowy arkusz pamiętaj, żeby puścić `tools/rewersy.sh`, inaczej
       ◄ nie ma czego odtworzyć (przy braku pliku krok po prostu nie cofnie się animacją).
 
+
     - `python3 -m http.server` NIE nadaje się do pracy nad wideo: nie obsługuje żądań zakresowych,
       więc przewijanie filmu cicho nie działa i wygląda to jak błąd w kodzie. Kosztowało mnie to
       sporo szukania nieistniejącej usterki. Dopisane do CLAUDE.md i issues/krok-po-kroku-produkcja.md.
+      ZAPISZ W WIDOCZNYM MIEJSCU DLA SIEBIE NP W README MANIMATIONS CZY COS
 
     - Chromium z Playwrighta w chmurowym kontenerze NIE ODTWARZA H.264 (brak kodeka), a Chrome
       nie da się doinstalować, bo firewall blokuje dl.google.com. Logikę odtwarzacza sprawdziłem
@@ -284,12 +326,19 @@ Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz is
       sprawdzić: realnego odtwarzania tych konkretnych mp4 w przeglądarce i zachowania na telefonie.
       - SPROSTOWANIE 2026-08-12 (Opus 5, high): w kontenerze LOKALNYM H.264 odtwarza się bez
         problemu — sprawdzone na plikach arkusza. Ograniczenie dotyczyło tylko chmury.
+    DO PRZENIESIENIA / ARCHIWIZACJI / WYRZUCENIA I/LUB AKTUALIZACJI
 
   + FABLE DOPISAŁ (Fable 5, po paczce 4 „Spójność UI etap 2", 2026-08-09):
 
     - W jasnym motywie --text-faint-2 (#909090, 3.3:1) i --text-faint-3 (#999, 2.8:1) są poniżej WCAG AA (4.5:1) przy 13–14px tekstach (etykiety „miejsce na notatki"/samooceny, uchwyty paneli PDF). Paczka 4 poprawiła tylko --text-faint (mierzone elementy landingu i stopek); te dwa tokeny do decyzji — przyciemnienie zmieni sporo drobnych etykiet naraz.
+    NIC Z TEGO NIE ROZUMIEM, NIE WYGLĄDA NA SPECJALNIE ISTOTNE, DO PRZENIESIENIA / ARCHIWIZACJI / WYRZUCENIA I/LUB AKTUALIZACJI
 
     - Cienie kropek wskaźników (0 1px 4px w exam.css) świadomie zostały poza tokenem — dwa drobne, powiązane znaczeniowo wystąpienia; tokenizować dopiero, gdyby doszło trzecie.
+    DO PRZENIESIENIA / ARCHIWIZACJI / WYRZUCENIA I/LUB AKTUALIZACJI
+
+
+<br>
+
 
 + ZASADY DLA CLAUDE-A:
 
@@ -318,5 +367,12 @@ Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz is
 
     - Pustą linijkę zostawiaj pod każdym punktem, a w długich listach pełnych podpunktów także pod podpunktami — żeby się nie zlewały w blok. Po całej długiej liście zrób dwie linijki odstępu. W krótkiej liście paru jednolinijkowców w środku nie trzeba, a nakońcu wystarczy jedna linijka.
 
- 
+    - między sekcjami ma się znaleźć taka przerwa:  2 puste linijki, <br> i 2 puste linijki:
+"
+
+
+<br>
+
+
+"
 

@@ -29,14 +29,13 @@ Zobacz na żywo: https://henrich2137.github.io/matematykazen/
 
 ## Ścieżka biznesowa
 
-Faza 1 - Budowa (obecna)
-- Beta testy ale bez marketingu i domeny co czyni je bardziej zamkniętymi.
++ Faza 1 - Budowa (obecna) - Beta testy ale bez marketingu i domeny co czyni je bardziej zamkniętymi.
 
-Faza 2 - Soft Launch i Beta testy
-Marketing, naprawa zgłaszanych błędów, zbieranie pieniędzy na patronite.
-- hosting: nadal GitHub Pages
-- licencja PolyForm Noncommercial
-- domena matematykazen.pl.
++ Faza 2 - Soft Launch i Beta testy - Marketing, naprawa zgłaszanych błędów, zbieranie pieniędzy na patronite.
+    - hosting: nadal GitHub Pages (2.1)
+    - licencja PolyForm Noncommercial (2.2) <- tutaj jesteśmy
+    - domena matematykazen.pl (2.3)
+    
 Cel: zdobyć zainteresowanie i sprawdzić, czy projekt przyjmie się w społeczności.
 
 
