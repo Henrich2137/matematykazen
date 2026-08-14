@@ -86,15 +86,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
       sprawdź czy nic nie wychodzi poza ekran
 
 
-  kontener — po Rebuildzie z wrapperem Chrome'a (Opus 5, medium):
-
-  - w terminalu kontenera: `cat /opt/google/chrome/chrome`
-    - ma być skryptem z `--no-sandbox --headless=new`, a nie symlinkiem
-
-  - poproś Claude'a w kontenerze o otwarcie strony przez chrome-devtools-mcp
-    - ma wejść na stronę bez „Target closed" i bez okna przeglądarki na ekranie
-    - flagi sprawdzone doświadczalnie w sesji 14.08, więc to formalność
-
 
 
 <br>
@@ -110,11 +101,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 
 + DO ZROBIENIA HOŚCIE (POZA KONTENEREM)
-
-  - zrobić Rebuild Container — wrapper Chrome'a jest już wklejony do
-    `.devcontainer/Dockerfile` i sprawdzony na hoście (build przechodzi, wrapper otwiera
-    stronę przy `--cap-drop=ALL`). Po przebudowie zostaje jedno sprawdzenie z sekcji
-    TESTOWANIE HENRICH wyżej. Tło: `issues/chrome-devtools-mcp-cache-eacces.md`
 
   - plugin frontend-design działa, ale jego włącznik siedzi w `.claude/settings.local.json`
     (poza gitem) — do decyzji, czy przenieść do `.claude/settings.json`, żeby jechał z repo
@@ -297,10 +283,6 @@ Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz is
   + OPUS DOPISAŁ (Opus 5, medium) — 2026-08-09, kontener:
 
     - Gdy `matematykazen.pl` ruszy: odkomentować wpis w `CONTENT_DOMAINS` w `.devcontainer/init-firewall.sh` (dziś domena nie istnieje w DNS) i przy okazji poprawić `Required Notice:` w LICENSE.md, które wciąż wskazuje na GitHub Pages.
-
-  + OPUS DOPISAŁ (Opus 5, medium) — 2026-08-14, po Rebuild Container:
-
-    - `chrome-devtools-mcp` — rozpoznane do końca 14.08 i zakończone konkretną poprawką: brakowało Chrome'a, a po jego podstawieniu wyszła jeszcze piaskownica blokowana przez `--cap-drop=ALL`. Naprawa czeka na hoście (patrz DO ZROBIENIA HOŚCIE wyżej). Wybrany wariant: wrapper zamiast symlinka, plugin zostaje nietknięty razem ze swoimi skillami. Dowody i odrzucone warianty: `issues/chrome-devtools-mcp-cache-eacces.md`.
 
   + OPUS DOPISAŁ (Opus 5, high) — 2026-08-11, odtwarzacz krok po kroku (v20):
 

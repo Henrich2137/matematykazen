@@ -1,5 +1,39 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-14] (Opus 5, medium) chrome-devtools-mcp wreszcie otwiera strony — trzy warstwy problemu zdjęte.
+[devcontainer, pluginy, chrome, testy]
+
+Plugin był martwy od instalacji 13.08. Każda naprawa odsłaniała kolejną przyczynę:
+
+1. **EACCES na `~/.cache`** — katalog należał do roota, `node` nie mógł założyć w nim
+   podkatalogu. Naprawione `chown`em w Dockerfile.
+2. **Brak Chrome'a** — plugin szuka sztywno `/opt/google/chrome/chrome`. Zamiast
+   instalować prawdziwego Chrome'a (+150 MB, dziura w firewallu na repozytorium Google)
+   podstawiliśmy Chromium Playwrighta, które i tak jest w kontenerze bindem z hosta.
+   Przedstawia się jako „Google Chrome for Testing 151", więc kanał „stable" je przyjmuje.
+3. **Piaskownica Chrome'a** — `Check failed: sys_chroot(…)`, bo kontener ma `--cap-drop=ALL`.
+   To był prawdziwy powód komunikatu „Protocol error: Target closed". **Playwright chodzi
+   tu od zawsze, bo sam dokłada `--no-sandbox`; plugin tego nie robi**, a flag nie mamy jak
+   mu podać — jego `args` siedzą w cache'u pluginu poza repo i giną przy aktualizacji.
+
+Rozwiązanie punktu 3: `/opt/google/chrome/chrome` przestał być symlinkiem, a stał się
+jednolinijkowym wrapperem, który dokłada `--no-sandbox --headless=new` i przekazuje resztę
+argumentów dalej. Dzięki temu plugin zostaje **nietknięty razem ze swoimi pięcioma skillami**
+(a11y, LCP, wycieki pamięci, troubleshooting, debugowanie ogólne), nic się nie dubluje i nie
+trzeba samemu pilnować wersji `chrome-devtools-mcp@x`. Odrzucony wariant: własny wpis serwera
+w `.mcp.json` w repo — działałby bez przebudowy, ale kosztem wyłączenia pluginu i jego skilli.
+
+Metoda, która to odblokowała: flagi sprawdzono **przed** przebudową, ręcznym klientem MCP po
+stdio (`spawn` serwera + surowy JSON-RPC), więc Henrich nie rebuildował kontenera na ślepo.
+Warto o tym pamiętać przy następnym problemie z serwerem MCP — nie trzeba restartu sesji.
+
+Odbiór po Rebuildzie: `navigate_page` wchodzi na arkusz, `take_screenshot` zwraca realny zrzut
+ze złożonym KaTeX-em, żadne okno nie wyskoczyło na ekran hosta. Pełna historia z dowodami
+i odrzuconymi wariantami: `issues/chrome-devtools-mcp-cache-eacces.md`.
+
+**Przy podbiciu Playwrighta** ścieżka w wrapperze ma numer builda (`chromium-1234`) — trzeba
+poprawić `CHROMIUM_BUILD` w Dockerfile, inaczej wraca „Could not find Google Chrome executable".
+
 [ZROBIONE 2026-08-14] (Opus 5, medium) Weryfikacja kontenera po Rebuild Container — komplet testów odebrany.
 [devcontainer, pluginy, testy, odbior, narzedzia]
 

@@ -1,4 +1,9 @@
-# chrome-devtools-mcp: EACCES przy tworzeniu ~/.cache/chrome-devtools-mcp
+# chrome-devtools-mcp: droga do działającego pluginu (EACCES → brak Chrome'a → piaskownica)
+
+**ZAMKNIĘTE 2026-08-14.** Plugin otwiera strony. Trzy warstwy problemu, każda odsłonięta
+dopiero po usunięciu poprzedniej: uprawnienia do `~/.cache`, brak binarki Chrome'a pod
+ścieżką kanału „stable", wreszcie piaskownica Chrome'a kontra `--cap-drop=ALL`. Historia
+niżej w kolejności odkrywania — czytaj, jeśli plugin znów przestanie działać.
 
 Status: **NAPRAWIONE I POTWIERDZONE 2026-08-14 (Opus 5, medium), po Rebuild Container.**
 Zastosowano wariant 1 z tabeli niżej: `/home/node/.cache` powstaje w obrazie razem
@@ -79,7 +84,13 @@ Claude Code): `--headless --chromeArg=--no-sandbox` → `Successfully navigated 
 Profil trwały w `~/.cache/chrome-devtools-mcp/chrome-profile` też przechodzi, `--isolated`
 jest niepotrzebne.
 
-### Naprawa: symlink zamieniony na wrapper (decyzja Henricha)
+### Naprawa: symlink zamieniony na wrapper (decyzja Henricha) — DZIAŁA
+
+**Potwierdzone 2026-08-14 po Rebuildzie z wrapperem**: `cat /opt/google/chrome/chrome`
+pokazuje skrypt, `--version` odpowiada, a `navigate_page` przez plugin wchodzi na
+`template.html?arkusz=2024-grudzien` i `take_screenshot` zwraca realny zrzut ze
+złożonym KaTeX-em. Żadne okno nie wyskoczyło na ekran hosta. Temat zamknięty.
+
 
 **Stan: wklejone na hoście do `.devcontainer/Dockerfile` 2026-08-14 (Opus 5, medium),
 czeka już tylko na Rebuild Container.** Sprawdzone na hoście przed oddaniem, na obrazie
