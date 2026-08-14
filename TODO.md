@@ -86,21 +86,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
       sprawdź czy nic nie wychodzi poza ekran
 
 
-  kontener — dopiero PO Rebuild Container (Opus 5, medium):
-
-  - otwórz w kontenerze dowolny plik `.py` z `manimations/`
-    - kolorowanie i podpowiedzi mają działać od razu, bez doklikiwania rozszerzenia
-
-  - ~~w terminalu kontenera: `ls -ld ~/.cache` ma pokazać właściciela `node`~~ — sprawdzone
-    z sesji 14.08 po przebudowie: właściciel `node`, zapis działa. EACCES z chrome-devtools-mcp
-    zniknął, ale plugin zatrzymuje się teraz na braku samego Chrome'a — patrz OPUS DOPISAŁ niżej
-
-  - ~~w terminalu kontenera: `claude mcp list`, wpis `github`~~ — sprawdzone z sesji 14.08:
-    `github` ✔ Connected, zmienna `GITHUB_PERSONAL_ACCESS_TOKEN` ustawiona, `gh` zalogowany
-    z wolumenu (nie trzeba było logować się ponownie). Przy pierwszym wywołaniu potrafi
-    zwrócić „tools fetch failed — timeout"; drugie przechodzi
-
-
 
 <br>
 

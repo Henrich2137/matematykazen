@@ -1,5 +1,32 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-14] (Opus 5, medium) Weryfikacja kontenera po Rebuild Container — komplet testów odebrany.
+[devcontainer, pluginy, testy, odbior, narzedzia]
+
+Wszystkie trzy poprawki z commita 14b0715 działają w przebudowanym obrazie:
+
+- **`~/.cache` należy do `node`** i jest zapisywalny — EACCES zniknął, `chrome-devtools-mcp`
+  sam założył sobie `~/.cache/chrome-devtools-mcp/chrome-profile`.
+- **Plugin `github`** — `claude mcp list` pokazuje ✔ Connected zamiast HTTP 400. Zmienna
+  `GITHUB_PERSONAL_ACCESS_TOKEN` ustawiona, `gh` zalogowany **z wolumenu**, czyli
+  `matematykazen-gh-config` faktycznie przeżył przebudowę i drugie `gh auth login` nie było
+  potrzebne. Uwaga na przyszłość: pierwsze wywołanie potrafi zwrócić „tools fetch failed —
+  timeout", drugie przechodzi.
+- **`ms-python.python`** wjechał sam — Henrich potwierdził kolorowanie w `manimations/`.
+- **„Allow Automatic Tasks in Folder?"** — Henrich: „nigdy nie widziałem tego pytania"
+  (szczegóły we wpisie niżej).
+
+Przy okazji przetestowana reszta środowiska: firewall trzyma (`api.github.com` 200,
+`example.com` odcięte), `tools/serwer.js` zwraca 206 na `Range`, `tools/zrzuty.js` robi
+komplet 16 zrzutów, `tools/test-krokow.js` przechodzi bez zastrzeżeń na szybkim **i** na
+zdławionym serwerze (czyli v31/v32 nie ruszyły odtwarzacza), konsola strony czysta poza
+`gc.zgo.at` (analityka, celowo blokowana). Wersja v32 zgodna w `template.html` i `index.html`.
+
+**Co wyszło spod spodu i ZOSTAJE OTWARTE:** `chrome-devtools-mcp` dalej nie otwiera strony,
+ale z zupełnie innego powodu — w kontenerze nie ma Google Chrome'a, jest tylko Chromium
+Playwrighta. Warianty wyjścia w `issues/chrome-devtools-mcp-cache-eacces.md`, punkt wisi
+w TODO.md pod OPUS DOPISAŁ. Pracy nie blokuje, bo zrzuty i tak idą przez `tools/zrzuty.js`.
+
 [ZROBIONE 2026-08-14] (Opus 5, medium, na hoście) Zadania z sekcji „DO ZROBIENIA HOŚCIE" + odbiór testów v32.
 [devcontainer, pluginy, host, testy, odbior]
 
