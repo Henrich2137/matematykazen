@@ -50,9 +50,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     opis kroku siedzi w rozwijanym ROW 3. Zmierzone na telefonie 390 px — treść zadania ma
     24 px marginesu, film i ROW 3 po 25 px, czyli równo. Zostaje do przeklikania na żywo.
 
-  - spraw aby przycisk do rozwijania side-bara był nad przyciemieniem tła na telefonie. Nie ma być przyciemiony aby użytkownik wiedział, że jest możliwy do kliknięcia.
-
-  
   - Zad. 10/11 na telefonie: pola/przyciski są już pod treścią zdania i jest czytelniej, ale brakuje
     odstępu między kolejnymi zdaniami (1, 2, 3…) — zlewają się w jeden blok.
 
@@ -75,7 +72,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + TESTOWANIE HENRICH
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 
-  v31 — cztery drobiazgi UI (Opus 5, medium):
+  v32 — cztery drobiazgi UI + strzałka panelu (Opus 5, medium):
 
   - otwórz rozwiązanie krok po kroku w zad. 1 i sprawdź przyciski pod filmem
     - ◄ i ► są dużo szerzej rozsunięte niż dotąd (48 px odstępu zamiast 10)
@@ -89,6 +86,14 @@ Oto plik który tworzy Henrich (ja, użytkownik).
   - rozwiń „pokaż wyjaśnienie kroku" pod filmem
     - tekst zaczyna się z takim samym wcięciem jak tekst zwykłego rozwiązania
     - na telefonie oba akapity powinny startować dokładnie w tej samej pionowej linii
+
+  - otwórz panel boczny na telefonie i spójrz na lewy górny róg
+    - strzałka i logo nie są już przygaszone welonem, tylko jasne jak sam panel
+    - kliknięcie w strzałkę zamyka panel (wcześniej zamykał go welon pod spodem, więc efekt
+      był ten sam i usterki nie było widać)
+    - prawa pigułka z punktami zostaje przygaszona — tak ma być
+    - logo ma teraz widoczny biały prostokąt tła; bez niego spod napisu wychodzi treść zadania,
+      więc zostawiłem, ale jeśli Ci nie leży, powiedz
 
   - wejdź na telefonie w dowolne zadanie otwarte (np. zad. 3) i rozwiń wszystko naraz
     - ramka „sprawdzanie obliczeń", pole na notatki, rozwiązanie i formularz zgłoszenia błędu

@@ -1,5 +1,35 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-14] (Opus 5, medium, lokalnie) v32 — strzałka panelu bocznego nad przyciemnieniem.
+Punkt leżał w sekcji NIE REALIZUJ; Henrich kazał go wziąć po tym, jak testy regresji v31 pokazały,
+że klik w strzałkę jest przechwytywany.
+
+- **Objaw i dlaczego nikt tego nie zgłaszał:** poniżej progu 1300 px welon `#sidebar-przyciemnienie`
+  (z-index 11) leżał NA lewym narożniku (10), a więc i na strzałce. Strzałka wyglądała na wyszarzoną,
+  nie łapała hoveru, a kliknięcie trafiało w welon. Panel mimo to się zamykał — klik w welon jest
+  jego drugą ścieżką zamykania (`app/bootstrap.js`) — więc z zewnątrz wszystko wyglądało poprawnie
+  („u mnie działa"). Wyszło dopiero z Playwrighta: `page.click` czeka na realną klikalność elementu
+  i przekroczył czas. To NIE był problem z siecią ani z serwerem.
+
+- **Naprawa** (`style/sheet.css`): `body.sidebar-otwarty #naroznik-lewy { z-index: 13 }` — narożnik
+  wychodzi nad welon (11) i nad panel (12) tylko na czas otwartego panelu. Narożnik kończy się nad
+  górną krawędzią panelu (56 px, na telefonie 48 px), więc wyższa warstwa niczego nie zasłania.
+  Zweryfikowane na 390/1280/1400 px: pod kursorem jest teraz SVG strzałki, panel zamyka się jej
+  kliknięciem przy każdej z tych szerokości.
+
+- **Dwa warianty odrzucone po zrzutach**, obie próby są opisane w ARCHITECTURE_CSS.md:
+  welon od 56 px w dół zamiast `inset: 0` — nad panelem zostaje niewyciemniony pasek treści zadania
+  („Zadanie 3" wystaje zza narożnika); zdjęcie tła `#logo` na czas otwartego panelu — spod napisu
+  wyłazi ta sama treść. Logo zostaje więc z prostokątem i razem ze strzałką czyta się jako
+  wyniesione nad welon; prawa pigułka z punktami zostaje przygaszona.
+
+- **Przy okazji** dopisana notatka do `issues/playwright-podglad.md`: błąd konsoli
+  `gc.zgo.at/count.js — ERR_ADDRESS_UNREACHABLE` w kontenerze jest nieszkodliwy (analityka
+  GoatCounter blokowana przez firewall; kod od początku pomija ten zasób w handlerze błędów),
+  a testy zbierające konsolę mają go odfiltrowywać.
+
+[ui, panel-boczny, mobile, css, testy]
+
 [ZROBIONE 2026-08-14] (Opus 5, medium, lokalnie) v31 — cztery drobiazgi UI wybrane przez Henricha
 z listy „samotnych michałków". Same style, zero zmian w JS. Weryfikacja: Playwright (pomiary
 computed style + zrzuty 390/1440 px) i tools/test-krokow.js (zad. 1–3, ziarna 3 i 11) — bez zastrzeżeń.

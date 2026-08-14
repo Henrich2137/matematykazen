@@ -34,6 +34,16 @@
 #naroznik-lewy {
     left: 20px;
 }
+/* OTWARTY PANEL: lewy narożnik wychodzi NAD przyciemnienie (11) i nad sam panel (12).
+   Bez tego welon leżał na strzałce: wyglądała na wyszarzoną (czyli nieczynną), nie
+   łapała hoveru, a kliknięcie w nią trafiało w przyciemnienie. Panel i tak się wtedy
+   zamykał — bo klik w welon jest jego drugim sposobem zamykania (app/bootstrap.js) —
+   więc z zewnątrz wyglądało to na działający przycisk i długo nie było widać usterki.
+   Narożnik kończy się nad górną krawędzią panelu (56px, na telefonie 48px), więc
+   wyższy z-index niczego nie zasłania. */
+body.sidebar-otwarty #naroznik-lewy {
+    z-index: 13;
+}
 #naroznik-prawy {
     right: 20px;
     justify-content: flex-end;
@@ -123,7 +133,8 @@
    i `width` wymuszałyby layout na każdej klatce.
 
    Warstwy: karty/treść 1–4, .wskaznik-otwarte 8, panele PDF 9, narożniki 10,
-   przyciemnienie 11, #sidebar 12, podsumowanie egzaminu 20, toast zgłoszeń 22.
+   przyciemnienie 11, #sidebar 12, lewy narożnik przy OTWARTYM panelu 13,
+   podsumowanie egzaminu 20, toast zgłoszeń 22.
    Panel MUSI być nad panelami PDF — dlatego 12, a nie 10.
 
    Zamknięty panel ma `visibility: hidden`, żeby Tab NIE wchodził w jego

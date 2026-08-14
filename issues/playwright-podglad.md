@@ -63,6 +63,36 @@ const { chromium } = require('playwright');
 
 `playwright` jest zainstalowany globalnie (`NPM_CONFIG_PREFIX=/usr/local/share/npm-global`), więc `require('playwright')` z katalogu repo może wymagać `NODE_PATH=/usr/local/share/npm-global/lib/node_modules`.
 
+## Błąd w konsoli, który zawsze będzie i nic nie znaczy
+
+Każde wejście na stronę z kontenera zostawia w konsoli:
+
+```
+Failed to load resource: net::ERR_ADDRESS_UNREACHABLE   (//gc.zgo.at/count.js)
+```
+
+To **GoatCounter** — analityka wpięta w `template.html` i `index.html`. Firewall kontenera nie
+przepuszcza `gc.zgo.at`, więc skrypt nigdy się nie wczyta. Jest to nieszkodliwe i **nie wymaga
+naprawy**:
+
+- skrypt jest `async` i tylko zlicza odsłonę — strona nie czyta z niego niczego,
+- ta sama sytuacja zdarza się u zwykłych użytkowników (adblock, Privacy Badger), więc kod od
+  początku ją przewiduje: handler błędów w `template.html` **świadomie pomija** zasoby z
+  `gc.zgo.at`, żeby nie straszyć czerwonym banerem („Nie wczytano skryptu…"),
+- poza kontenerem, na GitHub Pages, żądanie przechodzi normalnie.
+
+Pisząc własny test, który zbiera błędy konsoli, odfiltruj `zgo.at` — inaczej każdy przebieg
+kończy się „błędem", który nie jest błędem. **Uwaga na pułapkę:** adresu NIE ma w treści
+komunikatu (`msg.text()` to samo „Failed to load resource: net::ERR_ADDRESS_UNREACHABLE"),
+tylko w `msg.location().url`. Filtr po `text()` przepuści go i test zgłosi fałszywy alarm:
+
+```js
+page.on('console', m => {
+    const url = (m.location() && m.location().url) || '';
+    if (m.type() === 'error' && url.indexOf('zgo.at') === -1) bledy.push(m.text());
+});
+```
+
 ## Czego tu NIE ma
 
 Tylko Chromium. Firefox i WebKit potrzebowałyby własnych zestawów bibliotek systemowych i kolejnych setek MB — jeśli kiedyś będą potrzebne, dochodzą do komendy `install` i do listy pakietów w Dockerfile.
