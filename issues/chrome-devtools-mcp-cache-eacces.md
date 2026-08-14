@@ -1,10 +1,40 @@
 # chrome-devtools-mcp: EACCES przy tworzeniu ~/.cache/chrome-devtools-mcp
 
-Status: **POPRAWIONE W DOCKERFILE 2026-08-14 (Opus 5, medium), czeka na Rebuild Container**
-— dopóki Henrich nie przebuduje kontenera, działa stary obraz i błąd jest ten sam.
-Zastosowany wariant 1 z tabeli niżej: `/home/node/.cache` powstaje teraz w obrazie razem
-z `.claude`/`.config` i dostaje `chown node:node`. Przypuszczenie o przyczynie (niżej)
-potwierdzi dopiero test po przebudowie — jeśli EACCES wróci, trzeba szukać dalej.
+Status: **NAPRAWIONE I POTWIERDZONE 2026-08-14 (Opus 5, medium), po Rebuild Container.**
+Zastosowano wariant 1 z tabeli niżej: `/home/node/.cache` powstaje w obrazie razem
+z `.claude`/`.config` i dostaje `chown node:node`. Sprawdzone po przebudowie:
+`ls -ld ~/.cache` → `node node`, `mkdir` przez usera `node` przechodzi, a plugin sam
+założył sobie `~/.cache/chrome-devtools-mcp/chrome-profile`. Przypuszczenie o przyczynie
+(niżej) było więc trafne.
+
+## Co WYSZŁO SPOD SPODU (nowy, osobny problem, 2026-08-14)
+
+Po zniknięciu EACCES pierwsze `navigate_page` rzuca już czym innym:
+
+```
+Could not find Google Chrome executable for channel 'stable' at:
+ - /opt/google/chrome/chrome.
+```
+
+To nie jest ten sam błąd i nie jest to regres — w kontenerze po prostu **nie ma
+Google Chrome'a**. Jest wyłącznie Chromium Playwrighta, przychodzący read-only bindem
+z hosta: `/home/node/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome`
+(działa — `tools/zrzuty.js` i `tools/test-krokow.js` chodzą na nim bez zarzutu).
+
+`chrome-devtools-mcp` przyjmuje `--executablePath` (oraz `--headless`), więc technicznie
+wystarczyłoby wskazać mu tamtą binarkę. Kłopot jest z MIEJSCEM na tę flagę: `args`
+serwera siedzą w `~/.claude/plugins/cache/claude-plugins-official/chrome-devtools-mcp/<wersja>/.claude-plugin/plugin.json`
+— poza repo i nadpisywane przy każdej aktualizacji pluginu.
+
+| Wariant | Uwagi |
+|---|---|
+| Własny wpis `chrome-devtools` w repo (`.mcp.json`) z `--executablePath` i `--headless`, plugin wyłączony | ✅ jedzie z repo, przeżywa aktualizacje · 🟨 dublujemy to, co daje plugin, i trzeba pilnować wersji `chrome-devtools-mcp@x` samemu |
+| Doinstalować Google Chrome w `.devcontainer/Dockerfile` | ✅ plugin działa bez żadnych sztuczek · ❌ ~150 MB obrazu, kolejny Rebuild Container po stronie hosta, a repozytorium Google trzeba by wpuścić przez firewall |
+| Zostawić jak jest | ✅ zero pracy · ❌ plugin bezużyteczny, ale Playwright i tak pokrywa zrzuty ekranu i testy odtwarzacza |
+
+Do decyzji Henricha. Uwaga na read-only bind: Chromium z `ms-playwright` jest tylko do
+odczytu, więc profil (`--user-data-dir`) musi zostać tam, gdzie jest domyślnie
+(`~/.cache/chrome-devtools-mcp/chrome-profile`) — to już jest zapisywalne.
 
 Znalezione 2026-08-13 przy pierwszym teście po instalacji pluginu
 `chrome-devtools-mcp@claude-plugins-official` (`/plugin`, kontener na Bazzite).

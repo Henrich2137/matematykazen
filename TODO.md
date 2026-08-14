@@ -96,14 +96,14 @@ Oto plik który tworzy Henrich (ja, użytkownik).
   - otwórz w kontenerze dowolny plik `.py` z `manimations/`
     - kolorowanie i podpowiedzi mają działać od razu, bez doklikiwania rozszerzenia
 
-  - w terminalu kontenera: `ls -ld ~/.cache` ma pokazać właściciela `node`, nie `root`
-    - potem spróbuj chrome-devtools-mcp na lokalnym serwerze (`node tools/serwer.js`) —
-      otwarcie strony nie powinno już rzucać EACCES
+  - ~~w terminalu kontenera: `ls -ld ~/.cache` ma pokazać właściciela `node`~~ — sprawdzone
+    z sesji 14.08 po przebudowie: właściciel `node`, zapis działa. EACCES z chrome-devtools-mcp
+    zniknął, ale plugin zatrzymuje się teraz na braku samego Chrome'a — patrz OPUS DOPISAŁ niżej
 
-  - w terminalu kontenera: `claude mcp list`
-    - wpis `github` ma być ✔ zamiast „HTTP 400: Authorization header badly formatted"
-    - jeśli dalej 400, sprawdź `echo $GITHUB_PERSONAL_ACCESS_TOKEN` — pusto oznacza,
-      że `gh` nie jest zalogowany w nowym kontenerze (`gh auth login`)
+  - ~~w terminalu kontenera: `claude mcp list`, wpis `github`~~ — sprawdzone z sesji 14.08:
+    `github` ✔ Connected, zmienna `GITHUB_PERSONAL_ACCESS_TOKEN` ustawiona, `gh` zalogowany
+    z wolumenu (nie trzeba było logować się ponownie). Przy pierwszym wywołaniu potrafi
+    zwrócić „tools fetch failed — timeout"; drugie przechodzi
 
 
 
@@ -120,10 +120,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 
 + DO ZROBIENIA HOŚCIE (POZA KONTENEREM)
-
-  - zrobić Rebuild Container — czekają na niego trzy gotowe poprawki w `.devcontainer/`:
-    rozszerzenie Pythona, właściciel `~/.cache` (chrome-devtools-mcp) i token dla pluginu
-    github. Co potem przeklikać: sekcja TESTOWANIE HENRICH.
 
   - plugin frontend-design działa, ale jego włącznik siedzi w `.claude/settings.local.json`
     (poza gitem) — do decyzji, czy przenieść do `.claude/settings.json`, żeby jechał z repo
@@ -307,7 +303,9 @@ Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz is
 
     - Gdy `matematykazen.pl` ruszy: odkomentować wpis w `CONTENT_DOMAINS` w `.devcontainer/init-firewall.sh` (dziś domena nie istnieje w DNS) i przy okazji poprawić `Required Notice:` w LICENSE.md, które wciąż wskazuje na GitHub Pages.
 
-    - Po najbliższym Rebuild Container: zalogować się raz `gh auth login` — od teraz `~/.config/gh` siedzi w wolumenie `matematykazen-gh-config` i przeżywa przebudowy.
+  + OPUS DOPISAŁ (Opus 5, medium) — 2026-08-14, po Rebuild Container:
+
+    - `chrome-devtools-mcp` dalej nie otwiera strony, ale to JUŻ INNY BŁĄD niż EACCES — ten jest naprawiony (node sam założył sobie `~/.cache/chrome-devtools-mcp/chrome-profile`). Teraz leci „Could not find Google Chrome executable for channel 'stable' at /opt/google/chrome/chrome": w kontenerze nie ma Chrome'a, jest tylko Chromium Playwrighta (`/home/node/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome`). Plugin ma na to przełącznik `--executablePath` (plus `--headless`), ale jego `args` siedzą w cache'u pluginu poza repo (`~/.claude/plugins/cache/.../plugin.json`) i giną przy aktualizacji pluginu. Do decyzji: albo własny wpis serwera w repo (`.mcp.json`) z tymi flagami zamiast wersji z pluginu, albo doinstalowanie Chrome'a w Dockerfile (~150 MB obrazu, wymaga hosta). Szczegóły dopisane w `issues/chrome-devtools-mcp-cache-eacces.md`.
 
   + OPUS DOPISAŁ (Opus 5, high) — 2026-08-11, odtwarzacz krok po kroku (v20):
 

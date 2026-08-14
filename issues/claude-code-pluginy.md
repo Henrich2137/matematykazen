@@ -59,10 +59,14 @@ jak frontend-design (`.claude/settings.local.json`, poza gitem). MCP server (`np
 chrome-devtools-mcp@1.7.0`), 5 skilli (debugowanie ogólne, a11y, LCP, wycieki pamięci,
 troubleshooting).
 
-- **`EACCES` przy zapisie do `~/.cache`** — poprawione w `.devcontainer/Dockerfile`
-  2026-08-14 (`/home/node/.cache` zakładane w obrazie i chownowane na `node`), ale
-  **działa dopiero po Rebuild Container**. Pełna diagnoza i warianty naprawy:
-  [chrome-devtools-mcp-cache-eacces.md](chrome-devtools-mcp-cache-eacces.md).
+- **`EACCES` przy zapisie do `~/.cache`** — naprawione w `.devcontainer/Dockerfile`
+  2026-08-14 (`/home/node/.cache` zakładane w obrazie i chownowane na `node`),
+  potwierdzone po Rebuild Container tego samego dnia.
+- **Nadal nie otwiera strony, ale z innego powodu**: w kontenerze nie ma Google Chrome'a
+  (`Could not find Google Chrome executable for channel 'stable'`), jest tylko Chromium
+  Playwrighta. Warianty wyjścia — własny wpis serwera w repo z `--executablePath` albo
+  Chrome w obrazie — w [chrome-devtools-mcp-cache-eacces.md](chrome-devtools-mcp-cache-eacces.md).
+  Do zrzutów ekranu i tak używa się `tools/zrzuty.js` (Playwright), więc to nie blokuje pracy.
 
 ## github
 
@@ -79,7 +83,9 @@ server GitHuba (`https://api.githubcopilot.com/mcp/`, HTTP, nie stdio).
   bo to osobny serwer MCP, nie wrapper na `gh` CLI. `claude mcp login` też nie pomaga —
   ten serwer autoryzuje się statycznym nagłówkiem z configu, nie OAuth-em.
 - **Naprawione w `.devcontainer/Dockerfile` 2026-08-14** (Opus 5, medium, decyzja Henricha),
-  działa **po Rebuild Container**: do `~/.zshrc` i `~/.bashrc` dopisywany jest
+  potwierdzone po Rebuild Container tego samego dnia — `claude mcp list` pokazuje `github`
+  jako ✔ Connected (przy pierwszym wywołaniu potrafi zwrócić „tools fetch failed — timeout",
+  drugie przechodzi). Do `~/.zshrc` i `~/.bashrc` dopisywany jest
   `export GITHUB_PERSONAL_ACCESS_TOKEN="$(cat ~/.config/gh/mcp-token 2>/dev/null || gh auth token 2>/dev/null)"`.
   - W repo **nie ma sekretu** — jest polecenie, które czyta token lokalnie. U kogoś innego
     zwróci jego własny token albo pustkę, więc klon repo nie dostaje niczyich uprawnień.
