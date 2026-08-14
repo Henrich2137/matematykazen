@@ -17,6 +17,37 @@
         opacity: 1;
         pointer-events: auto;
     }
+    /* Przy otwartym panelu logo ma się zachowywać tak, jakby leżało POD welonem:
+       przygaszone, nieklikalne, a kliknięcie w nie zamyka panel (Henrich, TODO).
+       Nad welon wychodzi tylko strzałka.
+
+       Dlaczego nie po prostu niższą warstwą: `body.sidebar-otwarty #naroznik-lewy`
+       ma `z-index: 13`, żeby strzałka była klikalna (patrz style/sheet.css), a to
+       tworzy kontekst piętrzenia — dziecko nie zejdzie poniżej rodzica. Zamiast
+       tego `pointer-events: none` (kliknięcie spada na welon, czyli na drugą
+       ścieżkę zamykania panelu, app/bootstrap.js) plus ta sama zasłonka
+       rgba(0,0,0,.25) co welon, malowana jako tło pigułki.
+
+       Świadomie NIE `opacity`: tło logo musi zostać kryjące, bo przez
+       półprzezroczyste widać treść zadania spod napisu (ten wariant odpadł już
+       przy v32). Klawiaturę zrównuje z myszą app/bootstrap.js (tabindex="-1"). */
+    body.sidebar-otwarty #naroznik-lewy {
+        /* Przezroczysty dla myszy MUSI być cały narożnik, nie samo logo: narożnik
+           jest kontenerem flex rozciągniętym na oba dzieci, więc to on łapałby
+           kliknięcie obok napisu (sprawdzone elementFromPoint). Strzałka odzyskuje
+           klikalność regułą niżej. */
+        pointer-events: none;
+    }
+    body.sidebar-otwarty #sidebar-toggle {
+        pointer-events: auto;
+    }
+    body.sidebar-otwarty #logo {
+        color: var(--text-faint);
+        background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25));
+    }
+    body.sidebar-otwarty #wersja {
+        color: var(--text-faint-3);
+    }
 }
 
 /* Badge punktów wisi 80px za prawą krawędzią karty (650px + 2×50px padding;

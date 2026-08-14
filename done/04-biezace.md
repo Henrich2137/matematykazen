@@ -1,5 +1,35 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-14] (Opus 5, high) v34 — logo pod welonem przy otwartym panelu bocznym.
+[ui, css, sidebar, mobile, a11y]
+
+Zamówienie Henricha: przy otwartym panelu logo ma być przygaszone, „z tyłu" i nieklikalne,
+a dotknięcie go ma zamykać panel — bo pomiędzy leży welon.
+
+- **Naprawdę schować logo pod welon się nie da.** `body.sidebar-otwarty #naroznik-lewy` ma
+  od v32 `z-index: 13`, żeby strzałka była klikalna, a to tworzy kontekst piętrzenia — żadne
+  dziecko nie zejdzie poniżej rodzica.
+- **Zrobione więc pozorem, ale wiernym** (`style/responsive.css`, w bloku 1299 px, czyli tam,
+  gdzie w ogóle jest welon): `pointer-events: none` na CAŁYM narożniku, `pointer-events: auto`
+  z powrotem na strzałce, do tego przygaszona etykieta (`--text-faint`) i ta sama zasłonka
+  `rgba(0,0,0,.25)` co welon, malowana jako `linear-gradient` na tle pigułki. Kliknięcie
+  spada na welon, a klik w welon to druga ścieżka zamykania panelu (app/bootstrap.js).
+- **Dwie pułapki, obie zmierzone, nie zgadnięte:**
+  - `pointer-events` MUSI iść na narożnik, nie na samo `#logo` — narożnik jest flexem
+    rozciągniętym na oba dzieci, więc to on łapie kliknięcie obok napisu (`elementFromPoint`
+    pokazywał `naroznik-lewy`, panel się nie zamykał).
+  - NIE `opacity` — półprzezroczysta pigułka pokazuje treść zadania spod napisu; ten sam
+    wariant odpadł już przy v32.
+- **Klawiatura zrównana z myszą** (`app/bootstrap.js`): `tabindex="-1"` + `aria-hidden` na
+  logo, gdy panel nakłada się na treść, zdejmowane przy zamknięciu i przy zmianie rozmiaru
+  okna. Bez tego Tab wchodził w link, którego myszą kliknąć się nie da, a Enter wychodziłby
+  ze strony.
+
+Sprawdzone Playwrightem: 485 px jasny i ciemny — `pointer-events: none`, kolor przygaszony,
+`tabindex="-1"`, pod kursorem `sidebar-przyciemnienie`, klik zamyka panel i NIE nawiguje;
+1400 px bez zmian (logo dalej zwykłym linkiem). Osobno regresja z v32: strzałka zamyka
+otwarty panel przy 485 / 900 / 1400 px. Konsola czysta.
+
 [ZROBIONE 2026-08-14] (Opus 5, high) Sprzątanie sekcji „DOPISANE PRZEZ CLAUDE-A" w TODO.md.
 [porzadki, todo, dokumentacja]
 

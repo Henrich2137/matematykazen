@@ -22,6 +22,7 @@ const PROG_SIDEBAR_NAKLADA = 1300;
 const sidebar = document.getElementById("sidebar");
 const sidebarToggle = document.getElementById("sidebar-toggle");
 const sidebarPrzyciemnienie = document.getElementById("sidebar-przyciemnienie");
+const logo = document.getElementById("logo");
 
 function sidebarNaklada() {
     try {
@@ -56,8 +57,24 @@ function odblokujScrollTla() {
     window.scrollTo(0, y);
 }
 
+/* Poniżej progu nakładania logo leży (wizualnie) pod welonem i jest nieklikalne
+   — robi to `pointer-events: none` w style/responsive.css. Klawiatura musi widzieć
+   to samo: bez tego Tab wchodzi w link, którego myszą kliknąć się nie da, a Enter
+   wychodzi ze strony przy otwartym panelu. */
+function ustawLogoPodWelonem(pod) {
+    if (!logo) return;
+    if (pod) {
+        logo.setAttribute("tabindex", "-1");
+        logo.setAttribute("aria-hidden", "true");
+    } else {
+        logo.removeAttribute("tabindex");
+        logo.removeAttribute("aria-hidden");
+    }
+}
+
 function otworzSidebar() {
     document.body.classList.add("sidebar-otwarty");
+    ustawLogoPodWelonem(sidebarNaklada());
     if (sidebarNaklada()) zablokujScrollTla();
     if (sidebarToggle) {
         sidebarToggle.setAttribute("aria-expanded", "true");
@@ -81,6 +98,7 @@ function otworzSidebar() {
 // (visibility: hidden) panelu i Tab startuje z nieoczywistego miejsca.
 function zamknijSidebar(wrocFokus) {
     document.body.classList.remove("sidebar-otwarty");
+    ustawLogoPodWelonem(false);
     odblokujScrollTla();
     if (sidebarToggle) {
         sidebarToggle.setAttribute("aria-expanded", "false");
@@ -106,6 +124,7 @@ document.addEventListener("keydown", (e) => {
 // (i uwięziłaby stronę). Poniżej progu — zakładamy ją z powrotem.
 window.addEventListener("resize", () => {
     if (!czySidebarOtwarty()) return;
+    ustawLogoPodWelonem(sidebarNaklada()); // z welonem znika też blokada logo
     if (sidebarNaklada()) zablokujScrollTla();
     else odblokujScrollTla();
 });

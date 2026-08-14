@@ -4,8 +4,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.
 
-  - nic. Zostaje jeszcze punkt oznaczony "DODATKOWO" w kolejce niżej
-    (logo pod welonem przy otwartym panelu bocznym na telefonie).
+  - nic
 
 
 <br>
@@ -29,9 +28,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
   - to samo do decyzji z „finalAnswer.label": renderer je ignoruje (świadomie, od 2026-08-06),
     a pole nadal siedzi w danych wszystkich arkuszy
-  
-  DODATKOWO
-  - Na telefonie, odczas odpalonego sidebara logo powinno być ono przygaszone, z tyłu i nieklikalne. Klijknięcie powinno powodować wyłączenie sidebara (bo pomiędzy jest welon czy coś)
 
 
 <br>
@@ -51,6 +47,15 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
     - wejdź w zadanie, odczekaj kilka sekund przed kliknięciem „Rozwiązanie", potem przeklikaj kroki —
       powinny wchodzić natychmiast, bez czekania na film
+
+
+  - logo przy otwartym panelu bocznym (v34)
+
+    - otwórz panel na telefonie — logo ma być przygaszone, jakby leżało pod przyciemnieniem
+
+    - dotknij logo przy otwartym panelu — panel ma się zamknąć, strona główna ma się NIE otworzyć
+
+    - strzałka obok logo ma dalej zamykać panel jednym dotknięciem
 
 
 <br>
