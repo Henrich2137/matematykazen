@@ -86,15 +86,14 @@ Oto plik który tworzy Henrich (ja, użytkownik).
       sprawdź czy nic nie wychodzi poza ekran
 
 
-  kontener — po kolejnym Rebuild Container (Opus 5, medium):
+  kontener — po Rebuildzie z wrapperem Chrome'a (Opus 5, medium):
 
-  - w terminalu kontenera: `/opt/google/chrome/chrome --version`
-    - ma odpowiedzieć „Google Chrome for Testing 151…", a nie „No such file or directory"
+  - w terminalu kontenera: `cat /opt/google/chrome/chrome`
+    - ma być skryptem z `--no-sandbox --headless=new`, a nie symlinkiem
 
   - poproś Claude'a w kontenerze o otwarcie strony przez chrome-devtools-mcp
-    - nie powinno już być „Could not find Google Chrome executable"
-    - gdyby wyszło, że przeglądarka chce się pokazać na ekranie i nie umie, napisz —
-      wtedy trzeba jej dołożyć tryb bez okna
+    - ma wejść na stronę bez „Target closed" i bez okna przeglądarki na ekranie
+    - flagi sprawdzone doświadczalnie w sesji 14.08, więc to formalność
 
 
 
@@ -112,9 +111,31 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + DO ZROBIENIA HOŚCIE (POZA KONTENEREM)
 
-  - jeszcze jeden Rebuild Container — w Dockerfile czeka symlink podstawiający Chromium
-    Playwrighta pod `/opt/google/chrome/chrome`, żeby ruszył plugin chrome-devtools-mcp
-    (`issues/chrome-devtools-mcp-cache-eacces.md`)
+  - zamienić w `.devcontainer/Dockerfile` symlink Chrome'a na wrapper i zrobić Rebuild
+    Container. Symlink sam w sobie zadziałał (`--version` odpowiada), ale plugin i tak
+    nie otwiera strony: Chrome chce zamknąć procesy potomne w chroocie, a kontener ma
+    `--cap-drop=ALL`. Playwright chodzi, bo sam dokłada `--no-sandbox`; plugin tego nie
+    robi i nie mamy jak mu podać flag, więc dokłada je sama binarka. Gotowe polecenie
+    (zastępuje dzisiejsze `mkdir -p /opt/google/chrome && ln -s …`, sprawdzone w sesji):
+
+    ```dockerfile
+    RUN mkdir -p /opt/google/chrome && \
+      printf '#!/bin/sh\nexec /home/node/.cache/ms-playwright/chromium-%s/chrome-linux64/chrome --no-sandbox --headless=new "$@"\n' "${CHROMIUM_BUILD}" > /opt/google/chrome/chrome && \
+      chmod 755 /opt/google/chrome/chrome
+    ```
+
+    Apostrofy wokół formatu są istotne — w cudzysłowie powłoka budująca obraz zjadłaby
+    `$@` i wrapper przestałby przekazywać argumenty. Reszta bloku komentarza nad tym
+    `RUN`-em zostaje bez zmian; warto tylko poprawić w nim zdanie o „złamanym symlinku",
+    bo wrapper żadnym symlinkiem już nie jest. Tło i dowody:
+    `issues/chrome-devtools-mcp-cache-eacces.md`, sekcje „Symlink to za mało" i „Naprawa".
+
+    Po przebudowie zostaje jedno sprawdzenie z sekcji TESTOWANIE HENRICH wyżej.
+
+    — Opus 5, medium, sesja w kontenerze 2026-08-14. Flagi sprawdzone doświadczalnie
+    ręcznym klientem MCP po stdio, samo polecenie `printf` też uruchomione i zweryfikowane;
+    niesprawdzone zostaje wyłącznie to, czego z kontenera nie da się dotknąć — czy
+    `.devcontainer/Dockerfile` po edycji na hoście zbuduje się bez błędu.
 
   - plugin frontend-design działa, ale jego włącznik siedzi w `.claude/settings.local.json`
     (poza gitem) — do decyzji, czy przenieść do `.claude/settings.json`, żeby jechał z repo
@@ -300,7 +321,7 @@ Szczegóły (pliki, linie, mechanizm) każdego punktu są w issues/ — patrz is
 
   + OPUS DOPISAŁ (Opus 5, medium) — 2026-08-14, po Rebuild Container:
 
-    - `chrome-devtools-mcp` dalej nie otwiera strony, ale to JUŻ INNY BŁĄD niż EACCES — ten jest naprawiony (node sam założył sobie `~/.cache/chrome-devtools-mcp/chrome-profile`). Teraz leci „Could not find Google Chrome executable for channel 'stable' at /opt/google/chrome/chrome": w kontenerze nie ma Chrome'a, jest tylko Chromium Playwrighta (`/home/node/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome`). Plugin ma na to przełącznik `--executablePath` (plus `--headless`), ale jego `args` siedzą w cache'u pluginu poza repo (`~/.claude/plugins/cache/.../plugin.json`) i giną przy aktualizacji pluginu. Do decyzji: albo własny wpis serwera w repo (`.mcp.json`) z tymi flagami zamiast wersji z pluginu, albo doinstalowanie Chrome'a w Dockerfile (~150 MB obrazu, wymaga hosta). Szczegóły dopisane w `issues/chrome-devtools-mcp-cache-eacces.md`.
+    - `chrome-devtools-mcp` — rozpoznane do końca 14.08 i zakończone konkretną poprawką: brakowało Chrome'a, a po jego podstawieniu wyszła jeszcze piaskownica blokowana przez `--cap-drop=ALL`. Naprawa czeka na hoście (patrz DO ZROBIENIA HOŚCIE wyżej). Wybrany wariant: wrapper zamiast symlinka, plugin zostaje nietknięty razem ze swoimi skillami. Dowody i odrzucone warianty: `issues/chrome-devtools-mcp-cache-eacces.md`.
 
   + OPUS DOPISAŁ (Opus 5, high) — 2026-08-11, odtwarzacz krok po kroku (v20):
 

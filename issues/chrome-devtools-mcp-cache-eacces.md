@@ -28,7 +28,7 @@ gdzie wpisać: `args` serwera siedzą w
 
 | Wariant | Uwagi |
 |---|---|
-| **Symlink `/opt/google/chrome/chrome` → Chromium z `ms-playwright`** (WYBRANY) | ✅ plugin działa bez własnych plików i bez flag · ✅ zero MB obrazu, zero zmian w firewallu · 🟨 ścieżka ma numer builda, przy podbiciu Playwrighta trzeba poprawić `CHROMIUM_BUILD` |
+| **`/opt/google/chrome/chrome` → Chromium z `ms-playwright`** (WYBRANY; najpierw symlink, potem wrapper — patrz niżej) | ✅ plugin działa bez własnych plików i bez flag · ✅ zero MB obrazu, zero zmian w firewallu · 🟨 ścieżka ma numer builda, przy podbiciu Playwrighta trzeba poprawić `CHROMIUM_BUILD` |
 | Własny wpis `chrome-devtools` w repo (`.mcp.json`) z `--executablePath` i `--headless`, plugin wyłączony | 🟨 dublujemy to, co daje plugin, i trzeba pilnować wersji `chrome-devtools-mcp@x` samemu; ta sama krucha ścieżka |
 | Doinstalować Google Chrome w `.devcontainer/Dockerfile` | ✅ plugin działa bez żadnych sztuczek · ❌ ~150 MB obrazu i repozytorium Google do wpuszczenia przez firewall |
 | Zostawić jak jest | ✅ zero pracy · ❌ plugin bezużyteczny (Playwright i tak pokrywa zrzuty ekranu i testy odtwarzacza) |
@@ -51,13 +51,58 @@ cel istnieje i jest wykonywalny
 Czyli binarka Playwrighta przedstawia się jako **Chrome for Testing**, nie „Chromium" —
 kanał „stable", którego szuka plugin, powinien go przyjąć.
 
-Do sprawdzenia po Rebuildzie: czy plugin startuje **headful** (bez flagi `--headless` nie
-mamy jak mu tego narzucić). Kontener dostaje od VS Code sockety X11/Waylanda, więc może
-przejść; jeśli nie, wraca wariant z własnym `.mcp.json` i jawnym `--headless`.
-
 Uwaga na read-only bind: Chromium z `ms-playwright` jest tylko do odczytu, więc profil
 (`--user-data-dir`) musi zostać tam, gdzie jest domyślnie
 (`~/.cache/chrome-devtools-mcp/chrome-profile`) — to już jest zapisywalne.
+
+### Symlink to za mało: piaskownica Chrome'a (2026-08-14, po Rebuildzie)
+
+Po przebudowie `/opt/google/chrome/chrome --version` odpowiada poprawnie, ale pierwsze
+`navigate_page` przez plugin zwraca `Protocol error (Target.setDiscoverTargets): Target closed`.
+Chrome uruchomiony ręcznie mówi, o co naprawdę chodzi:
+
+```
+Check failed: sys_chroot("/proc/self/fdinfo/") == 0
+FATAL:content/browser/zygote_host/zygote_host_impl_linux.cc:221
+```
+
+Piaskownica Chrome'a zamyka procesy potomne w chroocie, a kontener ma `--cap-drop=ALL`,
+więc nie ma do tego uprawnień. **Playwright chodzi tu od zawsze, bo sam z siebie dokłada
+`--no-sandbox`** — plugin tego nie robi. To nie jest wina symlinka: prawdziwy Chrome
+zainstalowany z paczki potknąłby się o dokładnie to samo.
+
+Obawa z poprzedniej wersji tej notatki (że plugin wystartuje **headful**) okazała się
+nieistotna — ta sama poprawka załatwia i to.
+
+Sprawdzone doświadczalnie w sesji, przez ręcznego klienta MCP po stdio (bez restartu
+Claude Code): `--headless --chromeArg=--no-sandbox` → `Successfully navigated to …`.
+Profil trwały w `~/.cache/chrome-devtools-mcp/chrome-profile` też przechodzi, `--isolated`
+jest niepotrzebne.
+
+### Naprawa: symlink zamieniony na wrapper (decyzja Henricha)
+
+Flag pluginowi narzucić nie umiemy (jego `args` są poza repo), więc dokłada je **sama
+binarka**. W `.devcontainer/Dockerfile` zamiast `ln -s`:
+
+```dockerfile
+RUN mkdir -p /opt/google/chrome && \
+  printf '#!/bin/sh\nexec /home/node/.cache/ms-playwright/chromium-%s/chrome-linux64/chrome --no-sandbox --headless=new "$@"\n' "${CHROMIUM_BUILD}" > /opt/google/chrome/chrome && \
+  chmod 755 /opt/google/chrome/chrome
+```
+
+Dlaczego `printf` z `%s`, a nie heredoc czy `echo` z `${CHROMIUM_BUILD}` w środku: format
+musi być w **apostrofach**, żeby powłoka budująca obraz nie zjadła `$@` (rozwinęłaby je do
+pustego napisu i wrapper przestałby przekazywać argumenty Puppeteera). Numer builda wchodzi
+osobnym argumentem, więc apostrofy niczemu nie przeszkadzają. Całe polecenie sprawdzone
+w sesji — wygenerowany plik otwiera stronę przez serwer MCP.
+
+`--headless=new`, a nie `--headless`: stary tryb headless to w nowym Chromie osobna,
+okrojona implementacja. Efekt uboczny jest pożądany — plugin nigdy nie wystawi okna na
+ekran hosta przez przekazane sockety X11/Waylanda.
+
+Wrapper wygrał z wariantem `.mcp.json`, bo plugin zostaje nietknięty razem ze swoimi
+pięcioma skillami, nic się nie dubluje i nie trzeba samemu pilnować wersji
+`chrome-devtools-mcp@x`. Koszt: kolejny Rebuild Container z hosta.
 
 Znalezione 2026-08-13 przy pierwszym teście po instalacji pluginu
 `chrome-devtools-mcp@claude-plugins-official` (`/plugin`, kontener na Bazzite).
