@@ -98,6 +98,24 @@ server GitHuba (`https://api.githubcopilot.com/mcp/`, HTTP, nie stdio).
     $GITHUB_PERSONAL_ACCESS_TOKEN` w tym samym terminalu — pusto oznacza brak logowania
     `gh`, a nie błąd w tej konstrukcji.
 
+### Decyzja Henricha 2026-08-14: zostawiamy szeroki token
+
+Pytanie padło wprost i warto mieć odpowiedź pod ręką, zamiast odtwarzać ją za pół roku.
+
+- **Czy klucz istnieje tylko przy zalogowanym `gh`?** Tak. Nigdzie nie jest zapisany na
+  stałe — powstaje przy każdym starcie powłoki z `gh auth token`. Po wylogowaniu zmienna
+  wychodzi pusta i przestaje działać sama wtyczka, nic poza nią.
+- **Czy klon repo daje dostęp do konta Henricha?** Nie. W repo leży polecenie, nie sekret;
+  u kogoś innego sięgnie po jego własny token albo po nic. Zweryfikowane 2026-08-14
+  przeszukaniem **całej historii** repo pod kątem wzorca `gh[pousr]_…` — zero trafień
+  (`git grep -E "gh[pousr]_[A-Za-z0-9]{20,}" $(git rev-list --all)`). Warto powtórzyć ten
+  jednolinijkowiec, jeśli kiedyś pojawi się podejrzenie wycieku.
+- **Zawężenie do fine-grained PAT odłożone** — świadomie, jako nieproporcjonalne do
+  ryzyka na tym etapie. Furtka (`~/.config/gh/mcp-token`) jest gotowa i działa bez żadnej
+  przebudowy, więc decyzję da się odwrócić w każdej chwili. Realne ryzyko, gdyby wracać do
+  tematu: token ma pełne uprawnienia (`repo`, `workflow`, `gist`, `read:org`) i widzi go
+  każdy proces w kontenerze, więc wystarczyłaby jedna wroga zależność npm.
+
 ## vendor/superpowers/
 
 Zawiera tylko `LICENSE` (MIT) + `NOTICE.md` — miejsce na skille, które kiedyś ewentualnie
