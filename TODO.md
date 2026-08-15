@@ -39,8 +39,11 @@ Oto plik który tworzy Henrich (ja, użytkownik).
         (w v31 zrobione tylko marginesy boczne, rozmiar bez zmian)
 
   
-  - usunąć całkowicie „solutionTextMore" — z wszystkich exercises.json i z template.html/JS,
-    nie ma już żadnego odbiorcy
+  - usunąć całkowicie „solutionTextMore" z wszystkich exercises.json i z template.html/JS
+    (sprawdzone 2026-08-15: to NIE jest martwy kod. app/render.js nadal go renderuje,
+    przycisk „pokaż więcej" działa, a niepustą treść ma jeszcze 10 zadań w 2024-grudniu.
+    Usunięcie oznacza więc świadome skasowanie działającej funkcji plus przepisanie
+    tych 10 rozwiązań, a nie samo sprzątanie)
 
   - to samo do decyzji z „finalAnswer.label": renderer je ignoruje (świadomie, od 2026-08-06),
     a pole nadal siedzi w danych wszystkich arkuszy
