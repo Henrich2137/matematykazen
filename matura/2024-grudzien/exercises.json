@@ -231,7 +231,7 @@
         "selfScore": false,
         "hint": "Korzystamy z wzoru na procent składany: \\(P = P_0 \\cdot (1 + r)^{n}\\)",
         "formulasPage": 10,
-        "solutionText": "Wzór na procent składany:\\[P = P_0 \\cdot (1 + p)^{n}\\]\\(60\\,000 \\cdot (1 + p)^{2} = 67\\,925{,}76\\)<br>\\((1 + p)^{2} = 1{,}132096\\)<br>\\(1 + p = 1{,}064\\)<br>\\(p = 0{,}064 = \\boldsymbol{6{,}4\\%}\\)<br>Odpowiedź <b>B</b>.",
+        "solutionText": "Wzór na procent składany:\\[P = P_0 \\cdot (1 + p)^{n}\\]<div class=\"rozwiazanie-kroki\">\\(60\\,000 \\cdot (1 + p)^{2} = 67\\,925{,}76\\)<br>\\((1 + p)^{2} = 1{,}132096\\)<br>\\(1 + p = 1{,}064\\)<br>\\(p = 0{,}064 = \\boldsymbol{6{,}4\\%}\\)<br>Odpowiedź <b>B</b>.</div>",
         "solutionTextMore": "",
         "solutionStepByStep": [
             {

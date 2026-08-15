@@ -1171,6 +1171,13 @@ body.sidebar-otwarty #sidebar-linia {
 .solution-text-container:empty {
     display: none;
 }
+/* Rozwiązanie zapisane linijka po linijce, w ślad za krokami filmu. Wzór na
+   starcie idzie przez \[ \], czyli KaTeX centruje go sam; bez tej klasy kolejne
+   linijki (zwykłe \( \) rozdzielone <br>) kleiły się do lewej i wzór wisiał nad
+   nimi bez związku. Wyśrodkowanie zestawia je w jedną kolumnę pod wzorem. */
+.rozwiazanie-kroki {
+    text-align: center;
+}
 
 /* NOWE ELEMENTY KTÓRE NIE JESTEM PEWIEN CZY ISTNIEJĄ */
 .solution-text-more-container button {
