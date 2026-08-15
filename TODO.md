@@ -37,6 +37,15 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945 
 
+  - zadanie startowe VS Code robi teraz fetch zamiast pulla
+
+    - otwórz repo w kontenerze i sprawdź w Source Control, czy pojawia się licznik „↓N" — czyli fetch przy starcie zadziałał
+
+    - repo ma się już nie „rozjeżdżać" samo: po otwarciu kontenera `git status` ma być czysty, bez wysypu zmian, których nie robiłeś
+
+    - scalanie robisz teraz sam: gdy widzisz „↓N", klikasz pull (najlepiej na hoście)
+
+
   - wczytywanie kroków (v33)
 
     - wejdź w „Rozwiązanie" w zad. 1 i przeklikaj ► kilka razy — kadr nie ma już ani pulsować, ani przygasać
