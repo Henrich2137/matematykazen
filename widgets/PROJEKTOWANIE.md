@@ -1,0 +1,93 @@
+# Jak projektować widżety (wnioski z pilotażu Fable, 2026-08-15)
+
+Przewodnik dla modelu, który ma SAMODZIELNIE wymyślić widżet do nowego zadania,
+w stylu wypracowanym z Henrichem na arkuszu 2026-maj (zad. 2, 8, 10, 11, 12, 13).
+Mechanika (rejestr, helpery, klasy CSS): [README.md](README.md). Kolory:
+[COLORS.md](../COLORS.md). Stan pilotażu i metoda wycinania rysunków z PDF:
+[issues/fable-przekazanie-2026-maj.md](../issues/fable-przekazanie-2026-maj.md).
+
+## Od czego zacząć myślenie
+
+1. **Znajdź sedno zadania i typowy błąd ucznia.** Widżet istnieje po to, żeby
+   uczeń ODKRYŁ przyczynę, nie obejrzał skutek. Przykłady z pilotażu:
+   - zad. 2: błąd "2 razy 600 = 1200" kontra procent składany; widżet pokazuje,
+     że drugi rok liczy się od powiększonego kapitału (strzałki +600 i +636).
+   - zad. 8: suwak rusza x, NIE parametrem m, bo sednem jest "nawias się zeruje,
+     więc iloczyn jest zerem". Suwak na m pokazywałby skutek zamiast przyczyny.
+   - zad. 13.2: różnica między odpowiedziami 3/2 i -3/2; widżet pokazuje, że
+     minus siedzi w ujemnym x (idziemy w lewo po ramieniu kąta), nie w y.
+2. **Uczeń rusza tą wielkością, która odsłania mechanizm** i to ona dostaje
+   kolor niewiadomej. Reszta zostaje czarna albo dostaje kolor drugiego
+   parametru, jeśli też jest sterowalna.
+3. **Odczyt pod płótnem to rachunek, nie wyrok**: podstawienie aktualnej
+   wartości do wzoru/równania z zadania, linijka po linijce, a na końcu ✓/✗.
+   Zielony znaczek zapala się, gdy uczeń trafi w wartości z zadania; nigdy nie
+   przemalowuje elementu, którym rusza.
+
+## Spójność, której pilnuje Henrich (każdy punkt to jego realna uwaga)
+
+- **Zgodność z tablicami CKE i rysunkiem arkusza.** Notacja jak w tablicach
+  (np. tg alfa = y/x, nie "slope"), trójkąty i oznaczenia jak na s. 11,
+  wykres jak na rysunku zadania. Gdy zadanie ma rysunek, wytnij go z arkusza
+  do media/ (metoda w notatce sztafetowej) i odwzoruj w widżecie.
+- **Kratka układu współrzędnych ZAWSZE kwadratowa** (wgWysokoscKwadratowa).
+  Ściśnięty wykres to błąd.
+- **Nic się nie klei i nic nie zasłania**: liczby pod osią schodzą pod promień
+  kropki, tytuł ma margines od separatora, strzałki nie dotykają rogów słupków,
+  podpisy nie nachodzą na podziałkę.
+- **Zakresy przeciągania do końca sensownego obszaru.** Prosta, która
+  zatrzymuje się kawałek przed krawędzią, irytuje. Jeśli pełny zakres psuje
+  matematykę (np. przedział wychodzi poza dziedzinę), dotnij wartości W ŚRODKU
+  logiki, nie zakres ruchu.
+- **Sterowanie płynne, nie skokowe**: suwaki step 0.05, przeciąganie
+  zaokrąglane do 0.05, plus wgPrzyciagnij do wartości z zadania (dzięki temu
+  trafienie palcem jest możliwe, a porównanie === działa). Wielkości z natury
+  całkowite (liczba biletów) zostają skokowe.
+- **Etykiety jednoznaczne dla ucznia, który widzi je pierwszy raz.**
+  "+636 zł" nad słupkiem wyglądało na sumę odsetek; naprawa to strzałka MIĘDZY
+  słupkami plus linia bazowa na poziomie wpłaty. Nazwy pełne ("suma odsetek"),
+  jednostki przy liczbach.
+- **Rachunek wielolinijkowy układa się w kolumny jak w tabelce i nie skacze**
+  przy ruszaniu suwakiem: KaTeX \begin{array}, liczby dopychane \hphantom,
+  etykiety suwaków o stałej szerokości.
+- **Bez zbędnych elementów**: uchwyt-kropka, którego nie trzeba łapać, wylatuje;
+  widok bez interakcji ma to napisane wprost w tytule.
+- **Tytuł mówi, co ZROBIĆ** ("Zmień p przy pomocy suwaka"), nie co wyjdzie.
+- **Mniej komentarzy, więcej rachunku**; jedno zdanie wyjaśnienia tylko tam,
+  gdzie bez niego nie wiadomo, skąd wynik.
+
+## Merytoryka
+
+- Policz zadanie samodzielnie od zera i porównaj z kluczem (odpowiedzi.txt),
+  ZANIM zaprojektujesz widżet: konstrukcja często zależy od struktury
+  rozwiązania (które nawiasy, jakie pierwiastki, skąd znak).
+- Przy dwuznaczności matematycznej lub notacyjnej PYTAJ Henricha, nie zgaduj.
+  Przykład z pilotażu: minus w tg alfa dało się przypisać do y (konwencja
+  nachylenia) albo do x (definicja kąta z tablic); wybór zmieniał cały rysunek.
+- Wartości niewymierne/ułamkowe pokazuj dokładnie (np. -4/3 ułamkiem), nie
+  zaokrąglone, jeśli ✓ przy nich się zapala.
+
+## Rytm oddawania pracy
+
+Jedna paczka = jedna wersja (template.html + index.html naraz) = jeden commit
+z push. Do TODO.md (TESTOWANIE HENRICH) wpisy "co kliknąć -> czego szukać",
+zawsze z punktami: telefon (palec, 485 px), zmiana motywu przy otwartym
+widżecie, zmienione pliki wspólne (mogą zepsuć inne arkusze). Szczegóły
+wersji do done/04-biezace.md. Weryfikacja przed commitem: Playwright
+(serwer `node tools/serwer.js 8001`, `.katex-error` musi być 0, zrzuty w obu
+motywach), nigdy "na oko".
+
+## Checklist nowego widżetu
+
+1. Sedno + typowy błąd ucznia -> co uczeń rusza i co ma zauważyć.
+2. Liczby zadania policzone ręcznie, zgodne z kluczem.
+3. Plik w widgets/ (para widżetów jednego zadania może dzielić plik),
+   wpis w _registry.js, tag <script> w template.html, wiersz w README.md.
+4. Budowa na klockach: wgUklad + wgRysujUklad + wgWysokoscKwadratowa
+   (wykresy), wgZakladki (kilka widoków), wgDraggable + wgPrzyciagnij,
+   wgMath/wgTexLiczba/wgUstawHTML (odczyt), wgZarejestrujRysowanie
+   (OBOWIĄZKOWE, inaczej motyw nie przemaluje płótna).
+5. Kolory tylko z WG_KOLORY; suwak slider.style.accentColor w draw().
+6. hint (nie zdradza) + solutionText (wzór, potem rozwiazanie-kroki)
+   + solutionTextMore: "".
+7. Test w Playwright, wersja, TODO, done/, commit, push.

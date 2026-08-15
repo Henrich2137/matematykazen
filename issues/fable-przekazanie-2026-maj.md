@@ -29,6 +29,10 @@ zad. 14 w exercises.json przed projektowaniem; zadanie ma wpis pod indeksem 17).
 
 ## Konwencje wypracowane w tej sesji (obowiązują dalej)
 
+**Pełny przewodnik projektowania widżetów (dydaktyka, spójność, checklist):
+[widgets/PROJEKTOWANIE.md](../widgets/PROJEKTOWANIE.md)** - czytać PRZED
+wymyślaniem nowego widżetu, punkty niżej to skrót techniczny.
+
 - **Wielorazowe klocki w `widgets/_helpers.js`** (opisane też w widgets/README.md):
   `wgZakladki` (karty w widżecie), `wgUklad` + `wgRysujUklad` (układ współrzędnych),
   `wgWysokoscKwadratowa` (wysokość płótna dająca KWADRATOWĄ kratkę - Henrich tego

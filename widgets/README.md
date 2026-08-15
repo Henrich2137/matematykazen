@@ -1,6 +1,8 @@
 # widgets/ — interaktywne widżety rozwiązań
 
-Indeks katalogu. Jeden widżet = jeden plik = jedna funkcja `widget*`, podpięta do
+Indeks katalogu. **Zanim zaprojektujesz nowy widżet, przeczytaj
+[PROJEKTOWANIE.md](PROJEKTOWANIE.md)**: zasady dydaktyczne i spójności
+wypracowane z Henrichem w pilotażu 2026-maj. Jeden widżet = jeden plik = jedna funkcja `widget*`, podpięta do
 zadania przez pole `solutionWidget` w `exercises.json` (wartością jest **nazwa**
 funkcji jako string — JSON nie przechowuje funkcji).
 

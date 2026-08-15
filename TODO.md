@@ -451,7 +451,17 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
     - gotowy skrypt tools/test-widzetu.js (argumenty: arkusz i numer zadania; klika „Rozwiązanie", robi zrzut w obu motywach, liczy .katex-error): dziś każdy model pisze taki skrypt od zera. Oszczędność 4, koszt 2, ryzyko 4
 
-    - krótka ściąga schematu exercises.json (lista pól, typy, jeden przykładowy wpis, bez prozy): brief słusznie odradza ARCHITECTURE.md, ale wtedy schemat trzeba wyczytywać z cudzych wpisów. Oszczędność 4, koszt 2, ryzyko 3 (trzeba pilnować synchronizacji ze stanem kodu)
+    - krótka ściąga schematu exercises.json
+    - (2026-08-15, po całej sesji) sugestie do współpracy:
+
+      - najlepiej działały zamówienia widżetów z przykładowym stanem liczbami (jak Twój szkic do zad. 11: „50 + 150 = 200..."). Taki opis od razu ustawia układ i oszczędza rundę poprawek
+
+      - uwagi z testów zbierane w paczkę (jak przy v43 i v48) są tańsze niż pojedynczo; drobiazgi dorzucane w trakcie tury też działają dobrze
+
+      - kolejne widżety wg gotowego wzorca może robić Opus: przewodnik widgets/PROJEKTOWANIE.md + notatka issues/fable-przekazanie-2026-maj.md są pisane właśnie pod to; Fable zostaw na nowe wzorce i trudniejszą merytorykę
+
+      - sekcja TESTOWANIE HENRICH urosła do siedmiu paczek; po przeklikaniu warto od razu przenosić wpisy do done/, żeby TODO nie puchło
+ (lista pól, typy, jeden przykładowy wpis, bez prozy): brief słusznie odradza ARCHITECTURE.md, ale wtedy schemat trzeba wyczytywać z cudzych wpisów. Oszczędność 4, koszt 2, ryzyko 3 (trzeba pilnować synchronizacji ze stanem kodu)
 
 
 <br>
