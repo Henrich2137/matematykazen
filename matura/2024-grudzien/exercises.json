@@ -454,7 +454,7 @@
         ],
         "hint": "Przenieś wszystkie wyrazy na jedną stronę, rozwiąż równanie kwadratowe, naszkicuj parabolę i odczytaj, gdzie nierówność jest spełniona.",
         "formulasPage": 8,
-        "solutionText": "Wzory:\\[\\Delta = b^{2} - 4ac \\qquad x_{1,2} = \\frac{-b \\pm \\sqrt{\\Delta}}{2a}\\]\\(x(x - 6) \\le 7\\)<br>\\(x^{2} - 6x \\le 7\\)<br>\\(x^{2} - 6x - 7 \\le 0\\)<br>\\(\\Delta = 36 + 28 = 64, \\quad \\sqrt{\\Delta} = 8\\)<br>\\(x_1 = \\frac{6 - 8}{2} = -1, \\quad x_2 = \\frac{6 + 8}{2} = 7\\)<br>Ramiona paraboli idą w górę, więc wartości \\(\\le 0\\) leżą między miejscami zerowymi.<br>\\(\\boldsymbol{x \\in \\langle -1,\\ 7\\rangle}\\)",
+        "solutionText": "Wzory:\\[\\Delta = b^{2} - 4ac \\qquad x_{1,2} = \\frac{-b \\pm \\sqrt{\\Delta}}{2a}\\]<div class=\"rozwiazanie-kroki\">\\(x(x - 6) \\le 7\\)<br>\\(x^{2} - 6x \\le 7\\)<br>\\(x^{2} - 6x - 7 \\le 0\\)<br>\\(\\Delta = 36 + 28 = 64, \\quad \\sqrt{\\Delta} = 8\\)<br>\\(x_1 = \\frac{6 - 8}{2} = -1, \\quad x_2 = \\frac{6 + 8}{2} = 7\\)<br>Ramiona paraboli idą w górę, więc wartości \\(\\le 0\\) leżą między miejscami zerowymi.<br>\\(\\boldsymbol{x \\in \\langle -1,\\ 7\\rangle}\\)</div>",
         "solutionTextMore": "",
         "solutionStepByStep": [
             {

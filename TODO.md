@@ -56,7 +56,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945 
 
-  - zad. 5 w 2024-grudzień po przeróbce (v38)
+  - zad. 5 w 2024-grudzień po przeróbce (v39)
 
     - suwak ma być fioletowy, nie systemowy niebieski (dotyczy też suwaków w zad. 10, 15 i 30)
 
@@ -66,9 +66,9 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
     - rozwiązanie opisowe ma być linijka po linijce, wzór tylko na starcie; przycisk „pokaż więcej" ma zniknąć
 
-    - linijki pod wzorem mają stać wyśrodkowane, w jednej kolumnie pod nim (w zad. 9 zostały przy lewej, celowo, do porównania)
+    - linijki pod wzorem mają stać wyśrodkowane, w jednej kolumnie pod nim; tak samo w zad. 9
 
-  - zad. 9 w 2024-grudzień, rozwiązanie opisowe (v37)
+  - zad. 9 w 2024-grudzień, rozwiązanie opisowe (v39)
 
     - to samo co w zad. 5: linijka po linijce, wzory na starcie, bez „pokaż więcej"
 
