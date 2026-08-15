@@ -53,9 +53,9 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
     - przeciągnij punkt palcem — sprawdź, czy da się w niego trafić i czy nie ucieka poza ekran
 
-    - punkt na osi ma być niebieski niezależnie od tego, czy nierówność wychodzi; o wyniku mówi dopiero ✓ albo ✗ w drugiej linijce pod spodem
+    - punkt na osi ma trzymać kolor podstawiania niezależnie od tego, czy nierówność wychodzi; o wyniku mówi dopiero ✓ albo ✗ w drugiej linijce pod spodem
 
-    - w drugiej linijce niebieskie mają być tylko liczby, które weszły na miejsce x — nawiasy, „− 6" i „≤ 7" zostają czarne
+    - w drugiej linijce kolorowe mają być tylko liczby, które weszły na miejsce x — nawiasy, „− 6" i „≤ 7" zostają czarne
 
     - przełącz motyw przy otwartym widżecie — kolory mają się przemalować od razu, bez odświeżania strony
 
