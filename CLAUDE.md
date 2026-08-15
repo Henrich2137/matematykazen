@@ -6,6 +6,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Detailed architecture and exercise data schema live in [ARCHITECTURE.md](ARCHITECTURE.md); the full CSS/layout reference lives in [ARCHITECTURE_CSS.md](ARCHITECTURE_CSS.md).** Read them before touching the rendering logic in template.html, the schema in a sheet's exercises.json, or the CSS in style/ — and keep them in sync when you change what they describe. Don't duplicate their content here.
 
+## Bezpieczeństwo poza devcontainerem
+
+**Sprawdź na starcie sesji, czy działasz na hoście (poza devcontainerem), czy w devcontainerze.** Jeśli na hoście — obowiązują zasady z [HOSTRULES.md](HOSTRULES.md) jako **twarde ograniczenia, nie sugestie**: stosuj się do nich automatycznie, przy każdym działaniu, bez czekania na przypomnienie i niezależnie od tego, czy bieżące zadanie o nich wspomina. Nie omijaj ich dla wygody ani żeby "po prostu skończyć zadanie" — jeśli zadanie wymaga czegoś, co HOSTRULES.md zabrania, zatrzymaj się i zapytaj, zamiast szukać obejścia. W razie wątpliwości, czy jesteś na hoście czy w kontenerze, załóż, że na hoście, i działaj wg HOSTRULES.md.
+
 ## Product context
 
 MatematykaZen is an interactive platform for learning math for the Polish "matura podstawowa" exam, inspired by Brilliant.org. Current phase: demo/MVP. Content = official CKE exam sheets: closed-form exercises get hints/explanations (sometimes interactive widgets); open-form exercises use an off-platform-solve + self-grade flow (`selfScore`). UI philosophy: minimalist, no ads. Business model: freemium (CKE base free, proprietary content paid). This repo is one instance of the exam-sheet page pattern; sibling folders (e.g. `matematykazen11`) hold other sheets with the same structure.
