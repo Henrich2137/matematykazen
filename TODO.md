@@ -56,6 +56,24 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945 
 
+  - zad. 2 w 2026-maj, pierwsze zadanie od Fable (v41)
+
+    - kliknij „Podpowiedź": ma pokazać wzór na procent składany i przypomnieć, że pytanie jest o same odsetki; oceń, czy to pomaga, a nie zdradza wynik
+
+    - kliknij „Rozwiązanie": wzór na starcie, pod nim linijki wyśrodkowane jedna pod drugą, bez przycisku „pokaż więcej"
+
+    - widżet pod rozwiązaniem: trzy słupki kapitału i suwak oprocentowania
+
+      - ustaw suwak na 6,0%: „p = 6,0%" w odczycie i łączne odsetki 1236,00 zł mają zzielenieć
+
+      - jasnoniebieski pasek na górze drugiego i trzeciego słupka to odsetki doliczone w danym roku, nad słupkiem podpis „+600,00 zł" / „+636,00 zł"; sprawdź, czy widać, że drugi rok daje więcej niż pierwszy
+
+      - na telefonie: czy suwak da się wygodnie łapać palcem i nic nie wystaje poza ekran
+
+      - przełącz motyw przy otwartym widżecie: kolory mają się przemalować od razu, bez odświeżania
+
+    - zmienione pliki wspólne dla wszystkich arkuszy: template.html (nowy tag script i wersja) oraz widgets/_registry.js (nowy wpis); przeklikaj dla pewności dowolne zadanie w 2024-grudzień, czy nic się nie posypało
+
   - zad. 5 w 2024-grudzień po przeróbce (v40)
 
     - suwak ma być fioletowy, nie systemowy niebieski (dotyczy też suwaków w zad. 10, 15 i 30)
@@ -333,6 +351,14 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 
   (poniżej modele dopisują nowe punkty, każdy pod własnym nagłówkiem z modelem i effortem)
+
+  + FABLE 5 MEDIUM DOPISAŁ (2026-08-15, sugestie architektoniczne po zad. 2 w 2026-maj; oceny: oszczędność kontekstu / koszt wdrożenia / wpływ na ryzyko błędów, 1 zwiększa - 5 zmniejsza):
+
+    - pole `numer` (numer CKE) wprost w każdym wpisie exercises.json: znika pułapka „numer zadania ≠ pozycja w tablicy", skrypty i modele nie muszą czytać `question`. Oszczędność 3, koszt 2, ryzyko 5
+
+    - gotowy skrypt tools/test-widzetu.js (argumenty: arkusz i numer zadania; klika „Rozwiązanie", robi zrzut w obu motywach, liczy .katex-error): dziś każdy model pisze taki skrypt od zera. Oszczędność 4, koszt 2, ryzyko 4
+
+    - krótka ściąga schematu exercises.json (lista pól, typy, jeden przykładowy wpis, bez prozy): brief słusznie odradza ARCHITECTURE.md, ale wtedy schemat trzeba wyczytywać z cudzych wpisów. Oszczędność 4, koszt 2, ryzyko 3 (trzeba pilnować synchronizacji ze stanem kodu)
 
 
 <br>
