@@ -1,2 +1,7 @@
 {
+  // Sam fetch w tle co ~3 min — nigdy merge, nigdy zapis do plików projektu.
+  // Efekt widoczny jako licznik „↓N" w panelu Source Control.
+  // Scalanie (git pull) robisz ręcznie; dlaczego — patrz komentarz w tasks.json
+  // i issues/git-i-gitdoc.md.
+  "git.autofetch": true
 }

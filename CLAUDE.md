@@ -49,7 +49,7 @@ Plus `vendor/katex/` — KaTeX vendored for fully offline math rendering (don't 
 ## Git
 
 - **gitdoc is DISABLED** (verified 2026-08-01) — no auto-commits, no auto-push. Every commit in the log is a human's or the assistant's.
-- **Auto-fetch is on** (`git.autofetch` + a `git pull --ff-only` task on folder open), so local `master` is often already current at session start — but a background fetch doesn't touch the working tree, so still run `git fetch` before reasoning about history in a long session.
+- **Auto-fetch is on, auto-pull is not** (`git.autofetch` + a `git fetch --prune` task on folder open). Fetch never touches the working tree, so local `master` can be many commits behind at session start — check, and **merge only by hand**. The folderOpen task used to run `git pull --ff-only`; it was replaced 2026-08-15 because inside the devcontainer it kept aborting half-way on the read-only `.devcontainer/`/`.vscode/` mounts, leaving the files updated but HEAD stale (looks like dozens of phantom local changes). Symptom and safe repair in [issues/git-i-gitdoc.md](issues/git-i-gitdoc.md) — don't switch it back to `pull`.
 - **`.vscode/` and `.devcontainer/` are mounted read-only in the devcontainer** — edit them from the host; a `checkout`/`pull` touching them from inside the container half-fails (see `.devcontainer/README.md`).
 - Mechanics of all three (why gitdoc can only be enabled per-workspace, what would happen if it were re-enabled, `forcePush`, the `autoCommitDelay` debounce, the `task.allowAutomaticTasks` requirement): [issues/git-i-gitdoc.md](issues/git-i-gitdoc.md).
 

@@ -76,12 +76,38 @@ autocommit + `forcePush` (wyłączone celowo, patrz wyżej).
 
 - `.vscode/settings.json` → `"git.autofetch": true` — `git fetch` w tle co ~3 min. Tylko fetch,
   nigdy merge; widoczny efekt to licznik „↓N" w Source Control.
-- `.vscode/tasks.json` → zadanie `git pull --ff-only` z `"runOn": "folderOpen"` — pulluje **raz,
-  przy otwarciu folderu**. `--ff-only` to zabezpieczenie: nie nadpisze lokalnych commitów ani nie
-  zrobi merge'a; na rozjechanych gałęziach po prostu się nie uda i pokaże terminal.
+- `.vscode/tasks.json` → zadanie `git fetch --prune` z `"runOn": "folderOpen"` — jeden fetch
+  **przy otwarciu folderu**, żeby licznik „↓N" był świeży od razu, a nie po pierwszym cyklu
+  autofetcha.
 
 Oba pliki są śledzone przez gita, więc jadą z repo i zachowują się tak samo w kontenerze
 i poza nim (o tę równość chodzi).
+
+### Dlaczego tam już NIE ma `git pull` (2026-08-15)
+
+Do 2026-08-15 zadanie `folderOpen` robiło `git pull --ff-only`. Trzeba było je zamienić na sam
+fetch, bo w kontenerze regularnie zostawiało repo w rozsypce.
+
+Mechanizm: `pull` chce **zapisać pliki w drzewie roboczym**, a `.devcontainer/` i `.vscode/` są
+w kontenerze montowane read-only (i to celowo — patrz `.devcontainer/README.md`). Kiedy nadchodzące
+commity dotykały któregoś z tych katalogów, git zapisywał wszystkie pozostałe pliki, wywalał się
+na pierwszym bez prawa zapisu i **przerywał, nie przesuwając HEAD-a ani indeksu**. Drzewo robocze
+miało już nową treść, a git nadal uważał, że stoi na starym commicie.
+
+Objaw, po którym to poznać: `git status` pokazuje kilkadziesiąt „zmian", których nikt nie
+wprowadzał — mnóstwo `M` na plikach, których się nie ruszało, plus nowe pliki z ostatnich commitów
+wiszące jako nieśledzone (`??`). Tak to wyszło 2026-08-15 na Kubuntu: 58 commitów w plecy,
+151 plików rzekomo zmienionych, realnie **zero** własnych zmian.
+
+Jak to sprawdzić, zanim się cokolwiek skasuje — porównać treść na dysku z `origin/master`
+plik po pliku (`git hash-object` kontra `git ls-tree -r origin/master`). Jeśli wszystko się zgadza,
+to nie są zmiany, tylko stary HEAD. Naprawa bez `reset --hard`: `git reset --mixed origin/master`
+(przesuwa HEAD i indeks, nie rusza plików), a potem `git checkout -- .devcontainer/` na te
+nieliczne pliki, które w kontenerze nie mogły się doczytać.
+
+`git fetch` nie dotyka drzewa roboczego w ogóle, więc read-only nie ma czego zablokować.
+Właściwy `git pull` robisz ręcznie i świadomie — najlepiej na hoście, gdzie oba katalogi
+są zapisywalne. **Nie zamieniaj tego zadania z powrotem na `pull`.**
 
 **`runOn: folderOpen` odpala się po cichu tylko wtedy, gdy *globalny* (User) `settings.json`
 maszyny ma `"task.allowAutomaticTasks": "on"`** — inaczej VS Code przy każdym otwarciu pyta

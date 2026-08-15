@@ -156,8 +156,8 @@ następnej przebudowie dorzucić `runArgs` (zamontować `/`, przywrócić
 **`.vscode/` doszło z tego samego powodu (2026-08-10), choć wektor jest mniej
 oczywisty.** `tasks.json` ma zadanie z `"runOn": "folderOpen"` — czyli polecenie
 powłoki, które VS Code odpala **sam, bez pytania**, przy każdym otwarciu tego
-folderu. Kontener mógłby podmienić `git pull --ff-only` na cokolwiek i po prostu
-czekać. Odpali się to tam, gdzie folder zostanie otwarty, a więc **na hoście,
+folderu. Kontener mógłby podmienić to polecenie (dziś `git fetch --prune`) na
+cokolwiek i po prostu czekać. Odpali się to tam, gdzie folder zostanie otwarty, a więc **na hoście,
 poza izolacją**, gdy kiedyś otworzysz repo lokalnie zamiast w kontenerze.
 `settings.json` jest drugim, słabszym wektorem (choćby ścieżki do podmana).
 
@@ -189,6 +189,25 @@ Gałąź przełączona, plik stary, repo niespójne — a kolejne operacje dotyk
 tego katalogu też padają (`stash` zwróci „Could not reset index file to revision
 HEAD"). Nic nie ginie, `.git` jest nietknięte. **Wyjście: dokończ z hosta** —
 `git checkout -- .devcontainer` albo powtórzenie polecenia w terminalu hosta.
+
+**Wariant gorszy od powyższego: `pull`, po którym HEAD w ogóle nie drgnął.**
+Przy `pull` git bywa mniej łaskawy niż przy `checkout` z przykładu wyżej: zapisze
+wszystkie pliki, na które ma prawo, wywali się na pierwszym z read-only i
+**przerwie, nie przesuwając ani HEAD-a, ani indeksu**. Na dysku leży już nowa
+treść, a git twierdzi, że stoisz na starym commicie — więc `git status` pokazuje
+kilkadziesiąt `M` na plikach, których nikt nie tknął, i wysyp `??` na plikach
+z nowych commitów. Wygląda jak utrata pracy, a jest tylko rozjazd HEAD-a.
+
+Zanim cokolwiek skasujesz, sprawdź, czy to na pewno nie są Twoje zmiany:
+porównaj treść na dysku z `origin/master` plik po pliku (`git hash-object`
+kontra `git ls-tree -r origin/master`). Jeśli wszystko się zgadza, naprawa nie
+wymaga `reset --hard` — wystarczy `git reset --mixed origin/master` (przesuwa
+HEAD i indeks, plików nie rusza), a potem `git checkout -- .devcontainer/`.
+
+Zdarzyło się to 2026-08-15 (58 commitów w plecy, 151 plików rzekomo zmienionych,
+realnie zero własnych zmian). Dlatego zadanie `folderOpen` robi już tylko
+`git fetch --prune`, który drzewa roboczego nie dotyka — szczegóły
+w `issues/git-i-gitdoc.md`.
 
 Jeśli to zacznie uwierać, można zamontować read-only tylko sam
 `host-firewall.sh` zamiast całego katalogu — to on jest naprawdę groźny, bo

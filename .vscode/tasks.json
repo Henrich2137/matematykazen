@@ -8,12 +8,29 @@
   //
   // Ten katalog jest w kontenerze montowany READONLY (patrz devcontainer.json)
   // właśnie dlatego, że to pole uruchamia polecenie powłoki bez pytania.
+  //
+  // DLACZEGO FETCH, A NIE PULL (zmiana 2026-08-15). Wcześniej stało tu
+  // `git pull --ff-only` i to się regularnie wywracało po starcie w kontenerze.
+  // Mechanizm: pull chce nadpisać pliki w drzewie roboczym, a `.devcontainer/`
+  // i `.vscode/` są w kontenerze read-only. Gdy nadchodzące commity dotykały
+  // któregoś z nich, git zapisywał WSZYSTKIE pozostałe pliki, wywalał się na
+  // pierwszym pliku bez prawa zapisu i przerywał — nie przesuwając HEAD-a ani
+  // indeksu. Efekt: drzewo robocze miało już nową treść, a git nadal uważał, że
+  // stoimy na starym commicie, więc `git status` pokazywał kilkadziesiąt
+  // „zmian", których nikt nie wprowadził (raz: 58 commitów w plecy, 151 plików
+  // rzekomo zmienionych, a realnie ZERO własnych zmian).
+  //
+  // `git fetch` nie dotyka drzewa roboczego w ogóle — ściąga tylko commity do
+  // origin/*. Nie ma czego nadpisać, więc read-only nic nie psuje, a VS Code
+  // i tak pokazuje wtedy strzałkę „ile commitów w plecy". Właściwy `git pull`
+  // robisz ręcznie, świadomie — najlepiej na hoście, gdzie te dwa katalogi są
+  // zapisywalne. Nie zamieniaj tego z powrotem na `pull`.
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "git pull (ff-only) przy starcie",
+      "label": "git fetch przy starcie",
       "type": "shell",
-      "command": "git pull --ff-only",
+      "command": "git fetch --prune",
       "presentation": {
         "reveal": "silent",
         "panel": "dedicated"
