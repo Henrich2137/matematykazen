@@ -84,7 +84,7 @@ function widgetRownanieIloczynowe(container) {
         const raw = Math.min(X1, Math.max(X0, vx(pos.x)));
         // Przyciąganie do rozwiązań, żeby dało się w nie trafić palcem.
         const snap = wgPrzyciagnij(raw, ROZWIAZANIA, 0.3);
-        state.x = snap !== raw ? snap : Math.round(raw * 4) / 4;
+        state.x = snap !== raw ? snap : Math.round(raw * 20) / 20;
         draw();
     });
     // Przemalowanie po zmianie motywu (paleta z CSS, widgets/_helpers.js).

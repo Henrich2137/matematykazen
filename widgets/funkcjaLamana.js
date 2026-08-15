@@ -120,7 +120,7 @@ function widgetLamana121(container) {
     // Największa wartość f na [a, b]: łamana najpierw rośnie, potem maleje,
     // więc wystarczy porównać końce przedziału i punkt szczytu x = 2.
     function maksimum(a, b) {
-        const kandydaci = [a, b];
+        const kandydaci = [a, Math.min(b, 5)];
         if (a <= 2 && 2 <= b) kandydaci.push(2);
         let xm = kandydaci[0];
         for (const x of kandydaci) if (lamanaF(x) > lamanaF(xm)) xm = x;
@@ -150,8 +150,9 @@ function widgetLamana121(container) {
 
         // Punkt największej wartości + lekka pozioma kreska do osi y.
         const { xm, ym } = maksimum(a, b);
-        ctx.strokeStyle = WG_KOLORY.liniaSlaba;
-        ctx.setLineDash([4, 3]);
+        ctx.strokeStyle = WG_KOLORY.punkt;
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([5, 4]);
         ctx.beginPath();
         ctx.moveTo(u.px(xm), u.py(ym));
         ctx.lineTo(u.px(0), u.py(ym));
@@ -159,7 +160,7 @@ function widgetLamana121(container) {
         ctx.setLineDash([]);
         ctx.fillStyle = WG_KOLORY.punkt;
         ctx.beginPath();
-        ctx.arc(u.px(xm), u.py(ym), 5.5, 0, Math.PI * 2);
+        ctx.arc(u.px(xm), u.py(ym), 7, 0, Math.PI * 2);
         ctx.fill();
         // Wartość maksimum wyróżniona przy osi y (nadpisuje szarą podziałkę).
         ctx.font = "bold 12px Arial";
@@ -170,7 +171,7 @@ function widgetLamana121(container) {
         const trafiony = a === 2 && b === 3;
         wgUstawHTML(readout,
             wgMath(`x \\in [${nieb(wgTexLiczba(a))},\\ ${nieb(wgTexLiczba(b))}]`) + `<br>` +
-            `największa wartość: ` + wgMath(`\\boldsymbol{${wgTexLiczba(ym)}}`) +
+            `największa wartość: ` + wgMath(`\\textcolor{${wgHex(WG_KOLORY.punkt)}}{\\boldsymbol{${wgTexLiczba(ym)}}}`) +
             (trafiony ? ` <span class="wg-ok">✓</span>` : ""));
     }
 
@@ -188,12 +189,15 @@ function widgetLamana121(container) {
         if (zakladki.aktywna === 0) {
             const raw = Math.max(-3, Math.min(5, u.vy(pos.y)));
             const snap = wgPrzyciagnij(raw, [3], 0.2);
-            state.c = snap !== raw ? snap : Math.round(raw * 4) / 4;
+            state.c = snap !== raw ? snap : Math.round(raw * 20) / 20;
         } else {
-            const raw = Math.max(-4, Math.min(4.75, u.vx(pos.x)));
-            const x = Math.round(raw * 4) / 4;
+            const raw = Math.max(-4, Math.min(5.5, u.vx(pos.x)));
+            const snap = wgPrzyciagnij(raw, [2, 3], 0.15);
+            const x = snap !== raw ? snap : Math.round(raw * 20) / 20;
             if (Math.abs(u.px(state.a) - pos.x) <= Math.abs(u.px(state.b) - pos.x)) {
-                state.a = Math.min(x, state.b - 0.5);
+                // Lewa prosta nie przekracza 4,5, żeby przedział zawsze
+                // zahaczał o dziedzinę (koniec dziedziny w 5 jest otwarty).
+                state.a = Math.min(x, state.b - 0.5, 4.5);
             } else {
                 state.b = Math.max(x, state.a + 0.5);
             }
@@ -221,7 +225,7 @@ function widgetLamana122(container) {
     const ctx = canvas.getContext("2d");
     const u = lamanaUklad(canvas);
     const controls = wgElement("div", "widget-controls",
-        `<input type="range" min="-2" max="4" step="0.25" value="1">`);
+        `<input type="range" min="-2" max="4" step="0.05" value="1">`);
     controls.style.display = "none";
     wrap.appendChild(controls);
     const readout = wgElement("div", "widget-readout", "");
@@ -233,8 +237,8 @@ function widgetLamana122(container) {
 
     function ustawTytul() {
         wgUstawHTML(tytul, zakladki.aktywna === 0
-            ? `Odczytaj z osi ${wgMath("y")}, jakie wartości przyjmuje funkcja.`
-            : `Przeciągnij prostą po osi ${wgMath("y")} albo użyj suwaka.`);
+            ? `Odczytaj z osi ${wgMath("y")}, jakie wartości przyjmuje funkcja. Ten widok nie jest interaktywny.`
+            : `Przeciągnij prostą w górę lub w dół albo użyj suwaka.`);
     }
 
     const nieb = tex => `\\textcolor{${wgHex(WG_KOLORY.niewiadoma)}}{${tex}}`;
@@ -314,12 +318,6 @@ function widgetLamana122(container) {
             });
         }
 
-        // Uchwyt na osi y rysowany na końcu, żeby był nad wykresem.
-        ctx.fillStyle = WG_KOLORY.niewiadoma;
-        ctx.beginPath();
-        ctx.arc(u.px(0), u.py(c), 7, 0, Math.PI * 2);
-        ctx.fill();
-
         const trafiony = c === 1;
         let odpowiedz;
         if (!p) {
@@ -343,14 +341,14 @@ function widgetLamana122(container) {
     }
 
     slider.addEventListener("input", () => {
-        state.c = parseFloat(slider.value);
+        state.c = wgPrzyciagnij(parseFloat(slider.value), [1], 0.08);
         draw();
     });
     wgDraggable(canvas, null, pos => {
         if (zakladki.aktywna !== 1) return;
         const raw = Math.max(-2, Math.min(4, u.vy(pos.y)));
         const snap = wgPrzyciagnij(raw, [1], 0.15);
-        state.c = snap !== raw ? snap : Math.round(raw * 4) / 4;
+        state.c = snap !== raw ? snap : Math.round(raw * 20) / 20;
         draw();
     });
     // Przemalowanie po zmianie motywu (paleta z CSS, widgets/_helpers.js).

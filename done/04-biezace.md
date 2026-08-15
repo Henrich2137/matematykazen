@@ -1,5 +1,20 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-15] (Fable 5, medium) v48 — poprawki widżetów maja po uwagach Henricha z testów.
+[2026-maj, widzety, pilotaz-fable]
+
+- 12.1 zd. 2: zakres prostych przedziału [-4, 5,5] (prawa kończyła na 4,75 i to irytowało);
+  lewa prosta z capem 4,5, a kandydat maksimum z capem min(b, 5), żeby przedział zawsze
+  zahaczał o dziedzinę [-4, 5). Punkt maksimum r=7, kreska do osi w kolorze punktu
+  (pomarańczowa przerywana 1,5 px), "4" w odczycie też pomarańczowe.
+- 12.2 zd. 1: tytuł z dopiskiem "Ten widok nie jest interaktywny."; zd. 2: usunięta kropka
+  uchwytu z osi y (prostą i tak ciągnie się w dowolnym miejscu płótna), nowy tytuł.
+- Płynne sterowanie zamiast progów 0,25 (zamówienie: "bez progów, jeśli banalnie proste"):
+  suwaki step 0.05 + wgPrzyciagnij do wartości zadania na input (13.1: a->-1,5 i b->-3,
+  13.2: a->-1,5, 12.2: c->1), przeciąganie zaokrąglane do 0,05 zamiast 0,25 (zad. 8, 10,
+  12.1 obie zakładki, 12.2, 13.1). Trafienia (===) działają dzięki snapowi. Zad. 2 (krok 0,1)
+  i zad. 11 (bilety całkowite) celowo bez zmian.
+
 [ZROBIONE 2026-08-15] (Fable 5, medium) v47 — zad. 13 (2026-maj): rysunek + widżety 13.1/13.2, kwadratowa kratka układów.
 [2026-maj, widzety, tresc, pilotaz-fable, media]
 

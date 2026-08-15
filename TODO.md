@@ -39,6 +39,16 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945 
 
+  - poprawki widżetów maja po Twoich uwagach (v48)
+
+    - 12.1 zdanie 2: prawa prosta dochodzi teraz do 5,5, lewa do −4; pomarańczowy punkt maksimum większy, kreska do osi y mocniejsza (pomarańczowa przerywana); „4" w odczycie też pomarańczowa
+
+    - 12.2 zdanie 1: w tytule dopisane, że ten widok nie jest interaktywny
+
+    - 12.2 zdanie 2: kropka z osi y usunięta, prostą ciągniesz w dowolnym miejscu płótna
+
+    - suwaki i przeciąganie w widżetach wykresowych (zad. 8, 10, 12, 13) są płynne (krok 0,05 zamiast 0,25), z przyciąganiem do wartości z zadania; sprawdź, czy suwaki w 13.1 i 13.2 przestały dziwnie skakać
+
   - zad. 13 w 2026-maj: rysunek + widżety 13.1 i 13.2 (v47)
 
     - w treści zad. 13 rysunek prostej z kątem α wycięty z arkusza (media/zad13/zad13rys.png)

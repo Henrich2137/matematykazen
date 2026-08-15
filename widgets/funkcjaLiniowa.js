@@ -61,8 +61,8 @@ function widgetLiniowaWspolczynniki(container) {
     const u = liniowaUklad(canvas);
 
     const controls = wgElement("div", "widget-controls",
-        `<span class="wg-suwak-etykieta"></span><input type="range" min="-3" max="3" step="0.25" value="-1.5"><br>` +
-        `<span class="wg-suwak-etykieta"></span><input type="range" min="-4" max="4" step="0.25" value="-3">`);
+        `<span class="wg-suwak-etykieta"></span><input type="range" min="-3" max="3" step="0.05" value="-1.5"><br>` +
+        `<span class="wg-suwak-etykieta"></span><input type="range" min="-4" max="4" step="0.05" value="-3">`);
     wrap.appendChild(controls);
     const readout = wgElement("div", "widget-readout", "");
     wrap.appendChild(readout);
@@ -104,12 +104,19 @@ function widgetLiniowaWspolczynniki(container) {
             wgMath(`${nieb(`a ${znak(a)}`)} \\qquad ${zol(`b ${znak(b)}`)}`));
     }
 
-    suwakA.addEventListener("input", () => { state.a = parseFloat(suwakA.value); draw(); });
-    suwakB.addEventListener("input", () => { state.b = parseFloat(suwakB.value); draw(); });
+    suwakA.addEventListener("input", () => {
+        state.a = wgPrzyciagnij(parseFloat(suwakA.value), [-1.5], 0.08);
+        draw();
+    });
+    suwakB.addEventListener("input", () => {
+        state.b = wgPrzyciagnij(parseFloat(suwakB.value), [-3], 0.08);
+        draw();
+    });
     // Przeciąganie po płótnie ustawia b (wysokość punktu na osi y).
     wgDraggable(canvas, null, pos => {
         const raw = Math.max(-4, Math.min(4, u.vy(pos.y)));
-        state.b = Math.round(raw * 4) / 4;
+        const snap = wgPrzyciagnij(raw, [-3], 0.15);
+        state.b = snap !== raw ? snap : Math.round(raw * 20) / 20;
         suwakB.value = state.b;
         draw();
     });
@@ -130,7 +137,7 @@ function widgetLiniowaTangens(container) {
     const u = liniowaUklad(canvas);
 
     const controls = wgElement("div", "widget-controls",
-        `<span class="wg-suwak-etykieta"></span><input type="range" min="-3" max="3" step="0.25" value="-1.5">`);
+        `<span class="wg-suwak-etykieta"></span><input type="range" min="-3" max="3" step="0.05" value="-1.5">`);
     wrap.appendChild(controls);
     const readout = wgElement("div", "widget-readout", "");
     wrap.appendChild(readout);
@@ -210,7 +217,7 @@ function widgetLiniowaTangens(container) {
         let a = parseFloat(suwak.value);
         // Okolice zera odpadają: trójkąt uciekałby poza rysunek.
         if (Math.abs(a) < 0.5) a = (a >= 0 ? 0.5 : -0.5);
-        state.a = a;
+        state.a = wgPrzyciagnij(a, [-1.5], 0.08);
         draw();
     });
     // Przemalowanie po zmianie motywu (paleta z CSS, widgets/_helpers.js).

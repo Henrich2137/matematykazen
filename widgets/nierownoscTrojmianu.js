@@ -123,9 +123,9 @@ function widgetNierownoscTrojmianu(container) {
 
     wgDraggable(canvas, null, pos => {
         const raw = Math.min(X1, Math.max(X0, vx(pos.x)));
-        // Przyciąganie do pierwiastków; poza nimi krok co 0,25.
+        // Przyciąganie do pierwiastków; poza nimi płynnie (krok 0,05).
         const snap = wgPrzyciagnij(raw, [PIERW1, PIERW2], 0.3);
-        state.x = snap !== raw ? snap : Math.round(raw * 4) / 4;
+        state.x = snap !== raw ? snap : Math.round(raw * 20) / 20;
         draw();
     });
     // Przemalowanie po zmianie motywu (paleta z CSS, widgets/_helpers.js).
