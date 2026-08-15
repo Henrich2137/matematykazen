@@ -50,9 +50,12 @@ Arkusz **2026-maj** (pilotaż Fable, 2026-08-15):
 | `bilety.js` | `widgetBilety` | 11 | bilety do teatru, rachunek w kolumnach | suwak liczby biletów |
 | `funkcjaLamana.js` | `widgetLamana121` | 12.1 | równanie f(x)=c i największa wartość na przedziale | zakładki + przeciąganie prostych |
 | `funkcjaLamana.js` | `widgetLamana122` | 12.2 | zbiór wartości i argumenty z f(x)>c | zakładki + suwak + przeciąganie |
+| `funkcjaLiniowa.js` | `widgetLiniowaWspolczynniki` | 13.1 | znaki współczynników a i b prostej | dwa suwaki + przeciąganie punktu na osi y |
+| `funkcjaLiniowa.js` | `widgetLiniowaTangens` | 13.2 | tangens kąta nachylenia, trójkąt jak w tablicach | suwak a |
 
-(`funkcjaLamana.js` to świadomy wyjątek od zasady „jeden plik = jeden widżet":
-oba widżety zad. 12 dzielą rysowanie tej samej łamanej, więc mieszkają razem.)
+(`funkcjaLamana.js` i `funkcjaLiniowa.js` to świadome wyjątki od zasady „jeden
+plik = jeden widżet": para widżetów jednego zadania dzieli rysowanie tej samej
+figury, więc mieszka razem.)
 
 Wszystkie są **tematyczne, nie uniwersalne** — każdy ma wpisane na
 sztywno liczby ze swojego zadania. Nie da się „podpiąć istniejącego widżetu"
@@ -92,6 +95,8 @@ sam widżet może wystąpić w kilku miejscach naraz.
   (`px/py/vx/vy`) dla płótna z marginesami
 - `wgRysujUklad(ctx, uklad, opcje)` — siatka, osie ze strzałkami, podziałka
   i liczby (z odstępem pod kropki na osi)
+- `wgWysokoscKwadratowa(o)` — wysokość płótna, przy której kratka układu
+  jest kwadratowa (podaj to samo `o` co do `wgUklad`)
 
 **Rysowanie**
 - `wgStrzalka(ctx, x1, y1, x2, y2)` — strzałka na płótnie

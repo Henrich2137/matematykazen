@@ -158,6 +158,15 @@ function wgUklad(o) {
     });
 }
 
+// Wysokość płótna, przy której kratka układu jest KWADRATOWA (piksele na
+// jednostkę takie same w pionie i poziomie). Podaj to samo o i margines,
+// które pójdą potem do wgUklad.
+function wgWysokoscKwadratowa(o) {
+    const m = Object.assign({ l: 26, p: 14, g: 12, d: 26 }, o.margines);
+    const s = (o.szer - m.l - m.p) / (o.X1 - o.X0);
+    return Math.round((o.Y1 - o.Y0) * s + m.g + m.d);
+}
+
 // Siatka co 1, osie ze strzałkami przez (0,0), podziałka i liczby całkowite.
 // opcje: { siatka: true, coX: 1, coY: 1 } (co ile jednostek podpisywać osie).
 function wgRysujUklad(ctx, u, opcje) {

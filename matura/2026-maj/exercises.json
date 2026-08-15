@@ -282,7 +282,7 @@
         "solutionWidget": "widgetLamana122"
     },
     {
-        "question": "<b>Zadanie 13.</b> <br><br> Funkcja liniowa \\(f\\) jest określona wzorem \\(f(x) = ax + b\\), gdzie \\(a\\) i \\(b\\) są pewnymi liczbami rzeczywistymi. W kartezjańskim układzie współrzędnych \\((x, y)\\) przedstawiono fragment wykresu funkcji \\(f\\). Każdy z punktów przecięcia wykresu funkcji \\(f\\) z osiami układu współrzędnych ma obie współrzędne całkowite. Wykres funkcji \\(f\\) jest nachylony do osi \\(Ox\\) układu współrzędnych pod kątem o mierze \\(\\alpha\\) (zobacz rysunek).<br><br><img src=\"media/zad13/zad13rys.png\" alt=\"TODO: wykres malejącej funkcji liniowej f z zaznaczonym kątem α do osi Ox – dodać obraz.\">",
+        "question": "<b>Zadanie 13.</b> <br><br> Funkcja liniowa \\(f\\) jest określona wzorem \\(f(x) = ax + b\\), gdzie \\(a\\) i \\(b\\) są pewnymi liczbami rzeczywistymi. W kartezjańskim układzie współrzędnych \\((x, y)\\) przedstawiono fragment wykresu funkcji \\(f\\). Każdy z punktów przecięcia wykresu funkcji \\(f\\) z osiami układu współrzędnych ma obie współrzędne całkowite. Wykres funkcji \\(f\\) jest nachylony do osi \\(Ox\\) układu współrzędnych pod kątem o mierze \\(\\alpha\\) (zobacz rysunek).<br><br><img src=\"media/zad13/zad13rys.png\" alt=\"Wykres malejącej funkcji liniowej f: prosta przez punkty (-2, 0) i (0, -3), przy przecięciu z osią Ox zaznaczony kąt rozwarty alfa.\">",
         "type": "open",
         "answers": [],
         "correctAnswerIndex": -1,
@@ -313,11 +313,11 @@
         "maxScore": 1,
         "selfScore": false,
         "formulasPage": null,
-        "hint": "",
-        "solutionText": "",
+        "hint": "Znak \\(a\\) odczytasz z tego, czy funkcja rośnie, czy maleje, a znak \\(b\\) z tego, gdzie prosta przecina oś \\(y\\).",
+        "solutionText": "<div class=\"rozwiazanie-kroki\">Funkcja jest malejąca, więc \\(a < 0\\). Zdanie 1: <b>F</b>.<br>Prosta przecina oś \\(y\\) w punkcie \\((0, -3)\\), więc \\(b = -3 < 0\\). Zdanie 2: <b>F</b>.</div>",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionWidget": null
+        "solutionWidget": "widgetLiniowaWspolczynniki"
     },
     {
         "question": "<b>Zadanie 13.2.</b> <br><br> Tangens kąta o mierze \\(\\alpha\\) jest równy",
@@ -331,11 +331,11 @@
         "maxScore": 1,
         "selfScore": false,
         "formulasPage": 11,
-        "hint": "",
-        "solutionText": "",
+        "hint": "Zbuduj trójkąt prostokątny na ramieniu kąta \\(\\alpha\\) i skorzystaj z definicji tangensa z tablic (str. 11). Zwróć uwagę na znaki współrzędnych.",
+        "solutionText": "Definicja z tablic (funkcje trygonometryczne dowolnego kąta):\\[\\operatorname{tg}\\alpha = \\frac{y}{x}\\]<div class=\"rozwiazanie-kroki\">Kąt \\(\\alpha\\) ma wierzchołek w punkcie \\((-2,\\ 0)\\), a jego ramię biegnie po prostej w górę, w lewo.<br>Idąc po ramieniu: \\(3\\) w górę i \\(2\\) w lewo, czyli \\(y = 3\\) oraz \\(x = -2\\).<br>\\(\\operatorname{tg}\\alpha = \\frac{3}{-2} = \\boldsymbol{-\\frac{3}{2}}\\)<br>Minus bierze się z ujemnego \\(x\\): dla kąta rozwartego tangens jest ujemny.<br>Odpowiedź <b>A</b>.</div>",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionWidget": null
+        "solutionWidget": "widgetLiniowaTangens"
     },
     {
         "question": "<b>Zadanie 14.</b> <br><br> W kartezjańskim układzie współrzędnych \\((x, y)\\) wykresem funkcji kwadratowej \\(f\\) jest parabola o wierzchołku w punkcie \\(W = (3, -2)\\). Funkcja kwadratowa \\(g\\) jest określona za pomocą funkcji \\(f\\) wzorem \\(g(x) = f(x + 1)\\). Jednym z miejsc zerowych funkcji \\(g\\) jest liczba \\(0\\).<br><br>Wyznacz wzór funkcji \\(f\\) w postaci ogólnej. Zapisz obliczenia.",

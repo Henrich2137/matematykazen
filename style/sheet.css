@@ -1679,6 +1679,14 @@ canvas {
     border-color: var(--accent-blue-strong);
     color: var(--accent-blue-strong);
 }
+/* Etykieta przy suwaku (np. "a = -1,5" w zad. 13 maja) - stała szerokość,
+   żeby suwak nie skakał w bok, gdy liczba zmienia długość. */
+.wg-suwak-etykieta {
+    display: inline-block;
+    min-width: 76px;
+    text-align: right;
+    margin-right: 10px;
+}
 .widget-canvas {
     max-width: 100%;
     touch-action: none; /* przeciąganie palcem nie scrolluje strony */

@@ -1,5 +1,20 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-15] (Fable 5, medium) v47 — zad. 13 (2026-maj): rysunek + widżety 13.1/13.2, kwadratowa kratka układów.
+[2026-maj, widzety, tresc, pilotaz-fable, media]
+
+- Rysunek zad. 13 wycięty z arkusza (ta sama metoda libgs/ctypes co zad. 12) => media/zad13/zad13rys.png.
+- widgets/funkcjaLiniowa.js: widgetLiniowaWspolczynniki (13.1: suwak a niebieski obraca prostą
+  wokół (0,b), suwak b żółty unosi, żółty punkt na osi y przeciągalny; łuk kąta alfa jak na
+  rysunku CKE; odczyt ze znakami a i b pod zdania P/F) i widgetLiniowaTangens (13.2: trójkąt
+  na RAMIENIU kąta alfa, jak definicja funkcji tryg. dowolnego kąta z tablic s. 11: y = 3
+  w górę, x = 3/a ze znakiem; tg = y/x, minus z ujemnego x, nie z y - rozstrzygnięte
+  z Henrichem po jego czujnym pytaniu, pierwotny plan "minus z delta y" był konwencją
+  nachylenia i nie pasował do narysowanego kąta). Etykiety suwaków .wg-suwak-etykieta
+  (stała szerokość, sheet.css).
+- wgWysokoscKwadratowa w _helpers.js: wysokość płótna dająca kwadratową kratkę; zad. 12 i 13
+  przestawione na nią po uwadze Henricha, że wykres 12 był ściśnięty.
+
 [ZROBIONE 2026-08-15] (Fable 5, medium) v46 — zad. 12 (2026-maj): rysunek z arkusza + widżety 12.1/12.2 z zakładkami, nowe klocki wielorazowe.
 [2026-maj, widzety, tresc, pilotaz-fable, helpers, media]
 

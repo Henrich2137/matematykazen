@@ -39,6 +39,30 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945 
 
+  - zad. 13 w 2026-maj: rysunek + widżety 13.1 i 13.2 (v47)
+
+    - w treści zad. 13 rysunek prostej z kątem α wycięty z arkusza (media/zad13/zad13rys.png)
+
+    - 13.1: dwa suwaki, a niebieski i b żółty; żółty punkt na osi y da się przeciągać (zmienia b)
+
+      - przesuń a na plus: prosta rośnie, łuk kąta α maleje poniżej 90°, w odczycie „a > 0"
+
+      - odczyt: wzór f(x) = ax + b z kolorami oraz znaki a i b (pod zdania P/F)
+
+    - 13.2: suwak a; trójkąt przy kącie α jak w tablicach (s. 11, definicja dla dowolnego kąta)
+
+      - przy a = −1,5: pionowa przyprostokątna „y = 3" (żółta), pozioma „x = −2" (niebieska, w lewo), odczyt tg α = y/x = 3/(−2) z ✓
+
+      - minus ma wychodzić z ujemnego x, nie z y; komentarz pod odczytem tłumaczy znak
+
+      - przesuń a na plus: trójkąt przeskakuje na prawą stronę, x > 0 i tangens dodatni
+
+    - kratka we wszystkich wykresach zad. 12 i 13 ma być kwadratowa (poprawka po Twojej uwadze)
+
+    - na telefonie: przeciąganie punktu b palcem w 13.1; motyw przełączony przy otwartych widżetach
+
+    - pliki wspólne: template.html (tag script i wersja), widgets/_registry.js, widgets/_helpers.js (wgWysokoscKwadratowa), style/sheet.css (etykiety suwaków), widgets/README.md
+
   - zad. 12 w 2026-maj: rysunek + widżety 12.1 i 12.2 z zakładkami (v46)
 
     - w treści zad. 12 ma być wykres łamanej wycięty z arkusza CKE (nowy plik media/zad12/zad12rys.png); sprawdź, czy w ciemnym motywie odwraca kolory jak inne grafiki

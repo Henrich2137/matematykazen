@@ -9,8 +9,10 @@ function lamanaF(x) {
     return x <= 2 ? x + 2 : -x + 5;
 }
 
+const LAMANA_ZAKRES = { X0: -5.3, X1: 5.9, Y0: -3.6, Y1: 5.6, szer: 520 };
+
 function lamanaUklad(canvas) {
-    return wgUklad({ X0: -5.4, X1: 6.2, Y0: -3.6, Y1: 5.6, szer: canvas.width, wys: canvas.height });
+    return wgUklad(Object.assign({}, LAMANA_ZAKRES, { wys: canvas.height }));
 }
 
 // Kółko na końcu odcinka: pełne = koniec należy do wykresu, puste = nie.
@@ -56,7 +58,7 @@ function widgetLamana121(container) {
         draw();
     });
     wrap.appendChild(tytul);
-    const canvas = wgCanvas(wrap, 520, 300);
+    const canvas = wgCanvas(wrap, 520, wgWysokoscKwadratowa(LAMANA_ZAKRES));
     const ctx = canvas.getContext("2d");
     const u = lamanaUklad(canvas);
     const readout = wgElement("div", "widget-readout", "");
@@ -215,7 +217,7 @@ function widgetLamana122(container) {
         draw();
     });
     wrap.appendChild(tytul);
-    const canvas = wgCanvas(wrap, 520, 300);
+    const canvas = wgCanvas(wrap, 520, wgWysokoscKwadratowa(LAMANA_ZAKRES));
     const ctx = canvas.getContext("2d");
     const u = lamanaUklad(canvas);
     const controls = wgElement("div", "widget-controls",
