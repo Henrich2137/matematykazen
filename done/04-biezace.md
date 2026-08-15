@@ -1,5 +1,18 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-15] (Fable 5, medium) v45 — zad. 11 (2026-maj) w komplecie, wg opisu widżetu od Henricha.
+[2026-maj, widzety, tresc, pilotaz-fable]
+
+- Podpowiedź (oznaczenie niewiadomych + przepis na układ), rozwiązanie opisowe (podstawienie
+  n = 200 − u, wynik u = 78), nowy widżet widgets/bilety.js: suwak n (kolor niewiadomej,
+  accentColor jak w zad. 2), niski wykres kwoty po kosztach (prosta 3750 + 7,5n, NIE parabola,
+  bo zależność jest liniowa; zamówienie mówiło "wykres funkcji kwadratowej", zgłoszone w czacie)
+  z zieloną przerywaną linią celu "zostało: 4 665 zł" (wzór: linia celu zad. 5 grudnia).
+- Rachunek pod suwakiem w kolumnach (KaTeX array {rclcl}: n pod n, u pod u, wyniki pod sobą),
+  liczby dopychane \hphantom do 3 cyfr, żeby kolumny nie skakały przy przewijaniu suwaka;
+  ostatnia linijka "6220 zł − 25% = 4665 zł" z ✓/✗ (wg szkicu Henricha z czatu).
+- \text{zł} renderuje się w KaTeX-ie poprawnie (sprawdzone, 0 błędów).
+
 [ZROBIONE 2026-08-15] (Fable 5, medium) v44 — zad. 10 (2026-maj) w komplecie + drobne do zad. 2 i 8.
 [2026-maj, widzety, tresc, pilotaz-fable]
 

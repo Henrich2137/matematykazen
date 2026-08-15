@@ -205,11 +205,11 @@
             { "tekst": "Zapisany układ dwóch równań (lub jedno równanie z jedną niewiadomą) pozwalający obliczyć liczby biletów, np. \\(x + y = 200\\) oraz \\(0{,}75 \\cdot (35x + 25y) = 4665\\)", "punkty": 1 },
             { "tekst": "Poprawny wynik: \\(78\\) biletów", "punkty": 1 }
         ],
-        "hint": "",
-        "solutionText": "",
+        "hint": "Oznacz liczby biletów, np. \\(n\\) normalnych i \\(u\\) ulgowych. Ułóż dwa równania: jedno o łącznej liczbie biletów, drugie o kwocie, która została po odjęciu 25% wpływów.",
+        "solutionText": "Układ równań:\\[n + u = 200 \\qquad 0{,}75 \\cdot (35n + 25u) = 4665\\]<div class=\"rozwiazanie-kroki\">\\(35n + 25u = 6220\\)<br>\\(n = 200 - u\\)<br>\\(35(200 - u) + 25u = 6220\\)<br>\\(7000 - 35u + 25u = 6220\\)<br>\\(10u = 7000 - 6220 = 780\\)<br>\\(u = \\boldsymbol{78}\\)<br>Sprzedano <b>78</b> biletów ulgowych.</div>",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionWidget": null
+        "solutionWidget": "widgetBilety"
     },
     {
         "question": "<b>Zadanie 12.</b> <br><br> Funkcja \\(f\\) jest określona następująco:\\[f(x) = \\begin{cases} x + 2 & \\text{dla } x \\in [-4,\\ 2] \\\\ -x + 5 & \\text{dla } x \\in (2,\\ 5) \\end{cases}\\]Wykres funkcji \\(y = f(x)\\) przedstawiono w kartezjańskim układzie współrzędnych \\((x, y)\\) na rysunku poniżej.<br><br><img src=\"media/zad12/zad12rys.png\" alt=\"TODO: wykres funkcji f łamanej – dodać obraz (rosnący odcinek od (-4,-2) do (2,4), malejący do (5,0)).\">",

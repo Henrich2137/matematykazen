@@ -39,6 +39,22 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945 
 
+  - zad. 11 w 2026-maj, widżet wg Twojego opisu (v45)
+
+    - kliknij „Podpowiedź": oznaczenie niewiadomych i przepis na układ równań; oceń, czy nie zdradza
+
+    - kliknij „Rozwiązanie": układ równań na starcie, podstawienie n = 200 − u, wynik u = 78
+
+    - widżet: niski wykres (prosta, nie parabola, bo kwota po kosztach jest liniowa względem n) z zieloną przerywaną linią „zostało: 4 665 zł", suwak n w kolorze niewiadomej
+
+      - przesuń suwak na 122: punkt trafia w zieloną linię, a pod spodem „6220 zł − 25% = 4665 zł" dostaje ✓
+
+      - rachunek pod suwakiem ma stać w kolumnach (n pod n, u pod u, wyniki pod sobą) i nie skakać przy przewijaniu suwaka, sprawdź też na telefonie
+
+      - przełącz motyw przy otwartym widżecie: przemalowanie od razu
+
+    - pliki wspólne: template.html (tag script i wersja), widgets/_registry.js
+
   - zad. 10 w 2026-maj, trzecie (ostatnie) zadanie od Fable (v44)
 
     - kliknij „Podpowiedź": przepis na nierówność kwadratową; oceń, czy pomaga, a nie zdradza
