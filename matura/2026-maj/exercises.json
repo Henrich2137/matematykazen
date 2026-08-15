@@ -152,7 +152,7 @@
         "selfScore": false,
         "formulasPage": null,
         "hint": "Iloczyn jest równy 0 dokładnie wtedy, gdy któryś z czynników jest równy 0. Jakie liczby zerują kolejne nawiasy?",
-        "solutionText": "Równanie z zadania:\\[3(x + 3)(x - m)(2x + 4) = 0\\]<div class=\"rozwiazanie-kroki\">Iloczyn jest równy 0, gdy któryś z czynników jest równy 0.<br>\\[\\begin{array}{ccc}x + 3 = 0 & \\qquad x - m = 0 & \\qquad 2x + 4 = 0\\\\ x = -3 & \\qquad x = m & \\qquad x = -2\\end{array}\\]Suma wszystkich rozwiązań ma być równa 0.<br>\\(-3 + m - 2 = 0\\)<br>\\(m - 5 = 0\\)<br>\\(\\boldsymbol{m = 5}\\)<br>Odpowiedź <b>C</b>.</div>",
+        "solutionText": "Równanie z zadania:\\[3(x + 3)(x - m)(2x + 4) = 0\\]<div class=\"rozwiazanie-kroki\">Wystarczy, że któryś z nawiasów będzie równy 0, to całość też się wyzeruje, więc:<br>\\[\\begin{array}{ccc}x + 3 = 0 & \\qquad x - m = 0 & \\qquad 2x + 4 = 0\\\\ x = -3 & \\qquad x = m & \\qquad x = -2\\end{array}\\]Suma wszystkich rozwiązań ma być równa 0.<br>\\(-3 + m - 2 = 0\\)<br>\\(m - 5 = 0\\)<br>\\(\\boldsymbol{m = 5}\\)<br>Odpowiedź <b>C</b>.</div>",
         "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": "widgetRownanieIloczynowe"
@@ -187,11 +187,11 @@
             { "tekst": "Obliczone pierwiastki trójmianu \\(3x^{2} - 2x - 8\\): \\(x_1 = -\\tfrac{4}{3}\\) oraz \\(x_2 = 2\\)", "punkty": 1 },
             { "tekst": "Zapisany zbiór rozwiązań: \\(\\left(-\\infty,\\ -\\tfrac{4}{3}\\right\\rangle \\cup \\langle 2,\\ +\\infty)\\)", "punkty": 1 }
         ],
-        "hint": "",
-        "solutionText": "",
+        "hint": "Przenieś wszystkie wyrazy na jedną stronę, rozwiąż równanie kwadratowe, naszkicuj parabolę i odczytaj, gdzie nierówność jest spełniona.",
+        "solutionText": "Wzory:\\[\\Delta = b^{2} - 4ac \\qquad x_{1,2} = \\frac{-b \\pm \\sqrt{\\Delta}}{2a}\\]<div class=\"rozwiazanie-kroki\">\\(3x^{2} + 4x \\ge 6x + 8\\)<br>\\(3x^{2} + 4x - 6x - 8 \\ge 0\\)<br>\\(3x^{2} - 2x - 8 \\ge 0\\)<br>\\(\\Delta = 4 + 96 = 100, \\quad \\sqrt{\\Delta} = 10\\)<br>\\(x_1 = \\frac{2 - 10}{6} = -\\frac{4}{3}, \\quad x_2 = \\frac{2 + 10}{6} = 2\\)<br>Ramiona paraboli idą w górę, więc wartości \\(\\ge 0\\) leżą poza miejscami zerowymi.<br>\\(\\boldsymbol{x \\in \\left(-\\infty,\\ -\\frac{4}{3}\\right\\rangle \\cup \\left\\langle 2,\\ +\\infty\\right)}\\)</div>",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionWidget": null
+        "solutionWidget": "widgetNierownoscTrojmianu"
     },
     {
         "question": "<b>Zadanie 11.</b> <br><br> Na przedstawienie w pewnym teatrze sprzedawano bilety według poniższego cennika.<br><br><table class=\"data-table\"><tr><th>Rodzaj biletu</th><th>Cena w złotych</th></tr><tr><td>Normalny</td><td>35</td></tr><tr><td>Ulgowy</td><td>25</td></tr></table><br>Na to przedstawienie sprzedano łącznie 200 biletów. Po opłaceniu kosztów związanych z organizacją przedstawienia w wysokości 25% wpływów ze sprzedaży biletów organizatorom pozostało 4665 zł.<br><br>Oblicz liczbę biletów ulgowych sprzedanych na to przedstawienie. Zapisz obliczenia.",

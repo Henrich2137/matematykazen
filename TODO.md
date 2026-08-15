@@ -4,6 +4,8 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.     
 
+
+
 <br>
 
 
@@ -36,6 +38,30 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + TESTOWANIE HENRICH
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945 
+
+  - zad. 10 w 2026-maj, trzecie (ostatnie) zadanie od Fable (v44)
+
+    - kliknij „Podpowiedź": przepis na nierówność kwadratową; oceń, czy pomaga, a nie zdradza
+
+    - kliknij „Rozwiązanie": wzory na starcie, przenoszenie na jedną stronę, delta, pierwiastki −4/3 i 2, przedziały na zewnątrz
+
+    - widżet: parabola 3x² − 2x − 8 z zielonymi promieniami rozwiązań na zewnątrz pierwiastków, punkt ruszasz klikiem w oś lub przeciąganiem
+
+      - przeciągnij punkt palcem na −4/3: podstawienie w odczycie przechodzi na ułamek −4/3 (nie −1,33) i pojawia się ✓
+
+      - między pierwiastkami (np. x = 1) ma być ✗, na zewnątrz ✓
+
+      - na telefonie: czy punkt da się złapać palcem
+
+      - przełącz motyw przy otwartym widżecie: przemalowanie od razu
+
+    - drobne z tej samej wersji (v44)
+
+      - zad. 2: strzałki między słupkami skrócone, nie kleją się do rogów; w odczycie „suma odsetek: ..."
+
+      - zad. 8: trzecia linijka rozwiązania po nowemu („Wystarczy, że któryś z nawiasów..."), tytuł widżetu z marginesem od separatora (wszystkie widżety, też w 2024-grudniu)
+
+    - pliki wspólne: template.html (tag script i wersja), widgets/_registry.js, style/sheet.css (margines tytułu widżetu)
 
   - zad. 2 w 2026-maj po drugiej rundzie poprawek (v43)
 

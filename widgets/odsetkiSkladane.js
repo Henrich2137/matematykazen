@@ -86,7 +86,11 @@ function widgetOdsetkiSkladane(container) {
             const yTen = baseY - kwoty[i] * scale;
             ctx.strokeStyle = ctx.fillStyle = WG_KOLORY.niewiadoma;
             ctx.lineWidth = 1;
-            wgStrzalka(ctx, xPoprz + 3, yPoprz, xTen - 3, yTen);
+            // Strzałka skrócona z obu stron, żeby nie kleiła się do rogów słupków.
+            const lerp = (a, b, t) => a + (b - a) * t;
+            wgStrzalka(ctx,
+                lerp(xPoprz, xTen, 0.22), lerp(yPoprz, yTen, 0.22),
+                lerp(xPoprz, xTen, 0.78), lerp(yPoprz, yTen, 0.78));
             ctx.font = "13px Arial";
             ctx.textAlign = "center";
             ctx.textBaseline = "bottom";
@@ -105,7 +109,7 @@ function widgetOdsetkiSkladane(container) {
             wgMath(pTex) + `<br>` +
             wgMath(`10\\,000 \\cdot (1 + ${wgTexLiczba(r, 3)})^{2} = `) +
             ` <b>${zl(kwoty[2])}</b><br>` +
-            `odsetki: ${zl(odsetki1)} + ${zl(odsetki2)} = ` +
+            `suma odsetek: ${zl(odsetki1)} + ${zl(odsetki2)} = ` +
             `<b${trafiony ? ` class="wg-ok"` : ""}>${zl(odsetki1 + odsetki2)}</b>`);
     }
 

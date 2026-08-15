@@ -1,5 +1,19 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-15] (Fable 5, medium) v44 — zad. 10 (2026-maj) w komplecie + drobne do zad. 2 i 8.
+[2026-maj, widzety, tresc, pilotaz-fable]
+
+- Zad. 10, komplet: podpowiedź (przepis jak w zad. 9 grudnia), rozwiązanie opisowe (uproszczenie
+  do 3x² − 2x − 8 ≥ 0, delta, pierwiastki −4/3 i 2, przedziały na zewnątrz), nowy widżet
+  widgets/nierownoscTrojmianu.js na wzór nierownoscKwadratowa.js: parabola, zielone promienie
+  rozwiązań, przeciągany punkt z przyciąganiem do pierwiastków; podstawienie −4/3 wyświetlane
+  ułamkiem (nie zaokrągleniem), ✓/✗ liczone z dokładnej wartości.
+- Zad. 2: strzałki między słupkami skrócone o ~22% z każdej strony (kleiły się do rogów),
+  "odsetki:" -> "suma odsetek:" w odczycie.
+- Zad. 8 (punkty z TODO od Henricha): trzecia linijka rozwiązania brzmi teraz "Wystarczy, że
+  któryś z nawiasów będzie równy 0, to całość też się wyzeruje, więc:"; .widget-title dostał
+  margines 14 px z góry (wszystkie widżety), bo kleił się do separatora.
+
 [ZROBIONE 2026-08-15] (Fable 5, medium) v43 — druga runda uwag Henricha do zad. 2 i 8 (2026-maj).
 [2026-maj, widzety, tresc, pilotaz-fable]
 

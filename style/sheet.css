@@ -1652,7 +1652,8 @@ canvas {
     text-align: center;
 }
 .widget-title {
-    margin: 0 20px 4px;
+    /* Margines z góry: tytuł nie ma się kleić do separatora nad widżetem. */
+    margin: 14px 20px 4px;
     font-size: 15px;
     color: var(--text-muted-2);
 }
