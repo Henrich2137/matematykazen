@@ -30,7 +30,7 @@ Structure (since the 2026-07-10 migration from one hardcoded page to many sheets
 
 - [index.html](index.html) — landing page, pure static HTML (`.landing-*` styles), links to each sheet.
 - `template.html` (root) — the shared exam-sheet renderer, the **single** page that renders *any* sheet: hidden exercise `<template>` + at the bottom a run of `<script src>` tags (`widgets/_helpers.js`, the nine `widgets/*.js` widget files, `widgets/_registry.js`, then the ten `app/*.js` files) that render exercises from a sheet's data file and wire up all interactivity. Which sheet is chosen by the `?arkusz=<id>` URL param (`<id>` = folder name under `matura/`); the per-sheet `matura/<id>/index.html` copies were removed.
-- `matura/<sheet-id>/` (e.g. `matura/2024-grudzien/`, `matura/2026-maj/`) — one folder per exam sheet: its `exercises.json`, its `media/zadN/` assets (PNG images + Manim-produced MP4 solution videos; keep filenames **lowercase**) and its four source PDFs/extracts under fixed names (`arkusz.pdf`/`.txt`, `odpowiedzi.pdf`/`.txt` — same in every sheet, so paths are predictable from the id alone). All asset paths in `exercises.json` are **sheet-relative** and joined to the folder by `mediaPath()` in `app/state.js`. **[matura/README.md](matura/README.md) is the source of truth** for which sheets exist and what the exam actually is (poziom podstawowy, Formuła 2023, próbna vs właściwa, CKE symbol, wired or not) — read it there, don't duplicate the list here.
+- `matura/<sheet-id>/` (e.g. `matura/2024-grudzien/`, `matura/2026-maj/`) — one folder per exam sheet: its `exercises.json`, its `media/zadN/` assets (PNG images + Manim-produced MP4 solution videos; keep filenames **lowercase**) and its four source PDFs/extracts under fixed names (`arkusz.pdf`/`.txt`, `odpowiedzi.pdf`/`.txt` — same in every sheet, so paths are predictable from the id alone). All asset paths in `exercises.json` are **sheet-relative** and joined to the folder by `mediaPath()` in `app/state.js`. **[matura/README.md](matura/README.md) is the source of truth** for which sheets exist and what the exam actually is (poziom podstawowy, Formuła 2023, próbna vs właściwa, CKE symbol, wired or not) — read it there, don't duplicate the list here. The `.txt` extracts are **not all UTF-8** (`2024-grudzien` is cp1250) and are kept left-aligned; if you ever make a new one, `matura/README.md` has the rule and `tools/wyrownaj-transkrypt.py` does it.
 - [app/](app/) — app logic, split (2026-07-23) into classic (non-module) scripts sharing one global scope — **load order matters**, `template.html` lists them in the required order: `state.js` (globals, `mediaPath`/`renderMath`, `SHEET_ID`) → `theme.js` (jasny/ciemny/auto) → `exam.js` (tryb egzaminu, timer) → `indicators.js` (wskaźniki „oceń się") → `panels.js` (PDF-panele tablicy wzorów/zasad oceniania) → `answers.js` (`normalizeAnswer`/`markCorrectAnswer`) → `steps.js` (rozwiązania krok po kroku, double-buffer wideo — shared mutable state like `currentStep`/`stepSwapToken` passed via a `ctx` object, not closures) → `report.js` (zgłaszanie błędów: dyskretny link pod zadaniem + formularz rozwijany **w karcie zadania** — jeden wspólny węzeł przenoszony przez `insertBefore` — obowiązkowy opis (3–2000 znaków, limit pilnowany i w `maxlength`, i w JS), pigułki kategorii, → Formspree AJAX ręcznym `fetch`em (świadomie bez SDK z CDN — offline-first), toggle w menu, honeypot + throttling; `dodajLinkZgloszenia` wołane z render.js, więc ładowane przed nim) → `render.js` (`loadExercises` — renderowanie wszystkich typów zadań) → `bootstrap.js` (panel boczny `#sidebar` — następca menu „⋯", usuniętego 2026-07-27 — `startSheet()`, **loaded last**). Reads the `?arkusz=<id>` URL param into `SHEET_ID` to pick the sheet (`matura/<id>/exercises.json`), key its localStorage and resolve its media/PDF paths (`mediaPath`).
 - [widgets/](widgets/) — the interactive answer widgets, one file per widget (e.g. `widgets/osLiczbowa.js` → `widgetOsLiczbowa`), plus `widgets/_helpers.js` (shared `wg*` helpers, loaded first) and `widgets/_registry.js` (the `WIDZETY` name→function registry, loaded last of the three groups). In the repo **root-level directory** (one shared copy for all sheets). **All loaded before `app/*.js`** because `loadExercises` (in `app/render.js`) reads `WIDZETY` (classic scripts sharing the global scope, so load order matters).
 - `exercises.json` (one per sheet, under `matura/<sheet-id>/`) — pure data: an object `{ meta, exercises }` (`meta` = per-sheet title/description/marking-key PDF; `exercises` = the array of exercise objects), `fetch`ed at startup by `startSheet()`. Interactive widgets are referenced by name (`"solutionWidget": "widgetX"` → the `WIDZETY` registry in `widgets/_registry.js`). All math in it is written in **KaTeX** (`\( ... \)` / `\[ ... \]`; schema + conventions documented in ARCHITECTURE.md — JSON has no comments).
@@ -39,41 +39,6 @@ Structure (since the 2026-07-10 migration from one hardcoded page to many sheets
 Plus `vendor/katex/` — KaTeX vendored for fully offline math rendering (don't edit those files; to bump the version replace them from the npm tarball) — `vendor/fonts/` — Lora + STIX Two Math vendored the same way (2026-08-09), replacing a `@import` from `fonts.googleapis.com` in `style/base.css`; the header comment in `vendor/fonts/fonts.css` explains the `unicode-range` requirement and which weights are (and aren't) carried, so read it before adding a font-family or weight anywhere in `style/` — and `tablica-wzorow.pdf` (shared formula sheet shown in a floating panel; stays in the root).
 
 - **`tablica-wzorow-transkrypt/`** — transcript of that PDF (created 2026-07-28), **for models, not served to users**: one Markdown file per CKE section (`01-…` … `16-…`) plus `README.md`. Read it instead of the PDF whenever you need a formula — filling in `formulasPage`, checking a solution, writing hints. Start from `README.md`: its "Skorowidz" maps exercise wording ("nierówność wykładnicza", "pole trapezu") to a formula ID and page, so you load one 300–800-token section rather than the whole sheet. Formulas use the **same KaTeX delimiters as `exercises.json`** (`\( … \)` / `\[ … \]`), so they paste straight into exercises — just remember JSON needs `\\`. Each formula carries its PDF page (printed = physical, no offset) and a coarse position (`góra`/`środek`/`dół`). `README.md` has a **„Czego tu NIE MA"** section listing what the transcript does *not* carry (drawings/graphs → PDF pages 8, 11, 12, 15–28; section 17's trig value table → s. 34; front/back matter) — read it before concluding the formula sheet lacks something. Figures are rendered as **legends of symbols**, not descriptions of the drawing, and each affected section header says so with the PDF page to open. Verified 2026-07-28: every „•" bullet on pages 4–34 was listed from the PDF and matched one-to-one against transcript IDs (this caught one omission — `[8.10]` compound interest, since restored), all 795 formulas render in the vendored KaTeX, and every numerically checkable identity passes (26k random-value assertions).
-
-## Transkrypty PDF-ów — ZAWSZE wyrównuj do lewej (added 2026-08-15)
-
-**Tworzysz plik tekstowy z PDF-a (`pdftotext`, OCR, cokolwiek)? Zdejmij wspólny lewy
-margines, ZANIM go zapiszesz.** Dotyczy `matura/<id>/arkusz.txt`, `odpowiedzi.txt`
-i każdego przyszłego transkryptu — to nie jest sprzątanie „kiedyś", tylko część
-tworzenia pliku.
-
-`pdftotext -layout` zachowuje układ kolumn ze strony, a arkusze CKE mają treść
-w wąskiej kolumnie po prawej, więc **każda linia zaczyna się od ~50 spacji**, które
-nic nie znaczą i za które płaci każdy model przy każdym czytaniu. W tych czterech
-plikach było to **44% objętości** (360 kB → 202 kB po wyrównaniu, 2026-08-15).
-
-Narzędzie: **[tools/wyrownaj-transkrypt.py](tools/wyrownaj-transkrypt.py)**
-(`python3 tools/wyrownaj-transkrypt.py <plik>…`, `--sucho` żeby tylko zobaczyć wynik).
-Trzy rzeczy, które robi dobrze i które trzeba powtórzyć, gdyby ktoś pisał to od nowa:
-
-- **Zdejmuje wspólny margines, nie kasuje wcięć.** Wcięcia względne niosą strukturę
-  (podpunkty pod „2 pkt –", wypunktowania, wyrównanie „ALBO") i muszą zostać.
-- **Margines liczy z najczęstszego wcięcia, nie z minimum.** W plikach są linie spoza
-  głównej kolumny (watermark wdrukowany pionowo z boku, nagłówek bieżący) — siedzą
-  na pozycji 0 i minimum zaniżyłyby do zera, czyli do braku zmian.
-- **Działa na bajtach, nie na tekście.** Transkrypty bywają w różnych kodowaniach
-  (2024-grudzień jest w cp1250, 2026-maj w UTF-8). Wcięcia to spacje ASCII, więc
-  operacja bajtowa daje ten sam wynik bez ryzyka rozsypania polskich znaków.
-
-Po przetworzeniu skrypt sam sprawdza, że plik po usunięciu wszystkich białych znaków
-jest bajt w bajt taki sam jak przed — czyli że treść jest nietknięta. **Nie przepisuj
-takiego pliku modelem**: to źródło prawdy o poprawności matematycznej, a przepisywanie
-2000 linii wzorów CKE może cicho przekręcić znak. Czyszczenie ma być skryptem
-z automatyczną weryfikacją.
-
-Watermarku, stopek („Strona X z 42") ani nagłówków skrypt **nie usuwa** — stopka niesie
-orientację w arkuszu, a watermark w arkuszu 2024 bywa sklejony z treścią w jednej linii,
-więc to osobna decyzja i osobna zmiana.
 
 ## Task tracking
 
