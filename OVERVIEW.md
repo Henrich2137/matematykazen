@@ -1,4 +1,4 @@
-Ostatnia weryfikacja  17:05  12.08.2026 
+Ostatnia weryfikacja  09:46  15.08.2026 
 
 # Matematyka Zen
 
@@ -32,29 +32,30 @@ Zobacz na żywo: https://henrich2137.github.io/matematykazen/
 + Faza 1 - Budowa (obecna) - Beta testy ale bez marketingu i domeny co czyni je bardziej zamkniętymi.
 
 + Faza 2 - Soft Launch i Beta testy - Marketing, naprawa zgłaszanych błędów, zbieranie pieniędzy na patronite.
-    - hosting: nadal GitHub Pages (2.1) DONE
-    - licencja PolyForm Noncommercial (2.2) DONE
-    - domena matematykazen.pl (2.3)
-    - przejście na darmowy ale lepszy hosting z łatwą migracją np Cloudflare lub Vercel
-    - marketing (2.4)
+    - Hosting: nadal GitHub Pages (2.1) DONE
+    - Licencja PolyForm Noncommercial (2.2) DONE
+    - Domena matematykazen.pl (2.3)
+    - Hosting: np Cloudflare / Netlify
+    - Aplikacja-wrapper?
+    - Odpicowanie stronki, "wyczyszczenie" repo aby friendly dla ludzi którz se je pobiorą
     
 Cel: zdobyć zainteresowanie i sprawdzić, czy projekt przyjmie się w społeczności.
 
 
 Faza 3 - Rozwidlenie
-Przejście z GitHub Pages na profesjonalny hosting z backendem i bazą danych.
+- Marketing
 W zależności od przychodów z dotacji oraz liczby użytkowników wybiorę jedną z dwóch ścieżek:
 
 - ALBO: Freemium
-    - Handover do profesjonalnego web deva.
-    - Paywall. Autorskie zadania za abonamentem.
     - Bardziej zamknięta licencja
+    - Handover do profesjonalnego web deva
+    - Paywall. Autorskie zadania za abonamentem
 
 - ALBO: Open-source
-    - Rozwijanie wraz ze społecznościa opensourcową. 
-    - Brak paywalla.
-    - otwarta licencja
-    - Przychód z dotacji (np. Patronite lub Suppi)
+    - Otwarta licencja
+    - Rozwijanie wraz ze społecznościa opensourcową
+    - Brak paywalla
+    - Przychód z dotacji (np. suppi.pl)
 
 
 
@@ -73,5 +74,3 @@ Obok logo widnieje numer wersji („v12 Beta"). Jest podbijany ręcznie przy ka�
 ## Notatki robocze — utrzymywane przez Claude web (projekt „Matematyka Zen" na claude.ai)
 
 - **Uwagi i pomysły z zewnątrz:** „zgłoś błąd" pod każdym zadaniem (dotyczy tylko konkretnego zadania) oraz — od 02.08.2026 — issues i Pull Requesty na GitHubie, opisane w CONTRIBUTING.md. Kanał publiczny, ale jeszcze nierozreklamowany.
-
-testowy kurczaczek :)
