@@ -212,7 +212,7 @@
         "solutionWidget": "widgetBilety"
     },
     {
-        "question": "<b>Zadanie 12.</b> <br><br> Funkcja \\(f\\) jest określona następująco:\\[f(x) = \\begin{cases} x + 2 & \\text{dla } x \\in [-4,\\ 2] \\\\ -x + 5 & \\text{dla } x \\in (2,\\ 5) \\end{cases}\\]Wykres funkcji \\(y = f(x)\\) przedstawiono w kartezjańskim układzie współrzędnych \\((x, y)\\) na rysunku poniżej.<br><br><img src=\"media/zad12/zad12rys.png\" alt=\"TODO: wykres funkcji f łamanej – dodać obraz (rosnący odcinek od (-4,-2) do (2,4), malejący do (5,0)).\">",
+        "question": "<b>Zadanie 12.</b> <br><br> Funkcja \\(f\\) jest określona następująco:\\[f(x) = \\begin{cases} x + 2 & \\text{dla } x \\in [-4,\\ 2] \\\\ -x + 5 & \\text{dla } x \\in (2,\\ 5) \\end{cases}\\]Wykres funkcji \\(y = f(x)\\) przedstawiono w kartezjańskim układzie współrzędnych \\((x, y)\\) na rysunku poniżej.<br><br><img src=\"media/zad12/zad12rys.png\" alt=\"Wykres funkcji f: odcinek rosnący od (-4,-2) do (2,4), oba końce z pełnymi kółkami, oraz odcinek malejący od (2,3) do (5,0), oba końce z pustymi kółkami.\">",
         "type": "open",
         "answers": [],
         "correctAnswerIndex": -1,
@@ -247,11 +247,11 @@
         "maxScore": 2,
         "selfScore": false,
         "formulasPage": null,
-        "hint": "",
-        "solutionText": "",
+        "hint": "Wszystko odczytasz z wykresu. Równanie \\(f(x) = 3\\) pyta, dla jakiego argumentu wykres ma wysokość 3, a największa wartość na przedziale to najwyższy punkt wykresu nad tym przedziałem.",
+        "solutionText": "<div class=\"rozwiazanie-kroki\">1. Prosta \\(y = 3\\) przecina wykres tylko w punkcie \\((1,\\ 3)\\).<br>Puste kółko \\((2,\\ 3)\\) nie należy do wykresu.<br>\\(x = \\boldsymbol{1}\\)<br>2. Nad przedziałem \\([2,\\ 3]\\) najwyżej leży punkt \\((2,\\ 4)\\).<br>Największa wartość: \\(\\boldsymbol{4}\\)</div>",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionWidget": null
+        "solutionWidget": "widgetLamana121"
     },
     {
         "question": "<b>Zadanie 12.2.</b> <br><br> Uzupełnij zdania. Wpisz odpowiednie przedziały w wykropkowanych miejscach, aby zdania były prawdziwe.",
@@ -275,11 +275,11 @@
         "maxScore": 2,
         "selfScore": false,
         "formulasPage": null,
-        "hint": "",
-        "solutionText": "",
+        "hint": "Zbiór wartości odczytasz na osi \\(y\\): od najniższego do najwyższego punktu wykresu. Do drugiego zdania narysuj prostą \\(y = 1\\) i sprawdź, nad którymi argumentami wykres leży wyżej.",
+        "solutionText": "<div class=\"rozwiazanie-kroki\">1. Wartości sięgają od \\(-2\\) (punkt \\((-4, -2)\\)) do \\(4\\) (punkt \\((2, 4)\\)).<br>Zbiór wartości: \\(\\boldsymbol{[-2,\\ 4]}\\)<br>2. Prosta \\(y = 1\\) przecina wykres dla \\(x = -1\\) i \\(x = 4\\).<br>Między nimi wykres leży nad prostą, końce odpadają, bo nierówność jest ostra.<br>\\(x \\in \\boldsymbol{(-1,\\ 4)}\\)</div>",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionWidget": null
+        "solutionWidget": "widgetLamana122"
     },
     {
         "question": "<b>Zadanie 13.</b> <br><br> Funkcja liniowa \\(f\\) jest określona wzorem \\(f(x) = ax + b\\), gdzie \\(a\\) i \\(b\\) są pewnymi liczbami rzeczywistymi. W kartezjańskim układzie współrzędnych \\((x, y)\\) przedstawiono fragment wykresu funkcji \\(f\\). Każdy z punktów przecięcia wykresu funkcji \\(f\\) z osiami układu współrzędnych ma obie współrzędne całkowite. Wykres funkcji \\(f\\) jest nachylony do osi \\(Ox\\) układu współrzędnych pod kątem o mierze \\(\\alpha\\) (zobacz rysunek).<br><br><img src=\"media/zad13/zad13rys.png\" alt=\"TODO: wykres malejącej funkcji liniowej f z zaznaczonym kątem α do osi Ox – dodać obraz.\">",

@@ -1,5 +1,27 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-15] (Fable 5, medium) v46 — zad. 12 (2026-maj): rysunek z arkusza + widżety 12.1/12.2 z zakładkami, nowe klocki wielorazowe.
+[2026-maj, widzety, tresc, pilotaz-fable, helpers, media]
+
+- Rysunek do treści zad. 12: w kontenerze nie ma rasteryzatora PDF (brak poppler/gs binarki,
+  PyPI za firewallem, headless Chromium nie renderuje PDF, dvisvgm daje czarne kafle na
+  bitmapach), ale JEST /usr/lib/.../libgs.so.10 (zależność dvisvgm) - strona 12 arkusza
+  zrasteryzowana Ghostscriptem wołanym przez python3 + ctypes (gsapi_*, png16m, 220 dpi),
+  wykres wycięty PIL-em z autotrymem bieli => media/zad12/zad12rys.png (707x695), alt
+  uzupełniony. Metoda do powtórki przy następnych rysunkach.
+- Nowe klocki wielorazowe w widgets/_helpers.js (zamówienie: projektować pod ponowne użycie):
+  wgZakladki (pasek kart nad widżetem, style .wg-zakladki w sheet.css, aktywna karta w kolorze
+  wyboru ucznia), wgUklad (mapowanie wartość<->piksel z marginesami), wgRysujUklad (siatka,
+  osie ze strzałkami, podziałka z odstępem pod kropki). Opisane w widgets/README.md.
+- widgets/funkcjaLamana.js: wspólna łamana f (x+2 na [-4,2], -x+5 na (2,5), pełne/puste kółka)
+  + dwa widżety: widgetLamana121 (zakładka 1: pozioma prosta f(x)=c z punktami przecięcia
+  i ✓ przy c=3; zakładka 2: dwie pionowe proste przedziału z zapisem [a,b] pod nimi,
+  pomarańczowy punkt maksimum z kreską do osi y, ✓ przy [2,3]) i widgetLamana122 (zakładka 1
+  statyczna: pas i odcinek zbioru wartości [-2,4] na osi y; zakładka 2: prosta y=c sterowana
+  punktem na osi y lub suwakiem, zielony przedział rozwiązań na osi x z pełnymi/pustymi
+  kółkami, domknięcie prawego końca na 2 dla c w [3,4), ✓ przy c=1). Komplet: hinty
+  i rozwiązania opisowe dla 12.1 i 12.2; wpis-rodzic zad. 12 tylko z rysunkiem.
+
 [ZROBIONE 2026-08-15] (Fable 5, medium) v45 — zad. 11 (2026-maj) w komplecie, wg opisu widżetu od Henricha.
 [2026-maj, widzety, tresc, pilotaz-fable]
 

@@ -10,6 +10,8 @@ const WIDZETY = {
     widgetRownanieIloczynowe,
     widgetNierownoscTrojmianu,
     widgetBilety,
+    widgetLamana121,
+    widgetLamana122,
     widgetNierownoscKwadratowa,
     widgetFunkcjaPrzedzialami,
     widgetParabola,

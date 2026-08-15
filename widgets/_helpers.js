@@ -118,6 +118,101 @@ function wgStrzalka(ctx, x1, y1, x2, y2) {
     ctx.fill();
 }
 
+// --- Zakładki (karty) w widżecie ------------------------------------------
+// Pasek przycisków przełączających widoki jednego widżetu (np. dwa zdania
+// zadania 12.1). Zwraca obiekt stanu { aktywna }; po kliknięciu ustawia
+// stan.aktywna i woła onZmiana(indeks). Style: .wg-zakladki w sheet.css.
+function wgZakladki(container, etykiety, onZmiana) {
+    const pasek = wgElement("div", "wg-zakladki");
+    const stan = { aktywna: 0 };
+    const przyciski = etykiety.map((tekst, i) => {
+        const b = wgElement("button", "wg-zakladka", tekst);
+        b.type = "button";
+        b.addEventListener("click", () => {
+            stan.aktywna = i;
+            przyciski.forEach((p, j) =>
+                p.classList.toggle("wg-zakladka-aktywna", j === i));
+            onZmiana(i);
+        });
+        pasek.appendChild(b);
+        return b;
+    });
+    przyciski[0].classList.add("wg-zakladka-aktywna");
+    container.appendChild(pasek);
+    return stan;
+}
+
+// --- Układ współrzędnych na płótnie ---------------------------------------
+// Mapowanie wartości <-> piksele dla płótna z marginesami. Zwraca obiekt
+// z px/py (wartość -> piksel) i vx/vy (piksel -> wartość) plus parametry,
+// który podaje się potem do wgRysujUklad. Jeden układ = jedno płótno.
+function wgUklad(o) {
+    const m = Object.assign({ l: 26, p: 14, g: 12, d: 26 }, o.margines);
+    const szerOsi = o.szer - m.l - m.p;
+    const wysOsi = o.wys - m.g - m.d;
+    return Object.assign({}, o, {
+        px: x => m.l + (x - o.X0) / (o.X1 - o.X0) * szerOsi,
+        py: y => (o.wys - m.d) - (y - o.Y0) / (o.Y1 - o.Y0) * wysOsi,
+        vx: p => o.X0 + (p - m.l) / szerOsi * (o.X1 - o.X0),
+        vy: p => o.Y0 + ((o.wys - m.d) - p) / wysOsi * (o.Y1 - o.Y0)
+    });
+}
+
+// Siatka co 1, osie ze strzałkami przez (0,0), podziałka i liczby całkowite.
+// opcje: { siatka: true, coX: 1, coY: 1 } (co ile jednostek podpisywać osie).
+function wgRysujUklad(ctx, u, opcje) {
+    const o = Object.assign({ siatka: true, coX: 1, coY: 1 }, opcje);
+    const calX0 = Math.ceil(u.X0), calX1 = Math.floor(u.X1);
+    const calY0 = Math.ceil(u.Y0), calY1 = Math.floor(u.Y1);
+    if (o.siatka) {
+        ctx.strokeStyle = WG_KOLORY.siatka;
+        ctx.lineWidth = 1;
+        for (let i = calX0; i <= calX1; i++) {
+            ctx.beginPath();
+            ctx.moveTo(u.px(i), u.py(u.Y0));
+            ctx.lineTo(u.px(i), u.py(u.Y1));
+            ctx.stroke();
+        }
+        for (let i = calY0; i <= calY1; i++) {
+            ctx.beginPath();
+            ctx.moveTo(u.px(u.X0), u.py(i));
+            ctx.lineTo(u.px(u.X1), u.py(i));
+            ctx.stroke();
+        }
+    }
+    ctx.strokeStyle = ctx.fillStyle = WG_KOLORY.osie;
+    ctx.lineWidth = 1;
+    wgStrzalka(ctx, u.px(u.X0), u.py(0), u.px(u.X1), u.py(0));
+    wgStrzalka(ctx, u.px(0), u.py(u.Y0), u.px(0), u.py(u.Y1));
+    ctx.font = "11px Arial";
+    for (let i = calX0; i <= calX1; i++) {
+        if (i === 0) continue;
+        ctx.beginPath();
+        ctx.moveTo(u.px(i), u.py(0) - 3);
+        ctx.lineTo(u.px(i), u.py(0) + 3);
+        ctx.stroke();
+        if (i % o.coX === 0) {
+            ctx.textAlign = "center";
+            ctx.textBaseline = "top";
+            // +11 = promień punktu (7) + odstęp, żeby kropka na osi
+            // nie zasłaniała liczb (ta sama zasada co w innych widżetach).
+            ctx.fillText(i, u.px(i), u.py(0) + 11);
+        }
+    }
+    for (let i = calY0; i <= calY1; i++) {
+        if (i === 0) continue;
+        ctx.beginPath();
+        ctx.moveTo(u.px(0) - 3, u.py(i));
+        ctx.lineTo(u.px(0) + 3, u.py(i));
+        ctx.stroke();
+        if (i % o.coY === 0) {
+            ctx.textAlign = "right";
+            ctx.textBaseline = "middle";
+            ctx.fillText(i, u.px(0) - 7, u.py(i));
+        }
+    }
+}
+
 /* ===== PALETA WIDŻETÓW (motyw jasny/ciemny) =============================
    Canvas nie dziedziczy kolorów z CSS, więc paleta jest czytana ze zmiennych
    motywu (style/base.css, sekcja „PALETA WIDŻETÓW") przez getComputedStyle

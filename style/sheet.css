@@ -1657,6 +1657,28 @@ canvas {
     font-size: 15px;
     color: var(--text-muted-2);
 }
+/* Zakładki widżetu (wgZakladki w widgets/_helpers.js): przełączanie widoków
+   jednego widżetu, np. dwa zdania zadania 12.1. Aktywna = wybór ucznia,
+   stąd niebieski (--accent-blue-strong, patrz COLORS.md). */
+.wg-zakladki {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 14px 20px 2px;
+}
+.wg-zakladka {
+    padding: 4px 14px;
+    font-size: 14px;
+    color: var(--text-muted-2);
+    background: none;
+    border: var(--border-kontrolka) solid var(--border);
+    border-radius: var(--radius-kontrolka);
+    cursor: pointer;
+}
+.wg-zakladka-aktywna {
+    border-color: var(--accent-blue-strong);
+    color: var(--accent-blue-strong);
+}
 .widget-canvas {
     max-width: 100%;
     touch-action: none; /* przeciąganie palcem nie scrolluje strony */

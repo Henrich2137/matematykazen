@@ -15,7 +15,7 @@ To są klasyczne skrypty we wspólnym zakresie globalnym, nie moduły. `template
 ładuje je w tej kolejności i **nie wolno jej zmieniać**:
 
 1. `_helpers.js` — wspólne pomocniki `wg*`, muszą istnieć przed widżetami
-2. dziewięć plików `widgets/*.js` — definiują funkcje `widget*`
+2. pliki `widgets/*.js` — definiują funkcje `widget*`
 3. `_registry.js` — mapa nazwa → funkcja; wymaga, by wszystkie były już zdefiniowane
 4. dopiero potem `app/*.js` (`app/render.js` czyta `WIDZETY`)
 
@@ -25,8 +25,8 @@ w `template.html`.** Pominięcie któregokolwiek z tych trzech kroków daje cich
 
 ## Co już istnieje
 
-Numery zadań to numery **CKE z arkusza** (arkusz 2024-grudzień), nie pozycje
-w tablicy `exercises` — patrz ostrzeżenie na końcu pliku.
+Numery zadań to numery **CKE z arkusza**, nie pozycje w tablicy `exercises`
+— patrz ostrzeżenie na końcu pliku. Pierwsza tabela: arkusz 2024-grudzień.
 
 | Plik | Funkcja | Zad. | Temat | Sterowanie |
 |---|---|---|---|---|
@@ -40,7 +40,21 @@ w tablicy `exercises` — patrz ostrzeżenie na końcu pliku.
 | `katWpisany.js` | `widgetKatWpisany` | 20 | kąt wpisany i środkowy oparte na tym samym łuku | przeciąganie punktu C po okręgu |
 | `prostopadloscian.js` | `widgetProstopadloscian` | 30 | prostopadłościan o stałej sumie krawędzi, maksimum pola | suwak x = AB |
 
-Wszystkie dziewięć są **tematyczne, nie uniwersalne** — każdy ma wpisane na
+Arkusz **2026-maj** (pilotaż Fable, 2026-08-15):
+
+| Plik | Funkcja | Zad. | Temat | Sterowanie |
+|---|---|---|---|---|
+| `odsetkiSkladane.js` | `widgetOdsetkiSkladane` | 2 | odsetki z procentu składanego, słupki kapitału | suwak oprocentowania |
+| `rownanieIloczynowe.js` | `widgetRownanieIloczynowe` | 8 | równanie iloczynowe, zerowanie nawiasów na osi | klik w oś + przeciąganie punktu |
+| `nierownoscTrojmianu.js` | `widgetNierownoscTrojmianu` | 10 | nierówność 3x²−2x−8 ≥ 0, parabola i przedziały | klik w oś + przeciąganie punktu |
+| `bilety.js` | `widgetBilety` | 11 | bilety do teatru, rachunek w kolumnach | suwak liczby biletów |
+| `funkcjaLamana.js` | `widgetLamana121` | 12.1 | równanie f(x)=c i największa wartość na przedziale | zakładki + przeciąganie prostych |
+| `funkcjaLamana.js` | `widgetLamana122` | 12.2 | zbiór wartości i argumenty z f(x)>c | zakładki + suwak + przeciąganie |
+
+(`funkcjaLamana.js` to świadomy wyjątek od zasady „jeden plik = jeden widżet":
+oba widżety zad. 12 dzielą rysowanie tej samej łamanej, więc mieszkają razem.)
+
+Wszystkie są **tematyczne, nie uniwersalne** — każdy ma wpisane na
 sztywno liczby ze swojego zadania. Nie da się „podpiąć istniejącego widżetu"
 do nowego zadania bez przepisania go; nowy temat to nowy plik.
 
@@ -70,6 +84,14 @@ sam widżet może wystąpić w kilku miejscach naraz.
 - `wgTexLiczba(v, maxFrac, minFrac)` — liczba po polsku w zapisie TeX
   (przecinek jako `{,}`, spacje tysięcy jako `\,`)
 - `wgUstawHTML(el, html)` — podmiana treści tylko gdy naprawdę się zmieniła
+
+**Widoki i układ współrzędnych** (dodane 2026-08-15)
+- `wgZakladki(container, etykiety, onZmiana)` — pasek zakładek przełączających
+  widoki jednego widżetu (np. dwa zdania zad. 12.1); zwraca stan `{ aktywna }`
+- `wgUklad({X0, X1, Y0, Y1, szer, wys, margines})` — mapowanie wartość↔piksel
+  (`px/py/vx/vy`) dla płótna z marginesami
+- `wgRysujUklad(ctx, uklad, opcje)` — siatka, osie ze strzałkami, podziałka
+  i liczby (z odstępem pod kropki na osi)
 
 **Rysowanie**
 - `wgStrzalka(ctx, x1, y1, x2, y2)` — strzałka na płótnie

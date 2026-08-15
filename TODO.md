@@ -39,6 +39,28 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945 
 
+  - zad. 12 w 2026-maj: rysunek + widżety 12.1 i 12.2 z zakładkami (v46)
+
+    - w treści zad. 12 ma być wykres łamanej wycięty z arkusza CKE (nowy plik media/zad12/zad12rys.png); sprawdź, czy w ciemnym motywie odwraca kolory jak inne grafiki
+
+    - 12.1, widżet z dwiema zakładkami „Zdanie 1." / „Zdanie 2."
+
+      - zakładka 1: przeciągnij poziomą prostą; punkty przecięcia z wykresem i odczyt x = ...; przy y = 3 pojawia się ✓ i jedno rozwiązanie x = 1
+
+      - zakładka 2: przeciągnij pionowe proste; pod nimi zapis przedziału, pomarańczowy punkt maksimum z kreską do osi y; przy [2, 3] ✓ i wartość 4
+
+    - 12.2, widżet z dwiema zakładkami
+
+      - zakładka 1 (bez sterowania): pas i zielony odcinek na osi y pokazują zbiór wartości [−2, 4]
+
+      - zakładka 2: prosta y = c, sterowanie punktem na osi y albo suwakiem; zielony przedział na osi x z pustymi/pełnymi kółkami; przy c = 1 ✓ i (−1, 4)
+
+      - podnieś c powyżej 3: prawy koniec przedziału ma się domknąć na 2 (pełne kółko), np. (1,5, 2⟩ dla c = 3,5
+
+    - obie karty: przełączanie zakładek przy otwartym widżecie i zmiana motywu; na telefonie sprawdź przeciąganie prostych palcem
+
+    - pliki wspólne: template.html (tag script i wersja), widgets/_registry.js, widgets/_helpers.js (nowe klocki wgZakladki/wgUklad/wgRysujUklad), style/sheet.css (style zakładek), widgets/README.md
+
   - zad. 11 w 2026-maj, widżet wg Twojego opisu (v45)
 
     - kliknij „Podpowiedź": oznaczenie niewiadomych i przepis na układ równań; oceń, czy nie zdradza
