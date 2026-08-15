@@ -32,9 +32,11 @@ Zobacz na żywo: https://henrich2137.github.io/matematykazen/
 + Faza 1 - Budowa (obecna) - Beta testy ale bez marketingu i domeny co czyni je bardziej zamkniętymi.
 
 + Faza 2 - Soft Launch i Beta testy - Marketing, naprawa zgłaszanych błędów, zbieranie pieniędzy na patronite.
-    - hosting: nadal GitHub Pages (2.1)
-    - licencja PolyForm Noncommercial (2.2) <- tutaj jesteśmy
+    - hosting: nadal GitHub Pages (2.1) DONE
+    - licencja PolyForm Noncommercial (2.2) DONE
     - domena matematykazen.pl (2.3)
+    - przejście na darmowy ale lepszy hosting z łatwą migracją np Cloudflare lub Vercel
+    - marketing (2.4)
     
 Cel: zdobyć zainteresowanie i sprawdzić, czy projekt przyjmie się w społeczności.
 
