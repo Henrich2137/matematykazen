@@ -9,7 +9,6 @@ Pilotaż na **trzech zadaniach** z `matura/2026-maj`. Dla każdego:
 1. **podpowiedź** (`hint`) i **rozwiązanie opisowe** (`solutionText`) — arkusz nie ma ani jednego
 2. ** Zwykłe rozwiązanie **
 3. **widżet interaktywny** — nowy plik w `widgets/`, jeśli zadanie się do tego nadaje
-4. Na razie jeszcze nie: **scenariusz filmu Manima** — tekst sceny, **bez renderowania**
 
 Zadania (wybór Henricha):
 
@@ -17,6 +16,13 @@ Zadania (wybór Henricha):
 - zad 8. - Interaktywne/widżet: Zmienianie x suwakiem zmienia:
   - liczbę na miejscu x w równaniu
   - punkt na osi liczbowej na której są oznaczone wszystkie 3 rozwiązania oznaczone tym samym kolorem co literki w równaniu
+
+  **Suwak rusza `x`, i to jest celowe — nie „poprawiaj" tego na `m`.** Owszem, pytanie
+  zadania dotyczy `m`, a `x` jest niewiadomą, więc suwak na `m` wygląda na naturalniejszy.
+  Ale rzecz w tym, co uczeń ma zobaczyć: przeciągając `x` trafia w moment, gdy **jeden
+  nawias się zeruje**, a wtedy cały iloczyn robi się `0` i równanie jest spełnione.
+  To jest sedno całego zadania — dlaczego pierwiastek jest pierwiastkiem. Suwak na `m`
+  pokazywałby tylko, że trzeci punkt jeździ po osi, czyli skutek zamiast przyczyny.
 - zad 10. - Interaktywne/widżet: po uproszczeniu do 
 postać ogólna >= 0
 zrobić podobnie jak w zad 9. w 2024-grudzien
@@ -39,8 +45,6 @@ Oddając, napisz w **dwóch** miejscach — w czacie i w `TODO.md` w sekcji
 - **Przełączenie motywu przy otwartym widżecie.** Czy przemalowuje się od razu, czy
   zostaje w kolorach poprzedniego (typowy objaw braku `wgZarejestrujRysowanie`).
 - **Czy podpowiedź faktycznie pomaga, a nie zdradza.** To ocena nauczyciela, nie modelu.
-- JESZCZE NIE: **Czy scenariusz filmu da się obejrzeć w głowie** — czy kolejność kroków jest ta, którą
-  uczeń sam by przeszedł.
 - **Cokolwiek, co zmieniłeś w kodzie** - wymień z nazwy, osobno.
 
 Podbij numer wersji **w dwóch plikach naraz**: `#wersja` w `template.html`
@@ -66,8 +70,9 @@ siedzi tylko w treści `question` („Zadanie 15."). Zadania wieloczęściowe ma
 **2. Kroki typu `"text"` NIE działają.** `ARCHITECTURE.md:59` wymienia
 `"video"|"image"|"text"`, ale `renderStep()` w `app/steps.js:88-109` obsługuje tylko dwa
 pierwsze — `"text"` daje pusty kadr. Wszystkie 62 istniejące kroki to filmy.
-**Dlatego kroki w tym pilotażu są scenariuszami, nie danymi.** Pole `text` kroku to co
-innego i działa — to opis pod kadrem.
+**Dlatego rozwiązań krok po kroku w tym pilotażu nie ma w ogóle** — nie da się ich dodać
+bez pliku wideo, a filmów nie robimy. Pole `text` kroku to co innego i działa — to opis
+pod kadrem.
 
 **3. Widżetu nie da się przełożyć.** Każdy z dziewięciu ma liczby swojego zadania wpisane
 na sztywno. Nowy temat = **nowy plik + wpis w `widgets/_registry.js` + tag `<script>`
@@ -97,7 +102,10 @@ plik `.mp4` ma zwrócić **206**. Na porcie 8000 może już stać cudzy serwer �
 ## Bez pytania nie ruszaj
 
 - **`app/steps.js` i reszty odtwarzacza** — delikatne, ma własny test `tools/test-krokow.js`
-- **renderowania Manima** — scenariusze tak, produkcja plików nie
+- ⛔ **NIE RENDERUJ FILMÓW.** Manim i TeX Live są w tym kontenerze zainstalowane, więc
+  renderowanie *da się* odpalić — i o to właśnie chodzi, żebyś tego nie zrobił. Jeden
+  film to długie czekanie i spalona sesja. Nie twórz scen, nie uruchamiaj `manim`, nie
+  wchodź do `manimations/`. Filmy są poza zakresem tego pilotażu w całości.
 - **rozszerzania zakresu** poza trzy zadania
 - **wątpliwości merytorycznej w matematyce** — Henrich jest nauczycielem matematyki,
   pytaj jego zamiast zgadywać
@@ -108,10 +116,6 @@ Nowy widżet **jest** w zakresie, mimo że to kod — o to w pilotażu chodzi.
 
 - Treść dla ucznia **i komentarze w kodzie po polsku**
 - Matematyka w KaTeX: `\( … \)` i `\[ … \]`, w JSON-ie z `\\`
-- Opisy kroków mają własne zasady w [manimations/README.md](../manimations/README.md) —
-  przeczytaj **przed** pisaniem scenariusza: ostatnia klatka kroku = pierwsza klatka
-  następnego, ruch ma iść za rachunkiem, kolor tylko na tym, na co uczeń ma patrzeć;
-  w opisie krótkie linijki, wzory osobno, bez myślników i podkreśleń poza wzorami
 - Jedna paczka zmian = **jeden commit**, trailer
   `Co-Authored-By: Local Fable 5 <Effort> <noreply@anthropic.com>`
 - Zrzuty stanu strony sprzed Twoich zmian: [zrzuty/2026-08-15/](../zrzuty/2026-08-15/)
