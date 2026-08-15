@@ -152,7 +152,7 @@
         "selfScore": false,
         "formulasPage": null,
         "hint": "Iloczyn jest równy 0 dokładnie wtedy, gdy któryś z czynników jest równy 0. Jakie liczby zerują kolejne nawiasy?",
-        "solutionText": "Równanie z zadania:\\[3(x + 3)(x - m)(2x + 4) = 0\\]<div class=\"rozwiazanie-kroki\">Iloczyn jest równy 0, gdy któryś z czynników jest równy 0.<br>\\(x + 3 = 0 \\implies x = -3\\)<br>\\(x - m = 0 \\implies x = m\\)<br>\\(2x + 4 = 0 \\implies x = -2\\)<br>Suma wszystkich rozwiązań ma być równa 0.<br>\\(-3 + m - 2 = 0\\)<br>\\(m - 5 = 0\\)<br>\\(\\boldsymbol{m = 5}\\)<br>Odpowiedź <b>C</b>.</div>",
+        "solutionText": "Równanie z zadania:\\[3(x + 3)(x - m)(2x + 4) = 0\\]<div class=\"rozwiazanie-kroki\">Iloczyn jest równy 0, gdy któryś z czynników jest równy 0.<br>\\[\\begin{array}{ccc}x + 3 = 0 & \\qquad x - m = 0 & \\qquad 2x + 4 = 0\\\\ x = -3 & \\qquad x = m & \\qquad x = -2\\end{array}\\]Suma wszystkich rozwiązań ma być równa 0.<br>\\(-3 + m - 2 = 0\\)<br>\\(m - 5 = 0\\)<br>\\(\\boldsymbol{m = 5}\\)<br>Odpowiedź <b>C</b>.</div>",
         "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": "widgetRownanieIloczynowe"

@@ -46,7 +46,8 @@ function widgetNierownoscKwadratowa(container) {
             ctx.moveTo(px(i), py(0) - 3);
             ctx.lineTo(px(i), py(0) + 3);
             ctx.stroke();
-            if (i % 2 === 0 || i === -1 || i === 7) ctx.fillText(i, px(i), py(0) + 6);
+            // +11 = promień punktu x (7) + odstęp, żeby kropka nie zasłaniała liczb.
+            if (i % 2 === 0 || i === -1 || i === 7) ctx.fillText(i, px(i), py(0) + 11);
         }
 
         // Parabola.

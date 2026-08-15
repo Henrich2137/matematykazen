@@ -37,35 +37,37 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945 
 
-  - zad. 2 w 2026-maj po Twoich poprawkach (v42)
+  - zad. 2 w 2026-maj po drugiej rundzie poprawek (v43)
 
-    - podpowiedź ma zawierać tylko wzór, bez zdania o odsetkach
+    - podpowiedź: tylko wzór, bez zdania o odsetkach
 
-    - suwak ma startować na 6,0%, więc „p = 6,0%" w odczycie od razu zielone
+    - suwak startuje na 6,0% i jest niebieski (kolor niewiadomej), w ciemnym motywie pomarańczowy; „p = 6,0%" w odczycie w tym samym kolorze
 
-    - podpisy „( + 600 zł )" nad słupkami i segment odsetek w kolorze niewiadomej: niebieski w jasnym motywie, pomarańczowy w ciemnym
+    - między słupkami strzałki z kwotami „+ 600 zł" / „+ 636 zł", przerywana linia bazowa na poziomie 10 000 zł
 
-    - środkowy słupek ma stać na środku płótna
+    - odczyt pod suwakiem: trzy linijki z oddechem (jak w zwykłym rozwiązaniu), ostatnia „odsetki: 600,00 zł + 636,00 zł = 1236,00 zł" zielenieje przy 6%
 
-    - odczyt pod suwakiem: dwie linijki, bez strzałki, bez linijki „odsetki: ..."
+    - słupki i czcionka w nich trochę większe niż w v42
 
-  - zad. 8 w 2026-maj, drugie zadanie od Fable (v42)
+  - zad. 8 w 2026-maj, drugie zadanie od Fable (v43)
 
     - kliknij „Podpowiedź": pytanie o zerowanie nawiasów; oceń, czy pomaga, a nie zdradza
 
-    - kliknij „Rozwiązanie": linijka po linijce, rozwiązania z nawiasów, suma równa 0, na końcu m = 5 i odpowiedź C
+    - kliknij „Rozwiązanie": trzy kolumny (nawias nad swoim rozwiązaniem), pod nimi suma −3 + m − 2 = 0, na końcu m = 5 i odpowiedź C; sprawdź, czy kolumny mieszczą się na telefonie
 
-    - widżet: oś liczbowa z punktami −3 i −2 (fiolet) oraz m (wyróżniony odcień fioletu), suwak i przeciąganie ruszają x
+    - widżet: oś liczbowa z punktami −3, −2 i m (wszystkie jednym fioletem), bez suwaka; x ruszasz klikając w oś lub przeciągając punkt
 
-      - przeciągnij x palcem na −3, −2 albo m: przy trafieniu ✓ w odczycie, a w podstawieniu widać zerujący się nawias
+      - przeciągnij x palcem na −3, −2 albo m: w odczycie widać zerujący się nawias, obliczony iloczyn i „0 = 0" z ✓
 
-      - punkt x trzyma kolor podstawiania (niebieski/pomarańcz) niezależnie od wyniku; o wyniku mówi ✓/✗
+      - poza rozwiązaniem ostatnia linijka to np. „−288 = 0" z ✗
 
       - na telefonie: czy punkt da się złapać palcem i czy da się trafić w −3 i −2 obok siebie
 
-      - przełącz motyw przy otwartym widżecie: przemalowanie od razu; m w ciemnym motywie jasnofioletowe
+      - liczby pod osią zeszły niżej, kropka nie powinna ich zasłaniać (to samo w zad. 1 i 9 w 2024-grudniu)
 
-    - zmienione pliki wspólne dla wszystkich arkuszy: template.html (nowy tag script i wersja), widgets/_registry.js, widgets/_helpers.js i style/base.css (nowy token --wg-fiolet-mocny w trzech blokach); przeklikaj dla pewności dowolne zadanie w 2024-grudzień
+      - przełącz motyw przy otwartym widżecie: przemalowanie od razu
+
+    - zmienione pliki wspólne dla wszystkich arkuszy: template.html (tag script i wersja), widgets/_registry.js, style/sheet.css (większy odczyt pod każdym widżetem), widgets/osLiczbowa.js i widgets/nierownoscKwadratowa.js (liczby pod osią niżej); przeklikaj dla pewności zad. 1, 5 i 9 w 2024-grudniu
 
   - zad. 5 w 2024-grudzień po przeróbce (v40)
 

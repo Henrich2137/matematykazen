@@ -1,5 +1,20 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-15] (Fable 5, medium) v43 — druga runda uwag Henricha do zad. 2 i 8 (2026-maj).
+[2026-maj, widzety, tresc, pilotaz-fable]
+
+- Zad. 2: kwoty odsetek przeniesione na strzałki MIĘDZY słupkami (podpis "( + 636 zł )" nad
+  słupkiem wyglądał na sumę odsetek, nie przyrost roku), przerywana linia bazowa na 10 000 zł,
+  przywrócona linijka "odsetki: 600 + 636 = 1236" (miała sens, usunięta przez nieporozumienie);
+  p i suwak w kolorze niewiadomej (slider.style.accentColor odświeżany w draw()); większe płótno
+  (250 px) i czcionka 13 px.
+- Zad. 8: rozwiązanie opisowe w 3 kolumnach (KaTeX \begin{array}{ccc}; separator @{\qquad} nie
+  istnieje w KaTeX-ie, \qquad wkładane do komórek); widżet bez suwaka (klik/przeciąganie), m bez
+  specjalnego koloru (token --wg-fiolet-mocny wycofany z base.css i _helpers.js), odczyt: iloczyn
+  z obliczonymi nawiasami i "0 = 0" ✓ zamiast linijki o sumie (suma została w rozwiązaniu opisowym).
+- Uniwersalnie: .widget-readout powiększony i z line-height 2.1 (spójnie z .rozwiazanie-kroki);
+  liczby pod osią schodzą pod promień punktu także w osLiczbowa.js i nierownoscKwadratowa.js.
+
 [ZROBIONE 2026-08-15] (Fable 5, medium) v42 — poprawki Henricha do zad. 2 (2026-maj) + zad. 8 w komplecie.
 [2026-maj, widzety, tresc, pilotaz-fable]
 

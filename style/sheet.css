@@ -1697,7 +1697,10 @@ canvas {
 .widget-readout {
     min-height: 3.4em;
     margin-top: 8px;
-    font-size: 16px;
+    /* Spójnie z .rozwiazanie-kroki: ta sama wielkość pisma i ten sam oddech
+       między linijkami (odczyt to też rachunek, linijki rozdziela <br>). */
+    font-size: 17px;
+    line-height: 2.1;
 }
 .wg-ok {
     color: var(--correct);

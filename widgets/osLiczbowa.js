@@ -50,7 +50,8 @@ function widgetOsLiczbowa(container) {
             ctx.moveTo(px, centerY - 3);
             ctx.lineTo(px, centerY + 3);
             ctx.stroke();
-            ctx.fillText(i, px, centerY + 7);
+            // +11 = promień punktu x (7) + odstęp, żeby kropka nie zasłaniała liczb.
+            ctx.fillText(i, px, centerY + 11);
         }
 
         const center = -a;

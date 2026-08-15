@@ -1,6 +1,6 @@
 // --- Zad 2 (2026-maj): odsetki z procentu składanego -----------------------
 // Suwak oprocentowania + słupki kapitału po 0/1/2 latach. Odsetki doliczone
-// w danym roku są zaznaczone jako górny segment słupka, z podpisem "+kwota",
+// w danym roku: górny segment słupka plus strzałka między słupkami z kwotą,
 // bo sednem zadania jest to, że drugi rok liczy się od powiększonego kapitału.
 
 function widgetOdsetkiSkladane(container) {
@@ -8,7 +8,7 @@ function widgetOdsetkiSkladane(container) {
     wrap.appendChild(wgElement("div", "widget-title",
         `Zmień oprocentowanie ${wgMath("p")} przy pomocy suwaka.`));
 
-    const canvas = wgCanvas(wrap, 520, 230);
+    const canvas = wgCanvas(wrap, 520, 250);
     const ctx = canvas.getContext("2d");
 
     const controls = wgElement("div", "widget-controls",
@@ -32,7 +32,7 @@ function widgetOdsetkiSkladane(container) {
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         // maxVal z zapasem na kapitał przy p = 10% (12 100 zł) plus podpisy.
-        const baseY = 195, maxVal = 12600, scale = 160 / maxVal;
+        const baseY = 215, maxVal = 12600, scale = 175 / maxVal;
 
         const etykiety = ["wpłata", "po 1 roku", "po 2 latach"];
         // Kwota odsetek w podpisie: bez groszy, gdy wychodzi okrągło.
@@ -42,8 +42,8 @@ function widgetOdsetkiSkladane(container) {
             const x = 65 + i * 150;
             const h = kwota * scale;
             // Odsetki doliczone w tym roku: górny segment słupka w kolorze
-            // niewiadomej (odwraca się z motywem), plus podpis nad słupkiem.
-            // Dolna część słupka to kapitał z poprzedniego roku.
+            // niewiadomej (odwraca się z motywem); kwota siedzi na strzałce
+            // między słupkami. Dolna część to kapitał z poprzedniego roku.
             const hPoprz = i > 0 ? kwoty[i - 1] * scale : h;
             ctx.fillStyle = WG_KOLORY.slupek;
             ctx.fillRect(x, baseY - hPoprz, 90, hPoprz);
@@ -52,11 +52,6 @@ function widgetOdsetkiSkladane(container) {
                 ctx.fillStyle = WG_KOLORY.niewiadoma;
                 ctx.fillRect(x, baseY - h, 90, h - hPoprz);
                 ctx.globalAlpha = 1;
-                ctx.fillStyle = WG_KOLORY.niewiadoma;
-                ctx.font = "12px Arial";
-                ctx.textAlign = "center";
-                ctx.textBaseline = "bottom";
-                ctx.fillText("( + " + zlKrotko(kwota - kwoty[i - 1]) + " )", x + 45, baseY - h - 24);
             }
 
             ctx.strokeStyle = WG_KOLORY.wykres;
@@ -65,19 +60,53 @@ function widgetOdsetkiSkladane(container) {
             ctx.fillStyle = WG_KOLORY.tekst;
             ctx.textAlign = "center";
             ctx.textBaseline = "bottom";
-            ctx.font = "12px Arial";
+            ctx.font = "13px Arial";
             ctx.fillText(zl(kwota), x + 45, baseY - h - 4);
             ctx.textBaseline = "top";
             ctx.fillText(etykiety[i], x + 45, baseY + 6);
         });
 
-        // Odczyt w dwóch linijkach: ustawione p, pod nim podstawienie do wzoru.
-        // Przy oprocentowaniu z zadania (6%) zielenieje istniejące "p = 6,0%".
-        const pTex = `p = ${wgTexLiczba(p, 1, 1)}\\%`;
+        // Linia bazowa na poziomie wpłaty: widać, o ile każdy słupek
+        // odchyla się od 10 000 zł.
+        const bazaY = baseY - START * scale;
+        ctx.strokeStyle = WG_KOLORY.linia;
+        ctx.setLineDash([5, 4]);
+        ctx.beginPath();
+        ctx.moveTo(45, bazaY);
+        ctx.lineTo(475, bazaY);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Strzałki między kolejnymi słupkami z kwotą odsetek doliczonych
+        // w danym roku (żeby "+ 636 zł" nie wyglądało na sumę odsetek).
+        for (let i = 1; i < kwoty.length; i++) {
+            const xPoprz = 65 + (i - 1) * 150 + 90;
+            const xTen = 65 + i * 150;
+            const yPoprz = baseY - kwoty[i - 1] * scale;
+            const yTen = baseY - kwoty[i] * scale;
+            ctx.strokeStyle = ctx.fillStyle = WG_KOLORY.niewiadoma;
+            ctx.lineWidth = 1;
+            wgStrzalka(ctx, xPoprz + 3, yPoprz, xTen - 3, yTen);
+            ctx.font = "13px Arial";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "bottom";
+            ctx.fillText("+ " + zlKrotko(kwoty[i] - kwoty[i - 1]),
+                (xPoprz + xTen) / 2, Math.min(yPoprz, yTen) - 5);
+        }
+
+        // Odczyt: ustawione p, podstawienie do wzoru, suma odsetek z obu lat.
+        // "p = ..." i suwak w kolorze niewiadomej (to uczeń nim rusza, ten sam
+        // kolor co strzałki "+kwota"); trafienie w 6% zielenieje sumę odsetek.
+        slider.style.accentColor = wgHex(WG_KOLORY.niewiadoma);
+        const pTex = `\\textcolor{${wgHex(WG_KOLORY.niewiadoma)}}{p = ${wgTexLiczba(p, 1, 1)}\\%}`;
+        const odsetki1 = kwoty[1] - kwoty[0];
+        const odsetki2 = kwoty[2] - kwoty[1];
         wgUstawHTML(readout,
-            wgMath(trafiony ? `\\textcolor{${wgHex(WG_KOLORY.ok)}}{${pTex}}` : pTex) + `<br>` +
+            wgMath(pTex) + `<br>` +
             wgMath(`10\\,000 \\cdot (1 + ${wgTexLiczba(r, 3)})^{2} = `) +
-            ` <b>${zl(kwoty[2])}</b>`);
+            ` <b>${zl(kwoty[2])}</b><br>` +
+            `odsetki: ${zl(odsetki1)} + ${zl(odsetki2)} = ` +
+            `<b${trafiony ? ` class="wg-ok"` : ""}>${zl(odsetki1 + odsetki2)}</b>`);
     }
 
     slider.addEventListener("input", draw);
