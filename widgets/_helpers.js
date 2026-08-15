@@ -136,6 +136,7 @@ const WG_KOLORY = {
     wykres: "#7a3fa8",        // fiolet jak na rysunkach CKE (--accent-purple)
     punkt: "#e8871e",         // pomarańcz
     zolty: "#c99700",
+    niewiadoma: "#0077b6",   // x i liczba na jego miejscu (podstawianie)
     zielony: "#2e7d32",       // --accent-green (środek osi w zad. 1)
     slupek: "#c9b3dd",
     etykietaInfo: "#9bb8d4",
@@ -160,6 +161,7 @@ const WG_ZMIENNE = {
     wykres: "--accent-purple",
     punkt: "--wg-punkt",
     zolty: "--wg-zolty",
+    niewiadoma: "--wg-niewiadoma",
     zielony: "--accent-green",
     slupek: "--wg-slupek",
     etykietaInfo: "--wg-etykieta-info",

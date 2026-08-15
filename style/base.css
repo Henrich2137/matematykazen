@@ -112,6 +112,7 @@
     --wg-linia-mocna: #444;   /* wyróżnione ramiona/odcinki */
     --wg-punkt: #e8871e;      /* pomarańczowy punkt/łuk */
     --wg-zolty: #c99700;      /* punkt testowy na osi (zad 1) */
+    --wg-niewiadoma: #0077b6; /* x i liczba wchodząca na jego miejsce (podstawianie) */
     --wg-slupek: #c9b3dd;     /* wypełnienie słupków */
     --wg-etykieta-info: #9bb8d4; /* blada niebieska etykieta obszaru */
     --wg-obszar-ok: rgba(10, 179, 47, 0.08);
@@ -239,6 +240,7 @@
         --wg-linia-mocna: #c4c4c4;
         --wg-punkt: #f0a04b;
         --wg-zolty: #e0b64a;
+        --wg-niewiadoma: #eb9614;
         --wg-slupek: #5b4470;
         --wg-etykieta-info: #7f9fbe;
         --wg-obszar-ok: rgba(60, 207, 90, 0.16);
@@ -328,6 +330,7 @@ html.theme-dark {
     --wg-linia-mocna: #c4c4c4;
     --wg-punkt: #f0a04b;
     --wg-zolty: #e0b64a;
+    --wg-niewiadoma: #eb9614;
     --wg-slupek: #5b4470;
     --wg-etykieta-info: #7f9fbe;
     --wg-obszar-ok: rgba(60, 207, 90, 0.16);

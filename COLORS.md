@@ -22,7 +22,8 @@ W animacjach tak samo: kolor podąża za tym, co się dzieje, i schodzi po kroku
 
 | Rola | Zmienna CSS | `WG_KOLORY` | jasny | ciemny |
 |---|---|---|---|---|
-| **wybór ucznia** (odpowiedź, przeciągany punkt, podstawiana liczba) | `--accent-blue-strong` | `info` | `#4a90d9` | `#6ab0ff` |
+| **podstawianie pod `x`** (przeciągany punkt, `x` i liczba na jego miejscu) | `--wg-niewiadoma` | `niewiadoma` | `#0077b6` | `#eb9614` |
+| **wybór ucznia** (zaznaczona odpowiedź ABCD, focus) | `--accent-blue-strong` | `info` | `#4a90d9` | `#6ab0ff` |
 | **poprawne** | `--correct` | `ok` | `#0AB32F` | `#3ccf5a` |
 | **niepoprawne** | `--incorrect` | `zle` | `#d9534f` | `#e07b76` |
 | **wykres funkcji** (jak w arkuszach CKE) | `--accent-purple` | `wykres` | `#7a3fa8` | `#a97fd0` |
@@ -43,8 +44,15 @@ Wypełnienia półprzezroczyste: `--wg-obszar-ok`, `--wg-obszar-info`,
 **Zielony i czerwony znaczą wyłącznie poprawność.** Chcesz coś wyróżnić bez
 oceniania — weź niebieski albo pomarańczowy.
 
-**Niebieski punkt nie zmienia się na zielony/czerwony.** O poprawności mówi ✓/✗
-obok, nie barwa samego elementu (zad. 9, v35).
+**Punkt podstawiania nie zmienia się na zielony/czerwony.** O poprawności mówi
+✓/✗ obok, nie barwa samego elementu (zad. 9, v36).
+
+`--wg-niewiadoma` jest **celowo inny w każdym motywie** (błękit / pomarańcz),
+a nie tym samym kolorem rozjaśnionym. Powód: filmy z Manima przechodzą przez
+`invert(92%)`, więc błękit w filmie i tak wyjdzie w ciemnym motywie pomarańczowy
+— widżet ma pokazywać to samo co film, żeby uczeń widział jedną barwę
+„podstawiam pod x" wszędzie. Jasny wariant to `#0077b6`, nie `#72d9fe`: ten
+drugi ma na białym tle kontrast 1,6:1, czyli jest nieczytelny.
 
 ## We wzorach (KaTeX)
 

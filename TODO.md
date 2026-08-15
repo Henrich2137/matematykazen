@@ -47,7 +47,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945 
 
-  - widżet zad. 9 w 2024-grudzień po przeróbce na wzorzec dla Fable (v35)
+  - widżet zad. 9 w 2024-grudzień po przeróbce na wzorzec dla Fable (v36)
 
     - kliknij w puste miejsce na osi, nie w sam punkt — punkt ma tam skoczyć (na komputerze działa, na telefonie nie sprawdzone)
 
@@ -58,6 +58,8 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     - w drugiej linijce niebieskie mają być tylko liczby, które weszły na miejsce x — nawiasy, „− 6" i „≤ 7" zostają czarne
 
     - przełącz motyw przy otwartym widżecie — kolory mają się przemalować od razu, bez odświeżania strony
+
+    - kolor podstawiania jest inny w każdym motywie: w jasnym niebieski, w ciemnym pomarańczowy — sprawdź, czy oba są dobrze widoczne
 
   - pluginy Claude Code po ponownej instalacji (2026-08-15)
 

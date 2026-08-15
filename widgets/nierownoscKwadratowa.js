@@ -87,11 +87,11 @@ function widgetNierownoscKwadratowa(container) {
         ctx.stroke();
         ctx.setLineDash([]);
 
-        // Punkt jest NIEBIESKI niezależnie od tego, czy nierówność wychodzi —
-        // niebieski (--accent-blue-strong) znaczy w tym projekcie „Twój wybór
-        // w zadaniu", a zielony/czerwony jest zarezerwowany dla poprawności.
+        // Punkt ma kolor PODSTAWIANIA (--wg-niewiadoma) niezależnie od tego, czy
+        // nierówność wychodzi — ten sam kolor niesie „x i liczba, która weszła na
+        // jego miejsce", a zielony/czerwony jest zarezerwowany dla poprawności.
         // O tym, czy podstawienie się zgadza, mówi ✓/✗ w odczycie pod spodem.
-        ctx.fillStyle = WG_KOLORY.info;
+        ctx.fillStyle = WG_KOLORY.niewiadoma;
         ctx.beginPath();
         ctx.arc(px(state.x), py(0), 7, 0, Math.PI * 2);
         ctx.fill();
@@ -105,7 +105,7 @@ function widgetNierownoscKwadratowa(container) {
         // Ujemna liczba dostaje nawias tylko jako pierwszy czynnik („(−2,5) ⋅ …"),
         // bo tam bez niego zlałaby się ze znakiem mnożenia. W środku nawiasu
         // drugiego nie potrzeba — „(−2,5 − 6)" czyta się lepiej niż „((−2,5) − 6)".
-        const nieb = tex => `\\textcolor{${wgHex(WG_KOLORY.info)}}{${tex}}`;
+        const nieb = tex => `\\textcolor{${wgHex(WG_KOLORY.niewiadoma)}}{${tex}}`;
         const liczba = wgTexLiczba(state.x);
         const czynnik = nieb(state.x < 0 ? `(${liczba})` : liczba);
         wgUstawHTML(readout,
