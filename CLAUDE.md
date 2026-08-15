@@ -4,7 +4,7 @@ Napisz na początku sesji: "Wczytałem CLAUDE.md"
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-**Detailed architecture and exercise data schema live in [ARCHITECTURE.md](ARCHITECTURE.md); the full CSS/layout reference lives in [ARCHITECTURE_CSS.md](ARCHITECTURE_CSS.md).** Read them before touching the rendering logic in template.html, the schema in a sheet's exercises.json, or the CSS in style/ — and keep them in sync when you change what they describe. Don't duplicate their content here.
+**Detailed architecture and exercise data schema live in [ARCHITECTURE.md](ARCHITECTURE.md); the full CSS/layout reference lives in [ARCHITECTURE_CSS.md](ARCHITECTURE_CSS.md).** Read them before touching the rendering logic in template.html, the schema in a sheet's exercises.json, or the CSS in style/ — and keep them in sync when you change what they describe. Don't duplicate their content here. **[COLORS.md](COLORS.md) — what each colour *means* and which token to use** (blue = the student's choice, green/red = correctness only, default is *no* colour); read it before colouring anything in a widget, an exercise or a Manim scene.
 
 ## Bezpieczeństwo poza devcontainerem
 
