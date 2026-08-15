@@ -4,7 +4,17 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.
 
-  - nic
+  - Poprawianie 2024-grudzien przed Fable
+    - Zad 5.
+    - Zad 9.
+
+
+
+
+
+
+
+
 
 
 <br>
@@ -36,6 +46,18 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + TESTOWANIE HENRICH
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945 
+
+  - widżet zad. 9 w 2024-grudzień po przeróbce na wzorzec dla Fable (v35)
+
+    - kliknij w puste miejsce na osi, nie w sam punkt — punkt ma tam skoczyć (na komputerze działa, na telefonie nie sprawdzone)
+
+    - przeciągnij punkt palcem — sprawdź, czy da się w niego trafić i czy nie ucieka poza ekran
+
+    - punkt na osi ma być niebieski niezależnie od tego, czy nierówność wychodzi; o wyniku mówi dopiero ✓ albo ✗ w drugiej linijce pod spodem
+
+    - w drugiej linijce niebieskie mają być tylko liczby, które weszły na miejsce x — nawiasy, „− 6" i „≤ 7" zostają czarne
+
+    - przełącz motyw przy otwartym widżecie — kolory mają się przemalować od razu, bez odświeżania strony
 
   - pluginy Claude Code po ponownej instalacji (2026-08-15)
 
@@ -100,11 +122,29 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + INNE NOTATKI, DO PRZEKMINIENIA:
   
+
+  - 2026-maj:
+  <br> FABLE, nie pracuj nad nieoznaczonymi twoim imieniem zadaniami
+    - Zad 1. - Rozwiązania
+        - Krok po kroku
+        - Zwykłe
+    - Zad 2. - Rozwiązania
+      - Krok po kroku
+      - Interaktywne, widżet FABLE
+    - Zad 9. - Rozwiązania
+      - Krok po kroku 1 - Standardowe podejśćie: dziedzina, wymnożenie na krzyż itd.
+      - Krok po kroku 2 - Podstawianie odpowiedzi po kolei pod x ąz wyjdzie 2/5 = 2/5
+
+
+
   Przed Fable:
     - Obgadać z Opusem czy używać Fable z superpowers, subagentami itd.
       - Subagentci: Czy powinienem puścić Fable mając duży zapas limitu aby Opusy i Sonnety będące subagentami mogły z niego korzystać odciążając fable?
 
   - Fable:
+    - matura/2024-grudzień
+      - Interaktywne rozwiązania
+      - Sprawdzanie obliczneń (checkboxy) JUŻ CHYBA DONE
     - Interaktywne rozwiązania matury 2026
     - Lista checkboxów "Sprawdzanie rozwiązania"
     - Weryfikacja poprawności matematycznej
@@ -114,8 +154,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     
     
 
-  + Zweryfikować poprawność matematyczną:
-
+  + Zweryfikować poprawność matematyczną 2024-grudzien:
     - Błędy w filmach — ZOSTAŁO (zad. 3, 5 i 6 poprawione w v30):
       - Zad 4. wygląda wzorowo, ale łamie zasadę ciągłości klatek: zielona szóstka zostaje
         na ostatniej klatce kroku 2, a krok 3 startuje czarny (SSIM 0,9990)
@@ -132,8 +171,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
     - Zad 9 -> Sprawdzanie obliczeń -> Pierwszy checkbox
 
-    - poprawność matematyczna treści w arkuszu — rozwiązania krok po kroku (zad. 1–9,
-      komplet po v27) i ich opisy pod filmem
+    - Poprawić 2024-grudzien: Rozwiązania krok po kroku (zad. 1–9, komplet po v27) i ich opisy pod filmem:
 
       - opisy pod filmami (v29, 51 sztuk, wg zasad z manimations/README.md): krótkie linijki,
         wzory w osobnych wierszach, bez wstępów typu „zaczynamy od…”, bez myślników/podkreśleń
@@ -178,6 +216,8 @@ Oto plik który tworzy Henrich (ja, użytkownik).
       formulasPage) — gotowe pluginy są już wpięte
 
   + UI
+
+    - Zmiejsz szerokość przycisków P i F (Prawda i Fałsz) na komputerach
 
     - "Wskaźniki" (oceń się):
       - Przycisk "Wskaźniki" powinien się nazywać "Wskaźniki zad. do oceny" lub coś w tym stylu, samo wskaźniki mało mówi. 

@@ -5,7 +5,7 @@
 function widgetNierownoscKwadratowa(container) {
     const wrap = wgElement("div", "widget");
     wrap.appendChild(wgElement("div", "widget-title",
-        `Przeciągaj punkt po osi x — nierówność ${wgMath("x(x - 6) \\le 7")} spełniają te ${wgMath("x")}, dla których parabola ${wgMath("x^{2} - 6x - 7")} jest pod osią (lub na niej):`));
+        `Kliknij na dowolne miejsce na osi lub przeciągnij punkty, aby podstawić liczbę pod ${wgMath("x")}.`));
 
     const canvas = wgCanvas(wrap, 520, 260);
     const ctx = canvas.getContext("2d");
@@ -87,7 +87,11 @@ function widgetNierownoscKwadratowa(container) {
         ctx.stroke();
         ctx.setLineDash([]);
 
-        ctx.fillStyle = spelnia ? WG_KOLORY.ok : WG_KOLORY.zle;
+        // Punkt jest NIEBIESKI niezależnie od tego, czy nierówność wychodzi —
+        // niebieski (--accent-blue-strong) znaczy w tym projekcie „Twój wybór
+        // w zadaniu", a zielony/czerwony jest zarezerwowany dla poprawności.
+        // O tym, czy podstawienie się zgadza, mówi ✓/✗ w odczycie pod spodem.
+        ctx.fillStyle = WG_KOLORY.info;
         ctx.beginPath();
         ctx.arc(px(state.x), py(0), 7, 0, Math.PI * 2);
         ctx.fill();
@@ -95,10 +99,20 @@ function widgetNierownoscKwadratowa(container) {
         ctx.arc(px(state.x), py(f(state.x)), 4, 0, Math.PI * 2);
         ctx.fill();
 
+        // Odczyt: wzór ogólny, a pod nim to samo z podstawioną liczbą. Na
+        // niebiesko dokładnie to, co uczeń przed chwilą ruszył — samo „x"
+        // w pierwszej linijce i liczba, która weszła na jego miejsce w drugiej.
+        // Ujemna liczba dostaje nawias tylko jako pierwszy czynnik („(−2,5) ⋅ …"),
+        // bo tam bez niego zlałaby się ze znakiem mnożenia. W środku nawiasu
+        // drugiego nie potrzeba — „(−2,5 − 6)" czyta się lepiej niż „((−2,5) − 6)".
+        const nieb = tex => `\\textcolor{${wgHex(WG_KOLORY.info)}}{${tex}}`;
+        const liczba = wgTexLiczba(state.x);
+        const czynnik = nieb(state.x < 0 ? `(${liczba})` : liczba);
         wgUstawHTML(readout,
-            wgMath(`x = ${wgTexLiczba(state.x)}\\!:\\quad x(x - 6) = ${wgTexLiczba(val)}`) + `<br>` +
-            (spelnia ? `<span class="wg-ok">${wgMath("\\le 7")} ✓ spełnia</span>`
-                     : `<span class="wg-zle">${wgMath("> 7")} ✗ nie spełnia</span>`));
+            wgMath(`${nieb("x")}(${nieb("x")} - 6) \\le 7`) + `<br>` +
+            wgMath(`${czynnik} \\cdot (${nieb(liczba)} - 6) \\le 7`) +
+            (spelnia ? ` <span class="wg-ok">✓</span>`
+                     : ` <span class="wg-zle">✗</span>`));
     }
 
     wgDraggable(canvas, null, pos => {
