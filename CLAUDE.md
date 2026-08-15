@@ -48,6 +48,11 @@ Plus `vendor/katex/` — KaTeX vendored for fully offline math rendering (don't 
 
 ## Git
 
+- **Na starcie sesji sprawdź, czy klon nie jest do tyłu — jeśli jest, zrób `pull` ZANIM zaczniesz pracę.** Odkąd zadanie startowe robi już tylko `fetch` (2026-08-15), nic nie scala samo, więc `master` bywa kilkadziesiąt commitów w plecy, a Ty edytujesz nieaktualne pliki. To jest **Twoje zadanie, nie Henricha** — on nie ma tego pamiętać.
+  - `git fetch && git rev-list --left-right --count HEAD...origin/master` → wynik `0<TAB>0` znaczy „jesteś na bieżąco". Pierwsza liczba = commity lokalne, druga = commity czekające na origin.
+  - Druga liczba > 0 i brak własnych zmian → `git pull --ff-only`. Na hoście przechodzi zawsze.
+  - **W kontenerze** pull może paść na read-only `.devcontainer/`/`.vscode/` (patrz punkt niżej). Jeśli padnie — nie kombinuj i nie kasuj niczego, tylko powiedz Henrichowi, żeby zrobił pull z hosta.
+  - Masz na to **stałą zgodę** — `fetch`/`pull --ff-only` w tym repo to nie jest „polecenie sieciowe do uzgodnienia" z HOSTRULES.md. Pierwsza liczba > 0 (lokalne commity) albo brudne drzewo robocze → **zatrzymaj się i zapytaj**, nic nie nadpisuj.
 - **gitdoc is DISABLED** (verified 2026-08-01) — no auto-commits, no auto-push. Every commit in the log is a human's or the assistant's.
 - **Auto-fetch is on, auto-pull is not** (`git.autofetch` + a `git fetch --prune` task on folder open). Fetch never touches the working tree, so local `master` can be many commits behind at session start — check, and **merge only by hand**. The folderOpen task used to run `git pull --ff-only`; it was replaced 2026-08-15 because inside the devcontainer it kept aborting half-way on the read-only `.devcontainer/`/`.vscode/` mounts, leaving the files updated but HEAD stale (looks like dozens of phantom local changes). Symptom and safe repair in [issues/git-i-gitdoc.md](issues/git-i-gitdoc.md) — don't switch it back to `pull`.
 - **`.vscode/` and `.devcontainer/` are mounted read-only in the devcontainer** — edit them from the host; a `checkout`/`pull` touching them from inside the container half-fails (see `.devcontainer/README.md`).
