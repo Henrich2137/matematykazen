@@ -2,26 +2,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 
 + DO ZROBIENIA
-<br> Jeżeli nie masz co robić, to rób stąd.
-
-  - Poprawianie 2024-grudzien przed Fable
-    - Zad 5.
-      - interaktywne/widżet
-        - zamist dochodzącego dodatkowego p = 6,4%! powinno być oznaczone na zielono istniejące.
-        - cel też powinien być oznaczony zieloną linią, lub fioletową
-        - suwag powinien być fioletowy
-        - Ten nagłówiek title z góry można zamienić na Zmień oprocentowanie p suwakiem.
-      - zwykłe: linijka po nijce zapisuj kroki z krok po kroku tylko na początku zapisz wzór. Nie ppisz długich wyjaśnień i zbędnych komentarzy.
-       
-
-
-
-
-
-
-
-
-
+<br> Jeżeli nie masz co robić, to rób stąd.     
 
 <br>
 
@@ -56,23 +37,35 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945 
 
-  - zad. 2 w 2026-maj, pierwsze zadanie od Fable (v41)
+  - zad. 2 w 2026-maj po Twoich poprawkach (v42)
 
-    - kliknij „Podpowiedź": ma pokazać wzór na procent składany i przypomnieć, że pytanie jest o same odsetki; oceń, czy to pomaga, a nie zdradza wynik
+    - podpowiedź ma zawierać tylko wzór, bez zdania o odsetkach
 
-    - kliknij „Rozwiązanie": wzór na starcie, pod nim linijki wyśrodkowane jedna pod drugą, bez przycisku „pokaż więcej"
+    - suwak ma startować na 6,0%, więc „p = 6,0%" w odczycie od razu zielone
 
-    - widżet pod rozwiązaniem: trzy słupki kapitału i suwak oprocentowania
+    - podpisy „( + 600 zł )" nad słupkami i segment odsetek w kolorze niewiadomej: niebieski w jasnym motywie, pomarańczowy w ciemnym
 
-      - ustaw suwak na 6,0%: „p = 6,0%" w odczycie i łączne odsetki 1236,00 zł mają zzielenieć
+    - środkowy słupek ma stać na środku płótna
 
-      - jasnoniebieski pasek na górze drugiego i trzeciego słupka to odsetki doliczone w danym roku, nad słupkiem podpis „+600,00 zł" / „+636,00 zł"; sprawdź, czy widać, że drugi rok daje więcej niż pierwszy
+    - odczyt pod suwakiem: dwie linijki, bez strzałki, bez linijki „odsetki: ..."
 
-      - na telefonie: czy suwak da się wygodnie łapać palcem i nic nie wystaje poza ekran
+  - zad. 8 w 2026-maj, drugie zadanie od Fable (v42)
 
-      - przełącz motyw przy otwartym widżecie: kolory mają się przemalować od razu, bez odświeżania
+    - kliknij „Podpowiedź": pytanie o zerowanie nawiasów; oceń, czy pomaga, a nie zdradza
 
-    - zmienione pliki wspólne dla wszystkich arkuszy: template.html (nowy tag script i wersja) oraz widgets/_registry.js (nowy wpis); przeklikaj dla pewności dowolne zadanie w 2024-grudzień, czy nic się nie posypało
+    - kliknij „Rozwiązanie": linijka po linijce, rozwiązania z nawiasów, suma równa 0, na końcu m = 5 i odpowiedź C
+
+    - widżet: oś liczbowa z punktami −3 i −2 (fiolet) oraz m (wyróżniony odcień fioletu), suwak i przeciąganie ruszają x
+
+      - przeciągnij x palcem na −3, −2 albo m: przy trafieniu ✓ w odczycie, a w podstawieniu widać zerujący się nawias
+
+      - punkt x trzyma kolor podstawiania (niebieski/pomarańcz) niezależnie od wyniku; o wyniku mówi ✓/✗
+
+      - na telefonie: czy punkt da się złapać palcem i czy da się trafić w −3 i −2 obok siebie
+
+      - przełącz motyw przy otwartym widżecie: przemalowanie od razu; m w ciemnym motywie jasnofioletowe
+
+    - zmienione pliki wspólne dla wszystkich arkuszy: template.html (nowy tag script i wersja), widgets/_registry.js, widgets/_helpers.js i style/base.css (nowy token --wg-fiolet-mocny w trzech blokach); przeklikaj dla pewności dowolne zadanie w 2024-grudzień
 
   - zad. 5 w 2024-grudzień po przeróbce (v40)
 

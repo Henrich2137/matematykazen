@@ -137,6 +137,7 @@ const WG_KOLORY = {
     punkt: "#e8871e",         // pomarańcz
     zolty: "#c99700",
     niewiadoma: "#0077b6",   // x i liczba na jego miejscu (podstawianie)
+    fioletMocny: "#5a2d80",   // wyróżniony odcień fioletu (punkt m w zad 8 maja)
     zielony: "#2e7d32",       // --accent-green (środek osi w zad. 1)
     slupek: "#c9b3dd",
     etykietaInfo: "#9bb8d4",
@@ -162,6 +163,7 @@ const WG_ZMIENNE = {
     punkt: "--wg-punkt",
     zolty: "--wg-zolty",
     niewiadoma: "--wg-niewiadoma",
+    fioletMocny: "--wg-fiolet-mocny",
     zielony: "--accent-green",
     slupek: "--wg-slupek",
     etykietaInfo: "--wg-etykieta-info",

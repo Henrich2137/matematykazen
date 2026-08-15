@@ -1,5 +1,19 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-15] (Fable 5, medium) v42 — poprawki Henricha do zad. 2 (2026-maj) + zad. 8 w komplecie.
+[2026-maj, widzety, tresc, pilotaz-fable]
+
+- Zad. 2, poprawki po testach v41: podpowiedź skrócona do samego wzoru; suwak startuje na 6,0%;
+  segment odsetek i podpisy w kolorze niewiadomej (--wg-niewiadoma, odwraca się z motywem);
+  podpisy w formie "( + 600 zł )" i pół linijki wyżej; słupki przesunięte 25 px w lewo (środkowy
+  na środku płótna); odczyt bez strzałki, w dwóch linijkach, linijka "odsetki: ..." skasowana
+  (dublowała podpisy na słupkach).
+- Zad. 8, komplet: podpowiedź (iloczyn równy 0), rozwiązanie opisowe (rozwiązania z nawiasów,
+  suma równa 0, m = 5), nowy widżet widgets/rownanieIloczynowe.js: suwak i przeciąganie ruszają
+  x po osi (celowo x, nie m - uczeń widzi, jak zeruje się nawias), rozwiązania -3, -2, m jednym
+  fioletem, m wyróżnione nowym tokenem --wg-fiolet-mocny (base.css x3 + WG_ZMIENNE/WG_KOLORY),
+  odczyt: równanie, podstawienie z ✓/✗, linijka -3 + m - 2 = 0 => m = 5 (zamówienie Henricha).
+
 [ZROBIONE 2026-08-14] (Opus 5, high) v34 — logo pod welonem przy otwartym panelu bocznym.
 [ui, css, sidebar, mobile, a11y]
 

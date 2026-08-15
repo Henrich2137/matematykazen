@@ -7,6 +7,7 @@ const WIDZETY = {
     widgetOsLiczbowa,
     widgetProcentSkladany,
     widgetOdsetkiSkladane,
+    widgetRownanieIloczynowe,
     widgetNierownoscKwadratowa,
     widgetFunkcjaPrzedzialami,
     widgetParabola,
