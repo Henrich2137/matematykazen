@@ -231,8 +231,8 @@
         "selfScore": false,
         "hint": "Korzystamy z wzoru na procent składany: \\(P = P_0 \\cdot (1 + r)^{n}\\)",
         "formulasPage": 10,
-        "solutionText": "Podstawiamy do wzoru na procent składany: \\(60\\,000 \\cdot (1 + p)^{2} = 67\\,925{,}76\\), stąd \\((1 + p)^{2} = 1{,}132096\\), czyli \\(1 + p = 1{,}064\\) i \\(\\boldsymbol{p = 6{,}4\\%}\\) — odpowiedź <b>B</b>.",
-        "solutionTextMore": "\\[\\begin{aligned} (1 + p)^{2} &= \\tfrac{67\\,925{,}76}{60\\,000} = 1{,}132096 \\\\ 1 + p &= \\sqrt{1{,}132096} = 1{,}064 \\\\ p &= 0{,}064 = \\boldsymbol{6{,}4\\%} \\end{aligned}\\] Warto zauważyć, że wystarczyło sprawdzić odpowiedzi: \\(60\\,000 \\cdot 1{,}064^{2} = 67\\,925{,}76\\) zł. ✓",
+        "solutionText": "Wzór na procent składany:\\[P = P_0 \\cdot (1 + p)^{n}\\]\\(60\\,000 \\cdot (1 + p)^{2} = 67\\,925{,}76\\)<br>\\((1 + p)^{2} = 1{,}132096\\)<br>\\(1 + p = 1{,}064\\)<br>\\(p = 0{,}064 = \\boldsymbol{6{,}4\\%}\\)<br>Odpowiedź <b>B</b>.",
+        "solutionTextMore": "",
         "solutionStepByStep": [
             {
                 "type": "video",
@@ -454,8 +454,8 @@
         ],
         "hint": "Przenieś wszystkie wyrazy na jedną stronę, rozwiąż równanie kwadratowe, naszkicuj parabolę i odczytaj, gdzie nierówność jest spełniona.",
         "formulasPage": 8,
-        "solutionText": "Po uporządkowaniu: \\(x^{2} - 6x - 7 \\le 0\\). Miejsca zerowe: \\(x = -1\\) i \\(x = 7\\), ramiona paraboli w górę, więc rozwiązaniem jest przedział \\(\\boldsymbol{\\langle -1,\\ 7\\rangle}\\).",
-        "solutionTextMore": "\\[x^{2} - 6x - 7 \\le 0\\]\\[\\Delta = 36 + 28 = 64, \\quad \\sqrt{\\Delta} = 8\\]\\[x_1 = \\frac{6 - 8}{2} = -1, \\quad x_2 = \\frac{6 + 8}{2} = 7\\]Współczynnik przy \\(x^{2}\\) jest dodatni → parabola ma ramiona w górę → wartości \\(\\le 0\\) przyjmuje <b>między</b> miejscami zerowymi: \\(\\boldsymbol{x \\in \\langle -1,\\ 7\\rangle}\\).",
+        "solutionText": "Wzory:\\[\\Delta = b^{2} - 4ac \\qquad x_{1,2} = \\frac{-b \\pm \\sqrt{\\Delta}}{2a}\\]\\(x(x - 6) \\le 7\\)<br>\\(x^{2} - 6x \\le 7\\)<br>\\(x^{2} - 6x - 7 \\le 0\\)<br>\\(\\Delta = 36 + 28 = 64, \\quad \\sqrt{\\Delta} = 8\\)<br>\\(x_1 = \\frac{6 - 8}{2} = -1, \\quad x_2 = \\frac{6 + 8}{2} = 7\\)<br>Ramiona paraboli idą w górę, więc wartości \\(\\le 0\\) leżą między miejscami zerowymi.<br>\\(\\boldsymbol{x \\in \\langle -1,\\ 7\\rangle}\\)",
+        "solutionTextMore": "",
         "solutionStepByStep": [
             {
                 "type": "video",

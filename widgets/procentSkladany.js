@@ -4,7 +4,7 @@
 function widgetProcentSkladany(container) {
     const wrap = wgElement("div", "widget");
     wrap.appendChild(wgElement("div", "widget-title",
-        `Zmieniaj oprocentowanie ${wgMath("p")} i sprawdź, kiedy kapitał po 2 latach trafi w <b>67 925,76 zł</b>:`));
+        `Zmień oprocentowanie ${wgMath("p")} przy pomocy suwaka.`));
 
     const canvas = wgCanvas(wrap, 520, 230);
     const ctx = canvas.getContext("2d");
@@ -30,16 +30,18 @@ function widgetProcentSkladany(container) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         const baseY = 195, maxVal = 78000, scale = 160 / maxVal;
 
-        // Linia celu (przerywana czerwona).
+        // Linia celu, przerywana, ZIELONA. Była czerwona, co kłamało: czerwony
+        // znaczy w tym projekcie „niepoprawne", a cel nie jest błędem, tylko
+        // miejscem, w które uczeń ma trafić.
         const celY = baseY - CEL * scale;
-        ctx.strokeStyle = WG_KOLORY.zle;
+        ctx.strokeStyle = WG_KOLORY.ok;
         ctx.setLineDash([6, 4]);
         ctx.beginPath();
         ctx.moveTo(40, celY);
         ctx.lineTo(490, celY);
         ctx.stroke();
         ctx.setLineDash([]);
-        ctx.fillStyle = WG_KOLORY.zle;
+        ctx.fillStyle = WG_KOLORY.ok;
         ctx.font = "12px Arial";
         ctx.textAlign = "left";
         ctx.textBaseline = "bottom";
@@ -64,9 +66,13 @@ function widgetProcentSkladany(container) {
             ctx.fillText(etykiety[i], x + 45, baseY + 6);
         });
 
+        // Po trafieniu zielenieje ISTNIEJĄCE „p = …", zamiast dochodzić druga
+        // linijka z tą samą informacją. Zielony znaczy tu poprawność, więc
+        // niesie ją to samo miejsce, na które uczeń i tak patrzy.
+        const pTex = `p = ${wgTexLiczba(p, 1, 1)}\\%`;
         wgUstawHTML(readout,
-            wgMath(`p = ${wgTexLiczba(p, 1, 1)}\\%\\ \\rightarrow\\ 60\\,000 \\cdot (1 + ${wgTexLiczba(r, 4)})^{2} = `) + `<b>${zl(kwoty[2])}</b>` +
-            (trafiony ? `<br><span class="wg-ok">✓ ${wgMath("p = 6{,}4\\%")}!</span>` : ""));
+            wgMath(`${trafiony ? `\\textcolor{${wgHex(WG_KOLORY.ok)}}{${pTex}}` : pTex}\\ \\rightarrow\\ 60\\,000 \\cdot (1 + ${wgTexLiczba(r, 4)})^{2} = `) +
+            ` <b${trafiony ? ` class="wg-ok"` : ""}>${zl(kwoty[2])}</b>`);
     }
 
     slider.addEventListener("input", draw);

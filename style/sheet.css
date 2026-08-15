@@ -1651,11 +1651,16 @@ canvas {
 .widget-controls {
     margin-top: 6px;
 }
-/* Suwaki w widżetach — globalna reguła input { width: 24px } jest za wąska. */
+/* Suwaki w widżetach: globalna reguła input { width: 24px } jest za wąska.
+   accent-color maluje uchwyt i wypełnienie na fiolet zamiast systemowego
+   niebieskiego. Fiolet, bo suwak steruje tym, co rysuje się na płótnie
+   (obramowania słupków, wykresy), a niebieski znaczy w tym projekcie
+   „zaznaczona odpowiedź". Patrz COLORS.md. */
 .widget input[type=range] {
     width: 320px;
     max-width: 90%;
     border: none;
+    accent-color: var(--accent-purple);
 }
 .widget input[type=number] {
     width: 40px;

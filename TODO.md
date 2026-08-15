@@ -6,7 +6,13 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
   - Poprawianie 2024-grudzien przed Fable
     - Zad 5.
-    - Zad 9.
+      - interaktywne/widżet
+        - zamist dochodzącego dodatkowego p = 6,4%! powinno być oznaczone na zielono istniejące.
+        - cel też powinien być oznaczony zieloną linią, lub fioletową
+        - suwag powinien być fioletowy
+        - Ten nagłówiek title z góry można zamienić na Zmień oprocentowanie p suwakiem.
+      - zwykłe: linijka po nijce zapisuj kroki z krok po kroku tylko na początku zapisz wzór. Nie ppisz długich wyjaśnień i zbędnych komentarzy.
+       
 
 
 
@@ -46,6 +52,20 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + TESTOWANIE HENRICH
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945 
+
+  - zad. 5 w 2024-grudzień po przeróbce (v37)
+
+    - suwak ma być fioletowy, nie systemowy niebieski (dotyczy też suwaków w zad. 10, 15 i 30)
+
+    - linia celu ma być zielona przerywana, była czerwona
+
+    - ustaw suwak na 6,4 procent: „p = 6,4%" w odczycie ma zzielenieć, a pod spodem NIE ma dochodzić druga linijka
+
+    - rozwiązanie opisowe ma być linijka po linijce, wzór tylko na starcie; przycisk „pokaż więcej" ma zniknąć
+
+  - zad. 9 w 2024-grudzień, rozwiązanie opisowe (v37)
+
+    - to samo co w zad. 5: linijka po linijce, wzory na starcie, bez „pokaż więcej"
 
   - widżet zad. 9 w 2024-grudzień po przeróbce na wzorzec dla Fable (v36)
 
