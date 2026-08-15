@@ -1177,6 +1177,11 @@ body.sidebar-otwarty #sidebar-linia {
    nimi bez związku. Wyśrodkowanie zestawia je w jedną kolumnę pod wzorem. */
 .rozwiazanie-kroki {
     text-align: center;
+    /* Linijki rozdziela <br>, więc odstęp między nimi robi line-height. Ciaśniej
+       niż tu i kolejne kroki rachunku zlewają się w blok; wzory mają własną
+       wysokość (ułamki, pierwiastki), więc potrzebują więcej powietrza niż zwykły
+       akapit. */
+    line-height: 2.1;
 }
 
 /* NOWE ELEMENTY KTÓRE NIE JESTEM PEWIEN CZY ISTNIEJĄ */
