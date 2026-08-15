@@ -13,6 +13,60 @@ jedzie razem z repo:
 { "enabledPlugins": { "superpowers@claude-plugins-official": true } }
 ```
 
+## Świeży kontener gubi pluginy — jak je wrócić (2026-08-15)
+
+Sprawdzone w kontenerze, w którym z czterech pluginów działał tylko `superpowers`. Nie był
+to regres w konfiguracji, tylko **normalna konsekwencja tego, gdzie co leży** — warto znać,
+bo powtórzy się przy każdym świeżym wolumenie/nowej maszynie.
+
+Co ginie i dlaczego:
+
+| Plugin | Deklaracja | Czy jedzie z repo | Co trzeba zrobić |
+|---|---|---|---|
+| `superpowers` | `.claude/settings.json` (śledzony) | ✅ tak | nic — cache dociąga się sam |
+| `frontend-design` | `.claude/settings.json` (śledzony) | 🟨 deklaracja tak, kod nie | `claude plugin install frontend-design@claude-plugins-official --scope project -y` |
+| `chrome-devtools-mcp` | `.claude/settings.local.json` (**w `.gitignore`**) | ❌ nie | `claude plugin install chrome-devtools-mcp@claude-plugins-official --scope local -y` |
+| `github` | `.claude/settings.local.json` (**w `.gitignore`**) | ❌ nie | jak wyżej, `--scope local`, plus logowanie `gh` |
+
+**Kluczowa obserwacja:** sama deklaracja w `settings.json` nie wystarcza — kod pluginu żyje
+w cache'u użytkownika (`~/.claude/plugins/cache/`), poza repo. Włączony plugin bez kodu
+w cache'u po prostu nie ma skilli, choć `enabledPlugins` mówi `true`. `claude plugin list`
+pokazuje wtedy tylko to, co faktycznie jest zainstalowane — to jest wiarygodne źródło, nie
+plik ustawień.
+
+Instalacja z CLI (`claude plugin install … --scope project|local -y`) odtwarza dokładnie ten
+sam podział plików co ręczne `/plugin`: `project` → `settings.json`, `local` →
+`settings.local.json`. Sprawdzone — `git status` po instalacji został czysty.
+
+**Pluginy wchodzą dopiero po restarcie sesji.** Serwery MCP da się przetestować od razu,
+bez restartu, ręcznym klientem po stdio (jak w
+[chrome-devtools-mcp-cache-eacces.md](chrome-devtools-mcp-cache-eacces.md)).
+
+### Kolejność przy `github`: logowanie PRZED restartem
+
+`gh auth login` jest interaktywne, więc robi to Henrich (`! gh auth login` w sesji).
+Kolejność ma znaczenie i łatwo ją odwrócić:
+
+1. najpierw `gh auth login`,
+2. potem restart Claude Code.
+
+Bo `GITHUB_PERSONAL_ACCESS_TOKEN` powstaje przy starcie powłoki (`~/.zshrc`/`~/.bashrc`),
+a proces Claude Code dziedziczy środowisko z momentu swojego startu. Zalogowanie się **po**
+restarcie nie wypełni zmiennej w już działającym procesie i plugin dalej zwróci HTTP 400 —
+wygląda to jak niedziałająca naprawa, a jest tylko złą kolejnością.
+
+Wolumen `matematykazen-gh-config` jest zapisywalny, ale w świeżym kontenerze bywa pusty
+(`~/.config/gh/` bez `hosts.yml`) — to znak, że logowania nie było, nie że coś się zepsuło.
+
+### Wersja superpowers idzie w górę sama
+
+Marketplace przypina SHA i ten SHA **się zmienia**: 2026-08-07 było `44c9b2d` (6.2.0),
+2026-08-15 jest `b36e082` (6.3.0). Po `claude plugin details superpowers` cache dociąga
+nowszą wersję i `claude plugin list` pokazuje już 6.3.0, obok starego katalogu 6.2.0.
+`claude plugin update superpowers` odpowiedziało przy tym `✘ … not found`, choć pobranie
+się udało — **komunikat jest mylący, sprawdzaj katalogi w cache'u, nie jego treść**.
+Oba katalogi (6.2.0 i 6.3.0) mają pełne 14 skilli.
+
 ## superpowers
 
 [obra/superpowers](https://github.com/obra/superpowers), MIT, Jesse Vincent — 14 skilli

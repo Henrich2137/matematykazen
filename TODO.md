@@ -37,6 +37,17 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945 
 
+  - pluginy Claude Code po ponownej instalacji (2026-08-15)
+
+    - żeby plugin `github` zaczął działać, zaloguj `gh` w kontenerze: wpisz `! gh auth login` — bez tego wtyczka zwraca HTTP 400
+
+    - loguj się PRZED restartem sesji Claude Code, nie po — zmienna z tokenem czytana jest tylko przy starcie
+
+    - po restarcie sprawdź `claude mcp list` — `github` i `chrome-devtools` mają być „✔ Connected"
+
+    - w nowej sesji sprawdź `/skills` — ma być widoczny `frontend-design` i sześć skilli `chrome-devtools`
+
+
   - zadanie startowe VS Code robi teraz fetch zamiast pulla
 
     - otwórz repo w kontenerze i sprawdź w Source Control, czy pojawia się licznik „↓N" — czyli fetch przy starcie zadziałał
