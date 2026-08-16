@@ -14,6 +14,9 @@ zadaniach, limit szerokości rysunków, poprawki zad. 14 po uwagach Henricha.
     kąt środkowy dzieli się inaczej, ale suma zostaje 100°.
   - D trzyma się 20° od A i od C. Przy mniejszym luzie jego podpis zlewał się z podpisem C, a cięciwa
     DC robiła się krótsza niż łuczek kąta przy D.
+  - Odczyt to jedna linijka `50° * 2 = 100° = 70° + 30°` (v54, życzenie Henricha zamiast czterech
+    osobnych wierszy), wszystkie liczby liczone z rysunku. Miary 70° i 30° siedzą po zewnętrznej
+    stronie swoich łuków, tytuł skrócony do „Możesz przeciągać punkty B i D".
   - Miary kątów wypisywane na tle w kolorze płótna: bez tego liczby bywały przekreślone cięciwami DA
     i DC, których położenie zależy od tego, gdzie uczeń przeciągnie D (widoczne przy BOC = 80°).
 - Rysunki z arkusza wycięte dla zad. 18, 19, 20, 21 i 31 (metoda ctypes/libgs z notatki sztafetowej

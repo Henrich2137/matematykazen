@@ -78,7 +78,11 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945 
 
-  - zad. 19 w arkuszu 2026-maj: nowy komplet podpowiedź + rozwiązanie + widżet (v52)
+  - zad. 19 w arkuszu 2026-maj: nowy komplet podpowiedź + rozwiązanie + widżet (v52, odczyt i podpisy poprawione w v54)
+
+    - odczyt pod rysunkiem to teraz jedna linijka \(50° · 2 = 100° = 70° + 30°\), a wszystkie cztery liczby mają iść za punktami przy przeciąganiu
+
+    - obie miary kątów przy środku (70° i 30°) siedzą po zewnętrznej stronie swoich łuków
 
     - przeciągnij punkt D po dużym łuku: kąt przy nim ma cały czas pokazywać 50°, nawet gdy D dojedzie do końca łuku
 

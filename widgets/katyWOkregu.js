@@ -73,7 +73,7 @@ function okragPodpisKata(ctx, cx, cy, r, degOd, degDo, kolor, tekst) {
 function widgetKatyWOkregu(container) {
     const wrap = wgElement("div", "widget");
     wrap.appendChild(wgElement("div", "widget-title",
-        `Przeciągaj punkt ${wgMath("D")} po dłuższym łuku i patrz na kąt przy nim. Punkt ${wgMath("B")} chodzi po krótszym łuku ${wgMath("AC")}.`));
+        `Możesz przeciągać punkty ${wgMath("B")} i ${wgMath("D")}.`));
 
     const canvas = wgCanvas(wrap, 520, 400);
     const ctx = canvas.getContext("2d");
@@ -145,8 +145,10 @@ function widgetKatyWOkregu(container) {
             `${Math.round(katD)}°`, WG_KOLORY.niewiadoma);
 
         // Miary kątów środkowych przy O.
+        // Obie miary siedzą tuż ZA swoim łukiem (46 + 16 oraz 62 + 16), więc
+        // czyta się je tak samo, a nie jedną w środku i jedną na zewnątrz.
         const katAOB = state.b - OKR_A, katBOC = OKR_C - state.b;
-        okragPodpisKata(ctx, cx, cy, 30, OKR_A, state.b, WG_KOLORY.punkt, `${Math.round(katAOB)}°`);
+        okragPodpisKata(ctx, cx, cy, 62, OKR_A, state.b, WG_KOLORY.punkt, `${Math.round(katAOB)}°`);
         okragPodpisKata(ctx, cx, cy, 78, state.b, OKR_C, WG_KOLORY.zolty, `${Math.round(katBOC)}°`);
 
         // Punkty. A, C i O są nieruchome (małe kropki), D i B przeciągane
@@ -179,12 +181,13 @@ function widgetKatyWOkregu(container) {
         ctx.fill();
         podpis(D, "D", 20);
 
+        // Cały rachunek w jednej linijce (życzenie Henricha): wpisany razy dwa
+        // daje środkowy, a ten rozpada się na dwie części. Każda liczba jest
+        // brana z rysunku, więc idzie za punktami przy przeciąganiu.
         const trafiony = Math.round(katBOC) === 30;
+        const st = v => `${Math.round(v)}^{\\circ}`;
         wgUstawHTML(readout,
-            wgMath(`|\\sphericalangle ADC| = ${nieb(`${Math.round(katD)}^{\\circ}`)} \\quad\\text{(wpisany, nie zmienia się)}`) + `<br>` +
-            wgMath(`|\\sphericalangle AOC| = 2 \\cdot ${nieb(`${Math.round(katD)}^{\\circ}`)} = 100^{\\circ}`) + `<br>` +
-            wgMath(`|\\sphericalangle BOC| = ${zol(`${Math.round(katBOC)}^{\\circ}`)}`) + `<br>` +
-            wgMath(`|\\sphericalangle AOB| = 100^{\\circ} - ${zol(`${Math.round(katBOC)}^{\\circ}`)} = ${pom(`\\boldsymbol{${Math.round(katAOB)}^{\\circ}}`)}`) +
+            wgMath(`${nieb(st(katD))} \\cdot 2 = ${st(2 * katD)} = ${pom(st(katAOB))} + ${zol(st(katBOC))}`) +
             (trafiony ? ` <span class="wg-ok">✓</span>` : ""));
     }
 
