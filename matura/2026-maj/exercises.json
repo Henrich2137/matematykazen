@@ -693,7 +693,7 @@
         "solutionWidget": null
     },
     {
-        "question": "<b>Zadanie 31.</b> <br><br> Nauczyciel matematyki po każdym sprawdzianie porównuje wyniki uzyskane przez uczniów dwóch klas: klasy IV A oraz klasy IV B. Na dwóch poniższych diagramach przedstawiono wyniki sprawdzianu ze statystyki, jakie uzyskali uczniowie tych klas. Na osiach poziomych podano oceny, które uzyskali uczniowie tych klas, a na osiach pionowych podano liczbę uczniów, którzy otrzymali daną ocenę.<br><br><img src=\"media/zad31/zad31rys.png\" alt=\"Dwa diagramy słupkowe liczby uczniów według ocen od 1 do 6. Klasa IV A: 1, 6, 3, 3, 6, 1 ucznia. Klasa IV B: 1, 3, 6, 6, 3, 1 ucznia.\"><br>Oceń prawdziwość poniższych stwierdzeń. Wybierz <b>P</b>, jeśli stwierdzenie jest prawdziwe, albo <b>F</b> – jeśli jest fałszywe.",
+        "question": "<b>Zadanie 31.</b> <br><br> Nauczyciel matematyki po każdym sprawdzianie porównuje wyniki uzyskane przez uczniów dwóch klas: klasy IV A oraz klasy IV B. Na dwóch poniższych diagramach przedstawiono wyniki sprawdzianu ze statystyki, jakie uzyskali uczniowie tych klas. Na osiach poziomych podano oceny, które uzyskali uczniowie tych klas, a na osiach pionowych podano liczbę uczniów, którzy otrzymali daną ocenę.<br><br><span class=\"rys-para\"><img src=\"media/zad31/zad31rysA.png\" alt=\"Diagram słupkowy klasy IV A: liczba uczniów według ocen od 1 do 6 wynosi kolejno 1, 6, 3, 3, 6, 1.\"><img src=\"media/zad31/zad31rysB.png\" alt=\"Diagram słupkowy klasy IV B: liczba uczniów według ocen od 1 do 6 wynosi kolejno 1, 3, 6, 6, 3, 1.\"></span><br>Oceń prawdziwość poniższych stwierdzeń. Wybierz <b>P</b>, jeśli stwierdzenie jest prawdziwe, albo <b>F</b> – jeśli jest fałszywe.",
         "type": "PF",
         "answers": [],
         "statements": [

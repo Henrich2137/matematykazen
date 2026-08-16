@@ -5,8 +5,8 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Jeżeli nie masz co robić, to rób stąd.     
   - postFable Opus 
     - 2026-maj - poniższa paczka rozwiązań do:
-      - zad 14
-      - zad 19
+      - zad 14 DONE
+      - zad 19 DONE
         - wstaw też rysunek do treści, ale zrób go mniejszego na komputerach bo fable przesadził w poprzednich zadaniach
   
   Prompt dla Opusa Zad 18, nie kasuj go: 
@@ -109,6 +109,8 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     - rysunki są mniejsze (limit 380 px, v53): zerknij na zad. 12 i 13, czy teraz wyglądają lepiej
 
     - na telefonie ten sam limit 380 px zmniejszył rysunki bardziej niż w v52; sprawdź, czy nie są już za małe pod palcem
+
+    - zad. 31 ma wyjątek (v55): dwa diagramy klas stoją obok siebie na komputerze, a na telefonie jeden pod drugim, każdy na całą szerokość karty
 
   - zad. 14 w arkuszu 2026-maj: nowy komplet podpowiedź + rozwiązanie + widżet (v51)
 

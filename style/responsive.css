@@ -309,6 +309,12 @@
    klastrowi ZAWINĄĆ się na drugi rząd — funkcja zostaje pod ręką, a nie tylko
    w stopce arkusza. Limit szerokości zostawia miejsce na logo ze strzałką. */
 @media (max-width: 560px) {
+    /* Para rysunków (zad. 31 maja) i tak nie mieści się tu obok siebie, więc
+       skoro zawija się jeden pod drugi, niech każdy wykorzysta całą szerokość
+       karty zamiast trzymać się 310px z sheet.css. */
+    .question .rys-para img {
+        max-width: 100%;
+    }
     /* Suwak widżetu: 320 px plus etykieta ("a = -1,5", "f(x + 1)") nie mieści
        się w karcie zadania na telefonie i suwak wychodzi poza jej krawędź.
        max-width w procentach tego nie łapie, bo nie wie o szerokości etykiety. */

@@ -24,6 +24,10 @@ zadaniach, limit szerokości rysunków, poprawki zad. 14 po uwagach Henricha.
   był połamany obrazek; 18 i 21 nie miały rysunku wcale, choć arkusz go ma. Przy okazji treść zad. 19
   przepisana na notację KaTeX, a opisy `alt` z „TODO: dodać obraz" zmienione na opisy dla czytników
   ekranu. Pełny przegląd wszystkich 35 stron PDF potwierdził, że innych rysunków w tym arkuszu nie ma.
+- Zad. 31 jest wyjątkiem od limitu (v55): jeden szeroki plik z dwoma diagramami przy 380px dawał po
+  ~190px na wykres. Rozdzielony na `zad31rysA/B.png` w kontenerze `.rys-para` (flex z zawijaniem):
+  na komputerze wykresy stoją obok siebie po 310px, na telefonie zawijają się jeden pod drugi i biorą
+  całą szerokość karty (433px), czyli są dwa razy większe niż przed rozdzieleniem.
 - `.question img` dostaje `max-width: min(100%, 380px)` (v52 miało 450px, Henrich uznał je za wciąż za duże). Rysunki wycinane z PDF-u mają po ~700px
   i ciągnęły się przez całą kartę na komputerze (uwaga Henricha do zad. 12 i 13). Pliki zostają
   w pełnej rozdzielczości, żeby były ostre na telefonie, gdzie i tak ogranicza je szerokość karty.

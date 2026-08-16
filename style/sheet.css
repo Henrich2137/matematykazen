@@ -625,6 +625,22 @@ body.sidebar-otwarty #sidebar-linia {
     /* Odwrócenie w dark mode — patrz --filtr-grafik-zadan w style/base.css. */
     filter: var(--filtr-grafik-zadan);
 }
+/* Dwa rysunki, które w arkuszu stoją obok siebie (diagramy klas w zad. 31
+   maja). Jeden szeroki plik przy limicie 380px robił się nieczytelny, bo na
+   wykres zostawało po ~190px. Rozdzielone na dwa obrazki w tym kontenerze
+   stoją obok siebie na komputerze, a na telefonie zawijają się jeden pod
+   drugi (style/responsive.css zdejmuje im tam limit szerokości). */
+.rys-para {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 15px 0;
+}
+.question .rys-para img {
+    max-width: min(100%, 310px);
+    margin: 0;
+}
 .exercise-score {
     /*  Henrich: te cztery linijki przekleiłem z total-score aby było spójniej */
     box-sizing: border-box;
