@@ -10,6 +10,15 @@ Oto plik który tworzy Henrich (ja, użytkownik).
         - wstaw też rysunek do treści, ale zrób go mniejszego na komputerach bo fable przesadził w poprzednich zadaniach
   
   Prompt dla Opusa Zad 18, nie kasuj go: 
+  Feedback po zad 14:
+  Rozwiązanie zwykłe - zrób więcej przerw, nowych linijek w linijkach 3-6
+  Rozwiązanie interaktywne:
+  Zdaje mi się, że powiedziałem jasno aby zroibć jedną kartę ale musze przyznać, że na pierwszy rzut oka całkiem nieźle zrobiłeś obie.
+  1. Karta
+    - Strzłkę wektora przesuń poniżej wierzchołków, tam gdzie jest miejsce na wykresie. - Wystarczy pod nią mała liczba. Widać w którą stronę wskazuje, więce nie dopisu "w prawo".
+  2. Karta
+    - powiększ zakres, jeżeli to możliwe to możesz zrobić np <-2; 2>
+
   Fable pracowało nad wybranymi zadaniami 1-13 i zrobiło nich:
     - Interaktywne rozwiązanie (widżet)
     - Zwykłe rozwiązanie
@@ -68,6 +77,34 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + TESTOWANIE HENRICH
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945 
+
+  - zad. 19 w arkuszu 2026-maj: nowy komplet podpowiedź + rozwiązanie + widżet (v52)
+
+    - przeciągnij punkt D po dużym łuku: kąt przy nim ma cały czas pokazywać 50°, nawet gdy D dojedzie do końca łuku
+
+    - spróbuj wciągnąć D na dolny łuk, między A i C: ma się tam nie dać wejść, punkt zatrzymuje się kawałek przed A albo C
+
+    - przeciągnij punkt B: kąty przy środku mają się zmieniać, ale ich suma zostaje 100°, a przy 30° zapala się zielony ptaszek
+
+    - dociągnij B aż do A i sprawdź, czy da się go stamtąd wyciągnąć z powrotem; to samo od strony C
+
+    - na telefonie: czy da się trafić palcem w D i w B, gdy stoją blisko siebie
+
+  - poprawki zad. 14 po Twoich uwagach (v52)
+
+    - rozwiązanie zwykłe ma teraz więcej krótkich linijek i przerwy między krokami
+
+    - karta „przesunięcie": strzałka siedzi pod wierzchołkami, a pod nią jest sama liczba, bez dopisku o kierunku
+
+    - karta „rozwarcie": suwak chodzi od −2 do 2, więc parabola potrafi się odwrócić ramionami w dół; przy skrajnych wartościach zamiast kropki na osi y pojawia się trójkącik, bo wartość ucieka poza rysunek
+
+  - rysunki z arkusza w treściach zadań (v52)
+
+    - zadania 18, 19, 20, 21 i 31 w maju mają teraz rysunki; wcześniej w 19, 20 i 31 był połamany obrazek, a w 18 i 21 nie było go wcale
+
+    - rysunki są mniejsze na komputerze (limit 450 px): zerknij na zad. 12 i 13, czy teraz wyglądają lepiej
+
+    - na telefonie rysunki mają dalej wypełniać szerokość karty
 
   - zad. 14 w arkuszu 2026-maj: nowy komplet podpowiedź + rozwiązanie + widżet (v51)
 

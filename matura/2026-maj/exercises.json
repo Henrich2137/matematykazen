@@ -352,7 +352,7 @@
             { "tekst": "Poprawny wynik: \\(f(x) = \\tfrac{1}{2}x^{2} - 3x + \\tfrac{5}{2}\\)", "punkty": 1 }
         ],
         "hint": "Wierzchołek \\(W\\) pozwala zapisać \\(f\\) w postaci kanonicznej z jedną niewiadomą \\(a\\). Warunek z zadania to \\(g(0) = 0\\), a ze wzoru \\(g(x) = f(x + 1)\\) wynika, czym jest \\(g(0)\\).",
-        "solutionText": "Postać kanoniczna funkcji kwadratowej (tablice, str. 8):\\[f(x) = a(x - p)^2 + q\\]<div class=\"rozwiazanie-kroki\">Wierzchołek \\(W = (3,\\ -2)\\), więc \\(p = 3\\) oraz \\(q = -2\\):<br>\\(f(x) = a(x - 3)^2 - 2\\)<br>Liczba \\(0\\) jest miejscem zerowym \\(g\\), czyli \\(g(0) = 0\\).<br>Ze wzoru \\(g(x) = f(x + 1)\\) mamy \\(g(0) = f(0 + 1) = f(1)\\), więc \\(f(1) = 0\\).<br>\\(a(1 - 3)^2 - 2 = 0\\)<br>\\(4a = 2\\), stąd \\(a = \\frac{1}{2}\\)<br>\\(f(x) = \\frac{1}{2}(x - 3)^2 - 2\\)<br>Zostaje zamienić to na postać ogólną:<br>\\(f(x) = \\frac{1}{2}(x^2 - 6x + 9) - 2\\)<br>\\(f(x) = \\boldsymbol{\\frac{1}{2}x^2 - 3x + \\frac{5}{2}}\\)<br>Sprawdzenie: \\(g(x) = \\frac{1}{2}(x - 2)^2 - 2\\), więc \\(g(0) = 0\\).</div>",
+        "solutionText": "Postać kanoniczna funkcji kwadratowej (tablice, str. 8):\\[f(x) = a(x - p)^2 + q\\]<div class=\"rozwiazanie-kroki\">Wierzchołek \\(W = (3,\\ -2)\\), więc \\(p = 3\\) oraz \\(q = -2\\):<br>\\(f(x) = a(x - 3)^2 - 2\\)<br><br>Liczba \\(0\\) jest miejscem zerowym \\(g\\), czyli<br>\\(g(0) = 0\\)<br><br>Ze wzoru \\(g(x) = f(x + 1)\\) mamy<br>\\(g(0) = f(0 + 1) = f(1)\\)<br>a stąd \\(f(1) = 0\\)<br><br>Podstawiamy \\(1\\) do wzoru na \\(f\\):<br>\\(a(1 - 3)^2 - 2 = 0\\)<br>\\(4a - 2 = 0\\)<br>\\(a = \\frac{1}{2}\\)<br><br>\\(f(x) = \\frac{1}{2}(x - 3)^2 - 2\\)<br>Zostaje zamienić to na postać ogólną:<br>\\(f(x) = \\frac{1}{2}(x^2 - 6x + 9) - 2\\)<br>\\(f(x) = \\boldsymbol{\\frac{1}{2}x^2 - 3x + \\frac{5}{2}}\\)<br>Sprawdzenie: \\(g(x) = \\frac{1}{2}(x - 2)^2 - 2\\), więc \\(g(0) = 0\\).</div>",
         "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": "widgetPrzesuniecieParaboli"
@@ -417,7 +417,7 @@
         "solutionWidget": null
     },
     {
-        "question": "<b>Zadanie 18.</b> <br><br> Dany jest trójkąt prostokątny \\(ABC\\), w którym bok \\(AC\\) jest przeciwprostokątną oraz \\(|BC| = 2\\) i \\(|AC| = 2\\sqrt{10}\\). Oznaczmy kąt \\(BCA\\) przez \\(\\gamma\\).<br><br>Sinus kąta \\(\\gamma\\) jest równy",
+        "question": "<b>Zadanie 18.</b> <br><br> Dany jest trójkąt prostokątny \\(ABC\\), w którym bok \\(AC\\) jest przeciwprostokątną oraz \\(|BC| = 2\\) i \\(|AC| = 2\\sqrt{10}\\). Oznaczmy kąt \\(BCA\\) przez \\(\\gamma\\) (zobacz rysunek).<br><br><img src=\"media/zad18/zad18rys.png\" alt=\"Trójkąt prostokątny ABC z kątem prostym przy wierzchołku B: przyprostokątna BC ma długość 2, przeciwprostokątna AC ma długość 2 pierwiastki z 10, przy wierzchołku C zaznaczony kąt gamma.\"><br>Sinus kąta \\(\\gamma\\) jest równy",
         "answers": [
             "A. \\(\\dfrac{1}{\\sqrt{10}}\\)",
             "B. \\(\\dfrac{1}{3}\\)",
@@ -435,7 +435,7 @@
         "solutionWidget": null
     },
     {
-        "question": "<b>Zadanie 19.</b> <br><br> Punkty A, B, C oraz D leżą na okręgu o środku w punkcie O. Punkt B leży na krótszym łuku AC. Kąt CDA ma miarę 50°, a kąt COB ma miarę 30° (zobacz rysunek).<br><br><img src=\"media/zad19/zad19rys.png\" alt=\"TODO: okrąg z punktami A, B, C, D, O i zaznaczonymi kątami CDA=50° oraz COB=30° – dodać obraz.\"><br>Miara kąta ostrego BOA jest równa",
+        "question": "<b>Zadanie 19.</b> <br><br> Punkty \\(A\\), \\(B\\), \\(C\\) oraz \\(D\\) leżą na okręgu o środku w punkcie \\(O\\). Punkt \\(B\\) leży na krótszym łuku \\(AC\\). Kąt \\(CDA\\) ma miarę \\(50^\\circ\\), a kąt \\(COB\\) ma miarę \\(30^\\circ\\) (zobacz rysunek).<br><br><img src=\"media/zad19/zad19rys.png\" alt=\"Okrąg o środku O z punktami A, B, C, D na okręgu. Punkt D leży na dłuższym łuku AC, punkt B na krótszym. Przy wierzchołku D zaznaczony kąt CDA o mierze 50 stopni, przy środku O kąt COB o mierze 30 stopni oraz zacieniowany kąt BOA.\"><br>Miara kąta ostrego \\(BOA\\) jest równa",
         "answers": [
             "A. 50°",
             "B. 60°",
@@ -446,14 +446,14 @@
         "maxScore": 1,
         "selfScore": false,
         "formulasPage": 19,
-        "hint": "",
-        "solutionText": "",
+        "hint": "Kąt \\(CDA\\) jest kątem wpisanym. Znajdź kąt środkowy oparty na tym samym łuku \\(AC\\) i przypomnij sobie z tablic (str. 19), jak mają się do siebie ich miary.",
+        "solutionText": "Kąty w okręgu (tablice, str. 19): miara kąta wpisanego jest połową miary kąta środkowego opartego na tym samym łuku.\\[|\\sphericalangle AOC| = 2 \\cdot |\\sphericalangle ADC|\\]<div class=\"rozwiazanie-kroki\">Kąt \\(ADC\\) jest wpisany i oparty na łuku \\(AC\\), na którym leży punkt \\(B\\).<br>Kąt \\(AOC\\) jest środkowy i oparty na tym samym łuku, więc<br>\\(|\\sphericalangle AOC| = 2 \\cdot 50^\\circ = 100^\\circ\\)<br><br>Punkt \\(B\\) leży między \\(A\\) i \\(C\\), więc dzieli ten kąt na dwa:<br>\\(|\\sphericalangle AOC| = |\\sphericalangle AOB| + |\\sphericalangle BOC|\\)<br>\\(100^\\circ = |\\sphericalangle AOB| + 30^\\circ\\)<br>\\(|\\sphericalangle AOB| = \\boldsymbol{70^\\circ}\\)<br>Odpowiedź <b>C</b>.</div>",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionWidget": null
+        "solutionWidget": "widgetKatyWOkregu"
     },
     {
-        "question": "<b>Zadanie 20.</b> <br><br> Na płaszczyźnie dane są cztery proste: k, l, m oraz n. Proste k oraz l są równoległe. Prosta m przecina proste k oraz l w punktach – odpowiednio – A oraz C. Prosta n przecina proste k oraz l w punktach – odpowiednio – D oraz B. Odcinki AC i BD przecinają się w punkcie O. Ponadto |OA| = 12, |OB| = 6 oraz |OC| = 8 (zobacz rysunek).<br><br><img src=\"media/zad20/zad20rys.png\" alt=\"TODO: dwie proste równoległe k,l przecięte prostymi m,n z zaznaczonymi odcinkami OA=12, OB=6, OC=8 – dodać obraz.\"><br>Odcinek OD ma długość",
+        "question": "<b>Zadanie 20.</b> <br><br> Na płaszczyźnie dane są cztery proste: k, l, m oraz n. Proste k oraz l są równoległe. Prosta m przecina proste k oraz l w punktach – odpowiednio – A oraz C. Prosta n przecina proste k oraz l w punktach – odpowiednio – D oraz B. Odcinki AC i BD przecinają się w punkcie O. Ponadto |OA| = 12, |OB| = 6 oraz |OC| = 8 (zobacz rysunek).<br><br><img src=\"media/zad20/zad20rys.png\" alt=\"Dwie proste równoległe k oraz l przecięte prostymi m oraz n. Prosta m przechodzi przez punkty A i C, prosta n przez punkty D i B, odcinki AC i BD przecinają się w punkcie O. Zaznaczone długości: OA równe 12, OB równe 6, OC równe 8.\"><br>Odcinek OD ma długość",
         "answers": [
             "A. 4",
             "B. 9",
@@ -471,7 +471,7 @@
         "solutionWidget": null
     },
     {
-        "question": "<b>Zadanie 21.</b> <br><br> Dany jest trójkąt \\(KLM\\), w którym \\(|KM| = a\\) oraz \\(|LM| = b\\). Dwusieczna kąta \\(LMK\\) przecina bok \\(KL\\) w punkcie \\(N\\).<br><br>Wykaż, że stosunek pola trójkąta \\(KNM\\) do pola trójkąta \\(NLM\\) jest równy \\(\\dfrac{a}{b}\\).",
+        "question": "<b>Zadanie 21.</b> <br><br> Dany jest trójkąt \\(KLM\\), w którym \\(|KM| = a\\) oraz \\(|LM| = b\\). Dwusieczna kąta \\(LMK\\) przecina bok \\(KL\\) w punkcie \\(N\\) (zobacz rysunek).<br><br><img src=\"media/zad21/zad21rys.png\" alt=\"Trójkąt KLM z bokiem KM oznaczonym literą a i bokiem LM oznaczonym literą b. Z wierzchołka M poprowadzona dwusieczna kąta LMK, przecinająca bok KL w punkcie N; oba kąty przy M zaznaczone jednakowo.\"><br>Wykaż, że stosunek pola trójkąta \\(KNM\\) do pola trójkąta \\(NLM\\) jest równy \\(\\dfrac{a}{b}\\).",
         "type": "open",
         "answers": [],
         "correctAnswerIndex": -1,
@@ -693,7 +693,7 @@
         "solutionWidget": null
     },
     {
-        "question": "<b>Zadanie 31.</b> <br><br> Nauczyciel matematyki po każdym sprawdzianie porównuje wyniki uzyskane przez uczniów dwóch klas: klasy IV A oraz klasy IV B. Na dwóch poniższych diagramach przedstawiono wyniki sprawdzianu ze statystyki, jakie uzyskali uczniowie tych klas. Na osiach poziomych podano oceny, które uzyskali uczniowie tych klas, a na osiach pionowych podano liczbę uczniów, którzy otrzymali daną ocenę.<br><br><img src=\"media/zad31/zad31rys.png\" alt=\"TODO: dwa diagramy słupkowe (klasa IV A, klasa IV B) liczby uczniów wg ocen – dodać obraz, dane nie są dostępne w formie tekstowej.\"><br>Oceń prawdziwość poniższych stwierdzeń. Wybierz <b>P</b>, jeśli stwierdzenie jest prawdziwe, albo <b>F</b> – jeśli jest fałszywe.",
+        "question": "<b>Zadanie 31.</b> <br><br> Nauczyciel matematyki po każdym sprawdzianie porównuje wyniki uzyskane przez uczniów dwóch klas: klasy IV A oraz klasy IV B. Na dwóch poniższych diagramach przedstawiono wyniki sprawdzianu ze statystyki, jakie uzyskali uczniowie tych klas. Na osiach poziomych podano oceny, które uzyskali uczniowie tych klas, a na osiach pionowych podano liczbę uczniów, którzy otrzymali daną ocenę.<br><br><img src=\"media/zad31/zad31rys.png\" alt=\"Dwa diagramy słupkowe liczby uczniów według ocen od 1 do 6. Klasa IV A: 1, 6, 3, 3, 6, 1 ucznia. Klasa IV B: 1, 3, 6, 6, 3, 1 ucznia.\"><br>Oceń prawdziwość poniższych stwierdzeń. Wybierz <b>P</b>, jeśli stwierdzenie jest prawdziwe, albo <b>F</b> – jeśli jest fałszywe.",
         "type": "PF",
         "answers": [],
         "statements": [

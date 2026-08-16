@@ -12,14 +12,13 @@
 // Kolory: fiolet = f (nieruchoma), błękit = g (uczeń nią rusza),
 // pomarańcz = punkt (0, 0), w który g ma trafić.
 
-const PARABOLE_ZAKRES = { X0: -3.4, X1: 9.2, Y0: -3.2, Y1: 4.0, szer: 520 };
+const PARABOLE_ZAKRES = { X0: -3.4, X1: 9.2, Y0: -4.4, Y1: 4.4, szer: 520 };
 const PAR_WX = 3;      // pierwsza współrzędna wierzchołka W z zadania
 const PAR_WY = -2;     // druga współrzędna wierzchołka W z zadania
 const PAR_A = 0.5;     // współczynnik a wyliczony w zadaniu
-// Widełki suwaka rozwarcia. Górna granica pilnuje, żeby wartość g(0)
-// mieściła się w kadrze, dolna - żeby nazwy krzywych nie uciekły za jego
-// krawędź przy bardzo płaskiej paraboli.
-const PAR_A_MIN = 0.2, PAR_A_MAX = 1.3;
+// Widełki suwaka rozwarcia (Henrich prosił o pełne <-2; 2>). Wartości tuż
+// przy zerze są wycięte: przy a = 0 nie ma już paraboli, tylko pozioma prosta.
+const PAR_A_MIN = -2, PAR_A_MAX = 2, PAR_A_MARTWA = 0.1;
 
 function paraboleUklad(canvas) {
     return wgUklad(Object.assign({}, PARABOLE_ZAKRES, { wys: canvas.height }));
@@ -106,7 +105,7 @@ function widgetPrzesuniecieParaboli(container) {
     const sterowanie1 = wgElement("div", "widget-controls",
         `<span class="wg-suwak-etykieta"></span><input type="range" min="-3" max="3" step="0.05" value="1">`);
     const sterowanie2 = wgElement("div", "widget-controls",
-        `<span class="wg-suwak-etykieta"></span><input type="range" min="0.2" max="1.3" step="0.05" value="1.2">`);
+        `<span class="wg-suwak-etykieta"></span><input type="range" min="-2" max="2" step="0.05" value="1.2">`);
     // Szersza kolumna etykiety: musi pomieścić cały zapis f(x + 1), a suwak
     // ma stać w miejscu także wtedy, gdy liczba zmienia długość.
     sterowanie1.style.setProperty("--wg-etykieta-szer", "112px");
@@ -159,19 +158,20 @@ function widgetPrzesuniecieParaboli(container) {
 
     function drawPrzesuniecie(a, t) {
         const pg = PAR_WX - t;
-        // Strzałka przesunięcia między wierzchołkami, nad nimi, żeby nie
-        // zasłaniała kropek.
+        // Strzałka przesunięcia PONIŻEJ wierzchołków, w wolnym miejscu pod
+        // wykresem (uwaga Henricha). Pod nią sama liczba: kierunek widać po
+        // grocie, więc dopisek "w lewo" byłby zbędny.
         if (Math.abs(t) > 0.35) {
-            const yp = u.py(PAR_WY) - 24;
+            const yp = u.py(PAR_WY) + 30;
             const kier = pg > PAR_WX ? 1 : -1;
             ctx.strokeStyle = ctx.fillStyle = WG_KOLORY.niewiadoma;
             ctx.lineWidth = 2;
             wgStrzalka(ctx, u.px(PAR_WX) + 9 * kier, yp, u.px(pg) - 9 * kier, yp);
             ctx.font = "bold 12px Arial";
             ctx.textAlign = "center";
-            ctx.textBaseline = "bottom";
-            ctx.fillText(`${wgTexLiczba(Math.abs(t)).replace("{,}", ",")} w ${t > 0 ? "lewo" : "prawo"}`,
-                (u.px(PAR_WX) + u.px(pg)) / 2, yp - 10);
+            ctx.textBaseline = "top";
+            ctx.fillText(wgTexLiczba(Math.abs(t)).replace("{,}", ","),
+                (u.px(PAR_WX) + u.px(pg)) / 2, yp + 6);
         }
 
         const zera = [pg - Math.sqrt(-PAR_WY / a), pg + Math.sqrt(-PAR_WY / a)];
@@ -193,12 +193,28 @@ function widgetPrzesuniecieParaboli(container) {
         // pierścienia, tym mocniej wykres chybia warunku z zadania. Bez
         // kreski do punktu (0, 0), bo leżałaby dokładnie na osi y.
         const g0 = a * (0 - 2) * (0 - 2) + PAR_WY;
-        paraboleKropka(ctx, u, 0, g0, WG_KOLORY.niewiadoma, 5.5);
+        if (g0 >= u.Y0 + 0.15 && g0 <= u.Y1 - 0.15) {
+            paraboleKropka(ctx, u, 0, g0, WG_KOLORY.niewiadoma, 5.5);
+        } else {
+            // Przy skrajnym rozwarciu wartość ucieka poza kadr - zamiast
+            // kropki przyklejonej do krawędzi rysujemy grot pokazujący,
+            // w którą stronę uciekła. Liczba i tak jest w odczycie.
+            const gora = g0 > 0;
+            const yk = u.py(gora ? u.Y1 - 0.12 : u.Y0 + 0.12);
+            ctx.fillStyle = WG_KOLORY.niewiadoma;
+            ctx.beginPath();
+            ctx.moveTo(u.px(0), yk + (gora ? -9 : 9));
+            ctx.lineTo(u.px(0) - 6, yk);
+            ctx.lineTo(u.px(0) + 6, yk);
+            ctx.closePath();
+            ctx.fill();
+        }
 
         const trafiony = a === 0.5;
         wgUstawHTML(readout,
             wgMath(`g(0) = a \\cdot (0 - 2)^2 - 2 = 4a - 2`) + `<br>` +
-            wgMath(`4 \\cdot ${nieb(wgTexLiczba(a))} - 2 = ${wgTexLiczba(g0)}`) +
+            // Ujemne a w nawias: "4 * -2" czyta się fatalnie.
+            wgMath(`4 \\cdot ${nieb(a < 0 ? `(${wgTexLiczba(a)})` : wgTexLiczba(a))} - 2 = ${wgTexLiczba(g0)}`) +
             (trafiony ? ` <span class="wg-ok">✓</span>` : "") + `<br>` +
             (trafiony
                 ? wgMath(`f(x) = \\tfrac{1}{2}x^2 - 3x + \\tfrac{5}{2}`)
@@ -220,8 +236,10 @@ function widgetPrzesuniecieParaboli(container) {
 
         paraboleRysuj(ctx, u, a, PAR_WX, WG_KOLORY.wykres);
         paraboleRysuj(ctx, u, a, pg, WG_KOLORY.niewiadoma);
-        paraboleEtykieta(ctx, u, a, PAR_WX, WG_KOLORY.wykres, "f", 3.0, false);
-        paraboleEtykieta(ctx, u, a, pg, WG_KOLORY.niewiadoma, "g", 2.0, true);
+        // Przy ujemnym a ramiona idą w dół, więc nazwy krzywych muszą zjechać
+        // pod wierzchołek - inaczej szukalibyśmy punktu, którego nie ma.
+        paraboleEtykieta(ctx, u, a, PAR_WX, WG_KOLORY.wykres, "f", a > 0 ? 3.0 : -3.6, false);
+        paraboleEtykieta(ctx, u, a, pg, WG_KOLORY.niewiadoma, "g", a > 0 ? 2.0 : -3.0, true);
 
         // Wierzchołki: W należy do f, drugi jedzie razem z g.
         paraboleKropka(ctx, u, pg, PAR_WY, WG_KOLORY.niewiadoma, 6);
@@ -233,8 +251,12 @@ function widgetPrzesuniecieParaboli(container) {
         ctx.fillText("W", u.px(PAR_WX) + 9, u.py(PAR_WY) + 2);
 
         // Miejsca zerowe g na osi x: to one mają trafić w zaznaczony punkt.
-        const d = Math.sqrt(-PAR_WY / a);
-        [pg - d, pg + d].forEach(x => paraboleKropka(ctx, u, x, 0, WG_KOLORY.niewiadoma, 5));
+        // Przy a < 0 ramiona idą w dół spod osi, więc miejsc zerowych nie ma
+        // wcale i nie ma czego rysować.
+        if (a > 0) {
+            const d = Math.sqrt(-PAR_WY / a);
+            [pg - d, pg + d].forEach(x => paraboleKropka(ctx, u, x, 0, WG_KOLORY.niewiadoma, 5));
+        }
 
         suwakT.style.accentColor = suwakA.style.accentColor = wgHex(WG_KOLORY.niewiadoma);
         wgUstawHTML(etykietaT, wgMath(nieb(`f(${zapisNawiasu(state.t)})`)));
@@ -249,7 +271,12 @@ function widgetPrzesuniecieParaboli(container) {
         draw();
     });
     suwakA.addEventListener("input", () => {
-        state.a = wgPrzyciagnij(parseFloat(suwakA.value), [0.5], 0.04);
+        let a = parseFloat(suwakA.value);
+        // Okolice zera odpadają: parabola robi się poziomą prostą.
+        if (Math.abs(a) < PAR_A_MARTWA) a = a >= 0 ? PAR_A_MARTWA : -PAR_A_MARTWA;
+        state.a = wgPrzyciagnij(a, [0.5], 0.04);
+        // Suwak wraca na wartość faktycznie użytą (martwa strefa przy zerze).
+        suwakA.value = state.a;
         draw();
     });
 
@@ -279,7 +306,10 @@ function widgetPrzesuniecieParaboli(container) {
                 const p = chwytP;
                 if (Math.abs(x - p) < 0.7) return;
                 const raw = (y - PAR_WY) / ((x - p) * (x - p));
-                const clamped = Math.max(PAR_A_MIN, Math.min(PAR_A_MAX, raw));
+                let clamped = Math.max(PAR_A_MIN, Math.min(PAR_A_MAX, raw));
+                if (Math.abs(clamped) < PAR_A_MARTWA) {
+                    clamped = clamped >= 0 ? PAR_A_MARTWA : -PAR_A_MARTWA;
+                }
                 const snap = wgPrzyciagnij(clamped, [0.5], 0.05);
                 state.a = snap !== clamped ? snap : Math.round(clamped * 20) / 20;
                 suwakA.value = state.a;

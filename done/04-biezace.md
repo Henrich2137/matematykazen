@@ -1,5 +1,45 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-16] (Opus 5, xhigh) v52 - zad. 19 (2026-maj) w komplecie, rysunki z arkusza w pięciu
+zadaniach, limit szerokości rysunków, poprawki zad. 14 po uwagach Henricha.
+[2026-maj, widzety, rysunki, css, zadanie-19, zadanie-14]
+
+- Zad. 19 (kąt wpisany i środkowy). Policzone od zera i zgodne z kluczem: kąt ADC jest wpisany na łuku
+  AC, więc kąt środkowy AOC ma 2 * 50° = 100°; B leży między A i C, stąd AOB = 100° - 30° = 70°,
+  odpowiedź C. Notacja kąta wzięta z tablic (`\sphericalangle`, s. 19).
+- Nowy `widgets/katyWOkregu.js` (`widgetKatyWOkregu`), JEDNA karta (Henrich woli jedną):
+  - D przeciągany po dłuższym łuku, kąt przy nim stoi na 50° niezależnie od położenia. To jest sedno
+    zadania i widać je dopiero w ruchu.
+  - B przeciągany po krótszym łuku AC, z dojazdem do samego A i do samego C (życzenie Henricha),
+    kąt środkowy dzieli się inaczej, ale suma zostaje 100°.
+  - D trzyma się 20° od A i od C. Przy mniejszym luzie jego podpis zlewał się z podpisem C, a cięciwa
+    DC robiła się krótsza niż łuczek kąta przy D.
+  - Miary kątów wypisywane na tle w kolorze płótna: bez tego liczby bywały przekreślone cięciwami DA
+    i DC, których położenie zależy od tego, gdzie uczeń przeciągnie D (widoczne przy BOC = 80°).
+- Rysunki z arkusza wycięte dla zad. 18, 19, 20, 21 i 31 (metoda ctypes/libgs z notatki sztafetowej
+  Fable). Zadania 19, 20 i 31 miały w treści `<img>` wskazujący na nieistniejący plik, czyli na stronie
+  był połamany obrazek; 18 i 21 nie miały rysunku wcale, choć arkusz go ma. Przy okazji treść zad. 19
+  przepisana na notację KaTeX, a opisy `alt` z „TODO: dodać obraz" zmienione na opisy dla czytników
+  ekranu. Pełny przegląd wszystkich 35 stron PDF potwierdził, że innych rysunków w tym arkuszu nie ma.
+- `.question img` dostaje `max-width: min(100%, 450px)`. Rysunki wycinane z PDF-u mają po ~700px
+  i ciągnęły się przez całą kartę na komputerze (uwaga Henricha do zad. 12 i 13). Pliki zostają
+  w pełnej rozdzielczości, żeby były ostre na telefonie, gdzie i tak ogranicza je szerokość karty.
+- Poprawki zad. 14 po testach Henricha: rozwiązanie opisowe rozbite na krótsze linijki z przerwami;
+  strzałka przesunięcia przeniesiona POD wierzchołki i skrócona do samej liczby (kierunek widać po
+  grocie); suwak rozwarcia rozszerzony z 0,2..1,3 na -2..2. Ujemne a wymagało trzech rzeczy naraz:
+  nazwy krzywych schodzą pod wierzchołek (nad nim nie ma już ramion), miejsca zerowe g znikają, bo
+  ich nie ma, a wartość g(0) ucieka poza kadr i zamiast kropki dostaje trójkącik przy krawędzi.
+  Wartości tuż przy zerze są wycięte, bo przy a = 0 nie ma paraboli, tylko pozioma prosta.
+- Weryfikacja (Playwright, `node tools/serwer.js 8001`):
+  - zad. 19 na desktopie i telefonie x oba motywy: `.katex-error` = 0, zero błędów strony;
+  - przeciąganie: D z 85° na 150° nie zmienia kąta przy D, próba wejścia D na łuk AC kończy się
+    zatrzymaniem przed C, B z 280° na 230° daje BOC = 80° i AOB = 20°, a dociągnięty do A daje 0°;
+  - rysunki: wszystkie 7 obrazków w arkuszu wczytuje się (naturalWidth > 0) i schodzi do 450px na
+    komputerze oraz 433px na telefonie. Uwaga na przyszłość: `app/render.js` ustawia im `loading="lazy"`,
+    więc test MUSI do nich przewinąć, inaczej mierzy niezaładowane obrazki i fałszywie alarmuje;
+  - zad. 14 przy skrajnych wartościach suwaków (t = -3 i 3, a = -2, -0,05 i 2): odczyty zgodne
+    z rachunkiem, zero błędów, suwak wraca na wartość faktycznie użytą w martwej strefie przy zerze.
+
 [ZROBIONE 2026-08-16] (Opus 5, xhigh) v51 - zad. 14 (2026-maj) w komplecie: podpowiedź, rozwiązanie
 opisowe i widżet przesunięcia paraboli. Plus naprawa skakania suwaków we wszystkich widżetach.
 [2026-maj, widzety, css, zadanie-14]
