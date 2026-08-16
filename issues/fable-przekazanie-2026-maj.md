@@ -18,14 +18,21 @@ Zadania arkusza 2026-maj z kompletem podpowiedź + rozwiązanie opisowe + widże
 - Wpisy TESTOWANIE HENRICH w TODO.md są aktualne dla v43-v47 (część pewnie
   nieprzeklikana). Szczegóły każdej wersji: done/04-biezace.md.
 
-## Następne zadanie: zad. 14 (CZEKA NA POTWIERDZENIE HENRICHA, nie zaczynać samemu)
+## Zad. 14: ZROBIONE 2026-08-16 (v51, Opus 5)
 
-Opis Henricha z czatu (2026-08-15): "2 parabole oznaczone innymi kolorami.
-Suwakiem zmieniamy domyślnie ustawioną 1 i tym samym przesuwamy parabolę
-lewo/prawo. Warto zostawić działanie suwaka normalnie, aby uczeń widział, że
-matma działa tutaj na odwrót, niż by się spodziewał." (chodzi o przesunięcie
-wykresu: g(x) = f(x - c), plus na suwaku przesuwa w prawo... sprawdzić treść
-zad. 14 w exercises.json przed projektowaniem; zadanie ma wpis pod indeksem 17).
+Henrich potwierdził i doprecyzował opis, zadanie ma komplet: podpowiedź,
+rozwiązanie opisowe i widżet `widgets/przesuniecieParaboli.js` (dwie zakładki,
+suwak plus łapanie paraboli). Szczegóły w done/04-biezace.md.
+
+Jedna decyzja warta zapamiętania: **przesunięcie NIE dostaje litery**. Henrich
+odrzucił "c" (kolizja z wyrazem wolnym postaci ogólnej), "p" odpadło tak samo
+(pierwsza współrzędna wierzchołka). Uczeń widzi wyłącznie liczbę w zapisie
+f(x + 1) / f(x - 2), czyli notację z treści zadania.
+
+## Następne zadania (kolejność wolna, arkusz 2026-maj)
+
+Bez kompletu zostają m.in. zad. 1, 3, 4, 5, 6, 7, 9, 15 i dalej. Wzorzec:
+policzyć zadanie od zera, porównać z odpowiedzi.txt, potem widgets/PROJEKTOWANIE.md.
 
 ## Konwencje wypracowane w tej sesji (obowiązują dalej)
 

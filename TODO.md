@@ -3,6 +3,36 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.     
+  - postFable Opus 
+    - 2026-maj - poniższa paczka rozwiązań do:
+      - zad 14
+      - zad 19
+        - wstaw też rysunek do treści, ale zrób go mniejszego na komputerach bo fable przesadził w poprzednich zadaniach
+  
+  Prompt dla Opusa Zad 18, nie kasuj go: 
+  Fable pracowało nad wybranymi zadaniami 1-13 i zrobiło nich:
+    - Interaktywne rozwiązanie (widżet)
+    - Zwykłe rozwiązanie
+    - Podpowiedź
+
+  Sprawdź jakie wskazówki zostawiło po sobie Fable. Zrób podobny do powyższego zestaw dla poniższego zadania. Wzoruj się na poprzednich. Korzystaj również z transktyptów oraz plików (w potrzebie zobaczenia grafiki) arkusz.pdf odpowiedzi.pdf tablica-wzorow.pdf itd.  
+  
+  Zad 19 - Rozwiązanie interaktywen:
+  Możesz wzorować się na: 2024-grudzien zad 20
+  Najważniejsze aby można było przesuwać punkt D.
+  Dodatkowo opcjonalnie jak pójdzie głądko powyższe i będize działać na tip top to zrób przesuwanie punktu B. Oba mają się przesuwać tylko w obrębie łuku na który się znajdują. Punkt B może wejść w miejsce punkt A lub C, byle żeby dało się go z tamtąd wyciągnąć.
+  
+  Zadaj pytania doprecyzowujące i ruszaj do autonomiicznej pracki.
+  PS: Zdaje mi się, że Fable pracował nad tym zadaniem, może nie odkończył i zostawił. sprawdź szybko przed zadaniem pytań. Potem dokładniej.
+
+
+
+  ARCHIWUM PROMPTÓW:
+
+  Zad 14. - Rozwiązanie interaktywne:
+  Stwórz układ współrzędnych z wydocznymi wykresami funkcji f i g (2 parabole). Powinien istnieć suwak zmieniający wartość domyślnie ustawioną na 1 w f(x+1) tak aby parabola g się przesuwała prawo-lewo (odwrotnie niż suwak zwiększa wartość w prawą). Zrób takiego css aby przy liczba suwak był bardziej na sztywno a nie zależny od np. napisu po lewej, bo podczas przesuwania suwaka i zmiany ilość znaków napisie suwak skacze lewa-prawa.
+  Gdy dopracujesz doobrze powyższe to zrób dodatkowo, opcjonalnie: 
+  Możliwość złapania za wykres funkcji i przesunięcia go, co daje ten sam efekt co przesunięcie suwaka w drugą stronę.
 
 
 
@@ -38,6 +68,26 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + TESTOWANIE HENRICH
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945 
+
+  - zad. 14 w arkuszu 2026-maj: nowy komplet podpowiedź + rozwiązanie + widżet (v51)
+
+    - otwórz rozwiązanie zad. 14 i na zakładce „przesunięcie" pociągnij suwak w obie strony: parabola g ma jechać w lewo przy plusie, a w prawo przy minusie
+
+    - złap palcem samą parabolę g i przeciągnij ją w bok: suwak ma jechać razem z nią, a wykres nie powinien przeskakiwać pod palec
+
+    - przeciągnij powoli po pustym miejscu płótna, z dala od krzywych: nic nie powinno się ruszyć
+
+    - przełącz na zakładkę „rozwarcie" i szukaj a, przy którym g trafia w pomarańczowy pierścień: przy 0,5 ma zapalić się zielony ptaszek
+
+    - na tej samej zakładce chwyć ramię paraboli i pociągnij w górę i w dół: rozwarcie ma zmieniać się płynnie, a wartość nie uciekać do końca suwaka
+
+    - przełączaj zakładki tam i z powrotem: rysunek nie powinien podskakiwać w pionie
+
+  - suwaki we wszystkich widżetach przestały skakać w bok (v51, zmiana wspólnego CSS)
+
+    - zad. 13.1 w maju: rusz suwakiem a przez wartości ujemne i dodatnie, suwak ma stać w miejscu, a zmieniać się ma tylko napis po lewej
+
+    - na telefonie sprawdź, czy suwak mieści się w karcie i nie wychodzi poza jej prawą krawędź: zad. 2, 11 i 13 w maju oraz zad. 5, 15 i 30 w grudniu
 
   - kolory rysunków i filmów w ciemnym motywie (v49)
 
@@ -263,38 +313,32 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + DO ZROBIENIA HOŚCIE (POZA KONTENEREM)
 
-  - sprawdzić devcontainer na Kubuntu/Dockerze — testowany był tylko pod rootless podmanem
-    na Bazzite (opis środowiska: .devcontainer/README.md)
+  - sprawdzić devcontainer na Kubuntu/Dockerze — testowany był tylko pod rootless podmanem na Bazzite (opis środowiska: .devcontainer/README.md)
 
 
 <br>
 
 
 + INNE NOTATKI, DO PRZEKMINIENIA:
-  
 
-  - 2026-maj:
-  <br> FABLE, nie pracuj nad nieoznaczonymi twoim imieniem zadaniami
-    - Zad 1. - Rozwiązania
-        - Krok po kroku
-        - Zwykłe
-    - Zad 2. - Rozwiązania
-      - Krok po kroku
-      - Interaktywne, widżet FABLE
-    - Zad 9. - Rozwiązania
-      - Krok po kroku 1 - Standardowe podejśćie: dziedzina, wymnożenie na krzyż itd.
-      - Krok po kroku 2 - Podstawianie odpowiedzi po kolei pod x ąz wyjdzie 2/5 = 2/5
+  - 2026-maj
+    - Zmiejszyć na komputerach (nie zmiejszać rozdzielczości bo będą nieostre) screenshoty grafik
+    - uzupełnić screenshoty grafik
+    - Rozwiązania
+      - Krok po kroku - jeszcze nie ruszone
+      - Zwykłe tylko w wybranych z zad 1-13 są zrobione, w reszcie trzeba zrobić
+      - Interaktywne
+        - W wybranych z zad 1-13 są zrobione
+        - W wybranych z zad 14-33 do zrobienia
 
 
-
-  Przed Fable:
-    - Obgadać z Opusem czy używać Fable z superpowers, subagentami itd.
-      - Subagentci: Czy powinienem puścić Fable mając duży zapas limitu aby Opusy i Sonnety będące subagentami mogły z niego korzystać odciążając fable?
 
   - Fable:
     - matura/2024-grudzień
-      - Interaktywne rozwiązania
-      - Sprawdzanie obliczneń (checkboxy) JUŻ CHYBA DONE
+      - Rozwiązania interaktywny
+        - Wybrane zadania z zakresu 1-13 zrobione (dodatkowo mają też Podpowiedzi i Rozwiązanie zwykłe)
+        - Wybrane zadania z zakresu 14-33 do zrobienia przez Opusa na podstawie spuścizny Fable
+
     - Interaktywne rozwiązania matury 2026
     - Lista checkboxów "Sprawdzanie rozwiązania"
     - Weryfikacja poprawności matematycznej

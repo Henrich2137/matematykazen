@@ -1679,13 +1679,18 @@ canvas {
     border-color: var(--accent-blue-strong);
     color: var(--accent-blue-strong);
 }
-/* Etykieta przy suwaku (np. "a = -1,5" w zad. 13 maja) - stała szerokość,
-   żeby suwak nie skakał w bok, gdy liczba zmienia długość. */
+/* Etykieta przy suwaku (np. "a = -1,5" w zad. 13 maja). Szerokość jest STAŁA,
+   nie min-width: przy min-width dłuższy napis ("a = -1,5" kontra "a = 3")
+   rozpychał kolumnę i suwak skakał w bok podczas przeciągania. Teraz napis
+   rośnie w lewo (text-align: right), a suwak stoi w miejscu. Widżet, który
+   potrzebuje szerszej etykiety (zad. 14: cały zapis "f(x + 1)"), ustawia
+   --wg-etykieta-szer na swoim .widget-controls. */
 .wg-suwak-etykieta {
     display: inline-block;
-    min-width: 76px;
+    width: var(--wg-etykieta-szer, 76px);
     text-align: right;
     margin-right: 10px;
+    white-space: nowrap;
 }
 .widget-canvas {
     max-width: 100%;

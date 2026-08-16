@@ -14,6 +14,7 @@ const WIDZETY = {
     widgetLamana122,
     widgetLiniowaWspolczynniki,
     widgetLiniowaTangens,
+    widgetPrzesuniecieParaboli,
     widgetNierownoscKwadratowa,
     widgetFunkcjaPrzedzialami,
     widgetParabola,

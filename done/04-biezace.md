@@ -1,5 +1,42 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-16] (Opus 5, xhigh) v51 - zad. 14 (2026-maj) w komplecie: podpowiedź, rozwiązanie
+opisowe i widżet przesunięcia paraboli. Plus naprawa skakania suwaków we wszystkich widżetach.
+[2026-maj, widzety, css, zadanie-14]
+
+- Zadanie: parabola f o wierzchołku W = (3, -2), g(x) = f(x + 1), jednym z miejsc zerowych g jest 0,
+  wyznaczyć f w postaci ogólnej. Policzone od zera i zgodne z kluczem CKE: a(1-3)² - 2 = 0 daje
+  a = 1/2, czyli f(x) = ½x² - 3x + 5/2. `formulasPage` poprawione z 7 na 8, bo postać kanoniczna
+  (potrzebna do startu) siedzi w tablicach na stronie 8, a nie 7.
+- Nowy `widgets/przesuniecieParaboli.js` (`widgetPrzesuniecieParaboli`), dwie zakładki:
+  - „Przesunięcie": a = 1/2 na sztywno, suwak zmienia liczbę w nawiasie od -3 do 3. Sedno zadania,
+    czyli że PLUS w nawiasie przesuwa wykres w LEWO. Strzałka między wierzchołkami mówi wprost
+    „1 w lewo" / „2 w prawo", odczyt podaje wierzchołek i miejsca zerowe g, ✓ przy jedynce.
+  - „Rozwarcie": jedynka zablokowana, suwak zmienia a (0,2 do 1,3), uczeń doprowadza g do przejścia
+    przez pomarańczowy pierścień w punkcie (0, 0) i trafia w a = 1/2. Odczyt to podstawienie
+    4a - 2 = 0, po trafieniu pokazuje gotowy wzór f w postaci ogólnej.
+  - Obie zakładki: parabolę można ZŁAPAĆ i przeciągnąć (zakładka 1 w bok, zakładka 2 za ramię
+    w pionie). Chwyt zapamiętuje odstęp od wierzchołka, więc wykres nie skacze pod palec, a przy
+    chwycie zapisywane jest, KTÓRĄ parabolę złapano (bez tego przeciąganie w zakładce 2 liczyło
+    rozwarcie z drugiej krzywej i wartość uciekała do końca zakresu).
+- Decyzja Henricha: przesunięcie nie dostaje żadnej litery. „c" kolidowałoby z wyrazem wolnym
+  postaci ogólnej, „p" z pierwszą współrzędną wierzchołka; uczeń widzi samą liczbę w f(x + 1).
+- Wspólny CSS suwaków: `.wg-suwak-etykieta` ma teraz szerokość STAŁĄ (`width` zamiast `min-width`,
+  z nadpisaniem przez `--wg-etykieta-szer`), więc dłuższy napis rośnie w lewo i suwak stoi w miejscu.
+  To była realna uwaga Henricha („suwak skacze lewa-prawa"), dotyczyła też zad. 13.
+- `style/responsive.css`: poniżej 560px suwak widżetu zwężony do 210px. Przy 320px plus etykieta
+  wychodził poza krawędź karty na telefonie (procentowy `max-width` nie wie o szerokości etykiety).
+- Weryfikacja (Playwright, `node tools/serwer.js 8001`), wszystko na świeżo po zmianach:
+  - zad. 14 na desktopie i telefonie (485px) × motyw jasny i ciemny: `.katex-error` = 0, ✓ zapala się
+    dokładnie przy a = 0,5, zrzuty obu zakładek i obu skrajnych wartości suwaka;
+  - przeciąganie: chwyt ramienia g i ruch o 1,5 w prawo daje liczbę -0,5 (odwrotność, zgodnie
+    z matematyką), przeciągnięcie ramienia w zakładce 2 trafia w a = 0,5, a chwyt w pustym miejscu
+    płótna nie rusza niczego;
+  - widżety dotknięte zmianą wspólnego CSS (zad. 2, 11, 13.1, 13.2 w maju oraz 5, 15, 30 w grudniu),
+    desktop i telefon: każdy suwak mieści się w karcie z zapasem 63-144px;
+  - wysokość tytułu widżetu przy zmianie zakładki: 23 → 23px na desktopie, 44 → 42px na telefonie,
+    czyli płótno nie skacze (tytuły obu zakładek celowo podobnej długości).
+
 [ZROBIONE 2026-08-16] (Opus 5, medium) v50 — domknięcie odwracania kolorów: jedna barwa w widżecie i w filmie.
 [dark-mode, kolory, widzety, dokumentacja]
 

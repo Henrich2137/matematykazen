@@ -54,6 +54,7 @@ Arkusz **2026-maj** (pilotaż Fable, 2026-08-15):
 | `funkcjaLamana.js` | `widgetLamana122` | 12.2 | zbiór wartości i argumenty z f(x)>c | zakładki + suwak + przeciąganie |
 | `funkcjaLiniowa.js` | `widgetLiniowaWspolczynniki` | 13.1 | znaki współczynników a i b prostej | dwa suwaki + przeciąganie punktu na osi y |
 | `funkcjaLiniowa.js` | `widgetLiniowaTangens` | 13.2 | tangens kąta nachylenia, trójkąt jak w tablicach | suwak a |
+| `przesuniecieParaboli.js` | `widgetPrzesuniecieParaboli` | 14 | g(x) = f(x+1): przesunięcie wykresu i dobór a | zakładki + suwak + przeciąganie paraboli |
 
 (`funkcjaLamana.js` i `funkcjaLiniowa.js` to świadome wyjątki od zasady „jeden
 plik = jeden widżet": para widżetów jednego zadania dzieli rysowanie tej samej
