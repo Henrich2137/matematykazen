@@ -78,6 +78,22 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945 
 
+  - zadania 20, 26, 33.1 i 33.2 w arkuszu 2026-maj: nowy komplet podpowiedź + rozwiązanie + widżet (v56)
+
+    - zad. 20: przesuwaj prostą k, potem l; wszystkie cztery długości mają się zmieniać, ale oba ułamki w odczycie zostają równe
+
+    - zad. 20: sprawdź, czy da się chwycić każdą prostą osobno i czy żadna nie przechodzi przez punkt O
+
+    - zad. 26: rusz suwakiem b i popatrz, że wynik ani drgnie, a rusza się tylko fioletowa prosta k
+
+    - zad. 26: rusz suwakiem a i sprawdź, czy przy -1/3 zapala się ptaszek, a wynik pokazuje się ułamkiem -4/3, nie liczbą 0,33
+
+    - zad. 33.1: to jedyne z tej paczki bez widżetu; w rozwiązaniu ma być zdanie odsyłające do wykresu pod zad. 33.2
+
+    - zad. 33.2: przesuń suwak na sam koniec i na sam początek; przy zerze ma się pojawić zdanie, że piłeczka nie została wyrzucona
+
+    - zad. 33.2: to jedyny wykres w projekcie z różnymi jednostkami na osiach (sekundy i metry), więc kratka NIE jest kwadratowa; oceń, czy tak jest czytelnie
+
   - zad. 19 w arkuszu 2026-maj: nowy komplet podpowiedź + rozwiązanie + widżet (v52, odczyt i podpisy poprawione w v54)
 
     - odczyt pod rysunkiem to teraz jedna linijka \(50° · 2 = 100° = 70° + 30°\), a wszystkie cztery liczby mają iść za punktami przy przeciąganiu
@@ -375,7 +391,13 @@ Oto plik który tworzy Henrich (ja, użytkownik).
         - W wybranych z zad 1-19 są ✅
         - W wybranych z zad 20-33
           - Zad 20 - możliwość przesuwania k i l lewa-prawa. Pozostają na sztywno pod tym samym kątem i równoległe do siebie
-          - 
+          - Zad 26 - Układ współrzędnych i na nim opisan sytuacja. Punkt (2, -2) na sztywno trzyma prostą l. Proste l podąża nachyleniem tak że jest zawsze równoległa do k. Suwaki:
+            - prosta k: współczynnik a, domyślnie -1/3
+            - prosta k: współczynnik b, domyślnie +2
+          - Zad 27 i 28 czeka aż będzie mi się chciało przekminić 3D
+          - Zad 33.1 - Zapisz w Rozwiązaniu zwykłym, że rozwiązanie interaktywne na oba można znależć pod 32.2 
+          - Zad 33.2 - Układ współrzędnych z parabolą przyczepioną do (0, 0). Suwak zmieniający b domyślnie równe 14,7 zakres: <0; 29,4> co 2,45 Tylko zrób aby nie skakał.
+
         
 
   - Fable:

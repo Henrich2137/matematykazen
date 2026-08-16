@@ -463,12 +463,12 @@
         "correctAnswerIndex": 1,
         "maxScore": 1,
         "selfScore": false,
-        "formulasPage": 18,
-        "hint": "",
-        "solutionText": "",
+        "formulasPage": 17,
+        "hint": "Odcinki \\(AC\\) i \\(BD\\) tną się w punkcie \\(O\\), a proste \\(k\\) i \\(l\\) są równoległe. Poszukaj dwóch trójkątów o wspólnym wierzchołku \\(O\\) i zastanów się, dlaczego są podobne.",
+        "solutionText": "Trójkąty \\(AOD\\) i \\(COB\\) są podobne, więc odpowiadające sobie boki są w tym samym stosunku:\\[\\frac{|OA|}{|OC|} = \\frac{|OD|}{|OB|}\\]<div class=\"rozwiazanie-kroki\">Kąty \\(AOD\\) i \\(COB\\) są wierzchołkowe, więc równe.<br>Proste \\(k\\) i \\(l\\) są równoległe, więc kąty \\(OAD\\) i \\(OCB\\) są naprzemianległe, też równe.<br>Trójkąty mają po dwa równe kąty, czyli są podobne.<br><br>Podstawiamy dane z zadania:<br>\\(\\frac{12}{8} = \\frac{|OD|}{6}\\)<br>\\(|OD| = \\frac{12 \\cdot 6}{8}\\)<br>\\(|OD| = \\boldsymbol{9}\\)<br>Odpowiedź <b>B</b>.</div>",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionWidget": null
+        "solutionWidget": "widgetProporcjeProste"
     },
     {
         "question": "<b>Zadanie 21.</b> <br><br> Dany jest trójkąt \\(KLM\\), w którym \\(|KM| = a\\) oraz \\(|LM| = b\\). Dwusieczna kąta \\(LMK\\) przecina bok \\(KL\\) w punkcie \\(N\\) (zobacz rysunek).<br><br><img src=\"media/zad21/zad21rys.png\" alt=\"Trójkąt KLM z bokiem KM oznaczonym literą a i bokiem LM oznaczonym literą b. Z wierzchołka M poprowadzona dwusieczna kąta LMK, przecinająca bok KL w punkcie N; oba kąty przy M zaznaczone jednakowo.\"><br>Wykaż, że stosunek pola trójkąta \\(KNM\\) do pola trójkąta \\(NLM\\) jest równy \\(\\dfrac{a}{b}\\).",
@@ -613,12 +613,12 @@
         "correctAnswerIndex": 3,
         "maxScore": 1,
         "selfScore": false,
-        "formulasPage": 23,
-        "hint": "",
-        "solutionText": "",
+        "formulasPage": 24,
+        "hint": "Proste równoległe mają ten sam współczynnik kierunkowy. Zapisz wzór prostej \\(l\\) z tym samym \\(a\\), a jej wyraz wolny wyznacz z punktu \\((2,\\ -2)\\).",
+        "solutionText": "Proste równoległe mają równe współczynniki kierunkowe (tablice, str. 24):\\[a_l = a_k = -\\frac{1}{3}\\]<div class=\"rozwiazanie-kroki\">Prosta \\(l\\) ma więc wzór<br>\\(y = -\\frac{1}{3}x + b\\)<br><br>Przechodzi przez punkt \\((2,\\ -2)\\), więc podstawiamy:<br>\\(-2 = -\\frac{1}{3} \\cdot 2 + b\\)<br>\\(-2 = -\\frac{2}{3} + b\\)<br>\\(b = -2 + \\frac{2}{3} = -\\frac{4}{3}\\)<br><br>Wyraz wolny to druga współrzędna punktu przecięcia z osią \\(Oy\\):<br>\\(\\boldsymbol{\\left(0,\\ -\\frac{4}{3}\\right)}\\)<br>Odpowiedź <b>D</b>.</div>",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionWidget": null
+        "solutionWidget": "widgetProsteRownolegle"
     },
     {
         "question": "<b>Zadanie 27.</b> <br><br> Dany jest ostrosłup prawidłowy czworokątny, w którym przekątna podstawy ma długość \\(8\\sqrt{3}\\). Krawędź boczna tego ostrosłupa jest nachylona do płaszczyzny podstawy pod kątem \\(30°\\).<br><br>Oblicz objętość tego ostrosłupa. Zapisz obliczenia.",
@@ -759,9 +759,9 @@
         "correctAnswerIndex": 3,
         "maxScore": 1,
         "selfScore": false,
-        "formulasPage": 7,
-        "hint": "",
-        "solutionText": "",
+        "formulasPage": 8,
+        "hint": "Uderzenie w ziemię to chwila, w której wysokość wynosi \\(0\\). Rozwiąż równanie \\(h(t) = 0\\), wyłączając \\(t\\) przed nawias.",
+        "solutionText": "Piłeczka jest na ziemi, gdy jej wysokość wynosi zero:\\[h(t) = 0\\]<div class=\"rozwiazanie-kroki\">\\(-4{,}9t^2 + 14{,}7t = 0\\)<br>\\(t \\cdot (-4{,}9t + 14{,}7) = 0\\)<br><br>Iloczyn jest zerem, gdy któryś z czynników jest zerem:<br>\\(t = 0\\) albo \\(-4{,}9t + 14{,}7 = 0\\)<br>\\(t = \\frac{14{,}7}{4{,}9} = 3\\)<br><br>Chwila \\(t = 0\\) to moment wyrzutu, więc piłeczka spada w chwili<br>\\(\\boldsymbol{t = 3\\ \\text{s}}\\)<br>Odpowiedź <b>D</b>.<br><br>Interaktywny wykres do obu części tego zadania znajdziesz w rozwiązaniu zadania <b>33.2</b>.</div>",
         "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
@@ -777,12 +777,12 @@
         "correctAnswerIndex": 0,
         "maxScore": 1,
         "selfScore": false,
-        "formulasPage": 7,
-        "hint": "",
-        "solutionText": "",
+        "formulasPage": 8,
+        "hint": "Wykresem funkcji \\(h\\) jest parabola ramionami w dół, więc największa wysokość wypada w jej wierzchołku. Skorzystaj ze wzoru na pierwszą współrzędną wierzchołka.",
+        "solutionText": "Pierwsza współrzędna wierzchołka paraboli (tablice, str. 8):\\[p = -\\frac{b}{2a}\\]<div class=\"rozwiazanie-kroki\">We wzorze \\(h(t) = -4{,}9t^2 + 14{,}7t\\) mamy \\(a = -4{,}9\\) oraz \\(b = 14{,}7\\).<br><br>\\(t = -\\frac{14{,}7}{2 \\cdot (-4{,}9)}\\)<br>\\(t = \\frac{14{,}7}{9{,}8}\\)<br>\\(\\boldsymbol{t = 1{,}5\\ \\text{s}}\\)<br>Odpowiedź <b>A</b>.<br><br>Szczyt wypada dokładnie w połowie lotu: piłeczka spada w chwili \\(3\\ \\text{s}\\), a najwyżej jest w \\(1{,}5\\ \\text{s}\\). Tak działa symetria paraboli.</div>",
         "solutionTextMore": "",
         "solutionStepByStep": null,
-        "solutionWidget": null
+        "solutionWidget": "widgetRzutPileczki"
     }
     ]
 }

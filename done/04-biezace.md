@@ -1,5 +1,33 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-16] (Opus 5, xhigh) v56 - zad. 20, 26, 33.1 i 33.2 (2026-maj) w komplecie.
+[2026-maj, widzety, zadanie-20, zadanie-26, zadanie-33]
+
+- Wszystkie policzone od zera i zgodne z kluczem: |OD| = 9 (B), (0, -4/3) (D), t = 3 s (D), t = 1,5 s (A).
+- `widgets/proporcjeProste.js` (zad. 20). Proste m i n stoją, uczeń przesuwa k oraz l NIEZALEŻNIE,
+  a punkty przecięcia jadą po m i n. Wszystkie cztery odcinki zmieniają długość, ale oba ilorazy
+  zostają równe - i to jest cała odpowiedź na pytanie, skąd wolno ułożyć proporcję.
+  Kąty prostych (60 st. i -48,19 st.) są dobrane tak, żeby przy pionowych k, l wyszły dokładnie
+  długości 12, 8, 9 i 6; rysunek CKE nie jest w skali, więc odwzorowanie kąt w kąt nie miałoby sensu.
+  Odczyt pokazuje JEDEN wspólny iloraz liczony z dokładnych położeń, a długości z dwoma miejscami
+  po przecinku: przy jednym miejscu 11,2/10,6 wychodziło 1,06 przy wypisanym 1,05 i wyglądało to
+  na sprzeczność.
+- `widgets/prosteRownolegle.js` (zad. 26). Suwak a zmienia wynik, suwak b nie zmienia go wcale
+  i o to chodzi: równoległość przenosi na l tylko współczynnik kierunkowy. Suwak a chodzi po
+  wielokrotnościach 1/12, żeby -1/3 z zadania było osiągalne dokładnie, a odczyt pokazuje ułamki
+  (-1/3, -4/3), nie 0,33.
+- `widgets/rzutPileczki.js` (zad. 33.1 i 33.2, jeden widżet na obie części; rozwiązanie 33.1 odsyła
+  do 33.2, zgodnie z decyzją Henricha). Suwak zmienia liczbę przy t, a moment szczytu i moment
+  upadku jadą razem w stosunku 1 do 2. Wysokość płótna podana WPROST, nie przez wgWysokoscKwadratowa:
+  osie mają różne wielkości (sekundy i metry), więc zrównanie pikseli na jednostkę dałoby płótno
+  na 3600 px. Skala to 1 s w poziomie = 10 m w pionie, siatka rysowana ręcznie.
+- formulasPage poprawione zgodnie z transkryptem tablic: zad. 20 -> s. 17 (cechy podobieństwa),
+  zad. 26 -> s. 24 (proste równoległe), zad. 33.1 i 33.2 -> s. 8 (miejsca zerowe i wierzchołek).
+- Weryfikacja (Playwright, `node tools/serwer.js 8001`), desktop i 485px x oba motywy: zero błędów
+  KaTeX, zero błędów strony. Przeciąganie w zad. 20 (k i l osobno), oba suwaki w zad. 26 wraz
+  ze sprawdzeniem, że b faktycznie NIE rusza wyniku, oraz skrajne wartości suwaka w zad. 33.2
+  (29,4 -> szczyt 3 s i upadek 6 s; 0 -> komunikat zamiast wykresu; 14,7 -> 1,5 s i 3 s z ptaszkiem).
+
 [ZROBIONE 2026-08-16] (Opus 5, xhigh) v52 - zad. 19 (2026-maj) w komplecie, rysunki z arkusza w pięciu
 zadaniach, limit szerokości rysunków, poprawki zad. 14 po uwagach Henricha.
 [2026-maj, widzety, rysunki, css, zadanie-19, zadanie-14]

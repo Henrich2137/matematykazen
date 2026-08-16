@@ -56,6 +56,9 @@ Arkusz **2026-maj** (pilotaż Fable, 2026-08-15):
 | `funkcjaLiniowa.js` | `widgetLiniowaTangens` | 13.2 | tangens kąta nachylenia, trójkąt jak w tablicach | suwak a |
 | `przesuniecieParaboli.js` | `widgetPrzesuniecieParaboli` | 14 | g(x) = f(x+1): przesunięcie wykresu i dobór a | zakładki + suwak + przeciąganie paraboli |
 | `katyWOkregu.js` | `widgetKatyWOkregu` | 19 | kąt wpisany i środkowy oparte na tym samym łuku | przeciąganie punktów D i B po łukach |
+| `proporcjeProste.js` | `widgetProporcjeProste` | 20 | dwie równoległe przecięte dwiema prostymi, proporcja odcinków | przeciąganie prostych k i l |
+| `prosteRownolegle.js` | `widgetProsteRownolegle` | 26 | prosta równoległa przez zadany punkt | dwa suwaki (a i b prostej k) |
+| `rzutPileczki.js` | `widgetRzutPileczki` | 33.1 i 33.2 | rzut pionowy: moment upadku i moment szczytu | suwak liczby przy t |
 
 (`funkcjaLamana.js` i `funkcjaLiniowa.js` to świadome wyjątki od zasady „jeden
 plik = jeden widżet": para widżetów jednego zadania dzieli rysowanie tej samej

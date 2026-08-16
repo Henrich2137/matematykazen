@@ -9,7 +9,7 @@ Zobacz na żywo: https://henrich2137.github.io/matematykazen/
 ## Arkusze maturalne
 
 - **2024 grudzień (próbna)** — kompletny: wszystkie 30 zadań, podpowiedzi, rozwiązania (tekst + wideo krok po kroku przy dziewięciu pierwszych zadaniach, 1–9), 9 interaktywnych widżetów, odpowiedzi zweryfikowane z oficjalnym kluczem CKE.
-- **2026 maj**: wpięty w całości jako zadania z odpowiedziami do sprawdzenia, opracowywany zadanie po zadaniu. Zadania 2, 8, 10, 11, 12, 13, 14 i 19 mają już komplet, czyli podpowiedź, rozwiązanie opisowe i interaktywny widżet (razem 10 widżetów). Rysunki z arkusza są wycięte i wstawione w treść wszystkich zadań, które ich wymagają. Wideo krok po kroku w tym arkuszu jeszcze nie ma.
+- **2026 maj**: wpięty w całości jako zadania z odpowiedziami do sprawdzenia, opracowywany zadanie po zadaniu. Zadania 2, 8, 10, 11, 12, 13, 14, 19, 20, 26 i 33 mają już komplet, czyli podpowiedź, rozwiązanie opisowe i interaktywny widżet (razem 13 widżetów). Rysunki z arkusza są wycięte i wstawione w treść wszystkich zadań, które ich wymagają. Wideo krok po kroku w tym arkuszu jeszcze nie ma.
 - **2025 maj** — jeszcze niewpięty: same PDF-y arkusza i klucza, bez danych na stronie.
 
 ## Funkcje
