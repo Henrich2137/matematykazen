@@ -102,9 +102,9 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
     - zadania 18, 19, 20, 21 i 31 w maju mają teraz rysunki; wcześniej w 19, 20 i 31 był połamany obrazek, a w 18 i 21 nie było go wcale
 
-    - rysunki są mniejsze na komputerze (limit 450 px): zerknij na zad. 12 i 13, czy teraz wyglądają lepiej
+    - rysunki są mniejsze (limit 380 px, v53): zerknij na zad. 12 i 13, czy teraz wyglądają lepiej
 
-    - na telefonie rysunki mają dalej wypełniać szerokość karty
+    - na telefonie ten sam limit 380 px zmniejszył rysunki bardziej niż w v52; sprawdź, czy nie są już za małe pod palcem
 
   - zad. 14 w arkuszu 2026-maj: nowy komplet podpowiedź + rozwiązanie + widżet (v51)
 

@@ -21,7 +21,7 @@ zadaniach, limit szerokości rysunków, poprawki zad. 14 po uwagach Henricha.
   był połamany obrazek; 18 i 21 nie miały rysunku wcale, choć arkusz go ma. Przy okazji treść zad. 19
   przepisana na notację KaTeX, a opisy `alt` z „TODO: dodać obraz" zmienione na opisy dla czytników
   ekranu. Pełny przegląd wszystkich 35 stron PDF potwierdził, że innych rysunków w tym arkuszu nie ma.
-- `.question img` dostaje `max-width: min(100%, 450px)`. Rysunki wycinane z PDF-u mają po ~700px
+- `.question img` dostaje `max-width: min(100%, 380px)` (v52 miało 450px, Henrich uznał je za wciąż za duże). Rysunki wycinane z PDF-u mają po ~700px
   i ciągnęły się przez całą kartę na komputerze (uwaga Henricha do zad. 12 i 13). Pliki zostają
   w pełnej rozdzielczości, żeby były ostre na telefonie, gdzie i tak ogranicza je szerokość karty.
 - Poprawki zad. 14 po testach Henricha: rozwiązanie opisowe rozbite na krótsze linijki z przerwami;

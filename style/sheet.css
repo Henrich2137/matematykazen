@@ -615,11 +615,12 @@ body.sidebar-otwarty #sidebar-linia {
    stylem display:inline-block. */
 .question img {
     display: block;
-    /* Górny limit 450px: rysunki wycinane z PDF-u mają po ~700px i bez tego
+    /* Górny limit 380px: rysunki wycinane z PDF-u mają po ~700px i bez tego
        ciągnęły się przez całą kartę na komputerze (uwaga Henricha do zad. 12
-       i 13). Pliki zostają w pełnej rozdzielczości, żeby były ostre na
-       telefonie, gdzie ogranicza je dopiero 100% szerokości karty. */
-    max-width: min(100%, 450px);
+       i 13; 450px z v52 nadal było dla niego za dużo). Pliki zostają w pełnej
+       rozdzielczości, żeby były ostre na telefonie, gdzie ogranicza je dopiero
+       100% szerokości karty. */
+    max-width: min(100%, 380px);
     margin: 15px auto;
     /* Odwrócenie w dark mode — patrz --filtr-grafik-zadan w style/base.css. */
     filter: var(--filtr-grafik-zadan);
