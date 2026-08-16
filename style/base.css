@@ -223,11 +223,17 @@
            Punkt startowy z jasności --bg: #141414 = rgb(20,20,20) ≈ 7,8% jasności,
            więc biel (100%) ma po odwróceniu wylądować na ≈ 92,2% odwrócenia, żeby
            trafić w ten sam poziom szarości co tło karty (100% − 7,8% ≈ 92%).
-           Świadomie BEZ hue-rotate(180deg): kolorowe elementy (czerwone/niebieskie
-           linie na wykresach) wychodzą w zamienionych barwach — zaakceptowany
-           kompromis (spec: paczka UI drobiazgi, punkt 3), prostszy niż też
-           kompensować odcień tylko po to, żeby nie trafić z powrotem w oryginalny. */
-        --filtr-grafik-zadan: invert(92%);
+           `hue-rotate(180deg)` na końcu odwraca SAMĄ JASNOŚĆ, zostawiając barwę:
+           niebieski zostaje niebieski (0,119,182 → 70,170,223), a nie robi się
+           pomarańczowy jak przy gołym invercie. Matematycznie to dokładnie to samo,
+           co filtr SVG `feColorMatrix` odwracający luminancję, tylko bez wklejania
+           SVG w stronę i bez pułapki `color-interpolation-filters` (2026-08-16;
+           wcześniej stało tu samo `invert(92%)`, patrz COLORS.md).
+           92% (nie 100%) zostaje: dzięki temu biel z pliku dalej ląduje na
+           rgb(20,20,20), czyli w kolorze tła, i grafika nie ma czarnej ramki.
+           Ograniczenie: bardzo jaskrawe barwy nie mieszczą się w skali i są
+           przycinane (żółty 255,204,0 → brązowy 113,70,0). */
+        --filtr-grafik-zadan: invert(92%) hue-rotate(180deg);
 
         /* Paleta widżetów — ciemna (patrz blok w :root). Akcenty (zielony, czerwony,
            niebieski, fiolet) biorą się z --correct/--incorrect/--accent-* i mają już
@@ -358,7 +364,7 @@ html.theme-dark {
        w bloku systemowym wyżej. Brakowało jej tutaj, więc RĘCZNIE wymuszony
        ciemny motyw zostawiał rysunki i filmy świecące na biało, choć ten sam
        motyw wybrany przez system odwracał je poprawnie (2026-08-11). */
-    --filtr-grafik-zadan: invert(92%);
+    --filtr-grafik-zadan: invert(92%) hue-rotate(180deg);
 }
 
 body {

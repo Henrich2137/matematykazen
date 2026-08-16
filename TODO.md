@@ -39,6 +39,16 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945 
 
+  - kolory rysunków i filmów w ciemnym motywie (v49)
+
+    - włącz ciemny motyw i otwórz zad. 10 w arkuszu 2024-grudzień: wykres powinien być fioletowy, a nie zielony jak dotąd
+
+    - w tym samym motywie odpal rozwiązanie krok po kroku zad. 2 (2024-grudzień): zielone piątki mają być zielone, wcześniej wychodziły różowe
+
+    - obejrzyj kilka zwykłych czarno-białych rysunków CKE: tam nie powinno się zmienić nic, także tło wokół rysunku ma dalej zlewać się ze stroną (żadnej czarnej ramki)
+
+    - zerknij na telefonie, czy filmy nie zaczęły szarpać: filtr jest o jedno działanie dłuższy niż był
+
   - poprawki widżetów maja po Twoich uwagach (v48)
 
     - 12.1 zdanie 2: prawa prosta dochodzi teraz do 5,5, lewa do −4; pomarańczowy punkt maksimum większy, kreska do osi y mocniejsza (pomarańczowa przerywana); „4" w odczycie też pomarańczowa
@@ -462,6 +472,13 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
       - sekcja TESTOWANIE HENRICH urosła do siedmiu paczek; po przeklikaniu warto od razu przenosić wpisy do done/, żeby TODO nie puchło
  (lista pól, typy, jeden przykładowy wpis, bez prozy): brief słusznie odradza ARCHITECTURE.md, ale wtedy schemat trzeba wyczytywać z cudzych wpisów. Oszczędność 4, koszt 2, ryzyko 3 (trzeba pilnować synchronizacji ze stanem kodu)
+
+
+  + OPUS 5 MEDIUM DOPISAŁ (2026-08-16, po zmianie filtru grafik na invert + hue-rotate):
+
+    - DO DECYZJI: pomarańczowy `--wg-niewiadoma` w ciemnym motywie stracił powód istnienia. Był pomarańczowy tylko dlatego, że stary filtr zamieniał błękit z filmu na pomarańcz. Teraz film zostaje niebieski (`#0077b6` → `#46aadf`), więc widżet i film pokazują dwie różne barwy tego samego. Naprawa to jedna wartość w style/base.css, ale przemaluje `x` w kilku zadaniach, więc czeka na Twoją zgodę (opis w COLORS.md, sekcja „Otwarte")
+
+    - do sprawdzenia przy okazji nowych scen Manima: czysty żółty i czysta zieleń są za jaskrawe i po odwróceniu blakną (żółty `#ffcc00` wychodzi brązowy). `python3 tools/odwroc-kolor.py` teraz o tym ostrzega
 
 
 <br>

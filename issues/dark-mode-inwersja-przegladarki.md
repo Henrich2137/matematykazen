@@ -1,9 +1,16 @@
 # Dark mode: odwracanie kolorów grafik/wideo nie działa tak samo we wszystkich przeglądarkach
 
 Status: OTWARTE. Zgłoszone przez Henricha 2026-08-11 przy odbiorze paczki UI v15.
-Mechanizm, który testujemy: `--filtr-grafik-zadan: invert(92%)` (style/base.css:229, oba ciemne
+Mechanizm, który testujemy: `--filtr-grafik-zadan` (style/base.css, oba ciemne
 bloki) nakładany na `.question img` oraz img/video w `.solution-step-by-step-container`
 (style/sheet.css:610, 1185, 1242).
+
+**Aktualizacja 2026-08-16:** filtr to teraz `invert(92%) hue-rotate(180deg)`, a nie samo
+`invert(92%)`. Dołożony obrót odcienia sprawia, że odwraca się sama jasność (niebieski zostaje
+niebieski). **Dla tego zgłoszenia nic się nie zmienia**: obrót o 180° nie rusza szarości, więc
+biel z pliku dalej ląduje dokładnie na `rgb(20,20,20)`, cała arytmetyka „92%" niżej zostaje
+w mocy, a Problem A (tło grafiki ≠ tło strony na Bazzite/Samsungu) dotyczy tak samo obu wersji.
+Wszystkie rekomendacje niżej zostają bez zmian.
 
 ## Co zgłosił Henrich
 

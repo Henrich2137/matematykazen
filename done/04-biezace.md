@@ -1,5 +1,34 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-16] (Opus 5, medium) v49 — ciemny motyw przestał przekłamywać kolory na rysunkach i w filmach.
+[dark-mode, kolory, css, wideo, manim]
+
+- `--filtr-grafik-zadan` w style/base.css: `invert(92%)` → `invert(92%) hue-rotate(180deg)`,
+  w obu blokach (motyw z systemu i wymuszony klasą). Reszta CSS bez zmian, bo wszystkie trzy
+  miejsca filtrujące (`.question img`, wideo kroków, obrazki kroków) biorą tę samą zmienną.
+- Problem: goły invert odwraca każdy kanał osobno, więc barwa lądowała po przeciwnej stronie
+  koła kolorów. Fioletowy wykres w zad. 10 (2024-grudzień) był w ciemnym motywie ZIELONY,
+  a zielone piątki w filmie zad. 2 były RÓŻOWE — czyli kolor niosący „poprawne" (COLORS.md)
+  pokazywał w ciemnym motywie coś zupełnie innego.
+- Dołożone `hue-rotate(180deg)` zawraca odcień, przez co odwraca się sama jasność.
+  Sprawdzone rachunkiem i zrzutami: `#0077b6` → `#46aadf`, `#7030a0` → `#d49efc`,
+  `#003366` → `#a1ccf7`. Rysunki czarno-białe (większość CKE) wyglądają identycznie jak dotąd.
+- 92% zostało celowo, nie 100%: biel z pliku dalej ląduje dokładnie na `#141414`, czyli w tle
+  strony, więc grafiki nie dostały czarnej ramki. Przy `invert(1) hue-rotate(180deg)` biel
+  poszłaby na czyste `#000` i ramka by się pojawiła.
+- Rozważany był filtr SVG `feColorMatrix` odwracający luminancję. Odrzucony, bo daje
+  liczbowo TEN SAM wynik (różnica 1/255 z zaokrągleń współczynników w specyfikacji CSS),
+  a wymaga wklejenia SVG w stronę i pamiętania o `color-interpolation-filters="sRGB"`
+  (bez tego SVG liczy w linearRGB i wynik jest bezużyteczny: szary 50% wychodzi prawie biały).
+  Do `feColorMatrix` warto wrócić tylko wtedy, gdy zechcemy REGULOWAĆ nasycenie — `hue-rotate`
+  nie ma pokrętła.
+- Ograniczenie do zapamiętania przy scenach Manima: bardzo jaskrawe barwy nie mieszczą się
+  w skali i są przycinane (żółty `#ffcc00` → brązowy `#714600`, czysta zieleń blednie).
+  `tools/odwroc-kolor.py` douczony nowego filtru i ostrzega o przycięciu; COLORS.md zaktualizowane.
+- ZOSTAWIONE DO DECYZJI (TODO): pomarańczowy `--wg-niewiadoma` w ciemnym motywie istniał tylko
+  po to, żeby zgadzać się z filmem po starym filtrze. Teraz film zostaje niebieski, więc widżet
+  i film pokazują dwie różne barwy tego samego. Nie przemalowane po cichu, bo dotyka kilku zadań.
+
 [ZROBIONE 2026-08-15] (Fable 5, medium) v48 — poprawki widżetów maja po uwagach Henricha z testów.
 [2026-maj, widzety, pilotaz-fable]
 
