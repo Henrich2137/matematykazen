@@ -1,5 +1,36 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-16] (Opus 5, xhigh) v57 - poprawki zad. 20, 26 i 33.2 po uwagach Henricha
+plus wyrównanie formatowania rozwiązań do stylu Fable.
+[2026-maj, widzety, kolory, formatowanie]
+
+- Trzy nowe tokeny w palecie (`--wg-niewiadoma-jasna`, `--wg-zolty-jasny`, `--wg-wykres-jasny`)
+  w obu motywach. Potrzebne tam, gdzie JEDNA prosta wyznacza DWA odcinki naraz.
+  Fiolet jasny musiał być ciemniejszy, niż wynikałoby z nazwy (#8e57bb, nie #a97fd0): Chrome
+  dobiera kolor toru suwaka kontrastowo do accent-color i przy jaśniejszym fiolecie malował
+  tor na czarno, co wyglądało jak usterka.
+- Zad. 20: skala 11 -> 14 px na jednostkę, płótno 380 -> 430 px, zakres przesuwania rozszerzony
+  tak, że |OA| dochodzi do 16, a |OC| do 12 (życzenie Henricha). Kolor niosą już TYLKO cztery
+  odcinki z wypisaną długością: OA i OD w dwóch odcieniach błękitu (prosta k), OC i OB w dwóch
+  odcieniach żółci (prosta l). Same proste k, l, m, n oraz ich nazwy są neutralne, więc kawałki
+  m i n poza pasem między równoległymi wychodzą szare same z siebie.
+- Zad. 26: punkt (2, -2) zmieniony z pomarańczowego na neutralny (to gwóźdź, nie odpowiedź).
+  Oba suwaki w barwach prostej k, którą sterują. Odczyt przebudowany wg szkicu Henricha:
+  równanie prostej k pod suwakami w tych samych odcieniach, niżej zdanie „Prosta l przecina
+  oś y-greków w punkcie:" i sam wynik na niebiesko.
+- Zad. 33.2: piłeczka czeka w (0, 0), przycisk „wystrzel piłeczkę" puszcza ją po torze w tempie
+  RZECZYWISTYM (przy 14,7 lot trwa 3 s, zmierzone 3,04 s), przy piłeczce jedzie licznik „t = … s".
+  W locie przycisk jest zablokowany, ruszenie suwaka sprowadza piłeczkę na ziemię, a przy zerowej
+  wartości przycisk jest nieaktywny. Pułapka przy pisaniu: zegar trzeba wyzerować PRZED
+  sprawdzeniem stanu przycisku, inaczej blokada nie zdąży się włączyć.
+- Formatowanie sześciu moich rozwiązań (14, 19, 20, 26, 33.1, 33.2) wyrównane do Fable, w dwóch
+  punktach wskazanych przez Henricha: krótkie wprowadzenie przed wzorem („Postać kanoniczna:"
+  zamiast zdania z numerem strony) oraz jednostki poza wzorem (`\(t = 3\) s`, nie `\(t = 3\ \text{s}\)`).
+  Puste linie między krokami ZOSTAJĄ - Henrich świadomie ich nie wybrał, bo sam o nie prosił po zad. 14.
+- Weryfikacja (Playwright): zero błędów KaTeX i strony na desktopie i przy 485px w obu motywach,
+  przeciąganie obu prostych w zad. 20, oba suwaki w zad. 26, pełny cykl lotu piłeczki wraz
+  z przerwaniem go suwakiem.
+
 [ZROBIONE 2026-08-16] (Opus 5, xhigh) v56 - zad. 20, 26, 33.1 i 33.2 (2026-maj) w komplecie.
 [2026-maj, widzety, zadanie-20, zadanie-26, zadanie-33]
 

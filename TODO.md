@@ -8,16 +8,34 @@ Oto plik który tworzy Henrich (ja, użytkownik).
       - zad 14 DONE
       - zad 19 DONE
         - wstaw też rysunek do treści, ale zrób go mniejszego na komputerach bo fable przesadził w poprzednich zadaniach
-  
-  Prompt dla Opusa Zad 18, nie kasuj go: 
-  Feedback po zad 14:
-  Rozwiązanie zwykłe - zrób więcej przerw, nowych linijek w linijkach 3-6
-  Rozwiązanie interaktywne:
-  Zdaje mi się, że powiedziałem jasno aby zroibć jedną kartę ale musze przyznać, że na pierwszy rzut oka całkiem nieźle zrobiłeś obie.
-  1. Karta
-    - Strzłkę wektora przesuń poniżej wierzchołków, tam gdzie jest miejsce na wykresie. - Wystarczy pod nią mała liczba. Widać w którą stronę wskazuje, więce nie dopisu "w prawo".
-  2. Karta
-    - powiększ zakres, jeżeli to możliwe to możesz zrobić np <-2; 2>
+
+
+
+Prompt dla Opusa Zad 18, nie kasuj go:
+Zrób w wszysskich twoich zadaniach tekst i katex sformatowanywa taki sposób jak u zadaniach fable
+Zad 20 - Rozwiązanie interaktywne
+- powiększ tyhc render prostych
+- Spraw aby można było dojechać do 16 / 12 przesuwając te proste k i l
+- zmień odcienie tych kolorów tak by można było je odróżnić.
+- Zmień kolory prostych k, l oraz fragmentów n i m na zewnątrz tych równoległych na biały.
+Inaczej mówiąc: kolorowe mają zostać tylko odcienki z oznaczoną długością, reszta biała
+
+26.
+- Punkt 2 -2 pokoloruj na biało
+- Suwaki powinny być tym sammym kolorem z różnymi odcieniami co prosta k której równanie powinno być pod suwakami napisane w stylu 
+"
+k:   y = −1/3 x + 2  <- pokoloruj na odpowiednie odcienie fioletowego i biały
+
+Prosta l przecina oś y-greków w punkcie: 
+
+(0 , -4/3)  <- pokoloruj na niebiesko
+"
+33.2
+Dorób piłeczkę na 0, 0 i przycisk do wystrzelenia jej
+
+
+
+ARCHIWUM PROMPTÓW:
 
   Fable pracowało nad wybranymi zadaniami 1-13 i zrobiło nich:
     - Interaktywne rozwiązanie (widżet)
@@ -36,7 +54,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 
 
-  ARCHIWUM PROMPTÓW:
+  
 
   Zad 14. - Rozwiązanie interaktywne:
   Stwórz układ współrzędnych z wydocznymi wykresami funkcji f i g (2 parabole). Powinien istnieć suwak zmieniający wartość domyślnie ustawioną na 1 w f(x+1) tak aby parabola g się przesuwała prawo-lewo (odwrotnie niż suwak zwiększa wartość w prawą). Zrób takiego css aby przy liczba suwak był bardziej na sztywno a nie zależny od np. napisu po lewej, bo podczas przesuwania suwaka i zmiany ilość znaków napisie suwak skacze lewa-prawa.
@@ -77,6 +95,24 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + TESTOWANIE HENRICH
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945 
+
+  - poprawki po Twoich uwagach do zad. 20, 26 i 33.2 (v57)
+
+    - zad. 20: rysunek większy, a proste k, l, m i n są teraz szare; kolorowe zostały tylko cztery odcinki z wypisaną długością
+
+    - zad. 20: odcinki przy prostej k mają dwa odcienie błękitu, przy l dwa odcienie żółci; sprawdź, czy da się je rozróżnić także w ciemnym motywie
+
+    - zad. 20: przeciągnij k do końca w lewo (ma dojść do 16) i l do końca w prawo (do 12)
+
+    - zad. 26: punkt (2, -2) jest czarny, oba suwaki fioletowe w dwóch odcieniach, a pod nimi stoi równanie prostej k w tych samych barwach
+
+    - zad. 26: wynik dla prostej l jest niebieski, pod zdaniem „Prosta l przecina oś y-greków w punkcie:"
+
+    - zad. 33.2: kliknij „wystrzel piłeczkę"; ma lecieć po torze dokładnie tyle sekund, ile mówi zadanie, z licznikiem czasu przy niej
+
+    - zad. 33.2: w trakcie lotu przycisk jest zablokowany, a ruszenie suwaka sprowadza piłeczkę na ziemię
+
+    - rozwiązania opisowe wszystkich moich zadań (14, 19, 20, 26, 33.1, 33.2) mają teraz krótkie wprowadzenie do wzoru i jednostki poza wzorem, jak u Fable
 
   - zadania 20, 26, 33.1 i 33.2 w arkuszu 2026-maj: nowy komplet podpowiedź + rozwiązanie + widżet (v56)
 

@@ -69,7 +69,8 @@ function widgetRzutPileczki(container) {
     const u = pilUklad(canvas);
 
     const controls = wgElement("div", "widget-controls",
-        `<span class="wg-suwak-etykieta"></span><input type="range" min="0" max="29.4" step="2.45" value="14.7">`);
+        `<span class="wg-suwak-etykieta"></span><input type="range" min="0" max="29.4" step="2.45" value="14.7">` +
+        `<br><button type="button" class="wg-reset"></button>`);
     controls.style.setProperty("--wg-etykieta-szer", "96px");
     wrap.appendChild(controls);
     const readout = wgElement("div", "widget-readout", "");
@@ -77,8 +78,11 @@ function widgetRzutPileczki(container) {
     container.appendChild(wrap);
 
     const suwak = controls.querySelector("input");
+    const przycisk = controls.querySelector("button");
     const etykieta = controls.querySelector(".wg-suwak-etykieta");
-    const state = { b: PIL_B0 };
+    // t = null znaczy "piłeczka czeka na ziemi"; liczba to chwila lotu.
+    const state = { b: PIL_B0, t: null };
+    let klatka = null, startLotu = 0;
 
     const nieb = tex => `\\textcolor{${wgHex(WG_KOLORY.niewiadoma)}}{${tex}}`;
     const pom = tex => `\\textcolor{${wgHex(WG_KOLORY.punkt)}}{${tex}}`;
@@ -127,6 +131,24 @@ function widgetRzutPileczki(container) {
             ctx.arc(u.px(tUpadek), u.py(0), 6.5, 0, Math.PI * 2);
             ctx.fill();
 
+            // Piłeczka: czeka w (0, 0) albo leci po torze w tempie rzeczywistym.
+            const tp = state.t === null ? 0 : Math.min(state.t, tUpadek);
+            const hp = -PIL_G * tp * tp + b * tp;
+            ctx.fillStyle = WG_KOLORY.tekst;
+            ctx.beginPath();
+            ctx.arc(u.px(tp), u.py(hp), 8, 0, Math.PI * 2);
+            ctx.fill();
+            // Licznik czasu przy piłeczce, żeby było widać, że to sekundy.
+            ctx.font = "bold 13px Arial";
+            ctx.textAlign = "left";
+            ctx.textBaseline = "middle";
+            const zegar = `t = ${wgTexLiczba(tp, 2).replace("{,}", ",")} s`;
+            const szer = ctx.measureText(zegar).width;
+            ctx.fillStyle = WG_KOLORY.plotno;
+            ctx.fillRect(u.px(tp) + 11, u.py(hp) - 9, szer + 6, 18);
+            ctx.fillStyle = WG_KOLORY.tekst;
+            ctx.fillText(zegar, u.px(tp) + 14, u.py(hp));
+
             // Podpisy obu momentów pod osią czasu, na tle płótna.
             ctx.font = "bold 12px Arial";
             ctx.textAlign = "center";
@@ -157,11 +179,51 @@ function widgetRzutPileczki(container) {
             `upadek wypada dwa razy później niż szczyt, bo parabola jest symetryczna`);
     }
 
+    // Lot w tempie rzeczywistym: chwila na wykresie to naprawdę ta sama liczba
+    // sekund, o którą pyta zadanie. Po dolocie piłeczka zostaje na ziemi.
+    function lec() {
+        const tUpadek = state.b / PIL_G;
+        if (tUpadek <= 0) return;
+        startLotu = performance.now();
+        cancelAnimationFrame(klatka);
+        // Zegar rusza PRZED sprawdzeniem stanu przycisku, inaczej ustawPrzycisk
+        // widzi jeszcze piłeczkę na ziemi i nie blokuje ponownego strzału.
+        state.t = 0;
+        const krok = () => {
+            state.t = (performance.now() - startLotu) / 1000;
+            if (state.t >= tUpadek) {
+                state.t = tUpadek;
+                draw();
+                ustawPrzycisk();
+                return;
+            }
+            draw();
+            klatka = requestAnimationFrame(krok);
+        };
+        ustawPrzycisk();
+        krok();
+    }
+
+    function leci() {
+        return state.t !== null && state.t < state.b / PIL_G;
+    }
+
+    function ustawPrzycisk() {
+        wgUstawHTML(przycisk, leci() ? "leci…" : "wystrzel piłeczkę");
+        przycisk.disabled = leci() || state.b === 0;
+    }
+
+    przycisk.addEventListener("click", lec);
     suwak.addEventListener("input", () => {
         state.b = parseFloat(suwak.value);
+        // Zmiana wzoru w locie nie ma sensu: piłeczka wraca na ziemię.
+        cancelAnimationFrame(klatka);
+        state.t = null;
+        ustawPrzycisk();
         draw();
     });
     // Przemalowanie po zmianie motywu (paleta z CSS, widgets/_helpers.js).
     wgZarejestrujRysowanie(canvas, draw);
+    ustawPrzycisk();
     draw();
 }

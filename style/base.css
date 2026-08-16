@@ -113,6 +113,13 @@
     --wg-punkt: #e8871e;      /* pomarańczowy punkt/łuk */
     --wg-zolty: #c99700;      /* punkt testowy na osi (zad 1) */
     --wg-niewiadoma: #0077b6; /* x i liczba wchodząca na jego miejsce (podstawianie) */
+    /* Jaśniejsze warianty trzech barw widżetowych. Potrzebne tam, gdzie jedna
+       prosta wyznacza DWA odcinki naraz (zad. 20 maja): odcinki muszą się dać
+       odróżnić, a jednocześnie zostać w rodzinie koloru swojej prostej.
+       Ten sam wzorzec dla suwaków sterujących jedną prostą (zad. 26). */
+    --wg-niewiadoma-jasna: #5aa8d6;
+    --wg-zolty-jasny: #e0c060;
+    --wg-wykres-jasny: #8e57bb;
     --wg-slupek: #c9b3dd;     /* wypełnienie słupków */
     --wg-etykieta-info: #9bb8d4; /* blada niebieska etykieta obszaru */
     --wg-obszar-ok: rgba(10, 179, 47, 0.08);
@@ -251,6 +258,9 @@
            Do 2026-08-16 był tu pomarańcz #eb9614: stary filtr zamieniał wtedy
            błękit w filmie na pomarańcz i widżet się do tego dopasowywał. */
         --wg-niewiadoma: #46aadf;
+        --wg-niewiadoma-jasna: #8fcbec;
+        --wg-zolty-jasny: #efd48c;
+        --wg-wykres-jasny: #c9a8e2;
         --wg-slupek: #5b4470;
         --wg-etykieta-info: #7f9fbe;
         --wg-obszar-ok: rgba(60, 207, 90, 0.16);
@@ -342,6 +352,9 @@ html.theme-dark {
     --wg-zolty: #e0b64a;
     /* Patrz bliźniaczy blok wyżej: to jest błękit #0077b6 z filmu po filtrze. */
     --wg-niewiadoma: #46aadf;
+    --wg-niewiadoma-jasna: #8fcbec;
+    --wg-zolty-jasny: #efd48c;
+    --wg-wykres-jasny: #c9a8e2;
     --wg-slupek: #5b4470;
     --wg-etykieta-info: #7f9fbe;
     --wg-obszar-ok: rgba(60, 207, 90, 0.16);

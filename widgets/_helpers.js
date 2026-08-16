@@ -241,6 +241,9 @@ const WG_KOLORY = {
     punkt: "#e8871e",         // pomarańcz
     zolty: "#c99700",
     niewiadoma: "#0077b6",   // x i liczba na jego miejscu (podstawianie)
+    niewiadomaJasna: "#5aa8d6", // drugi odcinek tej samej prostej (zad. 20)
+    zoltyJasny: "#e0c060",
+    wykresJasny: "#8e57bb",
     zielony: "#2e7d32",       // --accent-green (środek osi w zad. 1)
     slupek: "#c9b3dd",
     etykietaInfo: "#9bb8d4",
@@ -266,6 +269,9 @@ const WG_ZMIENNE = {
     punkt: "--wg-punkt",
     zolty: "--wg-zolty",
     niewiadoma: "--wg-niewiadoma",
+    niewiadomaJasna: "--wg-niewiadoma-jasna",
+    zoltyJasny: "--wg-zolty-jasny",
+    wykresJasny: "--wg-wykres-jasny",
     zielony: "--accent-green",
     slupek: "--wg-slupek",
     etykietaInfo: "--wg-etykieta-info",

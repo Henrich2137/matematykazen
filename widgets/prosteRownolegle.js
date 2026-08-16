@@ -5,8 +5,9 @@
 // wolny prostej l wynika z punktu, przez który ona przechodzi, więc suwak b
 // rusza samą prostą k i nie zmienia odpowiedzi ani na jotę. Uczeń rusza b
 // i widzi, że wynik stoi; rusza a i wynik natychmiast się zmienia.
-// Kolory: fiolet = prosta k (dana), błękit = prosta l i jej punkt na osi y,
-// pomarańcz = punkt (2, -2), którym l jest przybita.
+// Kolory: dwa odcienie fioletu = prosta k i oba suwaki, które nią sterują
+// (jaśniejszy odcień dla wyrazu wolnego), błękit = prosta l i szukany punkt
+// na osi y. Punkt (2, -2) zostaje neutralny: to gwóźdź, nie odpowiedź.
 
 const ROWN_ZAKRES = { X0: -3.5, X1: 6.5, Y0: -5.5, Y1: 3.5, szer: 520 };
 const ROWN_PX = 2, ROWN_PY = -2;    // punkt, przez który przechodzi l
@@ -67,6 +68,7 @@ function widgetProsteRownolegle(container) {
 
     const nieb = tex => `\\textcolor{${wgHex(WG_KOLORY.niewiadoma)}}{${tex}}`;
     const fio = tex => `\\textcolor{${wgHex(WG_KOLORY.wykres)}}{${tex}}`;
+    const fioJasny = tex => `\\textcolor{${wgHex(WG_KOLORY.wykresJasny)}}{${tex}}`;
 
     function draw() {
         const { a, b } = state;
@@ -79,7 +81,7 @@ function widgetProsteRownolegle(container) {
         rownProsta(ctx, u, a, bl, WG_KOLORY.niewiadoma, 2.5);
 
         // Punkt (2, -2): gwóźdź, na którym wisi prosta l.
-        ctx.fillStyle = WG_KOLORY.punkt;
+        ctx.fillStyle = WG_KOLORY.tekst;
         ctx.beginPath();
         ctx.arc(u.px(ROWN_PX), u.py(ROWN_PY), 7, 0, Math.PI * 2);
         ctx.fill();
@@ -100,18 +102,21 @@ function widgetProsteRownolegle(container) {
             ctx.fillText(nazwa, u.px(u.X1 - 0.35), u.py(yk));
         });
 
-        suwakA.style.accentColor = wgHex(WG_KOLORY.niewiadoma);
-        suwakB.style.accentColor = wgHex(WG_KOLORY.wykres);
-        wgUstawHTML(etykietaA, wgMath(nieb(`a = ${rownUlamek(a)}`)));
-        wgUstawHTML(etykietaB, wgMath(fio(`b = ${wgTexLiczba(b, 1)}`)));
+        // Oba suwaki w barwach prostej k, którą sterują.
+        suwakA.style.accentColor = wgHex(WG_KOLORY.wykres);
+        suwakB.style.accentColor = wgHex(WG_KOLORY.wykresJasny);
+        wgUstawHTML(etykietaA, wgMath(fio(`a = ${rownUlamek(a)}`)));
+        wgUstawHTML(etykietaB, wgMath(fioJasny(`b = ${wgTexLiczba(b, 1)}`)));
 
         const trafiony = Math.round(a * ROWN_KROK) === -4;
+        // Pod suwakami stoi równanie prostej k w tych samych barwach, co one
+        // (układ zamówiony przez Henricha), a niżej sam wynik dla prostej l.
+        // Znak wyrazu wolnego wchodzi do zapisu, żeby nie wyszło "x + -2".
         wgUstawHTML(readout,
-            // Znak wyrazu wolnego wchodzi do zapisu, żeby nie wyszło "x + -4/3".
-            wgMath(`l\\text{: } y = ${nieb(rownUlamek(a))}x ${bl < 0 ? "-" : "+"} ${nieb(rownUlamek(Math.abs(bl)))}`) + `<br>` +
-            wgMath(`l \\cap Oy = (0,\\ ${nieb(`\\boldsymbol{${rownUlamek(bl)}}`)})`) +
-            (trafiony ? ` <span class="wg-ok">✓</span>` : "") + `<br>` +
-            `suwak ${wgMath(fio("b"))} rusza samą prostą ${wgMath("k")}, a wynik stoi w miejscu`);
+            wgMath(`k\\text{: } y = ${fio(rownUlamek(a))}x ${b < 0 ? "-" : "+"} ${fioJasny(wgTexLiczba(Math.abs(b), 1))}`) + `<br>` +
+            `Prosta ${wgMath("l")} przecina oś y-greków w punkcie:` + `<br>` +
+            wgMath(nieb(`\\boldsymbol{(0,\\ ${rownUlamek(bl)})}`)) +
+            (trafiony ? ` <span class="wg-ok">✓</span>` : ""));
     }
 
     suwakA.addEventListener("input", () => {

@@ -7,16 +7,24 @@
 // przecięcia jadą po nich). Wszystkie cztery odcinki zmieniają wtedy długość,
 // ale oba stosunki zostają sobie równe. Dopiero to tłumaczy, skąd wolno
 // ułożyć proporcję.
-// Kolory: fiolet = proste m i n (nieruchome), błękit = k z odcinkami OA i OD,
-// żółty = l z odcinkami OC i OB.
+// Kolory: kolorowe są WYŁĄCZNIE cztery odcinki z wypisaną długością, reszta
+// rysunku (proste k, l oraz kawałki m i n poza pasem między równoległymi) jest
+// neutralna. Odcinki przy prostej k dostają dwa odcienie błękitu, odcinki przy
+// l dwa odcienie żółci: widać i który odcinek jest który, i która prosta go
+// wyznacza.
 
 // Kąty m i n dobrane tak, żeby przy pionowych k oraz l wyszły dokładnie
 // długości z zadania (rysunek w arkuszu nie jest w skali).
 const PROP_M = 60;          // stopnie, prosta m
 const PROP_N = -48.19;      // stopnie, prosta n
-const PROP_SKALA = 11;      // pikseli na jednostkę długości
-const PROP_XK = -66;        // położenie k z zadania (piksele od O)
-const PROP_XL = 44;         // położenie l z zadania
+const PROP_SKALA = 14;      // pikseli na jednostkę długości
+const PROP_XK = -84;        // położenie k z zadania (|OA| = 12)
+const PROP_XL = 56;         // położenie l z zadania (|OC| = 8)
+// Widełki przesuwania. Górne granice biorą się z życzenia Henricha, żeby dało
+// się dojechać do |OA| = 16 oraz |OC| = 12; dolne trzymają proste z dala od O,
+// bo tam figura by się zdegenerowała.
+const PROP_XK_MIN = -112, PROP_XK_MAX = -28;
+const PROP_XL_MIN = 28, PROP_XL_MAX = 84;
 
 function propKierunek(deg) {
     return { x: Math.cos(deg * Math.PI / 180), y: -Math.sin(deg * Math.PI / 180) };
@@ -53,43 +61,48 @@ function widgetProporcjeProste(container) {
     wrap.appendChild(wgElement("div", "widget-title",
         `Przesuwaj proste ${wgMath("k")} i ${wgMath("l")} na boki. Proste ${wgMath("m")} i ${wgMath("n")} stoją w miejscu.`));
 
-    const canvas = wgCanvas(wrap, 520, 380);
+    const canvas = wgCanvas(wrap, 520, 430);
     const ctx = canvas.getContext("2d");
     const readout = wgElement("div", "widget-readout", "");
     wrap.appendChild(readout);
     container.appendChild(wrap);
 
-    const O = { x: 250, y: 186 };
+    const O = { x: 250, y: 175 };
     const uM = propKierunek(PROP_M), uN = propKierunek(PROP_N);
     const state = { xk: PROP_XK, xl: PROP_XL };
     let ciagnieta = null;   // "k" albo "l"
 
-    const nieb = tex => `\\textcolor{${wgHex(WG_KOLORY.niewiadoma)}}{${tex}}`;
-    const zol = tex => `\\textcolor{${wgHex(WG_KOLORY.zolty)}}{${tex}}`;
+    // Cztery odcienie: ciemniejszy dla odcinka bliższego prostej m, jaśniejszy
+    // dla odcinka na prostej n. Te same barwy wracają w odczycie.
+    const barwaOA = () => WG_KOLORY.niewiadoma, barwaOD = () => WG_KOLORY.niewiadomaJasna;
+    const barwaOC = () => WG_KOLORY.zolty, barwaOB = () => WG_KOLORY.zoltyJasny;
+    const kol = (kolor, tex) => `\\textcolor{${wgHex(kolor)}}{${tex}}`;
 
     function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         const A = propPrzeciecie(O, uM, state.xk), C = propPrzeciecie(O, uM, state.xl);
         const D = propPrzeciecie(O, uN, state.xk), B = propPrzeciecie(O, uN, state.xl);
 
-        // Proste m i n przez cały kadr (to na nich leżą odcinki AC i BD).
-        [[uM, "m"], [uN, "n"]].forEach(([u, nazwa]) => {
-            const t = 400;
+        // Proste m i n przez cały kadr, neutralnie. Kolorowe fragmenty rysujemy
+        // na nich dopiero za chwilę, więc poza pasem między k i l zostaje szarość.
+        [uM, uN].forEach(u => {
+            const t = 460;
             propOdcinek(ctx, { x: O.x - t * u.x, y: O.y - t * u.y },
-                { x: O.x + t * u.x, y: O.y + t * u.y }, WG_KOLORY.wykres, 1.6);
+                { x: O.x + t * u.x, y: O.y + t * u.y }, WG_KOLORY.liniaMocna, 1.6);
         });
 
-        // Proste k i l, pionowe, przez cały kadr.
-        [[state.xk, WG_KOLORY.niewiadoma, "k"], [state.xl, WG_KOLORY.zolty, "l"]].forEach(([xp, kolor, nazwa]) => {
-            propOdcinek(ctx, { x: O.x + xp, y: 6 }, { x: O.x + xp, y: canvas.height - 6 }, kolor, 2.5);
-            propPodpis(ctx, O.x + xp, 14, nazwa, kolor);
+        // Proste k i l, pionowe, też neutralne: kolor niosą tylko odcinki.
+        [[state.xk, "k"], [state.xl, "l"]].forEach(([xp, nazwa]) => {
+            propOdcinek(ctx, { x: O.x + xp, y: 6 }, { x: O.x + xp, y: canvas.height - 6 },
+                WG_KOLORY.liniaMocna, 2);
+            propPodpis(ctx, O.x + xp, canvas.height - 13, nazwa, WG_KOLORY.tekst);
         });
 
-        // Odcinki od O do czterech punktów, pogrubione: to o nich mówi zadanie.
-        propOdcinek(ctx, O, A, WG_KOLORY.niewiadoma, 4);
-        propOdcinek(ctx, O, D, WG_KOLORY.niewiadoma, 4);
-        propOdcinek(ctx, O, C, WG_KOLORY.zolty, 4);
-        propOdcinek(ctx, O, B, WG_KOLORY.zolty, 4);
+        // Cztery odcinki z zadania, każdy własnym odcieniem.
+        propOdcinek(ctx, O, A, barwaOA(), 4.5);
+        propOdcinek(ctx, O, D, barwaOD(), 4.5);
+        propOdcinek(ctx, O, C, barwaOC(), 4.5);
+        propOdcinek(ctx, O, B, barwaOB(), 4.5);
 
         // Punkty i ich nazwy, odsunięte na zewnątrz od O.
         const nazwij = (P, nazwa, kolor) => {
@@ -100,10 +113,10 @@ function widgetProporcjeProste(container) {
             const d = Math.hypot(P.x - O.x, P.y - O.y) || 1;
             propPodpis(ctx, P.x + (P.x - O.x) / d * 17, P.y + (P.y - O.y) / d * 17, nazwa, kolor);
         };
-        nazwij(A, "A", WG_KOLORY.niewiadoma);
-        nazwij(D, "D", WG_KOLORY.niewiadoma);
-        nazwij(C, "C", WG_KOLORY.zolty);
-        nazwij(B, "B", WG_KOLORY.zolty);
+        nazwij(A, "A", barwaOA());
+        nazwij(D, "D", barwaOD());
+        nazwij(C, "C", barwaOC());
+        nazwij(B, "B", barwaOB());
         ctx.fillStyle = WG_KOLORY.tekst;
         ctx.beginPath();
         ctx.arc(O.x, O.y, 4.5, 0, Math.PI * 2);
@@ -115,16 +128,16 @@ function widgetProporcjeProste(container) {
         // Odsunięcie 105 px: dalej niż najdalsze położenie prostej k (84 px),
         // żeby nazwa nie wpadła pod przesuwaną prostą ani pod punkty A i D.
         [[uM, "m"], [uN, "n"]].forEach(([u, nazwa]) => {
-            const dx = -105;
-            propPodpis(ctx, O.x + dx, O.y + dx * u.y / u.x, nazwa, WG_KOLORY.wykres);
+            const dx = -135;
+            propPodpis(ctx, O.x + dx, O.y + dx * u.y / u.x, nazwa, WG_KOLORY.tekst);
         });
 
         // Długości odcinków w jednostkach zadania.
         const dl = P => P.dl / PROP_SKALA;
         const OA = dl(A), OC = dl(C), OD = dl(D), OB = dl(B);
         // Podpisy długości w połowie każdego odcinka.
-        [[A, OA, WG_KOLORY.niewiadoma], [C, OC, WG_KOLORY.zolty],
-         [D, OD, WG_KOLORY.niewiadoma], [B, OB, WG_KOLORY.zolty]].forEach(([P, v, kolor]) => {
+        [[A, OA, barwaOA()], [C, OC, barwaOC()],
+         [D, OD, barwaOD()], [B, OB, barwaOB()]].forEach(([P, v, kolor]) => {
             // Dwa miejsca po przecinku, nie jedno: przy jednym iloraz liczony
             // z zaokrąglonych długości rozjeżdżał się z pokazanym stosunkiem
             // (np. 11,2/10,6 = 1,06 przy wypisanym 1,05).
@@ -140,9 +153,9 @@ function widgetProporcjeProste(container) {
         const stosunek = Math.abs(state.xk) / state.xl;
         wgUstawHTML(readout,
             wgMath(`\\frac{|OA|}{|OC|} = \\frac{|OD|}{|OB|}`) + `<br>` +
-            wgMath(`\\frac{${nieb(wgTexLiczba(OA, 2))}}{${zol(wgTexLiczba(OC, 2))}} = ` +
+            wgMath(`\\frac{${kol(barwaOA(), wgTexLiczba(OA, 2))}}{${kol(barwaOC(), wgTexLiczba(OC, 2))}} = ` +
                    `${wgTexLiczba(stosunek, 2)} = ` +
-                   `\\frac{${nieb(wgTexLiczba(OD, 2))}}{${zol(wgTexLiczba(OB, 2))}}`) +
+                   `\\frac{${kol(barwaOD(), wgTexLiczba(OD, 2))}}{${kol(barwaOB(), wgTexLiczba(OB, 2))}}`) +
             (trafiony ? ` <span class="wg-ok">✓</span>` : ""));
     }
 
@@ -159,9 +172,9 @@ function widgetProporcjeProste(container) {
         pos => {
             const x = pos.x - O.x;
             if (ciagnieta === "k") {
-                state.xk = Math.round(wgPrzyciagnij(Math.max(-84, Math.min(-22, x)), [PROP_XK], 3));
+                state.xk = Math.round(wgPrzyciagnij(Math.max(PROP_XK_MIN, Math.min(PROP_XK_MAX, x)), [PROP_XK], 3));
             } else {
-                state.xl = Math.round(wgPrzyciagnij(Math.max(22, Math.min(84, x)), [PROP_XL], 3));
+                state.xl = Math.round(wgPrzyciagnij(Math.max(PROP_XL_MIN, Math.min(PROP_XL_MAX, x)), [PROP_XL], 3));
             }
             draw();
         });
