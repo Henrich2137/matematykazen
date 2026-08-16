@@ -108,7 +108,9 @@ ARCHIWUM PROMPTÓW:
 
     - zad. 26: wynik dla prostej l jest niebieski, pod zdaniem „Prosta l przecina oś y-greków w punkcie:"
 
-    - zad. 33.2: kliknij „wystrzel piłeczkę"; ma lecieć po torze dokładnie tyle sekund, ile mówi zadanie, z licznikiem czasu przy niej
+    - zad. 33.2 (v58): pociskiem jest teraz biało-czarna piłka nożna, przycisk „Wystrzel piłeczkę" stoi w ramce po lewej od suwaka, a licznik czasu pod nim
+
+    - zad. 33.2: kliknij przycisk; piłka ma lecieć po torze dokładnie tyle sekund, ile mówi zadanie (przy 14,7 to 3 s), a napis na przycisku zmienia się na „Leci…" bez skakania układu
 
     - zad. 33.2: w trakcie lotu przycisk jest zablokowany, a ruszenie suwaka sprowadza piłeczkę na ziemię
 

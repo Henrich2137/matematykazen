@@ -56,6 +56,43 @@ function pilRysujOsie(ctx, u) {
     ctx.fillText("h [m]", u.px(0) + 8, u.py(u.Y1) + 14);
 }
 
+// Piłka nożna: białe koło z czarnym obrysem, pięciokąt w środku i trzy szwy
+// biegnące do brzegu. Przy tym rozmiarze to wystarcza, żeby czytało się jako
+// piłka, a nie kolejna kropka pomiarowa jak szczyt czy moment upadku.
+function pilRysujPilke(ctx, x, y, r) {
+    ctx.fillStyle = WG_KOLORY.pilkaTlo;
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = WG_KOLORY.pilkaWzor;
+    ctx.lineWidth = 1.4;
+    ctx.stroke();
+
+    const wierzcholek = i => {
+        const kat = (-90 + i * 72) * Math.PI / 180;
+        return { x: x + r * 0.42 * Math.cos(kat), y: y + r * 0.42 * Math.sin(kat) };
+    };
+    ctx.fillStyle = WG_KOLORY.pilkaWzor;
+    ctx.beginPath();
+    for (let i = 0; i < 5; i++) {
+        const P = wierzcholek(i);
+        if (i === 0) ctx.moveTo(P.x, P.y);
+        else ctx.lineTo(P.x, P.y);
+    }
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.lineWidth = 1.2;
+    for (let i = 0; i < 5; i += 2) {
+        const P = wierzcholek(i);
+        const kat = Math.atan2(P.y - y, P.x - x);
+        ctx.beginPath();
+        ctx.moveTo(P.x, P.y);
+        ctx.lineTo(x + r * Math.cos(kat), y + r * Math.sin(kat));
+        ctx.stroke();
+    }
+}
+
 function widgetRzutPileczki(container) {
     const wrap = wgElement("div", "widget");
     wrap.appendChild(wgElement("div", "widget-title",
@@ -69,16 +106,19 @@ function widgetRzutPileczki(container) {
     const u = pilUklad(canvas);
 
     const controls = wgElement("div", "widget-controls",
-        `<span class="wg-suwak-etykieta"></span><input type="range" min="0" max="29.4" step="2.45" value="14.7">` +
-        `<br><button type="button" class="wg-reset"></button>`);
-    controls.style.setProperty("--wg-etykieta-szer", "96px");
+        `<span class="wg-akcja-kolumna">` +
+        `<button type="button" class="wg-akcja">Wystrzel<br>piłeczkę</button>` +
+        `<div class="wg-akcja-zegar"></div></span>` +
+        `<span class="wg-suwak-etykieta"></span><input type="range" min="0" max="29.4" step="2.45" value="14.7">`);
+    controls.style.setProperty("--wg-etykieta-szer", "72px");
     wrap.appendChild(controls);
     const readout = wgElement("div", "widget-readout", "");
     wrap.appendChild(readout);
     container.appendChild(wrap);
 
     const suwak = controls.querySelector("input");
-    const przycisk = controls.querySelector("button");
+    const przycisk = controls.querySelector(".wg-akcja");
+    const zegar = controls.querySelector(".wg-akcja-zegar");
     const etykieta = controls.querySelector(".wg-suwak-etykieta");
     // t = null znaczy "piłeczka czeka na ziemi"; liczba to chwila lotu.
     const state = { b: PIL_B0, t: null };
@@ -131,23 +171,10 @@ function widgetRzutPileczki(container) {
             ctx.arc(u.px(tUpadek), u.py(0), 6.5, 0, Math.PI * 2);
             ctx.fill();
 
-            // Piłeczka: czeka w (0, 0) albo leci po torze w tempie rzeczywistym.
+            // Piłka: czeka w (0, 0) albo leci po torze w tempie rzeczywistym.
+            // Licznik czasu siedzi pod przyciskiem, nie przy niej.
             const tp = state.t === null ? 0 : Math.min(state.t, tUpadek);
-            const hp = -PIL_G * tp * tp + b * tp;
-            ctx.fillStyle = WG_KOLORY.tekst;
-            ctx.beginPath();
-            ctx.arc(u.px(tp), u.py(hp), 8, 0, Math.PI * 2);
-            ctx.fill();
-            // Licznik czasu przy piłeczce, żeby było widać, że to sekundy.
-            ctx.font = "bold 13px Arial";
-            ctx.textAlign = "left";
-            ctx.textBaseline = "middle";
-            const zegar = `t = ${wgTexLiczba(tp, 2).replace("{,}", ",")} s`;
-            const szer = ctx.measureText(zegar).width;
-            ctx.fillStyle = WG_KOLORY.plotno;
-            ctx.fillRect(u.px(tp) + 11, u.py(hp) - 9, szer + 6, 18);
-            ctx.fillStyle = WG_KOLORY.tekst;
-            ctx.fillText(zegar, u.px(tp) + 14, u.py(hp));
+            pilRysujPilke(ctx, u.px(tp), u.py(-PIL_G * tp * tp + b * tp), 9);
 
             // Podpisy obu momentów pod osią czasu, na tle płótna.
             ctx.font = "bold 12px Arial";
@@ -165,6 +192,8 @@ function widgetRzutPileczki(container) {
 
         suwak.style.accentColor = wgHex(WG_KOLORY.niewiadoma);
         wgUstawHTML(etykieta, wgMath(nieb(wgTexLiczba(b, 2))));
+        const tZegar = state.t === null ? 0 : Math.min(state.t, tUpadek);
+        wgUstawHTML(zegar, `t = ${wgTexLiczba(tZegar, 2).replace("{,}", ",")} s`);
 
         const trafiony = Math.abs(b - PIL_B0) < 1e-9;
         wgUstawHTML(readout,
@@ -209,7 +238,7 @@ function widgetRzutPileczki(container) {
     }
 
     function ustawPrzycisk() {
-        wgUstawHTML(przycisk, leci() ? "leci…" : "wystrzel piłeczkę");
+        wgUstawHTML(przycisk, leci() ? "Leci…" : "Wystrzel<br>piłeczkę");
         przycisk.disabled = leci() || state.b === 0;
     }
 

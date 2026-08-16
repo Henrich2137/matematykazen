@@ -18,6 +18,14 @@ plus wyrównanie formatowania rozwiązań do stylu Fable.
   Oba suwaki w barwach prostej k, którą sterują. Odczyt przebudowany wg szkicu Henricha:
   równanie prostej k pod suwakami w tych samych odcieniach, niżej zdanie „Prosta l przecina
   oś y-greków w punkcie:" i sam wynik na niebiesko.
+- Zad. 33.2 (dopracowane w v58 po uwagach Henricha): pociskiem jest biało-czarna piłka nożna
+  (białe koło, pięciokąt i trzy szwy), a nie kolejna kropka pomiarowa. Czerwona odpadła świadomie:
+  czerwień w tym projekcie znaczy błąd (COLORS.md). Kolory piłki mają własne tokeny BEZ wariantu
+  ciemnego, bo piłka nożna jest czarno-biała niezależnie od tła. Przycisk „Wystrzel piłeczkę"
+  przeniesiony do ramki po lewej od suwaka (styl przycisków odpowiedzi: lekka ramka, zaokrąglone
+  rogi), licznik czasu zszedł z płótna pod przycisk. Przycisk ma sztywne 52 px wysokości, bo napis
+  przełącza się z dwuwierszowego na jednowierszowy i bez tego suwak obok skakał w pionie; miara
+  musi być w pikselach, bo przy box-sizing: border-box wartość w em obejmuje padding i ramkę.
 - Zad. 33.2: piłeczka czeka w (0, 0), przycisk „wystrzel piłeczkę" puszcza ją po torze w tempie
   RZECZYWISTYM (przy 14,7 lot trwa 3 s, zmierzone 3,04 s), przy piłeczce jedzie licznik „t = … s".
   W locie przycisk jest zablokowany, ruszenie suwaka sprowadza piłeczkę na ziemię, a przy zerowej

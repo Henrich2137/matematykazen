@@ -1742,6 +1742,50 @@ canvas {
 .widget input.wg-b {
     border: 2px solid var(--accent-blue-strong);
 }
+/* Przycisk akcji w widżecie (zad. 33.2 maja: „wystrzel piłeczkę"), w stylu
+   przycisków odpowiedzi: lekka ramka, zaokrąglone rogi, tło strony. Stała
+   szerokość, bo napis przełącza się na „leci…" i bez niej suwak obok
+   przeskakiwałby w bok. Pod przyciskiem jest miejsce na licznik czasu. */
+.wg-akcja {
+    width: 112px;
+    /* Wysokość dwóch linii na stałe: napis przełącza się między dwuwierszowym
+       „Wystrzel piłeczkę" a jednowierszowym „Leci…", a bez tego suwak obok
+       i licznik pod spodem skakałyby w pionie. Wartość w pikselach, bo przy
+       box-sizing: border-box miara w em obejmowałaby też padding i ramkę,
+       więc dwuwierszowy napis i tak by ją rozepchnął. */
+    min-height: 52px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 8px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-kontrolka);
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: "STIX Two Math", "Lora", serif;
+    font-size: 15px;
+    line-height: 1.25;
+    cursor: pointer;
+}
+.wg-akcja:hover:not(:disabled) {
+    border-color: var(--accent-blue);
+}
+.wg-akcja:disabled {
+    color: var(--text-faint-2);
+    cursor: default;
+}
+/* Kolumna: przycisk, pod nim licznik czasu lotu. */
+.wg-akcja-kolumna {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 12px;
+    text-align: center;
+}
+.wg-akcja-zegar {
+    margin-top: 4px;
+    font-size: 14px;
+    color: var(--text-muted-2);
+}
 /* Przycisk resetu w kontrolkach widżetu — nie rozciągamy go jak zwykłych
    .light-button (30% szerokości), tylko trzymamy przy okienkach. */
 .widget .wg-reset {

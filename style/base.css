@@ -118,6 +118,11 @@
        odróżnić, a jednocześnie zostać w rodzinie koloru swojej prostej.
        Ten sam wzorzec dla suwaków sterujących jedną prostą (zad. 26). */
     --wg-niewiadoma-jasna: #5aa8d6;
+    /* Piłka nożna (zad. 33.2 maja) jest czarno-biała z natury, więc te dwa
+       kolory celowo NIE mają wariantu ciemnego: biała piłka czyta się dobrze
+       i na jasnym, i na ciemnym płótnie. */
+    --wg-pilka-tlo: #ffffff;
+    --wg-pilka-wzor: #1c1c1c;
     --wg-zolty-jasny: #e0c060;
     --wg-wykres-jasny: #8e57bb;
     --wg-slupek: #c9b3dd;     /* wypełnienie słupków */
