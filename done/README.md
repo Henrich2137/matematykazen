@@ -12,6 +12,21 @@ ZASADA PODZIAŁU (nie kalendarz!):
 - Jeden plik ≈ jedna partia zmian, mniej więcej to co weszło do mastera jednym wejściem.
   Partia może trwać 3 dni albo 3 tygodnie — długość nie ma znaczenia.
 
+ODNOŚNIKI DO COMMITÓW (zasada od 2026-08-16):
+- DOMYŚLNIE NIE WPISUJ HASZA. Wpis prawie zawsze jedzie w tym samym commicie co praca,
+  którą opisuje (zasada „jedna paczka = jeden commit"), więc hasz jest do odzyskania
+  bez zapisywania go, jednym poleceniem:
+  `git log -S'<kawałek nagłówka wpisu>' -- done/ | tail -3`
+  Ostatni commit z wyniku to ten, który wpis wprowadził. Sprawdzone na wpisie
+  „DO ZROBIENIA HOŚCIE" z 2026-08-14: wychodzi 14b0715.
+- Hasz (7 znaków, w nawiasie tuż za datą) dopisuj TYLKO tam, gdzie niesie informację,
+  której z samego wpisu odtworzyć się nie da:
+  - praca weszła kilkoma commitami, wtedy zakres, np. `469b81f..87849b8`,
+  - kod wszedł wcześniej niż wpis (inna sesja, inna maszyna, poprawka z hosta),
+  - wpis powołuje się na CUDZĄ zmianę, np. „psuło się od 87f065e".
+- Nie rób osobnego commita „uzupełnienie hasza". Kosztuje commit, a nie daje nic ponad
+  przepis wyżej.
+
 NIE wczytuj tych plików domyślnie — tylko gdy potrzebne jest szersze spojrzenie na projekt,
 rozwiązanie trudniejszego problemu albo sprawdzenie, czy/jak coś już kiedyś rozwiązano.
 Do szukania używaj najpierw tego indeksu (tagi niżej), potem grepa po konkretnym pliku.
