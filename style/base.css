@@ -246,7 +246,11 @@
         --wg-linia-mocna: #c4c4c4;
         --wg-punkt: #f0a04b;
         --wg-zolty: #e0b64a;
-        --wg-niewiadoma: #eb9614;
+        /* Dokładnie to, co filtr robi z błękitem #0077b6 z filmu, żeby widżet
+           i film pokazywały tę samą barwę „podstawiam pod x" (tools/odwroc-kolor.py).
+           Do 2026-08-16 był tu pomarańcz #eb9614: stary filtr zamieniał wtedy
+           błękit w filmie na pomarańcz i widżet się do tego dopasowywał. */
+        --wg-niewiadoma: #46aadf;
         --wg-slupek: #5b4470;
         --wg-etykieta-info: #7f9fbe;
         --wg-obszar-ok: rgba(60, 207, 90, 0.16);
@@ -336,7 +340,8 @@ html.theme-dark {
     --wg-linia-mocna: #c4c4c4;
     --wg-punkt: #f0a04b;
     --wg-zolty: #e0b64a;
-    --wg-niewiadoma: #eb9614;
+    /* Patrz bliźniaczy blok wyżej: to jest błękit #0077b6 z filmu po filtrze. */
+    --wg-niewiadoma: #46aadf;
     --wg-slupek: #5b4470;
     --wg-etykieta-info: #7f9fbe;
     --wg-obszar-ok: rgba(60, 207, 90, 0.16);

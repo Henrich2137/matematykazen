@@ -1,5 +1,31 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-16] (Opus 5, medium) v50 — domknięcie odwracania kolorów: jedna barwa w widżecie i w filmie.
+[dark-mode, kolory, widzety, dokumentacja]
+
+- `--wg-niewiadoma` w ciemnym motywie: pomarańcz `#eb9614` → błękit `#46aadf`, w obu
+  bliźniaczych blokach style/base.css. Widżetów nie trzeba było ruszać, wszystkie czytają token
+  przez `WG_KOLORY` (sprawdzone: 9 plików w widgets/ używa `WG_KOLORY.niewiadoma`, żaden nie ma
+  wpisanego hexa).
+- Powód: `#46aadf` to dokładnie to, co filtr v49 robi z błękitem `#0077b6` ze scen Manima.
+  Pomarańcz istniał tylko po to, żeby zgadzać się z filmem po STARYM filtrze; po v49 film zostaje
+  niebieski, więc widżet i film pokazywały dwie różne barwy tej samej rzeczy.
+- Kontrast sprawdzony: `#46aadf` na tle `#141414` daje 7,08:1, czyli powyżej progu AAA.
+  Zrzuty w obu motywach (oś liczbowa zad. 11, parabola zad. 19): punkt podstawiania jest teraz
+  niebieski w obu motywach, zero błędów JS.
+- COLORS.md przebudowane wg uwagi Henricha: znika opowieść o „innym kolorze w każdym motywie",
+  bo po v49 nie ma już ani jednej takiej roli. Tabela ról dostała kolumnę „barwa" (jedna nazwa
+  na oba motywy), a dwie kolumny z hexami są opisane jako dokładne odcienie tej samej barwy,
+  dobrane pod kontrast. Sekcja o filtrze mówi wprost, że ciemny wariant tokenu się LICZY
+  (tools/odwroc-kolor.py), a nie wybiera.
+- Zaktualizowane wszystkie miejsca mówiące o odwracaniu: COLORS.md, ARCHITECTURE_CSS.md,
+  issues/dark-mode-inwersja-przegladarki.md, tools/odwroc-kolor.py.
+- Nowe zgłoszenie od Henricha (OTWARTE, w TODO): Firefox na Bazzite jako jedyny zachowuje się
+  tak, jakby obrotu odcienia nie było. Chrome na tej samej maszynie, Windows oraz Pixel 7a
+  (Chrome i Firefox) działają poprawnie. Kolejność diagnozy: numer wersji w rogu (stary CSS
+  w pamięci przeglądarki) → about:support (rysowanie na karcie graficznej) → profil koloru/HDR.
+  Samsung Browser świadomie odpuszczony, sam przemalowuje strony.
+
 [ZROBIONE 2026-08-16] (Opus 5, medium) v49 — ciemny motyw przestał przekłamywać kolory na rysunkach i w filmach.
 [dark-mode, kolory, css, wideo, manim]
 
@@ -25,9 +51,8 @@ Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady form
 - Ograniczenie do zapamiętania przy scenach Manima: bardzo jaskrawe barwy nie mieszczą się
   w skali i są przycinane (żółty `#ffcc00` → brązowy `#714600`, czysta zieleń blednie).
   `tools/odwroc-kolor.py` douczony nowego filtru i ostrzega o przycięciu; COLORS.md zaktualizowane.
-- ZOSTAWIONE DO DECYZJI (TODO): pomarańczowy `--wg-niewiadoma` w ciemnym motywie istniał tylko
-  po to, żeby zgadzać się z filmem po starym filtrze. Teraz film zostaje niebieski, więc widżet
-  i film pokazują dwie różne barwy tego samego. Nie przemalowane po cichu, bo dotyka kilku zadań.
+- ZOSTAWIONE BYŁO DO DECYZJI: pomarańczowy `--wg-niewiadoma` w ciemnym motywie. Henrich zgodził
+  się tego samego dnia, zrobione w v50 (wpis wyżej).
 
 [ZROBIONE 2026-08-15] (Fable 5, medium) v48 — poprawki widżetów maja po uwagach Henricha z testów.
 [2026-maj, widzety, pilotaz-fable]

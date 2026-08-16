@@ -49,6 +49,8 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
     - zerknij na telefonie, czy filmy nie zaczęły szarpać: filtr jest o jedno działanie dłuższy niż był
 
+    - w ciemnym motywie `x` w widżetach jest teraz błękitny, a nie pomarańczowy (v50): otwórz zad. 8, 10, 12 lub 13 i sprawdź, czy przeciągany punkt, suwak i wzór mają tę samą barwę co niebieskie oznaczenia w filmie
+
   - poprawki widżetów maja po Twoich uwagach (v48)
 
     - 12.1 zdanie 2: prawa prosta dochodzi teraz do 5,5, lewa do −4; pomarańczowy punkt maksimum większy, kreska do osi y mocniejsza (pomarańczowa przerywana); „4" w odczycie też pomarańczowa
@@ -476,9 +478,9 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
   + OPUS 5 MEDIUM DOPISAŁ (2026-08-16, po zmianie filtru grafik na invert + hue-rotate):
 
-    - DO DECYZJI: pomarańczowy `--wg-niewiadoma` w ciemnym motywie stracił powód istnienia. Był pomarańczowy tylko dlatego, że stary filtr zamieniał błękit z filmu na pomarańcz. Teraz film zostaje niebieski (`#0077b6` → `#46aadf`), więc widżet i film pokazują dwie różne barwy tego samego. Naprawa to jedna wartość w style/base.css, ale przemaluje `x` w kilku zadaniach, więc czeka na Twoją zgodę (opis w COLORS.md, sekcja „Otwarte")
-
     - do sprawdzenia przy okazji nowych scen Manima: czysty żółty i czysta zieleń są za jaskrawe i po odwróceniu blakną (żółty `#ffcc00` wychodzi brązowy). `python3 tools/odwroc-kolor.py` teraz o tym ostrzega
+
+    - Firefox na Bazzite jako jedyny nie zawraca odcienia (Chrome na tej samej maszynie tak, Windows i Pixel 7a tak). Kolejność sprawdzania: numer wersji w rogu (stary arkusz w pamięci przeglądarki), potem `about:support` (czy rysuje karta graficzna), na końcu profil koloru ekranu i HDR. Rozpoznanie w issues/dark-mode-inwersja-przegladarki.md
 
 
 <br>
