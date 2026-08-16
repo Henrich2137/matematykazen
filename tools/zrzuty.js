@@ -33,8 +33,15 @@
  *   --port=<n>                            inny port serwera (domyślnie 8000)
  *   --pelna                               cała strona, nie samo okno
  *
- * PUŁAPKA, na której łatwo się przejechać: pierwszy `.exercise-container` w DOM
- * to pusty szablon. Wybierając zadanie w kodzie testowym bierz `.nth(1)`.
+ * PUŁAPKI, na których łatwo się przejechać:
+ *
+ * 1. Pierwszy `.exercise-container` w DOM to pusty szablon. Wybierając zadanie
+ *    w kodzie testowym bierz `.nth(1)`.
+ * 2. Rysunki w treści zadań dostają `loading="lazy"` (app/render.js), więc
+ *    dopóki test do nich nie przewinie, mają `complete === false`
+ *    i `naturalWidth === 0`. Sprawdzanie ich zaraz po `goto` zgłasza awarię
+ *    obrazków, których naprawdę nie ma. Najpierw `scrollIntoViewIfNeeded()`
+ *    na każdym `.question img`, dopiero potem pomiar (wpadka z 2026-08-16).
  */
 
 const { chromium } = require('playwright');
