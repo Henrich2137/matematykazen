@@ -27,6 +27,13 @@ ODNOŚNIKI DO COMMITÓW (zasada od 2026-08-16):
 - Nie rób osobnego commita „uzupełnienie hasza". Kosztuje commit, a nie daje nic ponad
   przepis wyżej.
 
+CO TU NIE POWINNO TRAFIAĆ (zasada od 2026-08-16):
+- Ten katalog to opis TEGO, CO ZROBIONO. Ostrzeżenie na przyszłość („uwaga, ten test
+  potrafi skłamać", „ta funkcja ma pułapkę") zapisane wyłącznie tutaj jest martwe,
+  bo modele nie czytają done/ na starcie. Takie rzeczy idą do issues/ albo do nagłówka
+  pliku, którego dotyczą (np. tools/zrzuty.js ma sekcję PUŁAPKI, a CLAUDE.md kieruje
+  do niej wprost). W done/ zostaje wtedy sam opis wpadki, nie ostrzeżenie.
+
 NIE wczytuj tych plików domyślnie — tylko gdy potrzebne jest szersze spojrzenie na projekt,
 rozwiązanie trudniejszego problemu albo sprawdzenie, czy/jak coś już kiedyś rozwiązano.
 Do szukania używaj najpierw tego indeksu (tagi niżej), potem grepa po konkretnym pliku.

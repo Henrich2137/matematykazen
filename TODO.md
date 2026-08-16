@@ -364,17 +364,19 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + INNE NOTATKI, DO PRZEKMINIENIA:
 
-  - 2026-maj
+  - Treść w 2026-maj
+    - treść zadań ✅
     - Zmiejszyć na komputerach (nie zmiejszać rozdzielczości bo będą nieostre) screenshoty grafik
     - uzupełnić screenshoty grafik
     - Rozwiązania
       - Krok po kroku - jeszcze nie ruszone
       - Zwykłe tylko w wybranych z zad 1-13 są zrobione, w reszcie trzeba zrobić
       - Interaktywne
-        - W wybranych z zad 1-13 są zrobione
-        - W wybranych z zad 14-33 do zrobienia
-
-
+        - W wybranych z zad 1-19 są ✅
+        - W wybranych z zad 20-33
+          - Zad 20 - możliwość przesuwania k i l lewa-prawa. Pozostają na sztywno pod tym samym kątem i równoległe do siebie
+          - 
+        
 
   - Fable:
     - matura/2024-grudzień

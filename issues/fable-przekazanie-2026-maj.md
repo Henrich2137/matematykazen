@@ -29,6 +29,19 @@ odrzucił "c" (kolizja z wyrazem wolnym postaci ogólnej), "p" odpadło tak samo
 (pierwsza współrzędna wierzchołka). Uczeń widzi wyłącznie liczbę w zapisie
 f(x + 1) / f(x - 2), czyli notację z treści zadania.
 
+## Zad. 19: ZROBIONE 2026-08-16 (v52 i v54, Opus 5)
+
+Komplet: podpowiedź, rozwiązanie opisowe, widżet `widgets/katyWOkregu.js`
+(jedna karta, przeciągane punkty D i B). Szczegóły w done/04-biezace.md.
+
+## Rysunki arkusza: komplet od 2026-08-16
+
+Zadania z rysunkiem w tym arkuszu to **12, 13, 18, 19, 20, 21 i 31** i wszystkie
+mają go już w treści (cały PDF przejrzany strona po stronie). Trzy z nich miały
+`<img>` wskazujący na nieistniejący plik, dwa nie miały rysunku wcale, choć
+arkusz go ma. **Przy nowym arkuszu sprawdź to od razu**: `grep -o 'src=[^ ]*'`
+po exercises.json kontra zawartość `media/`.
+
 ## Następne zadania (kolejność wolna, arkusz 2026-maj)
 
 Bez kompletu zostają m.in. zad. 1, 3, 4, 5, 6, 7, 9, 15 i dalej. Wzorzec:

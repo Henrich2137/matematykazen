@@ -56,6 +56,35 @@ Mechanika (rejestr, helpery, klasy CSS): [README.md](README.md). Kolory:
 - **Mniej komentarzy, więcej rachunku**; jedno zdanie wyjaśnienia tylko tam,
   gdzie bez niego nie wiadomo, skąd wynik.
 
+## Dopisane po zad. 14 i 19 (2026-08-16, uwagi Henricha)
+
+- **Domyślnie JEDNA karta.** Zakładki dokładaj tylko wtedy, gdy zadanie ma dwa
+  osobne kroki i sam o nie poprosisz. Henrich przy zad. 14 dostał dwie i przyjął
+  je, ale zaznaczył, że prosił o jedną; zad. 19 z jedną kartą przeszło od razu.
+- **Odczyt to jeden rachunek, nie protokół.** Cztery wiersze z zad. 19
+  (`|∢ADC| = 50°`, `|∢AOC| = 2·50° = 100°`, …) zostały ścięte do jednej linijki
+  `50° · 2 = 100° = 70° + 30°` i dopiero wtedy się broniły. Każda liczba w niej
+  ma być liczona z rysunku, żeby szła za przeciąganymi punktami.
+- **Podpisy na płótnie: tło w kolorze płótna.** Gdy element może się przesunąć
+  (przeciągany punkt, ruchoma cięciwa), prędzej czy później przetnie jakiś
+  napis. Prostokąt `WG_KOLORY.plotno` pod tekstem załatwia to raz na zawsze,
+  taniej niż kombinowanie z położeniem etykiety.
+- **Strzałki i miary czytaj się jednakowo.** Obie miary kątów przy jednym
+  wierzchołku mają siedzieć po tej samej stronie swoich łuków (u nas: łuk + 16px),
+  a nie jedna wewnątrz i jedna na zewnątrz.
+- **Strzałka wektora idzie tam, gdzie jest wolne miejsce** (w zad. 14 pod
+  wierzchołki, nie nad nie), a pod nią wystarczy sama liczba. Kierunek widać
+  po grocie, dopisek „w lewo" jest zbędny.
+- **Zakresy suwaków bierz szerokie, nawet gdy komplikują rysunek.** Prośba
+  Henricha o `<-2; 2>` w zad. 14 wymusiła obsługę paraboli odwróconej ramionami
+  w dół: nazwy krzywych schodzą pod wierzchołek, miejsca zerowe znikają, a
+  wartość spoza kadru dostaje grot przy krawędzi zamiast kropki. To trzy
+  poprawki, ale dopiero z nimi widżet pokazuje pełny obraz.
+- **Rysunek z arkusza w treści nie może być szeroki na całą kartę.** Limit to
+  380px (`.question img`). Rysunek szeroki i niski, złożony z dwóch wykresów,
+  rozdziel na dwa pliki w `.rys-para`: na komputerze staną obok siebie, a na
+  telefonie zawiną się jeden pod drugi i będą dwa razy większe.
+
 ## Merytoryka
 
 - Policz zadanie samodzielnie od zera i porównaj z kluczem (odpowiedzi.txt),
