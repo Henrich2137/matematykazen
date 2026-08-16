@@ -396,12 +396,12 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
     - Odwracanie kolorów grafik/wideo w dark mode (`--filtr-grafik-zadan`) działa nierówno między przeglądarkami:
       - Pixel 7a GrapheneOS:
-        - Samsung Browser zmienia tło strony wedle własnego pomysłu, a odwracanie kolorów w ogóle nie działa
+        - Samsung Browser zmienia tło strony wedle własnego pomysłu, a odwracanie kolorów w ogóle nie działa. Świadomie odpuszczone: ta przeglądarka przemalowuje gotowy render, nasz CSS nie ma jak jej dosięgnąć
         - na reszcie przeglądarek działa dobrze
       - Windows 10: działa w pełni na wszystkich najpopularniejszych przeglądarkach
       - Bazzite:
-        - Chrome i Brave — brak matchu kolorów tła grafiki i ogólnego tła (prawdopodobnie na skutek dziwnego renderowania koloru tła na Bazzite)
-        - na reszcie przeglądarek działa dobrze
+        - ~~Chrome i Brave, brak matchu tła grafiki i tła strony~~ ZAMKNIĘTE 2026-08-16: to Bazzite/Wayland, nie strona. Na Windowsie wszystko gra, więc nie ma czego naprawiać w kodzie
+        - Firefox jako jedyny nie zawraca odcienia po v49 (wygląda jak stary goły invert), choć Chrome na tej samej maszynie tak. Kolejność sprawdzania: numer wersji w rogu → about:support (czy rysuje karta graficzna) → profil koloru i HDR
       - rozpoznanie i warianty naprawy: issues/dark-mode-inwersja-przegladarki.md
 
 
@@ -479,8 +479,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
   + OPUS 5 MEDIUM DOPISAŁ (2026-08-16, po zmianie filtru grafik na invert + hue-rotate):
 
     - do sprawdzenia przy okazji nowych scen Manima: czysty żółty i czysta zieleń są za jaskrawe i po odwróceniu blakną (żółty `#ffcc00` wychodzi brązowy). `python3 tools/odwroc-kolor.py` teraz o tym ostrzega
-
-    - Firefox na Bazzite jako jedyny nie zawraca odcienia (Chrome na tej samej maszynie tak, Windows i Pixel 7a tak). Kolejność sprawdzania: numer wersji w rogu (stary arkusz w pamięci przeglądarki), potem `about:support` (czy rysuje karta graficzna), na końcu profil koloru ekranu i HDR. Rozpoznanie w issues/dark-mode-inwersja-przegladarki.md
 
 
 <br>

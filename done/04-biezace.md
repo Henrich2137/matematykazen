@@ -20,6 +20,10 @@ Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady form
   (tools/odwroc-kolor.py), a nie wybiera.
 - Zaktualizowane wszystkie miejsca mówiące o odwracaniu: COLORS.md, ARCHITECTURE_CSS.md,
   issues/dark-mode-inwersja-przegladarki.md, tools/odwroc-kolor.py.
+- Rozstrzygnięte przy okazji (Henrich): rozjechane odcienie ciemnej szarości między tłem grafiki
+  a tłem strony na Bazzite (Chrome/Brave) to sprawa maszyny, czyli Bazzite i Waylanda, a nie
+  strony. Na Windowsie wszystko gra. Problem A w issues/dark-mode-inwersja-przegladarki.md
+  zamknięty, warianty naprawy (osobne pliki na ciemny motyw) schodzą z listy pilnych.
 - Nowe zgłoszenie od Henricha (OTWARTE, w TODO): Firefox na Bazzite jako jedyny zachowuje się
   tak, jakby obrotu odcienia nie było. Chrome na tej samej maszynie, Windows oraz Pixel 7a
   (Chrome i Firefox) działają poprawnie. Kolejność diagnozy: numer wersji w rogu (stary CSS
