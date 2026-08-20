@@ -246,6 +246,8 @@ const WG_KOLORY = {
     zolty: "#c99700",
     niewiadoma: "#0077b6",   // x i liczba na jego miejscu (podstawianie)
     niewiadomaJasna: "#5aa8d6", // drugi odcinek tej samej prostej (zad. 20)
+    niewiadomaCiemna: "#005d8e", // pierwszy odcinek tej samej prostej (zad. 20)
+    zoltyCiemny: "#a17900",
     pilkaTlo: "#ffffff",     // piłka nożna: czarno-biała w obu motywach
     pilkaWzor: "#1c1c1c",
     zoltyJasny: "#e0c060",
@@ -276,6 +278,8 @@ const WG_ZMIENNE = {
     zolty: "--wg-zolty",
     niewiadoma: "--wg-niewiadoma",
     niewiadomaJasna: "--wg-niewiadoma-jasna",
+    niewiadomaCiemna: "--wg-niewiadoma-ciemna",
+    zoltyCiemny: "--wg-zolty-ciemny",
     pilkaTlo: "--wg-pilka-tlo",
     pilkaWzor: "--wg-pilka-wzor",
     zoltyJasny: "--wg-zolty-jasny",

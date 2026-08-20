@@ -1,5 +1,44 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-20] (Opus 5, medium) v63 - Henrich przeklikał CAŁĄ sekcję
+TESTOWANIE HENRICH (paczki v33-v62). Wszystko działa; sekcja wyczyszczona do zera.
+[testowanie, henrich-potwierdził, ciemny-motyw, zad20, landing]
+
+Odpowiedzi Henricha, punkt po punkcie:
+
+- Ciemny motyw: zielone piątki w filmie zad. 2 są zielone, wykres zad. 10 fioletowy,
+  rysunki CKE bez czarnej ramki, przemalowanie przy otwartym widżecie działa. ✅
+- Zad. 8, 10, 12 i 13 maja: barwy w WIDŻETACH się zgadzają. Filmów do maja jeszcze nie ma,
+  więc porównanie z filmem przeniesione do sekcji „Treść w 2026-maj" jako warunek
+  do sprawdzenia PRZED renderem (tools/odwroc-kolor.py).
+- Skrajne położenia i blokady: wszystkie siedem punktów działa (12.2 domykanie przedziału,
+  trójkącik w zad. 14, blokada D na dolnym łuku, B przy A, k do 16 i l do 12, piłeczka
+  przy zerze, blokada przycisku w locie).
+- Odczyty: ułamki zwykłe zamiast dziesiętnych działają, czas lotu piłki się zgadza.
+- Kreska pod blokiem rozwiązania: Henrich nie widzi problemu, kreska po całym zadaniu jest
+  i ma być. Nic do zmiany.
+- Telefon i słabe łącze: cztery punkty, wszystkie działają.
+
+Jedyna poprawka, jaka z tego wyszła, i dwie rzeczy przy okazji:
+
+- **Zad. 20 maja, ciemniejsze odcienie odcinków** („można jednak troszeczkę przyciemnić
+  ciemniejsze"). NIE przyciemniono `--wg-niewiadoma` ani `--wg-zolty`, bo ten błękit jest
+  związany z barwą „podstawiam pod x" w filmach (base.css mówi o tym wprost) i używa go
+  każdy widżet. Zamiast tego dwa NOWE tokeny, na razie wyłącznie dla zad. 20:
+  `--wg-niewiadoma-ciemna` (#005d8e jasny / #2f86b4 ciemny) i `--wg-zolty-ciemny`
+  (#a17900 / #c69a34), plus wpisy w `WG_KOLORY` i mapie zmiennych w `app/widget-helpers.js`.
+  `widgets/proporcjeProste.js` bierze je dla odcinków OA i OC. Sprawdzone zrzutem
+  w obu motywach: obie pary nadal rozróżnialne, kontrast w parze większy.
+- Poprawiona literówka w komentarzu `style/landing.css`: „Stała szerokość 5z0 px" na 480 px,
+  i dwie wzmianki o 520 px (landing.css oraz komentarz w index.html) na 480, bo Henrich
+  sam zmienił szerokość przycisków. Zmiany szerokości nie ruszano.
+- Zostawiona bez zmian twarda spacja, którą Henrich wstawił w „grudzień 2024" w index.html:
+  renderuje się identycznie, a trzyma datę w jednym kawałku przy zawijaniu.
+
+Do decyzji, które Henrich zamknął sam: napisy na przyciskach arkuszy zostają jego wersją,
+a nagłówki „DAWNE POKAŻ WIĘCEJ" w ośmiu zadaniach grudnia już scalił (w exercises.json
+nie ma po nich śladu).
+
 [ZROBIONE 2026-08-20] (Opus 5, medium) Przegląd sekcji „Zweryfikować poprawność
 matematyczną 2024-grudzien": zamknięte dwa punkty, reszta zmierzona i uściślona.
 [weryfikacja, krok-po-kroku, styk-klatek, todo]

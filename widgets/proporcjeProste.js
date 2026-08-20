@@ -79,8 +79,8 @@ function widgetProporcjeProste(container) {
 
     // Cztery odcienie: ciemniejszy dla odcinka bliższego prostej m, jaśniejszy
     // dla odcinka na prostej n. Te same barwy wracają w odczycie.
-    const barwaOA = () => WG_KOLORY.niewiadoma, barwaOD = () => WG_KOLORY.niewiadomaJasna;
-    const barwaOC = () => WG_KOLORY.zolty, barwaOB = () => WG_KOLORY.zoltyJasny;
+    const barwaOA = () => WG_KOLORY.niewiadomaCiemna, barwaOD = () => WG_KOLORY.niewiadomaJasna;
+    const barwaOC = () => WG_KOLORY.zoltyCiemny, barwaOB = () => WG_KOLORY.zoltyJasny;
     const kol = (kolor, tex) => `\\textcolor{${wgHex(kolor)}}{${tex}}`;
 
     function draw() {

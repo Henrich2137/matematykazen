@@ -26,16 +26,15 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
 + NIE REALIZUJ, CZEKAJĄ W KOLEJCE:
 
   - Rozwiązanie krok po kroku:
-    
     - Zad. 1, kropki kroków: przy większej liczbie kroków niż mieści pasek ma być można
       przewijać (dziś sprawdzone tylko dla dziesięciu, które mieszczą się bez przewijania)
       - kropki są na granicy wygody dla kciuka na telefonie — rozważyć lekkie powiększenie
         (w v31 zrobione tylko marginesy boczne, rozmiar bez zmian)
 
-  
   - to samo do decyzji z „finalAnswer.label": renderer je ignoruje (świadomie, od 2026-08-06),
     a pole nadal siedzi w danych wszystkich arkuszy
 
+  - w ośmiu zadaniach grudnia (3, 4, 6, 7, 8, 10, 19, 30) w rozwiązaniu siedzi nagłówek „DAWNE POKAŻ WIĘCEJ" i doklejona pod nim dawna treść; celowo brzydkie, żeby było widać, gdzie zredagować tekst w jedną całość. Scalać samemu czy zostawiasz to sobie
 
 <br>
 
@@ -43,72 +42,17 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
 + TESTOWANIE HENRICH
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945
-<br> Tu stoi DWADZIEŚCIA rzeczy, na które nie da się natrafić przypadkiem. Reszta dawnej listy (v33-v62, sprawdziany typu „czy widżet w ogóle wstaje") leży w issues/testowanie-archiwum.md.
+<br> Próg wejścia jest wysoki, patrz ZASADY DLA CLAUDE-A niżej. Archiwum dawnych list: issues/testowanie-archiwum.md.
 
-  + CIEMNY MOTYW (nie zobaczysz tego, jeśli pracujesz w jasnym)
+  - Nic. Cała paczka v33-v62 przeklikana przez Ciebie 2026-08-20, wszystko działa; wyniki w done/04-biezace.md.
 
-    - film krok po kroku zad. 2 w grudniu: zielone piątki mają być zielone, wcześniej wychodziły różowe
-
-    - zad. 10 w grudniu: wykres fioletowy, nie zielony
-
-    - zwykłe czarno-białe rysunki CKE: tło wokół rysunku ma zlewać się ze stroną, żadnej czarnej ramki
-
-    - zad. 20 w maju: dwa odcienie błękitu przy prostej k i dwa żółci przy l, czy da się je odróżnić
-
-    - zad. 8, 10, 12 i 13 w maju: przeciągany punkt, suwak i wzór mają tę samą barwę co niebieskie oznaczenia w filmie
-
-    - przełącz motyw przy OTWARTYM widżecie: kolory mają się przemalować od razu, bez odświeżania strony
-
-
-  + SKRAJNE POŁOŻENIA I BLOKADY (przy normalnym rozwiązywaniu suwak nie dojeżdża do końca)
-
-    - zad. 12.2 w maju, zakładka 2: podnieś c powyżej 3, prawy koniec przedziału ma się domknąć na 2 (pełne kółko)
-
-    - zad. 14 w maju, karta „rozwarcie": na skrajnych wartościach suwaka zamiast kropki na osi y pojawia się trójkącik
-
-    - zad. 19 w maju: spróbuj wciągnąć D na dolny łuk, między A i C, ma się nie dać
-
-    - zad. 19 w maju: dociągnij B aż do A i sprawdź, czy da się go stamtąd wyciągnąć z powrotem
-
-    - zad. 20 w maju: dociągnij k do końca w lewo (ma dojść do 16) i l do końca w prawo (do 12)
-
-    - zad. 33.2 w maju: suwak na sam początek, ma się pojawić zdanie, że piłeczka nie została wyrzucona
-
-    - zad. 33.2 w maju: w trakcie lotu przycisk ma być zablokowany, a ruszenie suwaka sprowadza piłkę na ziemię
-
-
-  + RZECZY, KTÓRE ŁATWO PRZEOCZYĆ W ODCZYCIE
-
-    - ułamki zwykłe zamiast dziesiętnych: zad. 10 w maju ma pokazać -4/3, nie -1,33; zad. 26 tak samo
-
-    - zad. 33.2 w maju: piłka ma lecieć dokładnie tyle sekund, ile mówi zadanie (przy 14,7 to 3 s)
-
-    - pod ostatnim blokiem rozwiązania nie ma zawieszonej poziomej kreski; sprawdź osobno w zadaniu z samym tekstem, z samym widżetem i z filmem plus tekstem
-
-
-  + TELEFON I SŁABE ŁĄCZE (na komputerze przez kabel tego nie widać)
-
-    - krok po kroku przy słabym zasięgu: trzy kropki mają się pokazać dopiero po pół sekundy, a spamowanie strzałek nie ma nimi migać
-
-    - suwak nie wychodzi poza prawą krawędź karty: zad. 2, 11 i 13 w maju oraz zad. 5, 15 i 30 w grudniu
-
-    - czy da się trafić palcem w dwa punkty stojące blisko siebie: zad. 8 w maju (-3 i -2) oraz zad. 19 (D i B)
-
-    - dotknięcie logo przy otwartym panelu bocznym ma zamknąć panel, a NIE otworzyć strony głównej
-
-
-  + DO DECYZJI (nie sprawdzian, tylko czekam na Twoje słowo)
-
-    - napisy na przyciskach arkuszy („Rozwiąż arkusz CKE, maj 2026") to moja propozycja, nie Twoje polecenie
-
-    - w ośmiu zadaniach grudnia (3, 4, 6, 7, 8, 10, 19, 30) w rozwiązaniu siedzi nagłówek „DAWNE POKAŻ WIĘCEJ" i doklejona pod nim dawna treść; celowo brzydkie, żeby było widać, gdzie zredagować tekst w jedną całość. Scalać samemu czy zostawiasz to sobie
 
 <br>
 
 
 + DLA HENRICHA:
 
-  - pokminić sobie dydaktycznie nad arkuszem aby zadać robotę Fable
+  - nic
 
 
 <br>
@@ -116,7 +60,18 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
 
 + DO ZROBIENIA HOŚCIE (POZA KONTENEREM)
 
-  - sprawdzić devcontainer na Kubuntu/Dockerze — testowany był tylko pod rootless podmanem na Bazzite (opis środowiska: .devcontainer/README.md)
+  - sprawdzić devcontainer na Kubuntu/Dockerze - testowany był tylko pod rootless podmanem
+    na Bazzite (opis środowiska: .devcontainer/README.md). Sprawdzone 2026-08-20 od środka:
+    ta sesja siedzi w podmanie (jest /run/.containerenv, nie ma /.dockerenv, DNS 169.254.1.1),
+    czyli w środowisku już przetestowanym. Z wnętrza kontenera nie da się tego zamknąć,
+    trzeba odpalić repo na maszynie z Docker Engine. Co tam obejrzeć w pierwszej kolejności:
+
+    - czy kontener w ogóle wstaje (skrypt firewalla kończy się bez błędu)
+
+    - czy działa DNS: pod Dockerem brama to 127.0.0.11, nie 169.254.1.1, a reguła przepuszcza
+      dziś tylko port 53 do bramy (.devcontainer/init-firewall.sh)
+
+    - czy git push i gh nadal przechodzą przez allowlistę
 
 
 <br>
@@ -130,6 +85,10 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
     - uzupełnić screenshoty grafik
     - Rozwiązania
       - Krok po kroku - jeszcze nie ruszone
+        - gdy powstaną: niebieskie oznaczenia w filmie mają w ciemnym motywie wyjść
+          w tej samej barwie co przeciągany punkt i suwak w widżecie (zad. 8, 10, 12, 13).
+          W widżetach już się zgadza, film przechodzi przez filtr, więc sprawdź
+          tools/odwroc-kolor.py przed renderem
       - Zwykłe - zrobione tylko w wybranych zadaniach, w reszcie trzeba zrobić
       - Interaktywne ✅ - zostają zad. 27 i 28 i czekają na przekminke o widżetach 3D
 
@@ -144,18 +103,12 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
   + Zweryfikować poprawność matematyczną 2024-grudzien:
     - Styki klatek w filmach - zmierzone 2026-08-20 przez tools/styk-klatek.sh. Niżej DOKŁADNIE
       te pary, które nie przechodzą progu; reszta arkusza jest czysta, w tym całe zad. 1, 5 i 6:
-
       - zad. 2, kroki 2→3 (SSIM 0,9861) - najgorszy styk w całym arkuszu
-
       - zad. 8, kroki 1→2 (0,9967) oraz 2→3 (0,9959)
-
       - zad. 7, kroki 5→6 (0,9962)
-
       - zad. 9, kroki 7→8 (0,9970)
-
       - zad. 4, kroki 2→3 (0,9990) - zielona szóstka zostaje na ostatniej klatce kroku 2,
         a krok 3 startuje czarny
-
       - zad. 3, kroki 6→7 (0,9990) - krok 6 kończy się szarym nawiasem domykającym
 
     - Zad 9 -> Sprawdzanie obliczeń -> Pierwszy checkbox
@@ -266,6 +219,10 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
     - Na githubie w ustawieniach repo też można coś podpiąć chyba ale trzeba sprawdizć czy byłoby to fair.
 
   - wysyłanie całego localStorage przez użytkownika podczas zgłaszania błędu jest a bit scatchy też troche niebezpiczne
+
+  - Przy suwakach / sliderach w rozwiązaniach interaktywnych powinny być strzałki w lewo po lewe i po prawejktóre można klikać lub przytrzymywać również na telefonach, aby wartość suwaka. W stylu strzałek prev-step i next-step lub tych które pojawiają się prz yzaszerockich dotsach. 
+
+  - Zwykłe rozwiązania powinny składać się z arraya / listy wielu sposobów / podejść. Jeżeli jest tylko jeden element to UI wyświetla go tak jak dotychczas. Jeśli więcej to robią się zakładki w stylu tych w widgetach.
 
 <br>
 

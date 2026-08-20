@@ -118,6 +118,12 @@
        odróżnić, a jednocześnie zostać w rodzinie koloru swojej prostej.
        Ten sam wzorzec dla suwaków sterujących jedną prostą (zad. 26). */
     --wg-niewiadoma-jasna: #5aa8d6;
+    /* Ciemniejsze warianty tej samej pary, WYŁĄCZNIE dla zad. 20 maja (Henrich,
+       2026-08-20: „można jednak troszeczkę przyciemnić ciemniejsze"). Osobne
+       zmienne, a nie przyciemnienie --wg-niewiadoma, bo tamten błękit jest
+       związany z barwą „podstawiam pod x" w filmach i musi zostać jak jest. */
+    --wg-niewiadoma-ciemna: #005d8e;
+    --wg-zolty-ciemny: #a17900;
     /* Piłka nożna (zad. 33.2 maja) jest czarno-biała z natury, więc te dwa
        kolory celowo NIE mają wariantu ciemnego: biała piłka czyta się dobrze
        i na jasnym, i na ciemnym płótnie. */
@@ -264,6 +270,9 @@
            błękit w filmie na pomarańcz i widżet się do tego dopasowywał. */
         --wg-niewiadoma: #46aadf;
         --wg-niewiadoma-jasna: #8fcbec;
+        /* Ciemniejsza para tylko dla zad. 20 maja, patrz blok jasny. */
+        --wg-niewiadoma-ciemna: #2f86b4;
+        --wg-zolty-ciemny: #c69a34;
         --wg-zolty-jasny: #efd48c;
         --wg-wykres-jasny: #c9a8e2;
         --wg-slupek: #5b4470;
@@ -358,6 +367,9 @@ html.theme-dark {
     /* Patrz bliźniaczy blok wyżej: to jest błękit #0077b6 z filmu po filtrze. */
     --wg-niewiadoma: #46aadf;
     --wg-niewiadoma-jasna: #8fcbec;
+    /* Ciemniejsza para tylko dla zad. 20 maja, patrz blok jasny. */
+    --wg-niewiadoma-ciemna: #2f86b4;
+    --wg-zolty-ciemny: #c69a34;
     --wg-zolty-jasny: #efd48c;
     --wg-wykres-jasny: #c9a8e2;
     --wg-slupek: #5b4470;
