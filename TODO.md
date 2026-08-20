@@ -44,7 +44,7 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
 <br> Mój telefon na chrome ma "okno": 485x945
 <br> Próg wejścia jest wysoki, patrz ZASADY DLA CLAUDE-A niżej. Archiwum dawnych list: issues/testowanie-archiwum.md.
 
-
+  - nic
 
 <br>
 
@@ -67,10 +67,11 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
 
 + INNE NOTATKI, DO PRZEKMINIENIA:
 
-  - Treść w 2026-maj
+  - Arkusz 2026-maj
     - treść zadań ✅
-    - Zmiejszyć na komputerach (nie zmiejszać rozdzielczości bo będą nieostre) screenshoty grafik
-    - uzupełnić screenshoty grafik
+    - grafiki (wykresy, rysunki itd.) - chyba wszystkie, ale trzeba sprawdzić
+    - odpowiedzi i poprawene odpowiedzi (dla zamkniętych) ✅
+    - Sprawdzania rozwiązań - nie ruszone
     - Rozwiązania
       - Krok po kroku - jeszcze nie ruszone
         - gdy powstaną: niebieskie oznaczenia w filmie mają w ciemnym motywie wyjść
@@ -80,20 +81,14 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
       - Zwykłe - zrobione tylko w wybranych zadaniach, w reszcie trzeba zrobić
       - Interaktywne ✅ - zostają zad. 27 i 28 i czekają na przekminke o widżetach 3D
 
-  - Co zadawać Fable:
-    - Rozwiązania interaktywne
-    - Lista checkboxów "Sprawdzanie rozwiązania"
-    - Weryfikacja poprawności matematycznej
-    - Usprawnienie struntury projektu
-    - Analiza kosztów długoterminowych - Symulacja: co się stanie przy 1k, 10k, 100k użytkowników na danym stacku (koszty, limity, throttling)
-    - Punkty krytyczne (failure points)
 
-  + Zweryfikować poprawność matematyczną 2024-grudzien:
+  - Arkusz 2024-grudzien:
 
     - Zad 9 -> Sprawdzanie obliczeń -> Pierwszy checkbox
       (sprawdzone 2026-08-20: trzy kryteria zgadzają się z kluczem CKE co do punktów,
       pierwsze jest za 0 pkt celowo, bo klucz daje punkt dopiero za pierwiastki.
       Napisz, co Ci w nim nie pasowało, bo w samym wpisie tego nie ma)
+      PO CO JEST ZDANIE PIERWSZE SKORO NIE DAJE ONO PUNKTÓW?
 
     - Poprawić 2024-grudzien: Rozwiązania krok po kroku (zad. 1–9, komplet po v27) i ich opisy pod filmem:
 
@@ -134,6 +129,14 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
             — czy to dobry podział, czy parabola ma być też w filmie
 
 
+- Co zadawać Fable:
+    - Rozwiązania interaktywne
+    - Lista checkboxów "Sprawdzanie rozwiązania"
+    - Weryfikacja poprawności matematycznej
+    - Usprawnienie struntury projektu
+    - Analiza kosztów długoterminowych - Symulacja: co się stanie przy 1k, 10k, 100k użytkowników na danym stacku (koszty, limity, throttling)
+    - Punkty krytyczne (failure points)
+
   + ULEPSZANIE WORKFLOW
     - Schedule adversarial review lub /code-review
     - wyłączyć skróty które powodują, że przeklikuje pytanie podczas pisania prompta
@@ -141,6 +144,8 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
       formulasPage) — gotowe pluginy są już wpięte
 
   + UI
+
+    - Umieścić linię na prawo od sidebara na warstwę pod oknami pdfów
 
     - Zmiejsz szerokość przycisków P i F (Prawda i Fałsz) na komputerach
 
@@ -202,6 +207,8 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
   - Przy suwakach / sliderach w rozwiązaniach interaktywnych powinny być strzałki w lewo po lewe i po prawejktóre można klikać lub przytrzymywać również na telefonach, aby wartość suwaka. W stylu strzałek prev-step i next-step lub tych które pojawiają się prz yzaszerockich dotsach. 
 
   - Zwykłe rozwiązania powinny składać się z arraya / listy wielu sposobów / podejść. Jeżeli jest tylko jeden element to UI wyświetla go tak jak dotychczas. Jeśli więcej to robią się zakładki w stylu tych w widgetach.
+
+  - dodać przycisk "pokaż zasady oceniania" na końcu "Sprawdzania obliczeń" który miałby podobną funkcjonalność co przycisk "Pokaż wzory" - otwierałby okienko i też by przenosił do odpowiedniej strony w PDF
 
 <br>
 
