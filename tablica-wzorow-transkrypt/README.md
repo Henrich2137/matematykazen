@@ -10,7 +10,7 @@ podany przy każdym wzorze to strona PDF-a — ta sama, którą wpisuje się w
 **Przy ustalaniu `formulasPage` dla konkretnego zadania (nauka z błędów Sonneta, 2026-07-28,
 patrz done/04-biezace.md):**
 - Nie zgaduj strony z samego **tematu** zadania (np. "to stereometria więc str. 27") — sprawdź,
-  jakiego wzoru **faktycznie** używa `hint`/`solutionText`/`solutionTextMore`. Zadanie może
+  jakiego wzoru **faktycznie** używa `hint`/`solutionText`. Zadanie może
   brzmieć jak dział X, a rozwiązanie po drodze używać tylko podstawowej definicji z działu Y
   (np. zad. 24 z 2024-grudzień: "kąt nachylenia ściany ostrosłupa" brzmi jak stereometria,
   ale liczy się go zwykłym `tg α` z trygonometrii [9.1], bez żadnego wzoru na objętość).

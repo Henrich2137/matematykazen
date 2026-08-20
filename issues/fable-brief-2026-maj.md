@@ -86,8 +86,9 @@ Zasady treści, od Henricha:
 - **Bez długich wyjaśnień i zbędnych komentarzy.** Zostaje sam rachunek plus najwyżej
   jedno zdanie tam, gdzie bez niego nie wiadomo, skąd wynik (np. „ramiona paraboli idą
   w górę, więc wartości ≤ 0 leżą między miejscami zerowymi").
-- `solutionTextMore` zostaw **pustym stringiem**. Pole musi istnieć, ale treść w nim
-  powtarzałaby to, co widać już wyżej, a przycisk „pokaż więcej" chowa się sam.
+- **Nie dodawaj pola `solutionTextMore`.** Istniało do 2026-08-20 (dodatkowa treść pod
+  przyciskiem „pokaż więcej"); pole i przycisk zostały usunięte, całe rozwiązanie opisowe
+  mieści się w `solutionText`.
 
 ### Widżet
 

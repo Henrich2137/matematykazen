@@ -14,7 +14,7 @@ Zobacz na żywo: https://henrich2137.github.io/matematykazen/
 **2024 grudzień (próbna)** - kompletny:
 - Zadania (osobne karty): 33 (30 poleceń CKE, część z podpunktami), 50 pkt
 - Podpowiedzi: 33/33
-- Rozwiązania opisowe: 31/33 (zad. 1 i 2 mają samo wideo)
+- Rozwiązania opisowe: 33/33
 - Rozwiązania wideo (krok po kroku): 9/33 (zadania 1-9)
 - Widżety interaktywne: 9 (nie 1:1 z zadaniami, nie każde tego wymaga)
 - Zadania otwarte z kryteriami CKE: 7/7
@@ -42,9 +42,9 @@ Rysunki z arkusza są wycięte i wstawione we wszystkie zadania, które ich wyma
 
 - Dwa typy zadań: zamknięte (ABCD, prawda/fałsz, wielokrotny wybór, uzupełnianie) oceniane automatycznie na bieżąco, oraz otwarte — rozwiązywane poza platformą, punktowane przez ucznia z checklisty kryteriów CKE (patrz samoocena niżej).
 
-- Rozwiązania chowają się pod przyciskiem „Rozwiązanie", żeby uczeń najpierw spróbował sam. Jedno zadanie może mieć kilka rodzajów naraz, wyświetlanych jeden pod drugim:
-  - Zwykłe (opisowe) - rozpisany tok rozumowania, tekst ze wzorami. To podstawa, docelowo ma je każde zadanie. Dłuższe wtręty (drugi sposób, uzasadnienie wzoru, typowa pułapka) chowają się pod „Pokaż więcej", żeby główny wywód dało się przeczytać w kilkanaście sekund.
+- Rozwiązania chowają się pod przyciskiem „Rozwiązanie", żeby uczeń najpierw spróbował sam. Jedno zadanie może mieć kilka rodzajów naraz, wyświetlanych jeden pod drugim, zawsze w tej samej kolejności: najpierw film, potem tekst, na końcu widżet.
   - Krok po kroku - krótkie animacje matematyczne (Manim), jedna na przejście między dwoma stanami działania. Pod filmem klikalny pasek kropek z paskiem postępu, krok da się cofnąć, prędkość od 0,25× do 4×, sterowanie palcem i strzałkami. Opis kroku chowa się pod przyciskiem, żeby widok domyślny był minimalistyczny. To docelowo najczęstszy rodzaj rozwiązania, ale jego produkcja jest najdroższa, więc na razie ma go tylko część zadań (aktualne liczby w statystykach wyżej).
+  - Zwykłe (opisowe) - rozpisany tok rozumowania, tekst ze wzorami. To podstawa, docelowo ma je każde zadanie. Całość widać od razu; dawny przycisk „Pokaż więcej", pod którym chowały się dłuższe wtręty, został usunięty w sierpniu 2026, bo dzielił jedno rozwiązanie na dwa kawałki i mało kto go rozwijał.
   - Interaktywne (widżety) -  mały rysunek do ruszania, w którym uczeń sam przesuwa tę jedną wielkość, od której zależy wynik, i widzi, jak zmienia się rachunek pod spodem. Chodzi o to, żeby odkryć przyczynę typowego błędu, a nie obejrzeć gotowy skutek. Z natury nie pasuje do każdego zadania, więc ma je tylko część.
 
 - Tablica wzorów (oficjalny PDF CKE) w przesuwnym, skalowalnym okienku.

@@ -1,5 +1,34 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-20] (Sonnet 5 + Opus 5, medium) v60 - koniec z „pokaż więcej":
+pole solutionTextMore usunięte z danych i z kodu, film zamienił się kolejnością z tekstem.
+[solutionTextMore, kolejnosc-rozwiazan, render, sprzatanie]
+
+- Dane. Treść `solutionTextMore` z dziesięciu zadań arkusza 2024-grudzień doklejona na koniec
+  `solutionText` pod nagłówkiem `<br><br><b>DAWNE "POKAŻ WIĘCEJ":</b><br>` (tam, gdzie
+  `solutionText` był pusty albo `null`, treść weszła wprost, bez nagłówka). Nagłówek jest
+  celowo brzydki i tymczasowy: to znacznik dla Henricha, gdzie rozwiązanie trzeba jeszcze
+  ręcznie zredagować w jedną całość. W 2026-maj pole było puste we wszystkich 41 zadaniach,
+  więc tam sam klucz zniknął.
+- Migracja szła po LINIACH, nie przez `json.load` + `json.dump`. Pierwsze podejście przez
+  bibliotekę przeformatowało oba pliki od góry do dołu (inne wcięcia w `gradingCriteria`,
+  1500+ zmienionych linii w każdym arkuszu) i diff nie dawał się przeczytać. Wersja liniowa
+  ruszyła tylko te dwie linie na zadanie: 55 zmienionych linii zamiast 2064.
+- Kod. Wycięty cały mechanizm: `.solution-text-more-container` z przyciskiem i span z
+  template.html, obsługa kliknięcia i ustawianie treści w app/render.js, `hasMore`
+  z tablicy `solutionBlocks`, reguły `.solution-text-more*` ze style/sheet.css i
+  style/responsive.css.
+- Kolejność bloków rozwiązania odwrócona na życzenie Henricha: teraz KROKI, potem TEKST,
+  potem widżet. Kolejność siedzi w DWÓCH miejscach naraz i muszą się zgadzać - kolejność
+  `<div>`ów w template.html (to ona decyduje o tym, co widać) i tablica `solutionBlocks`
+  w `loadExercises` (ona tylko zdejmuje dolną kreskę z ostatniego widocznego bloku).
+- Sprawdzone Playwrightem na obu arkuszach: 0 pozostałości po „pokaż więcej" w DOM,
+  kolejność bloków identyczna w 76 zadaniach, kreska zdjęta z właściwego bloku,
+  konsola czysta (jedyny błąd to zablokowany firewallem gc.zgo.at, jak zwykle).
+- Dokumentacja zaktualizowana: ARCHITECTURE.md (schemat pola), ARCHITECTURE_CSS.md
+  (kolejność bloków + `.light-button`), widgets/PROJEKTOWANIE.md, oba briefy dla Fable
+  w issues/ (żeby nie wskrzesiła pola) i tablica-wzorow-transkrypt/README.md.
+
 [ZROBIONE 2026-08-16] (Opus 5, xhigh) v57 - poprawki zad. 20, 26 i 33.2 po uwagach Henricha
 plus wyrównanie formatowania rozwiązań do stylu Fable.
 [2026-maj, widzety, kolory, formatowanie]

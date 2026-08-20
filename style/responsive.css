@@ -195,10 +195,6 @@
         min-width: 44px;
         margin: 0;
     }
-    .solution-text-more {
-        padding: 0 8px;
-    }
-
     /* Kontrolki odpowiedzi (pole fillIn, para P/F, „ostateczna odpowiedź") na
        wąskim ekranie: pivot z poziomego na pionowy. Poziomo treść/etykieta
        dzieliła wiersz ze sztywno-szeroką kontrolką i przy dłuższych etykietach

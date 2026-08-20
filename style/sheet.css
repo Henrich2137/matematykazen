@@ -1205,16 +1205,6 @@ body.sidebar-otwarty #sidebar-linia {
     line-height: 2.1;
 }
 
-/* NOWE ELEMENTY KTÓRE NIE JESTEM PEWIEN CZY ISTNIEJĄ */
-.solution-text-more-container button {
-    margin: 15px 0;
-}
-/* Treść "Pokaż więcej" domyślnie kleiła się do lewej krawędzi panelu; wcięcie
-   po bokach odsuwa ją od brzegu, przez co siedzi bliżej środka karty. */
-.solution-text-more {
-    padding: 0 40px;
-}
-
 .solution-step-by-step-container {
     display: none;
     border-bottom: 1px solid var(--border-subtle); /* 2px→1px (etap 2): grubość nie niosła znaczenia */

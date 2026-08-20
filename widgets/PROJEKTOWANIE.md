@@ -119,6 +119,5 @@ motywach), nigdy "na oko".
    wgMath/wgTexLiczba/wgUstawHTML (odczyt), wgZarejestrujRysowanie
    (OBOWIĄZKOWE, inaczej motyw nie przemaluje płótna).
 5. Kolory tylko z WG_KOLORY; suwak slider.style.accentColor w draw().
-6. hint (nie zdradza) + solutionText (wzór, potem rozwiazanie-kroki)
-   + solutionTextMore: "".
+6. hint (nie zdradza) + solutionText (wzór, potem rozwiazanie-kroki).
 7. Test w Playwright, wersja, TODO, done/, commit, push.

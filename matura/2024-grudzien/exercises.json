@@ -20,8 +20,7 @@
         "selfScore": false,
         "hint": "Z wartości bezwzględnej czyli |takich nawiasów| zawsze wyjdzie wartość nieujemna, czyli: \\(|7| = 7\\) oraz \\(|-7| = 7\\). Co więc musi stać zamiast x aby wychodziło podobnie jak w tych przykładach?",
         "formulasPage": 4,
-        "solutionText": "",
-        "solutionTextMore": "po opuszczeniu nawiasów są dwie możliwości: \\[1.\\quad \\begin{aligned} x + 4 &= 7 \\\\ x &= 7 - 4 \\\\ x &= \\boldsymbol{3} \\end{aligned}\\]\\[2.\\quad \\begin{aligned} x + 4 &= -7 \\\\ x &= -7 - 4 \\\\ x &= \\boldsymbol{-11} \\end{aligned}\\]\\[3 + (-11) = \\boldsymbol{-8}\\] czyli odp B.<br><br>",
+        "solutionText": "po opuszczeniu nawiasów są dwie możliwości: \\[1.\\quad \\begin{aligned} x + 4 &= 7 \\\\ x &= 7 - 4 \\\\ x &= \\boldsymbol{3} \\end{aligned}\\]\\[2.\\quad \\begin{aligned} x + 4 &= -7 \\\\ x &= -7 - 4 \\\\ x &= \\boldsymbol{-11} \\end{aligned}\\]\\[3 + (-11) = \\boldsymbol{-8}\\] czyli odp B.<br><br>",
         "solutionStepByStep": [
             {
                 "type": "video",
@@ -84,8 +83,7 @@
         "selfScore": false,
         "hint": "Stopień pierwiastka jest jak mianownik w wykładniku, a \\(\\frac{1}{5} = 5^{-1}\\). Wykładnik \\(-5\\) możesz włączyć do nawiasu (do każdego z czynników) i takie tam.",
         "formulasPage": 5,
-        "solutionText": null,
-        "solutionTextMore": "Krok po kroku: \\(\\sqrt[5]{5} = 5^{1/5}\\), \\(\\ \\frac{1}{5} = 5^{-1}\\)\\[\\left(5^{1/5} \\cdot 5^{-1}\\right)^{-5} = \\left(5^{1/5 - 1}\\right)^{-5} = \\left(5^{-4/5}\\right)^{-5} = 5^{(-4/5)\\cdot(-5)} = \\boldsymbol{5^{4}}\\] czyli odp. A.",
+        "solutionText": "Krok po kroku: \\(\\sqrt[5]{5} = 5^{1/5}\\), \\(\\ \\frac{1}{5} = 5^{-1}\\)\\[\\left(5^{1/5} \\cdot 5^{-1}\\right)^{-5} = \\left(5^{1/5 - 1}\\right)^{-5} = \\left(5^{-4/5}\\right)^{-5} = 5^{(-4/5)\\cdot(-5)} = \\boldsymbol{5^{4}}\\] czyli odp. A.",
         "solutionStepByStep": [
             {
                 "type": "video",
@@ -133,8 +131,7 @@
         ],
         "hint": "Żeby wykazać podzielność przez <b>21</b>, będziemy rozkładać tę liczbę na czynniki, czyli wyciągać coś przed nawias aby powstało: \\(\\ldots \\cdot 21\\)",
         "formulasPage": 5,
-        "solutionText": "Wszystkie składniki zapisujemy jako potęgi dwójki i wyciągamy najmniejszą z nich przed nawias — w nawiasie zostaje <b>21</b>.",
-        "solutionTextMore": "\\[\\begin{aligned} 2^{100} + 4^{49} + 16^{24} &= 2^{100} + 2^{98} + 2^{96} \\\\ &= 2^{96} \\cdot (2^{4} + 2^{2} + 1) \\\\ &= 2^{96} \\cdot (16 + 4 + 1) = \\boldsymbol{2^{96} \\cdot 21} \\end{aligned}\\] ta liczba jest podzielna przez <b>21</b>, co należało wykazać.",
+        "solutionText": "Wszystkie składniki zapisujemy jako potęgi dwójki i wyciągamy najmniejszą z nich przed nawias — w nawiasie zostaje <b>21</b>.<br><br><b>DAWNE \"POKAŻ WIĘCEJ\":</b><br>\\[\\begin{aligned} 2^{100} + 4^{49} + 16^{24} &= 2^{100} + 2^{98} + 2^{96} \\\\ &= 2^{96} \\cdot (2^{4} + 2^{2} + 1) \\\\ &= 2^{96} \\cdot (16 + 4 + 1) = \\boldsymbol{2^{96} \\cdot 21} \\end{aligned}\\] ta liczba jest podzielna przez <b>21</b>, co należało wykazać.",
         "solutionStepByStep": [
             {
                 "type": "video",
@@ -192,8 +189,7 @@
         "selfScore": false,
         "hint": "Skorzystaj z własności logarytmów: \\(\\log_a x + \\log_a y = \\log_a(x \\cdot y)\\) oraz \\(\\log_a x^{b} = b\\log_a x\\)",
         "formulasPage": 5,
-        "solutionText": "\\(\\log_{7} x + 6\\log_{7} y = \\log_{7} x + \\log_{7} y^{6} = \\boldsymbol{\\log_{7}\\left(xy^{6}\\right)}\\) — odpowiedź <b>D</b>.",
-        "solutionTextMore": "Najpierw „chowamy\" 6 do logarytmu: \\(6\\log_{7} y = \\log_{7} y^{6}\\) (własność \\(\\log_a x^{b} = b\\log_a x\\), czytana od prawej). <br><br> Potem sumę logarytmów o tej samej podstawie zamieniamy na logarytm iloczynu: \\(\\log_{7} x + \\log_{7} y^{6} = \\log_{7}\\left(x \\cdot y^{6}\\right)\\).",
+        "solutionText": "\\(\\log_{7} x + 6\\log_{7} y = \\log_{7} x + \\log_{7} y^{6} = \\boldsymbol{\\log_{7}\\left(xy^{6}\\right)}\\) — odpowiedź <b>D</b>.<br><br><b>DAWNE \"POKAŻ WIĘCEJ\":</b><br>Najpierw „chowamy\" 6 do logarytmu: \\(6\\log_{7} y = \\log_{7} y^{6}\\) (własność \\(\\log_a x^{b} = b\\log_a x\\), czytana od prawej). <br><br> Potem sumę logarytmów o tej samej podstawie zamieniamy na logarytm iloczynu: \\(\\log_{7} x + \\log_{7} y^{6} = \\log_{7}\\left(x \\cdot y^{6}\\right)\\).",
         "solutionStepByStep": [
             {
                 "type": "video",
@@ -232,7 +228,6 @@
         "hint": "Korzystamy z wzoru na procent składany: \\(P = P_0 \\cdot (1 + r)^{n}\\)",
         "formulasPage": 10,
         "solutionText": "Wzór na procent składany:\\[P = P_0 \\cdot (1 + p)^{n}\\]<div class=\"rozwiazanie-kroki\">\\(60\\,000 \\cdot (1 + p)^{2} = 67\\,925{,}76\\)<br>\\((1 + p)^{2} = 1{,}132096\\)<br>\\(1 + p = 1{,}064\\)<br>\\(p = 0{,}064 = \\boldsymbol{6{,}4\\%}\\)<br>Odpowiedź <b>B</b>.</div>",
-        "solutionTextMore": "",
         "solutionStepByStep": [
             {
                 "type": "video",
@@ -280,8 +275,7 @@
         "selfScore": false,
         "hint": "Dzielenie przez ułamek to mnożenie przez jego odwrotność. Rozłóż też mianownik: \\(x^{2} - 1 = (x - 1)(x + 1)\\) i skróć, co się da.",
         "formulasPage": 7,
-        "solutionText": "Zamieniamy dzielenie na mnożenie przez odwrotność i skracamy: \\(\\frac{x}{(x-1)(x+1)} \\cdot \\frac{x+1}{3x^{2}} = \\boldsymbol{\\frac{1}{3x(x-1)} = \\frac{1}{3x^{2}-3x}}\\) — odpowiedź <b>B</b>.",
-        "solutionTextMore": "Po kolei: <br><br> 1. Mianownik pierwszego ułamka rozkładamy ze wzoru skróconego mnożenia: \\(x^{2} - 1 = (x - 1)(x + 1)\\). <br><br> 2. Dzielenie zamieniamy na mnożenie przez odwrotność: \\(\\cdot\\ \\frac{x+1}{3x^{2}}\\). <br><br> 3. Skracamy \\((x + 1)\\) oraz jedno \\(x\\): zostaje \\(\\frac{1}{3x(x-1)}\\), czyli po wymnożeniu mianownika \\(\\frac{1}{3x^{2}-3x}\\). <br><br> Założenia \\(x \\ne -1,\\ 0,\\ 1\\) gwarantują, że nic po drodze nie dzieliło przez zero.",
+        "solutionText": "Zamieniamy dzielenie na mnożenie przez odwrotność i skracamy: \\(\\frac{x}{(x-1)(x+1)} \\cdot \\frac{x+1}{3x^{2}} = \\boldsymbol{\\frac{1}{3x(x-1)} = \\frac{1}{3x^{2}-3x}}\\) — odpowiedź <b>B</b>.<br><br><b>DAWNE \"POKAŻ WIĘCEJ\":</b><br>Po kolei: <br><br> 1. Mianownik pierwszego ułamka rozkładamy ze wzoru skróconego mnożenia: \\(x^{2} - 1 = (x - 1)(x + 1)\\). <br><br> 2. Dzielenie zamieniamy na mnożenie przez odwrotność: \\(\\cdot\\ \\frac{x+1}{3x^{2}}\\). <br><br> 3. Skracamy \\((x + 1)\\) oraz jedno \\(x\\): zostaje \\(\\frac{1}{3x(x-1)}\\), czyli po wymnożeniu mianownika \\(\\frac{1}{3x^{2}-3x}\\). <br><br> Założenia \\(x \\ne -1,\\ 0,\\ 1\\) gwarantują, że nic po drodze nie dzieliło przez zero.",
         "solutionStepByStep": [
             {
                 "type": "video",
@@ -334,8 +328,7 @@
         "selfScore": false,
         "hint": "Podstaw podane wartości x i y do obu równań, oblicz a i b, a następnie ich iloczyn.",
         "formulasPage": null,
-        "solutionText": "Po podstawieniu \\(x = -1\\), \\(y = 6\\): z pierwszego równania \\(-a + 18 = 20\\), więc \\(\\boldsymbol{a = -2}\\); z drugiego \\(-1 + 6b = 5\\), więc \\(\\boldsymbol{b = 1}\\). Zatem \\(a \\cdot b = \\boldsymbol{-2}\\) — odpowiedź <b>A</b>.",
-        "solutionTextMore": "\\[\\begin{aligned} a \\cdot (-1) + 3 \\cdot 6 &= 20 \\\\ -a + 18 &= 20 \\\\ -a &= 2 \\\\ a &= \\boldsymbol{-2} \\end{aligned}\\]\\[\\begin{aligned} (-1) + b \\cdot 6 &= 5 \\\\ 6b &= 6 \\\\ b &= \\boldsymbol{1} \\end{aligned}\\]\\[a \\cdot b = (-2) \\cdot 1 = \\boldsymbol{-2}\\]",
+        "solutionText": "Po podstawieniu \\(x = -1\\), \\(y = 6\\): z pierwszego równania \\(-a + 18 = 20\\), więc \\(\\boldsymbol{a = -2}\\); z drugiego \\(-1 + 6b = 5\\), więc \\(\\boldsymbol{b = 1}\\). Zatem \\(a \\cdot b = \\boldsymbol{-2}\\) — odpowiedź <b>A</b>.<br><br><b>DAWNE \"POKAŻ WIĘCEJ\":</b><br>\\[\\begin{aligned} a \\cdot (-1) + 3 \\cdot 6 &= 20 \\\\ -a + 18 &= 20 \\\\ -a &= 2 \\\\ a &= \\boldsymbol{-2} \\end{aligned}\\]\\[\\begin{aligned} (-1) + b \\cdot 6 &= 5 \\\\ 6b &= 6 \\\\ b &= \\boldsymbol{1} \\end{aligned}\\]\\[a \\cdot b = (-2) \\cdot 1 = \\boldsymbol{-2}\\]",
         "solutionStepByStep": [
             {
                 "type": "video",
@@ -394,8 +387,7 @@
         ],
         "hint": "Zacznij od określenia dziedziny (mianowniki \\(\\ne 0\\)). Zauważ, że \\(2x - 2 = 2(x - 1)\\) — oba mianowniki znikną po pomnożeniu przez \\(2(x - 1)\\).",
         "formulasPage": null,
-        "solutionText": "Założenie: \\(x \\ne 1\\). Po pomnożeniu obu stron przez \\(2(x - 1)\\) dostajemy \\(2(x + 3) = x\\), czyli \\(\\boldsymbol{x = -6}\\) (należy do dziedziny).",
-        "solutionTextMore": "\\(2x - 2 = 2(x - 1)\\), więc dziedzina: \\(x \\ne 1\\).\\[\\frac{x+3}{x-1} = \\frac{x}{2(x-1)} \\quad \\Big/ \\cdot\\ 2(x-1)\\]\\[\\begin{aligned} 2(x + 3) &= x \\\\ 2x + 6 &= x \\\\ x &= \\boldsymbol{-6} \\end{aligned}\\]\\(-6 \\ne 1\\), więc rozwiązaniem równania jest \\(\\boldsymbol{x = -6}\\).",
+        "solutionText": "Założenie: \\(x \\ne 1\\). Po pomnożeniu obu stron przez \\(2(x - 1)\\) dostajemy \\(2(x + 3) = x\\), czyli \\(\\boldsymbol{x = -6}\\) (należy do dziedziny).<br><br><b>DAWNE \"POKAŻ WIĘCEJ\":</b><br>\\(2x - 2 = 2(x - 1)\\), więc dziedzina: \\(x \\ne 1\\).\\[\\frac{x+3}{x-1} = \\frac{x}{2(x-1)} \\quad \\Big/ \\cdot\\ 2(x-1)\\]\\[\\begin{aligned} 2(x + 3) &= x \\\\ 2x + 6 &= x \\\\ x &= \\boldsymbol{-6} \\end{aligned}\\]\\(-6 \\ne 1\\), więc rozwiązaniem równania jest \\(\\boldsymbol{x = -6}\\).",
         "solutionStepByStep": [
             {
                 "type": "video",
@@ -455,7 +447,6 @@
         "hint": "Przenieś wszystkie wyrazy na jedną stronę, rozwiąż równanie kwadratowe, naszkicuj parabolę i odczytaj, gdzie nierówność jest spełniona.",
         "formulasPage": 8,
         "solutionText": "Wzory:\\[\\Delta = b^{2} - 4ac \\qquad x_{1,2} = \\frac{-b \\pm \\sqrt{\\Delta}}{2a}\\]<div class=\"rozwiazanie-kroki\">\\(x(x - 6) \\le 7\\)<br>\\(x^{2} - 6x \\le 7\\)<br>\\(x^{2} - 6x - 7 \\le 0\\)<br>\\(\\Delta = 36 + 28 = 64, \\quad \\sqrt{\\Delta} = 8\\)<br>\\(x_1 = \\frac{6 - 8}{2} = -1, \\quad x_2 = \\frac{6 + 8}{2} = 7\\)<br>Ramiona paraboli idą w górę, więc wartości \\(\\le 0\\) leżą między miejscami zerowymi.<br>\\(\\boldsymbol{x \\in \\langle -1,\\ 7\\rangle}\\)</div>",
-        "solutionTextMore": "",
         "solutionStepByStep": [
             {
                 "type": "video",
@@ -535,8 +526,7 @@
         "selfScore": false,
         "hint": "Dziedzina to wszystkie x, dla których wykres istnieje (uwaga na kółko otwarte przy \\(x = -4\\)). Zbiór wartości odczytasz z osi y. Wartości ujemne = fragmenty wykresu POD osią x.",
         "formulasPage": 23,
-        "solutionText": "1. Dziedzina: \\(\\boldsymbol{(-4,\\ 4\\rangle}\\). &nbsp; 2. Zbiór wartości: \\(\\boldsymbol{\\langle -1,\\ 3\\rangle}\\). &nbsp; 3. Wartości ujemne dla \\(\\boldsymbol{x \\in (1,\\ 3)}\\). &nbsp; 4. Największą wartość (3) funkcja przyjmuje dla \\(\\boldsymbol{x \\in (-4,\\ -2\\rangle}\\).",
-        "solutionTextMore": "1. Wykres zaczyna się w \\(x = -4\\) (kółko otwarte → \\(-4\\) nie należy) i kończy w \\(x = 4\\) (kropka pełna → \\(4\\) należy): dziedzina \\(\\boldsymbol{(-4,\\ 4\\rangle}\\). <br><br> 2. Najniższy punkt wykresu to \\(y = -1\\) (w \\(x = 2\\)), najwyższy to \\(y = 3\\): zbiór wartości \\(\\boldsymbol{\\langle -1,\\ 3\\rangle}\\). <br><br> 3. Pod osią x wykres jest między \\(x = 1\\) a \\(x = 3\\) (w obu tych punktach \\(f(x) = 0\\), więc ich nie zaliczamy): \\(\\boldsymbol{(1,\\ 3)}\\). <br><br> 4. Wartość 3 (największa) jest przyjmowana na całym poziomym fragmencie: \\(\\boldsymbol{(-4,\\ -2\\rangle}\\).",
+        "solutionText": "1. Dziedzina: \\(\\boldsymbol{(-4,\\ 4\\rangle}\\). &nbsp; 2. Zbiór wartości: \\(\\boldsymbol{\\langle -1,\\ 3\\rangle}\\). &nbsp; 3. Wartości ujemne dla \\(\\boldsymbol{x \\in (1,\\ 3)}\\). &nbsp; 4. Największą wartość (3) funkcja przyjmuje dla \\(\\boldsymbol{x \\in (-4,\\ -2\\rangle}\\).<br><br><b>DAWNE \"POKAŻ WIĘCEJ\":</b><br>1. Wykres zaczyna się w \\(x = -4\\) (kółko otwarte → \\(-4\\) nie należy) i kończy w \\(x = 4\\) (kropka pełna → \\(4\\) należy): dziedzina \\(\\boldsymbol{(-4,\\ 4\\rangle}\\). <br><br> 2. Najniższy punkt wykresu to \\(y = -1\\) (w \\(x = 2\\)), najwyższy to \\(y = 3\\): zbiór wartości \\(\\boldsymbol{\\langle -1,\\ 3\\rangle}\\). <br><br> 3. Pod osią x wykres jest między \\(x = 1\\) a \\(x = 3\\) (w obu tych punktach \\(f(x) = 0\\), więc ich nie zaliczamy): \\(\\boldsymbol{(1,\\ 3)}\\). <br><br> 4. Wartość 3 (największa) jest przyjmowana na całym poziomym fragmencie: \\(\\boldsymbol{(-4,\\ -2\\rangle}\\).",
         "solutionStepByStep": null,
         "solutionWidget": "widgetFunkcjaPrzedzialami"
     },
@@ -560,7 +550,6 @@
         "hint": "Wyznacz wzór funkcji z dwóch punktów: \\((2,\\ 0)\\) i \\((0,\\ 4)\\). Trójkąt ma wierzchołki \\((0,0)\\), \\((2,0)\\), \\((0,4)\\) — jego pole to połowa iloczynu przyprostokątnych.",
         "formulasPage": 23,
         "solutionText": "\\(f(x) = ax + 4\\) i \\(f(2) = 0\\), więc \\(2a + 4 = 0\\), czyli \\(\\boldsymbol{a = -2}\\) (zdanie 1: <b>P</b>). Pole trójkąta: \\(\\frac{1}{2} \\cdot 2 \\cdot 4 = \\boldsymbol{4}\\), a nie 8 (zdanie 2: <b>F</b>).",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -574,7 +563,6 @@
         "hint": "",
         "formulasPage": null,
         "solutionText": "",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -592,7 +580,6 @@
         "hint": "Punkt \\((0,\\ -9)\\) leży PONIŻEJ wierzchołka \\((3,\\ 0)\\) — jakie muszą być ramiona paraboli? Funkcja kwadratowa zmienia monotoniczność dokładnie w wierzchołku.",
         "formulasPage": 8,
         "solutionText": "Parabola przechodzi przez punkt leżący poniżej wierzchołka, więc ma ramiona skierowane <b>w dół</b>. Taka funkcja rośnie do wierzchołka i maleje od niego, czyli jest malejąca w przedziale \\(\\boldsymbol{\\langle 3,\\ +\\infty)}\\) — odpowiedź <b>D</b>.",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": "widgetParabola"
     },
@@ -617,7 +604,6 @@
         "hint": "Wierzchołek \\((p, q) = (3,\\ 0)\\) → postać kanoniczna \\(f(x) = a(x - 3)^{2}\\). Punkt \\((0,\\ -9)\\) daje \\(a = -1\\). Drugi poprawny wzór to ta sama funkcja po rozwinięciu nawiasu.",
         "formulasPage": 8,
         "solutionText": "Postać kanoniczna: \\(f(x) = a(x - 3)^{2}\\); z \\(f(0) = -9\\) mamy \\(9a = -9\\), czyli \\(a = -1\\), więc \\(\\boldsymbol{f(x) = -(x - 3)^{2}}\\) (odp. <b>B</b>). Po rozwinięciu: \\(-(x^{2} - 6x + 9) = \\boldsymbol{-x^{2} + 6x - 9}\\) (odp. <b>D</b>).",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -641,7 +627,6 @@
         "hint": "g to wykres f przesunięty o 1 w dół: \\(g(x) = -(x - 3)^{2} - 1\\). Jaka jest największa wartość g? Czy przesunięcie w dół zmienia oś symetrii?",
         "formulasPage": 8,
         "solutionText": "\\(g(x) = -(x - 3)^{2} - 1\\) ma wierzchołek \\((3,\\ -1)\\) i ramiona w dół, więc największa wartość to \\(-1 < 0\\) — funkcja <b>nie ma</b> miejsc zerowych (zdanie 1: <b>F</b>). Przesunięcie pionowe nie zmienia osi symetrii: nadal \\(x = 3\\) (zdanie 2: <b>P</b>).",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -665,7 +650,6 @@
         "hint": "\\(\\log_{6} 36\\) to wykładnik, do którego trzeba podnieść 6, żeby dostać 36. Funkcja \\(\\log_a x\\) jest rosnąca, gdy \\(a > 1\\).",
         "formulasPage": 5,
         "solutionText": "\\(f(36) = \\log_{6} 36 = \\boldsymbol{2}\\) (bo \\(6^{2} = 36\\)), a nie 6 — zdanie 1: <b>F</b>. Podstawa \\(6 > 1\\), więc logarytm jest funkcją rosnącą — zdanie 2: <b>P</b>.",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -689,7 +673,6 @@
         "hint": "Wypisz kilka pierwszych wyrazów: \\(a_1 = 7\\), \\(a_2 = 13\\), \\(a_3 = 7\\), ... Czy iloraz kolejnych wyrazów jest stały? Ile wynosi suma jednej pary \\((7 + 13)\\)?",
         "formulasPage": 9,
         "solutionText": "Wyrazy to na przemian 7 i 13: \\(\\frac{13}{7} \\ne \\frac{7}{13}\\), więc iloraz nie jest stały — ciąg <b>nie jest</b> geometryczny (zdanie 1: <b>F</b>). Suma ośmiu wyrazów to cztery pary \\((7 + 13)\\): \\(4 \\cdot 20 = \\boldsymbol{80}\\) (zdanie 2: <b>P</b>).",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -707,7 +690,6 @@
         "hint": "Warunek na ciąg arytmetyczny: wyraz środkowy jest średnią arytmetyczną wyrazów sąsiednich: \\(2 \\cdot (4 + 2m) = 5m + m\\).",
         "formulasPage": 9,
         "solutionText": "Z warunku ciągu arytmetycznego: \\(2(4 + 2m) = 5m + m\\), czyli \\(8 + 4m = 6m\\), stąd \\(\\boldsymbol{m = 4}\\) — odpowiedź <b>D</b>. (Ciąg: 20, 12, 4 — różnica \\(r = -8\\).)",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": "widgetCiagArytmetyczny"
     },
@@ -725,7 +707,6 @@
         "hint": "Najpierw iloraz: \\(q = \\frac{a_3}{a_2}\\). Potem \\(a_5 = a_3 \\cdot q^{2}\\).",
         "formulasPage": 9,
         "solutionText": "\\(q = \\frac{a_3}{a_2} = \\frac{1}{9} \\cdot \\frac{6}{1} = \\frac{2}{3}\\). Zatem \\(a_5 = a_3 \\cdot q^{2} = \\frac{1}{9} \\cdot \\frac{4}{9} = \\boldsymbol{\\frac{4}{81}}\\) — odpowiedź <b>C</b>.",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -739,7 +720,6 @@
         "hint": "",
         "formulasPage": null,
         "solutionText": "",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -757,7 +737,6 @@
         "hint": "Sinus = przyprostokątna naprzeciw kąta / przeciwprostokątna. Naprzeciw kąta przy B leży bok AC, a przeciwprostokątną jest \\(BC = 8\\).",
         "formulasPage": 11,
         "solutionText": "Kąt prosty jest przy A, więc przeciwprostokątna to \\(BC = 8\\). Naprzeciw kąta ABC leży przyprostokątna \\(AC = \\sqrt{15}\\), zatem \\(\\sin(\\angle ABC) = \\boldsymbol{\\frac{\\sqrt{15}}{8}}\\) — odpowiedź <b>D</b>.",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -775,7 +754,6 @@
         "hint": "Najpierw oblicz AB z twierdzenia Pitagorasa (\\(AB^{2} + AC^{2} = BC^{2}\\)), potem \\(AD = AB - BD\\). Tangens = przyprostokątna naprzeciw / przyprostokątna przy kącie.",
         "formulasPage": 11,
         "solutionText": "Z Pitagorasa: \\(|AB| = \\sqrt{8^{2} - (\\sqrt{15})^{2}} = \\sqrt{49} = 7\\), więc \\(|AD| = 7 - 6 = 1\\). W trójkącie ACD (prostokątnym przy A): \\(\\operatorname{tg}(\\angle ADC) = \\frac{|AC|}{|AD|} = \\frac{\\sqrt{15}}{1} = \\boldsymbol{\\sqrt{15}}\\) — odpowiedź <b>A</b>.",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -793,7 +771,6 @@
         "hint": "Skorzystaj z jedynki trygonometrycznej \\(\\sin^{2}\\alpha + \\cos^{2}\\alpha = 1\\) oraz z faktu, że dla kąta rozwartego \\(\\cos\\alpha < 0\\).",
         "formulasPage": 12,
         "solutionText": "Z jedynki trygonometrycznej: \\(\\cos^{2}\\alpha = 1 - \\frac{3}{16} = \\frac{13}{16}\\), więc \\(\\cos\\alpha = \\pm\\frac{\\sqrt{13}}{4}\\). Kąt jest rozwarty, więc cosinus jest ujemny: \\(\\boldsymbol{\\cos\\alpha = -\\frac{\\sqrt{13}}{4}}\\) — odpowiedź <b>A</b>.",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": "widgetKoloTrygonometryczne"
     },
@@ -812,8 +789,7 @@
         ],
         "hint": "W trójkącie ABC (prostokątnym przy C) oblicz BC z Pitagorasa. Kąty CAB i DCA są naprzemianległe (\\(DC \\parallel AB\\)) — wykorzystaj to w trójkącie ACD do wyznaczenia wysokości AD i podstawy DC.",
         "formulasPage": 17,
-        "solutionText": "\\(|BC| = \\sqrt{7{,}5^{2} - 6^{2}} = 4{,}5\\). Z podobieństwa kątów: \\(|AD| = 3{,}6\\) i \\(|DC| = 4{,}8\\). Pole: \\(P = \\frac{1}{2} \\cdot (7{,}5 + 4{,}8) \\cdot 3{,}6 = \\boldsymbol{22{,}14}\\).",
-        "solutionTextMore": "1. Trójkąt ABC jest prostokątny przy C: \\(|BC| = \\sqrt{7{,}5^{2} - 6^{2}} = \\sqrt{20{,}25} = 4{,}5\\). <br><br> 2. W tym trójkącie: \\(\\sin(\\angle CAB) = \\frac{4{,}5}{7{,}5} = 0{,}6\\) oraz \\(\\cos(\\angle CAB) = \\frac{6}{7{,}5} = 0{,}8\\). <br><br> 3. \\(DC \\parallel AB\\), więc \\(\\angle DCA = \\angle CAB\\) (kąty naprzemianległe). W trójkącie ACD (prostokątnym przy D): <br> \\(|AD| = |AC| \\cdot \\sin(\\angle DCA) = 6 \\cdot 0{,}6 = 3{,}6\\) (wysokość trapezu), <br> \\(|DC| = |AC| \\cdot \\cos(\\angle DCA) = 6 \\cdot 0{,}8 = 4{,}8\\) (krótsza podstawa). <br><br> 4. \\(P = \\frac{1}{2}(a + b) \\cdot h = \\frac{1}{2}(7{,}5 + 4{,}8) \\cdot 3{,}6 = \\frac{1}{2} \\cdot 12{,}3 \\cdot 3{,}6 = \\boldsymbol{22{,}14}\\).",
+        "solutionText": "\\(|BC| = \\sqrt{7{,}5^{2} - 6^{2}} = 4{,}5\\). Z podobieństwa kątów: \\(|AD| = 3{,}6\\) i \\(|DC| = 4{,}8\\). Pole: \\(P = \\frac{1}{2} \\cdot (7{,}5 + 4{,}8) \\cdot 3{,}6 = \\boldsymbol{22{,}14}\\).<br><br><b>DAWNE \"POKAŻ WIĘCEJ\":</b><br>1. Trójkąt ABC jest prostokątny przy C: \\(|BC| = \\sqrt{7{,}5^{2} - 6^{2}} = \\sqrt{20{,}25} = 4{,}5\\). <br><br> 2. W tym trójkącie: \\(\\sin(\\angle CAB) = \\frac{4{,}5}{7{,}5} = 0{,}6\\) oraz \\(\\cos(\\angle CAB) = \\frac{6}{7{,}5} = 0{,}8\\). <br><br> 3. \\(DC \\parallel AB\\), więc \\(\\angle DCA = \\angle CAB\\) (kąty naprzemianległe). W trójkącie ACD (prostokątnym przy D): <br> \\(|AD| = |AC| \\cdot \\sin(\\angle DCA) = 6 \\cdot 0{,}6 = 3{,}6\\) (wysokość trapezu), <br> \\(|DC| = |AC| \\cdot \\cos(\\angle DCA) = 6 \\cdot 0{,}8 = 4{,}8\\) (krótsza podstawa). <br><br> 4. \\(P = \\frac{1}{2}(a + b) \\cdot h = \\frac{1}{2}(7{,}5 + 4{,}8) \\cdot 3{,}6 = \\frac{1}{2} \\cdot 12{,}3 \\cdot 3{,}6 = \\boldsymbol{22{,}14}\\).",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -831,7 +807,6 @@
         "hint": "Kąt środkowy oparty na tym samym łuku jest DWA razy większy od kąta wpisanego. Długość łuku to odpowiedni ułamek całego obwodu \\(2\\pi r\\).",
         "formulasPage": 19,
         "solutionText": "Kąt środkowy \\(\\angle ASB = 2 \\cdot 60^{\\circ} = 120^{\\circ}\\), czyli \\(\\frac{1}{3}\\) pełnego kąta. Długość łuku: \\(\\frac{1}{3} \\cdot 2\\pi \\cdot 6 = \\boldsymbol{4\\pi}\\) — odpowiedź <b>B</b>.",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": "widgetKatWpisany"
     },
@@ -849,7 +824,6 @@
         "hint": "AC to przekątna kwadratu. Policz ją ze wzoru na długość odcinka, a potem skorzystaj z zależności: przekątna \\(= a\\sqrt{2}\\).",
         "formulasPage": 22,
         "solutionText": "\\(|AC| = \\sqrt{5^{2} + 5^{2}} = 5\\sqrt{2}\\), a bok kwadratu to przekątna podzielona przez \\(\\sqrt{2}\\): \\(\\boldsymbol{a = 5}\\) — odpowiedź <b>A</b>.",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -867,7 +841,6 @@
         "hint": "Proste równoległe mają ten sam współczynnik kierunkowy. Punkt \\((0,\\ 6)\\) od razu daje wyraz wolny prostej l.",
         "formulasPage": 24,
         "solutionText": "Prosta l: \\(y = -7x + 6\\), więc \\(p = -7 \\cdot 1 + 6 = \\boldsymbol{-1}\\) — odpowiedź <b>B</b>.",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -885,7 +858,6 @@
         "hint": "Okrąg o środku \\((a,\\ b)\\) i promieniu \\(r\\) nie dotyka osi, gdy \\(|a| > r\\) oraz \\(|b| > r\\). Sprawdź każdy okrąg po kolei.",
         "formulasPage": 24,
         "solutionText": "\\(o_3\\) ma środek \\((3,\\ 4)\\) i promień \\(2\\): odległości od osi (3 i 4) są większe od promienia, więc \\(\\boldsymbol{o_3}\\) nie dotyka żadnej z osi — odpowiedź <b>C</b>. (\\(o_1\\) jest styczny do osi \\(Oy\\), \\(o_2\\) i \\(o_4\\) przecinają osie.)",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -903,7 +875,6 @@
         "hint": "Kąt nachylenia ściany bocznej leży w trójkącie: wysokość ostrosłupa H i połowa boku podstawy (2). \\(\\operatorname{tg}\\alpha = \\frac{H}{2}\\).",
         "formulasPage": 11,
         "solutionText": "\\(\\operatorname{tg}\\alpha = \\frac{H}{a/2}\\), czyli \\(3 = \\frac{H}{2}\\), stąd \\(\\boldsymbol{H = 6}\\) — odpowiedź <b>B</b>.",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -921,7 +892,6 @@
         "hint": "Kolejne parzyste liczby różnią się o 2, więc krawędzie to \\(p - 4\\), \\(p - 2\\) oraz \\(p\\). Wymnóż.",
         "formulasPage": 26,
         "solutionText": "\\(V = (p - 4)(p - 2)p = (p^{2} - 6p + 8)p = \\boldsymbol{p^{3} - 6p^{2} + 8p}\\) — odpowiedź <b>D</b>.",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -939,7 +909,6 @@
         "hint": "Z wzoru \\(V = \\frac{1}{3}\\pi r^{2} h\\) wyznacz promień podstawy. Kąt rozwarcia to 2× kąt między wysokością a tworzącą: \\(\\operatorname{tg}\\frac{\\alpha}{2} = \\frac{r}{h}\\).",
         "formulasPage": 27,
         "solutionText": "\\(\\frac{1}{3}\\pi r^{2} \\cdot 2 = 8\\pi \\Rightarrow r^{2} = 12 \\Rightarrow r = 2\\sqrt{3}\\). Dalej \\(\\operatorname{tg}\\frac{\\alpha}{2} = \\frac{r}{h} = \\frac{2\\sqrt{3}}{2} = \\sqrt{3}\\), więc \\(\\frac{\\alpha}{2} = 60^{\\circ}\\) i kąt rozwarcia \\(\\boldsymbol{\\alpha = 120^{\\circ}}\\).",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -957,7 +926,6 @@
         "hint": "Reguła mnożenia: pierwsza cyfra nie może być zerem, ostatnia musi być nieparzysta (1 albo 3), środkowe trzy — dowolne z czterech cyfr.",
         "formulasPage": 28,
         "solutionText": "\\(3 \\cdot 4 \\cdot 4 \\cdot 4 \\cdot 2 = \\boldsymbol{384}\\) — odpowiedź <b>B</b>.",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -975,7 +943,6 @@
         "hint": "Wszystkich par jest \\(6 \\cdot 4 = 24\\). Przejrzyj liczby z D: przy 8 iloczyn zawsze dzieli się przez 4; przy 7 i 9 musi pomóc liczba z C; przy 10 wystarczy, że liczba z C jest parzysta.",
         "formulasPage": 29,
         "solutionText": "\\(|\\Omega| = 24\\). Sprzyjające: z 8 — każde c (6 par); z 7 i 9 — tylko \\(c = 4\\) (2 pary); z 10 — c parzyste: 2, 4, 6 (3 pary). Razem 11, więc \\(\\boldsymbol{P(A) = \\frac{11}{24}}\\).",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -1007,7 +974,6 @@
         "hint": "Średnia: suma (liczba książek · liczba uczniów) podzielona przez 50. Mediana przy 50 uczniach to średnia 25. i 26. wyniku po uporządkowaniu.",
         "formulasPage": 31,
         "solutionText": "1. Średnia: \\(\\frac{4 \\cdot 5 + 5 \\cdot 8 + 6 \\cdot 12 + 7 \\cdot 13 + 8 \\cdot 12}{50} = \\frac{319}{50} = \\boldsymbol{6{,}38}\\). <br> 2. Mediana: 25. wynik to 6, a 26. to 7, więc \\(\\frac{6 + 7}{2} = \\boldsymbol{6{,}5}\\).",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -1026,8 +992,7 @@
         ],
         "hint": "Oznacz \\(AB = x\\), \\(AE = 3x\\), a trzecią krawędź (AD) wyznacz z sumy krawędzi: \\(4(x + AD + 3x) = 48\\). Pole całkowite to suma pól trzech par ścian; maksimum funkcji kwadratowej jest w wierzchołku.",
         "formulasPage": 8,
-        "solutionText": "Z sumy krawędzi: \\(AD = 12 - 4x\\), stąd \\(\\boldsymbol{P(x) = -26x^{2} + 96x}\\) dla \\(\\boldsymbol{x \\in (0,\\ 3)}\\). Maksimum w wierzchołku: \\(x = \\frac{96}{52} = \\boldsymbol{\\frac{24}{13}}\\).",
-        "solutionTextMore": "Krawędzie: \\(AB = x\\), \\(AE = 3x\\), \\(AD = y\\). Suma: \\(4(x + y + 3x) = 48 \\Rightarrow y = 12 - 4x\\); warunek \\(y > 0\\) daje dziedzinę \\(x \\in (0,\\ 3)\\).\\[P(x) = 2xy + 2 \\cdot x \\cdot 3x + 2 \\cdot y \\cdot 3x = 6x^{2} + 8xy = 6x^{2} + 8x(12 - 4x) = \\boldsymbol{-26x^{2} + 96x}\\]Ramiona w dół, więc największa wartość w wierzchołku: \\(x = \\frac{-96}{2 \\cdot (-26)} = \\boldsymbol{\\frac{24}{13}}\\) (należy do dziedziny).",
+        "solutionText": "Z sumy krawędzi: \\(AD = 12 - 4x\\), stąd \\(\\boldsymbol{P(x) = -26x^{2} + 96x}\\) dla \\(\\boldsymbol{x \\in (0,\\ 3)}\\). Maksimum w wierzchołku: \\(x = \\frac{96}{52} = \\boldsymbol{\\frac{24}{13}}\\).<br><br><b>DAWNE \"POKAŻ WIĘCEJ\":</b><br>Krawędzie: \\(AB = x\\), \\(AE = 3x\\), \\(AD = y\\). Suma: \\(4(x + y + 3x) = 48 \\Rightarrow y = 12 - 4x\\); warunek \\(y > 0\\) daje dziedzinę \\(x \\in (0,\\ 3)\\).\\[P(x) = 2xy + 2 \\cdot x \\cdot 3x + 2 \\cdot y \\cdot 3x = 6x^{2} + 8xy = 6x^{2} + 8x(12 - 4x) = \\boldsymbol{-26x^{2} + 96x}\\]Ramiona w dół, więc największa wartość w wierzchołku: \\(x = \\frac{-96}{2 \\cdot (-26)} = \\boldsymbol{\\frac{24}{13}}\\) (należy do dziedziny).",
         "solutionStepByStep": null,
         "solutionWidget": "widgetProstopadloscian"
     }

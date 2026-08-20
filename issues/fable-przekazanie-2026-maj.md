@@ -66,8 +66,8 @@ wymyślaniem nowego widżetu, punkty niżej to skrót techniczny.
   kolory przez `\textcolor` + `wgHex`; ✓/✗ (`.wg-ok`/`.wg-zle`) zapala się, gdy
   suwak trafi w wartości z zadania. Element ruszany NIE zielenieje (COLORS.md).
 - Rozwiązania opisowe: wzór na starcie przez `\[ \]`, potem
-  `<div class="rozwiazanie-kroki">` z krótkimi linijkami; `solutionTextMore`
-  zostaje pustym stringiem. Zakaz pauz/półpauz wszędzie.
+  `<div class="rozwiazanie-kroki">` z krótkimi linijkami. Pola `solutionTextMore`
+  już nie ma (usunięte 2026-08-20), nie dodawaj go. Zakaz pauz/półpauz wszędzie.
 - Nowy widżet = plik + wpis w `widgets/_registry.js` + tag `<script>`
   w template.html + wiersz w tabeli widgets/README.md.
 - Po każdej paczce: podbić wersję w template.html (#wersja) i index.html

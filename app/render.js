@@ -709,32 +709,6 @@ function loadExercises() {
 
         const solutionInteractiveContainer = exerciseClone.querySelector(".solution-interactive-container");
 
-        const solutionTextMoreContainer = solutionContainer.querySelector(".solution-text-more-container");
-        const solutionTextMoreSpan = solutionTextMoreContainer.querySelector(".solution-text-more");
-        const showMoreButton = solutionTextMoreContainer.querySelector("button");
-
-        // Set solutionTextMore content
-        solutionTextMoreSpan.innerHTML = exercise.solutionTextMore || "";
-
-        // Initially hide the solutionTextMore content
-        solutionTextMoreSpan.style.display = "none";
-
-        // Add click event listener to show/hide button
-        showMoreButton.addEventListener("click", () => {
-            if (solutionTextMoreSpan.style.display === "none") {
-                solutionTextMoreSpan.style.display = "block";
-                showMoreButton.textContent = "Schowaj więcej";
-            } else {
-                solutionTextMoreSpan.style.display = "none";
-                showMoreButton.textContent = "Pokaż więcej";
-            }
-        });
-
-        // Hide the entire container if there's no solutionTextMore content
-        if (!exercise.solutionTextMore || exercise.solutionTextMore.trim() === "") {
-            solutionTextMoreContainer.style.display = "none";
-        }
-
         solutionTextContainer.innerHTML = exercise.solutionText || "";
 
         // Widżet interaktywny: w danych (JSON) jest tylko NAZWA widżetu (string),
@@ -801,19 +775,17 @@ function loadExercises() {
         // go z ostatniego widocznego bloku.
         const hasText = !!(exercise.solutionText && exercise.solutionText.trim() !== "");
         const hasInteractive = !!(exercise.solutionWidget && WIDZETY[exercise.solutionWidget]);
-        const hasMore = !!(exercise.solutionTextMore && exercise.solutionTextMore.trim() !== "");
         const solutionBlocks = [
-            hasText ? solutionTextContainer : null,
             hasSteps ? solutionStepByStepContainer : null,
+            hasText ? solutionTextContainer : null,
             hasInteractive ? solutionInteractiveContainer : null,
-            hasMore ? solutionTextMoreContainer : null,
         ].filter(Boolean);
         if (solutionBlocks.length) {
             solutionBlocks[solutionBlocks.length - 1].style.borderBottom = "none";
         }
 
         // Przycisk "Rozwiązanie" ma sens tylko, gdy istnieje jakiekolwiek rozwiązanie
-        // (tekst / kroki / interaktywne / "pokaż więcej"). W przeciwnym razie go chowamy.
+        // (kroki / tekst / interaktywne). W przeciwnym razie go chowamy.
         const hasAnySolution = solutionBlocks.length > 0;
         const solutionButton = exerciseClone.querySelector(".solution-button");
         if (!hasAnySolution) {

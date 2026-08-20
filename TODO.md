@@ -80,12 +80,6 @@ ARCHIWUM PROMPTÓW:
         (w v31 zrobione tylko marginesy boczne, rozmiar bez zmian)
 
   
-  - usunąć całkowicie „solutionTextMore" z wszystkich exercises.json i z template.html/JS
-    (sprawdzone 2026-08-15: to NIE jest martwy kod. app/render.js nadal go renderuje,
-    przycisk „pokaż więcej" działa, a niepustą treść ma jeszcze 10 zadań w 2024-grudniu.
-    Usunięcie oznacza więc świadome skasowanie działającej funkcji plus przepisanie
-    tych 10 rozwiązań, a nie samo sprzątanie)
-
   - to samo do decyzji z „finalAnswer.label": renderer je ignoruje (świadomie, od 2026-08-06),
     a pole nadal siedzi w danych wszystkich arkuszy
 
@@ -96,6 +90,18 @@ ARCHIWUM PROMPTÓW:
 + TESTOWANIE HENRICH
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945 
+
+  - koniec „pokaż więcej" i nowa kolejność rozwiązań (v60)
+
+    - rozwiń „Rozwiązanie" w dowolnym zadaniu z filmem (2024-grudzień zad. 1, 2, 3) - najpierw ma być film krok po kroku, dopiero pod nim tekst rozwiązania, a na końcu widżet
+
+    - przycisku „Pokaż więcej" nie ma już nigdzie w rozwiązaniach - jeśli gdzieś wyskoczy, coś zostało
+
+    - w ośmiu zadaniach 2024-grudnia w tekście rozwiązania siedzi nagłówek „DAWNE POKAŻ WIĘCEJ" i pod nim doklejona dawna treść (zad. 3, 4, 6, 7, 8, 10, 19, 30) - to jest tymczasowe i celowo brzydkie, żeby było widać, gdzie trzeba zredagować tekst w jedną całość; powiedz, czy scalać to samemu, czy zostawiasz to sobie
+
+    - zad. 1 i 2 tego arkusza nie miały wcześniej tekstu rozwiązania, więc dawna treść „pokaż więcej" weszła tam wprost, bez nagłówka - sprawdź, czy czyta się sensownie od pierwszego zdania
+
+    - sprawdź, czy pod ostatnim blokiem rozwiązania nie ma zawieszonej poziomej kreski (osobno w zadaniu z samym tekstem, z samym widżetem i z filmem plus tekstem)
 
   - rozdział licencyjny widgets/ (v59) - zmieniły się ścieżki dwóch skryptów, więc trzeba sprawdzić, czy widżety w ogóle wstają
 

@@ -21,7 +21,6 @@
         "formulasPage": 5,
         "hint": "",
         "solutionText": "",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -39,7 +38,6 @@
         "formulasPage": 10,
         "hint": "Skorzystaj ze wzoru na procent składany: \\(K_n = K_0 \\cdot \\left(1 + \\frac{p}{100}\\right)^{n}\\).",
         "solutionText": "Wzór na procent składany:\\[K_n = K_0 \\cdot \\left(1 + \\frac{p}{100}\\right)^{n}\\]<div class=\"rozwiazanie-kroki\">\\(K_2 = 10\\,000 \\cdot (1 + 0{,}06)^{2}\\)<br>\\(K_2 = 10\\,000 \\cdot 1{,}1236 = 11\\,236\\)<br>Pytanie jest o same odsetki, więc od kwoty końcowej odejmujemy wpłatę.<br>\\(11\\,236 - 10\\,000 = \\boldsymbol{1236}\\) zł<br>Odpowiedź <b>B</b>.</div>",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": "widgetOdsetkiSkladane"
     },
@@ -57,7 +55,6 @@
         "formulasPage": 5,
         "hint": "",
         "solutionText": "",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -75,7 +72,6 @@
         "formulasPage": 5,
         "hint": "",
         "solutionText": "",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -99,7 +95,6 @@
         "formulasPage": 5,
         "hint": "",
         "solutionText": "",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -117,7 +112,6 @@
         "formulasPage": 7,
         "hint": "",
         "solutionText": "",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -135,7 +129,6 @@
         ],
         "hint": "",
         "solutionText": "",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -153,7 +146,6 @@
         "formulasPage": null,
         "hint": "Iloczyn jest równy 0 dokładnie wtedy, gdy któryś z czynników jest równy 0. Jakie liczby zerują kolejne nawiasy?",
         "solutionText": "Równanie z zadania:\\[3(x + 3)(x - m)(2x + 4) = 0\\]<div class=\"rozwiazanie-kroki\">Wystarczy, że któryś z nawiasów będzie równy 0, to całość też się wyzeruje, więc:<br>\\[\\begin{array}{ccc}x + 3 = 0 & \\qquad x - m = 0 & \\qquad 2x + 4 = 0\\\\ x = -3 & \\qquad x = m & \\qquad x = -2\\end{array}\\]Suma wszystkich rozwiązań ma być równa 0.<br>\\(-3 + m - 2 = 0\\)<br>\\(m - 5 = 0\\)<br>\\(\\boldsymbol{m = 5}\\)<br>Odpowiedź <b>C</b>.</div>",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": "widgetRownanieIloczynowe"
     },
@@ -171,7 +163,6 @@
         "formulasPage": null,
         "hint": "",
         "solutionText": "",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -189,7 +180,6 @@
         ],
         "hint": "Przenieś wszystkie wyrazy na jedną stronę, rozwiąż równanie kwadratowe, naszkicuj parabolę i odczytaj, gdzie nierówność jest spełniona.",
         "solutionText": "Wzory:\\[\\Delta = b^{2} - 4ac \\qquad x_{1,2} = \\frac{-b \\pm \\sqrt{\\Delta}}{2a}\\]<div class=\"rozwiazanie-kroki\">\\(3x^{2} + 4x \\ge 6x + 8\\)<br>\\(3x^{2} + 4x - 6x - 8 \\ge 0\\)<br>\\(3x^{2} - 2x - 8 \\ge 0\\)<br>\\(\\Delta = 4 + 96 = 100, \\quad \\sqrt{\\Delta} = 10\\)<br>\\(x_1 = \\frac{2 - 10}{6} = -\\frac{4}{3}, \\quad x_2 = \\frac{2 + 10}{6} = 2\\)<br>Ramiona paraboli idą w górę, więc wartości \\(\\ge 0\\) leżą poza miejscami zerowymi.<br>\\(\\boldsymbol{x \\in \\left(-\\infty,\\ -\\frac{4}{3}\\right\\rangle \\cup \\left\\langle 2,\\ +\\infty\\right)}\\)</div>",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": "widgetNierownoscTrojmianu"
     },
@@ -207,7 +197,6 @@
         ],
         "hint": "Oznacz liczby biletów, np. \\(n\\) normalnych i \\(u\\) ulgowych. Ułóż dwa równania: jedno o łącznej liczbie biletów, drugie o kwocie, która została po odjęciu 25% wpływów.",
         "solutionText": "Układ równań:\\[n + u = 200 \\qquad 0{,}75 \\cdot (35n + 25u) = 4665\\]<div class=\"rozwiazanie-kroki\">\\(35n + 25u = 6220\\)<br>\\(n = 200 - u\\)<br>\\(35(200 - u) + 25u = 6220\\)<br>\\(7000 - 35u + 25u = 6220\\)<br>\\(10u = 7000 - 6220 = 780\\)<br>\\(u = \\boldsymbol{78}\\)<br>Sprzedano <b>78</b> biletów ulgowych.</div>",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": "widgetBilety"
     },
@@ -221,7 +210,6 @@
         "formulasPage": null,
         "hint": "",
         "solutionText": "",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -249,7 +237,6 @@
         "formulasPage": null,
         "hint": "Wszystko odczytasz z wykresu. Równanie \\(f(x) = 3\\) pyta, dla jakiego argumentu wykres ma wysokość 3, a największa wartość na przedziale to najwyższy punkt wykresu nad tym przedziałem.",
         "solutionText": "<div class=\"rozwiazanie-kroki\">1. Prosta \\(y = 3\\) przecina wykres tylko w punkcie \\((1,\\ 3)\\).<br>Puste kółko \\((2,\\ 3)\\) nie należy do wykresu.<br>\\(x = \\boldsymbol{1}\\)<br>2. Nad przedziałem \\([2,\\ 3]\\) najwyżej leży punkt \\((2,\\ 4)\\).<br>Największa wartość: \\(\\boldsymbol{4}\\)</div>",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": "widgetLamana121"
     },
@@ -277,7 +264,6 @@
         "formulasPage": null,
         "hint": "Zbiór wartości odczytasz na osi \\(y\\): od najniższego do najwyższego punktu wykresu. Do drugiego zdania narysuj prostą \\(y = 1\\) i sprawdź, nad którymi argumentami wykres leży wyżej.",
         "solutionText": "<div class=\"rozwiazanie-kroki\">1. Wartości sięgają od \\(-2\\) (punkt \\((-4, -2)\\)) do \\(4\\) (punkt \\((2, 4)\\)).<br>Zbiór wartości: \\(\\boldsymbol{[-2,\\ 4]}\\)<br>2. Prosta \\(y = 1\\) przecina wykres dla \\(x = -1\\) i \\(x = 4\\).<br>Między nimi wykres leży nad prostą, końce odpadają, bo nierówność jest ostra.<br>\\(x \\in \\boldsymbol{(-1,\\ 4)}\\)</div>",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": "widgetLamana122"
     },
@@ -291,7 +277,6 @@
         "formulasPage": null,
         "hint": "",
         "solutionText": "",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -315,7 +300,6 @@
         "formulasPage": null,
         "hint": "Znak \\(a\\) odczytasz z tego, czy funkcja rośnie, czy maleje, a znak \\(b\\) z tego, gdzie prosta przecina oś \\(y\\).",
         "solutionText": "<div class=\"rozwiazanie-kroki\">Funkcja jest malejąca, więc \\(a < 0\\). Zdanie 1: <b>F</b>.<br>Prosta przecina oś \\(y\\) w punkcie \\((0, -3)\\), więc \\(b = -3 < 0\\). Zdanie 2: <b>F</b>.</div>",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": "widgetLiniowaWspolczynniki"
     },
@@ -333,7 +317,6 @@
         "formulasPage": 11,
         "hint": "Zbuduj trójkąt prostokątny na ramieniu kąta \\(\\alpha\\) i skorzystaj z definicji tangensa z tablic (str. 11). Zwróć uwagę na znaki współrzędnych.",
         "solutionText": "Definicja z tablic (funkcje trygonometryczne dowolnego kąta):\\[\\operatorname{tg}\\alpha = \\frac{y}{x}\\]<div class=\"rozwiazanie-kroki\">Kąt \\(\\alpha\\) ma wierzchołek w punkcie \\((-2,\\ 0)\\), a jego ramię biegnie po prostej w górę, w lewo.<br>Idąc po ramieniu: \\(3\\) w górę i \\(2\\) w lewo, czyli \\(y = 3\\) oraz \\(x = -2\\).<br>\\(\\operatorname{tg}\\alpha = \\frac{3}{-2} = \\boldsymbol{-\\frac{3}{2}}\\)<br>Minus bierze się z ujemnego \\(x\\): dla kąta rozwartego tangens jest ujemny.<br>Odpowiedź <b>A</b>.</div>",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": "widgetLiniowaTangens"
     },
@@ -353,7 +336,6 @@
         ],
         "hint": "Wierzchołek \\(W\\) pozwala zapisać \\(f\\) w postaci kanonicznej z jedną niewiadomą \\(a\\). Warunek z zadania to \\(g(0) = 0\\), a ze wzoru \\(g(x) = f(x + 1)\\) wynika, czym jest \\(g(0)\\).",
         "solutionText": "Postać kanoniczna:\\[f(x) = a(x - p)^2 + q\\]<div class=\"rozwiazanie-kroki\">Wierzchołek \\(W = (3,\\ -2)\\), więc \\(p = 3\\) oraz \\(q = -2\\):<br>\\(f(x) = a(x - 3)^2 - 2\\)<br><br>Liczba \\(0\\) jest miejscem zerowym \\(g\\), czyli<br>\\(g(0) = 0\\)<br><br>Ze wzoru \\(g(x) = f(x + 1)\\) mamy<br>\\(g(0) = f(0 + 1) = f(1)\\)<br>a stąd \\(f(1) = 0\\)<br><br>Podstawiamy \\(1\\) do wzoru na \\(f\\):<br>\\(a(1 - 3)^2 - 2 = 0\\)<br>\\(4a - 2 = 0\\)<br>\\(a = \\frac{1}{2}\\)<br><br>\\(f(x) = \\frac{1}{2}(x - 3)^2 - 2\\)<br>Zostaje zamienić to na postać ogólną:<br>\\(f(x) = \\frac{1}{2}(x^2 - 6x + 9) - 2\\)<br>\\(f(x) = \\boldsymbol{\\frac{1}{2}x^2 - 3x + \\frac{5}{2}}\\)<br>Sprawdzenie: \\(g(x) = \\frac{1}{2}(x - 2)^2 - 2\\), więc \\(g(0) = 0\\).</div>",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": "widgetPrzesuniecieParaboli"
     },
@@ -372,7 +354,6 @@
         ],
         "hint": "",
         "solutionText": "",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -390,7 +371,6 @@
         "formulasPage": 9,
         "hint": "",
         "solutionText": "",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -412,7 +392,6 @@
         "formulasPage": 10,
         "hint": "",
         "solutionText": "",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -430,7 +409,6 @@
         "formulasPage": 11,
         "hint": "",
         "solutionText": "",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -448,7 +426,6 @@
         "formulasPage": 19,
         "hint": "Kąt \\(CDA\\) jest kątem wpisanym. Znajdź kąt środkowy oparty na tym samym łuku \\(AC\\) i przypomnij sobie z tablic (str. 19), jak mają się do siebie ich miary.",
         "solutionText": "Kąt wpisany i środkowy oparte na tym samym łuku:\\[|\\sphericalangle AOC| = 2 \\cdot |\\sphericalangle ADC|\\]<div class=\"rozwiazanie-kroki\">Miara kąta wpisanego jest połową miary kąta środkowego opartego na tym samym łuku (tablice, str. 19).<br><br>Kąt \\(ADC\\) jest wpisany i oparty na łuku \\(AC\\), na którym leży punkt \\(B\\).<br>Kąt \\(AOC\\) jest środkowy i oparty na tym samym łuku, więc<br>\\(|\\sphericalangle AOC| = 2 \\cdot 50^\\circ = 100^\\circ\\)<br><br>Punkt \\(B\\) leży między \\(A\\) i \\(C\\), więc dzieli ten kąt na dwa:<br>\\(|\\sphericalangle AOC| = |\\sphericalangle AOB| + |\\sphericalangle BOC|\\)<br>\\(100^\\circ = |\\sphericalangle AOB| + 30^\\circ\\)<br>\\(|\\sphericalangle AOB| = \\boldsymbol{70^\\circ}\\)<br>Odpowiedź <b>C</b>.</div>",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": "widgetKatyWOkregu"
     },
@@ -466,7 +443,6 @@
         "formulasPage": 17,
         "hint": "Odcinki \\(AC\\) i \\(BD\\) tną się w punkcie \\(O\\), a proste \\(k\\) i \\(l\\) są równoległe. Poszukaj dwóch trójkątów o wspólnym wierzchołku \\(O\\) i zastanów się, dlaczego są podobne.",
         "solutionText": "Z podobieństwa trójkątów \\(AOD\\) i \\(COB\\):\\[\\frac{|OA|}{|OC|} = \\frac{|OD|}{|OB|}\\]<div class=\"rozwiazanie-kroki\">Kąty \\(AOD\\) i \\(COB\\) są wierzchołkowe, więc równe.<br>Proste \\(k\\) i \\(l\\) są równoległe, więc kąty \\(OAD\\) i \\(OCB\\) są naprzemianległe, też równe.<br>Trójkąty mają po dwa równe kąty, czyli są podobne.<br><br>Podstawiamy dane z zadania:<br>\\(\\frac{12}{8} = \\frac{|OD|}{6}\\)<br>\\(|OD| = \\frac{12 \\cdot 6}{8}\\)<br>\\(|OD| = \\boldsymbol{9}\\)<br>Odpowiedź <b>B</b>.</div>",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": "widgetProporcjeProste"
     },
@@ -484,7 +460,6 @@
         ],
         "hint": "",
         "solutionText": "",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -506,7 +481,6 @@
         "formulasPage": 16,
         "hint": "",
         "solutionText": "",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -524,7 +498,6 @@
         "formulasPage": 12,
         "hint": "",
         "solutionText": "",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -538,7 +511,6 @@
         "formulasPage": 25,
         "hint": "",
         "solutionText": "",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -556,7 +528,6 @@
         "formulasPage": 25,
         "hint": "",
         "solutionText": "",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -574,7 +545,6 @@
         "formulasPage": 24,
         "hint": "",
         "solutionText": "",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -598,7 +568,6 @@
         "formulasPage": 24,
         "hint": "",
         "solutionText": "",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -616,7 +585,6 @@
         "formulasPage": 24,
         "hint": "Proste równoległe mają ten sam współczynnik kierunkowy. Zapisz wzór prostej \\(l\\) z tym samym \\(a\\), a jej wyraz wolny wyznacz z punktu \\((2,\\ -2)\\).",
         "solutionText": "Proste równoległe:\\[a_l = a_k = -\\frac{1}{3}\\]<div class=\"rozwiazanie-kroki\">Prosta \\(l\\) ma więc wzór<br>\\(y = -\\frac{1}{3}x + b\\)<br><br>Przechodzi przez punkt \\((2,\\ -2)\\), więc podstawiamy:<br>\\(-2 = -\\frac{1}{3} \\cdot 2 + b\\)<br>\\(-2 = -\\frac{2}{3} + b\\)<br>\\(b = -2 + \\frac{2}{3} = -\\frac{4}{3}\\)<br><br>Wyraz wolny to druga współrzędna punktu przecięcia z osią \\(Oy\\):<br>\\(\\boldsymbol{\\left(0,\\ -\\frac{4}{3}\\right)}\\)<br>Odpowiedź <b>D</b>.</div>",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": "widgetProsteRownolegle"
     },
@@ -634,7 +602,6 @@
         ],
         "hint": "",
         "solutionText": "",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -652,7 +619,6 @@
         "formulasPage": 27,
         "hint": "",
         "solutionText": "",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -670,7 +636,6 @@
         "formulasPage": 28,
         "hint": "",
         "solutionText": "",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -688,7 +653,6 @@
         ],
         "hint": "",
         "solutionText": "",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -712,7 +676,6 @@
         "formulasPage": 31,
         "hint": "",
         "solutionText": "",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -730,7 +693,6 @@
         "formulasPage": 31,
         "hint": "",
         "solutionText": "",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -744,7 +706,6 @@
         "formulasPage": 7,
         "hint": "",
         "solutionText": "",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -762,7 +723,6 @@
         "formulasPage": 8,
         "hint": "Uderzenie w ziemię to chwila, w której wysokość wynosi \\(0\\). Rozwiąż równanie \\(h(t) = 0\\), wyłączając \\(t\\) przed nawias.",
         "solutionText": "Piłeczka jest na ziemi, gdy jej wysokość wynosi zero:\\[h(t) = 0\\]<div class=\"rozwiazanie-kroki\">\\(-4{,}9t^2 + 14{,}7t = 0\\)<br>\\(t \\cdot (-4{,}9t + 14{,}7) = 0\\)<br><br>Iloczyn jest zerem, gdy któryś z czynników jest zerem:<br>\\(t = 0\\) albo \\(-4{,}9t + 14{,}7 = 0\\)<br>\\(t = \\frac{14{,}7}{4{,}9} = 3\\)<br><br>Chwila \\(t = 0\\) to moment wyrzutu, więc piłeczka spada w chwili<br>\\(\\boldsymbol{t = 3}\\) s<br>Odpowiedź <b>D</b>.<br><br>Interaktywny wykres do obu części tego zadania znajdziesz w rozwiązaniu zadania <b>33.2</b>.</div>",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -780,7 +740,6 @@
         "formulasPage": 8,
         "hint": "Wykresem funkcji \\(h\\) jest parabola ramionami w dół, więc największa wysokość wypada w jej wierzchołku. Skorzystaj ze wzoru na pierwszą współrzędną wierzchołka.",
         "solutionText": "Wierzchołek paraboli:\\[p = -\\frac{b}{2a}\\]<div class=\"rozwiazanie-kroki\">We wzorze \\(h(t) = -4{,}9t^2 + 14{,}7t\\) mamy \\(a = -4{,}9\\) oraz \\(b = 14{,}7\\).<br><br>\\(t = -\\frac{14{,}7}{2 \\cdot (-4{,}9)}\\)<br>\\(t = \\frac{14{,}7}{9{,}8}\\)<br>\\(\\boldsymbol{t = 1{,}5}\\) s<br>Odpowiedź <b>A</b>.<br><br>Szczyt wypada dokładnie w połowie lotu: piłeczka spada w chwili \\(3\\) s, a najwyżej jest w \\(1{,}5\\) s. Tak działa symetria paraboli.</div>",
-        "solutionTextMore": "",
         "solutionStepByStep": null,
         "solutionWidget": "widgetRzutPileczki"
     }
