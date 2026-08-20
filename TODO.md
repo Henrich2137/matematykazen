@@ -130,44 +130,38 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
     - uzupełnić screenshoty grafik
     - Rozwiązania
       - Krok po kroku - jeszcze nie ruszone
-      - Zwykłe tylko w wybranych z zad 1-13 są zrobione, w reszcie trzeba zrobić
-      - Interaktywne
-        - W wybranych z zad 1-19 są ✅
-        - W wybranych z zad 20-33 ✅
-          - zostają zad. 27 i 28, odłożone przez Ciebie do czasu, aż zechcesz przekminić 3D
-            (jedyne dwa z tego zakresu bez widżetu; zrobione: 20, 26, 33.1 bez widżetu z odesłaniem, 33.2)
+      - Zwykłe - zrobione tylko w wybranych zadaniach, w reszcie trzeba zrobić
+      - Interaktywne ✅ - zostają zad. 27 i 28 i czekają na przekminke o widżetach 3D
 
-        
-
-  - Fable:
-    - matura/2024-grudzień
-      - Rozwiązania interaktywny
-
-    - Interaktywne rozwiązania matury 2026
+  - Co zadawać Fable:
+    - Rozwiązania interaktywne
     - Lista checkboxów "Sprawdzanie rozwiązania"
     - Weryfikacja poprawności matematycznej
     - Usprawnienie struntury projektu
     - Analiza kosztów długoterminowych - Symulacja: co się stanie przy 1k, 10k, 100k użytkowników na danym stacku (koszty, limity, throttling)
     - Punkty krytyczne (failure points)
-    
-    
 
   + Zweryfikować poprawność matematyczną 2024-grudzien:
-    - Błędy w filmach — ZOSTAŁO (zad. 3, 5 i 6 poprawione w v30):
-      - Zad 4. wygląda wzorowo, ale łamie zasadę ciągłości klatek: zielona szóstka zostaje
-        na ostatniej klatce kroku 2, a krok 3 startuje czarny (SSIM 0,9990)
-      - Zad 2, 7, 8 i 9 były robione tą samą metodą co 5 i 6, więc trzeba przejrzeć ich
-        animacje; tools/styk-klatek.sh pokazuje, w których krokach nie zgadzają się styki
-      - Zad 3 krok 6 kończy się szarym nawiasem domykającym; reszta przyciemnień już się
-        rozjaśnia na końcu kroku
+    - Styki klatek w filmach - zmierzone 2026-08-20 przez tools/styk-klatek.sh. Niżej DOKŁADNIE
+      te pary, które nie przechodzą progu; reszta arkusza jest czysta, w tym całe zad. 1, 5 i 6:
 
-    - Zadanie 2 — do sprawdzenia merytoryka kroków: krok 1 i 6 (wykładnik -1, potem 5,
-    wynik \(5^4\)). issues/krok-po-kroku-v20-testy.md
-    Punkt o za wąskich marginesach podpisu pod filmem odpadł sam: w v20 podpisu już nie ma,
-    opis kroku siedzi w rozwijanym ROW 3. Zmierzone na telefonie 390 px — treść zadania ma
-    24 px marginesu, film i ROW 3 po 25 px, czyli równo. Zostaje do przeklikania na żywo.
+      - zad. 2, kroki 2→3 (SSIM 0,9861) - najgorszy styk w całym arkuszu
+
+      - zad. 8, kroki 1→2 (0,9967) oraz 2→3 (0,9959)
+
+      - zad. 7, kroki 5→6 (0,9962)
+
+      - zad. 9, kroki 7→8 (0,9970)
+
+      - zad. 4, kroki 2→3 (0,9990) - zielona szóstka zostaje na ostatniej klatce kroku 2,
+        a krok 3 startuje czarny
+
+      - zad. 3, kroki 6→7 (0,9990) - krok 6 kończy się szarym nawiasem domykającym
 
     - Zad 9 -> Sprawdzanie obliczeń -> Pierwszy checkbox
+      (sprawdzone 2026-08-20: trzy kryteria zgadzają się z kluczem CKE co do punktów,
+      pierwsze jest za 0 pkt celowo, bo klucz daje punkt dopiero za pierwiastki.
+      Napisz, co Ci w nim nie pasowało, bo w samym wpisie tego nie ma)
 
     - Poprawić 2024-grudzien: Rozwiązania krok po kroku (zad. 1–9, komplet po v27) i ich opisy pod filmem:
 
@@ -181,7 +175,8 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
 
       - zad. 3
         - Rozwiązanie krok po kroku:
-          - kroki 2, 4 i 6 — przyciemniona część zapisu ma się rozjaśniać PRZED końcem kroku (v30)
+          - krok 6 — przyciemniona część zapisu ma się rozjaśniać PRZED końcem kroku;
+            w krokach 2 i 4 już się rozjaśnia (sprawdzone 2026-08-20 stykami klatek), w 6 nie
 
       - zad. 5
         - Rozwiązanie krok po kroku (przerobiona od zera w v30):

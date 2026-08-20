@@ -1,5 +1,29 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-20] (Opus 5, medium) Przegląd sekcji „Zweryfikować poprawność
+matematyczną 2024-grudzien": zamknięte dwa punkty, reszta zmierzona i uściślona.
+[weryfikacja, krok-po-kroku, styk-klatek, todo]
+
+- **Zad. 2, merytoryka kroków 1 i 6 (wykładnik -1, potem 5, wynik \(5^4\)) - ZGADZA SIĘ.**
+  Sprawdzone wprost w `manimations/solutionZad2.py`, gdzie stoi cały łańcuch:
+  \((\sqrt[5]{5}\cdot\frac15)^{-5} = (5^{1/5}\cdot 5^{-1})^{-5} = 5^{1/5\cdot(-5)}\cdot 5^{(-1)(-5)}
+  = 5^{-1}\cdot 5^{5} = 5^{4}\). Punkt skreślony z TODO.
+- **Marginesy podpisu pod filmem - punkt odpadł sam** i sam wpis to zresztą mówił
+  (od v20 nie ma podpisu, opis kroku siedzi w rozwijanym ROW 3; zmierzone 24 px kontra
+  25 px na telefonie 390 px). Skreślony.
+- **Zad. 9, pierwszy checkbox „Sprawdzania obliczeń" - nie ma czego naprawiać po stronie
+  punktacji.** `gradingCriteria` w grudniu ma 0 + 1 + 1 pkt i to zgadza się z kluczem CKE
+  (`odpowiedzi.txt`): punkt leci dopiero za pierwiastki, a przepisanie nierówności do postaci
+  \(x^2-6x-7\le 0\) samo w sobie nie punktuje. Wpis nie mówił, co konkretnie jest nie tak,
+  więc został w TODO z dopiskiem, żeby Henrich dopowiedział.
+- **Styki klatek przemierzone w całym arkuszu** (`tools/styk-klatek.sh`, wszystkie 62 kroki).
+  Stary opis w TODO był nieaktualny: mówił „zad. 3, 5 i 6 poprawione w v30" i kazał dopiero
+  przejrzeć zad. 2, 7, 8 i 9. Teraz stoi tam gotowa lista dokładnie sześciu par poniżej progu:
+  zad. 2 (2→3, 0,9861), zad. 8 (1→2 i 2→3), zad. 7 (5→6), zad. 9 (7→8), zad. 4 (2→3),
+  zad. 3 (6→7). Zad. 1, 5 i 6 są czyste w całości.
+- Przy okazji uściślony punkt o zad. 3: rozjaśnianie działa już w krokach 2 i 4, zostaje sam
+  krok 6. Wcześniej wpis wymieniał wszystkie trzy.
+
 [ZROBIONE 2026-08-20] (Opus 5, medium) v62 - wycięte postoje na wejściu w filmach
 krok po kroku (zad. 1 krok 9, zad. 2 krok 6, zad. 3 krok 5).
 POTWIERDZONE PRZEZ HENRICHA (2026-08-20): „wygląda dobrze".
