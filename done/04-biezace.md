@@ -1,5 +1,44 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-20] (Opus 5, medium) v62 - wycięte postoje na wejściu w filmach
+krok po kroku (zad. 1 krok 9, zad. 2 krok 6, zad. 3 krok 5).
+[manim, krok-po-kroku, wait, tempo]
+
+- Zgłoszenie Henricha: „kroki mają za długie czekania na początku i na końcu filmu,
+  małe waity w środku kroku są okej, najmocniej widać w zad. 1".
+- Zmierzone skryptem doraźnym (dekodowanie do rgb24, porównanie każdej klatki
+  z pierwszą i z ostatnią): ile w każdym pliku stoi nieruchomy obraz. Wynik dla
+  wszystkich 62 kroków grudnia jest w opisie commita; martwy start powyżej 1 s
+  wypadł w dziewięciu krokach.
+- Ustalenia z Henrichem przed pracą (pytania zadane na starcie):
+  - ciąć wyłącznie na początkach i końcach kroków, NIE w środku,
+  - animacji kolorów (zapalanie i gaszenie podświetleń) nie ruszać,
+  - przytrzymanie na końcu zostaje 0,25 s (dolna granica 0,1 s, ale 0,25 jest
+    zweryfikowane, patrz manimations/README.md punkt 0).
+- Przy tych warunkach do cięcia kwalifikują się DOKŁADNIE trzy miejsca, czyli
+  wszystkie `self.wait()` stojące w sekcji przed pierwszym `self.play()`:
+  `solutionZad1.py` krok 9, `solutionZad2.py` krok 6, `solutionZad3.py` krok 5.
+  Znalezione parserem sekcji, nie okiem.
+- W zad. 2 ten postój był opatrzony komentarzem, że jest CELOWY (żeby uczeń
+  zobaczył punkt wyjścia). Wycięty mimo to, bo punkt wyjścia stoi już na ostatniej
+  klatce kroku 5, a w odtwarzaczu to jest to samo miejsce.
+- Reszta martwych startów w zad. 1 (kroki 4, 5, 7, 8: od 1,25 do 2,36 s) to NIE są
+  `wait()`, tylko sekundowe animacje `ReplacementTransform`/`FadeTransform`,
+  które zmieniają wyłącznie kolor dwóch glifów, oraz `wait(1)` w środku kroku.
+  Zostały nietknięte zgodnie z decyzją Henricha; jeśli kiedyś mają zniknąć, to jest
+  osobna zmiana (skrócenie run_time kolorowania).
+- Efekt: martwy start 1,08 → 0,08 s (zad. 1 krok 9), 1,18 → 0,17 s (zad. 2 krok 6),
+  1,27 → 0,27 s (zad. 3 krok 5). Każdy z trzech plików o 1,00 s krótszy.
+- Sprawdzone: `tools/styk-klatek.sh` (styki bez pogorszenia), `tools/test-krokow.js`
+  na serwerze szybkim i zdławionym (30 przebiegów, bez zastrzeżeń).
+- Uwaga na przyszłość: `tools/styk-klatek.sh` zgłasza dwa styki poniżej progu,
+  zad. 2 kroki 2→3 (SSIM 0,9861) i zad. 3 kroki 6→7 (0,9990). To defekty SPRZED
+  tej zmiany - sprawdzone przez uruchomienie skryptu na plikach wyciągniętych
+  z HEAD, wartości co do cyfry te same. Osobny punkt, nie regresja.
+- Render w kontenerze jest powtarzalny co do bajtu: po przerenderowaniu trzech
+  scen `git status` pokazał zmienione tylko te trzy kroki (plus rewersy), reszta
+  z 23 plików wyszła identyczna.
+
 [ZROBIONE 2026-08-20] (Opus 5, medium) v61 - przyciski arkuszy na stronie głównej:
 stała szerokość, nowe napisy, koniec pustych akapitów rozdzielających.
 [landing, cta, responsive]

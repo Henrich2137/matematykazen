@@ -202,7 +202,8 @@ class ScenaZadania3(Scene):
         self.add(kroki[3])
         
         #self.add(index_labels(kroki[3][0]))
-        self.wait(1)
+        # Bez postoju na wejściu (2026-08-20): ten zapis stoi już na ostatniej
+        # klatce kroku 4, więc sekunda bezruchu tylko wydłużała film.
         self.play(TransformSplit(3, [0, 3, 5, 9, 11, 13], [0, 3, 6, 10, 13, 17]))
 
         self.wait(0.25)

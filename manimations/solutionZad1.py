@@ -233,7 +233,9 @@ class Zad1(Scene):
         #STEP 9
         self.add(kroki[4].move_to(LEFT*4))
         self.add(kroki[11].move_to(RIGHT*4))
-        self.wait(1)
+        # Bez postoju na wejściu (2026-08-20): oba wyniki są tu przyniesione
+        # z poprzedniego kroku, więc uczeń ma je już obejrzane. Sekunda bezruchu
+        # na starcie filmu czytała się jak zacięcie odtwarzacza.
         self.play(Transform(kroki[4][0][0:2], kroki[12][0][0:3]), Transform(kroki[4][0][2:99],  kroki[12][0][5:7]), Transform(kroki[11][0][0:2],  kroki[12][0][3:5]), Transform(kroki[11][0][2:99],  kroki[12][0][7:99]))
         self.wait(1)
         self.clear()

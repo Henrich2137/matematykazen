@@ -154,13 +154,12 @@ class ScenaZadania2(Scene):
 
         self.next_section("krok6")
         #STEP 6
-        # Sekunda bezruchu na wejściu jest CELOWA i była w wgranym pliku
-        # (step6.mp4 ma 2,25 s = 1 s postoju + 1 s animacji + 0,25 s przytrzymania):
-        # to ostatni krok, w którym z dwóch potęg robi się wynik, i warto dać
-        # chwilę na spojrzenie na punkt wyjścia.
+        # Sekunda bezruchu na wejściu była tu do 2026-08-20 (step6.mp4 miał 2,25 s
+        # = 1 s postoju + 1 s animacji + 0,25 s przytrzymania). Wycięta na prośbę
+        # Henricha: punkt wyjścia uczeń widzi już na ostatniej klatce kroku 5,
+        # a postój na starcie filmu wygląda jak zacięcie odtwarzacza.
         self.clear()
         self.add(kroki[4])
-        self.wait(1)
         self.play(ReplacementTransform(kroki[4], kroki[5]))
         self.wait(0.25)
 

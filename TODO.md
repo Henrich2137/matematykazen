@@ -4,64 +4,20 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.     
   
-  - postFable Opus 
-    - 2026-maj - poniższa paczka rozwiązań do:
-      - zad 14 DONE
-      - zad 19 DONE
-        - wstaw też rysunek do treści, ale zrób go mniejszego na komputerach bo fable przesadził w poprzednich zadaniach
+  - Nic
 
 
 
-Prompt dla Opusa Zad 18, nie kasuj go:
-Zrób w wszysskich twoich zadaniach tekst i katex sformatowanywa taki sposób jak u zadaniach fable
-Zad 20 - Rozwiązanie interaktywne
-- powiększ tyhc render prostych
-- Spraw aby można było dojechać do 16 / 12 przesuwając te proste k i l
-- zmień odcienie tych kolorów tak by można było je odróżnić.
-- Zmień kolory prostych k, l oraz fragmentów n i m na zewnątrz tych równoległych na biały.
-Inaczej mówiąc: kolorowe mają zostać tylko odcienki z oznaczoną długością, reszta biała
+WZÓR PROMPTU DLA OPUSA POST-FABLE:
 
-26.
-- Punkt 2 -2 pokoloruj na biało
-- Suwaki powinny być tym sammym kolorem z różnymi odcieniami co prosta k której równanie powinno być pod suwakami napisane w stylu 
-"
-k:   y = −1/3 x + 2  <- pokoloruj na odpowiednie odcienie fioletowego i biały
-
-Prosta l przecina oś y-greków w punkcie: 
-
-(0 , -4/3)  <- pokoloruj na niebiesko
-"
-33.2
-Dorób piłeczkę na 0, 0 i przycisk do wystrzelenia jej
-
-
-
-ARCHIWUM PROMPTÓW:
-
-  Fable pracowało nad wybranymi zadaniami 1-13 i zrobiło nich:
+  Fable pracowało nad wybranymi zadaniami 1-13 i zrobiło  wnich:
     - Interaktywne rozwiązanie (widżet)
     - Zwykłe rozwiązanie
     - Podpowiedź
 
   Sprawdź jakie wskazówki zostawiło po sobie Fable. Zrób podobny do powyższego zestaw dla poniższego zadania. Wzoruj się na poprzednich. Korzystaj również z transktyptów oraz plików (w potrzebie zobaczenia grafiki) arkusz.pdf odpowiedzi.pdf tablica-wzorow.pdf itd.  
   
-  Zad 19 - Rozwiązanie interaktywen:
-  Możesz wzorować się na: 2024-grudzien zad 20
-  Najważniejsze aby można było przesuwać punkt D.
-  Dodatkowo opcjonalnie jak pójdzie głądko powyższe i będize działać na tip top to zrób przesuwanie punktu B. Oba mają się przesuwać tylko w obrębie łuku na który się znajdują. Punkt B może wejść w miejsce punkt A lub C, byle żeby dało się go z tamtąd wyciągnąć.
-  
-  Zadaj pytania doprecyzowujące i ruszaj do autonomiicznej pracki.
-  PS: Zdaje mi się, że Fable pracował nad tym zadaniem, może nie odkończył i zostawił. sprawdź szybko przed zadaniem pytań. Potem dokładniej.
-
-
-
-  
-
-  Zad 14. - Rozwiązanie interaktywne:
-  Stwórz układ współrzędnych z wydocznymi wykresami funkcji f i g (2 parabole). Powinien istnieć suwak zmieniający wartość domyślnie ustawioną na 1 w f(x+1) tak aby parabola g się przesuwała prawo-lewo (odwrotnie niż suwak zwiększa wartość w prawą). Zrób takiego css aby przy liczba suwak był bardziej na sztywno a nie zależny od np. napisu po lewej, bo podczas przesuwania suwaka i zmiany ilość znaków napisie suwak skacze lewa-prawa.
-  Gdy dopracujesz doobrze powyższe to zrób dodatkowo, opcjonalnie: 
-  Możliwość złapania za wykres funkcji i przesunięcia go, co daje ten sam efekt co przesunięcie suwaka w drugą stronę.
-
+  Zadaj pytania doprecyzowujące i ruszaj do autonomiicznej pracy.
 
 
 <br>
@@ -71,9 +27,6 @@ ARCHIWUM PROMPTÓW:
 
   - Rozwiązanie krok po kroku:
     
-    - Kroki mają za długie „czekania" na początku i na końcu filmu (wait() w Manimie) — wyciąć.
-      Małe waity w środku kroku, między pojedynczymi animacjami, są okej. Najmocniej widać w zad. 1.
-
     - Zad. 1, kropki kroków: przy większej liczbie kroków niż mieści pasek ma być można
       przewijać (dziś sprawdzone tylko dla dziesięciu, które mieszczą się bez przewijania)
       - kropki są na granicy wygody dla kciuka na telefonie — rozważyć lekkie powiększenie
@@ -90,6 +43,14 @@ ARCHIWUM PROMPTÓW:
 + TESTOWANIE HENRICH
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945 
+
+  - postoje na początku filmów krok po kroku (v62)
+
+    - zad. 1 krok 9, zad. 2 krok 6 i zad. 3 krok 5 są o sekundę krótsze, bo film rusza od razu zamiast stać nieruchomo na wejściu; sprawdź, czy nie ruszają teraz za szybko
+
+    - przejdź te trzy kroki tam i z powrotem strzałkami: obraz na styku kroków ma być ten sam, bez przeskoku
+
+    - w pozostałych krokach czekania nie ruszałem, bo siedzą w środku kroku albo są animacją gaszenia koloru; powiedz, czy któryś z nich nadal się dłuży
 
   - przyciski arkuszy na stronie głównej (v61)
 
