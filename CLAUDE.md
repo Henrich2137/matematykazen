@@ -16,7 +16,29 @@ MatematykaZen is an interactive platform for learning math for the Polish "matur
 
 ## OVERVIEW.md
 
-[OVERVIEW.md](OVERVIEW.md) — a standalone, Polish-language project summary (opis projektu, arkusze, funkcje, model biznesowy) maintained by Claude web (projekt „Matematyka Zen" na claude.ai) for use outside this repo, starting with an "Ostatnia aktualizacja" timestamp line. **ZASADA: aktualizuj datę i treść tego pliku po każdej większej zmianie, która może wpłynąć na jego treść** (nowy arkusz, nowa funkcja, zmiana modelu biznesowego itp.) — nie czekaj, aż użytkownik o to poprosi.
+[OVERVIEW.md](OVERVIEW.md) — a standalone, Polish-language project summary (opis projektu, arkusze, funkcje, model biznesowy) maintained by Claude web (projekt „Matematyka Zen" na claude.ai) for use outside this repo, starting with an "Ostatnia weryfikacja" timestamp line. **ZASADA: aktualizuj datę i treść tego pliku po każdej większej zmianie, która może wpłynąć na jego treść** (nowy arkusz, nowa funkcja, zmiana modelu biznesowego itp.) — nie czekaj, aż użytkownik o to poprosi.
+
+**Its reader is Claude web, not Claude Code.** It is the bird's-eye view for business and product planning by someone who has *not* opened the repo: what exists, what the site does, where it is heading. So keep it **short and skimmable**, and keep technical detail out — how something works, how it is counted, how it is run belongs in this file and in the docs next to the code. When in doubt, cut from OVERVIEW.md and write the detail here instead.
+
+### Statystyki arkuszy w OVERVIEW.md
+
+The "Arkusze maturalne" section carries hard numbers per sheet. **Never count them by hand** — [tools/statystyki.py](tools/statystyki.py) computes them straight from `exercises.json`, and its docstring is the source of truth for what each line means:
+
+```
+python3 tools/statystyki.py            # wszystkie arkusze
+python3 tools/statystyki.py 2026-maj   # jeden arkusz
+python3 tools/statystyki.py --braki    # + numery zadań, w których czegoś brakuje
+```
+
+Counting rules (implemented in the script, repeated here so you know what you are looking at):
+- **Zadanie** = one *scoring* entry in `exercises.json`. A bundle header („Zadanie 12." above 12.1 and 12.2) has `maxScore: 0` and does **not** count, so 12 + 12.1 + 12.2 = three entries but two exercises.
+- **Podpowiedź / rozwiązanie opisowe / rozwiązanie wideo / widżet** = the matching field (`hint` / `solutionText` / `solutionStepByStep` / `solutionWidget`) is non-empty.
+- **Widżety** are reported as a count of distinct widgets in the sheet, never as a fraction of exercises — not every exercise can or should get one.
+- **Odpowiedzi zweryfikowane z kluczem CKE** = the closed-form answers were compared against `matura/<id>/odpowiedzi.pdf`.
+
+**Run the script and rewrite the numbers (and the date at the top) whenever you finish a batch of work on a sheet** — new hints, solutions, videos or widgets. It is one command, so that section has no excuse to drift.
+
+Beyond that, treat OVERVIEW.md as something **you** keep current, not something Henrich has to ask for: if a session touches the sheets or the feature set at all, run the script before you finish and check that the prose around the numbers still matches reality.
 
 ## Licensing / contributions
 

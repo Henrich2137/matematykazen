@@ -6,6 +6,8 @@ Platforma do nauki matematyki pod maturę podstawową (CKE), inspirowana Brillia
 
 Zobacz na żywo: https://henrich2137.github.io/matematykazen/
 
+> **Po co ten plik.** To jedyne miejsce, w którym cały projekt da się ogarnąć z lotu ptaka, bez otwierania repozytorium. Pisany jest dla Claude web (projekt „Matematyka Zen" na claude.ai), który zajmuje się stroną biznesową, planowaniem i decyzjami produktowymi, a nie dla Claude Code, który siedzi w kodzie i ma do tego pozostałe pliki repozytorium. Dlatego ma być **krótki i przejrzysty**: co jest zrobione, co strona umie i dokąd zmierza. Szczegóły techniczne (jak co działa, jak się to liczy, jak się to uruchamia) tutaj nie wchodzą, ich miejsce jest w `CLAUDE.md` i plikach obok kodu.
+
 ## Arkusze maturalne
 
 **2024 grudzień (próbna)** - kompletny:
@@ -33,30 +35,6 @@ Rysunki z arkusza są wycięte i wstawione we wszystkie zadania, które ich wyma
 **2025 maj (właściwa)** - niewpięty:
 - Zadania: 0 (same PDF-y arkusza i klucza, bez `exercises.json`)
 - Na stronie głównej się nie pojawia.
-
-### Jak liczymy te statystyki (zasada)
-
-Liczby wylicza skrypt **`tools/statystyki.py`** wprost z danych arkusza, żeby nikt nie musiał
-liczyć ręcznie ani zgadywać:
-
-```
-python3 tools/statystyki.py            # wszystkie arkusze
-python3 tools/statystyki.py 2026-maj   # jeden arkusz
-python3 tools/statystyki.py --braki    # dodatkowo: numery zadań, w których czegoś brakuje
-```
-
-Definicje (źródłem prawdy jest skrypt, ta sekcja tylko przepisuje wynik):
-- **Zadanie** = jedna punktowana karta w `exercises.json`. Wiązka typu „Zadanie 12." z podpunktami
-  12.1 i 12.2 to trzy wpisy, ale tylko dwa zadania, bo nagłówek wiązki nie ma punktów.
-- **Podpowiedź / rozwiązanie opisowe / rozwiązanie wideo / widżet** = odpowiednie pole zadania
-  jest niepuste.
-- **Widżety** liczone są jako liczba różnych widżetów w arkuszu, nie jako ułamek zadań: nie każde
-  zadanie da się (i warto) zilustrować interaktywnie.
-- **Odpowiedzi zweryfikowane z kluczem CKE** - odpowiedzi do zadań zamkniętych zostały porównane
-  z oficjalnymi zasadami oceniania (`odpowiedzi.pdf`).
-
-**Zasada aktualizacji:** po każdej porcji pracy nad arkuszem puść skrypt i przepisz liczby tutaj
-(razem z datą na górze pliku). To jedno polecenie, więc nie ma powodu, żeby ta sekcja się rozjeżdżała.
 
 ## Funkcje
 
