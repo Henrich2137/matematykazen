@@ -27,7 +27,7 @@ osobnego przemyślenia schematu danych.
 |---|---|---|---|---|
 | `2024-grudzien` | 6 grudnia 2024 | próbna (test diagnostyczny) | MMAP-P0-100-2412 | wpięty — 30 zadań, odpowiedzi zweryfikowane z kluczem CKE (2026-07-05) |
 | `2025-maj` | maj 2025 | matura właściwa | — | **niewpięty** — same PDF-y, brak `exercises.json` |
-| `2026-maj` | 5 maja 2026 | matura właściwa | MMAP-P0-100-2605 | wpięty — 33 zadania; część grafik jeszcze do wycięcia z PDF-a |
+| `2026-maj` | 5 maja 2026 | matura właściwa | MMAP-P0-100-2605 | wpięty — 33 zadania, wszystkie rysunki wstawione, odpowiedzi zamknięte zgodne z kluczem CKE (2026-08-20); podpowiedzi i rozwiązania powstają zadanie po zadaniu |
 
 ## Zawartość katalogu arkusza
 

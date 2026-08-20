@@ -9,7 +9,7 @@ funkcji jako string — JSON nie przechowuje funkcji).
 Pełny opis mechaniki renderowania jest w [ARCHITECTURE.md](../ARCHITECTURE.md)
 (sekcja „Rendering model", pole `solutionWidget`), style w
 [style/sheet.css](../style/sheet.css). Ten plik jest tylko spisem treści —
-żeby nie trzeba było otwierać dziewięciu plików, by sprawdzić, co już istnieje.
+żeby nie trzeba było otwierać wszystkich plików widżetów, by sprawdzić, co już istnieje.
 
 ## Kolejność ładowania (ma znaczenie)
 

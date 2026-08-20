@@ -1,4 +1,4 @@
-Ostatnia weryfikacja  16.08.2026 
+Ostatnia weryfikacja  20.08.2026 
 
 # Matematyka Zen
 
@@ -8,9 +8,55 @@ Zobacz na żywo: https://henrich2137.github.io/matematykazen/
 
 ## Arkusze maturalne
 
-- **2024 grudzień (próbna)** — kompletny: wszystkie 30 zadań, podpowiedzi, rozwiązania (tekst + wideo krok po kroku przy dziewięciu pierwszych zadaniach, 1–9), 9 interaktywnych widżetów, odpowiedzi zweryfikowane z oficjalnym kluczem CKE.
-- **2026 maj**: wpięty w całości jako zadania z odpowiedziami do sprawdzenia, opracowywany zadanie po zadaniu. Zadania 2, 8, 10, 11, 12, 13, 14, 19, 20, 26 i 33 mają już komplet, czyli podpowiedź, rozwiązanie opisowe i interaktywny widżet (razem 13 widżetów). Rysunki z arkusza są wycięte i wstawione w treść wszystkich zadań, które ich wymagają. Wideo krok po kroku w tym arkuszu jeszcze nie ma.
-- **2025 maj** — jeszcze niewpięty: same PDF-y arkusza i klucza, bez danych na stronie.
+**2024 grudzień (próbna)** - kompletny:
+- Zadania (osobne karty): 33 (30 poleceń CKE, część z podpunktami), 50 pkt
+- Podpowiedzi: 33/33
+- Rozwiązania opisowe: 31/33 (zad. 1 i 2 mają samo wideo)
+- Rozwiązania wideo (krok po kroku): 9/33 (zadania 1-9)
+- Widżety interaktywne: 9 (nie 1:1 z zadaniami, nie każde tego wymaga)
+- Zadania otwarte z kryteriami CKE: 7/7
+- Odpowiedzi zweryfikowane z kluczem CKE: tak
+
+**2026 maj (właściwa)** - w opracowaniu:
+- Zadania (osobne karty): 37 (33 polecenia CKE, część z podpunktami), 50 pkt
+- Podpowiedzi: 14/37
+- Rozwiązania opisowe: 14/37
+- Rozwiązania wideo (krok po kroku): 0/37
+- Widżety interaktywne: 13
+- Zadania otwarte z kryteriami CKE: 8/8
+- Odpowiedzi zweryfikowane z kluczem CKE: tak
+
+Treść wszystkich 33 zadań i odpowiedzi jest już wpięta, więc arkusz da się przeklikać w całości.
+Komplet (podpowiedź + rozwiązanie opisowe + widżet) mają zadania 2, 8, 10, 11, 12, 13, 14, 19, 20, 26 i 33.
+Rysunki z arkusza są wycięte i wstawione we wszystkie zadania, które ich wymagają.
+
+**2025 maj (właściwa)** - niewpięty:
+- Zadania: 0 (same PDF-y arkusza i klucza, bez `exercises.json`)
+- Na stronie głównej się nie pojawia.
+
+### Jak liczymy te statystyki (zasada)
+
+Liczby wylicza skrypt **`tools/statystyki.py`** wprost z danych arkusza, żeby nikt nie musiał
+liczyć ręcznie ani zgadywać:
+
+```
+python3 tools/statystyki.py            # wszystkie arkusze
+python3 tools/statystyki.py 2026-maj   # jeden arkusz
+python3 tools/statystyki.py --braki    # dodatkowo: numery zadań, w których czegoś brakuje
+```
+
+Definicje (źródłem prawdy jest skrypt, ta sekcja tylko przepisuje wynik):
+- **Zadanie** = jedna punktowana karta w `exercises.json`. Wiązka typu „Zadanie 12." z podpunktami
+  12.1 i 12.2 to trzy wpisy, ale tylko dwa zadania, bo nagłówek wiązki nie ma punktów.
+- **Podpowiedź / rozwiązanie opisowe / rozwiązanie wideo / widżet** = odpowiednie pole zadania
+  jest niepuste.
+- **Widżety** liczone są jako liczba różnych widżetów w arkuszu, nie jako ułamek zadań: nie każde
+  zadanie da się (i warto) zilustrować interaktywnie.
+- **Odpowiedzi zweryfikowane z kluczem CKE** - odpowiedzi do zadań zamkniętych zostały porównane
+  z oficjalnymi zasadami oceniania (`odpowiedzi.pdf`).
+
+**Zasada aktualizacji:** po każdej porcji pracy nad arkuszem puść skrypt i przepisz liczby tutaj
+(razem z datą na górze pliku). To jedno polecenie, więc nie ma powodu, żeby ta sekcja się rozjeżdżała.
 
 ## Funkcje
 
