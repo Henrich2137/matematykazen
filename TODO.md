@@ -44,7 +44,6 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
 <br> Mój telefon na chrome ma "okno": 485x945
 <br> Próg wejścia jest wysoki, patrz ZASADY DLA CLAUDE-A niżej. Archiwum dawnych list: issues/testowanie-archiwum.md.
 
-  - Nic. Cała paczka v33-v62 przeklikana przez Ciebie 2026-08-20, wszystko działa; wyniki w done/04-biezace.md.
 
 
 <br>
@@ -60,18 +59,7 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
 
 + DO ZROBIENIA HOŚCIE (POZA KONTENEREM)
 
-  - sprawdzić devcontainer na Kubuntu/Dockerze - testowany był tylko pod rootless podmanem
-    na Bazzite (opis środowiska: .devcontainer/README.md). Sprawdzone 2026-08-20 od środka:
-    ta sesja siedzi w podmanie (jest /run/.containerenv, nie ma /.dockerenv, DNS 169.254.1.1),
-    czyli w środowisku już przetestowanym. Z wnętrza kontenera nie da się tego zamknąć,
-    trzeba odpalić repo na maszynie z Docker Engine. Co tam obejrzeć w pierwszej kolejności:
-
-    - czy kontener w ogóle wstaje (skrypt firewalla kończy się bez błędu)
-
-    - czy działa DNS: pod Dockerem brama to 127.0.0.11, nie 169.254.1.1, a reguła przepuszcza
-      dziś tylko port 53 do bramy (.devcontainer/init-firewall.sh)
-
-    - czy git push i gh nadal przechodzą przez allowlistę
+  - nic
 
 
 <br>
@@ -101,15 +89,6 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
     - Punkty krytyczne (failure points)
 
   + Zweryfikować poprawność matematyczną 2024-grudzien:
-    - Styki klatek w filmach - zmierzone 2026-08-20 przez tools/styk-klatek.sh. Niżej DOKŁADNIE
-      te pary, które nie przechodzą progu; reszta arkusza jest czysta, w tym całe zad. 1, 5 i 6:
-      - zad. 2, kroki 2→3 (SSIM 0,9861) - najgorszy styk w całym arkuszu
-      - zad. 8, kroki 1→2 (0,9967) oraz 2→3 (0,9959)
-      - zad. 7, kroki 5→6 (0,9962)
-      - zad. 9, kroki 7→8 (0,9970)
-      - zad. 4, kroki 2→3 (0,9990) - zielona szóstka zostaje na ostatniej klatce kroku 2,
-        a krok 3 startuje czarny
-      - zad. 3, kroki 6→7 (0,9990) - krok 6 kończy się szarym nawiasem domykającym
 
     - Zad 9 -> Sprawdzanie obliczeń -> Pierwszy checkbox
       (sprawdzone 2026-08-20: trzy kryteria zgadzają się z kluczem CKE co do punktów,

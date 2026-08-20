@@ -4,16 +4,7 @@ Skrypty Manim generujące wideo do `solutionStepByStep` w `exercises.json` (fina
 
 ## Środowisko
 
-Są dwa, celowo z **tą samą wersją Manima (Community v0.18.1)** — chodzi o to, żeby ten sam skrypt dawał ten sam obraz niezależnie od tego, gdzie go wyrenderowano.
-
-### Host — Windows Henricha (sprawdzone 2026-08-11)
-
-- Python: 3.12.8
-- Manim: Community v0.18.1 (`pip install manim==0.18.1`)
-- ffmpeg: 7.1 (gyan.dev full build)
-- LaTeX: MiKTeX 25.4 (do renderowania wzorów przez Manim)
-
-Zależności Pythona (z `pip freeze`): `manim==0.18.1`, `ManimPango==0.6.0`, `numpy==2.2.1`, `pillow==11.0.0`, `scipy==1.14.1`.
+Render robi się **w devkontenerze** i tylko tam (Manim Community v0.18.1). Opis renderowania na Windowsie Henricha odpadł 2026-08-20, bo Henrich już na nim nie pracuje; wersje tamtej maszyny zostały w historii repo i w porównaniu niżej.
 
 ### Devkontener — Debian (dodane 2026-08-11)
 
@@ -21,7 +12,7 @@ Manim, ffmpeg i minimalny TeX Live siedzą w obrazie kontenera (blok w `.devcont
 
 - LaTeX to TeX Live w minimalnym zestawie z dokumentacji Manima (~1–1,5 GB), a nie `texlive-full` — pokrywa to, czego używają istniejące sceny. Gdyby render zgłosił brakujący plik `.sty`, dopisuje się konkretny pakiet w Dockerfile.
 - Instalacja nie wymaga wyjątku w firewallu (`pypi.org` jest poza allowlistą): obraz buduje się, zanim host nałoży firewall, a po starcie kontenera Manim nic już nie pobiera.
-- Przypięty jest **tylko sam Manim**. Zależności pod spodem instalują się w najnowszych wersjach i różnią się od hosta (sprawdzone 2026-08-11: kontener dostaje `ManimPango 0.6.1`, `numpy 2.4.6`, `Pillow 12.3.0`, host ma `0.6.0` / `2.2.1` / `11.0.0`). Różni się też ffmpeg: **5.1.9** w kontenerze (tyle daje Debian 12) vs **7.1** na hoście.
+- Przypięty jest **tylko sam Manim**. Zależności pod spodem instalują się w najnowszych wersjach (sprawdzone 2026-08-11: `ManimPango 0.6.1`, `numpy 2.4.6`, `Pillow 12.3.0`, ffmpeg **5.1.9** z Debiana 12). Dawny host Henricha miał inne (`0.6.0` / `2.2.1` / `11.0.0`, ffmpeg 7.1) i mimo to dawał ten sam obraz - patrz porównanie niżej.
 - **Nie podawaj flagi jakości** (`-ql`/`-qh` itd.). Flaga jakości nadpisuje `pixel_width`/`pixel_height` z `manim.cfg`, a wraz z rozdzielczością zmieniają się **proporcje kadru**: `-qh` daje 1920×1080 (16:9) zamiast 840×360 (21:9), czyli inne rozmieszczenie wzorów w kadrze niż w plikach już wgranych na stronę. Samo `manim plik.py Scena` czyta `manim.cfg` i trafia w 840×360 @ 60 fps.
 
 #### Porównanie host ↔ kontener (zrobione 2026-08-11) — ✅ zgodne

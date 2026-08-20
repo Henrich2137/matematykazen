@@ -1,5 +1,36 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-20] (Opus 5, medium) Devcontainer sprawdzony na Kubuntu
+pod rootless podmanem. Punkt „DO ZROBIENIA HOŚCIE" zamknięty, sekcja pusta.
+[devcontainer, podman, kubuntu, firewall]
+
+Wpis w TODO mówił, że kontener testowano wyłącznie pod rootless podmanem na Bazzite,
+i kazał sprawdzić go na Kubuntu z Dockerem. Henrich doprecyzował 2026-08-20, że na
+Kubuntu też pracuje **tylko na podmanie**, więc Docker wypada z zakresu i nie ma
+po co go badać, dopóki nikt na nim nie pracuje.
+
+Zostało pytanie, czy pod Kubuntu wszystko działa tak jak na Bazzite. **Działa** -
+sprawdzone od środka działającej sesji, bez ruszania hosta:
+
+- Host to Ubuntu: jądro `7.0.0-30-generic #30-Ubuntu`, zbudowane przez buildd,
+  gcc `Ubuntu 15.2.0`. Bazzite jest na Fedorze, więc to inna maszyna niż referencyjna.
+- Runtime to podman, nie Docker: jest `/run/.containerenv`, nie ma `/.dockerenv`,
+  a DNS wskazuje `169.254.1.1`, czyli pastę (pod Dockerem byłoby `127.0.0.11`).
+- Firewall działa w obie strony: `github.com` i `api.github.com` zwracają 200,
+  a `pypi.org` i `example.com` nie łączą się w ogóle (kod 000, curl pada).
+- Git i gh działają: `git ls-remote origin` przechodzi, `gh auth status` pokazuje
+  zalogowanego `Henrich2137` z konfiguracją w `/home/node/.config/gh/hosts.yml`
+  (czyli wolumen z konfiguracją gh też się podpiął).
+- Montowania read-only trzymają: `touch .devcontainer/…` i `touch .vscode/…`
+  kończą się „Read-only file system".
+- Narzędzia z obrazu wstają: Manim Community 0.18.1, Node 20.20.2, Python 3.11.2
+  oraz Chromium Playwrighta (bind z cache'a hosta).
+
+**Uwaga na przyszłość:** tego nie dało się dopisać do `.devcontainer/README.md`,
+bo ten katalog jest w kontenerze read-only i edytuje się go z hosta. Gdyby ktoś
+chciał mieć to przy konfiguracji, a nie w dzienniku, trzeba przenieść ten wpis
+z hosta.
+
 [ZROBIONE 2026-08-20] (Opus 5, medium) v63 - Henrich przeklikał CAŁĄ sekcję
 TESTOWANIE HENRICH (paczki v33-v62). Wszystko działa; sekcja wyczyszczona do zera.
 [testowanie, henrich-potwierdził, ciemny-motyw, zad20, landing]
