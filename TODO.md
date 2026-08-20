@@ -3,6 +3,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.     
+  
   - postFable Opus 
     - 2026-maj - poniższa paczka rozwiązań do:
       - zad 14 DONE
