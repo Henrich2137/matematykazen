@@ -2,6 +2,7 @@ Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady form
 
 [ZROBIONE 2026-08-20] (Opus 5, medium) v62 - wycięte postoje na wejściu w filmach
 krok po kroku (zad. 1 krok 9, zad. 2 krok 6, zad. 3 krok 5).
+POTWIERDZONE PRZEZ HENRICHA (2026-08-20): „wygląda dobrze".
 [manim, krok-po-kroku, wait, tempo]
 
 - Zgłoszenie Henricha: „kroki mają za długie czekania na początku i na końcu filmu,
