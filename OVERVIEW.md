@@ -8,6 +8,7 @@ Zobacz na żywo: https://henrich2137.github.io/matematykazen/
 
 > **Po co ten plik.** To jedyne miejsce, w którym cały projekt da się ogarnąć z lotu ptaka, bez otwierania repozytorium. Pisany jest dla Claude web (projekt „Matematyka Zen" na claude.ai), który zajmuje się stroną biznesową, planowaniem i decyzjami produktowymi, a nie dla Claude Code, który siedzi w kodzie i ma do tego pozostałe pliki repozytorium. Dlatego ma być **krótki i przejrzysty**: co jest zrobione, co strona umie i dokąd zmierza. Szczegóły techniczne (jak co działa, jak się to liczy, jak się to uruchamia) tutaj nie wchodzą, ich miejsce jest w `CLAUDE.md` i plikach obok kodu.
 
+
 ## Arkusze maturalne
 
 **2024 grudzień (próbna)** - kompletny:
@@ -36,14 +37,15 @@ Rysunki z arkusza są wycięte i wstawione we wszystkie zadania, które ich wyma
 - Zadania: 0 (same PDF-y arkusza i klucza, bez `exercises.json`)
 - Na stronie głównej się nie pojawia.
 
+
 ## Funkcje
 
 - Dwa typy zadań: zamknięte (ABCD, prawda/fałsz, wielokrotny wybór, uzupełnianie) oceniane automatycznie na bieżąco, oraz otwarte — rozwiązywane poza platformą, punktowane przez ucznia z checklisty kryteriów CKE (patrz samoocena niżej).
 
 - Rozwiązania chowają się pod przyciskiem „Rozwiązanie", żeby uczeń najpierw spróbował sam. Jedno zadanie może mieć kilka rodzajów naraz, wyświetlanych jeden pod drugim:
-  - **Opisowe** (zwykłe): rozpisany tok rozumowania, tekst ze wzorami. To podstawa, docelowo ma je każde zadanie. Dłuższe wtręty (drugi sposób, uzasadnienie wzoru, typowa pułapka) chowają się pod „Pokaż więcej", żeby główny wywód dało się przeczytać w kilkanaście sekund.
-  - **Krok po kroku**: krótkie animacje matematyczne (Manim), jedna na przejście między dwoma stanami działania. Pod filmem klikalny pasek kropek z paskiem postępu, krok da się cofnąć, prędkość od 0,25× do 4×, sterowanie palcem i strzałkami. Opis kroku chowa się pod przyciskiem, żeby widok domyślny był minimalistyczny. To docelowo najczęstszy rodzaj rozwiązania, ale jego produkcja jest najdroższa, więc na razie ma go tylko część zadań (aktualne liczby w statystykach wyżej).
-  - **Interaktywne** (widżety): mały rysunek do ruszania, w którym uczeń sam przesuwa tę jedną wielkość, od której zależy wynik, i widzi, jak zmienia się rachunek pod spodem. Chodzi o to, żeby odkryć przyczynę typowego błędu, a nie obejrzeć gotowy skutek. Z natury nie pasuje do każdego zadania, więc ma je tylko część.
+  - Zwykłe (opisowe) - rozpisany tok rozumowania, tekst ze wzorami. To podstawa, docelowo ma je każde zadanie. Dłuższe wtręty (drugi sposób, uzasadnienie wzoru, typowa pułapka) chowają się pod „Pokaż więcej", żeby główny wywód dało się przeczytać w kilkanaście sekund.
+  - Krok po kroku - krótkie animacje matematyczne (Manim), jedna na przejście między dwoma stanami działania. Pod filmem klikalny pasek kropek z paskiem postępu, krok da się cofnąć, prędkość od 0,25× do 4×, sterowanie palcem i strzałkami. Opis kroku chowa się pod przyciskiem, żeby widok domyślny był minimalistyczny. To docelowo najczęstszy rodzaj rozwiązania, ale jego produkcja jest najdroższa, więc na razie ma go tylko część zadań (aktualne liczby w statystykach wyżej).
+  - Interaktywne (widżety) -  mały rysunek do ruszania, w którym uczeń sam przesuwa tę jedną wielkość, od której zależy wynik, i widzi, jak zmienia się rachunek pod spodem. Chodzi o to, żeby odkryć przyczynę typowego błędu, a nie obejrzeć gotowy skutek. Z natury nie pasuje do każdego zadania, więc ma je tylko część.
 
 - Tablica wzorów (oficjalny PDF CKE) w przesuwnym, skalowalnym okienku.
 - Zasady oceniania (klucz odpowiedzi CKE) w analogicznym, osobnym okienku.
@@ -55,6 +57,7 @@ Rysunki z arkusza są wycięte i wstawione we wszystkie zadania, które ich wyma
 - Motyw jasny / ciemny / auto — razem z motywem przełączają się też interaktywne widżety (ciemne płótno, jasne osie i opisy).
 - Panel boczny z ustawieniami (natychmiastowa poprawność vs. „sprawdź później", widoczność punktacji, itd.). Pozycje niedostępne w danym trybie nie znikają, tylko szarzeją — panel nie skacze. Na telefonie zwija się też przeciągnięciem palcem w lewo.
 - Postęp i ustawienia zapisywane lokalnie (bez konta, bez serwera).
+
 
 ## Ścieżka biznesowa
 
@@ -87,18 +90,17 @@ W zależności od przychodów z dotacji oraz liczby użytkowników wybiorę jedn
     - Przychód z dotacji (np. suppi.pl)
 
 
-
-
-
 ## Licencja
 
 Kod i treści autorskie: **PolyForm Noncommercial 1.0.0** (użytek wyłącznie niekomercyjny; licencja komercyjna do uzgodnienia mailowo). Zadania i klucze CKE nie są objęte tą licencją. Kontrybutorzy przy wysyłaniu Pull Requesta zgadzają się na przekazanie właścicielowi projektu szerokiej licencji na swój wkład (również komercyjnej), zachowując prawo do własnego wkładu — dzięki temu przyszła zmiana licencji (Faza 3) nie będzie zablokowana.
 
+
 ## Numer wersji w rogu strony (zasada robocza)
 
-Obok logo widnieje numer wersji („v12 Beta"). Jest podbijany ręcznie przy każdym oddaniu pracy do testów i **służy wyłącznie fazie demo**: po odświeżeniu na telefonie od razu widać, czy przeglądarka wczytała już nową wersję, czy pokazuje wersję z cache'u. Zasada: przed przekazaniem czegokolwiek do sprawdzenia podbij numer, zacommituj i wypchnij na `origin` — inaczej testowana jest stara strona.
+Obok logo widnieje numer wersji (np „v12 Beta"). Jest podbijany ręcznie przy każdym oddaniu pracy do testów i **służy wyłącznie fazie demo**: po odświeżeniu na telefonie od razu widać, czy przeglądarka wczytała już nową wersję, czy pokazuje wersję z cache'u. Zasada: przed przekazaniem czegokolwiek do sprawdzenia podbij numer, zacommituj i wypchnij na `origin` — inaczej testowana jest stara strona.
 
 **Do skasowania (albo zamiany na prawdziwe wersjonowanie) w momencie rozpowszechniania strony.** Uczniowi numer wersji w rogu nic nie mówi, a sugeruje produkt niegotowy.
+
 
 ## Notatki robocze — utrzymywane przez Claude web (projekt „Matematyka Zen" na claude.ai)
 
