@@ -133,14 +133,9 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
       - Zwykłe tylko w wybranych z zad 1-13 są zrobione, w reszcie trzeba zrobić
       - Interaktywne
         - W wybranych z zad 1-19 są ✅
-        - W wybranych z zad 20-33
-          - Zad 20 - możliwość przesuwania k i l lewa-prawa. Pozostają na sztywno pod tym samym kątem i równoległe do siebie
-          - Zad 26 - Układ współrzędnych i na nim opisan sytuacja. Punkt (2, -2) na sztywno trzyma prostą l. Proste l podąża nachyleniem tak że jest zawsze równoległa do k. Suwaki:
-            - prosta k: współczynnik a, domyślnie -1/3
-            - prosta k: współczynnik b, domyślnie +2
-          - Zad 27 i 28 czeka aż będzie mi się chciało przekminić 3D
-          - Zad 33.1 - Zapisz w Rozwiązaniu zwykłym, że rozwiązanie interaktywne na oba można znależć pod 32.2 
-          - Zad 33.2 - Układ współrzędnych z parabolą przyczepioną do (0, 0). Suwak zmieniający b domyślnie równe 14,7 zakres: <0; 29,4> co 2,45 Tylko zrób aby nie skakał.
+        - W wybranych z zad 20-33 ✅
+          - zostają zad. 27 i 28, odłożone przez Ciebie do czasu, aż zechcesz przekminić 3D
+            (jedyne dwa z tego zakresu bez widżetu; zrobione: 20, 26, 33.1 bez widżetu z odesłaniem, 33.2)
 
         
 
