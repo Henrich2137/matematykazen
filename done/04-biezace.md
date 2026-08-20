@@ -1,5 +1,29 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-20] (Opus 5, medium) v61 - przyciski arkuszy na stronie głównej:
+stała szerokość, nowe napisy, koniec pustych akapitów rozdzielających.
+[landing, cta, responsive]
+
+- `.landing-cta-sub` usunięty. Były to dwa PUSTE akapity, których jedynym zadaniem
+  było rozepchnięcie przycisków (inline-block same stanęłyby obok siebie). Odstęp
+  robi teraz `margin: 0 auto 16px` na samym przycisku.
+- `.landing-cta` z inline-block na block o stałej szerokości 520 px (`max-width: 100%`
+  zwęża go sam na wąskim ekranie). Powód: arkusze to równorzędny wybór, więc mają
+  wyglądać jak dwa jednakowe klawisze, a nie dwa napisy różnej długości.
+  `box-sizing: border-box` jest tu konieczne, bo arkusz stylów nie ma globalnego
+  resetu i bez tego padding z ramką doszłyby do 520 px.
+- W responsive.css (breakpoint 720 px) ciaśniejszy padding 13/16 i 17 px czcionki:
+  przy desktopowym paddingu 28 px na bok dłuższy napis łamał się na telefonie
+  na trzy linijki.
+- Napisy zmienione z „Matura podstawowa, CKE, maj 2026" na „Rozwiąż arkusz CKE,
+  maj 2026" (i analogicznie „arkusz próbny", grudzień 2024). Powód: „Matura
+  podstawowa, CKE" powtarzało się w obu przyciskach, a mówi to już tytuł strony
+  i lede; zostaje czasownik plus to, co student faktycznie porównuje.
+  Propozycja modelu, nie polecenie Henricha - do zatwierdzenia (TODO, TESTOWANIE).
+- Zmierzone Playwrightem: 520 px na desktopie, 445 px w oknie 485 px (telefon
+  Henricha, napis w jednej linijce), 320 px przy 360 px szerokości (napis łamie
+  się po przecinku, strona nie przewija się w poziomie).
+
 [ZROBIONE 2026-08-20] (Sonnet 5 + Opus 5, medium) v60 - koniec z „pokaż więcej":
 pole solutionTextMore usunięte z danych i z kodu, film zamienił się kolejnością z tekstem.
 [solutionTextMore, kolejnosc-rozwiazan, render, sprzatanie]

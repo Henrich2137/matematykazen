@@ -71,12 +71,25 @@
    Do 2026-07-27 miał ramkę 2px w kolorze --text i hover na pełnej inwersji, więc
    w ciemnym motywie świecił mocniej niż cokolwiek na arkuszu. Waga wizualna
    zostaje w rozmiarze (18px, padding 14/28), nie w grubości obwódki. */
+/* Stała szerokość 520 px, nie „tyle, ile tekstu" (Henrich, 2026-08-20): arkusze
+   są równorzędnym wyborem, więc mają wyglądać jak dwa jednakowe klawisze, a nie
+   jak dwa napisy różnej długości. Do 2026-08-20 przyciski były inline-block i
+   rozdzielały je puste akapity .landing-cta-sub. Te zniknęły, odstęp robi
+   teraz margines. `box-sizing` jest tu konieczne (arkusz stylów nie ma
+   globalnego resetu), inaczej padding i ramka doszłyby do tych 520 px.
+   `max-width: 100%` sam zwęża przycisk na wąskim ekranie; reszta dostrojenia
+   na telefon jest w responsive.css. */
 .landing-cta {
-    display: inline-block;
+    display: block;
+    box-sizing: border-box;
+    width: 520px;
+    max-width: 100%;
+    margin: 0 auto 16px;
     padding: 14px 28px;
     border: var(--border-kontrolka) solid var(--border-strong);
     border-radius: var(--radius-kontrolka);
     font-size: 18px;
+    text-align: center;
     text-decoration: none;
     color: var(--text);
 }
@@ -84,11 +97,6 @@
     border-color: var(--text);
     background-color: var(--bg-muted);
     color: var(--text);
-}
-.landing-cta-sub {
-    margin-top: 12px;
-    font-size: 14px;
-    color: var(--text-faint);
 }
 .landing-section {
     margin-top: 70px;

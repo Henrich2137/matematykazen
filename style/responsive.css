@@ -65,6 +65,16 @@
 }
 
 @media (max-width: 720px) {
+    /* Przyciski arkuszy na landingu. Szerokość zwęża się sama (max-width: 100%
+       w landing.css), ale sam padding zostałby desktopowy: na wąskim ekranie
+       tekst „Rozwiąż arkusz próbny CKE, grudzień 2024" łamie się wtedy na trzy
+       linijki, bo po bokach zjada mu 28 px z każdej strony. Ciaśniejszy padding
+       i o oczko mniejsza czcionka mieszczą go w dwóch. */
+    .landing-cta {
+        padding: 13px 16px;
+        font-size: 17px;
+    }
+
     /* Wiersz przycisków tekstowych (Podpowiedź / Rozwiązanie / Zgłoś błąd /
        Pokaż wzory): na desktopie cztery w jednym rzędzie, tu łamią się po dwa.
        flex-basis 40% + wrap zamiast czterech kolumn po ~80px, w których każda

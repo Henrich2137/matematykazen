@@ -91,6 +91,14 @@ ARCHIWUM PROMPTÓW:
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945 
 
+  - przyciski arkuszy na stronie głównej (v61)
+
+    - oba przyciski mają teraz jednakową szerokość 520 px i napisy „Rozwiąż arkusz CKE, maj 2026" oraz „Rozwiąż arkusz próbny CKE, grudzień 2024" - powiedz, czy te napisy są dla Ciebie ok, bo to moja propozycja, nie Twoje polecenie
+
+    - na telefonie przycisk ma się zwęzić do szerokości ekranu; sprawdź, czy drugi napis mieści się w jednej linijce (na Twoim oknie 485 px mieści się, na wąskim 360 px łamie się po przecinku i tak ma być)
+
+    - puste akapity między przyciskami zniknęły, odstęp robi teraz margines - sprawdź, czy przyciski nie są za ciasno albo za luźno
+
   - koniec „pokaż więcej" i nowa kolejność rozwiązań (v60)
 
     - rozwiń „Rozwiązanie" w dowolnym zadaniu z filmem (2024-grudzień zad. 1, 2, 3) - najpierw ma być film krok po kroku, dopiero pod nim tekst rozwiązania, a na końcu widżet
