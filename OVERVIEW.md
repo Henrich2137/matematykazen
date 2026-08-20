@@ -9,7 +9,7 @@ Zobacz na żywo: https://henrich2137.github.io/matematykazen/
 > **Po co ten plik.** To jedyne miejsce, w którym cały projekt da się ogarnąć z lotu ptaka, bez otwierania repozytorium. Pisany jest dla Claude web (projekt „Matematyka Zen" na claude.ai), który zajmuje się stroną biznesową, planowaniem i decyzjami produktowymi, a nie dla Claude Code, który siedzi w kodzie i ma do tego pozostałe pliki repozytorium. Dlatego ma być **krótki i przejrzysty**: co jest zrobione, co strona umie i dokąd zmierza. Szczegóły techniczne (jak co działa, jak się to liczy, jak się to uruchamia) tutaj nie wchodzą, ich miejsce jest w `CLAUDE.md` i plikach obok kodu.
 
 
-## Arkusze maturalne
+## Arkusze maturalne - statystyki dostępnych treści
 
 **2024 grudzień (próbna)** - kompletny:
 - Zadania (osobne karty): 33 (30 poleceń CKE, część z podpunktami), 50 pkt
@@ -80,8 +80,8 @@ W zależności od przychodów z dotacji oraz liczby użytkowników wybiorę jedn
 
 - ALBO: Freemium
     - Bardziej zamknięta licencja
-    - Handover do profesjonalnego web deva
-    - Paywall. Autorskie zadania za abonamentem
+    - Maybe Handover do profesjonalnego web deva
+    - Paywall. 75% Rozwiązań interaktywnych oraz autorskie arkusze za abonamentem
 
 - ALBO: Open-source
     - Otwarta licencja
