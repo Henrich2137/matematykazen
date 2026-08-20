@@ -147,8 +147,6 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
   - Fable:
     - matura/2024-grudzień
       - Rozwiązania interaktywny
-        - Wybrane zadania z zakresu 1-13 zrobione (dodatkowo mają też Podpowiedzi i Rozwiązanie zwykłe)
-        - Wybrane zadania z zakresu 14-33 do zrobienia przez Opusa na podstawie spuścizny Fable
 
     - Interaktywne rozwiązania matury 2026
     - Lista checkboxów "Sprawdzanie rozwiązania"
@@ -255,8 +253,10 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
         - na reszcie przeglądarek działa dobrze
       - Windows 10: działa w pełni na wszystkich najpopularniejszych przeglądarkach
       - Bazzite:
-        - ~~Chrome i Brave, brak matchu tła grafiki i tła strony~~ ZAMKNIĘTE 2026-08-16: to Bazzite/Wayland, nie strona. Na Windowsie wszystko gra, więc nie ma czego naprawiać w kodzie
         - Firefox jako jedyny nie zawraca odcienia po v49 (wygląda jak stary goły invert), choć Chrome na tej samej maszynie tak. Kolejność sprawdzania: numer wersji w rogu → about:support (czy rysuje karta graficzna) → profil koloru i HDR
+        CHYBA TO JEST NIEAKTUALNE JUŻ
+      - Iphone i Safari: nie sprawdzone
+      - Reszta najpopularniejszych przeglądarek działa dobrze
       - rozpoznanie i warianty naprawy: issues/dark-mode-inwersja-przegladarki.md
 
 
