@@ -1,4 +1,4 @@
-# MatematykaZen
+# Matematyka Zen
 
 Interaktywna platforma do nauki matematyki pod **maturę podstawową** (CKE).
 Póki co statyczna strona - bez backendu i kont, postęp zapisywany lokalnie w przeglądarce.

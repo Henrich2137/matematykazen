@@ -1,4 +1,4 @@
-# AI agent instructions for MatematykaZen
+# AI agent instructions for Matematyka Zen
 
 This repository is a static, frontend-only teaching site for Polish matura exam sheets.
 

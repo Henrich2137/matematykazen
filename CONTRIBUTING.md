@@ -1,4 +1,4 @@
-# Współtworzenie MatematykaZen
+# Współtworzenie projektu Matematyka Zen
 
 Cześć! Każda pomoc się liczy - od literówki w treści zadania, przez poprawkę CSS,
 aż po nowy widżet (mini-gierka pozwalająca lepiej zrozumiec zadanie).
@@ -46,7 +46,7 @@ Egzaminacyjnej i **nie są objęte żadną z tych licencji**.
 > Przesyłając Pull Request do tego repozytorium, oświadczasz że:
 > 1. masz prawo licencjonować przesłany kod/treść,
 > 2. udzielasz Henrich2137, jako właścicielowi projektu
->    MatematykaZen, nieodpłatnej, nieograniczonej terytorialnie, bezterminowej
+>    Matematyka Zen, nieodpłatnej, nieograniczonej terytorialnie, bezterminowej
 >    i nieodwołalnej licencji na wykorzystanie, modyfikowanie, dystrybucję oraz
 >    komercyjne wykorzystanie Twojego wkładu — również na warunkach innych niż
 >    aktualna licencja projektu (PolyForm Noncommercial),

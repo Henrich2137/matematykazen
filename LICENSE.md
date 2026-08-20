@@ -1,5 +1,5 @@
 Copyright © 2026 Henrich2137
-Required Notice: Copyright Henrich2137 - MatematykaZen (https://henrich2137.github.io/matematykazen/)
+Required Notice: Copyright Henrich2137 - Matematyka Zen (https://henrich2137.github.io/matematykazen/)
 
 ## Zakres / Scope
 

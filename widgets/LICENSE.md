@@ -2,7 +2,7 @@ Copyright © 2026 Henrich2137
 Wszelkie prawa zastrzeżone / All rights reserved
 SPDX-License-Identifier: LicenseRef-MatematykaZen-Proprietary
 
-# Licencja zastrzeżona MatematykaZen (katalog `widgets/`)
+# Licencja zastrzeżona projektu Matematyka Zen (katalog `widgets/`)
 
 Ten katalog **nie jest** objęty licencją PolyForm Noncommercial 1.0.0, która
 obejmuje resztę repozytorium (patrz [../LICENSE.md](../LICENSE.md)).
@@ -12,7 +12,7 @@ Obowiązują wyłącznie warunki poniżej.
 
 Wszystkich plików w katalogu `widgets/` i jego podkatalogach, w szczególności
 plików `*.js` zawierających interaktywne rozwiązania („widżety") projektu
-MatematykaZen, wraz z ich kodem źródłowym, zawartą w nich treścią dydaktyczną
+Matematyka Zen, wraz z ich kodem źródłowym, zawartą w nich treścią dydaktyczną
 oraz dokumentacją tego katalogu.
 
 Licencjodawcą i wyłącznym uprawnionym z autorskich praw majątkowych jest
@@ -59,6 +59,11 @@ oraz przepisów wdrażających ją do prawa polskiego). Zastrzeżenie to jest
 powtórzone w formie nadającej się do odczytu maszynowego w nagłówku SPDX
 każdego pliku tego katalogu.
 
+Identyfikator `LicenseRef-MatematykaZen-Proprietary` jest zapisany łącznie,
+bez spacji, i **taki ma zostać**. Nazwa projektu pisze się „Matematyka Zen",
+ale składnia SPDX dopuszcza w identyfikatorze wyłącznie litery, cyfry, kropkę
+i dywiz, więc spacja unieważniłaby nagłówek we wszystkich plikach naraz.
+
 ## 5. Brak gwarancji i wyłączenie odpowiedzialności
 
 Pliki udostępniane są w stanie, w jakim się znajdują („as is"), bez
@@ -84,7 +89,7 @@ rozstrzyga tekst polski.
 
 ---
 
-# Proprietary License, MatematykaZen (`widgets/` directory)
+# Proprietary License, Matematyka Zen (`widgets/` directory)
 
 **Copyright © 2026 Henrich2137. All rights reserved.**
 

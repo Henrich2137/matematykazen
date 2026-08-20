@@ -427,7 +427,7 @@ if (zgForm) {
             ekran: JSON.stringify(auto.ekran),
             userAgent: auto.userAgent,
             localStorage: JSON.stringify(auto.localStorage),
-            _subject: `MatematykaZen — zad. ${auto.zadanie} (${auto.arkusz}): ${kategorieTekst}`,
+            _subject: `Matematyka Zen — zad. ${auto.zadanie} (${auto.arkusz}): ${kategorieTekst}`,
         };
 
         let odpowiedz = null;
