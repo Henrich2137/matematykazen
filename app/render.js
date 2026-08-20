@@ -738,7 +738,7 @@ function loadExercises() {
         solutionTextContainer.innerHTML = exercise.solutionText || "";
 
         // Widżet interaktywny: w danych (JSON) jest tylko NAZWA widżetu (string),
-        // funkcję bierzemy z rejestru WIDZETY (widgets/_registry.js, załadowany
+        // funkcję bierzemy z rejestru WIDZETY (app/widget-registry.js, załadowany
         // przed tym plikiem — patrz kolejność <script> w template.html).
         if (exercise.solutionWidget) {
             const widget = WIDZETY[exercise.solutionWidget];

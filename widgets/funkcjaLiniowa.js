@@ -1,3 +1,8 @@
+// SPDX-FileCopyrightText: 2026 Henrich2137
+// SPDX-License-Identifier: LicenseRef-MatematykaZen-Proprietary
+// Wszelkie prawa zastrzeżone / All rights reserved. Licencja: widgets/LICENSE.md
+// NIE jest objęty PolyForm Noncommercial / NOT covered by PolyForm Noncommercial.
+
 // --- Zad 13.1 i 13.2 (2026-maj): funkcja liniowa f(x) = ax + b -------------
 // Rysunek z arkusza: prosta malejąca przez (-2, 0) i (0, -3), kąt alfa przy
 // osi Ox. 13.1: dwa suwaki (a obraca, b unosi; b także punktem na osi y).
@@ -120,7 +125,7 @@ function widgetLiniowaWspolczynniki(container) {
         suwakB.value = state.b;
         draw();
     });
-    // Przemalowanie po zmianie motywu (paleta z CSS, widgets/_helpers.js).
+    // Przemalowanie po zmianie motywu (paleta z CSS, app/widget-helpers.js).
     wgZarejestrujRysowanie(canvas, draw);
     draw();
 }
@@ -220,7 +225,7 @@ function widgetLiniowaTangens(container) {
         state.a = wgPrzyciagnij(a, [-1.5], 0.08);
         draw();
     });
-    // Przemalowanie po zmianie motywu (paleta z CSS, widgets/_helpers.js).
+    // Przemalowanie po zmianie motywu (paleta z CSS, app/widget-helpers.js).
     wgZarejestrujRysowanie(canvas, draw);
     draw();
 }

@@ -1,3 +1,8 @@
+// SPDX-FileCopyrightText: 2026 Henrich2137
+// SPDX-License-Identifier: LicenseRef-MatematykaZen-Proprietary
+// Wszelkie prawa zastrzeżone / All rights reserved. Licencja: widgets/LICENSE.md
+// NIE jest objęty PolyForm Noncommercial / NOT covered by PolyForm Noncommercial.
+
 // --- Zad 2 (2026-maj): odsetki z procentu składanego -----------------------
 // Suwak oprocentowania + słupki kapitału po 0/1/2 latach. Odsetki doliczone
 // w danym roku: górny segment słupka plus strzałka między słupkami z kwotą,
@@ -114,7 +119,7 @@ function widgetOdsetkiSkladane(container) {
     }
 
     slider.addEventListener("input", draw);
-    // Przemalowanie po zmianie motywu (paleta z CSS, widgets/_helpers.js).
+    // Przemalowanie po zmianie motywu (paleta z CSS, app/widget-helpers.js).
     wgZarejestrujRysowanie(canvas, draw);
     draw();
 }

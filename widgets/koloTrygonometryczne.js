@@ -1,3 +1,8 @@
+// SPDX-FileCopyrightText: 2026 Henrich2137
+// SPDX-License-Identifier: LicenseRef-MatematykaZen-Proprietary
+// Wszelkie prawa zastrzeżone / All rights reserved. Licencja: widgets/LICENSE.md
+// NIE jest objęty PolyForm Noncommercial / NOT covered by PolyForm Noncommercial.
+
 // --- Zad 18: koło trygonometryczne -----------------------------------------
 // Przeciągany kąt na półokręgu; widać sin (pion) i cos (poziom) oraz to,
 // że dla kąta rozwartego cosinus jest ujemny.
@@ -117,7 +122,7 @@ function widgetKoloTrygonometryczne(container) {
         state.deg = snap !== deg ? snap : Math.round(deg * 2) / 2;
         draw();
     });
-    // Przemalowanie po zmianie motywu (paleta z CSS — widgets/_helpers.js).
+    // Przemalowanie po zmianie motywu (paleta z CSS — app/widget-helpers.js).
     wgZarejestrujRysowanie(canvas, draw);
     draw();
 }

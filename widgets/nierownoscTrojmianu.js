@@ -1,3 +1,8 @@
+// SPDX-FileCopyrightText: 2026 Henrich2137
+// SPDX-License-Identifier: LicenseRef-MatematykaZen-Proprietary
+// Wszelkie prawa zastrzeżone / All rights reserved. Licencja: widgets/LICENSE.md
+// NIE jest objęty PolyForm Noncommercial / NOT covered by PolyForm Noncommercial.
+
 // --- Zad 10 (2026-maj): nierówność 3x² + 4x ≥ 6x + 8 -----------------------
 // Po uproszczeniu: 3x² − 2x − 8 ≥ 0. Parabola z zaznaczonymi przedziałami
 // rozwiązań (na zewnątrz miejsc zerowych); punkt do przeciągania po osi x
@@ -128,7 +133,7 @@ function widgetNierownoscTrojmianu(container) {
         state.x = snap !== raw ? snap : Math.round(raw * 20) / 20;
         draw();
     });
-    // Przemalowanie po zmianie motywu (paleta z CSS, widgets/_helpers.js).
+    // Przemalowanie po zmianie motywu (paleta z CSS, app/widget-helpers.js).
     wgZarejestrujRysowanie(canvas, draw);
     draw();
 }

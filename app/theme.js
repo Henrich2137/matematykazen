@@ -29,7 +29,7 @@ function applyTheme(motyw) {
     // NIE do textContent, żeby nie skasować ikony — patrz app/state.js).
     ustawWartosc(themeToggle, motyw);
     // Widżety rysują na canvasie, więc nie zmienią się same wraz z CSS —
-    // przeładowują paletę i przerysowują się na żądanie (widgets/_helpers.js).
+    // przeładowują paletę i przerysowują się na żądanie (app/widget-helpers.js).
     if (typeof wgPrzemaluj === "function") wgPrzemaluj();
 }
 applyTheme(readTheme()); // zsynchronizuj etykietę ze stanem z <head>

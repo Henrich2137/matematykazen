@@ -1,3 +1,8 @@
+// SPDX-FileCopyrightText: 2026 Henrich2137
+// SPDX-License-Identifier: LicenseRef-MatematykaZen-Proprietary
+// Wszelkie prawa zastrzeżone / All rights reserved. Licencja: widgets/LICENSE.md
+// NIE jest objęty PolyForm Noncommercial / NOT covered by PolyForm Noncommercial.
+
 // --- Zad 14 (2026-maj): przesunięcie wykresu, g(x) = f(x + 1) --------------
 // Parabola f o wierzchołku W = (3, -2) oraz g dana wzorem g(x) = f(x + 1).
 // Dwie zakładki, bo zadanie ma dwa kroki:
@@ -322,7 +327,7 @@ function widgetPrzesuniecieParaboli(container) {
             draw();
         });
 
-    // Przemalowanie po zmianie motywu (paleta z CSS, widgets/_helpers.js).
+    // Przemalowanie po zmianie motywu (paleta z CSS, app/widget-helpers.js).
     wgZarejestrujRysowanie(canvas, draw);
     ustawTytul();
     ustawSterowanie();

@@ -1,8 +1,13 @@
+// SPDX-FileCopyrightText: 2026 Henrich2137
+// SPDX-License-Identifier: LicenseRef-MatematykaZen-Proprietary
+// Wszelkie prawa zastrzeżone / All rights reserved. Licencja: widgets/LICENSE.md
+// NIE jest objęty PolyForm Noncommercial / NOT covered by PolyForm Noncommercial.
+
 // --- Zad 12.1 i 12.2 (2026-maj): funkcja określona przedziałami ------------
 // Wykres łamanej f: x+2 na [-4, 2] oraz -x+5 na (2, 5), jak na rysunku
 // z arkusza (media/zad12/zad12rys.png). Dwa widżety (po jednym na podzadanie),
 // każdy z dwiema zakładkami: jedna na każde zdanie do uzupełnienia.
-// Wspólne klocki (zakładki, układ współrzędnych): widgets/_helpers.js.
+// Wspólne klocki (zakładki, układ współrzędnych): app/widget-helpers.js.
 
 // Dziedzina [-4, 5); w x = 2 funkcja skacze z 4 (pełne kółko) na 3 (puste).
 function lamanaF(x) {
@@ -204,7 +209,7 @@ function widgetLamana121(container) {
         }
         draw();
     });
-    // Przemalowanie po zmianie motywu (paleta z CSS, widgets/_helpers.js).
+    // Przemalowanie po zmianie motywu (paleta z CSS, app/widget-helpers.js).
     wgZarejestrujRysowanie(canvas, draw);
     ustawTytul();
     draw();
@@ -351,7 +356,7 @@ function widgetLamana122(container) {
         state.c = snap !== raw ? snap : Math.round(raw * 20) / 20;
         draw();
     });
-    // Przemalowanie po zmianie motywu (paleta z CSS, widgets/_helpers.js).
+    // Przemalowanie po zmianie motywu (paleta z CSS, app/widget-helpers.js).
     wgZarejestrujRysowanie(canvas, draw);
     ustawTytul();
     draw();

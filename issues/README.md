@@ -33,6 +33,7 @@ CLAUDE.md ma z każdej z nich tylko kilka linijek i odnośnik tutaj.
 - [flatpak-osierocone-dane.md](flatpak-osierocone-dane.md) — dane po odinstalowanych flatpakach zostają w `~/.var/app` (przepis: jak znaleźć, jak sprawdzić przed kasowaniem, których ustawień nie przenosić)
 - [git-i-gitdoc.md](git-i-gitdoc.md) — gitdoc (wyłączony) + natywny auto-fetch/auto-pull: dlaczego gitdoc da się włączyć tylko per-workspace, co by robił po włączeniu, `forcePush`, debounce `autoCommitDelay`, `task.allowAutomaticTasks`
 - [licencja-i-cla.md](licencja-i-cla.md) — PolyForm Noncommercial + CLA: co jest w którym pliku meta i dwa placeholdery (pseudonim, URL Required Notice) zmieniane parami
+- [licencja-premium.md](licencja-premium.md) — rozdział licencyjny: `widgets/` na licencji zastrzeżonej (premium), reszta na PolyForm; gdzie biegnie granica, dlaczego bez daty i hasha, i czego w `widgets/` kłaść nie wolno
 - [claude-code-pluginy.md](claude-code-pluginy.md) — plugin superpowers: scope project, przypięty SHA, pułapka przy szukaniu w cache'u marketplace'u, pusty `vendor/superpowers/`
 
 ## Lekcje (nie problem)

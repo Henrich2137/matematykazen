@@ -1,3 +1,8 @@
+// SPDX-FileCopyrightText: 2026 Henrich2137
+// SPDX-License-Identifier: LicenseRef-MatematykaZen-Proprietary
+// Wszelkie prawa zastrzeżone / All rights reserved. Licencja: widgets/LICENSE.md
+// NIE jest objęty PolyForm Noncommercial / NOT covered by PolyForm Noncommercial.
+
 // --- Zad 30: prostopadłościan o sumie krawędzi 48 ---------------------------
 // AE = 3·AB, suma krawędzi 48 → AD = 12 − 4x. Suwak x rysuje bryłę i wykres
 // P(x) = −26x² + 96x z maksimum w x = 24/13.
@@ -111,7 +116,7 @@ function widgetProstopadloscian(container) {
     }
 
     slider.addEventListener("input", draw);
-    // Przemalowanie po zmianie motywu (paleta z CSS — widgets/_helpers.js).
+    // Przemalowanie po zmianie motywu (paleta z CSS — app/widget-helpers.js).
     wgZarejestrujRysowanie(canvas, draw);
     draw();
 }

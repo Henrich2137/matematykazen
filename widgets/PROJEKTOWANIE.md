@@ -111,7 +111,9 @@ motywach), nigdy "na oko".
 1. Sedno + typowy błąd ucznia -> co uczeń rusza i co ma zauważyć.
 2. Liczby zadania policzone ręcznie, zgodne z kluczem.
 3. Plik w widgets/ (para widżetów jednego zadania może dzielić plik),
-   wpis w _registry.js, tag <script> w template.html, wiersz w README.md.
+   nagłówek SPDX na górze pliku (katalog jest zastrzeżony, patrz
+   widgets/LICENSE.md), wpis w app/widget-registry.js, tag <script>
+   w template.html, wiersz w README.md.
 4. Budowa na klockach: wgUklad + wgRysujUklad + wgWysokoscKwadratowa
    (wykresy), wgZakladki (kilka widoków), wgDraggable + wgPrzyciagnij,
    wgMath/wgTexLiczba/wgUstawHTML (odczyt), wgZarejestrujRysowanie

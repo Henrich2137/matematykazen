@@ -1,3 +1,8 @@
+// SPDX-FileCopyrightText: 2026 Henrich2137
+// SPDX-License-Identifier: LicenseRef-MatematykaZen-Proprietary
+// Wszelkie prawa zastrzeżone / All rights reserved. Licencja: widgets/LICENSE.md
+// NIE jest objęty PolyForm Noncommercial / NOT covered by PolyForm Noncommercial.
+
 // --- Zad 1: oś liczbowa |x + a| = b --------------------------------------
 // Środek (−a) + dwa rozwiązania w odległości b. Zielony punkt testowy do
 // przeciągania pokazuje, jak zmienia się |x + a|.
@@ -132,7 +137,7 @@ function widgetOsLiczbowa(container) {
         state.x = 0;
         draw();
     });
-    // Przemalowanie po zmianie motywu (paleta z CSS — widgets/_helpers.js).
+    // Przemalowanie po zmianie motywu (paleta z CSS — app/widget-helpers.js).
     wgZarejestrujRysowanie(canvas, draw);
     draw();
 }

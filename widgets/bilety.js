@@ -1,3 +1,8 @@
+// SPDX-FileCopyrightText: 2026 Henrich2137
+// SPDX-License-Identifier: LicenseRef-MatematykaZen-Proprietary
+// Wszelkie prawa zastrzeżone / All rights reserved. Licencja: widgets/LICENSE.md
+// NIE jest objęty PolyForm Noncommercial / NOT covered by PolyForm Noncommercial.
+
 // --- Zad 11 (2026-maj): bilety do teatru (n + u = 200, zostaje 4665 zł) ----
 // Suwak rusza liczbą biletów normalnych n. Niski wykres pokazuje kwotę po
 // kosztach w zależności od n (prosta 3750 + 7,5n) z zieloną linią celu
@@ -108,7 +113,7 @@ function widgetBilety(container) {
     }
 
     slider.addEventListener("input", draw);
-    // Przemalowanie po zmianie motywu (paleta z CSS, widgets/_helpers.js).
+    // Przemalowanie po zmianie motywu (paleta z CSS, app/widget-helpers.js).
     wgZarejestrujRysowanie(canvas, draw);
     draw();
 }

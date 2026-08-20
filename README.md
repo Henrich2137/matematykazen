@@ -24,13 +24,19 @@ npx serve
 
 ## Licencja
 
-Kod, interfejs oraz autorskie treści (podpowiedzi, rozwiązania, widżety) są
-udostępnione na licencji **PolyForm Noncommercial 1.0.0** — pełny tekst
-w [LICENSE.md](LICENSE.md). Wolno używać, modyfikować i rozpowszechniać
-**wyłącznie w celach niekomercyjnych**.
+Repozytorium ma **dwie** licencje, w zależności od katalogu.
+
+- **Wszystko poza `widgets/`** (kod strony, interfejs, podpowiedzi, rozwiązania
+  opisowe, animacje): **PolyForm Noncommercial 1.0.0**, pełny tekst
+  w [LICENSE.md](LICENSE.md). Wolno używać, modyfikować i rozpowszechniać
+  **wyłącznie w celach niekomercyjnych**.
+- **Katalog `widgets/`** (interaktywne widżety rozwiązań): **wszelkie prawa
+  zastrzeżone**, licencja w [widgets/LICENSE.md](widgets/LICENSE.md). Wolno je
+  obejrzeć, ale **nie wolno ich rozpowszechniać ani udostępniać publicznie,
+  także nieodpłatnie**.
 
 Zadania maturalne, arkusze i klucze odpowiedzi pochodzą z **Centralnej Komisji
-Egzaminacyjnej** i **nie są objęte tą licencją**.
+Egzaminacyjnej** i **nie są objęte żadną z tych licencji**.
 
 Chcesz pomóc? Zajrzyj do [CONTRIBUTING.md](CONTRIBUTING.md) — są tam też zasady
 licencjonowania wkładu.

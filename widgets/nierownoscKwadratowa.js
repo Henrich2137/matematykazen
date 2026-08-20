@@ -1,3 +1,8 @@
+// SPDX-FileCopyrightText: 2026 Henrich2137
+// SPDX-License-Identifier: LicenseRef-MatematykaZen-Proprietary
+// Wszelkie prawa zastrzeżone / All rights reserved. Licencja: widgets/LICENSE.md
+// NIE jest objęty PolyForm Noncommercial / NOT covered by PolyForm Noncommercial.
+
 // --- Zad 9: nierówność kwadratowa x(x−6) ≤ 7 ------------------------------
 // Parabola x² − 6x − 7 z zaznaczonym przedziałem rozwiązań; punkt do przeciągania
 // po osi x pokazuje, czy nierówność jest spełniona.
@@ -123,7 +128,7 @@ function widgetNierownoscKwadratowa(container) {
         state.x = snap !== raw ? snap : Math.round(raw * 4) / 4;
         draw();
     });
-    // Przemalowanie po zmianie motywu (paleta z CSS — widgets/_helpers.js).
+    // Przemalowanie po zmianie motywu (paleta z CSS — app/widget-helpers.js).
     wgZarejestrujRysowanie(canvas, draw);
     draw();
 }

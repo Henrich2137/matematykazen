@@ -1,3 +1,8 @@
+// SPDX-FileCopyrightText: 2026 Henrich2137
+// SPDX-License-Identifier: LicenseRef-MatematykaZen-Proprietary
+// Wszelkie prawa zastrzeżone / All rights reserved. Licencja: widgets/LICENSE.md
+// NIE jest objęty PolyForm Noncommercial / NOT covered by PolyForm Noncommercial.
+
 // --- Zad 33.1 i 33.2 (2026-maj): piłeczka wyrzucona pionowo do góry --------
 // h(t) = -4,9t^2 + bt, gdzie b z zadania wynosi 14,7. Pytania: kiedy piłeczka
 // uderzy w ziemię (33.1) i kiedy będzie najwyżej (33.2).
@@ -251,7 +256,7 @@ function widgetRzutPileczki(container) {
         ustawPrzycisk();
         draw();
     });
-    // Przemalowanie po zmianie motywu (paleta z CSS, widgets/_helpers.js).
+    // Przemalowanie po zmianie motywu (paleta z CSS, app/widget-helpers.js).
     wgZarejestrujRysowanie(canvas, draw);
     ustawPrzycisk();
     draw();

@@ -1,6 +1,19 @@
 Copyright © 2026 Henrich2137
 Required Notice: Copyright Henrich2137 - MatematykaZen (https://henrich2137.github.io/matematykazen/)
 
+## Zakres / Scope
+
+Cała zawartość katalogu `widgets/` tego repozytorium podlega licencji
+zdefiniowanej w pliku [widgets/LICENSE.md](widgets/LICENSE.md) i **nie jest
+objęta** licencją PolyForm Noncommercial 1.0.0 podaną niżej. Pozostała część
+repozytorium podlega licencji PolyForm Noncommercial 1.0.0.
+
+All content that resides under the `widgets/` directory of this repository is
+licensed under the license defined in [widgets/LICENSE.md](widgets/LICENSE.md)
+and is **not** covered by the PolyForm Noncommercial 1.0.0 license set out
+below. The remainder of the repository is licensed under PolyForm
+Noncommercial 1.0.0.
+
 # PolyForm Noncommercial License 1.0.0
 
 <https://polyformproject.org/licenses/noncommercial/1.0.0>
@@ -135,9 +148,21 @@ of your licenses.
 
 ---
 
+## Rozwiązania interaktywne (katalog `widgets/`)
+
+Interaktywne widżety rozwiązań w katalogu `widgets/` są **zastrzeżone**:
+wszelkie prawa zastrzeżone, licencja w [widgets/LICENSE.md](widgets/LICENSE.md).
+Powyższe warunki PolyForm Noncommercial ich nie obejmują, więc w szczególności
+**nie wolno ich rozpowszechniać ani udostępniać publicznie, także nieodpłatnie**.
+
+Wolne (PolyForm Noncommercial) pozostają wszystkie pliki poza tym katalogiem,
+w tym `app/widget-helpers.js` i `app/widget-registry.js`, czyli kod potrzebny,
+żeby darmowa część strony działała.
+
 ## Uwaga dot. treści zadań
 
-Arkusze maturalne, zasady oceniania oraz tablica wzorów pochodzą od Centralnej Komisji Egzaminacyjnej (CKE) i nie są objęte niniejszą licencją - powyższe warunki dotyczą pozostałych elementów projektu stworzonych przez licencjodawcę, takich jak kod, interfejs, podpowiedzi, rozwiązania, animacje i elementy interaktywne.
+Arkusze maturalne, zasady oceniania oraz tablica wzorów pochodzą od Centralnej Komisji Egzaminacyjnej (CKE) i nie są objęte niniejszą licencją - powyższe warunki dotyczą pozostałych elementów projektu stworzonych przez licencjodawcę, takich jak kod, interfejs, podpowiedzi, rozwiązania i animacje. Interaktywne widżety
+rozwiązań w katalogu `widgets/` są wyłączone i objęte osobną licencją (patrz wyżej).
 
 ## Wkład społeczności
 

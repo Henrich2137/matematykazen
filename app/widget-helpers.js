@@ -1,6 +1,10 @@
-// widgets/_helpers.js — wspólne pomocniki widżetów interaktywnych rozwiązań
+// app/widget-helpers.js - wspólne pomocniki widżetów interaktywnych rozwiązań
 // (solutionWidget). Ładowany PRZED plikami poszczególnych widżetów w widgets/
-// i przed script.js w template.html.
+// i przed resztą app/*.js w template.html.
+//
+// LICENCJA: ten plik jest wolny (PolyForm Noncommercial, patrz LICENSE.md).
+// Same widżety w widgets/ są zastrzeżone (widgets/LICENSE.md) - dlatego
+// hydraulika mieszka tutaj, a nie tam. Nie przenoś go z powrotem.
 
 /* ===================================================================
    WIDŻETY INTERAKTYWNE (solutionWidget)

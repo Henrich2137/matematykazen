@@ -1,3 +1,8 @@
+// SPDX-FileCopyrightText: 2026 Henrich2137
+// SPDX-License-Identifier: LicenseRef-MatematykaZen-Proprietary
+// Wszelkie prawa zastrzeżone / All rights reserved. Licencja: widgets/LICENSE.md
+// NIE jest objęty PolyForm Noncommercial / NOT covered by PolyForm Noncommercial.
+
 // --- Zad 8 (2026-maj): równanie iloczynowe 3(x+3)(x-m)(2x+4) = 0 -----------
 // Kliknięcie w oś / przeciąganie punktu rusza x. Gdy x trafi w rozwiązanie,
 // jeden nawias się zeruje i cały iloczyn robi się 0 - to jest sedno zadania.
@@ -87,7 +92,7 @@ function widgetRownanieIloczynowe(container) {
         state.x = snap !== raw ? snap : Math.round(raw * 20) / 20;
         draw();
     });
-    // Przemalowanie po zmianie motywu (paleta z CSS, widgets/_helpers.js).
+    // Przemalowanie po zmianie motywu (paleta z CSS, app/widget-helpers.js).
     wgZarejestrujRysowanie(canvas, draw);
     draw();
 }

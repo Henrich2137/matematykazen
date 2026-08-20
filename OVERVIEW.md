@@ -92,7 +92,14 @@ W zależności od przychodów z dotacji oraz liczby użytkowników wybiorę jedn
 
 ## Licencja
 
-Kod i treści autorskie: **PolyForm Noncommercial 1.0.0** (użytek wyłącznie niekomercyjny; licencja komercyjna do uzgodnienia mailowo). Zadania i klucze CKE nie są objęte tą licencją. Kontrybutorzy przy wysyłaniu Pull Requesta zgadzają się na przekazanie właścicielowi projektu szerokiej licencji na swój wkład (również komercyjnej), zachowując prawo do własnego wkładu — dzięki temu przyszła zmiana licencji (Faza 3) nie będzie zablokowana.
+Repozytorium ma od 20.08.2026 **dwie** licencje, bo widżety mają w przyszłości trafić do płatnego planu:
+
+- **Kod strony i pozostałe treści autorskie** (podpowiedzi, rozwiązania opisowe, animacje): **PolyForm Noncommercial 1.0.0**, użytek wyłącznie niekomercyjny, licencja komercyjna do uzgodnienia mailowo.
+- **Interaktywne widżety** (katalog `widgets/`): **wszelkie prawa zastrzeżone**, własna licencja, dwujęzyczna. Wolno je obejrzeć, nie wolno rozpowszechniać ani udostępniać publicznie, również nieodpłatnie.
+
+Powód rozdziału: PolyForm zabrania zarabiania na cudzej treści, ale pozwala rozdawać ją za darmo, więc przy paywallu byłby bezużyteczny. Zamknięcie działa tylko w przód: wersje widżetów opublikowane wcześniej zostają na PolyForm na zawsze. Sama licencja nie jest jeszcze paywallem, bo strona jest statyczna i wszystkie pliki i tak trafiają do przeglądarki; prawdziwa blokada wymaga hostingu z logowaniem (Faza 3).
+
+Zadania i klucze CKE nie są objęte żadną z tych licencji. Kontrybutorzy przy wysyłaniu Pull Requesta zgadzają się na przekazanie właścicielowi projektu szerokiej licencji na swój wkład (również komercyjnej), zachowując prawo do własnego wkładu, dzięki czemu przyszła zmiana licencji nie jest zablokowana.
 
 
 ## Numer wersji w rogu strony (zasada robocza)

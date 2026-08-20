@@ -1,3 +1,8 @@
+// SPDX-FileCopyrightText: 2026 Henrich2137
+// SPDX-License-Identifier: LicenseRef-MatematykaZen-Proprietary
+// Wszelkie prawa zastrzeżone / All rights reserved. Licencja: widgets/LICENSE.md
+// NIE jest objęty PolyForm Noncommercial / NOT covered by PolyForm Noncommercial.
+
 // --- Zad 19 (2026-maj): kąt wpisany i środkowy w okręgu --------------------
 // Punkty A, B, C, D na okręgu o środku O; B na krótszym łuku AC, D na dłuższym.
 // Kąt wpisany ADC ma 50°, kąt środkowy COB ma 30°, szukamy kąta AOB.
@@ -227,7 +232,7 @@ function widgetKatyWOkregu(container) {
             }
             draw();
         });
-    // Przemalowanie po zmianie motywu (paleta z CSS, widgets/_helpers.js).
+    // Przemalowanie po zmianie motywu (paleta z CSS, app/widget-helpers.js).
     wgZarejestrujRysowanie(canvas, draw);
     draw();
 }

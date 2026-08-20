@@ -1,3 +1,8 @@
+// SPDX-FileCopyrightText: 2026 Henrich2137
+// SPDX-License-Identifier: LicenseRef-MatematykaZen-Proprietary
+// Wszelkie prawa zastrzeżone / All rights reserved. Licencja: widgets/LICENSE.md
+// NIE jest objęty PolyForm Noncommercial / NOT covered by PolyForm Noncommercial.
+
 // --- Zad 15: ciąg arytmetyczny (5m, 4+2m, m) --------------------------------
 // Suwak m; słupki trzech wyrazów i różnice między nimi — równe przy m = 4.
 
@@ -73,7 +78,7 @@ function widgetCiagArytmetyczny(container) {
     }
 
     slider.addEventListener("input", draw);
-    // Przemalowanie po zmianie motywu (paleta z CSS — widgets/_helpers.js).
+    // Przemalowanie po zmianie motywu (paleta z CSS — app/widget-helpers.js).
     wgZarejestrujRysowanie(canvas, draw);
     draw();
 }

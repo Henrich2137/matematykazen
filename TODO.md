@@ -97,6 +97,12 @@ ARCHIWUM PROMPTÓW:
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945 
 
+  - rozdział licencyjny widgets/ (v59) - zmieniły się ścieżki dwóch skryptów, więc trzeba sprawdzić, czy widżety w ogóle wstają
+
+    - otwórz dowolny arkusz i rozwiń „Rozwiązanie" w zadaniu z widżetem (2024-grudzień zad. 1, 5 i 9) - widżet ma się narysować i reagować na przeciąganie
+
+    - to samo na telefonie: pliki `widgets/_helpers.js` i `widgets/_registry.js` nazywają się teraz `app/widget-helpers.js` i `app/widget-registry.js`, więc znikła stara pułapka z podkreślnikiem na GitHub Pages; jeśli na telefonie widżety działają, ta pułapka jest zamknięta na dobre
+
   - poprawki po Twoich uwagach do zad. 20, 26 i 33.2 (v57)
 
     - zad. 20: rysunek większy, a proste k, l, m i n są teraz szare; kolorowe zostały tylko cztery odcinki z wypisaną długością
@@ -629,6 +635,17 @@ ARCHIWUM PROMPTÓW:
   + OPUS 5 MEDIUM DOPISAŁ (2026-08-16, po zmianie filtru grafik na invert + hue-rotate):
 
     - do sprawdzenia przy okazji nowych scen Manima: czysty żółty i czysta zieleń są za jaskrawe i po odwróceniu blakną (żółty `#ffcc00` wychodzi brązowy). `python3 tools/odwroc-kolor.py` teraz o tym ostrzega
+
+
+  + OPUS 5 MEDIUM DOPISAŁ (2026-08-20, po rozdziale licencyjnym widgets/, patrz issues/licencja-premium.md):
+
+    - rozdzielić treści premium z exercises.json do osobnego matura/<id>/premium.json, doładowywanego drugim fetchem i scalanego z bazowym. Dziś w jednym pliku siedzą wymieszane treści CKE, darmowe i przyszłe premium, więc nie da się ich objąć różnymi licencjami ani później zablokować serwerem. Zrobić to, ZANIM powstaną pierwsze treści premium, bo potem przenoszenie boli
+
+    - uodpornić app/widget-registry.js na brak katalogu widgets/: dziś wymienia funkcje po nazwie, więc bez widżetów leci ReferenceError i zabiera całą stronę. Póki oba katalogi jadą razem, nic się nie dzieje, ale przy pierwszym wdrożeniu darmowej wersji bez widżetów strona po prostu nie wstanie
+
+    - paywall wymaga hostingu, który potrafi sprawdzić, kto puka: GitHub Pages tego nie umie (i jego regulamin zabrania hostować tam płatnego serwisu). Kandydaci z darmowym progiem: Cloudflare Pages z Functions, Netlify, Vercel. Decyzja na Fazę 3, ale warto o niej wiedzieć wcześniej
+
+    - przed pierwszą sprzedażą przemyśleć pseudonim: przy płatnych treściach do zgłoszenia DMCA i do dochodzenia praw potrzebne są prawdziwe dane (jest już osobny punkt wyżej, tu tylko podbicie priorytetu)
 
 
 <br>

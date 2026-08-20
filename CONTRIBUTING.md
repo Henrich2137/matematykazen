@@ -32,8 +32,14 @@ w [LICENSE.md](LICENSE.md), wersja źródłowa:
 <https://polyformproject.org/licenses/noncommercial/1.0.0>. Wolno używać,
 modyfikować i rozpowszechniać wyłącznie w celach niekomercyjnych.
 
+**Wyjątek: katalog `widgets/`.** Interaktywne widżety rozwiązań są zastrzeżone
+(wszelkie prawa zastrzeżone, [widgets/LICENSE.md](widgets/LICENSE.md)) i mają
+w przyszłości trafić do płatnego planu. PolyForm ich nie obejmuje. Możesz
+zgłaszać błędy w widżetach i propozycje zmian, ale zanim napiszesz do nich
+większy kod, otwórz najpierw issue - żeby nie robić pracy na marne.
+
 Zadania maturalne, arkusze i klucze odpowiedzi pochodzą z Centralnej Komisji
-Egzaminacyjnej i **nie są objęte tą licencją**.
+Egzaminacyjnej i **nie są objęte żadną z tych licencji**.
 
 ## Zgoda na licencjonowanie wkładu
 

@@ -1,5 +1,30 @@
 # widgets/ — interaktywne widżety rozwiązań
 
+> ## ⚠️ TEN KATALOG JEST ZASTRZEŻONY
+>
+> Wszystko w `widgets/` jest objęte licencją zastrzeżoną
+> ([LICENSE.md](LICENSE.md)), a **nie** PolyForm Noncommercial, na której stoi
+> reszta repozytorium. Wszelkie prawa zastrzeżone. To jest treść przeznaczona
+> do planu premium.
+>
+> **Zasada dla ludzi i modeli pracujących w tym repozytorium:**
+>
+> - Tu wolno kłaść **wyłącznie same widżety**, czyli pliki `widget*.js`
+>   z interaktywnymi rozwiązaniami. Nic innego.
+> - **Nigdy nie wkładaj tutaj kodu potrzebnego do działania darmowej części
+>   strony** (pomocników, rejestrów, konfiguracji, narzędzi, stylów, danych
+>   arkuszy). Taki kod trafia do `app/`, `style/` albo `tools/`.
+> - Powód: wszystko, co tu wyląduje, przestaje być dostępne dla darmowej
+>   wersji strony w momencie, gdy katalog pojedzie za paywall. Wciągnięcie
+>   tu jednego wspólnego pliku po cichu wyłącza darmową stronę.
+> - Wspólna hydraulika widżetów mieszka celowo poza tym katalogiem:
+>   [`app/widget-helpers.js`](../app/widget-helpers.js) (pomocniki `wg*`)
+>   i [`app/widget-registry.js`](../app/widget-registry.js) (mapa `WIDZETY`).
+>   Nie przenoś ich tutaj.
+> - Nowy plik w tym katalogu **musi** dostać nagłówek SPDX taki jak pozostałe
+>   (cztery linijki na samej górze). Bez niego plik po skopiowaniu wygląda na
+>   niczyj.
+
 Indeks katalogu. **Zanim zaprojektujesz nowy widżet, przeczytaj
 [PROJEKTOWANIE.md](PROJEKTOWANIE.md)**: zasady dydaktyczne i spójności
 wypracowane z Henrichem w pilotażu 2026-maj. Jeden widżet = jeden plik = jedna funkcja `widget*`, podpięta do
@@ -16,12 +41,17 @@ Pełny opis mechaniki renderowania jest w [ARCHITECTURE.md](../ARCHITECTURE.md)
 To są klasyczne skrypty we wspólnym zakresie globalnym, nie moduły. `template.html`
 ładuje je w tej kolejności i **nie wolno jej zmieniać**:
 
-1. `_helpers.js` — wspólne pomocniki `wg*`, muszą istnieć przed widżetami
+1. `app/widget-helpers.js` — wspólne pomocniki `wg*`, muszą istnieć przed widżetami
 2. pliki `widgets/*.js` — definiują funkcje `widget*`
-3. `_registry.js` — mapa nazwa → funkcja; wymaga, by wszystkie były już zdefiniowane
-4. dopiero potem `app/*.js` (`app/render.js` czyta `WIDZETY`)
+3. `app/widget-registry.js` — mapa nazwa → funkcja; wymaga, by wszystkie były już zdefiniowane
+4. dopiero potem reszta `app/*.js` (`app/render.js` czyta `WIDZETY`)
 
-**Nowy widżet = nowy plik w `widgets/` + wpis w `_registry.js` + tag `<script>`
+Pliki 1 i 3 leżą w `app/`, a nie tutaj, mimo że dotyczą widżetów: są wolne
+(PolyForm) i muszą zostać po darmowej stronie granicy licencyjnej. Do 2026-08-20
+nazywały się `widgets/_helpers.js` i `widgets/_registry.js`.
+
+**Nowy widżet = nowy plik w `widgets/` (z nagłówkiem SPDX) + wpis
+w `app/widget-registry.js` + tag `<script>`
 w `template.html`.** Pominięcie któregokolwiek z tych trzech kroków daje ciche
 „brak widżetu", bez błędu w konsoli.
 
@@ -72,7 +102,7 @@ Wszystkie rysują na `<canvas>` (szerokość 520 px, wysokość 130–310 px zal
 od widżetu) i mają ten sam układ: tytuł → płótno → (opcjonalnie) sterowanie →
 odczyt pod spodem.
 
-## Pomocniki z `_helpers.js`
+## Pomocniki z `app/widget-helpers.js`
 
 Widżet dostaje kontener (`.solution-interactive-container`) i buduje w nim
 własny DOM. **Bez sztywnych `id`** — wszystko szukane wewnątrz kontenera, bo ten

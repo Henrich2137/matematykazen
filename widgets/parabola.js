@@ -1,3 +1,8 @@
+// SPDX-FileCopyrightText: 2026 Henrich2137
+// SPDX-License-Identifier: LicenseRef-MatematykaZen-Proprietary
+// Wszelkie prawa zastrzeżone / All rights reserved. Licencja: widgets/LICENSE.md
+// NIE jest objęty PolyForm Noncommercial / NOT covered by PolyForm Noncommercial.
+
 // --- Zad 12.1: monotoniczność paraboli -------------------------------------
 // f(x) = −(x−3)²: lewa gałąź (rośnie) zielona, prawa (maleje) czerwona,
 // punkt do przeciągania po wykresie.
@@ -88,7 +93,7 @@ function widgetParabola(container) {
         state.x = snap !== raw ? snap : Math.round(raw * 2) / 2;
         draw();
     });
-    // Przemalowanie po zmianie motywu (paleta z CSS — widgets/_helpers.js).
+    // Przemalowanie po zmianie motywu (paleta z CSS — app/widget-helpers.js).
     wgZarejestrujRysowanie(canvas, draw);
     draw();
 }

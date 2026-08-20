@@ -1,5 +1,10 @@
 # Licencja i CLA — jak to jest poskładane
 
+> **Uzupełnienie od 2026-08-20:** katalog `widgets/` nie jest już objęty PolyForm
+> Noncommercial, tylko własną licencją zastrzeżoną (`widgets/LICENSE.md`).
+> Cały rozdział licencyjny opisuje [licencja-premium.md](licencja-premium.md).
+> Ten plik dotyczy warstwy PolyForm + CLA, która obowiązuje dla reszty repozytorium.
+
 Opis konstrukcji, nie problem. Wyniesione z CLAUDE.md 2026-08-12 — do codziennej pracy nad
 stroną nie jest potrzebne. Otwórz, gdy dotykasz `LICENSE.md` / `CONTRIBUTING.md` / `README.md` /
 szablonu PR-a, albo gdy pojawia się pytanie o licencjonowanie wkładu.
