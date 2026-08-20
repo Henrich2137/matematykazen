@@ -61,7 +61,12 @@ Definicje (źródłem prawdy jest skrypt, ta sekcja tylko przepisuje wynik):
 ## Funkcje
 
 - Dwa typy zadań: zamknięte (ABCD, prawda/fałsz, wielokrotny wybór, uzupełnianie) oceniane automatycznie na bieżąco, oraz otwarte — rozwiązywane poza platformą, punktowane przez ucznia z checklisty kryteriów CKE (patrz samoocena niżej).
-- Rozwiązania „krok po kroku": krótkie animacje matematyczne (Manim) odtwarzane stan po stanie. Pod filmem pasek kropek — kropka to stan działania, film to przejście między dwoma stanami — z paskiem postępu w odstępie między kropką bieżącą a następną. Kropki są klikalne, krok da się cofnąć (osobny plik puszczony od tyłu, bo przeglądarki nie odtwarzają wideo wstecz), prędkość regulowana od 0,25× do 4×, obsługa przesuwaniem palca i strzałkami klawiatury. Wyjaśnienie kroku (opis + wzór) chowa się pod przyciskiem, żeby widok domyślny był minimalistyczny.
+
+- Rozwiązania chowają się pod przyciskiem „Rozwiązanie", żeby uczeń najpierw spróbował sam. Jedno zadanie może mieć kilka rodzajów naraz, wyświetlanych jeden pod drugim:
+  - **Opisowe** (zwykłe): rozpisany tok rozumowania, tekst ze wzorami. To podstawa, docelowo ma je każde zadanie. Dłuższe wtręty (drugi sposób, uzasadnienie wzoru, typowa pułapka) chowają się pod „Pokaż więcej", żeby główny wywód dało się przeczytać w kilkanaście sekund.
+  - **Krok po kroku**: krótkie animacje matematyczne (Manim), jedna na przejście między dwoma stanami działania. Pod filmem klikalny pasek kropek z paskiem postępu, krok da się cofnąć, prędkość od 0,25× do 4×, sterowanie palcem i strzałkami. Opis kroku chowa się pod przyciskiem, żeby widok domyślny był minimalistyczny. To docelowo najczęstszy rodzaj rozwiązania, ale jego produkcja jest najdroższa, więc na razie ma go tylko część zadań (aktualne liczby w statystykach wyżej).
+  - **Interaktywne** (widżety): mały rysunek do ruszania, w którym uczeń sam przesuwa tę jedną wielkość, od której zależy wynik, i widzi, jak zmienia się rachunek pod spodem. Chodzi o to, żeby odkryć przyczynę typowego błędu, a nie obejrzeć gotowy skutek. Z natury nie pasuje do każdego zadania, więc ma je tylko część.
+
 - Tablica wzorów (oficjalny PDF CKE) w przesuwnym, skalowalnym okienku.
 - Zasady oceniania (klucz odpowiedzi CKE) w analogicznym, osobnym okienku.
 - Tryb próbnego egzaminu — 170 min z zegarem, ukrywa podpowiedzi/wyniki na czas trwania, podsumowanie po zakończeniu.
