@@ -2,7 +2,7 @@ Ostatnia weryfikacja  20.08.2026
 
 # Matematyka Zen
 
-Platforma do nauki matematyki pod maturę podstawową (CKE), inspirowana Brilliant.org. Dla maturzystów, a w przyszłości może też dla ósmoklasistów. Bez reklam, minimalistyczny UI. Obecnie projekt jest w Fazie 1. „Budowa" z rozpiski niżej — strona jest już publicznie dostępna na GitHub Pages , ale bez marketingu i bez własnej domeny; ładna domena (np. matematykazen.pl) i szukanie zainteresowania to dopiero Faza 2. Nadal statyczna, bez backendu i kont użytkowników (postęp trzymany lokalnie w przeglądarce).
+Platforma do nauki matematyki pod maturę podstawową (CKE), inspirowana Brilliant.org. Dla maturzystów, a w przyszłości może też dla ósmoklasistów. Bez reklam, minimalistyczny UI. Obecnie projekt jest w Fazie 2. Nadal statyczna, bez backendu i kont użytkowników (postęp trzymany lokalnie w przeglądarce).
 
 Zobacz na żywo: https://henrich2137.github.io/matematykazen/
 
@@ -61,11 +61,12 @@ Rysunki z arkusza są wycięte i wstawione we wszystkie zadania, które ich wyma
 
 ## Ścieżka biznesowa
 
-+ Faza 1 - Budowa (obecna) - Beta testy ale bez marketingu i domeny co czyni je bardziej zamkniętymi.
++ Faza 1 - Budowa - Beta testy ale bez marketingu i domeny co czyni je bardziej zamkniętymi.
 
 + Faza 2 - Soft Launch i Beta testy - Marketing, naprawa zgłaszanych błędów, zbieranie pieniędzy na patronite.
     - Hosting: nadal GitHub Pages (2.1) DONE
     - Licencja PolyForm Noncommercial (2.2) DONE
+    - 2 doszlifowane arkusze maturalne
     - Domena matematykazen.pl (2.3)
     - Hosting: np Cloudflare / Netlify
     - Aplikacja-wrapper?
