@@ -110,6 +110,22 @@ Every commit (local or cloud) gets a `Co-Authored-By:` trailer in the form **`Lo
 
 `.claude/settings.json` (tracked) enables the **superpowers** plugin at scope `project`, so it travels with the repo; its 14 skills (`brainstorming`, `systematic-debugging`, `writing-plans`, …) only appear **after a Claude Code session restart**. Install details, the marketplace-cache search trap and why `vendor/superpowers/` holds no plugin code: [issues/claude-code-pluginy.md](issues/claude-code-pluginy.md).
 
+## Test przed implementacją, ale tylko przy trudnych zmianach (dodane 2026-08-21)
+
+**Zasada dotyczy WYŁĄCZNIE zmian, w których naprawdę grozi błąd.** Przy takiej zmianie kolejność jest stała: (1) zaprojektuj test, (2) wprowadź zmianę, (3) odpal test i pokaż wynik. Przy wszystkim pozostałym testu się NIE pisze, bo powstaje skrypt, którego nikt nigdy więcej nie odpali.
+
+- **Kiedy test jest obowiązkowy** (wystarczy jeden z tych warunków):
+  - zmiana w logice, która ma stan albo czas: odtwarzacz kroków (`app/steps.js`), tryb egzaminu z timerem, zapis w localStorage,
+  - sprawdzanie odpowiedzi i logika widżetów, czyli wszystko, co decyduje „dobrze/źle",
+  - coś, co już raz się popsuło, albo poprawka błędu: test ma najpierw odtworzyć ten błąd,
+  - zmiana dotykająca wielu zadań albo wielu arkuszy naraz, gdzie ręczne klikanie po prostu nie obejdzie wszystkiego,
+  - błąd niewidoczny gołym okiem: rozjazd o jeden krok, wyścig przy wolnym łączu, zły plik w kadrze.
+- **Kiedy testu NIE piszesz**: treść zadań, teksty, dokumentacja, CSS i wygląd, drobne poprawki w jednym miejscu, porządki w repo. Tu wystarczy otworzyć stronę i kliknąć, a przy zmianach wizualnych zrzuty przed/po z [tools/zrzuty.js](tools/zrzuty.js).
+- **Test ma najpierw padać.** Puść go przed zmianą i sprawdź, że świeci na czerwono. Test, który przechodzi od razu, niczego nie pilnuje.
+- **Czym testować** (nie ma tu frameworka testowego): [tools/test-krokow.js](tools/test-krokow.js) dla odtwarzacza kroków, [tools/statystyki.py](tools/statystyki.py) dla danych w `exercises.json`, a poza tym krótki skrypt Playwrighta. Jeżeli taki skrypt przyda się jeszcze raz, dołóż go do `tools/` zamiast zostawiać w `/tmp`.
+- **Po zmianie odpal test i wklej przebieg.** Nie pisz „działa" bez wyniku. Test padł, to zmiana nie jest skończona.
+- **Nie da się tego sprawdzić skryptem? Powiedz wprost jednym zdaniem** ("tego nie sprawdzę skryptem, bo ...") i dopiero wtedy rozważ wpis do `TODO.md` w sekcji `TESTOWANIE HENRICH:` wg progu z sekcji wyżej.
+
 ## Running / previewing
 
 No build or test tooling. **Serve the directory with a static file server** (e.g. `npx serve`, `python -m http.server`) — since the exercises.json migration the exam page loads its data with `fetch`, which does not work over `file://` (the page then shows a message explaining exactly this; index.html alone still opens fine from a file). No linter/test suite — verify changes by opening the page and clicking through the exercise(s) you touched.
