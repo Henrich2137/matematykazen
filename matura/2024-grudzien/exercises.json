@@ -199,7 +199,7 @@
         "selfScore": false,
         "hint": "Skorzystaj z własności logarytmów: \\(\\log_a x + \\log_a y = \\log_a(x \\cdot y)\\) oraz \\(\\log_a x^{b} = b\\log_a x\\)",
         "formulasPage": 5,
-        "solutionText": "\\(\\log_{7} x + 6\\log_{7} y = \\log_{7} x + \\log_{7} y^{6} = \\boldsymbol{\\log_{7}\\left(xy^{6}\\right)}\\) — odpowiedź <b>D</b>.<br><br><b>DAWNE \"POKAŻ WIĘCEJ\":</b><br>Najpierw „chowamy\" 6 do logarytmu: \\(6\\log_{7} y = \\log_{7} y^{6}\\) (własność \\(\\log_a x^{b} = b\\log_a x\\), czytana od prawej). <br><br> Potem sumę logarytmów o tej samej podstawie zamieniamy na logarytm iloczynu: \\(\\log_{7} x + \\log_{7} y^{6} = \\log_{7}\\left(x \\cdot y^{6}\\right)\\).",
+        "solutionText": "<div class=\"rozw-2kol\"><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(\\log_{7} x + \\htmlClass{zielony}{6}\\log_{7} y\\)</div><div class=\"rozw-wzor\">\\(\\log_a x^{r}=\\htmlClass{zielony}{r} \\cdot \\log_a x\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(\\log_{7} x \\mathbin{\\htmlClass{zielony}{+}} \\htmlClass{zielony}{\\log_{7}} y^{6}\\)</div><div class=\"rozw-wzor\">\\(\\log_a (x \\cdot y)=\\log_a x \\mathbin{\\htmlClass{zielony}{+}} \\htmlClass{zielony}{\\log_a} y\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(\\log_{7}\\left(x \\cdot y^{6}\\right)\\)</div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(\\boldsymbol{\\log_{7}\\left(xy^{6}\\right)}\\)</div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz rozw-pelny\"><div class=\"rozw-obl\">Odpowiedź <b>D</b>.</div></div></div>",
         "solutionStepByStep": [
             {
                 "type": "video",

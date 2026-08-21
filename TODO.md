@@ -37,7 +37,7 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
   - to samo do decyzji z „finalAnswer.label": renderer je ignoruje (świadomie, od 2026-08-06),
     a pole nadal siedzi w danych wszystkich arkuszy
 
-  - w siedmiu zadaniach grudnia (4, 6, 7, 8, 10, 19, 30) w rozwiązaniu siedzi nagłówek „DAWNE POKAŻ WIĘCEJ" i doklejona pod nim dawna treść; celowo brzydkie, żeby było widać, gdzie zredagować tekst w jedną całość. Scalać samemu czy zostawiasz to sobie
+  - w sześciu zadaniach grudnia (6, 7, 8, 10, 19, 30) w rozwiązaniu siedzi nagłówek „DAWNE POKAŻ WIĘCEJ" i doklejona pod nim dawna treść; celowo brzydkie, żeby było widać, gdzie zredagować tekst w jedną całość. Scalać samemu czy zostawiasz to sobie
 
 <br>
 
