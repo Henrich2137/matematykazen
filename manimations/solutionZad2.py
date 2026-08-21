@@ -128,6 +128,34 @@ class ScenaZadania2(Scene):
 
         self.next_section("krok4")
         #STEP 4
+        #
+        # DO PRZEROBIENIA: TEN KROK TRZEBA ROZBIC NA DWA I PRZERENDEROWAC.
+        #
+        # Powod: rozwiazanie opisowe tego samego zadania (pole "solutionText"
+        # w matura/2024-grudzien/exercises.json) od 2026-08-21 idzie linijka po
+        # linijce, JEDEN wzor na JEDNA linijke, i ta linijka jest tam rozbita
+        # na dwie:
+        #
+        #     (5^{1/5} * 5^{-1})^{-5}            <-  (a*b)^r = a^r * b^r
+        #     (5^{1/5})^{-5} * (5^{-1})^{-5}     <-  (a^r)^s = a^{r*s}
+        #
+        # Film robi oba te przeksztalcenia naraz, w jednym kroku, wiec opis pod
+        # filmem i rozwiazanie opisowe pokazuja teraz rozna liczbe krokow.
+        # Zeby sie zgadzalo:
+        #
+        #   1. rozbij ta sekcje na "krok4a" (samo opuszczenie nawiasu, wynik
+        #      (5^{1/5})^{-5} * (5^{-1})^{-5}) i "krok4b" (wymnozenie wykladnikow
+        #      z nawiasami, wynik taki jak dzis kroki[3]),
+        #   2. dolóż miedzy kroki[2] a kroki[3] nowy MathTex ze stanem posrednim,
+        #   3. przerenderuj scene i PODMIEN pliki krokow w
+        #      matura/2024-grudzien/media/zad2/solution-step-by-step/ (kroki od
+        #      czwartego w gore przesuwaja sie o jeden numer),
+        #   4. dopisz nowy krok w tablicy "solutionStepByStep" w exercises.json
+        #      i rozdziel jego opis: krok4a dostaje (a*b)^r = a^r * b^r,
+        #      krok4b dostaje (a^r)^s = a^{r*s}.
+        #
+        # Pamietaj o zasadzie z README: ostatnia klatka kroku 4a musi byc
+        # pierwsza klatka kroku 4b.
 
 
         self.add(kroki[2])
@@ -154,6 +182,22 @@ class ScenaZadania2(Scene):
 
         self.next_section("krok6")
         #STEP 6
+        #
+        # DO PRZEROBIENIA: TEN KROK TEZ TRZEBA ROZBIC NA DWA I PRZERENDEROWAC.
+        #
+        # Ta sama sprawa co przy kroku 4. Rozwiazanie opisowe (solutionText
+        # w matura/2024-grudzien/exercises.json) rozbija to od 2026-08-21 na:
+        #
+        #     5^{-1} * 5^{5}     <-  a^r * a^s = a^{r+s}
+        #     5^{-1+5}           <-  bez wzoru, samo dodawanie w wykladniku
+        #     5^{4}
+        #
+        # Film robi dodanie wykladnikow i ich zsumowanie w jednym ruchu, wiec
+        # pokazuje o krok mniej. Rozbij sekcje na "krok6a" (do stanu 5^{-1+5})
+        # i "krok6b" (do 5^{4}), dolóż MathTex ze stanem posrednim, przerenderuj,
+        # podmien pliki krokow i dopisz nowy krok w "solutionStepByStep".
+        #
+        # Ostatnia klatka kroku 6a musi byc pierwsza klatka kroku 6b (README).
         # Sekunda bezruchu na wejściu była tu do 2026-08-20 (step6.mp4 miał 2,25 s
         # = 1 s postoju + 1 s animacji + 0,25 s przytrzymania). Wycięta na prośbę
         # Henricha: punkt wyjścia uczeń widzi już na ostatniej klatce kroku 5,

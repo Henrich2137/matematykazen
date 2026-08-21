@@ -287,6 +287,12 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
 
 <br>
 
+  + OPUS 5 MEDIUM DOPISAŁ (2026-08-21, po przejściu zad. 2 z 2024-grudnia na układ dwukolumnowy):
+
+    - filmy kroków 4 i 6 w zad. 2 (2024-grudzień) robią po dwa przekształcenia naraz, a rozwiązanie opisowe rozbija każde z nich na dwie linijki: trzeba rozbić obie sceny na dwa kroki, przerenderować i podmienić pliki. Pełne instrukcje stoją w komentarzach przy sekcjach "krok4" i "krok6" w manimations/solutionZad2.py
+
+    - reszta zadań 2024-grudnia czeka na przeniesienie na ten sam układ (klasa .rozw-2kol, opis w ARCHITECTURE_CSS.md)
+
 
 + ZASADY DLA CLAUDE-A:
 
