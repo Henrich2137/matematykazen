@@ -15,10 +15,18 @@ class ScenaZadania2(Scene):
         3. animacja przekształcenia, zielone zostaje zielone,
         4. wszystko znów czarne.
 
-    ZIELONE JEST TO, CO SIĘ ZMIENIA, a nie to, co tylko zmienia miejsce.
-    W kroku 3 ułamek 1/5 staje się potęgą 5^(-1): piątka zostaje piątką i po
-    prostu jedzie na podstawę, więc jest CZARNA; zmienia się jedynka, która
-    razem z kreską ułamka staje się wykładnikiem -1, i to ona jest zielona.
+    ZIELONE JEST TO, CO SIĘ ZMIENIA: znika, pojawia się, zmienia wartość albo
+    zmienia rolę. Czarne zostaje to, co jedzie w nowe miejsce zapisu, ale dalej
+    znaczy to samo.
+
+    Krok 3, 1/5 staje się 5^(-1): piątka dalej jest tą samą piątką i tylko jedzie
+    na podstawę, więc jest CZARNA. Zielona jest jedynka, która razem z kreską
+    ułamka staje się wykładnikiem -1.
+
+    Krok 2, ⁵√5 staje się 5^(1/5): liczba spod pierwiastka była podstawą i nią
+    zostaje, więc CZARNA. Zielony jest znak pierwiastka (znika), licznik 1
+    (pojawia się) i stopień pierwiastka, bo przestaje być stopniem, a zaczyna
+    być mianownikiem wykładnika.
 
     Krok jest przez to SAMODZIELNY: zaczyna się i kończy tym samym, czystym
     obrazem. Dzięki temu ostatnia klatka kroku N zgadza się z pierwszą klatką
@@ -125,16 +133,19 @@ class ScenaZadania2(Scene):
         # miejsce w rachunku:
         #
         #   liczba spod pierwiastka  ->  podstawa potęgi
-        #   stopień pierwiastka      ->  mianownik wykładnika
+        #   stopień pierwiastka      ->  mianownik wykładnika   (na zielono)
         #   kreska pierwiastka       ->  kreska ułamka
-        #   znak pierwiastka znika, licznik 1 się pojawia   (oba na zielono)
+        #   znak pierwiastka znika, licznik 1 się pojawia      (na zielono)
         #
-        # Obie piątki zostają piątkami, tylko jadą gdzie indziej, więc są czarne.
-        # Zmienia się to, że znak pierwiastka przestaje istnieć, a na jego miejsce
-        # wchodzi licznik 1: to jest cała różnica między zapisem z pierwiastkiem
-        # a zapisem z potęgą.
-        zapal(k[0][1][1])
+        # Zielony bierze to, co przestaje znaczyć to, co znaczyło. Znak pierwiastka
+        # znika, licznik 1 pojawia się z niczego, a stopień pierwiastka przestaje
+        # być stopniem i zaczyna być mianownikiem wykładnika: mimo że dalej jest
+        # piątką, jego rola się zmienia, więc też jest zielony.
+        # Czarna zostaje liczba spod pierwiastka: była podstawą potęgowania i nią
+        # zostaje, tylko przesuwa się w inne miejsce zapisu.
+        zapal(k[0][1][1], k[0][1][0])
         k[1][2][0].set_color(self.ZIELONY)
+        k[1][2][2].set_color(self.ZIELONY)
         self.play(
             Transform(k[0][0], k[1][0]),
             Transform(k[0][1][3], k[1][1]),      # liczba spod pierwiastka -> podstawa
@@ -147,7 +158,7 @@ class ScenaZadania2(Scene):
             Transform(k[0][4], k[1][5]),
             Transform(k[0][5], k[1][6]),
         )
-        zgas([k[1][2][0]], [k[1][2][0]], k[1])
+        zgas([k[0][1][0], k[1][2][0]], [k[1][2][0], k[1][2][2]], k[1])
 
         self.next_section("krok3")
         # Ułamek 1/5 na potęgę o ujemnym wykładniku:

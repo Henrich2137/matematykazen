@@ -122,9 +122,14 @@ Twarde reguły. Przed renderem przeczytaj, po renderze sprawdź.
 ### Kolor
 
 8. **Zielony to `#2e7d32`** (`--accent-green`), ten sam, którym zaznacza rozwiązanie opisowe.
-9. **Zielone jest to, co się ZMIENIA. Co tylko zmienia miejsce, zostaje czarne.**
-   Przykład: `1/5` → `5^{-1}`. Piątka zostaje piątką i jedzie na podstawę, więc jest czarna.
-   Zmienia się jedynka, która razem z kreską staje się wykładnikiem `-1`: to ona jest zielona.
+9. **Zielone jest to, co się ZMIENIA**: znika, pojawia się, zmienia wartość albo zmienia rolę.
+   **Czarne zostaje to, co jedzie w nowe miejsce zapisu, ale dalej znaczy to samo.**
+   - `1/5` → `5^{-1}`: piątka dalej jest tą samą piątką i tylko jedzie na podstawę, więc czarna.
+     Zielona jest jedynka, która razem z kreską staje się wykładnikiem `-1`.
+   - `⁵√5` → `5^{1/5}`: liczba spod pierwiastka była podstawą i nią zostaje, więc czarna.
+     Zielony jest znak pierwiastka (znika), licznik `1` (pojawia się) i stopień pierwiastka,
+     bo przestaje być stopniem, a zaczyna być mianownikiem wykładnika.
+   - W razie wątpliwości pytaj Henricha, to jego rozstrzygnięcie.
 10. **Krok, w którym nic się nie zmienia, nie ma koloru.** Pierwszy krok (samo zapisanie
     zadania) jest cały czarny.
 

@@ -32,6 +32,9 @@ Wygląd i nazwy klas CSS: `ARCHITECTURE_CSS.md`. Znaczenie kolorów: `COLORS.md`
     wzoru KaTeX. Nie wpisuj `\textcolor` z gotowym hexem: nie zmieni się w ciemnym motywie.
 12. **Zielony zaznacza fragment, do którego odnosi się wzór, PO OBU STRONACH**: kawałek
     rachunku, który zaraz się zmieni, i tę stronę wzoru, która się do niego dopasowuje.
+    Zaznaczasz **to, co się zmienia**: znika, pojawia się, zmienia wartość albo zmienia rolę.
+    Co tylko wędruje w inne miejsce zapisu, a dalej znaczy to samo, zostaje bez koloru.
+    Ta sama reguła obowiązuje w filmie, patrz `manimations/README.md`.
 13. **Nie zaznaczaj, gdy wzór dotyczy całego wyrażenia.** Nie ma wtedy czego wskazywać.
 14. **Zielony nie znaczy „dobrze".** Zieleń poprawności to inny token, patrz `COLORS.md`.
 
