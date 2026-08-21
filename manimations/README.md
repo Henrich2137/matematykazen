@@ -107,25 +107,33 @@ Twarde reguły. Przed renderem przeczytaj, po renderze sprawdź.
 2. **Tyle kroków filmu, ile linijek w rozwiązaniu opisowym.** Jeden do jednego, po kolei.
    Zmieniasz film, popraw `solutionText`. Zmieniasz `solutionText`, przerenderuj film.
 3. **Jeden wzór na jeden krok.** Krok bez wzoru (sam rachunek na liczbach) jest w porządku.
+   Wzór w ramce pod filmem tylko wtedy, gdy stoi w tablicy; reszta zwykłym zdaniem.
+4. **Dwie niezależne rzeczy licz PO KOLEI, nie równolegle** (Henrich, 2026-08-21, zad. 7).
+   Najpierw jedno równanie do końca, potem drugie. Wynik pierwszego etapu odjeżdża na górę
+   kadru i tam zostaje, więc na końcu obie wartości są na ekranie i mogą zjechać w jeden
+   zapis. Samo przejście („wynik w górę, wjeżdża drugie równanie") jest osobnym krokiem,
+   inaczej ostatnia klatka nie zgadza się z pierwszą klatką następnego kroku.
+5. **Krok, który tylko coś wybiera albo przesuwa** (wyjęcie jednego równania z klamry,
+   odstawienie wyniku na górę), nie ma koloru: nic się w nim nie przelicza.
 
 ### Przebieg kroku
 
-4. **Każdy krok wygląda tak samo:**
+6. **Każdy krok wygląda tak samo:**
    wszystko czarne → kluczowy element zapala się na zielono → animacja przekształcenia,
    zielone zostaje zielone → wszystko znów czarne.
-5. **Krok zaczyna się i kończy tym samym czystym obrazem.** Dzięki temu zgodność ostatniej
+7. **Krok zaczyna się i kończy tym samym czystym obrazem.** Dzięki temu zgodność ostatniej
    klatki kroku N z pierwszą klatką kroku N+1 wychodzi sama, bez przenoszenia podświetlenia
    między plikami.
-6. **Kolejność na końcu kroku:** zgaszenie koloru → podmiana na czysty następny stan →
+8. **Kolejność na końcu kroku:** zgaszenie koloru → podmiana na czysty następny stan →
    `self.wait(0.25)`. Nie odwrotnie: przytrzymanie po Transformie trzyma obiekty, które
    potrafią różnić się od czystego stanu.
-7. Zakaz z punktu 0 workflow nadal obowiązuje: **nigdy `self.clear()` bez natychmiastowego
+9. Zakaz z punktu 0 workflow nadal obowiązuje: **nigdy `self.clear()` bez natychmiastowego
    `self.add()`** czegoś w zamian.
 
 ### Kolor
 
-8. **Zielony to `#2e7d32`** (`--accent-green`), ten sam, którym zaznacza rozwiązanie opisowe.
-9. **Zielone jest to, co się ZMIENIA**: znika, pojawia się, zmienia wartość albo zmienia rolę.
+10. **Zielony to `#2e7d32`** (`--accent-green`), ten sam, którym zaznacza rozwiązanie opisowe.
+11. **Zielone jest to, co się ZMIENIA**: znika, pojawia się, zmienia wartość albo zmienia rolę.
    **Czarne zostaje to, co jedzie w nowe miejsce zapisu, ale dalej znaczy to samo.**
    - `1/5` → `5^{-1}`: piątka dalej jest tą samą piątką i tylko jedzie na podstawę, więc czarna.
      Zielona jest jedynka, która razem z kreską staje się wykładnikiem `-1`.
@@ -133,12 +141,12 @@ Twarde reguły. Przed renderem przeczytaj, po renderze sprawdź.
      Zielony jest znak pierwiastka (znika), licznik `1` (pojawia się) i stopień pierwiastka,
      bo przestaje być stopniem, a zaczyna być mianownikiem wykładnika.
    - W razie wątpliwości pytaj Henricha, to jego rozstrzygnięcie.
-10. **Krok, w którym nic się nie zmienia, nie ma koloru.** Pierwszy krok (samo zapisanie
+12. **Krok, w którym nic się nie zmienia, nie ma koloru.** Pierwszy krok (samo zapisanie
     zadania) jest cały czarny.
-11. **Nawiasów nie koloruj** (Henrich, 2026-08-21), nawet gdy nawias właśnie się pojawia
+13. **Nawiasów nie koloruj** (Henrich, 2026-08-21), nawet gdy nawias właśnie się pojawia
     albo znika. Kolor noszą liczby i litery, nie znaki zapisu. Tak samo **podstawa potęgi
     zostaje czarna**, także ta, która dopiero się pojawia: podstawa to dalej ta sama liczba.
-12. **Gaś DOKŁADNIE to, co po przekształceniu leży w kadrze.** `Transform` zostawia na
+14. **Gaś DOKŁADNIE to, co po przekształceniu leży w kadrze.** `Transform` zostawia na
     ekranie obiekt ŹRÓDŁOWY (a po `Transform(VGroup(a, b), cel)` oba składniki grupy), więc
     wpisanie do gaszenia celu albo połowy źródeł daje najbrzydszy możliwy efekt: część zapisu
     gaśnie, a część zostaje zielona aż do cięcia. Sprawdzalne maszynowo: licz zielone piksele
@@ -146,29 +154,29 @@ Twarde reguły. Przed renderem przeczytaj, po renderze sprawdź.
 
 ### Ruch
 
-13. **Znak, który zmienia znaczenie, ma się w to nowe znaczenie ZAMIENIĆ, a nie zniknąć.**
+15. **Znak, który zmienia znaczenie, ma się w to nowe znaczenie ZAMIENIĆ, a nie zniknąć.**
     Plus z wykładnika `2^{96+4}` przy rozdzielaniu na iloczyn zjeżdża w dół i staje się kropką
     mnożenia; nie wygaszamy go, dokładając obok nową kropkę (Henrich, 2026-08-21).
-14. **Co nie zmienia formy, ma się PRZESUWAĆ, nie morfować.** Podstawa potęgi ma dojechać
+16. **Co nie zmienia formy, ma się PRZESUWAĆ, nie morfować.** Podstawa potęgi ma dojechać
     na miejsce, a nie przelać się w inną podstawę.
-15. **Pary wskazuj ręcznie, co do glifu.** Bez `TransformMatchingShapes` na dłuższych
+17. **Pary wskazuj ręcznie, co do glifu.** Bez `TransformMatchingShapes` na dłuższych
     wyrażeniach: paruje kształty po podobieństwie i wysyła cyfry nie tam, gdzie idą w rachunku.
-16. **Stany pisz jako `MathTex` pocięty na CZĘŚCI** (osobno podstawa, wykładnik, kropka,
+18. **Stany pisz jako `MathTex` pocięty na CZĘŚCI** (osobno podstawa, wykładnik, kropka,
     nawiasy). Wtedy parę wskazujesz czytelnym indeksem części, a nie zgadywanym numerem glifu.
-17. **Mapę glifów policz, nie zgaduj.** Wyrenderuj podgląd, w którym każdy glif ma inny kolor
+19. **Mapę glifów policz, nie zgaduj.** Wyrenderuj podgląd, w którym każdy glif ma inny kolor
     i numer, i wpisz mapę w komentarz na górze sceny (wzorzec: `solutionZad2.py`).
-18. **Pojawia się tylko to, czego wcześniej nie było** (nowy nawias, nowa kropka).
+20. **Pojawia się tylko to, czego wcześniej nie było** (nowy nawias, nowa kropka).
     Reszta ma skądś przylecieć.
 
 ### Po renderze
 
-19. `tools/wgraj-kroki.sh <nr> <arkusz>` robi render, kopię, rewersy i styk klatek jedną komendą.
+21. `tools/wgraj-kroki.sh <nr> <arkusz>` robi render, kopię, rewersy i styk klatek jedną komendą.
     **Rewersy przelicza od nowa**, bo po przerenderowaniu stare pokazują poprzednią animację.
-20. **Styk klatek musi przejść** (`tools/styk-klatek.sh`, wchodzi w skład powyższego).
-21. **Puść `tools/test-krokow.js`** na zadaniu, które ruszałeś.
-22. **Obejrzyj klatki okiem**: pierwszą, po zapaleniu koloru, w połowie ruchu i ostatnią.
+22. **Styk klatek musi przejść** (`tools/styk-klatek.sh`, wchodzi w skład powyższego).
+23. **Puść `tools/test-krokow.js`** na zadaniu, które ruszałeś.
+24. **Obejrzyj klatki okiem**: pierwszą, po zapaleniu koloru, w połowie ruchu i ostatnią.
     „Wyrenderowało się bez błędu" nic nie znaczy.
-23. Sprawdzian koloru na sucho: pierwsza i ostatnia klatka każdego kroku mają mieć **zero**
+25. Sprawdzian koloru na sucho: pierwsza i ostatnia klatka każdego kroku mają mieć **zero**
     zielonych pikseli, środek ma mieć ich sporo. Sam zero na końcu **nie wystarcza**, bo cięcie
     i tak obcina obraz na czystym stanie. Policz zielone piksele w CAŁYM kroku, klatka po
     klatce, i popatrz na krzywą: ma zjechać do zera jednym ruchem. Zatrzymanie się na małej,
@@ -179,9 +187,9 @@ Twarde reguły. Przed renderem przeczytaj, po renderze sprawdź.
     # potem w Pythonie: piksel jest zielony, gdy g > r+25 i g > b+25
     ```
 
-### Pułapki Manima, na których ta scena się przejechała (2026-08-21, zad. 3)
+### Pułapki Manima, na których te sceny się przejechały (2026-08-21, zad. 3 i 7)
 
-Wszystkie cztery kosztowały osobny render, więc warto je znać z góry.
+Każda kosztowała osobny render, więc warto je znać z góry.
 
 - **`Transform` zostawia w kadrze obiekt ŹRÓDŁOWY**, tylko wyglądający jak cel. Do gaszenia
   koloru wpisuj więc źródła, nie cele. A po `Transform(VGroup(a, b), cel)` w kadrze leżą OBA
@@ -195,6 +203,13 @@ Wszystkie cztery kosztowały osobny render, więc warto je znać z góry.
   glifu: `MathTex(r"2", r"^{96", r"+4}")` skleja się w LaTeXu w `2^{96+4}`, a daje osobny
   uchwyt do „96" i do „+4". Numery glifów zgaduje się źle i psują się przy każdej zmianie
   zapisu.
+- **Do gaszenia nie wpisuj niczego, co wyszło z kadru przez `FadeOut`.** Animacja na
+  obiekcie spoza sceny WSTAWIA go z powrotem, więc wygaszony kawałek zapisu wróciłby na
+  ostatnią klatkę. Jeśli po kroku nie zostaje nic zielonego, wywołaj gaszenie z pustą listą.
+- **Układ równań buduj z części, nie jednym `\begin{cases}`**: dwa `MathTex`-y ustawione
+  `arrange(DOWN, aligned_edge=LEFT)` plus osobny glif `\{`. Wtedy każde równanie ma własny
+  uchwyt i da się je wyjąć z klamry. Klamrę skaluj `scale_to_fit_height`, a nie
+  `stretch_to_fit_height`: rozciąganie tylko w pionie robi z niej cienką kreskę z haczykiem.
 - **Kolor zapalaj animacją, nie przed pierwszym `play`.** Inaczej pierwsza klatka kroku jest
   już podświetlona, a ostatnia klatka kroku poprzedniego czysta, czyli dokładnie ten przeskok,
   którego pilnuje `tools/styk-klatek.sh`.

@@ -2,7 +2,16 @@
 
 Jak pisać **rozwiązanie zwykłe**, czyli pole `solutionText` w `matura/<arkusz>/exercises.json`.
 Zasady Henricha, ustalone 2026-08-21 na zadaniu 2 z arkusza 2024-grudzień i doprecyzowane
-tego samego dnia na zadaniu 3. Wzorce do podejrzenia: te dwa zadania (2 zamknięte, 3 otwarte).
+tego samego dnia na zadaniach 3, 4, 6, 7 i 8. Wzorce do podejrzenia, wszystkie w 2024-grudniu:
+
+| zadanie | czego jest wzorcem |
+|---|---|
+| 2 | dwie kolumny, wzór przy każdej linijce, zielony przy każdym wzorze |
+| 3 | to samo w zadaniu na wykazanie, na końcu wniosek zamiast „Odpowiedź X." |
+| 4 | wąskie rozwiązanie wyśrodkowane na karcie (`rozw-srodek`) |
+| 6 | jedna kolumna, jeden wzór na górze, ułamki przez `\dfrac` |
+| 7 | dwa tory obok siebie, które na końcu schodzą się w jeden |
+| 8 | zadanie otwarte z założeniem: dziedzina na górze, sprawdzenie na dole |
 
 Bliźniaczy plik dla filmów: `manimations/README.md`, sekcja „Zasady krok po kroku, wersja krótka".
 Wygląd i nazwy klas CSS: `ARCHITECTURE_CSS.md`. Znaczenie kolorów: `COLORS.md`.
@@ -103,21 +112,31 @@ jednym torem.
     linijek) wygląda przy niej na zgubione, więc dostaje `class="rozw-2kol rozw-srodek"`
     i wraca na środek. Szerokie zostawiaj bez tej klasy. Decyzja jest na oko, na zrzucie.
 
+## Zadania otwarte
+
+22. **Założenie (dziedzina) idzie NA GÓRĘ, nad rachunek**, razem z jednym zdaniem, skąd się
+    wzięło („mianownik nie może być zerem, oba zerują się dla \(x=1\)"). CKE daje za nie
+    osobny punkt, więc ma być widoczne, a nie schowane w środku rachunku.
+23. **Ostatnia linijka sprawdza założenie i ogłasza wynik**: „wynik spełnia założenie, bo
+    \(-6 \ne 1\), więc rozwiązaniem równania jest \(x=-6\)".
+24. **Działanie wykonywane na obu stronach zapisuj po szkolnemu, na tej samej linijce**:
+    `\;\big/ \cdot\, 2(x-1)`. To nie jest wzór, więc nie idzie do kolumny wzorów.
+
 ## Praca z plikiem
 
-22. **`exercises.json` poprawiaj tekstowo, nie przez `json.dumps`.** Plik jest formatowany
+25. **`exercises.json` poprawiaj tekstowo, nie przez `json.dumps`.** Plik jest formatowany
     ręcznie (elementy tablicy na tym samym wcięciu co klucz), więc przepisanie go całego
     biblioteką daje diff na tysiąc linijek zamiast na pięć. Bezpieczny sposób: wczytaj plik
     jako TEKST, znajdź w nim starą wartość zakodowaną `json.dumps(stara)` i podmień na
     `json.dumps(nowa)`, na koniec sprawdź, że `json.loads` przechodzi.
 
-23. **Zmieniasz `solutionText`, przerenderuj film** (`tools/wgraj-kroki.sh <nr>`), i odwrotnie.
+26. **Zmieniasz `solutionText`, przerenderuj film** (`tools/wgraj-kroki.sh <nr>`), i odwrotnie.
     Linijki i kroki są parami; rozjazd widać dopiero na stronie, kiedy podpis pod filmem mówi
     co innego niż zapis obok.
 
 ## Sprawdzenie
 
-24. **Obejrzyj na zrzucie**: komputer i telefon, jasny i ciemny motyw.
-25. **Strona nie ma się przewijać w bok**, a siatka nie ma się obcinać
+27. **Obejrzyj na zrzucie**: komputer i telefon, jasny i ciemny motyw.
+28. **Strona nie ma się przewijać w bok**, a siatka nie ma się obcinać
     (`scrollWidth === clientWidth`, `el.scrollWidth - el.clientWidth === 0`).
-26. **Policz linijki i kroki filmu.** Muszą się zgadzać.
+29. **Policz linijki i kroki filmu.** Muszą się zgadzać.

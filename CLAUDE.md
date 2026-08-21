@@ -8,7 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Writing a solution? Read the rules first, they are short.**
 
-- **`solutionText` (rozwiązanie zwykłe) → [SOLUTION_TEXT_RULES.md](SOLUTION_TEXT_RULES.md).** One expression per line, formula in the right-hand column next to the state *before* it is applied, green marks what changes.
+- **`solutionText` (rozwiązanie zwykłe) → [SOLUTION_TEXT_RULES.md](SOLUTION_TEXT_RULES.md).** One expression per line; green marks what changes. Three layouts to pick from (one column, two columns, two parallel tracks) — the file says which fits what, and only formulas that are actually in `tablica-wzorow.pdf` may sit beside a line.
 - **Manim scene (rozwiązanie krok po kroku) → „Zasady krok po kroku" in [manimations/README.md](manimations/README.md).** One step = one transformation; every step goes black → green → animation → black.
 - **They must stay in step: one line of the written solution = one step of the film.** Change one, change the other.
 
