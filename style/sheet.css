@@ -1230,6 +1230,17 @@ body.sidebar-otwarty #sidebar-linia {
    Szerokość kolumn: `auto 1fr` z lustrzanym wyrównaniem do środka między nimi.
    Kolumna wzorów bierze tyle, ile potrzebuje najszerszy wzór, a rachunek dostaje
    resztę. */
+/* Zaznaczenie „popatrz TUTAJ" wewnątrz wzoru KaTeX-a, wołane z exercises.json
+   jako \htmlClass{zielony}{...} (polecenie przepuszcza `trust` w renderMath).
+   Token --accent-green, a NIE --correct: w COLORS.md zieleń poprawności znaczy
+   „dobra odpowiedź", a to jest tylko wskazanie miejsca, do którego odnosi się
+   wzór obok. Barwa idzie z tokenu, więc ciemny motyw obsługuje się sam.
+   `color` musi wygrać z KaTeX-owym kolorem dziedziczonym po .katex. */
+.katex .zielony,
+.katex .zielony .mord,
+.katex .zielony .mbin,
+.katex .zielony .mrel { color: var(--accent-green); }
+
 .rozw-2kol {
     display: grid;
     grid-template-columns: 1fr auto;

@@ -121,7 +121,15 @@ function renderMath(element) {
                 { left: "\\(", right: "\\)", display: false },
                 { left: "\\[", right: "\\]", display: true }
             ],
-            throwOnError: false
+            throwOnError: false,
+            // Wpuszczamy JEDNO polecenie spoza czystej matematyki: \htmlClass,
+            // którym treść zadania zaznacza fragment wzoru (klasa .zielony niżej
+            // w style/sheet.css). KaTeX blokuje takie polecenia domyślnie, bo
+            // pozwalają wstrzyknąć klasę do dokumentu; tu źródłem jest własny
+            // exercises.json, nie użytkownik. Sam \textcolor{#hex} nie wchodzi
+            // w grę: zapisany na sztywno w JSON-ie nie zmieniłby się w ciemnym
+            // motywie, a klasa bierze barwę z tokenu i zmienia się sama.
+            trust: (kontekst) => kontekst.command === "\\htmlClass"
         });
     }
 }

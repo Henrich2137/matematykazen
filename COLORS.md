@@ -50,6 +50,12 @@ dwiema różnymi decyzjami. Wpisując nowy token, podaj obie.
 Wypełnienia półprzezroczyste: `--wg-obszar-ok`, `--wg-obszar-info`,
 `--wg-obszar-wykres`, `--wg-slupek-ok`.
 
+**W treści zadania (`exercises.json`) zieleń „oznaczenie miejsca" wołasz jako
+`\htmlClass{zielony}{...}` wewnątrz wzoru KaTeX.** Tak zaznacza się fragment,
+do którego odnosi się wzór obok (patrz `.rozw-2kol` w ARCHITECTURE_CSS.md).
+Nie wpisuj `\textcolor` z gotowym hexem: zapisany na sztywno nie zmieni się
+w ciemnym motywie, a klasa bierze barwę z `--accent-green` i zmienia się sama.
+
 **Zielony i czerwony znaczą wyłącznie poprawność.** Chcesz coś wyróżnić bez
 oceniania — weź niebieski albo pomarańczowy.
 
