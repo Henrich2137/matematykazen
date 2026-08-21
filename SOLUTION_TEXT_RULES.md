@@ -35,6 +35,8 @@ jednym torem.
   wspólne (dane na starcie, wynik na końcu, odpowiedź) dostają `rozw-pelny` i rozpinają się
   na obie kolumny. Wzorzec: zad. 7, gdzie osobno liczy się \(a\), osobno \(b\), a na końcu
   ich iloczyn. Układ ma pokazywać to samo, co film.
+  Krótszy tor kończy się wyżej: **pusta komórka idzie na KONIEC tej kolumny, nie w jej
+  środek** (Henrich, 2026-08-21). Dziura w środku wygląda jak zgubiona linijka.
 
 ## Dwie kolumny
 
