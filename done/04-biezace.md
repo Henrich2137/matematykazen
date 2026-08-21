@@ -1857,3 +1857,28 @@ Weryfikacja (nowych zmian w kodzie NIE ma):
   (360 kliknięć łącznie) — zero pageerror, zero crashy, video.error puste, odtwarzacz kończy
   na ostatnim kroku (step9/step6/step8). Jedyny wpis w konsoli to ERR_ADDRESS_UNREACHABLE
   z zasobu spoza strony (firewall kontenera), nie z odtwarzacza.
+
+[ZROBIONE 2026-08-21] (Opus 5, medium, lokalnie) Zad. 2 z 2024-grudnia: rozwiązanie opisowe
+przepisane na dwie kolumny (rachunek z lewej, użyty wzór z prawej), a film rozbity z sześciu
+kroków na osiem, żeby jedna linijka rachunku odpowiadała jednemu krokowi filmu.
+- nowy układ: klasy .rozw-2kol/.rozw-wiersz/.rozw-obl/.rozw-wzor w style/sheet.css, siatka
+  siedzi na kontenerze, a wiersz znika przez display: contents, więc kolumna wzorów ma jedną
+  wspólną krawędź w całym rozwiązaniu (opis w ARCHITECTURE_CSS.md);
+- zaznaczanie fragmentów: \htmlClass{zielony}{...} w exercises.json, barwa z --accent-green,
+  co wymagało wąskiego `trust` w renderMath (app/state.js) przepuszczającego wyłącznie to
+  jedno polecenie; \textcolor z gotowym hexem odpadł, bo nie zmieniłby się w ciemnym motywie;
+- scena manimations/solutionZad2.py przepisana: stany jako MathTex pocięty na części, każda
+  para glifów wskazana ręcznie, więc podstawy potęg przesuwają się zamiast morfować;
+- kroki 4 i 6 rozbite na 4/5 i 7/8; zielone podświetlenie w filmie usunięte, bo każde jego
+  zapalenie albo zgaszenie wypadało na styku dwóch plików i łamało zasadę 1 z README;
+- domknij() w scenie robi clear+add PRZED wait(0.25), żeby przytrzymanie pokazywało czysty
+  następny stan; to zbiło rozjazd styku z ~2000 pikseli do szumu kompresji.
+Weryfikacja:
+- tools/wgraj-kroki.sh 2 2024-grudzien → 8 kroków, rewersy przeliczone, styk klatek SSIM
+  0,99943 do 0,99994 na wszystkich siedmiu przejściach, "bez zastrzeżeń";
+- tools/test-krokow.js --zadania=1, ziarna 3/11/29 → bez zastrzeżeń, Range na wideo zwraca 206;
+- zrzuty rozwiązania opisowego: 900 px i 485 px, jasny i ciemny motyw, scrollWidth == clientWidth,
+  siatka 345 px w 423 px karty, nic nie obcięte.
+Przy okazji naprawione: w v67 zniknął z exercises.json pierwszy krok zadania 2 (step1.mp4),
+zjedzony przez moje własne podstawienie w surowym tekście pliku. Wykryte porównaniem obiektów
+JSON z wersją sprzed zmian; poza tym jednym polem nic innego w arkuszu się nie ruszyło.

@@ -85,31 +85,46 @@
         "formulasPage": 5,
         "solutionText": "<div class=\"rozw-2kol\"><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(\\left(\\htmlClass{zielony}{\\sqrt[5]{5}} \\cdot \\frac{1}{5}\\right)^{-5}\\)</div><div class=\"rozw-wzor\">\\(\\htmlClass{zielony}{\\sqrt[n]{a^m}}=a^{\\frac{m}{n}}\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(\\left(5^{\\frac{1}{5}} \\cdot \\htmlClass{zielony}{\\frac{1}{5}}\\right)^{-5}\\)</div><div class=\"rozw-wzor\">\\(a^{-n}=\\htmlClass{zielony}{\\frac{1}{a^n}}\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(\\left(5^{\\frac{1}{5}} \\cdot 5^{-1}\\right)^{-5}\\)</div><div class=\"rozw-wzor\">\\((a\\cdot b)^r=a^r\\cdot b^r\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(\\left(5^{\\frac{1}{5}}\\right)^{-5} \\cdot \\left(5^{-1}\\right)^{-5}\\)</div><div class=\"rozw-wzor\">\\((a^r)^s=a^{r\\cdot s}\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(5^{\\frac{1}{5}\\cdot(-5)} \\cdot 5^{(-1)\\cdot(-5)}\\)</div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(5^{-1} \\cdot 5^{5}\\)</div><div class=\"rozw-wzor\">\\(a^r\\cdot a^s=a^{r+s}\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(5^{-1+5}\\)</div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(\\boldsymbol{5^{4}}\\)</div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz rozw-pelny\"><div class=\"rozw-obl\">Odpowiedź <b>A</b>.</div></div></div>",
         "solutionStepByStep": [
-            {
-                "type": "video",
-                "src": "media/zad2/solution-step-by-step/step2.mp4",
-                "text": "Pierwiastek to inaczej potęga o wykładniku ułamkowym:\\[\\sqrt[n]{a^m}=a^{\\frac{m}{n}}\\]"
-            },
-            {
-                "type": "video",
-                "src": "media/zad2/solution-step-by-step/step3.mp4",
-                "text": "\\(\\frac{1}{5}\\) też zapisujemy jako potęgę. Dzieląc potęgi o tej samej podstawie, odejmujemy wykładniki:\\[\\frac{a^r}{a^s}=a^{r-s}\\]"
-            },
-            {
-                "type": "video",
-                "src": "media/zad2/solution-step-by-step/step4.mp4",
-                "text": "Opuszczamy nawias. Wykładnik \\(-5\\) trzeba wtedy wymnożyć przez wykładniki obu potęg ze środka:\\[(a\\cdot b)^r=a^r\\cdot b^r \\qquad (a^r)^s=a^{r \\cdot s}\\]"
-            },
-            {
-                "type": "video",
-                "src": "media/zad2/solution-step-by-step/step5.mp4",
-                "text": "Wymnażamy wykładniki."
-            },
-            {
-                "type": "video",
-                "src": "media/zad2/solution-step-by-step/step6.mp4",
-                "text": "Mnożąc potęgi o tej samej podstawie, dodajemy wykładniki:\\[a^r\\cdot a^s=a^{r+s}\\]Odpowiedź <b>A</b>."
-            }
+        {
+            "type": "video",
+            "src": "media/zad2/solution-step-by-step/step1.mp4",
+            "text": "Zapisujemy działanie z zadania."
+        },
+        {
+            "type": "video",
+            "src": "media/zad2/solution-step-by-step/step2.mp4",
+            "text": "Pierwiastek to inaczej potęga o wykładniku ułamkowym:\\[\\sqrt[n]{a^m}=a^{\\frac{m}{n}}\\]"
+        },
+        {
+            "type": "video",
+            "src": "media/zad2/solution-step-by-step/step3.mp4",
+            "text": "Ułamek \\(\\frac{1}{5}\\) też zapisujemy jako potęgę. Odwrotność liczby to ta sama liczba z minusem w wykładniku:\\[a^{-n}=\\frac{1}{a^n}\\]"
+        },
+        {
+            "type": "video",
+            "src": "media/zad2/solution-step-by-step/step4.mp4",
+            "text": "Opuszczamy nawias. Wykładnik \\(-5\\) przechodzi na każdy czynnik osobno, więc zjawia się przy obu piątkach:\\[(a\\cdot b)^r=a^r\\cdot b^r\\]"
+        },
+        {
+            "type": "video",
+            "src": "media/zad2/solution-step-by-step/step5.mp4",
+            "text": "Teraz znikają nawiasy. Potęga podniesiona do potęgi to mnożenie wykładników:\\[(a^r)^s=a^{r\\cdot s}\\]"
+        },
+        {
+            "type": "video",
+            "src": "media/zad2/solution-step-by-step/step6.mp4",
+            "text": "Wymnażamy wykładniki."
+        },
+        {
+            "type": "video",
+            "src": "media/zad2/solution-step-by-step/step7.mp4",
+            "text": "Mnożąc potęgi o tej samej podstawie, dodajemy wykładniki, więc z dwóch piątek robi się jedna:\\[a^r\\cdot a^s=a^{r+s}\\]"
+        },
+        {
+            "type": "video",
+            "src": "media/zad2/solution-step-by-step/step8.mp4",
+            "text": "Dodajemy w wykładniku. Odpowiedź <b>A</b>."
+        }
         ],
         "solutionWidget": null
     },
