@@ -1243,7 +1243,10 @@ body.sidebar-otwarty #sidebar-linia {
 
 .rozw-2kol {
     display: grid;
-    grid-template-columns: 1fr auto;
+    /* Obie kolumny biorą tyle, ile mają treści (było `1fr auto`). Przy 1fr lewa
+       kolumna rozciągała się na całą kartę, więc rachunek wyrównany do prawej
+       lądował na środku strony, a wzory dobijały do prawej krawędzi. */
+    grid-template-columns: auto auto;
     column-gap: 2.5rem;
     row-gap: 1.1rem;
     /* Wzór ma stać na wysokości SWOJEGO rachunku, także gdy rachunek zajmuje
@@ -1251,7 +1254,13 @@ body.sidebar-otwarty #sidebar-linia {
     align-items: center;
     line-height: 2.1;   /* jak w .rozwiazanie-kroki: ułamki i pierwiastki potrzebują powietrza */
     text-align: left;
-    margin: 0 auto;
+    /* Blok stoi PRZY LEWEJ krawędzi, a nie na środku karty (Henrich, 2026-08-21).
+       Wyśrodkowany `margin: 0 auto` liczy środek dla pary kolumn RAZEM, więc im
+       szersza kolumna wzorów, tym bardziej rachunek uciekał w prawo: przy zad. 3
+       sam rachunek stał na środku karty, a wzory dobijały do prawej krawędzi.
+       Przy lewej krawędzi rachunek zaczyna się w tym samym miejscu niezależnie
+       od tego, jak szerokie są wzory. */
+    margin: 0 auto 0 0;
     width: fit-content;
     max-width: 100%;
     /* Siatka mieści się na telefonie (zmierzone przy 485px: 364px treści na 423px

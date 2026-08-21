@@ -26,9 +26,12 @@ class ScenaZadania3(Scene):
     w potege dwojki, wiec jest ZIELONA. Wykladniki 49 i 24 stoja bez zmian,
     tylko przesuwaja sie w prawo, wiec sa CZARNE.
 
-    Krok 6, wylaczenie 2^96 przed nawias: jedno 2^96 zostaje w zapisie i tylko
-    jedzie na przod, wiec jest CZARNE. Dwa pozostale znikaja, wiec sa ZIELONE,
-    tak samo jak nawiasy, ktorych wczesniej nie bylo.
+    Krok 6, wylaczenie 2^96 przed nawias: wszystkie trzy 2^96 zjezdzaja w to
+    samo miejsce i zlewaja sie w jedno, wiec sa ZIELONE razem z tym jednym,
+    ktore z nich powstaje.
+
+    NAWIASOW NIE KOLORUJEMY (zasada Henricha, 2026-08-21). Kolor nosza liczby,
+    nie znaki zapisu, nawet gdy nawias wlasnie sie pojawia albo znika.
 
     RUCH ZAMIAST MORFOWANIA. Stany sa MathTexem pocietym na CZESCI, a pary
     wskazane recznie. Bez tego Manim paruje ksztalty po podobienstwie i cyfry
@@ -115,31 +118,37 @@ class ScenaZadania3(Scene):
 
         self.next_section("krok2")
         # Wspolna podstawa: 4 = 2^2 oraz 16 = 2^4. Zielone sa czworka i szesnastka,
-        # bo przestaja byc podstawami i zmieniaja sie w potegi dwojki, oraz nawiasy,
-        # ktorych wczesniej nie bylo. Wykladniki 49 i 24 tylko sie przesuwaja.
+        # bo przestaja byc podstawami i zmieniaja sie w potegi dwojki. Wykladniki
+        # 49 i 24 tylko sie przesuwaja, a nawiasow nie kolorujemy w ogole
+        # (zasada Henricha, 2026-08-21): kolor nosza liczby, nie znaki zapisu.
         zapal(k[0][3], k[0][6])
-        for cel in (k[1][3], k[1][4], k[1][5], k[1][6], k[1][9], k[1][10], k[1][11], k[1][12]):
+        for cel in (k[1][4], k[1][5], k[1][10], k[1][11]):
             cel.set_color(self.ZIELONY)
         self.play(
             Transform(k[0][0], k[1][0]),
             Transform(k[0][1], k[1][1]),
             Transform(k[0][2], k[1][2]),
             Transform(k[0][3], VGroup(k[1][4], k[1][5])),   # 4 -> 2^2
-            FadeIn(k[1][3]), FadeIn(k[1][6]),               # nawiasy
+            FadeIn(k[1][3]), FadeIn(k[1][6]),               # nawiasy, czarne
             Transform(k[0][4], k[1][7]),                    # wykladnik 49
             Transform(k[0][5], k[1][8]),
             Transform(k[0][6], VGroup(k[1][10], k[1][11])),  # 16 -> 2^4
-            FadeIn(k[1][9]), FadeIn(k[1][12]),              # nawiasy
+            FadeIn(k[1][9]), FadeIn(k[1][12]),              # nawiasy, czarne
             Transform(k[0][7], k[1][13]),                   # wykladnik 24
         )
-        zgas([k[0][3], k[0][6], k[1][3], k[1][6], k[1][9], k[1][12]],
-             [k[1][3], k[1][4], k[1][5], k[1][6], k[1][9], k[1][10], k[1][11], k[1][12]], k[1])
+        # Gasimy DOKLADNIE to, co po przeksztalceniu lezy na ekranie i jest
+        # zielone. Transform zostawia w kadrze obiekt ZRODLOWY, wiec wpisanie tu
+        # celu (albo pominiecie polowy zrodel) sprawia, ze czesc zapisu gasnie,
+        # a czesc zostaje zielona do samego cieca. Tak rozjechal sie krok 5 i 7
+        # w pierwszej wersji.
+        zgas([k[0][3], k[0][6]],
+             [k[1][4], k[1][5], k[1][10], k[1][11]], k[1])
 
         self.next_section("krok3")
-        # Potega potegi: (a^r)^s = a^{r*s}. Znikaja nawiasy, a dwa wykladniki
-        # zlewaja sie w jeden o innej wartosci, wiec i nawiasy, i wykladniki
-        # sa zielone. Podstawa 2 zostaje podstawa, wiec jest czarna.
-        zapal(k[1][3], k[1][5], k[1][6], k[1][7], k[1][9], k[1][11], k[1][12], k[1][13])
+        # Potega potegi: (a^r)^s = a^{r*s}. Dwa wykladniki zlewaja sie w jeden
+        # o innej wartosci, wiec to one sa zielone. Podstawa 2 zostaje podstawa,
+        # nawiasy znikaja bez koloru.
+        zapal(k[1][5], k[1][7], k[1][11], k[1][13])
         k[2][4].set_color(self.ZIELONY)
         k[2][7].set_color(self.ZIELONY)
         self.play(
@@ -154,7 +163,9 @@ class ScenaZadania3(Scene):
             Transform(VGroup(k[1][11], k[1][13]), k[2][7]),    # 4 i 24 -> 96
             FadeOut(k[1][9]), FadeOut(k[1][12]),
         )
-        zgas([k[1][5], k[1][11]], [k[2][4], k[2][7]], k[2])
+        # Po Transformie VGroup-a w kadrze leza OBA jego skladniki, wiec oba
+        # trzeba wygasic, inaczej jeden zostaje zielony.
+        zgas([k[1][5], k[1][7], k[1][11], k[1][13]], [k[2][4], k[2][7]], k[2])
 
         self.next_section("krok4")
         # Szukamy czegos wspolnego. Najmniejszy wykladnik to 96, wiec dwa
@@ -179,55 +190,69 @@ class ScenaZadania3(Scene):
         self.next_section("krok5")
         # Suma w wykladniku rozdziela sie na iloczyn poteg: a^{r+s} = a^r * a^s.
         # Zielony jest doklejony kawalek sumy, bo przestaje byc czescia wykladnika,
-        # oraz to, czego wczesniej nie bylo: druga dwojka, kropka mnozenia i * 1
-        # przy trzecim skladniku. Samo 96 zostaje na swoim miejscu, wiec czarne.
+        # oraz jedynka przy trzecim skladniku, bo tego wczesniej nie bylo.
+        # PLUS Z WYKLADNIKA NIE ZNIKA, tylko zjezdza w dol i staje sie kropka
+        # mnozenia (Henrich, 2026-08-21) — w rachunku suma zamienia sie
+        # w iloczyn, wiec ten sam znak ma sie w niego zamienic. PODSTAWY POTEG ZOSTAJA CZARNE (Henrich, 2026-08-21), takze te
+        # dwojki, ktore dopiero sie pojawiaja: podstawa to dalej ta sama dwojka.
+        # Samo 96 tez zostaje na swoim miejscu, wiec czarne.
         zapal(k[3][2], k[3][6])
-        for cel in (k[4][2], k[4][3], k[4][4], k[4][8], k[4][9], k[4][10], k[4][14], k[4][15]):
+        for cel in (k[4][2], k[4][4], k[4][8], k[4][10], k[4][14], k[4][15]):
             cel.set_color(self.ZIELONY)
         self.play(
             Transform(k[3][0], k[4][0]),
             Transform(k[3][1], k[4][1]),                 # 2^96 zostaje
             Transform(k[3][2][1], k[4][4]),              # 4 z sumy -> wykladnik
-            FadeOut(k[3][2][0]),                         # plus z wykladnika
-            FadeIn(k[4][2]), FadeIn(k[4][3]),            # kropka i druga dwojka
+            Transform(k[3][2][0], k[4][2]),              # plus z wykladnika STAJE SIE kropka
+            FadeIn(k[4][3]),                             # druga dwojka, czarna
             Transform(k[3][3], k[4][5]),
             Transform(k[3][4], k[4][6]),
             Transform(k[3][5], k[4][7]),
             Transform(k[3][6][1], k[4][10]),             # 2 z sumy -> wykladnik
-            FadeOut(k[3][6][0]),
-            FadeIn(k[4][8]), FadeIn(k[4][9]),
+            Transform(k[3][6][0], k[4][8]),              # plus -> kropka
+            FadeIn(k[4][9]),
             Transform(k[3][7], k[4][11]),
             Transform(k[3][8], k[4][12]),
             Transform(k[3][9], k[4][13]),
             FadeIn(k[4][14]), FadeIn(k[4][15]),          # kropka i jedynka
         )
-        zgas([k[3][2][1], k[4][2], k[4][3], k[4][8], k[4][9], k[4][14], k[4][15]],
-             [k[4][2], k[4][3], k[4][4], k[4][8], k[4][9], k[4][10], k[4][14], k[4][15]], k[4])
+        # Zielone na ekranie: plusy zamienione w kropki, oba przyleciale kawalki
+        # sumy (k[3][2][1] ORAZ k[3][6][1], w pierwszej wersji brakowalo tego
+        # drugiego) i to, co wjechalo FadeIn-em.
+        zgas([k[3][2][0], k[3][2][1], k[3][6][0], k[3][6][1],
+              k[4][14], k[4][15]],
+             [k[4][2], k[4][4], k[4][8], k[4][10], k[4][14], k[4][15]], k[4])
 
         self.next_section("krok6")
-        # Wylaczenie 2^96 przed nawias. Pierwsze 2^96 zostaje w zapisie i tylko
-        # jedzie na przod, wiec jest czarne. Dwa pozostale znikaja, wiec sa
-        # zielone, a razem z nimi nawiasy, ktorych wczesniej nie bylo.
-        zapal(k[4][6], k[4][7], k[4][8], k[4][12], k[4][13], k[4][14])
-        k[5][3].set_color(self.ZIELONY)
-        k[5][11].set_color(self.ZIELONY)
+        # Wylaczenie 2^96 przed nawias. Wszystkie trzy 2^96 ZJEZDZAJA na lewo
+        # w to samo miejsce i zlewaja sie w jedno (tak samo robila to dawna
+        # wersja sceny) — to jest sedno kroku, wiec zielone sa wszystkie trzy
+        # i to jedno, ktore z nich powstaje. Nawiasy pojawiaja sie czarne.
+        zapal(k[4][0], k[4][1], k[4][6], k[4][7], k[4][12], k[4][13])
+        k[5][0].set_color(self.ZIELONY)
+        k[5][1].set_color(self.ZIELONY)
         self.play(
-            Transform(k[4][0], k[5][0]),                 # 2^96, ktore zostaje
+            Transform(k[4][0], k[5][0]),                 # pierwsze 2^96
             Transform(k[4][1], k[5][1]),
+            Transform(k[4][6], k[5][0].copy()),          # drugie 2^96 dojezdza
+            Transform(k[4][7], k[5][1].copy()),
+            Transform(k[4][12], k[5][0].copy()),         # trzecie 2^96 dojezdza
+            Transform(k[4][13], k[5][1].copy()),
             Transform(k[4][2], k[5][2]),                 # kropka przed nawiasem
+            Transform(k[4][8], k[5][2].copy()),          # pozostale kropki tam samo
+            Transform(k[4][14], k[5][2].copy()),
             FadeIn(k[5][3]),                             # nawias otwierajacy
             Transform(k[4][3], k[5][4]),
             Transform(k[4][4], k[5][5]),
             Transform(k[4][5], k[5][6]),
-            FadeOut(VGroup(k[4][6], k[4][7], k[4][8])),  # drugie 2^96 z kropka
             Transform(k[4][9], k[5][7]),
             Transform(k[4][10], k[5][8]),
             Transform(k[4][11], k[5][9]),
-            FadeOut(VGroup(k[4][12], k[4][13], k[4][14])),  # trzecie 2^96 z kropka
             Transform(k[4][15], k[5][10]),               # jedynka po trzecim skladniku
             FadeIn(k[5][11]),                            # nawias zamykajacy
         )
-        zgas([k[5][3], k[5][11]], [k[5][3], k[5][11]], k[5])
+        zgas([k[4][0], k[4][1], k[4][6], k[4][7], k[4][12], k[4][13]],
+             [k[5][0], k[5][1]], k[5])
 
         self.next_section("krok7")
         # Liczymy potegi w nawiasie. Zmieniaja sie wartosci, wiec sa zielone.
@@ -246,12 +271,13 @@ class ScenaZadania3(Scene):
             Transform(k[5][10], k[6][8]),
             Transform(k[5][11], k[6][9]),
         )
-        zgas([k[5][4], k[5][7]], [k[6][4], k[6][6]], k[6])
+        # Znowu OBA skladniki kazdego VGroup-a, nie tylko pierwszy.
+        zgas([k[5][4], k[5][5], k[5][7], k[5][8]], [k[6][4], k[6][6]], k[6])
 
         self.next_section("krok8")
-        # Dodajemy w nawiasie. Trzy skladniki zlewaja sie w jedna liczbe,
-        # a nawiasy przestaja byc potrzebne, wiec wszystko to jest zielone.
-        zapal(k[6][3], k[6][4], k[6][5], k[6][6], k[6][7], k[6][8], k[6][9])
+        # Dodajemy w nawiasie. Trzy skladniki zlewaja sie w jedna liczbe, wiec
+        # sa zielone; nawiasy po prostu znikaja, bez koloru.
+        zapal(k[6][4], k[6][5], k[6][6], k[6][7], k[6][8])
         k[7][3].set_color(self.ZIELONY)
         self.play(
             Transform(k[6][0], k[7][0]),
@@ -260,8 +286,7 @@ class ScenaZadania3(Scene):
             Transform(VGroup(k[6][4], k[6][5], k[6][6], k[6][7], k[6][8]), k[7][3]),
             FadeOut(k[6][3]), FadeOut(k[6][9]),
         )
-        zgas([k[6][4], k[7][3]], [k[7][3]], k[7])
-
+        zgas([k[6][4], k[6][5], k[6][6], k[6][7], k[6][8]], [k[7][3]], k[7])
 
 # ---------------------------------------------------------------------------
 # DAWNA WERSJA SCENY (kod Henricha, sprzed przepisania na zasady z 2026-08-21).

@@ -36,11 +36,22 @@ Wygląd i nazwy klas CSS: `ARCHITECTURE_CSS.md`. Znaczenie kolorów: `COLORS.md`
     Co tylko wędruje w inne miejsce zapisu, a dalej znaczy to samo, zostaje bez koloru.
     Ta sama reguła obowiązuje w filmie, patrz `manimations/README.md`.
 13. **Nie zaznaczaj, gdy wzór dotyczy całego wyrażenia.** Nie ma wtedy czego wskazywać.
-14. **Zielony nie znaczy „dobrze".** Zieleń poprawności to inny token, patrz `COLORS.md`.
+    Tak samo linijka bez wzoru nie ma koloru: zielony zawsze idzie w parze ze wzorem obok.
+14. **Nawiasów nie koloruj.** Kolor noszą liczby i litery, nawet gdy nawias właśnie
+    się pojawia albo znika. To samo obowiązuje w filmie.
+
+15. **Zielony nie znaczy „dobrze".** Zieleń poprawności to inny token, patrz `COLORS.md`.
+
+## Wzory
+
+16. **W prawej kolumnie stoją tylko wzory z tablicy** (`tablica-wzorow-transkrypt/`).
+    Czego w tablicy nie ma, tego tam nie wpisuj: komórka zostaje pusta, a wyjaśnienie
+    idzie do opisu kroku pod filmem. Zasada Henricha, 2026-08-21, na wyłączaniu
+    wspólnego czynnika przed nawias.
 
 ## Znaczniki
 
-15. Szkielet do przeklejania:
+17. Szkielet do przeklejania:
 
 ```html
 <div class="rozw-2kol">
@@ -58,12 +69,12 @@ Wygląd i nazwy klas CSS: `ARCHITECTURE_CSS.md`. Znaczenie kolorów: `COLORS.md`
 </div>
 ```
 
-16. Cała matematyka w **KaTeX**, `\( ... \)` w linijkach. Pamiętaj, że JSON wymaga `\\`.
-17. **Bez myślników i półpauz** w tekście (zasada ogólna projektu, `CLAUDE.md`).
+18. Cała matematyka w **KaTeX**, `\( ... \)` w linijkach. Pamiętaj, że JSON wymaga `\\`.
+19. **Bez myślników i półpauz** w tekście (zasada ogólna projektu, `CLAUDE.md`).
 
 ## Sprawdzenie
 
-18. **Obejrzyj na zrzucie**: komputer i telefon, jasny i ciemny motyw.
-19. **Strona nie ma się przewijać w bok**, a siatka nie ma się obcinać
+20. **Obejrzyj na zrzucie**: komputer i telefon, jasny i ciemny motyw.
+21. **Strona nie ma się przewijać w bok**, a siatka nie ma się obcinać
     (`scrollWidth === clientWidth`, `el.scrollWidth - el.clientWidth === 0`).
-20. **Policz linijki i kroki filmu.** Muszą się zgadzać.
+22. **Policz linijki i kroki filmu.** Muszą się zgadzać.

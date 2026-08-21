@@ -90,6 +90,9 @@ zapis był formalnie poprawny.
   właściwie jest. Żargonu tyle, ile uczeń musi znać na maturze, reszta zwykłymi słowami.
 - **Krótkie linijki, wzór w osobnym wierszu.** Pole `text` trafia do DOM przez `innerHTML`,
   więc `<br>` i `\[ … \]` działają. Zbity akapit czyta się gorzej niż cztery linijki.
+- **Wzór w ramce `\[ … \]` tylko wtedy, gdy stoi w tablicy wzorów** (`tablica-wzorow-transkrypt/`).
+  Reszta, np. wyłączanie wspólnego czynnika przed nawias, idzie zwykłym zdaniem z przykładem
+  na liczbach, żeby uczeń nie szukał w tablicy czegoś, czego tam nie ma (Henrich, 2026-08-21).
 - **Żadnych myślników ani podkreśleń poza wzorami.** `-`, `—`, `_` mylą się z minusem,
   zwłaszcza w zdaniu, w którym obok stoi liczba ujemna. Zamiast myślnika: przecinek, kropka
   albo nowa linijka.
@@ -132,9 +135,20 @@ Twarde reguły. Przed renderem przeczytaj, po renderze sprawdź.
    - W razie wątpliwości pytaj Henricha, to jego rozstrzygnięcie.
 10. **Krok, w którym nic się nie zmienia, nie ma koloru.** Pierwszy krok (samo zapisanie
     zadania) jest cały czarny.
+10a. **Nawiasów nie koloruj** (Henrich, 2026-08-21), nawet gdy nawias właśnie się pojawia
+    albo znika. Kolor noszą liczby i litery, nie znaki zapisu. Tak samo **podstawa potęgi
+    zostaje czarna**, także ta, która dopiero się pojawia: podstawa to dalej ta sama liczba.
+10b. **Gaś DOKŁADNIE to, co po przekształceniu leży w kadrze.** `Transform` zostawia na
+    ekranie obiekt ŹRÓDŁOWY (a po `Transform(VGroup(a, b), cel)` oba składniki grupy), więc
+    wpisanie do gaszenia celu albo połowy źródeł daje najbrzydszy możliwy efekt: część zapisu
+    gaśnie, a część zostaje zielona aż do cięcia. Sprawdzalne maszynowo: licz zielone piksele
+    klatka po klatce, krzywa ma zjechać do zera jednym ruchem.
 
 ### Ruch
 
+10c. **Znak, który zmienia znaczenie, ma się w to nowe znaczenie ZAMIENIĆ, a nie zniknąć.**
+    Plus z wykładnika `2^{96+4}` przy rozdzielaniu na iloczyn zjeżdża w dół i staje się kropką
+    mnożenia; nie wygaszamy go, dokładając obok nową kropkę (Henrich, 2026-08-21).
 11. **Co nie zmienia formy, ma się PRZESUWAĆ, nie morfować.** Podstawa potęgi ma dojechać
     na miejsce, a nie przelać się w inną podstawę.
 12. **Pary wskazuj ręcznie, co do glifu.** Bez `TransformMatchingShapes` na dłuższych
