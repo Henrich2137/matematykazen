@@ -4,7 +4,10 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.     
   
-  - Nic
+  - 2024-grudzień
+    - Zad 2
+      - Rozwiązania krok po kroku - Podpisy pod krokami zmień tak aby zastosowanie wzoru było napisane tak samo jak wzór jedno po d drugim. Wywal słowo czyli.
+      - Rozwiązania zwykłe - sformatuj podobnie jak w powyższym punkcie i/lub w zadaniach 2026-maj. Kolejne wyrażenia mają być jedno pod drugim, zamiast ciągu z lewej do prawej
 
 
 
@@ -71,7 +74,7 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
     - treść zadań ✅
     - grafiki (wykresy, rysunki itd.) - chyba wszystkie, ale trzeba sprawdzić
     - odpowiedzi i poprawene odpowiedzi (dla zamkniętych) ✅
-    - Sprawdzania rozwiązań - nie ruszone
+    - Sprawdzania obliczeń - nie ruszone
     - Rozwiązania
       - Krok po kroku - jeszcze nie ruszone
         - gdy powstaną: niebieskie oznaczenia w filmie mają w ciemnym motywie wyjść
@@ -84,49 +87,51 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
 
   - Arkusz 2024-grudzien:
 
-    - Zad 9 -> Sprawdzanie obliczeń -> Pierwszy checkbox
-      (sprawdzone 2026-08-20: trzy kryteria zgadzają się z kluczem CKE co do punktów,
-      pierwsze jest za 0 pkt celowo, bo klucz daje punkt dopiero za pierwiastki.
-      Napisz, co Ci w nim nie pasowało, bo w samym wpisie tego nie ma)
-      PO CO JEST ZDANIE PIERWSZE SKORO NIE DAJE ONO PUNKTÓW?
+    - Sprawdzanie obliczeń
+      - Zad 9, Pierwszy checkbox
+        (sprawdzone 2026-08-20: trzy kryteria zgadzają się z kluczem CKE co do punktów,
+        pierwsze jest za 0 pkt celowo, bo klucz daje punkt dopiero za pierwiastki.
+        Napisz, co Ci w nim nie pasowało, bo w samym wpisie tego nie ma)
+        PO CO JEST ZDANIE PIERWSZE SKORO NIE DAJE ONO PUNKTÓW?
 
-    - Poprawić 2024-grudzien: Rozwiązania krok po kroku (zad. 1–9, komplet po v27) i ich opisy pod filmem:
+    - Rozwiązania 
+      - Krok po kroku (zad. 1–9, komplet po v27) i ich opisy pod filmem:
 
-      - opisy pod filmami (v29, 51 sztuk, wg zasad z manimations/README.md): krótkie linijki,
-        wzory w osobnych wierszach, bez wstępów typu „zaczynamy od…”, bez myślników/podkreśleń
-        poza wzorami — sprawdzić brzmienie i czy nic nie ucieka poza ekran na telefonie
+        - opisy pod filmami (v29, 51 sztuk, wg zasad z manimations/README.md): krótkie linijki,
+          wzory w osobnych wierszach, bez wstępów typu „zaczynamy od…”, bez myślników/podkreśleń
+          poza wzorami — sprawdzić brzmienie i czy nic nie ucieka poza ekran na telefonie
 
-      - zad. 1
-        - Rozwiązanie krok po kroku:
-          - krok 2 — Twój przykład, na nim wzorowana reszta opisów (v29), przeczytać najpierw
+        - zad. 1
+          - Rozwiązanie krok po kroku:
+            - krok 2 — Twój przykład, na nim wzorowana reszta opisów (v29), przeczytać najpierw
 
-      - zad. 3
-        - Rozwiązanie krok po kroku:
-          - krok 6 — przyciemniona część zapisu ma się rozjaśniać PRZED końcem kroku;
-            w krokach 2 i 4 już się rozjaśnia (sprawdzone 2026-08-20 stykami klatek), w 6 nie
+        - zad. 3
+          - Rozwiązanie krok po kroku:
+            - krok 6 — przyciemniona część zapisu ma się rozjaśniać PRZED końcem kroku;
+              w krokach 2 i 4 już się rozjaśnia (sprawdzone 2026-08-20 stykami klatek), w 6 nie
 
-      - zad. 5
-        - Rozwiązanie krok po kroku (przerobiona od zera w v30):
-          - krok z pierwiastkowaniem — sprawdzić wyjaśnienie, dlaczego bierzemy tylko wartość dodatnią
-          - 60 000 ma zjechać POD kreskę ułamka, a \((1+p)^2\) przesuwa się w lewo (nie znika/pojawia)
-          - całość (razem z zad. 6) — czy ruch znaków zgadza się z rachunkiem; kolor tylko na tym,
-            co się faktycznie zmienia, gaśnie przed końcem filmu
+        - zad. 5
+          - Rozwiązanie krok po kroku (przerobiona od zera w v30):
+            - krok z pierwiastkowaniem — sprawdzić wyjaśnienie, dlaczego bierzemy tylko wartość dodatnią
+            - 60 000 ma zjechać POD kreskę ułamka, a \((1+p)^2\) przesuwa się w lewo (nie znika/pojawia)
+            - całość (razem z zad. 6) — czy ruch znaków zgadza się z rachunkiem; kolor tylko na tym,
+              co się faktycznie zmienia, gaśnie przed końcem filmu
 
-      - zad. 6
-        - Rozwiązanie krok po kroku (przerobiona od zera w v30):
-          - teraz SIEDEM kroków zamiast sześciu (skracanie rozbite na dwa: najpierw \((x+1)\),
-            potem \(x\) z \(x^2\)) — czy tak jest lepiej, czy wrócić do sześciu
-          - krok 4 — skracane \((x+1)\) przekreślane na czerwono, jak na kartce, dopiero potem znikają
+        - zad. 6
+          - Rozwiązanie krok po kroku (przerobiona od zera w v30):
+            - teraz SIEDEM kroków zamiast sześciu (skracanie rozbite na dwa: najpierw \((x+1)\),
+              potem \(x\) z \(x^2\)) — czy tak jest lepiej, czy wrócić do sześciu
+            - krok 4 — skracane \((x+1)\) przekreślane na czerwono, jak na kartce, dopiero potem znikają
 
-      - zad. 7
-        - Rozwiązanie krok po kroku:
-          - oba równania układu jadą jedno pod drugim przez cały film — sprawdzić, czy klamra
-            z dwoma równaniami nie jest za mała na telefonie
+        - zad. 7
+          - Rozwiązanie krok po kroku:
+            - oba równania układu jadą jedno pod drugim przez cały film — sprawdzić, czy klamra
+              z dwoma równaniami nie jest za mała na telefonie
 
-      - zad. 9
-        - Rozwiązanie krok po kroku:
-          - film robi sam rachunek, NIE rysuje paraboli (widżet niżej już ją pokazuje interaktywnie)
-            — czy to dobry podział, czy parabola ma być też w filmie
+        - zad. 9
+          - Rozwiązanie krok po kroku:
+            - film robi sam rachunek, NIE rysuje paraboli (widżet niżej już ją pokazuje interaktywnie)
+              — czy to dobry podział, czy parabola ma być też w filmie
 
 
 - Co zadawać Fable:
