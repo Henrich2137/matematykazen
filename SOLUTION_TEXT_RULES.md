@@ -19,6 +19,23 @@ Wygląd i nazwy klas CSS: `ARCHITECTURE_CSS.md`. Znaczenie kolorów: `COLORS.md`
    w kolumnie rachunku.
 6. **Tyle linijek, ile kroków filmu**, jeden do jednego. Zmieniasz tu, przerenderuj film.
 
+## Który układ wybrać
+
+Trzy układy, wybór zależy od tego, ile jest wzorów z tablicy i czy rachunek idzie
+jednym torem.
+
+- **Jedna kolumna** (`<div class="rozwiazanie-kroki">`, linijki rozdzielone `<br>`), gdy
+  wzoru z tablicy nie ma wcale albo jest **jeden i stosuje się go na starcie**. Wzór stoi
+  wtedy nad rachunkiem, wyśrodkowany przez `\[ … \]`, a pod nim idą same linijki.
+  Wzorce: zad. 5, 6 i 8 z 2024-grudnia.
+- **Dwie kolumny** (`<div class="rozw-2kol">`), gdy wzorów jest kilka i każdy należy do
+  innej linijki. Wzorce: zad. 2, 3 i 4.
+- **Dwa tory** (`<div class="rozw-2kol rozw-dwatory">`), gdy zadanie każe policzyć dwie
+  rzeczy niezależnie, a dopiero na końcu je połączyć: rachunki idą obok siebie, a wiersze
+  wspólne (dane na starcie, wynik na końcu, odpowiedź) dostają `rozw-pelny` i rozpinają się
+  na obie kolumny. Wzorzec: zad. 7, gdzie osobno liczy się \(a\), osobno \(b\), a na końcu
+  ich iloczyn. Układ ma pokazywać to samo, co film.
+
 ## Dwie kolumny
 
 7. **Rachunek z lewej, użyty wzór z prawej**, na tej samej wysokości co linijka, w której się
@@ -72,30 +89,33 @@ Wygląd i nazwy klas CSS: `ARCHITECTURE_CSS.md`. Znaczenie kolorów: `COLORS.md`
 </div>
 ```
 
-18. Cała matematyka w **KaTeX**, `\( ... \)` w linijkach. Pamiętaj, że JSON wymaga `\\`.
-19. **Bez myślników i półpauz** w tekście (zasada ogólna projektu, `CLAUDE.md`).
+18. **Ułamki pisz `\dfrac`, nie `\frac`.** W linijce `\( … \)` KaTeX składa `\frac`
+    w wersji tekstowej, czyli z licznikiem i mianownikiem tak małymi, że na komputerze
+    ledwo je widać (Henrich, 2026-08-21, na zad. 6).
+19. Cała matematyka w **KaTeX**, `\( ... \)` w linijkach. Pamiętaj, że JSON wymaga `\\`.
+20. **Bez myślników i półpauz** w tekście (zasada ogólna projektu, `CLAUDE.md`).
 
 ## Ustawienie bloku
 
-20. **Blok stoi domyślnie przy lewej krawędzi karty.** Wąskie rozwiązanie (kilka krótkich
+21. **Blok stoi domyślnie przy lewej krawędzi karty.** Wąskie rozwiązanie (kilka krótkich
     linijek) wygląda przy niej na zgubione, więc dostaje `class="rozw-2kol rozw-srodek"`
     i wraca na środek. Szerokie zostawiaj bez tej klasy. Decyzja jest na oko, na zrzucie.
 
 ## Praca z plikiem
 
-21. **`exercises.json` poprawiaj tekstowo, nie przez `json.dumps`.** Plik jest formatowany
+22. **`exercises.json` poprawiaj tekstowo, nie przez `json.dumps`.** Plik jest formatowany
     ręcznie (elementy tablicy na tym samym wcięciu co klucz), więc przepisanie go całego
     biblioteką daje diff na tysiąc linijek zamiast na pięć. Bezpieczny sposób: wczytaj plik
     jako TEKST, znajdź w nim starą wartość zakodowaną `json.dumps(stara)` i podmień na
     `json.dumps(nowa)`, na koniec sprawdź, że `json.loads` przechodzi.
 
-22. **Zmieniasz `solutionText`, przerenderuj film** (`tools/wgraj-kroki.sh <nr>`), i odwrotnie.
+23. **Zmieniasz `solutionText`, przerenderuj film** (`tools/wgraj-kroki.sh <nr>`), i odwrotnie.
     Linijki i kroki są parami; rozjazd widać dopiero na stronie, kiedy podpis pod filmem mówi
     co innego niż zapis obok.
 
 ## Sprawdzenie
 
-23. **Obejrzyj na zrzucie**: komputer i telefon, jasny i ciemny motyw.
-24. **Strona nie ma się przewijać w bok**, a siatka nie ma się obcinać
+24. **Obejrzyj na zrzucie**: komputer i telefon, jasny i ciemny motyw.
+25. **Strona nie ma się przewijać w bok**, a siatka nie ma się obcinać
     (`scrollWidth === clientWidth`, `el.scrollWidth - el.clientWidth === 0`).
-25. **Policz linijki i kroki filmu.** Muszą się zgadzać.
+26. **Policz linijki i kroki filmu.** Muszą się zgadzać.

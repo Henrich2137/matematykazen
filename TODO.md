@@ -37,7 +37,7 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
   - to samo do decyzji z „finalAnswer.label": renderer je ignoruje (świadomie, od 2026-08-06),
     a pole nadal siedzi w danych wszystkich arkuszy
 
-  - w czterech zadaniach grudnia (8, 10, 19, 30) w rozwiązaniu siedzi nagłówek „DAWNE POKAŻ WIĘCEJ" i doklejona pod nim dawna treść; celowo brzydkie, żeby było widać, gdzie zredagować tekst w jedną całość. Scalać samemu czy zostawiasz to sobie
+  - w trzech zadaniach grudnia (10, 19, 30) w rozwiązaniu siedzi nagłówek „DAWNE POKAŻ WIĘCEJ" i doklejona pod nim dawna treść; celowo brzydkie, żeby było widać, gdzie zredagować tekst w jedną całość. Scalać samemu czy zostawiasz to sobie
 
 <br>
 
@@ -308,6 +308,8 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
     - zieleń „oznaczenie miejsca" nie zgadza się w obu motywach naraz: para tokenów --accent-green nie jest policzona filtrem ciemnego motywu. Film zad. 2 ma dziś hex trafiający w JASNY motyw, w ciemnym wychodzi odrobinę jaśniej niż widżety. Do decyzji, który motyw ma być wzorcem; szczegóły i gotowy drugi hex w COLORS.md
 
     - reszta zadań 2024-grudnia czeka na przeniesienie na ten sam układ (klasa .rozw-2kol, opis w ARCHITECTURE_CSS.md)
+
+    - zad. 8 z 2024-grudnia: rozwiązanie zwykłe napisane od nowa (sześć linijek plus założenie i wniosek), ale FILM zostal stary i się z nim nie zgadza. Henrich: obecne krok po kroku jest słabe i ma być zmienione. Do przerobienia sceny pod te sześć linijek
 
     - zad. 7 z 2024-grudnia: film rozdzielony na dwa etapy (najpierw pierwsze równanie do a = -2, potem drugie do b = 1), dawna scena zakomentowana na dole manimations/solutionZad7.py, do wywalenia po potwierdzeniu
 

@@ -1205,6 +1205,16 @@ body.sidebar-otwarty #sidebar-linia {
     line-height: 2.1;
 }
 
+/* Wysokie wzory (ułamki pisane \dfrac, pierwiastki) są wyższe niż line-height,
+   więc kolejne linijki rozdzielone <br> wchodziły na siebie: mianownik jednej
+   dotykał licznika następnej (zad. 6, 2026-08-21). Wzór jako inline-block sam
+   rozpycha wiersz na swoją wysokość, więc działa to niezależnie od tego, jak
+   wysoki jest zapis; line-height zostaje dla linijek tekstu. */
+.rozwiazanie-kroki .katex {
+    display: inline-block;
+    margin: 0.35em 0;
+}
+
 /* ROZWIĄZANIE W DWÓCH KOLUMNACH: rachunek z lewej, użyty wzór z prawej, na tej
    samej wysokości co linijka, w której się go stosuje. Zapis w exercises.json:
 
@@ -1291,6 +1301,21 @@ body.sidebar-otwarty #sidebar-linia {
    niej na zgubione, więc dostają tę klasę w exercises.json (Henrich, 2026-08-21,
    na zad. 4). */
 .rozw-2kol.rozw-srodek { margin: 0 auto; }
+
+/* DWA TORY RACHUNKU OBOK SIEBIE, które na końcu schodzą się w jeden. Do zadań,
+   w których liczy się dwie rzeczy niezależnie (zad. 7: osobno \(a\), osobno \(b\),
+   dopiero na końcu ich iloczyn) — układ pokazuje to samo, co film: dwa etapy,
+   a potem jedna linijka. Wiersz ma wtedy DWIE komórki .rozw-obl zamiast pary
+   rachunek + wzór, a wiersze wspólne (układ na starcie, iloczyn na końcu,
+   odpowiedź) dostają .rozw-pelny i rozpinają się na obie kolumny.
+   Kolumny są równe i wyśrodkowane, bo żadna nie jest ważniejsza; przy domyślnym
+   `auto auto` z wyrównaniem do środkowej przerwy dwa tory czytałyby się jak
+   jeden długi zapis. */
+.rozw-2kol.rozw-dwatory {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 3rem;
+}
+.rozw-2kol.rozw-dwatory > .rozw-wiersz > .rozw-obl { text-align: center; }
 
 /* Wiersz na całą szerokość, bez pary wzoru: zdanie wprowadzające albo końcowa
    odpowiedź. Wtedy .rozw-wiersz NIE dostaje drugiej komórki, sam .rozw-obl

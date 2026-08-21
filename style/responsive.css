@@ -315,6 +315,13 @@
    klastrowi ZAWINĄĆ się na drugi rząd — funkcja zostaje pod ręką, a nie tylko
    w stopce arkusza. Limit szerokości zostawia miejsce na logo ze strzałką. */
 @media (max-width: 560px) {
+    /* Dwa tory rachunku (.rozw-dwatory, zad. 7) na telefonie: przerwa 3rem
+       zjada tyle miejsca, że krótkie równania łamią się w środku ("ax + 3y ="
+       i "20" w osobnych wierszach). KaTeX nie łamie wzoru mądrze, więc taniej
+       jest oddać przerwę niż szerokość zapisu. */
+    .rozw-2kol.rozw-dwatory {
+        column-gap: 1rem;
+    }
     /* Para rysunków (zad. 31 maja) i tak nie mieści się tu obok siebie, więc
        skoro zawija się jeden pod drugi, niech każdy wykorzysta całą szerokość
        karty zamiast trzymać się 310px z sheet.css. */
