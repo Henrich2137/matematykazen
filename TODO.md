@@ -37,7 +37,7 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
   - to samo do decyzji z „finalAnswer.label": renderer je ignoruje (świadomie, od 2026-08-06),
     a pole nadal siedzi w danych wszystkich arkuszy
 
-  - w sześciu zadaniach grudnia (6, 7, 8, 10, 19, 30) w rozwiązaniu siedzi nagłówek „DAWNE POKAŻ WIĘCEJ" i doklejona pod nim dawna treść; celowo brzydkie, żeby było widać, gdzie zredagować tekst w jedną całość. Scalać samemu czy zostawiasz to sobie
+  - w czterech zadaniach grudnia (8, 10, 19, 30) w rozwiązaniu siedzi nagłówek „DAWNE POKAŻ WIĘCEJ" i doklejona pod nim dawna treść; celowo brzydkie, żeby było widać, gdzie zredagować tekst w jedną całość. Scalać samemu czy zostawiasz to sobie
 
 <br>
 
@@ -214,6 +214,22 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
   - Zwykłe rozwiązania powinny składać się z arraya / listy wielu sposobów / podejść. Jeżeli jest tylko jeden element to UI wyświetla go tak jak dotychczas. Jeśli więcej to robią się zakładki w stylu tych w widgetach.
 
   - dodać przycisk "pokaż zasady oceniania" na końcu "Sprawdzania obliczeń" który miałby podobną funkcjonalność co przycisk "Pokaż wzory" - otwierałby okienko i też by przenosił do odpowiedniej strony w PDF
+  
+  - Remont struktury exercises.json ay ułatwić migrację do bazy danych
+    - Dodać numery zadań
+    - Dodać podnumery zadań (dla podzadań 12.1, normalnie null)
+    - Dodać id arkusza w meta (np 2024-grudzien)
+    - zmienić logikę, która czyta ścieżkę mediaPath() aby ją tworzyła sama na podstawie
+      - id arkusza w meta exercises.jsom 
+      - numeru zadania
+      - podnumeru zadania (nie zapomnieć)
+      - podanej nazwy pliku
+    - Zmienić ścieżki kroków do Rozwiązania krok po kroku w exercises.json na nazwy plików
+    "media/zadN/solution-step-by-step/stepM" -> "stepM"
+    - dodać do exercises.json pliki korków od tyłu "stepMreverse"
+    - maybe dodać rodzaje solutiontext
+      - customHTML
+
 
 <br>
 
@@ -292,6 +308,8 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
     - zieleń „oznaczenie miejsca" nie zgadza się w obu motywach naraz: para tokenów --accent-green nie jest policzona filtrem ciemnego motywu. Film zad. 2 ma dziś hex trafiający w JASNY motyw, w ciemnym wychodzi odrobinę jaśniej niż widżety. Do decyzji, który motyw ma być wzorcem; szczegóły i gotowy drugi hex w COLORS.md
 
     - reszta zadań 2024-grudnia czeka na przeniesienie na ten sam układ (klasa .rozw-2kol, opis w ARCHITECTURE_CSS.md)
+
+    - zad. 7 z 2024-grudnia: film rozdzielony na dwa etapy (najpierw pierwsze równanie do a = -2, potem drugie do b = 1), dawna scena zakomentowana na dole manimations/solutionZad7.py, do wywalenia po potwierdzeniu
 
     - zad. 3 z 2024-grudnia przerobione tak samo jak zad. 2 (osiem linijek dwukolumnowych, film przerenderowany na zasady „zapal, zmień, zgaś"). Dawny kod sceny leży ZAKOMENTOWANY na dole manimations/solutionZad3.py; do wywalenia, gdy Henrich potwierdzi, że nowe kroki są w porządku
 

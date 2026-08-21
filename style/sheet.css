@@ -1286,6 +1286,12 @@ body.sidebar-otwarty #sidebar-linia {
 .rozw-2kol > .rozw-wiersz > .rozw-obl { text-align: right; }
 .rozw-2kol > .rozw-wiersz > .rozw-wzor { text-align: left; }
 
+/* Blok wraca na środek karty. Domyślnie stoi przy lewej krawędzi (patrz wyżej),
+   co pasuje do szerokich rozwiązań; wąskie, kilkuznakowe rachunki wyglądają przy
+   niej na zgubione, więc dostają tę klasę w exercises.json (Henrich, 2026-08-21,
+   na zad. 4). */
+.rozw-2kol.rozw-srodek { margin: 0 auto; }
+
 /* Wiersz na całą szerokość, bez pary wzoru: zdanie wprowadzające albo końcowa
    odpowiedź. Wtedy .rozw-wiersz NIE dostaje drugiej komórki, sam .rozw-obl
    rozpina się na obie kolumny i wraca na środek. */

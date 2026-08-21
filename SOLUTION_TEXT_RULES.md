@@ -75,21 +75,27 @@ Wygląd i nazwy klas CSS: `ARCHITECTURE_CSS.md`. Znaczenie kolorów: `COLORS.md`
 18. Cała matematyka w **KaTeX**, `\( ... \)` w linijkach. Pamiętaj, że JSON wymaga `\\`.
 19. **Bez myślników i półpauz** w tekście (zasada ogólna projektu, `CLAUDE.md`).
 
+## Ustawienie bloku
+
+20. **Blok stoi domyślnie przy lewej krawędzi karty.** Wąskie rozwiązanie (kilka krótkich
+    linijek) wygląda przy niej na zgubione, więc dostaje `class="rozw-2kol rozw-srodek"`
+    i wraca na środek. Szerokie zostawiaj bez tej klasy. Decyzja jest na oko, na zrzucie.
+
 ## Praca z plikiem
 
-20. **`exercises.json` poprawiaj tekstowo, nie przez `json.dumps`.** Plik jest formatowany
+21. **`exercises.json` poprawiaj tekstowo, nie przez `json.dumps`.** Plik jest formatowany
     ręcznie (elementy tablicy na tym samym wcięciu co klucz), więc przepisanie go całego
     biblioteką daje diff na tysiąc linijek zamiast na pięć. Bezpieczny sposób: wczytaj plik
     jako TEKST, znajdź w nim starą wartość zakodowaną `json.dumps(stara)` i podmień na
     `json.dumps(nowa)`, na koniec sprawdź, że `json.loads` przechodzi.
 
-21. **Zmieniasz `solutionText`, przerenderuj film** (`tools/wgraj-kroki.sh <nr>`), i odwrotnie.
+22. **Zmieniasz `solutionText`, przerenderuj film** (`tools/wgraj-kroki.sh <nr>`), i odwrotnie.
     Linijki i kroki są parami; rozjazd widać dopiero na stronie, kiedy podpis pod filmem mówi
     co innego niż zapis obok.
 
 ## Sprawdzenie
 
-22. **Obejrzyj na zrzucie**: komputer i telefon, jasny i ciemny motyw.
-23. **Strona nie ma się przewijać w bok**, a siatka nie ma się obcinać
+23. **Obejrzyj na zrzucie**: komputer i telefon, jasny i ciemny motyw.
+24. **Strona nie ma się przewijać w bok**, a siatka nie ma się obcinać
     (`scrollWidth === clientWidth`, `el.scrollWidth - el.clientWidth === 0`).
-24. **Policz linijki i kroki filmu.** Muszą się zgadzać.
+25. **Policz linijki i kroki filmu.** Muszą się zgadzać.

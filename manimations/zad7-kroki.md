@@ -1,7 +1,11 @@
-# Zadanie 7 — kroki rozwiązania do sprawdzenia
+# Zadanie 7 — kroki rozwiązania
 
 Otwórz w podglądzie (Ctrl+Shift+V). Notacja jak w `tablica-wzorow-transkrypt/`.
-Zadanie nie potrzebuje tablic — `formulasPage` jest puste i tak zostaje.
+Zadanie nie potrzebuje tablic, `formulasPage` jest puste i tak zostaje.
+
+Wersja z 2026-08-21: **dwa etapy, każde równanie osobno** (polecenie Henricha). Poprzednia
+wersja prowadziła oba równania równolegle w jednej klamrze; opis tamtej wersji został
+w historii repo, a jej kod leży zakomentowany na dole `solutionZad7.py`.
 
 ## Treść
 
@@ -16,56 +20,42 @@ Wartość wyrażenia \(a \cdot b\) jest równa:
 - C. \(0{,}5\)
 - D. \(2\)
 
-## Proponowane kroki
+## Kroki
 
-Siedem kroków, osiem kropek. Oba równania idą **równolegle**, jedno pod drugim — to jest
-sedno tego zadania: nie ma tu żadnego układu do rozwiązywania, są dwa niezależne równania
-z jedną niewiadomą każde.
+Dwanaście kroków, tyle samo linijek w rozwiązaniu opisowym. Etap pierwszy to wyliczenie
+\(a\), etap drugi \(b\), etap trzeci ich iloczyn. Wyliczone \(a\) zostaje na górze kadru
+przez cały drugi etap, więc na końcu obie wartości są na ekranie naraz i mogą zjechać
+w jeden zapis.
 
-### Krok 1 — zapisujemy układ
+### Etap 1 — pierwsze równanie
 
-\[\begin{cases} ax + 3y = 20 \\ x + by = 5 \end{cases}\]
+| # | Zapis | Co się dzieje |
+|---|---|---|
+| 1 | \(\begin{cases} ax + 3y = 20 \\ x + by = 5 \end{cases}\) | układ z zadania |
+| 2 | \(ax + 3y = 20\) | bierzemy pierwsze równanie |
+| 3 | \(a \cdot (-1) + 3 \cdot 6 = 20\) | podstawiamy \(x=-1\) i \(y=6\) |
+| 4 | \(-a + 18 = 20\) | liczymy iloczyny |
+| 5 | \(-a = 2\) | 18 na prawą stronę |
+| 6 | \(a = -2\) | obie strony przez \(-1\) |
 
-*Opis:* Zapisujemy układ z zadania. Niewiadome to tutaj \(a\) i \(b\), a nie \(x\) i \(y\) — te akurat znamy.
+### Etap 2 — drugie równanie
 
-### Krok 2 — podstawiamy \(x=-1\) i \(y=6\)
+| # | Zapis | Co się dzieje |
+|---|---|---|
+| 7 | \(x + by = 5\) | \(a=-2\) odjeżdża na górę, wjeżdża drugie równanie |
+| 8 | \((-1) + 6b = 5\) | to samo podstawienie |
+| 9 | \(6b = 6\) | \(-1\) na prawą stronę |
+| 10 | \(b = 1\) | obie strony przez 6 |
 
-\[\begin{cases} a \cdot (-1) + 3 \cdot 6 = 20 \\ (-1) + b \cdot 6 = 5 \end{cases}\]
+### Etap 3 — iloczyn
 
-*Opis:* Skoro para \(x=-1\), \(y=6\) jest rozwiązaniem, to po podstawieniu oba równania muszą być prawdziwe.
-
-### Krok 3 — liczymy iloczyny liczbowe
-
-\[\begin{cases} -a + 18 = 20 \\ -1 + 6b = 5 \end{cases}\]
-
-*Opis:* Liczymy, co się da: \(3\cdot 6=18\) w pierwszym, \(b\cdot 6=6b\) w drugim.
-
-### Krok 4 — liczby na prawą stronę
-
-\[\begin{cases} -a = 2 \\ 6b = 6 \end{cases}\]
-
-*Opis:* Przenosimy liczby na prawą stronę, zmieniając im znak: \(20-18=2\) oraz \(5+1=6\).
-
-### Krok 5 — wyliczamy \(a\) i \(b\)
-
-\[\begin{cases} a = -2 \\ b = 1 \end{cases}\]
-
-*Opis:* Pierwsze równanie mnożymy przez \(-1\), drugie dzielimy przez 6.
-
-### Krok 6 — wstawiamy do szukanego iloczynu
-
-\[a \cdot b = (-2) \cdot 1\]
+| # | Zapis | Co się dzieje |
+|---|---|---|
+| 11 | \(a \cdot b = (-2) \cdot 1\) | obie wartości schodzą się w jedną linijkę |
+| 12 | \(a \cdot b = -2\) | mnożenie przez 1 nic nie zmienia |
 
 Uwaga na pytanie: zadanie nie pyta o \(a\) ani o \(b\), tylko o **ich iloczyn**. To częste
 miejsce na zgubienie punktu przez nieuwagę.
-
-*Opis:* Zadanie pyta o \(a\cdot b\), a nie o samo \(a\) czy \(b\) — wstawiamy obie wyliczone wartości.
-
-### Krok 7 — wynik
-
-\[a \cdot b = -2\]
-
-*Opis:* \((-2)\cdot 1 = -2\) — odpowiedź **A**.
 
 ## Dlaczego pozostałe odpowiedzi są złe
 
@@ -74,4 +64,4 @@ miejsce na zgubienie punktu przez nieuwagę.
 | **A. \(-2\)** | **poprawna** |
 | B. \(-0{,}5\) | policzenie \(a:b\) zamiast \(a\cdot b\), z pomyloną kolejnością |
 | C. \(0{,}5\) | jak wyżej, dodatkowo zgubiony minus |
-| D. \(2\) | zgubiony minus przy \(a\) — np. przeczytanie \(-a=2\) jako \(a=2\) |
+| D. \(2\) | zgubiony minus przy \(a\), np. przeczytanie \(-a=2\) jako \(a=2\) |
