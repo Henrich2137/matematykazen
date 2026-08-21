@@ -135,10 +135,10 @@ Twarde reguły. Przed renderem przeczytaj, po renderze sprawdź.
    - W razie wątpliwości pytaj Henricha, to jego rozstrzygnięcie.
 10. **Krok, w którym nic się nie zmienia, nie ma koloru.** Pierwszy krok (samo zapisanie
     zadania) jest cały czarny.
-10a. **Nawiasów nie koloruj** (Henrich, 2026-08-21), nawet gdy nawias właśnie się pojawia
+11. **Nawiasów nie koloruj** (Henrich, 2026-08-21), nawet gdy nawias właśnie się pojawia
     albo znika. Kolor noszą liczby i litery, nie znaki zapisu. Tak samo **podstawa potęgi
     zostaje czarna**, także ta, która dopiero się pojawia: podstawa to dalej ta sama liczba.
-10b. **Gaś DOKŁADNIE to, co po przekształceniu leży w kadrze.** `Transform` zostawia na
+12. **Gaś DOKŁADNIE to, co po przekształceniu leży w kadrze.** `Transform` zostawia na
     ekranie obiekt ŹRÓDŁOWY (a po `Transform(VGroup(a, b), cel)` oba składniki grupy), więc
     wpisanie do gaszenia celu albo połowy źródeł daje najbrzydszy możliwy efekt: część zapisu
     gaśnie, a część zostaje zielona aż do cięcia. Sprawdzalne maszynowo: licz zielone piksele
@@ -146,27 +146,55 @@ Twarde reguły. Przed renderem przeczytaj, po renderze sprawdź.
 
 ### Ruch
 
-10c. **Znak, który zmienia znaczenie, ma się w to nowe znaczenie ZAMIENIĆ, a nie zniknąć.**
+13. **Znak, który zmienia znaczenie, ma się w to nowe znaczenie ZAMIENIĆ, a nie zniknąć.**
     Plus z wykładnika `2^{96+4}` przy rozdzielaniu na iloczyn zjeżdża w dół i staje się kropką
     mnożenia; nie wygaszamy go, dokładając obok nową kropkę (Henrich, 2026-08-21).
-11. **Co nie zmienia formy, ma się PRZESUWAĆ, nie morfować.** Podstawa potęgi ma dojechać
+14. **Co nie zmienia formy, ma się PRZESUWAĆ, nie morfować.** Podstawa potęgi ma dojechać
     na miejsce, a nie przelać się w inną podstawę.
-12. **Pary wskazuj ręcznie, co do glifu.** Bez `TransformMatchingShapes` na dłuższych
+15. **Pary wskazuj ręcznie, co do glifu.** Bez `TransformMatchingShapes` na dłuższych
     wyrażeniach: paruje kształty po podobieństwie i wysyła cyfry nie tam, gdzie idą w rachunku.
-13. **Stany pisz jako `MathTex` pocięty na CZĘŚCI** (osobno podstawa, wykładnik, kropka,
+16. **Stany pisz jako `MathTex` pocięty na CZĘŚCI** (osobno podstawa, wykładnik, kropka,
     nawiasy). Wtedy parę wskazujesz czytelnym indeksem części, a nie zgadywanym numerem glifu.
-14. **Mapę glifów policz, nie zgaduj.** Wyrenderuj podgląd, w którym każdy glif ma inny kolor
+17. **Mapę glifów policz, nie zgaduj.** Wyrenderuj podgląd, w którym każdy glif ma inny kolor
     i numer, i wpisz mapę w komentarz na górze sceny (wzorzec: `solutionZad2.py`).
-15. **Pojawia się tylko to, czego wcześniej nie było** (nowy nawias, nowa kropka).
+18. **Pojawia się tylko to, czego wcześniej nie było** (nowy nawias, nowa kropka).
     Reszta ma skądś przylecieć.
 
 ### Po renderze
 
-16. `tools/wgraj-kroki.sh <nr> <arkusz>` robi render, kopię, rewersy i styk klatek jedną komendą.
+19. `tools/wgraj-kroki.sh <nr> <arkusz>` robi render, kopię, rewersy i styk klatek jedną komendą.
     **Rewersy przelicza od nowa**, bo po przerenderowaniu stare pokazują poprzednią animację.
-17. **Styk klatek musi przejść** (`tools/styk-klatek.sh`, wchodzi w skład powyższego).
-18. **Puść `tools/test-krokow.js`** na zadaniu, które ruszałeś.
-19. **Obejrzyj klatki okiem**: pierwszą, po zapaleniu koloru, w połowie ruchu i ostatnią.
+20. **Styk klatek musi przejść** (`tools/styk-klatek.sh`, wchodzi w skład powyższego).
+21. **Puść `tools/test-krokow.js`** na zadaniu, które ruszałeś.
+22. **Obejrzyj klatki okiem**: pierwszą, po zapaleniu koloru, w połowie ruchu i ostatnią.
     „Wyrenderowało się bez błędu" nic nie znaczy.
-20. Sprawdzian koloru na sucho: pierwsza i ostatnia klatka każdego kroku mają mieć **zero**
-    zielonych pikseli, środek ma mieć ich sporo.
+23. Sprawdzian koloru na sucho: pierwsza i ostatnia klatka każdego kroku mają mieć **zero**
+    zielonych pikseli, środek ma mieć ich sporo. Sam zero na końcu **nie wystarcza**, bo cięcie
+    i tak obcina obraz na czystym stanie. Policz zielone piksele w CAŁYM kroku, klatka po
+    klatce, i popatrz na krzywą: ma zjechać do zera jednym ruchem. Zatrzymanie się na małej,
+    stałej wartości tuż przed końcem znaczy, że jeden glif nie gaśnie razem z resztą.
+
+    ```
+    ffmpeg -v error -i stepN.mp4 -vf fps=5 /tmp/k/f%02d.png
+    # potem w Pythonie: piksel jest zielony, gdy g > r+25 i g > b+25
+    ```
+
+### Pułapki Manima, na których ta scena się przejechała (2026-08-21, zad. 3)
+
+Wszystkie cztery kosztowały osobny render, więc warto je znać z góry.
+
+- **`Transform` zostawia w kadrze obiekt ŹRÓDŁOWY**, tylko wyglądający jak cel. Do gaszenia
+  koloru wpisuj więc źródła, nie cele. A po `Transform(VGroup(a, b), cel)` w kadrze leżą OBA
+  składniki grupy, więc oba trzeba wygasić. Tak właśnie gasło nierówno: pół zapisu czerniało,
+  reszta zostawała zielona aż do cięcia.
+- **Sklejanie kilku elementów w jeden**: każdą kopię przekształcaj osobno w `cel.copy()`
+  (`Transform(drugie_2_96, k[5][0].copy())`). Wszystkie dojadą w to samo miejsce i nałożą się
+  na siebie; nadmiarowe obiekty nie szkodzą, bo krok kończy się `clear()` plus `add()` czystego
+  następnego stanu.
+- **Uchwyt do połowy wykładnika bierze się z rozcięcia MathTexa na argumenty**, nie z indeksu
+  glifu: `MathTex(r"2", r"^{96", r"+4}")` skleja się w LaTeXu w `2^{96+4}`, a daje osobny
+  uchwyt do „96" i do „+4". Numery glifów zgaduje się źle i psują się przy każdej zmianie
+  zapisu.
+- **Kolor zapalaj animacją, nie przed pierwszym `play`.** Inaczej pierwsza klatka kroku jest
+  już podświetlona, a ostatnia klatka kroku poprzedniego czysta, czyli dokładnie ten przeskok,
+  którego pilnuje `tools/styk-klatek.sh`.

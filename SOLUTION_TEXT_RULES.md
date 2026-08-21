@@ -1,8 +1,8 @@
 # SOLUTION_TEXT_RULES.md
 
 Jak pisać **rozwiązanie zwykłe**, czyli pole `solutionText` w `matura/<arkusz>/exercises.json`.
-Zasady Henricha, ustalone 2026-08-21 na zadaniu 2 z arkusza 2024-grudzień.
-Wzorzec do podejrzenia: to samo zadanie.
+Zasady Henricha, ustalone 2026-08-21 na zadaniu 2 z arkusza 2024-grudzień i doprecyzowane
+tego samego dnia na zadaniu 3. Wzorce do podejrzenia: te dwa zadania (2 zamknięte, 3 otwarte).
 
 Bliźniaczy plik dla filmów: `manimations/README.md`, sekcja „Zasady krok po kroku, wersja krótka".
 Wygląd i nazwy klas CSS: `ARCHITECTURE_CSS.md`. Znaczenie kolorów: `COLORS.md`.
@@ -13,7 +13,10 @@ Wygląd i nazwy klas CSS: `ARCHITECTURE_CSS.md`. Znaczenie kolorów: `COLORS.md`
 2. **Jedna linijka = jedno wyrażenie**, całe, po jednym przekształceniu.
 3. **Jedna linijka = jeden wzór.** Dwa przekształcenia naraz rozbij na dwie linijki.
 4. **Żadnych znaków `=` na początku ani na końcu linijki.** Same wyrażenia, jedno pod drugim.
-5. **Ostatnia linijka to `Odpowiedź X.`** przez całą szerokość, wyśrodkowana.
+5. **Ostatnia linijka idzie przez całą szerokość, wyśrodkowana.** W zadaniu zamkniętym jest
+   to `Odpowiedź X.`, w zadaniu na wykazanie zdanie z wnioskiem („… więc iloczyn dzieli się
+   przez 21, co należało wykazać"). Sam wynik rachunku, wytłuszczony, zostaje linijkę wyżej,
+   w kolumnie rachunku.
 6. **Tyle linijek, ile kroków filmu**, jeden do jednego. Zmieniasz tu, przerenderuj film.
 
 ## Dwie kolumny
@@ -72,9 +75,21 @@ Wygląd i nazwy klas CSS: `ARCHITECTURE_CSS.md`. Znaczenie kolorów: `COLORS.md`
 18. Cała matematyka w **KaTeX**, `\( ... \)` w linijkach. Pamiętaj, że JSON wymaga `\\`.
 19. **Bez myślników i półpauz** w tekście (zasada ogólna projektu, `CLAUDE.md`).
 
+## Praca z plikiem
+
+20. **`exercises.json` poprawiaj tekstowo, nie przez `json.dumps`.** Plik jest formatowany
+    ręcznie (elementy tablicy na tym samym wcięciu co klucz), więc przepisanie go całego
+    biblioteką daje diff na tysiąc linijek zamiast na pięć. Bezpieczny sposób: wczytaj plik
+    jako TEKST, znajdź w nim starą wartość zakodowaną `json.dumps(stara)` i podmień na
+    `json.dumps(nowa)`, na koniec sprawdź, że `json.loads` przechodzi.
+
+21. **Zmieniasz `solutionText`, przerenderuj film** (`tools/wgraj-kroki.sh <nr>`), i odwrotnie.
+    Linijki i kroki są parami; rozjazd widać dopiero na stronie, kiedy podpis pod filmem mówi
+    co innego niż zapis obok.
+
 ## Sprawdzenie
 
-20. **Obejrzyj na zrzucie**: komputer i telefon, jasny i ciemny motyw.
-21. **Strona nie ma się przewijać w bok**, a siatka nie ma się obcinać
+22. **Obejrzyj na zrzucie**: komputer i telefon, jasny i ciemny motyw.
+23. **Strona nie ma się przewijać w bok**, a siatka nie ma się obcinać
     (`scrollWidth === clientWidth`, `el.scrollWidth - el.clientWidth === 0`).
-22. **Policz linijki i kroki filmu.** Muszą się zgadzać.
+24. **Policz linijki i kroki filmu.** Muszą się zgadzać.
