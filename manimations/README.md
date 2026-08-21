@@ -93,3 +93,61 @@ zapis był formalnie poprawny.
 - **Żadnych myślników ani podkreśleń poza wzorami.** `-`, `—`, `_` mylą się z minusem,
   zwłaszcza w zdaniu, w którym obok stoi liczba ujemna. Zamiast myślnika: przecinek, kropka
   albo nowa linijka.
+
+## Zasady krok po kroku, wersja krótka (ustalone 2026-08-21 na zad. 2)
+
+Twarde reguły. Przed renderem przeczytaj, po renderze sprawdź.
+
+### Ile kroków
+
+1. **Jeden krok = jedno przekształcenie.** Robisz dwie rzeczy naraz, rozbij na dwa kroki.
+2. **Tyle kroków filmu, ile linijek w rozwiązaniu opisowym.** Jeden do jednego, po kolei.
+   Zmieniasz film, popraw `solutionText`. Zmieniasz `solutionText`, przerenderuj film.
+3. **Jeden wzór na jeden krok.** Krok bez wzoru (sam rachunek na liczbach) jest w porządku.
+
+### Przebieg kroku
+
+4. **Każdy krok wygląda tak samo:**
+   wszystko czarne → kluczowy element zapala się na zielono → animacja przekształcenia,
+   zielone zostaje zielone → wszystko znów czarne.
+5. **Krok zaczyna się i kończy tym samym czystym obrazem.** Dzięki temu zgodność ostatniej
+   klatki kroku N z pierwszą klatką kroku N+1 wychodzi sama, bez przenoszenia podświetlenia
+   między plikami.
+6. **Kolejność na końcu kroku:** zgaszenie koloru → podmiana na czysty następny stan →
+   `self.wait(0.25)`. Nie odwrotnie: przytrzymanie po Transformie trzyma obiekty, które
+   potrafią różnić się od czystego stanu.
+7. Zakaz z punktu 0 workflow nadal obowiązuje: **nigdy `self.clear()` bez natychmiastowego
+   `self.add()`** czegoś w zamian.
+
+### Kolor
+
+8. **Zielony to `#2e7d32`** (`--accent-green`), ten sam, którym zaznacza rozwiązanie opisowe.
+9. **Zielone jest to, co się ZMIENIA. Co tylko zmienia miejsce, zostaje czarne.**
+   Przykład: `1/5` → `5^{-1}`. Piątka zostaje piątką i jedzie na podstawę, więc jest czarna.
+   Zmienia się jedynka, która razem z kreską staje się wykładnikiem `-1`: to ona jest zielona.
+10. **Krok, w którym nic się nie zmienia, nie ma koloru.** Pierwszy krok (samo zapisanie
+    zadania) jest cały czarny.
+
+### Ruch
+
+11. **Co nie zmienia formy, ma się PRZESUWAĆ, nie morfować.** Podstawa potęgi ma dojechać
+    na miejsce, a nie przelać się w inną podstawę.
+12. **Pary wskazuj ręcznie, co do glifu.** Bez `TransformMatchingShapes` na dłuższych
+    wyrażeniach: paruje kształty po podobieństwie i wysyła cyfry nie tam, gdzie idą w rachunku.
+13. **Stany pisz jako `MathTex` pocięty na CZĘŚCI** (osobno podstawa, wykładnik, kropka,
+    nawiasy). Wtedy parę wskazujesz czytelnym indeksem części, a nie zgadywanym numerem glifu.
+14. **Mapę glifów policz, nie zgaduj.** Wyrenderuj podgląd, w którym każdy glif ma inny kolor
+    i numer, i wpisz mapę w komentarz na górze sceny (wzorzec: `solutionZad2.py`).
+15. **Pojawia się tylko to, czego wcześniej nie było** (nowy nawias, nowa kropka).
+    Reszta ma skądś przylecieć.
+
+### Po renderze
+
+16. `tools/wgraj-kroki.sh <nr> <arkusz>` robi render, kopię, rewersy i styk klatek jedną komendą.
+    **Rewersy przelicza od nowa**, bo po przerenderowaniu stare pokazują poprzednią animację.
+17. **Styk klatek musi przejść** (`tools/styk-klatek.sh`, wchodzi w skład powyższego).
+18. **Puść `tools/test-krokow.js`** na zadaniu, które ruszałeś.
+19. **Obejrzyj klatki okiem**: pierwszą, po zapaleniu koloru, w połowie ruchu i ostatnią.
+    „Wyrenderowało się bez błędu" nic nie znaczy.
+20. Sprawdzian koloru na sucho: pierwsza i ostatnia klatka każdego kroku mają mieć **zero**
+    zielonych pikseli, środek ma mieć ich sporo.

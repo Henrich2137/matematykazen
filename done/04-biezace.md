@@ -1881,6 +1881,11 @@ Weryfikacja:
 - tools/test-krokow.js --zadania=1, ziarna 3/11/29 → bez zastrzeżeń, Range na wideo zwraca 206;
 - zrzuty rozwiązania opisowego: 900 px i 485 px, jasny i ciemny motyw, scrollWidth == clientWidth,
   siatka 345 px w 423 px karty, nic nie obcięte.
+Zasady spisane na koniec: nowa sekcja „Zasady krok po kroku, wersja krótka" w
+manimations/README.md (20 punktów: ile kroków, przebieg kroku, kolor, ruch, co sprawdzić po
+renderze) i bliźniaczy SOLUTION_TEXT_RULES.md dla rozwiązań opisowych; wskaźnik do obu
+w CLAUDE.md. Reguła koloru w obu brzmi tak samo: zielone jest to, co się ZMIENIA, a nie to,
+co tylko zmienia miejsce.
 Przy okazji naprawione: w v67 zniknął z exercises.json pierwszy krok zadania 2 (step1.mp4),
 zjedzony przez moje własne podstawienie w surowym tekście pliku. Wykryte porównaniem obiektów
 JSON z wersją sprzed zmian; poza tym jednym polem nic innego w arkuszu się nie ruszyło.

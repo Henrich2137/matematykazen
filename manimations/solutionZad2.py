@@ -15,6 +15,11 @@ class ScenaZadania2(Scene):
         3. animacja przekształcenia, zielone zostaje zielone,
         4. wszystko znów czarne.
 
+    ZIELONE JEST TO, CO SIĘ ZMIENIA, a nie to, co tylko zmienia miejsce.
+    W kroku 3 ułamek 1/5 staje się potęgą 5^(-1): piątka zostaje piątką i po
+    prostu jedzie na podstawę, więc jest CZARNA; zmienia się jedynka, która
+    razem z kreską ułamka staje się wykładnikiem -1, i to ona jest zielona.
+
     Krok jest przez to SAMODZIELNY: zaczyna się i kończy tym samym, czystym
     obrazem. Dzięki temu ostatnia klatka kroku N zgadza się z pierwszą klatką
     kroku N+1 (zasada 1 z README) bez żadnych sztuczek z przenoszeniem
@@ -120,11 +125,16 @@ class ScenaZadania2(Scene):
         # miejsce w rachunku:
         #
         #   liczba spod pierwiastka  ->  podstawa potęgi
-        #   stopień pierwiastka      ->  mianownik wykładnika   (na zielono)
+        #   stopień pierwiastka      ->  mianownik wykładnika
         #   kreska pierwiastka       ->  kreska ułamka
-        #   znak pierwiastka znika, licznik 1 się pojawia
-        zapal(k[0][1][0])
-        k[1][2][2].set_color(self.ZIELONY)
+        #   znak pierwiastka znika, licznik 1 się pojawia   (oba na zielono)
+        #
+        # Obie piątki zostają piątkami, tylko jadą gdzie indziej, więc są czarne.
+        # Zmienia się to, że znak pierwiastka przestaje istnieć, a na jego miejsce
+        # wchodzi licznik 1: to jest cała różnica między zapisem z pierwiastkiem
+        # a zapisem z potęgą.
+        zapal(k[0][1][1])
+        k[1][2][0].set_color(self.ZIELONY)
         self.play(
             Transform(k[0][0], k[1][0]),
             Transform(k[0][1][3], k[1][1]),      # liczba spod pierwiastka -> podstawa
@@ -137,16 +147,19 @@ class ScenaZadania2(Scene):
             Transform(k[0][4], k[1][5]),
             Transform(k[0][5], k[1][6]),
         )
-        zgas([k[0][1][0]], [k[1][2][2]], k[1])
+        zgas([k[1][2][0]], [k[1][2][0]], k[1])
 
         self.next_section("krok3")
         # Ułamek 1/5 na potęgę o ujemnym wykładniku:
         #
-        #   piątka spod kreski  ->  podstawa potęgi   (na zielono)
-        #   jedynka znad kreski ->  cyfra w wykładniku
-        #   kreska ułamka       ->  minus w wykładniku
-        zapal(k[1][4][2])
-        k[2][4].set_color(self.ZIELONY)
+        #   piątka spod kreski  ->  podstawa potęgi
+        #   jedynka znad kreski ->  cyfra w wykładniku    (na zielono)
+        #   kreska ułamka       ->  minus w wykładniku    (na zielono)
+        #
+        # Piątka zostaje piątką i tylko jedzie na podstawę, więc jest czarna.
+        # Zmienia się jedynka: razem z kreską ułamka staje się wykładnikiem -1.
+        zapal(k[1][4][0])
+        k[2][5].set_color(self.ZIELONY)
         self.play(
             Transform(k[1][0], k[2][0]),
             Transform(k[1][1], k[2][1]),         # podstawa 5: przesunięcie
@@ -158,7 +171,7 @@ class ScenaZadania2(Scene):
             Transform(k[1][5], k[2][6]),
             Transform(k[1][6], k[2][7]),
         )
-        zgas([k[1][4][2]], [k[2][4]], k[2])
+        zgas([k[1][4][0], k[1][4][1]], [k[2][5]], k[2])
 
         self.next_section("krok4")
         # Opuszczenie nawiasu: (a·b)^r = a^r · b^r. Sedno kroku to ROZDWOJENIE

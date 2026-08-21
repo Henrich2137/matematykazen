@@ -1,0 +1,66 @@
+# SOLUTION_TEXT_RULES.md
+
+Jak pisać **rozwiązanie zwykłe**, czyli pole `solutionText` w `matura/<arkusz>/exercises.json`.
+Zasady Henricha, ustalone 2026-08-21 na zadaniu 2 z arkusza 2024-grudzień.
+Wzorzec do podejrzenia: to samo zadanie.
+
+Bliźniaczy plik dla filmów: `manimations/README.md`, sekcja „Zasady krok po kroku, wersja krótka".
+Wygląd i nazwy klas CSS: `ARCHITECTURE_CSS.md`. Znaczenie kolorów: `COLORS.md`.
+
+## Linijki
+
+1. **Zaczynaj od wyrażenia, które stoi w treści zadania.** Nie od fragmentu wyjętego z boku.
+2. **Jedna linijka = jedno wyrażenie**, całe, po jednym przekształceniu.
+3. **Jedna linijka = jeden wzór.** Dwa przekształcenia naraz rozbij na dwie linijki.
+4. **Żadnych znaków `=` na początku ani na końcu linijki.** Same wyrażenia, jedno pod drugim.
+5. **Ostatnia linijka to `Odpowiedź X.`** przez całą szerokość, wyśrodkowana.
+6. **Tyle linijek, ile kroków filmu**, jeden do jednego. Zmieniasz tu, przerenderuj film.
+
+## Dwie kolumny
+
+7. **Rachunek z lewej, użyty wzór z prawej**, na tej samej wysokości co linijka, w której się
+   go stosuje.
+8. **Wzór stoi przy stanie SPRZED swojego zastosowania**, nie po.
+9. **Linijka bez wzoru** (sam rachunek na liczbach) ma pustą prawą komórkę. Pustej komórki
+   nie wolno pominąć, bo siatka przesunie następny rachunek do prawej kolumny.
+10. **Kilka linijek rachunku pod jednym wzorem** idzie w jednym `.rozw-obl`, rozdzielone `<br>`.
+    Wzór stanie wtedy na środku całej grupy.
+
+## Kolor
+
+11. **Zielony to `--accent-green`**, wołany z JSON-a jako `\htmlClass{zielony}{...}` wewnątrz
+    wzoru KaTeX. Nie wpisuj `\textcolor` z gotowym hexem: nie zmieni się w ciemnym motywie.
+12. **Zielony zaznacza fragment, do którego odnosi się wzór, PO OBU STRONACH**: kawałek
+    rachunku, który zaraz się zmieni, i tę stronę wzoru, która się do niego dopasowuje.
+13. **Nie zaznaczaj, gdy wzór dotyczy całego wyrażenia.** Nie ma wtedy czego wskazywać.
+14. **Zielony nie znaczy „dobrze".** Zieleń poprawności to inny token, patrz `COLORS.md`.
+
+## Znaczniki
+
+15. Szkielet do przeklejania:
+
+```html
+<div class="rozw-2kol">
+  <div class="rozw-wiersz">
+    <div class="rozw-obl">\(rachunek\)</div>
+    <div class="rozw-wzor">\(wzór\)</div>
+  </div>
+  <div class="rozw-wiersz">
+    <div class="rozw-obl">\(rachunek bez wzoru\)</div>
+    <div class="rozw-wzor"></div>
+  </div>
+  <div class="rozw-wiersz rozw-pelny">
+    <div class="rozw-obl">Odpowiedź <b>A</b>.</div>
+  </div>
+</div>
+```
+
+16. Cała matematyka w **KaTeX**, `\( ... \)` w linijkach. Pamiętaj, że JSON wymaga `\\`.
+17. **Bez myślników i półpauz** w tekście (zasada ogólna projektu, `CLAUDE.md`).
+
+## Sprawdzenie
+
+18. **Obejrzyj na zrzucie**: komputer i telefon, jasny i ciemny motyw.
+19. **Strona nie ma się przewijać w bok**, a siatka nie ma się obcinać
+    (`scrollWidth === clientWidth`, `el.scrollWidth - el.clientWidth === 0`).
+20. **Policz linijki i kroki filmu.** Muszą się zgadzać.
