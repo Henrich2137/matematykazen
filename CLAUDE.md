@@ -4,7 +4,13 @@ Napisz na początku sesji: "Wczytałem CLAUDE.md"
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-**Detailed architecture and exercise data schema live in [ARCHITECTURE.md](ARCHITECTURE.md); the full CSS/layout reference lives in [ARCHITECTURE_CSS.md](ARCHITECTURE_CSS.md).** Read them before touching the rendering logic in template.html, the schema in a sheet's exercises.json, or the CSS in style/ — and keep them in sync when you change what they describe. Don't duplicate their content here. **[COLORS.md](COLORS.md) — what each colour *means* and which token to use** (blue = the student's choice, green/red = correctness only, default is *no* colour); read it before colouring anything in a widget, an exercise or a Manim scene. **[SOLUTION_TEXT_RULES.md](SOLUTION_TEXT_RULES.md) — how to write a `solutionText`** (line-per-expression, the two-column layout, what the green marks); its twin for films is the „Zasady krok po kroku" section in [manimations/README.md](manimations/README.md). The two must stay in step: one line of the written solution = one step of the film.
+**Detailed architecture and exercise data schema live in [ARCHITECTURE.md](ARCHITECTURE.md); the full CSS/layout reference lives in [ARCHITECTURE_CSS.md](ARCHITECTURE_CSS.md).** Read them before touching the rendering logic in template.html, the schema in a sheet's exercises.json, or the CSS in style/ — and keep them in sync when you change what they describe. Don't duplicate their content here. **[COLORS.md](COLORS.md) — what each colour *means* and which token to use** (blue = the student's choice, green/red = correctness only, default is *no* colour); read it before colouring anything in a widget, an exercise or a Manim scene.
+
+**Writing a solution? Read the rules first, they are short.**
+
+- **`solutionText` (rozwiązanie zwykłe) → [SOLUTION_TEXT_RULES.md](SOLUTION_TEXT_RULES.md).** One expression per line, formula in the right-hand column next to the state *before* it is applied, green marks what changes.
+- **Manim scene (rozwiązanie krok po kroku) → „Zasady krok po kroku" in [manimations/README.md](manimations/README.md).** One step = one transformation; every step goes black → green → animation → black.
+- **They must stay in step: one line of the written solution = one step of the film.** Change one, change the other.
 
 ## Bezpieczeństwo poza devcontainerem
 
