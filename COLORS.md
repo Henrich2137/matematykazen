@@ -56,6 +56,16 @@ do którego odnosi się wzór obok (patrz `.rozw-2kol` w ARCHITECTURE_CSS.md).
 Nie wpisuj `\textcolor` z gotowym hexem: zapisany na sztywno nie zmieni się
 w ciemnym motywie, a klasa bierze barwę z `--accent-green` i zmienia się sama.
 
+**Zieleń „oznaczenie miejsca" w filmie: `#2e7d32`, ten sam hex co w jasnym
+motywie** (zad. 2 z 2024-grudnia, `manimations/solutionZad2.py`). Uwaga na
+niedokładność, którą trzeba znać: para tokenów `--accent-green` (`#2e7d32`
+jasny, `#4a9d54` ciemny) nie jest policzona filtrem, więc nie da się dobrać
+jednego hexa do filmu tak, by zgadzał się w OBU motywach. `#2e7d32` w pliku
+trafia w jasny co do bitu, a po filtrze wychodzi `#65a768`, czyli odrobinę
+jaśniej niż `#4a9d54` w CSS. Gdyby kiedyś ważniejszy okazał się ciemny motyw,
+film ma dostać `#30933c` (`python3 tools/odwroc-kolor.py --szukaj '#4a9d54'`),
+a rozjazd przeniesie się na jasny.
+
 **Zielony i czerwony znaczą wyłącznie poprawność.** Chcesz coś wyróżnić bez
 oceniania — weź niebieski albo pomarańczowy.
 

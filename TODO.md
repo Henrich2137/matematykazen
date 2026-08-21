@@ -289,6 +289,8 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
 
   + OPUS 5 MEDIUM DOPISAŁ (2026-08-21, po przejściu zad. 2 z 2024-grudnia na układ dwukolumnowy):
 
+    - zieleń „oznaczenie miejsca" nie zgadza się w obu motywach naraz: para tokenów --accent-green nie jest policzona filtrem ciemnego motywu. Film zad. 2 ma dziś hex trafiający w JASNY motyw, w ciemnym wychodzi odrobinę jaśniej niż widżety. Do decyzji, który motyw ma być wzorcem; szczegóły i gotowy drugi hex w COLORS.md
+
     - reszta zadań 2024-grudnia czeka na przeniesienie na ten sam układ (klasa .rozw-2kol, opis w ARCHITECTURE_CSS.md)
 
 
