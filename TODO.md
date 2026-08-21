@@ -37,7 +37,7 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
   - to samo do decyzji z „finalAnswer.label": renderer je ignoruje (świadomie, od 2026-08-06),
     a pole nadal siedzi w danych wszystkich arkuszy
 
-  - w ośmiu zadaniach grudnia (3, 4, 6, 7, 8, 10, 19, 30) w rozwiązaniu siedzi nagłówek „DAWNE POKAŻ WIĘCEJ" i doklejona pod nim dawna treść; celowo brzydkie, żeby było widać, gdzie zredagować tekst w jedną całość. Scalać samemu czy zostawiasz to sobie
+  - w siedmiu zadaniach grudnia (4, 6, 7, 8, 10, 19, 30) w rozwiązaniu siedzi nagłówek „DAWNE POKAŻ WIĘCEJ" i doklejona pod nim dawna treść; celowo brzydkie, żeby było widać, gdzie zredagować tekst w jedną całość. Scalać samemu czy zostawiasz to sobie
 
 <br>
 
@@ -292,6 +292,8 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
     - zieleń „oznaczenie miejsca" nie zgadza się w obu motywach naraz: para tokenów --accent-green nie jest policzona filtrem ciemnego motywu. Film zad. 2 ma dziś hex trafiający w JASNY motyw, w ciemnym wychodzi odrobinę jaśniej niż widżety. Do decyzji, który motyw ma być wzorcem; szczegóły i gotowy drugi hex w COLORS.md
 
     - reszta zadań 2024-grudnia czeka na przeniesienie na ten sam układ (klasa .rozw-2kol, opis w ARCHITECTURE_CSS.md)
+
+    - zad. 3 z 2024-grudnia przerobione tak samo jak zad. 2 (osiem linijek dwukolumnowych, film przerenderowany na zasady „zapal, zmień, zgaś"). Dawny kod sceny leży ZAKOMENTOWANY na dole manimations/solutionZad3.py; do wywalenia, gdy Henrich potwierdzi, że nowe kroki są w porządku
 
 
 + ZASADY DLA CLAUDE-A:

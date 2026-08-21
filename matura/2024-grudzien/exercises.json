@@ -141,7 +141,7 @@
         ],
         "hint": "Żeby wykazać podzielność przez <b>21</b>, będziemy rozkładać tę liczbę na czynniki, czyli wyciągać coś przed nawias aby powstało: \\(\\ldots \\cdot 21\\)",
         "formulasPage": 5,
-        "solutionText": "Wszystkie składniki zapisujemy jako potęgi dwójki i wyciągamy najmniejszą z nich przed nawias — w nawiasie zostaje <b>21</b>.<br><br><b>DAWNE \"POKAŻ WIĘCEJ\":</b><br>\\[\\begin{aligned} 2^{100} + 4^{49} + 16^{24} &= 2^{100} + 2^{98} + 2^{96} \\\\ &= 2^{96} \\cdot (2^{4} + 2^{2} + 1) \\\\ &= 2^{96} \\cdot (16 + 4 + 1) = \\boldsymbol{2^{96} \\cdot 21} \\end{aligned}\\] ta liczba jest podzielna przez <b>21</b>, co należało wykazać.",
+        "solutionText": "<div class=\"rozw-2kol\"><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(2^{100} + \\htmlClass{zielony}{4}^{49} + \\htmlClass{zielony}{16}^{24}\\)</div><div class=\"rozw-wzor\">\\(\\htmlClass{zielony}{4}=2^{2}\\)<br>\\(\\htmlClass{zielony}{16}=2^{4}\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(2^{100} + \\htmlClass{zielony}{(}2^{\\htmlClass{zielony}{2}}\\htmlClass{zielony}{)^{49}} + \\htmlClass{zielony}{(}2^{\\htmlClass{zielony}{4}}\\htmlClass{zielony}{)^{24}}\\)</div><div class=\"rozw-wzor\">\\(\\htmlClass{zielony}{\\left(a^{r}\\right)^{s}}=a^{r \\cdot s}\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(2^{100} + 2^{98} + 2^{96}\\)</div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(2^{\\htmlClass{zielony}{96+4}} + 2^{\\htmlClass{zielony}{96+2}} + 2^{96}\\)</div><div class=\"rozw-wzor\">\\(\\htmlClass{zielony}{a^{r+s}}=a^{r} \\cdot a^{s}\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(\\htmlClass{zielony}{2^{96}} \\cdot 2^{4} + \\htmlClass{zielony}{2^{96}} \\cdot 2^{2} + \\htmlClass{zielony}{2^{96}} \\cdot 1\\)</div><div class=\"rozw-wzor\">\\(\\htmlClass{zielony}{a}b + \\htmlClass{zielony}{a}c=\\htmlClass{zielony}{a}(b+c)\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(2^{96} \\cdot \\left(2^{4} + 2^{2} + 1\\right)\\)</div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(2^{96} \\cdot \\left(16 + 4 + 1\\right)\\)</div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(\\boldsymbol{2^{96} \\cdot 21}\\)</div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz rozw-pelny\"><div class=\"rozw-obl\">Liczba \\(2^{96}\\) jest całkowita, więc iloczyn \\(2^{96} \\cdot 21\\) dzieli się przez \\(21\\), co należało wykazać.</div></div></div>",
         "solutionStepByStep": [
             {
                 "type": "video",
@@ -156,22 +156,22 @@
             {
                 "type": "video",
                 "src": "media/zad3/solution-step-by-step/step3.mp4",
-                "text": "Opuszczamy nawiasy. Potęgę potęgi liczymy, mnożąc wykładniki:\\[(a^{r})^{s} = a^{r \\cdot s}\\]czyli \\((2^{2})^{49} = 2^{98}\\) oraz \\((2^{4})^{24} = 2^{96}\\)."
+                "text": "Potęgę potęgi liczymy, mnożąc wykładniki:\\[\\left(a^{r}\\right)^{s} = a^{r \\cdot s}\\]czyli \\(\\left(2^{2}\\right)^{49} = 2^{98}\\) oraz \\(\\left(2^{4}\\right)^{24} = 2^{96}\\)."
             },
             {
                 "type": "video",
                 "src": "media/zad3/solution-step-by-step/step4.mp4",
-                "text": "Szukamy czegoś wspólnego. Najmniejszy wykładnik to 96, więc dwa pozostałe rozbijamy na sumę, w której 96 się pojawia:\\[100 = 96 + 4 \\qquad 98 = 96 + 2\\]"
+                "text": "Szukamy czegoś wspólnego. Najmniejszy wykładnik to 96, więc dwa pozostałe rozpisujemy tak, żeby 96 się w nich pojawiło:\\[100 = 96 + 4 \\qquad 98 = 96 + 2\\]"
             },
             {
                 "type": "video",
                 "src": "media/zad3/solution-step-by-step/step5.mp4",
-                "text": "Sumę w wykładniku rozdzielamy na iloczyn potęg:\\[a^{r+s} = a^{r} \\cdot a^{s}\\]Teraz \\(2^{96}\\) stoi w każdym składniku."
+                "text": "Sumę w wykładniku rozdzielamy na iloczyn potęg:\\[a^{r+s} = a^{r} \\cdot a^{s}\\]Przy ostatnim składniku dopisujemy \\(\\cdot\\, 1\\), żeby wszystkie trzy wyglądały tak samo. Teraz \\(2^{96}\\) stoi w każdym z nich."
             },
             {
                 "type": "video",
                 "src": "media/zad3/solution-step-by-step/step6.mp4",
-                "text": "Wyłączamy \\(2^{96}\\) przed nawias. To ten sam ruch, co w zwykłej sumie:\\[3a+3b=3(a+b)\\]"
+                "text": "Wyłączamy \\(2^{96}\\) przed nawias. To ten sam ruch, co w zwykłej sumie:\\[ab + ac = a(b+c)\\]"
             },
             {
                 "type": "video",
