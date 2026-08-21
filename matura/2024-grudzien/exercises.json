@@ -83,7 +83,7 @@
         "selfScore": false,
         "hint": "Stopień pierwiastka jest jak mianownik w wykładniku, a \\(\\frac{1}{5} = 5^{-1}\\). Wykładnik \\(-5\\) możesz włączyć do nawiasu (do każdego z czynników) i takie tam.",
         "formulasPage": 5,
-        "solutionText": "Wzory:\\[\\sqrt[n]{a^m}=a^{\\frac{m}{n}} \\qquad (a\\cdot b)^r=a^r\\cdot b^r \\qquad (a^r)^s=a^{r\\cdot s}\\]<div class=\"rozwiazanie-kroki\">\\(\\sqrt[5]{5}=5^{\\frac{1}{5}}\\)<br>\\(\\frac{1}{5}=5^{-1}\\)<br><br>\\(\\left(5^{\\frac{1}{5}}\\cdot 5^{-1}\\right)^{-5}\\)<br>\\(=5^{\\frac{1}{5}\\cdot(-5)}\\cdot 5^{(-1)\\cdot(-5)}\\)<br>\\(=5^{-1}\\cdot 5^{5}\\)<br>\\(=\\boldsymbol{5^{4}}\\)<br><br>Odpowiedź <b>A</b>.</div>",
+        "solutionText": "<div class=\"rozw-2kol\"><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(\\sqrt[5]{5}=5^{\\frac{1}{5}}\\)</div><div class=\"rozw-wzor\">\\(\\sqrt[n]{a^m}=a^{\\frac{m}{n}}\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(\\frac{1}{5}=5^{-1}\\)</div><div class=\"rozw-wzor\">\\(\\frac{a^r}{a^s}=a^{r-s}\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(\\left(5^{\\frac{1}{5}}\\cdot 5^{-1}\\right)^{-5}=\\)<br>\\(=5^{\\frac{1}{5}\\cdot(-5)}\\cdot 5^{(-1)\\cdot(-5)}\\)</div><div class=\"rozw-wzor\">\\((a\\cdot b)^r=a^r\\cdot b^r\\)<br>\\((a^r)^s=a^{r\\cdot s}\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(=5^{-1}\\cdot 5^{5}=\\boldsymbol{5^{4}}\\)</div><div class=\"rozw-wzor\">\\(a^r\\cdot a^s=a^{r+s}\\)</div></div><div class=\"rozw-wiersz rozw-pelny\"><div class=\"rozw-obl\">Odpowiedź <b>A</b>.</div></div></div>",
         "solutionStepByStep": [
             {
                 "type": "video",
@@ -93,17 +93,17 @@
             {
                 "type": "video",
                 "src": "media/zad2/solution-step-by-step/step2.mp4",
-                "text": "Pierwiastek to inaczej potęga o wykładniku ułamkowym:\\[\\sqrt[n]{a^m}=a^{\\frac{m}{n}}\\]\\[\\sqrt[5]{5}=5^{\\frac{1}{5}}\\]"
+                "text": "Pierwiastek to inaczej potęga o wykładniku ułamkowym:\\[\\sqrt[n]{a^m}=a^{\\frac{m}{n}}\\]"
             },
             {
                 "type": "video",
                 "src": "media/zad2/solution-step-by-step/step3.mp4",
-                "text": "\\(\\frac{1}{5}\\) też zapisujemy jako potęgę. Dzieląc potęgi o tej samej podstawie, odejmujemy wykładniki:\\[\\frac{a^r}{a^s}=a^{r-s}\\]\\[\\frac{1}{5}=\\frac{5^{0}}{5^{1}}=5^{-1}\\]"
+                "text": "\\(\\frac{1}{5}\\) też zapisujemy jako potęgę. Dzieląc potęgi o tej samej podstawie, odejmujemy wykładniki:\\[\\frac{a^r}{a^s}=a^{r-s}\\]"
             },
             {
                 "type": "video",
                 "src": "media/zad2/solution-step-by-step/step4.mp4",
-                "text": "Opuszczamy nawias. Wykładnik \\(-5\\) trzeba wtedy wymnożyć przez wykładniki obu potęg ze środka:\\[(a\\cdot b)^r=a^r\\cdot b^r \\qquad (a^r)^s=a^{r \\cdot s}\\]\\[\\left(5^{\\frac{1}{5}}\\cdot 5^{-1}\\right)^{-5}=5^{\\frac{1}{5}\\cdot(-5)}\\cdot 5^{(-1)\\cdot(-5)}\\]"
+                "text": "Opuszczamy nawias. Wykładnik \\(-5\\) trzeba wtedy wymnożyć przez wykładniki obu potęg ze środka:\\[(a\\cdot b)^r=a^r\\cdot b^r \\qquad (a^r)^s=a^{r \\cdot s}\\]"
             },
             {
                 "type": "video",
@@ -113,7 +113,7 @@
             {
                 "type": "video",
                 "src": "media/zad2/solution-step-by-step/step6.mp4",
-                "text": "Mnożąc potęgi o tej samej podstawie, dodajemy wykładniki:\\[a^r\\cdot a^s=a^{r+s}\\]\\[5^{-1}\\cdot 5^{5}=5^{-1+5}=5^{4}\\]Odpowiedź <b>A</b>."
+                "text": "Mnożąc potęgi o tej samej podstawie, dodajemy wykładniki:\\[a^r\\cdot a^s=a^{r+s}\\]Odpowiedź <b>A</b>."
             }
         ],
         "solutionWidget": null

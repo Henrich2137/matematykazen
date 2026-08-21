@@ -1205,6 +1205,76 @@ body.sidebar-otwarty #sidebar-linia {
     line-height: 2.1;
 }
 
+/* ROZWIĄZANIE W DWÓCH KOLUMNACH: rachunek z lewej, użyty wzór z prawej, na tej
+   samej wysokości co linijka, w której się go stosuje. Zapis w exercises.json:
+
+       <div class="rozw-2kol">
+         <div class="rozw-wiersz">
+           <div class="rozw-obl">\(rachunek\)</div>
+           <div class="rozw-wzor">\(wzór\)</div>
+         </div>
+         …
+       </div>
+
+   Wiersz bez wzoru zostawia pusty <div class="rozw-wzor"></div>. Pusta komórka
+   jest potrzebna, żeby siatka nie przesunęła następnego rachunku do prawej
+   kolumny. Kilka linijek rachunku pod jednym wzorem idzie w JEDNYM .rozw-obl,
+   rozdzielone <br> (wtedy wzór stoi na środku całej grupy).
+
+   Wyrównanie robi grid NA KONTENERZE, a nie flex na wierszu: wiersz jest tylko
+   pojemnikiem logicznym i znika przez `display: contents`, więc wszystkie
+   .rozw-obl i .rozw-wzor trafiają wprost do jednej siatki. Dzięki temu prawa
+   kolumna ma jedną, wspólną krawędź dla całego rozwiązania. Przy flexie na
+   każdym wierszu z osobna wzory rozjeżdżałyby się w poziomie.
+
+   Szerokość kolumn: `auto 1fr` z lustrzanym wyrównaniem do środka między nimi.
+   Kolumna wzorów bierze tyle, ile potrzebuje najszerszy wzór, a rachunek dostaje
+   resztę. */
+.rozw-2kol {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: 2.5rem;
+    row-gap: 1.1rem;
+    /* Wzór ma stać na wysokości SWOJEGO rachunku, także gdy rachunek zajmuje
+       dwie linijki, stąd wyśrodkowanie w pionie, nie wyrównanie do góry. */
+    align-items: center;
+    line-height: 2.1;   /* jak w .rozwiazanie-kroki: ułamki i pierwiastki potrzebują powietrza */
+    text-align: left;
+    margin: 0 auto;
+    width: fit-content;
+    max-width: 100%;
+    /* Siatka mieści się na telefonie (zmierzone przy 485px: 364px treści na 423px
+       miejsca), ale wzory KaTeX-a nie łamią się w środku, więc wyjątkowo szeroka
+       para przewinie się TU, wewnątrz własnego bloku, zamiast rozpychać stronę. */
+    overflow-x: auto;
+}
+
+.rozw-wiersz {
+    /* Wiersz nie rysuje się sam, jego dzieci wchodzą wprost do siatki rodzica. */
+    display: contents;
+}
+
+.rozw-2kol > .rozw-wiersz > .rozw-wzor {
+    /* „Troszkę bledsze, ale tej samej wielkości": wzór jest przypomnieniem,
+       więc ustępuje pierwszeństwa rachunkowi, ale nie robi się drobnym drukiem. */
+    color: var(--text-muted-2);
+}
+
+/* Rachunek trzyma się prawej krawędzi swojej kolumny, wzór lewej krawędzi
+   swojej: obie kolumny zbiegają się do wspólnej przerwy w środku, więc para
+   „rachunek + wzór" czyta się jako jedna linijka, a nie dwa oddzielne słupki. */
+.rozw-2kol > .rozw-wiersz > .rozw-obl { text-align: right; }
+.rozw-2kol > .rozw-wiersz > .rozw-wzor { text-align: left; }
+
+/* Wiersz na całą szerokość, bez pary wzoru: zdanie wprowadzające albo końcowa
+   odpowiedź. Wtedy .rozw-wiersz NIE dostaje drugiej komórki, sam .rozw-obl
+   rozpina się na obie kolumny i wraca na środek. */
+.rozw-2kol > .rozw-wiersz.rozw-pelny > .rozw-obl {
+    grid-column: 1 / -1;
+    text-align: center;
+}
+
+
 .solution-step-by-step-container {
     display: none;
     border-bottom: 1px solid var(--border-subtle); /* 2px→1px (etap 2): grubość nie niosła znaczenia */
