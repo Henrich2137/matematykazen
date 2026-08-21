@@ -1869,8 +1869,10 @@ kroków na osiem, żeby jedna linijka rachunku odpowiadała jednemu krokowi film
   jedno polecenie; \textcolor z gotowym hexem odpadł, bo nie zmieniłby się w ciemnym motywie;
 - scena manimations/solutionZad2.py przepisana: stany jako MathTex pocięty na części, każda
   para glifów wskazana ręcznie, więc podstawy potęg przesuwają się zamiast morfować;
-- kroki 4 i 6 rozbite na 4/5 i 7/8; zielone podświetlenie w filmie usunięte, bo każde jego
-  zapalenie albo zgaszenie wypadało na styku dwóch plików i łamało zasadę 1 z README;
+- kroki 4 i 6 rozbite na 4/5 i 7/8; każdy krok ma ten sam przebieg (wszystko czarne, kluczowy
+  element zapala się na zielono, animacja, znów wszystko czarne), więc jest samodzielny
+  i zgodność styku z sąsiadem wychodzi sama z siebie. Zielony to --accent-green, ten sam,
+  którym rozwiązanie opisowe obok zaznacza fragmenty;
 - domknij() w scenie robi clear+add PRZED wait(0.25), żeby przytrzymanie pokazywało czysty
   następny stan; to zbiło rozjazd styku z ~2000 pikseli do szumu kompresji.
 Weryfikacja:
