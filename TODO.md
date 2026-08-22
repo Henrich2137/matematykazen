@@ -49,7 +49,7 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
 <br> Mój telefon na chrome ma "okno": 485x945
 <br> Próg wejścia jest wysoki, patrz ZASADY DLA CLAUDE-A niżej. Archiwum dawnych list: issues/testowanie-archiwum.md.
 
-  - gdy strona ruszy na domenie z Cloudflare, wejdź na nią z telefonu i sprawdź dwie rzeczy, których z sesji nie sprawdzę
+  - wejdź z telefonu na matematykazen.pl (Cloudflare) i sprawdź dwie rzeczy, których z sesji nie sprawdzę (z kontenera nie ma dostępu do domeny, firewall)
     - w rozwiązaniu krok po kroku przewiń film kropkami w przód i w tył, film ma skakać, a nie wracać do zera (to jest ta sama pułapka co z python -m http.server, tylko po stronie hostingu)
 
     - otwórz panel „zasady oceniania", PDF ma się wyświetlić w panelu, a nie pobrać jako plik
@@ -59,12 +59,9 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
 
 + DLA HENRICHA:
 
-  - Cloudflare, trzy kliknięcia, których z sesji nie zrobię (opis w issues/cloudflare-hosting.md)
-    - u rejestratora domeny (hitme) przestaw serwery nazw na te podane przez Cloudflare; bez tego własnej domeny nie da się podpiąć i Worker żyje tylko pod adresem matematykazen.workers.dev
+  - popraw z hosta plik .devcontainer/README.md: w dwóch miejscach mówi o `origin/master`, którego już nie ma (ma być `origin/dev`). Z kontenera się nie da, ten katalog jest tam tylko do odczytu
 
-    - w Cloudflare: Worker → Settings → Domains & Routes → Add custom domain
-
-    - powiedz mi, jak brzmi ta domena; jest potrzebna do linii Required Notice w LICENSE.md, która nie może prowadzić w martwy adres
+  - domena działa, więc podmień adres w linii „Required Notice" w LICENSE.md na matematykazen.pl (szczegóły niżej, w punkcie o licencji: ta linijka jedzie w parze z resztą listy z issues/licencja-i-cla.md)
 
 
 <br>
@@ -331,6 +328,12 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
     - repo jest gotowe pod hosting Cloudflare (wrangler.jsonc, .assetsignore, _headers, 404.html, test tools/sprawdz-cloudflare.py). Pierwsze wdrożenie padło, bo automat wysyłał na hosting katalog .git; teraz przechodzi, sprawdzone prawdziwym wranglerem. Reszta w issues/cloudflare-hosting.md
 
     - do przemyślenia na później: dwa adresy z tą samą treścią (GitHub Pages i domena) to dla wyszukiwarek duplikat. Nie pali się, ale przy marketingu warto zdecydować, który jest tym głównym
+
+  + OPUS 5 MEDIUM DOPISAŁ (2026-08-22, gałęzie dev/main):
+
+    - repo ma teraz dwie gałęzie: `dev` (GitHub Pages, codzienna praca) i `main` (Cloudflare, matematykazen.pl). „Push" bez dopowiedzenia znaczy `dev`; na `main` idzie tylko to, o czym powiesz wprost, że ma być widoczne publicznie. Opis w CLAUDE.md (sekcja Git) i issues/git-i-gitdoc.md
+
+    - wersja v82 jest na `dev`, pod domeną stoi jeszcze v81 (na `main`). Numer w rogu strony mówi więc też, którą z dwóch witryn właśnie oglądasz
 
 
 + ZASADY DLA CLAUDE-A:

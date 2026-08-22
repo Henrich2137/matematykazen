@@ -5,6 +5,40 @@ nad stroną nie jest to potrzebne — CLAUDE.md ma z tego tylko cztery linijki i
 Otwórz ten plik, gdy: historia `origin` wygląda dziwnie, ktoś chce włączyć/wyłączyć gitdoc,
 albo trzeba zmienić cadencję autocommitów.
 
+## Gałęzie: `dev` i `main` (od 2026-08-22)
+
+Do 2026-08-22 gałąź była jedna, `master`. Dziś są dwie, po jednej na hosting:
+
+| gałąź | hosting | rola |
+|---|---|---|
+| `dev` | GitHub Pages (`henrich2137.github.io/matematykazen/`) | codzienna praca, wszystkie commity i pushe |
+| `main` | Cloudflare (`matematykazen.pl`, też z `www`) | wersja oficjalna, aktualizowana świadomie |
+
+`main` to przemianowany dawny `master`, więc historia jest ciągła i nic się nie rozjechało.
+Na `origin` została jeszcze archiwalna gałąź `master-old` (stan sprzed lipca 2026, sprzed
+squasha autozapisów gitdoc) oraz `backup-przed-squash-gitdoc` — do obu się nie zagląda.
+
+Awans z `dev` na `main` idzie wyłącznie do przodu:
+
+```
+git checkout main && git merge --ff-only dev && git push && git checkout dev
+```
+
+Lokalna `main` ma `branch.main.mergeOptions = --ff-only`, więc git odmówi, gdyby scalanie
+miało utworzyć commit scalający. To zamierzone: pod domeną ma stać dokładnie ten sam ciąg
+commitów, który wcześniej był przetestowany na GitHub Pages, bez osobnej historii.
+
+Gdyby kiedyś trzeba było odtworzyć ten układ w świeżym klonie:
+
+```
+git fetch --prune
+git checkout -b dev  --track origin/dev
+git branch      main --track origin/main
+git config branch.main.mergeOptions --ff-only
+```
+
+Szczegóły hostingu (co jedzie skąd, co odsiewa `.assetsignore`): [cloudflare-hosting.md](cloudflare-hosting.md).
+
 ## gitdoc — STATUS: WYŁĄCZONY (stan na 2026-08-01, zweryfikuj zanim zaufasz)
 
 `gitdoc.enabled` domyślnie jest `false` i nigdzie nie jest ustawione: nie ma go ani
@@ -99,9 +133,9 @@ wprowadzał — mnóstwo `M` na plikach, których się nie ruszało, plus nowe p
 wiszące jako nieśledzone (`??`). Tak to wyszło 2026-08-15 na Kubuntu: 58 commitów w plecy,
 151 plików rzekomo zmienionych, realnie **zero** własnych zmian.
 
-Jak to sprawdzić, zanim się cokolwiek skasuje — porównać treść na dysku z `origin/master`
-plik po pliku (`git hash-object` kontra `git ls-tree -r origin/master`). Jeśli wszystko się zgadza,
-to nie są zmiany, tylko stary HEAD. Naprawa bez `reset --hard`: `git reset --mixed origin/master`
+Jak to sprawdzić, zanim się cokolwiek skasuje — porównać treść na dysku z gałęzią śledzoną
+plik po pliku (`git hash-object` kontra `git ls-tree -r origin/dev`). Jeśli wszystko się zgadza,
+to nie są zmiany, tylko stary HEAD. Naprawa bez `reset --hard`: `git reset --mixed origin/dev`
 (przesuwa HEAD i indeks, nie rusza plików), a potem `git checkout -- .devcontainer/` na te
 nieliczne pliki, które w kontenerze nie mogły się doczytać.
 

@@ -83,13 +83,30 @@ Plus `vendor/katex/` — KaTeX vendored for fully offline math rendering (don't 
 
 ## Git
 
-- **Na starcie sesji sprawdź, czy klon nie jest do tyłu — jeśli jest, zrób `pull` ZANIM zaczniesz pracę.** Odkąd zadanie startowe robi już tylko `fetch` (2026-08-15), nic nie scala samo, więc `master` bywa kilkadziesiąt commitów w plecy, a Ty edytujesz nieaktualne pliki. To jest **Twoje zadanie, nie Henricha** — on nie ma tego pamiętać.
-  - `git fetch && git rev-list --left-right --count HEAD...origin/master` → wynik `0<TAB>0` znaczy „jesteś na bieżąco". Pierwsza liczba = commity lokalne, druga = commity czekające na origin.
+### Gałęzie (układ z 2026-08-22)
+
+Repozytorium ma dwie gałęzie robocze. Dawny `master` nazywa się dziś `main`.
+
+| gałąź | gdzie ląduje | do czego służy |
+|---|---|---|
+| `dev` | GitHub Pages (`henrich2137.github.io/matematykazen/`) | codzienna praca: tu idą commity i pushe, tu Henrich testuje |
+| `main` | Cloudflare, czyli `matematykazen.pl` | wersja oficjalna, zwykle kilka commitów za `dev` |
+
+- **„Push" bez dopowiedzenia zawsze znaczy push na `dev`.** Nowej gałęzi nie zakładasz, chyba że Henrich wyraźnie o to poprosi. Wypuszczenie zmiany na `main`, czyli pod domenę, robisz **tylko wtedy, gdy Henrich powie to wprost**: „ma być widoczne publicznie", „wypuść dla użytkowników", „na produkcję", „na domenę" i podobnie. Sam z siebie nie awansujesz niczego na `main`, nawet jeśli praca wygląda na skończoną, i w razie wątpliwości pytasz.
+- **Na `main` nic nie commitujesz wprost.** Wchodzi tam wyłącznie to, co jest już na `dev`, i tylko przez awans:
+  ```
+  git checkout main && git merge --ff-only dev && git push && git checkout dev
+  ```
+  Lokalna gałąź `main` ma `--ff-only` ustawione na stałe (`branch.main.mergeOptions`), więc git odmówi, gdyby scalanie miało zrobić commit scalający. Odmowa oznacza, że `main` ma coś, czego nie ma `dev`: zatrzymaj się i zapytaj, niczego nie forsuj.
+- **Stara nazwa już nie istnieje.** `origin/master` zniknął; `origin/master-old` to archiwum sprzed lipca 2026 i tam nie zaglądasz.
+
+- **Na starcie sesji sprawdź, czy klon nie jest do tyłu — jeśli jest, zrób `pull` ZANIM zaczniesz pracę.** Odkąd zadanie startowe robi już tylko `fetch` (2026-08-15), nic nie scala samo, więc `dev` bywa kilkadziesiąt commitów w plecy, a Ty edytujesz nieaktualne pliki. To jest **Twoje zadanie, nie Henricha** — on nie ma tego pamiętać.
+  - `git fetch && git rev-list --left-right --count HEAD...@{u}` → wynik `0<TAB>0` znaczy „jesteś na bieżąco". Pierwsza liczba = commity lokalne, druga = commity czekające na origin. (`@{u}` to gałąź śledzona, czyli `origin/dev`, gdy siedzisz na `dev`.)
   - Druga liczba > 0 i brak własnych zmian → `git pull --ff-only`. Na hoście przechodzi zawsze.
   - **W kontenerze** pull może paść na read-only `.devcontainer/`/`.vscode/` (patrz punkt niżej). Jeśli padnie — nie kombinuj i nie kasuj niczego, tylko powiedz Henrichowi, żeby zrobił pull z hosta.
   - Masz na to **stałą zgodę** — `fetch`/`pull --ff-only` w tym repo to nie jest „polecenie sieciowe do uzgodnienia" z HOSTRULES.md. Pierwsza liczba > 0 (lokalne commity) albo brudne drzewo robocze → **zatrzymaj się i zapytaj**, nic nie nadpisuj.
 - **gitdoc is DISABLED** (verified 2026-08-01) — no auto-commits, no auto-push. Every commit in the log is a human's or the assistant's.
-- **Auto-fetch is on, auto-pull is not** (`git.autofetch` + a `git fetch --prune` task on folder open). Fetch never touches the working tree, so local `master` can be many commits behind at session start — check, and **merge only by hand**. The folderOpen task used to run `git pull --ff-only`; it was replaced 2026-08-15 because inside the devcontainer it kept aborting half-way on the read-only `.devcontainer/`/`.vscode/` mounts, leaving the files updated but HEAD stale (looks like dozens of phantom local changes). Symptom and safe repair in [issues/git-i-gitdoc.md](issues/git-i-gitdoc.md) — don't switch it back to `pull`.
+- **Auto-fetch is on, auto-pull is not** (`git.autofetch` + a `git fetch --prune` task on folder open). Fetch never touches the working tree, so local `dev` can be many commits behind at session start — check, and **merge only by hand**. The folderOpen task used to run `git pull --ff-only`; it was replaced 2026-08-15 because inside the devcontainer it kept aborting half-way on the read-only `.devcontainer/`/`.vscode/` mounts, leaving the files updated but HEAD stale (looks like dozens of phantom local changes). Symptom and safe repair in [issues/git-i-gitdoc.md](issues/git-i-gitdoc.md) — don't switch it back to `pull`.
 - **`.vscode/` and `.devcontainer/` are mounted read-only in the devcontainer** — edit them from the host; a `checkout`/`pull` touching them from inside the container half-fails (see `.devcontainer/README.md`).
 - Mechanics of all three (why gitdoc can only be enabled per-workspace, what would happen if it were re-enabled, `forcePush`, the `autoCommitDelay` debounce, the `task.allowAutomaticTasks` requirement): [issues/git-i-gitdoc.md](issues/git-i-gitdoc.md).
 
@@ -140,11 +157,21 @@ Don't hand-roll a Playwright script for routine visual work — [tools/zrzuty.js
 
 ## Hosting (dodane 2026-08-22)
 
-Strona stoi w dwóch miejscach naraz, z tego samego repozytorium: **GitHub Pages** (jak dotąd) i **Cloudflare** (Worker serwujący same pliki statyczne, pod własną domeną). Cztery pliki w korzeniu obsługują to drugie: `wrangler.jsonc` (ustawienia wdrożenia), `.assetsignore` (czego nie wysyłać), `_headers` (nagłówki HTTP), `404.html` (własna strona błędu, działa też na GitHub Pages).
+Strona stoi w dwóch miejscach naraz, z tego samego repozytorium, każde z innej gałęzi:
+
+| adres | hosting | gałąź | rola |
+|---|---|---|---|
+| `matematykazen.pl` i `www.matematykazen.pl` | Cloudflare (Worker serwujący same pliki statyczne) | `main` | adres oficjalny, ten podawany uczniom |
+| `henrich2137.github.io/matematykazen/` | GitHub Pages | `dev` | wersja robocza do testów |
+
+Domena kupiona u rejestratora hitme, obsługiwana przez serwery nazw Cloudflare; certyfikat HTTPS wystawia Cloudflare. **Obie postacie adresu działają**, z www i bez, i obie pokazują tę samą stronę.
+
+Cztery pliki w korzeniu obsługują wariant Cloudflare: `wrangler.jsonc` (ustawienia wdrożenia), `.assetsignore` (czego nie wysyłać), `_headers` (nagłówki HTTP), `404.html` (własna strona błędu, działa też na GitHub Pages).
 
 - **Dokładasz albo przenosisz plik potrzebny stronie w przeglądarce? Odpal `python3 tools/sprawdz-cloudflare.py`.** Skrypt pilnuje limitów Cloudflare (25 MiB na plik) i tego, żeby `.assetsignore` nie wyciął czegoś, bez czego strona się sypie. Cichy, gdy wszystko gra.
 - **Nie wpisuj w kodzie ścieżek od korzenia** (`/style/...`, `/app/...`). Na Cloudflare strona leży w korzeniu domeny, a na GitHub Pages w podkatalogu, więc taka ścieżka działa tylko w jednym z tych miejsc. Wszystkie odwołania są dziś względne i mają takie zostać.
-- Reszta (dlaczego Worker, a nie Pages; co dokładnie odsiewamy i czego odsiewać nie wolno; co Henrich klika w panelu Cloudflare i u rejestratora domeny): [issues/cloudflare-hosting.md](issues/cloudflare-hosting.md).
+- **To, co wypchniesz na `dev`, nie pojawi się od razu na `matematykazen.pl`.** Domena jedzie z `main`, więc zmiana widoczna pod domeną wymaga osobnego scalenia, które robi Henrich (patrz sekcja Git). Prosząc go o test na telefonie, powiedz wprost, pod którym adresem ma patrzeć.
+- Reszta (dlaczego Worker, a nie Pages; co dokładnie odsiewamy i czego odsiewać nie wolno; co Henrich klikał w panelu Cloudflare i u rejestratora domeny): [issues/cloudflare-hosting.md](issues/cloudflare-hosting.md).
 
 ## Content notes
 
@@ -169,5 +196,5 @@ Strona stoi w dwóch miejscach naraz, z tego samego repozytorium: **GitHub Pages
 
 ## Cloud sessions / routines
 
-- Pushuj do najnowszej gałęzi z najnowszymi zmianami — nawet jeśli to jest `master` — zamiast tworzyć nową gałąź. Można to pominąć tylko jeśli użytkownik wyraźnie zażyczy sobie inaczej w prompcie.
+- Pushuj na `dev` (gałąź codziennej pracy, patrz sekcja Git) zamiast tworzyć nową gałąź. Samo „zrób push" nigdy nie znaczy `main`: tam idzie tylko to, o czym użytkownik wprost powie, że ma być widoczne publicznie dla zwykłych użytkowników.
 - Nie zaglądaj do brancha `backup-przed-squash-gitdoc` (lokalnie ani `origin/`) — to tylko archiwalny backup sprzed squasha autozapisów gitdoc. Wyjątek: gdy chcesz sprawdzić bardzo szczegółową historię automatycznych commitów generowanych przez gitdoca.

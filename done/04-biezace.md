@@ -1,5 +1,42 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-22] (Opus 5, medium) Domena matematykazen.pl działa na Cloudflare,
+a repo dostało dwie gałęzie: dev (GitHub Pages) i main (domena).
+[cloudflare, hosting, domena, git, galezie, dev, main]
+
+Domena kupiona u rejestratora hitme, przepięta na serwery nazw Cloudflare i podpięta do
+Workera; HTTPS wystawił Cloudflare sam. Działa i `matematykazen.pl`, i `www.matematykazen.pl`.
+Zamyka to trzy kliknięcia z sekcji „DLA HENRICHA" w TODO.md (serwery nazw, custom domain,
+podanie nazwy domeny) oraz punkt 2.3 ścieżki biznesowej.
+
+Gałęzie ułożone tak, że każdy hosting jedzie z innej:
+
+- `dev` → GitHub Pages, codzienna praca, tu idą wszystkie commity i pushe.
+- `main` (przemianowany dawny `master`) → Cloudflare i domena, wersja oficjalna.
+- `origin/master` już nie istnieje; `origin/master-old` zostaje jako archiwum.
+
+Lokalny klon miał tylko `master` wskazujący na skasowaną gałąź zdalną, więc odtworzone od
+zera: `dev` i `main` śledzą swoje odpowiedniki, stary `master` usunięty. Na `main` ustawione
+`branch.main.mergeOptions = --ff-only`, żeby awans z `dev` nie mógł po cichu zrobić commitu
+scalającego: pod domeną ma stać dokładnie ten ciąg commitów, który wcześniej był przetestowany
+na Pages.
+
+Zasada od Henricha, spisana w CLAUDE.md: **„push" bez dopowiedzenia zawsze znaczy `dev`**.
+Na `main` idzie tylko to, o czym powie wprost, że ma być widoczne publicznie dla użytkowników.
+
+Udokumentowane w: CLAUDE.md (sekcja Git przepisana, sekcja Hosting z tabelką adresów),
+issues/cloudflare-hosting.md (stan domeny, kto jedzie z której gałęzi, pułapka z curlem),
+issues/git-i-gitdoc.md (nowa sekcja o gałęziach + przepis na odtworzenie układu w świeżym
+klonie), OVERVIEW.md (adres na żywo, „Dwa adresy strony", faza 2.3 na DONE).
+
+Pułapka do zapamiętania: **z devcontainera nie sprawdzisz, czy domena żyje**. `curl` na
+`matematykazen.pl` kończy się przeterminowaniem, bo firewall kontenera przepuszcza tylko
+wybrane adresy, a to wygląda jak padnięta strona. Sprawdzać z przeglądarki poza kontenerem.
+
+Do dokończenia z hosta: `.devcontainer/README.md` w dwóch miejscach mówi jeszcze o
+`origin/master` (katalog jest w kontenerze tylko do odczytu). Wpisane do TODO.md.
+
+
 [ZROBIONE 2026-08-20] (Opus 5, medium) Devcontainer sprawdzony na Kubuntu
 pod rootless podmanem. Punkt „DO ZROBIENIA HOŚCIE" zamknięty, sekcja pusta.
 [devcontainer, podman, kubuntu, firewall]

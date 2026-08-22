@@ -43,7 +43,7 @@ Konsekwencja, o której trzeba pamiętać: **wersje widżetów opublikowane prze
 pochodnych. Zamknięcie działa tylko w przód. Nie da się tego cofnąć i nie ma sensu
 próbować.
 
-Z tego samego powodu **nie przepisuj historii na `master`** (żadnego `squash`,
+Z tego samego powodu **nie przepisuj historii na `dev` ani `main`** (żadnego `squash`,
 `rebase` ani `force-push` po tej zmianie). Historia jest dowodem na to, kiedy
 i co zostało ogłoszone.
 

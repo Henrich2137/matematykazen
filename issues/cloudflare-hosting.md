@@ -7,6 +7,30 @@ wdrożeniu.
 GitHub Pages **zostaje bez zmian** i jedzie z tego samego repozytorium
 równolegle. Cloudflare to druga witryna tych samych plików, pod własną domeną.
 
+## Stan na 2026-08-22: domena działa
+
+| adres | hosting | gałąź |
+|---|---|---|
+| `matematykazen.pl` oraz `www.matematykazen.pl` | Cloudflare | `main` |
+| `henrich2137.github.io/matematykazen/` | GitHub Pages | `dev` |
+
+Domena kupiona u rejestratora **hitme**, przepięta na serwery nazw Cloudflare i
+podpięta do Workera; certyfikat HTTPS wystawił Cloudflare sam. Obie postacie
+adresu, z `www` i bez, prowadzą do tej samej strony.
+
+**Każdy hosting jedzie z innej gałęzi i to jest celowe.** `dev` to warsztat:
+każdy push widać po chwili na GitHub Pages i tam się testuje. `main` to wersja
+oficjalna pod domeną, aktualizowana dopiero wtedy, gdy Henrich uzna wersję za
+dopracowaną, przez `git merge --ff-only dev`. Praktyczny wniosek dla asystenta:
+sam push na `dev` **nie** zmienia niczego pod `matematykazen.pl`, więc prosząc o
+sprawdzenie zmiany, podaj adres GitHub Pages. Układ gałęzi opisuje sekcja „Git"
+w [CLAUDE.md](../CLAUDE.md).
+
+Uwaga przy sprawdzaniu z devcontainera: `curl` na domenę kończy się tam
+przeterminowaniem połączenia, bo firewall kontenera przepuszcza tylko wybrane
+adresy. To **nie** jest dowód, że strona nie działa. Sprawdzaj z przeglądarki
+poza kontenerem.
+
 ## Dlaczego Worker, a nie Pages
 
 Cloudflare ma dwa produkty do hostowania stron: starsze **Pages** i nowsze
@@ -130,7 +154,7 @@ czysto. **Uwaga na mylącą linijkę** `✨ Read 505 files from the assets
 directory`: to liczba obejrzanych plików przed odsiewem, nie liczba wysyłanych.
 Nie zmienia się po zmianie `.assetsignore` i nie jest powodem do niepokoju.
 
-## Co klika Henrich (tego z sesji nie zrobię)
+## Co klikał Henrich (zrobione 2026-08-22)
 
 1. **Serwery nazw domeny na Cloudflare.** W panelu rejestratora (hitme) trzeba
    wskazać serwery nazw podane przez Cloudflare. Domena zostaje kupiona tam,
@@ -145,7 +169,7 @@ Nie zmienia się po zmianie `.assetsignore` i nie jest powodem do niepokoju.
    `wrangler.jsonc` zamiast zgadywać. Ustawienia z panelu („Detected Project
    Settings") przestają mieć znaczenie.
 
-## Do zrobienia, gdy domena ruszy
+## Do zrobienia teraz, gdy domena ruszyła
 
 Linia `Required Notice:` w `LICENSE.md` wskazuje dziś na GitHub Pages i jest
 **kopiowana przez każdego, kto rozpowszechnia kod**, więc nie może prowadzić w

@@ -4,7 +4,7 @@ Ostatnia weryfikacja  22.08.2026
 
 Platforma do nauki matematyki pod maturę podstawową (CKE), inspirowana Brilliant.org. Dla maturzystów, a w przyszłości może też dla ósmoklasistów. Bez reklam, minimalistyczny UI. Obecnie projekt jest w Fazie 2. Nadal statyczna, bez backendu i kont użytkowników (postęp trzymany lokalnie w przeglądarce).
 
-Zobacz na żywo: https://henrich2137.github.io/matematykazen/
+Zobacz na żywo: **https://matematykazen.pl** (działa też z www). Wersja robocza, zwykle o krok do przodu: https://henrich2137.github.io/matematykazen/
 
 > **Po co ten plik.** To jedyne miejsce, w którym cały projekt da się ogarnąć z lotu ptaka, bez otwierania repozytorium. Pisany jest dla Claude web (projekt „Matematyka Zen" na claude.ai), który zajmuje się stroną biznesową, planowaniem i decyzjami produktowymi, a nie dla Claude Code, który siedzi w kodzie i ma do tego pozostałe pliki repozytorium. Dlatego ma być **krótki i przejrzysty**: co jest zrobione, co strona umie i dokąd zmierza. Szczegóły techniczne (jak co działa, jak się to liczy, jak się to uruchamia) tutaj nie wchodzą, ich miejsce jest w `CLAUDE.md` i plikach obok kodu.
 
@@ -69,8 +69,8 @@ Rysunki z arkusza są wycięte i wstawione we wszystkie zadania, które ich wyma
     - Hosting: nadal GitHub Pages (2.1) DONE
     - Licencja PolyForm Noncommercial (2.2) DONE
     - 2 doszlifowane arkusze maturalne
-    - Domena matematykazen.pl (2.3)
-    - Hosting: Cloudflare, repo przygotowane 22.08.2026 (wdrożenia z GitHuba działają), czeka na przepięcie domeny; GitHub Pages zostaje obok
+    - Domena matematykazen.pl (2.3) DONE
+    - Hosting: Cloudflare pod własną domeną, uruchomiony 22.08.2026 (matematykazen.pl i www.matematykazen.pl) DONE. GitHub Pages zostaje obok jako wersja robocza do testów.
     - Aplikacja-wrapper?
     - Odpicowanie stronki, "wyczyszczenie" repo aby friendly dla ludzi którz se je pobiorą
     
@@ -105,9 +105,19 @@ Powód rozdziału: PolyForm zabrania zarabiania na cudzej treści, ale pozwala r
 Zadania i klucze CKE nie są objęte żadną z tych licencji. Kontrybutorzy przy wysyłaniu Pull Requesta zgadzają się na przekazanie właścicielowi projektu szerokiej licencji na swój wkład (również komercyjnej), zachowując prawo do własnego wkładu, dzięki czemu przyszła zmiana licencji nie jest zablokowana.
 
 
+## Dwa adresy strony
+
+Strona stoi w dwóch miejscach naraz, z tego samego repozytorium:
+
+- **matematykazen.pl** (i www) - Cloudflare, adres oficjalny, ten do podawania uczniom. Aktualizowany dopiero wtedy, gdy nowa wersja jest dopracowana.
+- **henrich2137.github.io/matematykazen** - GitHub Pages, wersja robocza. Trafia tam każda bieżąca zmiana, więc tu odbywają się testy.
+
+Dzięki temu praca w toku nie jest widoczna pod domeną, a przy okazji jest gdzie sprawdzić zmianę przed pokazaniem jej światu.
+
+
 ## Numer wersji w rogu strony (zasada robocza)
 
-Obok logo widnieje numer wersji (np „v12 Beta"). Jest podbijany ręcznie przy każdym oddaniu pracy do testów i **służy wyłącznie fazie demo**: po odświeżeniu na telefonie od razu widać, czy przeglądarka wczytała już nową wersję, czy pokazuje wersję z cache'u. Zasada: przed przekazaniem czegokolwiek do sprawdzenia podbij numer, zacommituj i wypchnij na `origin` — inaczej testowana jest stara strona.
+Obok logo widnieje numer wersji (np „v12 Beta"). Jest podbijany ręcznie przy każdym oddaniu pracy do testów i **służy wyłącznie fazie demo**: po odświeżeniu na telefonie od razu widać, czy przeglądarka wczytała już nową wersję, czy pokazuje wersję z cache'u. Zasada: przed przekazaniem czegokolwiek do sprawdzenia podbij numer, zacommituj i wypchnij na `origin` — inaczej testowana jest stara strona. Numer pokazuje też, którą z dwóch witryn się właśnie ogląda, bo domena bywa kilka wersji za wersją roboczą.
 
 **Do skasowania (albo zamiany na prawdziwe wersjonowanie) w momencie rozpowszechniania strony.** Uczniowi numer wersji w rogu nic nie mówi, a sugeruje produkt niegotowy.
 
