@@ -16,7 +16,9 @@ równolegle. Cloudflare to druga witryna tych samych plików, pod własną domen
 
 Domena kupiona u rejestratora **hitme**, przepięta na serwery nazw Cloudflare i
 podpięta do Workera; certyfikat HTTPS wystawił Cloudflare sam. Obie postacie
-adresu, z `www` i bez, prowadzą do tej samej strony.
+adresu, z `www` i bez, prowadzą do tej samej strony. Henrich potwierdził
+2026-08-22 z przeglądarki, że oba adresy działają, a stary adres na GitHub Pages
+dalej stoi obok i jedzie z `dev`.
 
 **Każdy hosting jedzie z innej gałęzi i to jest celowe.** `dev` to warsztat:
 każdy push widać po chwili na GitHub Pages i tam się testuje. `main` to wersja

@@ -1,4 +1,4 @@
-Ostatnia weryfikacja  22.08.2026 
+Ostatnia weryfikacja  22.08.2026
 
 # Matematyka Zen
 
@@ -69,8 +69,8 @@ Rysunki z arkusza są wycięte i wstawione we wszystkie zadania, które ich wyma
     - Hosting: nadal GitHub Pages (2.1) DONE
     - Licencja PolyForm Noncommercial (2.2) DONE
     - 2 doszlifowane arkusze maturalne
-    - Domena matematykazen.pl (2.3) DONE
-    - Hosting: Cloudflare pod własną domeną, uruchomiony 22.08.2026 (matematykazen.pl i www.matematykazen.pl) DONE. GitHub Pages zostaje obok jako wersja robocza do testów.
+    - Domena matematykazen.pl (2.3) DONE - działa, razem z www
+    - Hosting: Cloudflare pod własną domeną, uruchomiony i potwierdzony 22.08.2026 DONE. GitHub Pages zostaje obok jako wersja robocza do testów (patrz „Dwa adresy strony").
     - Aplikacja-wrapper?
     - Odpicowanie stronki, "wyczyszczenie" repo aby friendly dla ludzi którz se je pobiorą
     
@@ -107,12 +107,16 @@ Zadania i klucze CKE nie są objęte żadną z tych licencji. Kontrybutorzy przy
 
 ## Dwa adresy strony
 
-Strona stoi w dwóch miejscach naraz, z tego samego repozytorium:
+Od 22.08.2026 strona stoi w dwóch miejscach naraz, z tego samego repozytorium, ale z dwóch różnych gałęzi. Oba adresy sprawdzone i działające.
 
-- **matematykazen.pl** (i www) - Cloudflare, adres oficjalny, ten do podawania uczniom. Aktualizowany dopiero wtedy, gdy nowa wersja jest dopracowana.
-- **henrich2137.github.io/matematykazen** - GitHub Pages, wersja robocza. Trafia tam każda bieżąca zmiana, więc tu odbywają się testy.
+| adres | rola | co tam trafia |
+|---|---|---|
+| **matematykazen.pl** (i z www) | witryna oficjalna, ten adres podaje się uczniom i w marketingu | tylko wersje uznane za dopracowane |
+| **henrich2137.github.io/matematykazen** | wersja robocza do testów (dawny jedyny adres) | każda bieżąca zmiana, od razu |
 
-Dzięki temu praca w toku nie jest widoczna pod domeną, a przy okazji jest gdzie sprawdzić zmianę przed pokazaniem jej światu.
+Domena stoi na Cloudflare, stary adres nadal na GitHub Pages. Praca w toku nie jest więc widoczna pod domeną, a jednocześnie jest gdzie obejrzeć zmianę przed pokazaniem jej światu. Wypuszczenie nowej wersji na domenę to osobna, świadoma decyzja, a nie skutek uboczny zapisania zmiany.
+
+Do przemyślenia przy marketingu: dwa adresy z tą samą treścią wyszukiwarki traktują jak duplikat, więc warto w pewnym momencie wskazać jeden jako główny. Nie pali się.
 
 
 ## Numer wersji w rogu strony (zasada robocza)
