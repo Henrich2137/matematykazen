@@ -67,30 +67,28 @@ Rysunki z arkusza są wycięte i wstawione we wszystkie zadania, które ich wyma
 
 + Faza 2 - Soft Launch i Beta testy - Marketing, naprawa zgłaszanych błędów, zbieranie pieniędzy na patronite.
     - Hosting: nadal GitHub Pages (2.1) DONE
-    - Licencja PolyForm Noncommercial (2.2) DONE
+    - Licencja PolyForm Noncommercial (2.2) - zmienione na strukture z fazy 3 (Claude, wstaw tu datę zamknięcia widgets/ jak będziesz aktualizował)
+    - Branche - hostingi - domeny DONE
+        - main - Cloudflare - matematykazen.pl
+        - dev - GitHub Pages - https://henrich2137.github.io/matematykazen/
     - 2 doszlifowane arkusze maturalne
-    - Domena matematykazen.pl (2.3) DONE - działa, razem z www
-    - Hosting: Cloudflare pod własną domeną, uruchomiony i potwierdzony 22.08.2026 DONE. GitHub Pages zostaje obok jako wersja robocza do testów (patrz „Dwa adresy strony").
     - Aplikacja-wrapper?
-    - Odpicowanie stronki, "wyczyszczenie" repo aby friendly dla ludzi którz se je pobiorą
+    - "wyczyszczenie" repo aby friendly dla ludzi którz se je pobiorą
     
 Cel: zdobyć zainteresowanie i sprawdzić, czy projekt przyjmie się w społeczności.
 
 
-Faza 3 - Rozwidlenie
-- Marketing
-W zależności od przychodów z dotacji oraz liczby użytkowników wybiorę jedną z dwóch ścieżek:
++ Faza 3 - Open Core Freemium
+    
+    - Marketing
+    - Licencje: DONE
+        - Zamknięta - widgets/
+        - Otwarta Polyform Noncomertial - dla reszty
 
-- ALBO: Freemium
-    - Bardziej zamknięta licencja
     - Maybe Handover do profesjonalnego web deva
     - Paywall. 75% Rozwiązań interaktywnych oraz autorskie arkusze za abonamentem
-
-- ALBO: Open-source
-    - Otwarta licencja
-    - Rozwijanie wraz ze społecznościa opensourcową
-    - Brak paywalla
-    - Przychód z dotacji (np. suppi.pl)
+    - Baza danych z prawdziwego zdarzenia
+    - Dotacje i tak można odpalić (np. suppi.pl)
 
 
 ## Licencja
