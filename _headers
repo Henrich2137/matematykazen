@@ -1,0 +1,21 @@
+# Nagłówki HTTP dopisywane przez Cloudflare. Plik czyta sam hosting - nie jest
+# serwowany uczniom i nic nie robi na GitHub Pages (tam po prostu leży).
+#
+# Składnia: linia ze ścieżką (gwiazdka = „i wszystko dalej"), pod nią wcięte
+# nagłówki. Szczegóły w issues/cloudflare-hosting.md.
+
+/*
+  # Nie zgaduj typu pliku wbrew temu, co deklarujemy.
+  X-Content-Type-Options: nosniff
+  # Przy wyjściu na obcą stronę nie zdradzaj, z której podstrony wyszedł uczeń.
+  Referrer-Policy: strict-origin-when-cross-origin
+  # Nikt obcy nie wstawi naszej strony w ramkę u siebie.
+  X-Frame-Options: SAMEORIGIN
+
+# KaTeX i czcionki są przypięte do wersji i zmieniają się raz na ruski rok,
+# więc przeglądarka może je trzymać u siebie przez tydzień. Reszta plików
+# (zadania, filmy, kod strony) zostaje przy domyślnym zachowaniu Cloudflare,
+# czyli za każdym razem pyta serwer, czy się zmieniły. Dzięki temu poprawka
+# w zadaniu albo przerenderowany film są widoczne od razu.
+/vendor/*
+  Cache-Control: public, max-age=604800

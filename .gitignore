@@ -8,3 +8,10 @@ manimations/media/
 # przez /plugin, scope project) — w odróżnieniu od .claude/settings.json,
 # który jedzie z repo (np. superpowers).
 .claude/settings.local.json
+
+# Robocze pliki wranglera (narzędzie Cloudflare). Powstają lokalnie przy
+# `wrangler deploy --dry-run` i przy podglądzie, nie mają nic wspólnego z treścią
+# strony. Konfiguracja hostingu (wrangler.jsonc, .assetsignore, _headers) JEST
+# w repo, patrz issues/cloudflare-hosting.md.
+.wrangler/
+node_modules/

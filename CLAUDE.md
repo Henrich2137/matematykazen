@@ -138,6 +138,14 @@ Inside the devcontainer there **is** a browser: Playwright + Chromium, for scree
 
 Don't hand-roll a Playwright script for routine visual work — [tools/zrzuty.js](tools/zrzuty.js) already takes the standard set (arkusz / landing / sidebar / exam mode × desktop + phone × light + dark) into `/tmp/zrzuty/<label>/`, so two runs can be compared frame by frame. Its header documents the flags and the two traps that make screenshots silently lie (the mandatory `NODE_PATH`, and the theme key/class mismatch it now guards against).
 
+## Hosting (dodane 2026-08-22)
+
+Strona stoi w dwóch miejscach naraz, z tego samego repozytorium: **GitHub Pages** (jak dotąd) i **Cloudflare** (Worker serwujący same pliki statyczne, pod własną domeną). Cztery pliki w korzeniu obsługują to drugie: `wrangler.jsonc` (ustawienia wdrożenia), `.assetsignore` (czego nie wysyłać), `_headers` (nagłówki HTTP), `404.html` (własna strona błędu, działa też na GitHub Pages).
+
+- **Dokładasz albo przenosisz plik potrzebny stronie w przeglądarce? Odpal `python3 tools/sprawdz-cloudflare.py`.** Skrypt pilnuje limitów Cloudflare (25 MiB na plik) i tego, żeby `.assetsignore` nie wyciął czegoś, bez czego strona się sypie. Cichy, gdy wszystko gra.
+- **Nie wpisuj w kodzie ścieżek od korzenia** (`/style/...`, `/app/...`). Na Cloudflare strona leży w korzeniu domeny, a na GitHub Pages w podkatalogu, więc taka ścieżka działa tylko w jednym z tych miejsc. Wszystkie odwołania są dziś względne i mają takie zostać.
+- Reszta (dlaczego Worker, a nie Pages; co dokładnie odsiewamy i czego odsiewać nie wolno; co Henrich klika w panelu Cloudflare i u rejestratora domeny): [issues/cloudflare-hosting.md](issues/cloudflare-hosting.md).
+
 ## Content notes
 
 - All user-facing content and code comments are Polish; keep new content in Polish, direct exam-prep tone.

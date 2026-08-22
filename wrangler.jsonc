@@ -1,0 +1,30 @@
+// Konfiguracja hostingu Cloudflare (Worker serwujący same pliki statyczne).
+//
+// Po co ten plik, skoro Cloudflare potrafi wdrożyć repo bez niego: bez niego
+// wrangler zgaduje ustawienia przy każdym wdrożeniu i wysyła CAŁY korzeń repo,
+// z katalogiem .git włącznie. Tu ustawienia są zapisane raz i jadą razem z kodem.
+//
+// Czego tu NIE ma i być nie powinno:
+//   • "main" - nie mamy kodu Workera, to czysta strona statyczna,
+//   • "binding" w "assets" - wolno go użyć dopiero razem z "main".
+//
+// Co się gdzie odsiewa: .assetsignore (lista plików pomijanych przy wysyłce).
+// Nagłówki HTTP (cache, bezpieczeństwo): _headers.
+// Instrukcja wdrożenia krok po kroku: issues/cloudflare-hosting.md.
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "matematykazen",
+	"compatibility_date": "2026-08-22",
+	"assets": {
+		// Kropka = korzeń repo. Nie ma etapu budowania, więc nie ma katalogu
+		// wynikowego typu dist/ - pliki źródłowe SĄ stroną.
+		"directory": "./",
+		// Nieznany adres pokazuje nasze 404.html zamiast surowego błędu Cloudflare.
+		"not_found_handling": "404-page"
+		// "html_handling" zostaje domyślne (auto-trailing-slash): /template.html
+		// działa bez ukośnika, a katalog z index.html - z ukośnikiem.
+	},
+	"observability": {
+		"enabled": true
+	}
+}

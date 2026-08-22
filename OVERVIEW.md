@@ -70,7 +70,7 @@ Rysunki z arkusza są wycięte i wstawione we wszystkie zadania, które ich wyma
     - Licencja PolyForm Noncommercial (2.2) DONE
     - 2 doszlifowane arkusze maturalne
     - Domena matematykazen.pl (2.3)
-    - Hosting: np Cloudflare / Netlify
+    - Hosting: Cloudflare, repo przygotowane 22.08.2026 (wdrożenia z GitHuba działają), czeka na przepięcie domeny; GitHub Pages zostaje obok
     - Aplikacja-wrapper?
     - Odpicowanie stronki, "wyczyszczenie" repo aby friendly dla ludzi którz se je pobiorą
     

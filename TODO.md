@@ -47,14 +47,22 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
 <br> Mój telefon na chrome ma "okno": 485x945
 <br> Próg wejścia jest wysoki, patrz ZASADY DLA CLAUDE-A niżej. Archiwum dawnych list: issues/testowanie-archiwum.md.
 
-  - nic
+  - gdy strona ruszy na domenie z Cloudflare, wejdź na nią z telefonu i sprawdź dwie rzeczy, których z sesji nie sprawdzę
+    - w rozwiązaniu krok po kroku przewiń film kropkami w przód i w tył, film ma skakać, a nie wracać do zera (to jest ta sama pułapka co z python -m http.server, tylko po stronie hostingu)
+
+    - otwórz panel „zasady oceniania", PDF ma się wyświetlić w panelu, a nie pobrać jako plik
 
 <br>
 
 
 + DLA HENRICHA:
 
-  - nic
+  - Cloudflare, trzy kliknięcia, których z sesji nie zrobię (opis w issues/cloudflare-hosting.md)
+    - u rejestratora domeny (hitme) przestaw serwery nazw na te podane przez Cloudflare; bez tego własnej domeny nie da się podpiąć i Worker żyje tylko pod adresem matematykazen.workers.dev
+
+    - w Cloudflare: Worker → Settings → Domains & Routes → Add custom domain
+
+    - powiedz mi, jak brzmi ta domena; jest potrzebna do linii Required Notice w LICENSE.md, która nie może prowadzić w martwy adres
 
 
 <br>
@@ -314,6 +322,13 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
     - zad. 7 z 2024-grudnia: film rozdzielony na dwa etapy (najpierw pierwsze równanie do a = -2, potem drugie do b = 1), dawna scena zakomentowana na dole manimations/solutionZad7.py, do wywalenia po potwierdzeniu
 
     - zad. 3 z 2024-grudnia przerobione tak samo jak zad. 2 (osiem linijek dwukolumnowych, film przerenderowany na zasady „zapal, zmień, zgaś"). Dawny kod sceny leży ZAKOMENTOWANY na dole manimations/solutionZad3.py; do wywalenia, gdy Henrich potwierdzi, że nowe kroki są w porządku
+
+
+  + OPUS 5 MEDIUM DOPISAŁ (2026-08-22, przygotowanie repo pod Cloudflare):
+
+    - repo jest gotowe pod hosting Cloudflare (wrangler.jsonc, .assetsignore, _headers, 404.html, test tools/sprawdz-cloudflare.py). Pierwsze wdrożenie padło, bo automat wysyłał na hosting katalog .git; teraz przechodzi, sprawdzone prawdziwym wranglerem. Reszta w issues/cloudflare-hosting.md
+
+    - do przemyślenia na później: dwa adresy z tą samą treścią (GitHub Pages i domena) to dla wyszukiwarek duplikat. Nie pali się, ale przy marketingu warto zdecydować, który jest tym głównym
 
 
 + ZASADY DLA CLAUDE-A:

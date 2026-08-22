@@ -1,0 +1,49 @@
+# Czego NIE publikować na hostingu Cloudflare.
+#
+# Worker serwuje pliki prosto z korzenia repozytorium (patrz wrangler.jsonc),
+# a wrangler bierze stamtąd DOSŁOWNIE wszystko, łącznie z katalogiem .git.
+# To nie jest teoretyczny problem: pierwsze wdrożenie 2026-08-22 padło właśnie
+# na paczce historii gita (27,7 MiB przy limicie 25 MiB na plik).
+#
+# Składnia jak w .gitignore. Po każdej zmianie odpal:
+#     python3 tools/sprawdz-cloudflare.py
+# Skrypt pilnuje limitów Cloudflare i tego, żeby nie wyciąć czegoś, bez czego
+# strona przestaje działać w przeglądarce.
+#
+# UWAGA: to nie jest paywall ani ukrywanie czegokolwiek. Repozytorium jest
+# publiczne, a te pliki są widoczne na GitHubie. Chodzi tylko o to, żeby pod
+# domeną leżała strona, a nie warsztat.
+
+# Praca gita i konfiguracja narzędzi
+.git/
+.github/
+.vscode/
+.claude/
+.devcontainer/
+.wrangler/
+node_modules/
+
+# Materiały robocze i dokumentacja projektu
+done/
+issues/
+docs/
+tools/
+zrzuty/
+manimations/
+tablica-wzorow-transkrypt/
+
+# Dokumentacja w Markdownie (CLAUDE.md, TODO.md, README.md, notatki arkuszy...).
+# Odnośnik „Licencja" w stopce strony prowadzi do LICENSE.md na GitHubie,
+# więc nic się przez to nie urywa.
+*.md
+
+# Ekstrakty tekstowe arkuszy CKE - są dla modeli, nie dla ucznia.
+# PDF-y (arkusz.pdf, odpowiedzi.pdf) ZOSTAJĄ: panel „zasady oceniania"
+# czyta odpowiedzi.pdf prosto ze strony.
+matura/*/*.txt
+
+# Pliki, które są instrukcją dla hostingu, a nie treścią strony
+.gitignore
+.nojekyll
+.assetsignore
+wrangler.jsonc

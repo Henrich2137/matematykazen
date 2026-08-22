@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Nie ma takiej strony. Matematyka Zen</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50' y='78' font-size='80' text-anchor='middle' font-family='Georgia,serif' font-weight='bold'>M</text></svg>">
+
+    <!-- Ta strona jest CELOWO samowystarczalna: bez style/, bez app/, bez czcionek.
+         Hosting podstawia ją pod DOWOLNY nieznany adres (np. /matura/cos/tam/),
+         więc każda ścieżka względna prowadziłaby w pustkę, a ścieżka od korzenia
+         („/style/base.css") działałaby na domenie, ale nie na GitHub Pages, gdzie
+         strona siedzi w podkatalogu. Stąd style w środku pliku.
+         Paleta jest przepisana ze style/base.css: jeśli zmieniasz tam tła albo
+         kolor tekstu, popraw i tutaj. -->
+    <style>
+        :root {
+            color-scheme: light;
+            --bg: #fff;
+            --text: #111;
+            --text-faint: #767676;
+            --accent-blue-strong: #4a90d9;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root:not(.theme-light) {
+                color-scheme: dark;
+                --bg: #141414;
+                --text: #e6e6e6;
+                --accent-blue-strong: #5a8bc4;
+            }
+        }
+        :root.theme-dark {
+            color-scheme: dark;
+            --bg: #141414;
+            --text: #e6e6e6;
+            --accent-blue-strong: #5a8bc4;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: "STIX Two Math", "Lora", Georgia, serif;
+            font-size: 16px;
+            text-align: center;
+            margin: 0;
+            padding: 22vh 1.5rem 0;
+        }
+        .kod { font-size: 3rem; margin: 0 0 .6rem; }
+        .opis { color: var(--text-faint); margin: 0 0 2rem; }
+        .powrot { color: var(--accent-blue-strong); font-size: 1.1rem; }
+    </style>
+
+    <!-- Ten sam zapamiętany wybór motywu co na pozostałych stronach. -->
+    <script>
+        (function () {
+            try {
+                var m = localStorage.getItem("matematykazen-motyw");
+                if (m === "ciemny") document.documentElement.classList.add("theme-dark");
+                else if (m === "jasny") document.documentElement.classList.add("theme-light");
+            } catch (e) {}
+        })();
+    </script>
+</head>
+<body>
+    <p class="kod">404</p>
+    <p class="opis">Nie ma takiej strony.</p>
+    <p><a class="powrot" id="powrot" href="/">Wróć na stronę główną</a></p>
+
+    <!-- Na własnej domenie stroną główną jest „/". Na GitHub Pages strona leży
+         w podkatalogu /matematykazen/, więc samo „/" wyrzuciłoby ucznia na
+         profil GitHuba. Doklejamy pierwszy człon adresu, jeśli tam jesteśmy. -->
+    <script>
+        (function () {
+            if (location.hostname.endsWith("github.io")) {
+                var pierwszy = location.pathname.split("/")[1];
+                if (pierwszy) document.getElementById("powrot").href = "/" + pierwszy + "/";
+            }
+        })();
+    </script>
+</body>
+</html>
