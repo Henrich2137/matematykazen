@@ -4,6 +4,8 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.     
   
+  - Zrobić wszędzie i udokumentować testowe podbicie stronki
+
   - 2024-grudzień
     - Zad 2
       - Rozwiązania krok po kroku - Podpisy pod krokami zmień tak aby zastosowanie wzoru było napisane tak samo jak wzór jedno po d drugim. Wywal słowo czyli.
