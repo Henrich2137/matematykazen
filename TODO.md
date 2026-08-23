@@ -33,9 +33,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + DLA HENRICHA:
 
-  - popraw z hosta plik .devcontainer/README.md: w linijkach 202, 203 i 204 mówi o `origin/master`, którego już nie ma (ma być `origin/dev`). Z kontenera się nie da, ten katalog jest tam tylko do odczytu. Na hoście wystarczy: `sed -i 's|origin/master|origin/dev|g' .devcontainer/README.md`
 
-  - odkomentuj z hosta wpis matematykazen.pl w CONTENT_DOMAINS w .devcontainer/init-firewall.sh (dwie linijki, są tam zakomentowane z adnotacją „ODKOMENTUJ, GDY RUSZY"). Domena już działa, więc bez tego z kontenera nadal jej nie widać
 
 
 
@@ -51,8 +49,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 
 + INNE NOTATKI, DO PRZEKMINIENIA:
-
-  - dwa adresy z tą samą treścią (GitHub Pages i domena) to dla wyszukiwarek duplikat. Nie pali się, ale przy marketingu warto zdecydować, który jest tym głównym
 
   - Arkusz 2026-maj
     - treść zadań ✅
@@ -267,6 +263,11 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     JEST OKEJ
     - zad. 3 z 2024-grudnia przerobione tak samo jak zad. 2 (osiem linijek dwukolumnowych, film przerenderowany na zasady „zapal, zmień, zgaś"). Dawny kod sceny leży ZAKOMENTOWANY na dole manimations/solutionZad3.py; do wywalenia, gdy Henrich potwierdzi, że nowe kroki są w porządku
     JEST DOBRZE
+
+
+  + OPUS 5 MEDIUM DOPISAŁ (2026-08-24, po wpuszczeniu matematykazen.pl do firewalla kontenera):
+
+    - do Twojej akceptacji: wpuszczenie matematykazen.pl otwiera kontenerowi dwa adresy Cloudflare (104.21.63.231 i 172.67.172.150), a te są współdzielone z tysiącami cudzych stron, bo filtrujemy po adresie IP, a nie po nazwie. Dokładnie z tego powodu formspree.io leży w init-firewall.sh wśród odrzuconych. Zrobiłem tak, jak prosiłeś, i opisałem kompromis w komentarzu przy wpisie; jeśli wolisz szczelniej, wystarczy zakomentować dwie linijki z powrotem
 
 
 + ZASADY DLA CLAUDE-A:

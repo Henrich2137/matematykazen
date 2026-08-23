@@ -1,4 +1,4 @@
-Ostatnia weryfikacja  22.08.2026
+Ostatnia weryfikacja  24.08.2026
 
 # Matematyka Zen
 
@@ -69,7 +69,7 @@ Rysunki z arkusza są wycięte i wstawione we wszystkie zadania, które ich wyma
     - Hosting: nadal GitHub Pages (2.1) DONE
     - Licencja PolyForm Noncommercial (2.2) - zmienione na strukture z fazy 3 (Claude, wstaw tu datę zamknięcia widgets/ jak będziesz aktualizował)
     - Branche - hostingi - domeny DONE
-        - main - Cloudflare - matematykazen.pl
+        - main - Cloudflare - matematykazen.pl - oficjalna wersja która będzie promowana
         - dev - GitHub Pages - https://henrich2137.github.io/matematykazen/
     - 2 doszlifowane arkusze maturalne - 2026-maj i 2024-grudzien
     
@@ -78,7 +78,7 @@ Cel: zdobyć zainteresowanie i sprawdzić, czy projekt przyjmie się w społeczn
 
 + Faza 3 - Open Core Freemium
     
-    - Marketing
+    - Marketing (matematykazen.pl)
     - Licencje: DONE
         - Zamknięta - widgets/
         - Otwarta Polyform Noncomertial - dla reszty

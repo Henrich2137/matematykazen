@@ -1,5 +1,45 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-24] (Opus 5, medium) Trzy punkty z sekcji „DO ZROBIENIA HOŚCIE":
+poprawki, których nie dało się zrobić z kontenera, plus przegląd repo pod kątem dwóch gałęzi.
+[host, devcontainer, firewall, galezie, dev, main, cloudflare, hosting]
+
+Robione na hoście, bo `.devcontainer/` jest w kontenerze tylko do odczytu.
+
+1. `.devcontainer/README.md`: trzy wzmianki o `origin/master` (linie 202, 203, 204)
+   zamienione na `origin/dev`. Chodzi o przepis na naprawę rozjazdu HEAD-a po nieudanym
+   `pull`, więc wskazywanie na nieistniejącą gałąź czyniło ten przepis nie do wykonania.
+
+2. `.devcontainer/init-firewall.sh`: `matematykazen.pl` odkomentowana i wpisana do
+   CONTENT_DOMAINS, razem z `www.matematykazen.pl`. Usunięta stara adnotacja z sekcji
+   „Czego tu ŚWIADOMIE NIE MA" (mówiła, że domeny nie ma w DNS).
+   Zweryfikowane przed wpisaniem, dokładnie tą linią, której używa `add_domain`:
+   `dig +noall +answer A matematykazen.pl | awk '$4 == "A" {print $5}'` → 172.67.172.150
+   i 104.21.63.231, oba warianty adresu dają ten sam wynik. Format przechodzi regex
+   skryptu, duplikat obsłuży `ipset add -exist`, więc wejścia do kontenera to nie wywali.
+   `bash -n` na skrypcie czysty.
+   ŚWIADOMY KOMPROMIS, opisany też w komentarzu przy wpisie: to anycast Cloudflare,
+   adresy współdzielone z tysiącami cudzych stron, a filtrujemy po IP, nie po SNI.
+   Dokładnie ten powód trzyma `formspree.io` wśród odrzuconych. Wpuszczone mimo to,
+   bo inaczej z kontenera nie widać własnej produkcji.
+
+3. Przegląd „czy wszystko gra z nowymi gałęziami". Zgodne i bez zmian: `README.md`,
+   `OVERVIEW.md`, `CLAUDE.md`, `issues/cloudflare-hosting.md`, `issues/git-i-gitdoc.md`,
+   `.vscode/tasks.json`, `wrangler.jsonc`, `.assetsignore`. Wystąpienia słowa „master"
+   poza `done/` są już tylko historyczne, czyli opisują przeszłość i są prawdziwe.
+   `python3 tools/sprawdz-cloudflare.py` cicho, 241 plików, 28,9 MB.
+   ZNALEZIONA I NAPRAWIONA JEDNA USTERKA: `refs/remotes/origin/HEAD` w klonie wskazywał
+   na skasowany `origin/master` („dangling symref"), więc `git rev-parse origin/HEAD`
+   kończył się `fatal: Needed a single revision`. Naprawione za zgodą Henricha przez
+   `git remote set-head origin -a`, teraz wskazuje na `origin/main` (czyli GitHub ma
+   `main` jako gałąź domyślną).
+   POTWIERDZONE NA ŻYWO, że podział gałęzi działa: `matematykazen.pl` i `www.matematykazen.pl`
+   serwują v81 (stan `main`), a `henrich2137.github.io/matematykazen/` v83 (stan `dev`).
+   `git merge-base --is-ancestor main dev` przechodzi, więc awans `--ff-only` jest gotowy;
+   `main` czeka na siedem commitów z `dev`.
+
+Numeru wersji nie podbijałem: żadna z tych zmian nie dotyka strony w przeglądarce.
+
 [ZROBIONE 2026-08-23] (Opus 5, medium) Porządki w dokumentacji: trzy pliki z issues/
 rozebrane na części i skasowane, treść trafiła tam, gdzie się jej szuka.
 [dokumentacja, issues, porzadki, krok-po-kroku, playwright, manim]

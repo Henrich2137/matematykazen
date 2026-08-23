@@ -199,9 +199,9 @@ kilkadziesiąt `M` na plikach, których nikt nie tknął, i wysyp `??` na plikac
 z nowych commitów. Wygląda jak utrata pracy, a jest tylko rozjazd HEAD-a.
 
 Zanim cokolwiek skasujesz, sprawdź, czy to na pewno nie są Twoje zmiany:
-porównaj treść na dysku z `origin/master` plik po pliku (`git hash-object`
-kontra `git ls-tree -r origin/master`). Jeśli wszystko się zgadza, naprawa nie
-wymaga `reset --hard` — wystarczy `git reset --mixed origin/master` (przesuwa
+porównaj treść na dysku z `origin/dev` plik po pliku (`git hash-object`
+kontra `git ls-tree -r origin/dev`). Jeśli wszystko się zgadza, naprawa nie
+wymaga `reset --hard` — wystarczy `git reset --mixed origin/dev` (przesuwa
 HEAD i indeks, plików nie rusza), a potem `git checkout -- .devcontainer/`.
 
 Zdarzyło się to 2026-08-15 (58 commitów w plecy, 151 plików rzekomo zmienionych,

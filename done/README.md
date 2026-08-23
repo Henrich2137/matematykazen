@@ -40,6 +40,11 @@ Do szukania używaj najpierw tego indeksu (tagi niżej), potem grepa po konkretn
 
 
 == 04-biezace.md — partia OTWARTA (2026-07-27 → ?) ==
+- 2026-08-24 (Opus 5, medium): trzy punkty „DO ZROBIENIA HOŚCIE": origin/master → origin/dev
+  w .devcontainer/README.md, matematykazen.pl (i www) wpuszczona w init-firewall.sh mimo anycastu
+  Cloudflare, przegląd repo pod kątem dwóch gałęzi; naprawiony zwisający origin/HEAD wskazujący
+  na skasowanego mastera, potwierdzone na żywo, że domena serwuje main, a Pages dev
+  [host, devcontainer, firewall, galezie, dev, main, cloudflare, hosting]
 - 2026-08-22 (Opus 5, medium) — repo przygotowane pod hosting Cloudflare: wrangler.jsonc, .assetsignore,
   _headers, 404.html i test tools/sprawdz-cloudflare.py; pierwsze wdrożenie padło na wysyłanym katalogu .git
   [cloudflare, hosting, wrangler, wdrozenie]

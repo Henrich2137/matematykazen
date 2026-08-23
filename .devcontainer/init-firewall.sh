@@ -97,8 +97,6 @@ done < <(echo "$gh_ranges" | jq -r '(.web + .api + .git)[]' | aggregate -q)
 # - github.io / GitHub Pages — już przepuszczone przez zakres 185.199.108.0/22
 #   z api.github.com/meta (pole .web). Dopisanie pola .pages nie zmienia ani
 #   jednego wpisu w ipsecie — sprawdzone 2026-08-09.
-# - matematykazen.pl — domena jeszcze nie istnieje w DNS, więc dopisanie jej
-#   dziś = pewny `exit 1` i zablokowana sesja. Dodać dopiero, gdy ruszy.
 # - formspree.io — anycast Cloudflare. Filtrujemy po IP, nie po SNI, więc
 #   wpuszczenie tych adresów otwiera kawałek współdzielonej infrastruktury.
 #   Formularz zgłoszeń i tak testuje się w przeglądarce na hoście.
@@ -121,10 +119,18 @@ CONTENT_DOMAINS=(
     "ore.edu.pl"      # Ośrodek Rozwoju Edukacji — podstawa programowa
     "men.gov.pl"      # rozporządzenia, komunikaty o formule egzaminu
 
-    # ODKOMENTUJ, GDY matematykazen.pl RUSZY. Dziś domena nie istnieje w DNS.
-    # Siedzi na liście treściowej, więc nie wywaliłaby skryptu (dostałaby tylko
-    # ostrzeżenie), ale wisiałby tu martwy wpis mylący przy każdej diagnozie.
-    # "matematykazen.pl"
+    # Własna strona pod domeną (Cloudflare, gałąź main). Dodana 2026-08-24,
+    # gdy domena ruszyła. Oba warianty adresu wskazują na te same dwa adresy
+    # (104.21.63.231, 172.67.172.150), więc wpis z www jest redundantny;
+    # trzymany tak samo jak przy cke.gov.pl.
+    #
+    # UWAGA, świadomy kompromis: to anycast Cloudflare, czyli adresy
+    # współdzielone z tysiącami cudzych stron. Filtrujemy po IP, nie po SNI,
+    # więc ten wpis otwiera kawałek wspólnej infrastruktury. To ten sam powód,
+    # dla którego formspree.io leży niżej, wśród odrzuconych. Wpuszczone mimo
+    # to, bo inaczej z kontenera nie widać własnej produkcji.
+    "matematykazen.pl"
+    "www.matematykazen.pl"
 
     # KANDYDACI — bezpieczni, ale niepotrzebni na dziś. Każdy ma własny,
     # pojedynczy adres IP, więc odkomentowanie wpuszcza dokładnie ten serwer
