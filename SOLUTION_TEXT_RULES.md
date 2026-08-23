@@ -38,7 +38,10 @@ jednym torem.
   wtedy nad rachunkiem, wyśrodkowany przez `\[ … \]`, a pod nim idą same linijki.
   Wzorce: zad. 5, 6 i 8 z 2024-grudnia.
 - **Dwie kolumny** (`<div class="rozw-2kol">`), gdy wzorów jest kilka i każdy należy do
-  innej linijki. Wzorce: zad. 2, 3 i 4.
+  innej linijki, a rachunek jest na tyle szeroki, że wzór dopisany pod nim rozbiłby czytanie.
+  Wzorce: zad. 2, 3 i 4. Ten układ jest **chciany**, nie tymczasowy (Henrich, 2026-08-23,
+  na zad. 2 z 2024-grudnia): nie spłaszczaj go do jednej kolumny tylko po to, żeby wszystko
+  szło jedno pod drugim. Linijki rachunku i tak stoją jedna pod drugą, wzory jadą obok nich.
 - **Dwa tory** (`<div class="rozw-2kol rozw-dwatory">`), gdy zadanie każe policzyć dwie
   rzeczy niezależnie, a dopiero na końcu je połączyć: rachunki idą obok siebie, a wiersze
   wspólne (dane na starcie, wynik na końcu, odpowiedź) dostają `rozw-pelny` i rozpinają się

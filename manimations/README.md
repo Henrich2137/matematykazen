@@ -13,7 +13,15 @@ Manim, ffmpeg i minimalny TeX Live siedzą w obrazie kontenera (blok w `.devcont
 - LaTeX to TeX Live w minimalnym zestawie z dokumentacji Manima (~1–1,5 GB), a nie `texlive-full` — pokrywa to, czego używają istniejące sceny. Gdyby render zgłosił brakujący plik `.sty`, dopisuje się konkretny pakiet w Dockerfile.
 - Instalacja nie wymaga wyjątku w firewallu (`pypi.org` jest poza allowlistą): obraz buduje się, zanim host nałoży firewall, a po starcie kontenera Manim nic już nie pobiera.
 - Przypięty jest **tylko sam Manim**. Zależności pod spodem instalują się w najnowszych wersjach (sprawdzone 2026-08-11: `ManimPango 0.6.1`, `numpy 2.4.6`, `Pillow 12.3.0`, ffmpeg **5.1.9** z Debiana 12). Dawny host Henricha miał inne (`0.6.0` / `2.2.1` / `11.0.0`, ffmpeg 7.1) i mimo to dawał ten sam obraz - patrz porównanie niżej.
-- **Nie podawaj flagi jakości** (`-ql`/`-qh` itd.). Flaga jakości nadpisuje `pixel_width`/`pixel_height` z `manim.cfg`, a wraz z rozdzielczością zmieniają się **proporcje kadru**: `-qh` daje 1920×1080 (16:9) zamiast 840×360 (21:9), czyli inne rozmieszczenie wzorów w kadrze niż w plikach już wgranych na stronę. Samo `manim plik.py Scena` czyta `manim.cfg` i trafia w 840×360 @ 60 fps.
+- **Nie podawaj flagi jakości** (`-ql`/`-qh` itd.). Flaga jakości nadpisuje `pixel_width`/`pixel_height` z `manim.cfg`, a wraz z rozdzielczością zmieniają się **proporcje kadru**, czyli rozmieszczenie wzorów wychodzi inne niż w plikach już wgranych na stronę. Samo `manim plik.py Scena` czyta `manim.cfg` i trafia w obowiązujące **1280×720 @ 120 fps** (16:9). Porównanie host ↔ kontener niżej robione było jeszcze na starym kadrze 840×360 @ 60 fps (21:9), sprzed zmiany z 2026-08-11.
+
+#### Parametry renderu i waga plików
+
+`manim.cfg`: **1280×720, 120 fps, tło białe.** Powody, żeby nikt tego nie „poprawił":
+
+- 1280 pokrywa telefon przy gęstości pikseli 3 (potrzeba 900 px) i komputer przy 2 (840 px). Problemem starego kadru 840×360 nie była liczba pikseli, tylko kształt: na telefonie film dostawał 129 px wysokości.
+- 120 fps to **zapas pod spowolnienie**, nie płynność przy 1×. Spowolnienie nie dorysowuje klatek, tylko trzyma je dłużej, więc materiał 60 fps przy 0,25× wygląda jak 15 fps, a to właśnie ten tryb służy przyglądaniu się przekształceniu.
+- Waga jest bez znaczenia: krok trwający 1 do 2 s waży 17 do 67 kB. Przejście z 840×360/60 na 1280×720/120 dało około dwóch razy więcej, nie dziesięciu.
 
 #### Porównanie host ↔ kontener (zrobione 2026-08-11) — ✅ zgodne
 
@@ -50,11 +58,25 @@ Wniosek: kontener nadaje się także do **finalnych** renderów, nie tylko do po
 - `self.wait(0.25)` na końcu KAŻDEJ sekcji (punkt 0 wyżej) i **zawsze przed** `self.clear()`/`self.remove()`. Przytrzymanie po wyczyszczeniu sceny trzyma białą planszę — i to ona zostaje uczniowi na ekranie. Złapane porównaniem SSIM z wgranym plikiem (krok 2 zad. 2 wypadał 0,9967 zamiast 1,0).
 - Wspólne skalowanie kroków pod kadr 16:9: jeden współczynnik liczony z najszerszego kroku (`MARGINES = 0.85`), a nie dopasowanie każdego kroku osobno — inaczej litery zmieniają rozmiar w trakcie przekształcenia i `Transform` robi z tego zoom. Wzorzec jest w każdej z czterech scen.
 3. Skopiować pocięte pliki do `matura/<sheet-id>/media/zadN/solution-step-by-step/` pod nazwami `stepM.mp4` (nazwy lowercase, patrz CLAUDE.md). Zmiana z 2026-08-11: wcześniej leżały płasko jako `zadNrozw_stepM.mp4`.
-4. Wygenerować rewersy: `tools/rewersy.sh matura/<sheet-id>/media/zadN/solution-step-by-step`. Robi to ffmpeg z gotowych plików, nie Manim — przycisk ◄ w odtwarzaczu odtwarza `stepMreverse.mp4`. Pułapki (m.in. konieczne przytrzymanie na końcu rewersu) opisuje [issues/krok-po-kroku-produkcja.md](../issues/krok-po-kroku-produkcja.md).
+4. Wygenerować rewersy: `tools/rewersy.sh matura/<sheet-id>/media/zadN/solution-step-by-step`. Przycisk ◄ w odtwarzaczu odtwarza `stepMreverse.mp4`. Rewersu **nie renderuje Manim**, powstaje z gotowego pliku jedną linijką ffmpega, więc nie może się z nim rozjechać:
+
+   ```
+   ffmpeg -i stepN.mp4 -vf "reverse,tpad=stop_mode=clone:stop_duration=0.25" -an stepNreverse.mp4
+   ```
+
+   Trzy rzeczy, które przy tym wybuchną, jeśli się o nich nie pomyśli:
+
+   - **Przytrzymanie stanu końcowego ląduje na POCZĄTKU rewersu.** Odwrócenie zamienia końce miejscami, więc 0,25 s bezruchu z końca kroku staje się bezruchem na starcie cofki, a rewers kończy się dokładnie w tej klatce, której przeglądarka nie zdąży namalować (punkt 0 wyżej). Załatwia to `tpad`: klonuje ostatnią klatkę rewersu przez 0,25 s, więc przytrzymanie jest po obu stronach bez dotykania scen.
+   - **`-an` jest istotne.** Pliki nie mają dźwięku, a bez tej flagi ffmpeg potrafi dołożyć pustą ścieżkę i niepotrzebnie zwiększyć wagę.
+   - **Nazwy są sztywne**: `stepN.mp4` obok `stepNreverse.mp4`, w katalogu `solution-step-by-step/`. Odtwarzacz nie czyta nazwy rewersu z danych, tylko dokłada `reverse` przed rozszerzeniem, więc `exercises.json` wymienia wyłącznie plik w przód.
+
+   Zmierzone po pierwszym przebiegu (23 kroki): rewers ma dokładnie tyle klatek co oryginał plus 0,25 s (15 przy 60 fps, 30 przy 120), a SSIM końca kroku wobec startu rewersu i startu kroku wobec końca rewersu wynosi ≥ 0,9994, przy szumie samej kompresji rzędu 0,9996. Rewers kroku 1 kończy się pustym kadrem, bo krok 1 rysuje działanie od zera; dlatego z pierwszej kropki cofać się nie da (decyzja Henricha).
+
+**`manimations/` zostaje na wierzchu repo**, a nie w katalogu arkusza (decyzja Henricha, 2026-08-11): produkcja ma być oddzielona od statycznej strony, żeby hosting nie ciągnął za sobą źródeł animacji. Gotowe pliki idą wyłącznie do `matura/<sheet-id>/media/zadN/solution-step-by-step/`; wcześniej leżały płasko jako `zadNrozw_stepM.mp4` i mieszały się z rysunkami zadania.
 
 `media/` w tym folderze to cache Manim (Tex/svg, obrazy, wideo pośrednie) — odtwarzalny z plików `.py`, dlatego wyklucza go `manimations/.gitignore`.
 
-5. Obejrzeć wynik na stronie **wyłącznie przez `node tools/serwer.js 8000`**. `python3 -m http.server` **nie nadaje się do pracy nad wideo**: nie obsługuje żądań zakresowych (`Range`), a bez nich przeglądarka nie potrafi przewinąć filmu — `video.seekable` zostaje pusty, a każde ustawienie `currentTime` cicho wraca do zera. Wygląda to jak błąd w kodzie odtwarzacza i raz już nim nie było (2026-08-11, sporo straconego czasu). Sprawdzian: `curl -s -o /dev/null -w "%{http_code}\n" -r 0-100 <url filmu>` ma zwrócić **206**, nie 200.
+5. Obejrzeć wynik na stronie **wyłącznie przez `node tools/serwer.js 8000`**. `python3 -m http.server` **nie nadaje się do pracy nad wideo**: nie obsługuje żądań zakresowych (`Range`), a bez nich przeglądarka nie potrafi przewinąć filmu — `video.seekable` zostaje pusty, a każde ustawienie `currentTime` cicho wraca do zera. Wygląda to jak błąd w kodzie odtwarzacza i raz już nim nie było (2026-08-11, sporo straconego czasu). Sprawdzian: `curl -s -o /dev/null -w "%{http_code}\n" -r 0-100 <url filmu>` ma zwrócić **206**, nie 200. Pozostałe pułapki podglądu (zrzut ekranu potrafi przy wideo pokazać co innego niż jest w pliku, gubienie klatek przy 4×, jak porównywać wiarygodnie) zebrane są w [issues/rozwiazanie-krok-po-kroku-odtwarzacz.md](../issues/rozwiazanie-krok-po-kroku-odtwarzacz.md).
 
 ## Jak ma wyglądać animacja (zasady Henricha, 2026-08-12)
 
@@ -83,6 +105,10 @@ na gotowym pliku, a nie po samym „wyrenderowało się bez błędu".**
 Też zasady Henricha (2026-08-12). Priorytetem jest to, żeby uczeń zrozumiał, a nie żeby
 zapis był formalnie poprawny.
 
+- **Opis to wzór plus wyjaśnienie słowne, nie powtórka rachunku** (Henrich, 2026-08-23,
+  potwierdzone na zad. 2 z 2024-grudnia). Pod filmem ma stać zdanie, dlaczego wolno tak
+  przekształcić, i wzór z tablicy w osobnym wierszu. Samych obliczeń nie przepisujemy,
+  bo widać je w kadrze.
 - **Nie opisuj słowami tego, co widać na filmie.** „Zaczynamy od równania z wartością
   bezwzględną: \(|x+4|=7\)" nie mówi nic ponad obraz. Wystarczy „Zapisujemy \(|x+4|=7\)".
 - **Tłumacz to, co naprawdę wymaga tłumaczenia, ale po ludzku.** Nie „wyrażenie pod modułem
@@ -159,24 +185,31 @@ Twarde reguły. Przed renderem przeczytaj, po renderze sprawdź.
     mnożenia; nie wygaszamy go, dokładając obok nową kropkę (Henrich, 2026-08-21).
 16. **Co nie zmienia formy, ma się PRZESUWAĆ, nie morfować.** Podstawa potęgi ma dojechać
     na miejsce, a nie przelać się w inną podstawę.
-17. **Pary wskazuj ręcznie, co do glifu.** Bez `TransformMatchingShapes` na dłuższych
+17. **Nie przewoź znaku między miejscami, które nic ze sobą nie mają** (Henrich, 2026-08-23,
+    na zad. 2, krok 3). Jedynka z licznika ułamka nie ma jechać do wykładnika: uczeń widzi
+    lot przez pół kadru i nie wie, co się właściwie stało. Brakujące ogniwo dopisz jawnie
+    i rozbij ruch na dwie animacje w tym samym kroku: najpierw pojawia się to, czego dotąd
+    nie było widać (tu zielona jedynka jako wykładnik piątki w mianowniku), dopiero potem
+    ten sam znak jedzie na miejsce docelowe, a to, co przestaje być potrzebne, znika w tym
+    samym ruchu (tu „1/" gaśnie, a w wykładniku pojawia się minus).
+18. **Pary wskazuj ręcznie, co do glifu.** Bez `TransformMatchingShapes` na dłuższych
     wyrażeniach: paruje kształty po podobieństwie i wysyła cyfry nie tam, gdzie idą w rachunku.
-18. **Stany pisz jako `MathTex` pocięty na CZĘŚCI** (osobno podstawa, wykładnik, kropka,
+19. **Stany pisz jako `MathTex` pocięty na CZĘŚCI** (osobno podstawa, wykładnik, kropka,
     nawiasy). Wtedy parę wskazujesz czytelnym indeksem części, a nie zgadywanym numerem glifu.
-19. **Mapę glifów policz, nie zgaduj.** Wyrenderuj podgląd, w którym każdy glif ma inny kolor
+20. **Mapę glifów policz, nie zgaduj.** Wyrenderuj podgląd, w którym każdy glif ma inny kolor
     i numer, i wpisz mapę w komentarz na górze sceny (wzorzec: `solutionZad2.py`).
-20. **Pojawia się tylko to, czego wcześniej nie było** (nowy nawias, nowa kropka).
+21. **Pojawia się tylko to, czego wcześniej nie było** (nowy nawias, nowa kropka).
     Reszta ma skądś przylecieć.
 
 ### Po renderze
 
-21. `tools/wgraj-kroki.sh <nr> <arkusz>` robi render, kopię, rewersy i styk klatek jedną komendą.
+22. `tools/wgraj-kroki.sh <nr> <arkusz>` robi render, kopię, rewersy i styk klatek jedną komendą.
     **Rewersy przelicza od nowa**, bo po przerenderowaniu stare pokazują poprzednią animację.
-22. **Styk klatek musi przejść** (`tools/styk-klatek.sh`, wchodzi w skład powyższego).
-23. **Puść `tools/test-krokow.js`** na zadaniu, które ruszałeś.
-24. **Obejrzyj klatki okiem**: pierwszą, po zapaleniu koloru, w połowie ruchu i ostatnią.
+23. **Styk klatek musi przejść** (`tools/styk-klatek.sh`, wchodzi w skład powyższego).
+24. **Puść `tools/test-krokow.js`** na zadaniu, które ruszałeś.
+25. **Obejrzyj klatki okiem**: pierwszą, po zapaleniu koloru, w połowie ruchu i ostatnią.
     „Wyrenderowało się bez błędu" nic nie znaczy.
-25. Sprawdzian koloru na sucho: pierwsza i ostatnia klatka każdego kroku mają mieć **zero**
+26. Sprawdzian koloru na sucho: pierwsza i ostatnia klatka każdego kroku mają mieć **zero**
     zielonych pikseli, środek ma mieć ich sporo. Sam zero na końcu **nie wystarcza**, bo cięcie
     i tak obcina obraz na czystym stanie. Policz zielone piksele w CAŁYM kroku, klatka po
     klatce, i popatrz na krzywą: ma zjechać do zera jednym ruchem. Zatrzymanie się na małej,

@@ -63,6 +63,21 @@ const { chromium } = require('playwright');
 
 `playwright` jest zainstalowany globalnie (`NPM_CONFIG_PREFIX=/usr/local/share/npm-global`), więc `require('playwright')` z katalogu repo może wymagać `NODE_PATH=/usr/local/share/npm-global/lib/node_modules`.
 
+## Pułapki przy pisaniu skryptu pod TĘ stronę
+
+Trzy rzeczy, na których traci czas każdy, kto pisze skrypt pierwszy raz:
+
+- **Pierwszy `.exercise-container` w DOM to ukryty szablon.** Bierz
+  `.exercise-container:not(#exercise-template)`, inaczej czekasz w nieskończoność na coś,
+  co nigdy nie stanie się widoczne.
+- **Przed kliknięciem w płótno widżetu albo w kropki kroków zrób `scrollIntoViewIfNeeded()`.**
+  `page.mouse` klika we współrzędnych okna, więc kliknięcie w element poniżej zgięcia idzie
+  w powietrze, a widżet wygląda na zepsuty, choć działa.
+- **Błędy KaTeXa licz przez `page.locator('.katex-error').count()`**, ma wyjść 0. Sam brak
+  wyjątku w konsoli niczego nie dowodzi, bo `renderMath` ma `throwOnError: false`.
+
+Do zwykłych zrzutów całej strony jest gotowe `tools/zrzuty.js`, nie pisz własnego skryptu.
+
 ## Błąd w konsoli, który zawsze będzie i nic nie znaczy
 
 Każde wejście na stronę z kontenera zostawia w konsoli:

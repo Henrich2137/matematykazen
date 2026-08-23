@@ -1,9 +1,10 @@
 # Przekazanie pracy: pilotaż Fable na 2026-maj (stan po v47, 2026-08-15)
 
 Notatka sztafetowa: Fable kończył sesję z małym zapasem limitu, ten plik pozwala
-dokończyć robotę innemu modelowi bez czytania całej rozmowy. Punkt wejścia dla
-świeżej sesji: [fable-brief-2026-maj.md](fable-brief-2026-maj.md) (zasady tam
-opisane nadal obowiązują), potem ten plik.
+dokończyć robotę innemu modelowi bez czytania całej rozmowy. Brief tamtego pilotażu
+(`fable-brief-2026-maj.md`) został skasowany 2026-08-23 jako jednorazowy; trwałe zasady
+z niego siedzą dziś w [widgets/PROJEKTOWANIE.md](../widgets/PROJEKTOWANIE.md),
+[COLORS.md](../COLORS.md) i `CLAUDE.md`.
 
 ## Co jest zrobione (wszystko zacommitowane i wypchnięte)
 

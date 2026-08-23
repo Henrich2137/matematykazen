@@ -176,7 +176,7 @@ function czyZegarWidoczny() {
 // Etykiety mają KROPKĘ dziesiętną, nie przecinek: data-stany rozdziela stany
 // przecinkiem, więc „0,25×" rozpadłoby się na dwa stany („0" i „25×").
 // Decyzja Henricha: wtedy kropka i tyle, bez kombinowania z separatorem.
-// UWAGA z pomiarów (issues/krok-po-kroku-produkcja.md): przy 4× dekoder gubi
+// UWAGA z pomiarów (issues/rozwiazanie-krok-po-kroku-odtwarzacz.md): przy 4× dekoder gubi
 // część klatek materiału 120 fps i obraz jest skokowy — to tryb „przewiń",
 // nie „oglądaj".
 const KLUCZ_PREDKOSC_WIDEO = "matematykazen-predkosc-wideo";

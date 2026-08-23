@@ -71,9 +71,7 @@ Rysunki z arkusza są wycięte i wstawione we wszystkie zadania, które ich wyma
     - Branche - hostingi - domeny DONE
         - main - Cloudflare - matematykazen.pl
         - dev - GitHub Pages - https://henrich2137.github.io/matematykazen/
-    - 2 doszlifowane arkusze maturalne
-    - Aplikacja-wrapper?
-    - "wyczyszczenie" repo aby friendly dla ludzi którz se je pobiorą
+    - 2 doszlifowane arkusze maturalne - 2026-maj i 2024-grudzien
     
 Cel: zdobyć zainteresowanie i sprawdzić, czy projekt przyjmie się w społeczności.
 
@@ -89,6 +87,8 @@ Cel: zdobyć zainteresowanie i sprawdzić, czy projekt przyjmie się w społeczn
     - Paywall. 75% Rozwiązań interaktywnych oraz autorskie arkusze za abonamentem
     - Baza danych z prawdziwego zdarzenia
     - Dotacje i tak można odpalić (np. suppi.pl)
+    - Aplikacja-wrapper?
+    - "wyczyszczenie" repo aby friendly dla ludzi którz se je pobiorą
 
 
 ## Licencja

@@ -40,6 +40,19 @@ Do szukania używaj najpierw tego indeksu (tagi niżej), potem grepa po konkretn
 
 
 == 04-biezace.md — partia OTWARTA (2026-07-27 → ?) ==
+- 2026-08-22 (Opus 5, medium) — repo przygotowane pod hosting Cloudflare: wrangler.jsonc, .assetsignore,
+  _headers, 404.html i test tools/sprawdz-cloudflare.py; pierwsze wdrożenie padło na wysyłanym katalogu .git
+  [cloudflare, hosting, wrangler, wdrozenie]
+- 2026-08-23 (Opus 5, medium) — porządki w dokumentacji: issues/krok-po-kroku-produkcja.md rozdzielony
+  między manimations/README.md (produkcja filmu) i nowy issues/rozwiazanie-krok-po-kroku-odtwarzacz.md
+  (odtwarzacz na stronie); issues/lekcje-z-sesji.md → sekcja „Przypuszczenie to nie ustalenie" w CLAUDE.md;
+  issues/fable-brief-2026-maj.md rozebrany na playwright-podglad.md i dwie poprawki w ARCHITECTURE.md.
+  Trzy pliki skasowane, odnośniki przepięte
+  [dokumentacja, issues, porzadki, krok-po-kroku, playwright, manim]
+- 2026-08-23 (Opus 5, medium) — zasady opisu kroków (wzór plus wyjaśnienie, bez przepisywania rachunku)
+  i układu dwukolumnowego rozwiązania zwykłego spisane na zad. 2 z 2024-grudnia; nowa zasada ruchu:
+  nie przewozi się znaku między miejscami, które nic ze sobą nie mają
+  [zasady, opisy-krokow, solutionText, rozw-2kol, zad2, 2024-grudzien]
 - 2026-08-13 (Henrich — testy) — odbiór v22/v23/v26/v28 odtwarzacza: sterowanie ◄ ► potwierdzone
   w komplecie, sekcje testowe skasowane z TODO.md; niedziałające pulsowanie i prefetch plus trzy nowe
   zamówienia (waity w filmach, większe ◄ ►, crash przy spamowaniu next-step) wróciły do DO ZROBIENIA

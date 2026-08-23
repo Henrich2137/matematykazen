@@ -31,8 +31,8 @@ Rewersy są gotowe dla wszystkich trzech zadań, więc ◄ ma czym cofać.
   - Panel boczny → „Prędkość filmów": ¼× ½× 1× 2× 4× (zapisane jako ułamki, bo
     lista stanów rozdziela przecinkiem i „0,25×" rozpadłoby się na dwa). Zmiana
     działa od razu na odtwarzanym filmie. Przy 4× obraz skokowy — zmierzone i
-    zaakceptowane, patrz sekcja „Odtwarzanie z prędkością 4×" w
-    issues/krok-po-kroku-produkcja.md.
+    zaakceptowane, patrz sekcja „Odtwarzanie 4× gubi klatki" w
+    issues/rozwiazanie-krok-po-kroku-odtwarzacz.md.
   - Telefon: przesunięcie palcem w lewo/prawo = następny/poprzedni krok.
     Desktop: strzałki ← →.
   - Zad. 1 ma 10 kropek, zad. 3 ma 9 → strzałeczki ‹ › po bokach paska kropek
@@ -83,5 +83,5 @@ i rewersów, dodanych dopiero w v20 wyżej.
   3. jeśli scena/dane rzeczywiście mają błąd, poprawić — jeśli to była tylko
      pomyłka w opisie/TODO, brak zmian w kodzie, tylko odnotować.
   Related: pułapka przytrzymania stanu końcowego opisana w
-  issues/krok-po-kroku-produkcja.md („Krok musi kończyć się self.wait(0.25)")
+  manimations/README.md (punkt 0 workflow, „każdy krok musi kończyć się self.wait(0.25)")
   — to na niej opierało się pierwotne stwierdzenie o widoczności wykładnika.

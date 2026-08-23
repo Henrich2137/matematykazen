@@ -16,7 +16,7 @@
 # przytrzymanie stanu końcowego (self.wait na końcu sceny) ląduje na POCZĄTKU
 # rewersu, a rewers kończy się klatką, której przeglądarka nie zdąży namalować —
 # po cofnięciu na ekranie zostałby niepełny obraz. `tpad` doklinia z powrotem
-# ćwierć sekundy bezruchu na końcu. Szczegóły: issues/krok-po-kroku-produkcja.md.
+# ćwierć sekundy bezruchu na końcu. Szczegóły: manimations/README.md, punkt 4 workflow.
 
 set -euo pipefail
 

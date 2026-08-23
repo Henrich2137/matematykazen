@@ -1,5 +1,74 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-23] (Opus 5, medium) Porządki w dokumentacji: trzy pliki z issues/
+rozebrane na części i skasowane, treść trafiła tam, gdzie się jej szuka.
+[dokumentacja, issues, porzadki, krok-po-kroku, playwright, manim]
+
+Powód: te same rzeczy leżały w dwóch miejscach naraz, a część zdążyła się zdezaktualizować.
+
+- `issues/krok-po-kroku-produkcja.md` (198 linii) → rozdzielony. Produkcja filmu (parametry
+  renderu 1280x720/120 fps z uzasadnieniem, pełny przepis na rewersy z `tpad` i `-an`,
+  decyzja o `manimations/` na wierzchu repo) poszła do `manimations/README.md`. Odtwarzacz
+  na stronie (serwer bez obsługi Range, gubienie klatek przy 4x, jak weryfikować wideo,
+  żeby zrzut ekranu nie skłamał) poszedł do nowego `issues/rozwiazanie-krok-po-kroku-odtwarzacz.md`.
+  Wyrzucone jako martwe: tabelka numerów linii do ręcznego cięcia sceny (zastąpił ją
+  `tools/wgraj-kroki.sh`) i plan paska postępu między kropkami (zrobiony w v27).
+  Przy okazji poprawione: `manimations/README.md` twierdził, że `manim.cfg` daje
+  840x360 @ 60 fps, a daje 1280x720 @ 120 od 2026-08-11.
+- `issues/lekcje-z-sesji.md` (112 linii, jeden wpis) → cztery reguły o odróżnianiu
+  zmierzonego od prawdopodobnego przeniesione do `CLAUDE.md` jako sekcja „Przypuszczenie
+  to nie ustalenie". Pomiary host↔kontener, których wpis dotyczył, i tak już siedziały
+  w `manimations/README.md`.
+- `issues/fable-brief-2026-maj.md` (219 linii) → brief jednorazowego pilotażu, w większości
+  nieaktualny (v40, „arkusz prawie pusty", ścieżka `widgets/_registry.js`). Uratowane trzy
+  rzeczy: pułapki pisania skryptów Playwrighta pod tę stronę → `issues/playwright-podglad.md`;
+  kroki typu `"text"` nie działają (renderer zna tylko `video` i `image`) → poprawka
+  nieprawdziwego zdania w `ARCHITECTURE.md`; brak pola z numerem zadania w danych →
+  nowy punkt w schemacie w `ARCHITECTURE.md`. Zasady widżetów i kolorów były już
+  w `widgets/PROJEKTOWANIE.md` i `COLORS.md`.
+
+Odnośniki przepięte wszędzie, gdzie żyją: `CLAUDE.md`, `ARCHITECTURE.md`,
+`manimations/README.md`, `issues/README.md`, `issues/krok-po-kroku-v20-testy.md`,
+`issues/fable-przekazanie-2026-maj.md`, a także w kodzie: `app/state.js` i `tools/rewersy.sh`.
+Wzmianki w starych wpisach `done/` zostały nietknięte, bo są zapisem tego, co było wtedy.
+Sprawdzone skryptem: żaden odnośnik `.md` w plikach poza `done/` nie prowadzi w pustkę.
+
+[ZROBIONE 2026-08-23] (Opus 5, medium) Zasady opisu kroków i układu rozwiązania zwykłego
+doprecyzowane na zad. 2 z 2024-grudnia; nieaktualny wpis z TODO.md usunięty.
+[zasady, opisy-krokow, solutionText, rozw-2kol, zad2, 2024-grudzien]
+
+Wpis w TODO.md („podpisy pod krokami jedno pod drugim, wywal czyli" oraz „rozwiązanie zwykłe
+jedno pod drugim zamiast dwóch kolumn") pochodził sprzed przerobienia zadania 2 i mówił coś
+innego, niż Henrich chce dzisiaj. Obowiązujące zasady:
+
+- opis kroku to wzór plus wyjaśnienie słowne; obliczeń widocznych w kadrze się nie przepisuje;
+- dwie kolumny w rozwiązaniu zwykłym są układem chcianym, gdy wzorów jest kilka, a rachunek
+  jest szeroki. Nie spłaszcza się ich do jednej kolumny.
+
+Samo zadanie 2 spełnia obie zasady od v67, więc exercises.json i scena zostały bez zmian.
+Otwarta zostaje jedna poprawka, wpisana przez Henricha do TODO.md: w kroku 3 filmu jedynka
+przejeżdża dziś z licznika ułamka do wykładnika, a to dla ucznia dwa niepowiązane miejsca.
+Ma to iść dwiema animacjami (najpierw zielona jedynka pojawia się jako wykładnik piątki
+w mianowniku, potem ta sama jedynka jedzie na nowy wykładnik, a w tym czasie znika „1/"
+i pojawia się minus).
+Zapisane w: manimations/README.md (sekcja „Jak pisać opisy kroków", nowy punkt na górze
+listy) i SOLUTION_TEXT_RULES.md (sekcja „Który układ wybrać", punkt o dwóch kolumnach).
+
+[ZROBIONE 2026-08-22] (Opus 5, medium) Repo przygotowane pod hosting Cloudflare.
+[cloudflare, hosting, wrangler, wdrozenie]
+
+Cztery pliki w korzeniu: `wrangler.jsonc` (ustawienia wdrożenia), `.assetsignore` (czego
+nie wysyłać), `_headers` (nagłówki HTTP), `404.html` (własna strona błędu, działa też na
+GitHub Pages). Do tego test `tools/sprawdz-cloudflare.py`: pilnuje limitu 25 MiB na plik
+i tego, żeby `.assetsignore` nie wyciął czegoś, bez czego strona się sypie.
+
+Pierwsze wdrożenie padło, bo automat wysyłał na hosting katalog `.git`. Po poprawce
+przechodzi, sprawdzone prawdziwym wranglerem. Mechanika, czyli dlaczego Worker zamiast
+Pages i czego odsiewać nie wolno: `issues/cloudflare-hosting.md`.
+
+Zostaje jako otwarte, w TODO.md w „INNE NOTATKI": dwa adresy z tą samą treścią (Pages
+i domena) są dla wyszukiwarek duplikatem, więc kiedyś trzeba wskazać główny.
+
 [ZROBIONE 2026-08-22] (Opus 5, medium) Domena matematykazen.pl działa na Cloudflare,
 a repo dostało dwie gałęzie: dev (GitHub Pages) i main (domena).
 [cloudflare, hosting, domena, git, galezie, dev, main]
@@ -23,6 +92,8 @@ na Pages.
 
 Zasada od Henricha, spisana w CLAUDE.md: **„push" bez dopowiedzenia zawsze znaczy `dev`**.
 Na `main` idzie tylko to, o czym powie wprost, że ma być widoczne publicznie dla użytkowników.
+Praktyczny skutek: numer wersji w rogu strony mówi też, którą z dwóch witryn się właśnie
+ogląda, bo `main` bywa kilka commitów za `dev`.
 
 Udokumentowane w: CLAUDE.md (sekcja Git przepisana, sekcja Hosting z tabelką adresów),
 issues/cloudflare-hosting.md (stan domeny, kto jedzie z której gałęzi, pułapka z curlem),

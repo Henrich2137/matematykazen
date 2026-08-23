@@ -3,13 +3,14 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.     
-  
-  - Zrobić wszędzie i udokumentować testowe podbicie stronki
 
   - 2024-grudzień
     - Zad 2
-      - Rozwiązania krok po kroku - Podpisy pod krokami zmień tak aby zastosowanie wzoru było napisane tak samo jak wzór jedno po d drugim. Wywal słowo czyli.
-      - Rozwiązania zwykłe - sformatuj podobnie jak w powyższym punkcie i/lub w zadaniach 2026-maj. Kolejne wyrażenia mają być jedno pod drugim, zamiast ciągu z lewej do prawej
+      - Rozwiązanie krok po kroku - Przerenderować krok 3 tak aby jedynka nie przemiszczała się z licznika do mianownika, to nie ma nic wspólnego. Zrób zamiast tego 2 animacje
+        - Pojawienie się zielonej 1 w wykładniuku 5 w mianowniku. 
+        - To ta zielona jedynka ma się przemieścić do nowego wykładnika. W międzyczasie 1/ ma zniknąć a minus ma się pojawić w wykładniku.
+    - Zad 8
+      - Rozwiązanie krok po kroku - Napisz od nowa scenariusz tak aby się zgadzał z rozwiązanie mzwykłym i popraw wszystkei kroki wg zasad i tego ja ksą wykonane poprzednie zadania (1-7)
 
 
 
@@ -30,11 +31,10 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
 
 + NIE REALIZUJ, CZEKAJĄ W KOLEJCE:
 
-  - Rozwiązanie krok po kroku:
-    - Zad. 1, kropki kroków: przy większej liczbie kroków niż mieści pasek ma być można
-      przewijać (dziś sprawdzone tylko dla dziesięciu, które mieszczą się bez przewijania)
-      - kropki są na granicy wygody dla kciuka na telefonie — rozważyć lekkie powiększenie
-        (w v31 zrobione tylko marginesy boczne, rozmiar bez zmian)
+
+
+
+    - Rozwiązania krok po kroku - kropki kroków (np w zad 1.) przy szerokości okna około 310 do 325 px już się chowają, a strzałki przewijania jeszcze się nie pokazują, więc w tym wąskim zakresie nie da się przejść do innego kroku. Poza tym zakresem przewijanie działa
 
   - to samo do decyzji z „finalAnswer.label": renderer je ignoruje (świadomie, od 2026-08-06),
     a pole nadal siedzi w danych wszystkich arkuszy
@@ -76,6 +76,8 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
 
 
 + INNE NOTATKI, DO PRZEKMINIENIA:
+
+  - dwa adresy z tą samą treścią (GitHub Pages i domena) to dla wyszukiwarek duplikat. Nie pali się, ale przy marketingu warto zdecydować, który jest tym głównym
 
   - Arkusz 2026-maj
     - treść zadań ✅
@@ -317,23 +319,12 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
     - reszta zadań 2024-grudnia czeka na przeniesienie na ten sam układ (klasa .rozw-2kol, opis w ARCHITECTURE_CSS.md)
 
     - zad. 8 z 2024-grudnia: rozwiązanie zwykłe napisane od nowa (sześć linijek plus założenie i wniosek), ale FILM zostal stary i się z nim nie zgadza. Henrich: obecne krok po kroku jest słabe i ma być zmienione. Do przerobienia sceny pod te sześć linijek
+    ZWYKŁE WYGLĄDA GIT, FILM JEST DO POPRAWY
 
     - zad. 7 z 2024-grudnia: film rozdzielony na dwa etapy (najpierw pierwsze równanie do a = -2, potem drugie do b = 1), dawna scena zakomentowana na dole manimations/solutionZad7.py, do wywalenia po potwierdzeniu
-
+    JEST OKEJ
     - zad. 3 z 2024-grudnia przerobione tak samo jak zad. 2 (osiem linijek dwukolumnowych, film przerenderowany na zasady „zapal, zmień, zgaś"). Dawny kod sceny leży ZAKOMENTOWANY na dole manimations/solutionZad3.py; do wywalenia, gdy Henrich potwierdzi, że nowe kroki są w porządku
-
-
-  + OPUS 5 MEDIUM DOPISAŁ (2026-08-22, przygotowanie repo pod Cloudflare):
-
-    - repo jest gotowe pod hosting Cloudflare (wrangler.jsonc, .assetsignore, _headers, 404.html, test tools/sprawdz-cloudflare.py). Pierwsze wdrożenie padło, bo automat wysyłał na hosting katalog .git; teraz przechodzi, sprawdzone prawdziwym wranglerem. Reszta w issues/cloudflare-hosting.md
-
-    - do przemyślenia na później: dwa adresy z tą samą treścią (GitHub Pages i domena) to dla wyszukiwarek duplikat. Nie pali się, ale przy marketingu warto zdecydować, który jest tym głównym
-
-  + OPUS 5 MEDIUM DOPISAŁ (2026-08-22, gałęzie dev/main):
-
-    - repo ma teraz dwie gałęzie: `dev` (GitHub Pages, codzienna praca) i `main` (Cloudflare, matematykazen.pl). „Push" bez dopowiedzenia znaczy `dev`; na `main` idzie tylko to, o czym powiesz wprost, że ma być widoczne publicznie. Opis w CLAUDE.md (sekcja Git) i issues/git-i-gitdoc.md
-
-    - wersja v82 jest na `dev`, pod domeną stoi jeszcze v81 (na `main`). Numer w rogu strony mówi więc też, którą z dwóch witryn właśnie oglądasz
+    JEST DOBRZE
 
 
 + ZASADY DLA CLAUDE-A:
@@ -341,6 +332,8 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
   - tu są TYLKO otwarte punkty. Zrobione wpisy [DONE]/[ZROBIONE] przenoszone są do bieżącego pliku pod done/ (patrz done/README.md i CLAUDE.md)
 
   - TEN PLIK MA BYĆ SLEEK — krótkie hasła, jedno-dwa zdania na punkt. Żadnych ścian tekstu. Szczegóły (mechanizm, pliki, linie) idą do issues/ albo done/, a tu zostaje jedna linijka z odnośnikiem.
+
+  - „Push" bez dopowiedzenia zawsze znaczy gałąź `dev` (GitHub Pages, wersja robocza). Na `main`, czyli pod domenę matematykazen.pl, idzie tylko to, o czym powiem wprost: „na produkcję", „ma być publicznie". Nowych gałęzi nie zakładasz. Szczegóły w CLAUDE.md, sekcja Git.
 
   - Zawsze sprawdzaj, testuj czy wprowadzone przez ciebie zmiany działają zanim zrobisz ostatni commit.
 
