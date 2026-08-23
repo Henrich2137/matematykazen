@@ -2061,3 +2061,31 @@ Sprawdzone przez Henricha na telefonie pod `matematykazen.pl` (Cloudflare):
   do zera, czyli hosting obsługuje żądania zakresowe („WYGLĄDA WSZYSTKO DOBRZE");
 - panel „zasady oceniania": PDF wyświetla się w panelu, nie pobiera jako plik, także na telefonach
   („DZIAŁA, DZIAŁA TEŻ TAK JAK POWINNO NA TELEFONACH").
+
+## [ZROBIONE 2026-08-23] Sprawdzenie auto-fetcha i spójności kontenera z gałęzią dev
+
+Henrich: „upewnij się, żeby automatyczny fetch i rzeczy związane z kontenerem dobrze działały
+w kontenerze i ładnie łączyły się z branchem dev". Przejrzane po kolei, wynik:
+
+Działa i jest spójne:
+- `.vscode/settings.json` ma `git.autofetch: true`, czyli fetch w tle co około 3 minuty,
+  bez dotykania drzewa roboczego;
+- `.vscode/tasks.json` odpala przy otwarciu folderu `git fetch --prune` (a nie `pull`,
+  świadomie od 2026-08-15, bo pull wywracał się na read-only `.devcontainer/` i `.vscode/`,
+  zostawiając drzewo z nową treścią i HEAD na starym commicie);
+- fetch z wnętrza kontenera przechodzi w 0,6 s, czyli firewall przepuszcza GitHuba;
+- `dev` śledzi `origin/dev`, więc `git push` bez argumentów idzie tam, gdzie ma;
+- `main` śledzi `origin/main` i ma `branch.main.mergeoptions --ff-only` na stałe;
+- `origin/master` już nie istnieje, zdalne gałęzie to `dev`, `main` i archiwalny `master-old`;
+- klon na bieżąco, `git rev-list --left-right --count HEAD...@{u}` daje 0/0.
+
+Nie do sprawdzenia z kontenera i dlatego oddane Henrichowi:
+- `task.allowAutomaticTasks: "on"` musi stać w GLOBALNYCH (User) ustawieniach VS Code, bo
+  workspace nie ma prawa sam sobie tego przyznać. W kontenerze `~/.vscode-server/data/User/settings.json`
+  nie istnieje (ustawienia User są po stronie hosta), więc stanu tego przełącznika stąd nie widać.
+  Bez niego zadanie startowe nie odpala się samo, a klon po cichu zostaje w tyle. Wpisane
+  do TESTOWANIE HENRICH.
+
+Do poprawy z hosta (`.devcontainer/` jest w kontenerze read-only):
+- `.devcontainer/README.md` mówi o `origin/master` w TRZECH miejscach (linie 202, 203, 204),
+  a nie w dwóch, jak zakładał wcześniejszy wpis w TODO. Doprecyzowane, z gotową komendą.

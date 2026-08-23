@@ -25,15 +25,18 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Mój telefon na chrome ma "okno": 485x945
 <br> Próg wejścia jest wysoki, patrz ZASADY DLA CLAUDE-A niżej. Archiwum dawnych list: issues/testowanie-archiwum.md.
 
+  - sprawdź w ustawieniach VS Code (te globalne, User, nie te z repo), czy `task.allowAutomaticTasks` stoi na `on`. Bez tego zadanie „git fetch przy starcie" nie odpala się samo i klon po cichu zostaje w tyle, a nic tego nie widać. Z kontenera nie sprawdzę, bo ten przełącznik siedzi na hoście
+
 
 <br>
 
 
 + DLA HENRICHA:
 
-  - popraw z hosta plik .devcontainer/README.md: w dwóch miejscach mówi o `origin/master`, którego już nie ma (ma być `origin/dev`). Z kontenera się nie da, ten katalog jest tam tylko do odczytu
+  - popraw z hosta plik .devcontainer/README.md: w linijkach 202, 203 i 204 mówi o `origin/master`, którego już nie ma (ma być `origin/dev`). Z kontenera się nie da, ten katalog jest tam tylko do odczytu. Na hoście wystarczy: `sed -i 's|origin/master|origin/dev|g' .devcontainer/README.md`
 
   - odkomentuj z hosta wpis matematykazen.pl w CONTENT_DOMAINS w .devcontainer/init-firewall.sh (dwie linijki, są tam zakomentowane z adnotacją „ODKOMENTUJ, GDY RUSZY"). Domena już działa, więc bez tego z kontenera nadal jej nie widać
+
 
 
 <br>
@@ -81,28 +84,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
         - opisy pod filmami (v29, 51 sztuk, wg zasad z manimations/README.md): krótkie linijki,
           wzory w osobnych wierszach, bez wstępów typu „zaczynamy od…”, bez myślników/podkreśleń
           poza wzorami — sprawdzić brzmienie i czy nic nie ucieka poza ekran na telefonie
-
-        - zad. 1
-          - Rozwiązanie krok po kroku:
-            - krok 2 — Twój przykład, na nim wzorowana reszta opisów (v29), przeczytać najpierw
-
-        - zad. 3
-          - Rozwiązanie krok po kroku:
-            - krok 6 — przyciemniona część zapisu ma się rozjaśniać PRZED końcem kroku;
-              w krokach 2 i 4 już się rozjaśnia (sprawdzone 2026-08-20 stykami klatek), w 6 nie
-
-        - zad. 5
-          - Rozwiązanie krok po kroku (przerobiona od zera w v30):
-            - krok z pierwiastkowaniem — sprawdzić wyjaśnienie, dlaczego bierzemy tylko wartość dodatnią
-            - 60 000 ma zjechać POD kreskę ułamka, a \((1+p)^2\) przesuwa się w lewo (nie znika/pojawia)
-            - całość (razem z zad. 6) — czy ruch znaków zgadza się z rachunkiem; kolor tylko na tym,
-              co się faktycznie zmienia, gaśnie przed końcem filmu
-
-        - zad. 6
-          - Rozwiązanie krok po kroku (przerobiona od zera w v30):
-            - teraz SIEDEM kroków zamiast sześciu (skracanie rozbite na dwa: najpierw \((x+1)\),
-              potem \(x\) z \(x^2\)) — czy tak jest lepiej, czy wrócić do sześciu
-            - krok 4 — skracane \((x+1)\) przekreślane na czerwono, jak na kartce, dopiero potem znikają
 
         - zad. 7
           - Rozwiązanie krok po kroku:
@@ -220,9 +201,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI, ZAZWYCZAJ NA KOŃCU PUNKTU.
 
   + HENRICH MÓWI "MA TO SENS", STĄD MOŻE WESPNĄ SIĘ JESZCZE WYŻEJ:
-
-    - FAZA 3.
-      - WKLEJ CO TAM PODPASUJE
 
     - INNE:
 
