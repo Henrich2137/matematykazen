@@ -4,6 +4,9 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.     
 
+  - nic
+
+
 <br>
 
 
@@ -33,7 +36,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + DLA HENRICHA:
 
-
+  - nic
 
 
 
@@ -66,13 +69,19 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 
   - Arkusz 2024-grudzien:
-
-    - Sprawdzanie obliczeń
-      - Zad 9, Pierwszy checkbox
-        (sprawdzone 2026-08-20: trzy kryteria zgadzają się z kluczem CKE co do punktów,
-        pierwsze jest za 0 pkt celowo, bo klucz daje punkt dopiero za pierwiastki.
-        Napisz, co Ci w nim nie pasowało, bo w samym wpisie tego nie ma)
-        PO CO JEST ZDANIE PIERWSZE SKORO NIE DAJE ONO PUNKTÓW?
+    - Zad 7
+      - Rozwiązanie krok po kroku
+        - krok 2: Nie wiadomoco skąd się wzięło założenie. Trzba go rozłożyć na wiele kroków z dopisanym u góry ZAŁOŻENIE. Może zaczyać się od wizualizacji czerwonego zera zamiast mianowników i potem przejśc do 2 nierówności uwtorzonych od tych mianowników
+        - krok 3 źle koloruje, powinien najpierw kolorować obie 2jki a potem 2 przed nawiasem bo tam one powędrowały. Powinna to odwzorowywać też animacja.
+        - krok 5 jest za bardzo na skróty, też go trzeba rozłożyć na więcej
+        - krok 6 ma podobny problem jak 3
+        - powinno być to zwizualizowane emotką odznaczenia zielonego przy x = 6 i jednoczesnym pokolorowaniem założenia na zielono
+      - Rozwiązania zwykłe powinny follołować krok po kroku
+    - Zad 9 - Sprawdzanie obliczeń - Pierwszy checkbox
+      (sprawdzone 2026-08-20: trzy kryteria zgadzają się z kluczem CKE co do punktów,
+      pierwsze jest za 0 pkt celowo, bo klucz daje punkt dopiero za pierwiastki.
+      Napisz, co Ci w nim nie pasowało, bo w samym wpisie tego nie ma)
+      PO CO JEST ZDANIE PIERWSZE SKORO NIE DAJE ONO PUNKTÓW?
 
     - Rozwiązania 
       - Krok po kroku (zad. 1–9, komplet po v27) i ich opisy pod filmem:
