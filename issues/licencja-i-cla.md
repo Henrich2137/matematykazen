@@ -33,6 +33,7 @@ Oba są też pilnowane w TODO.md (sekcja `OPUS DOPISAŁ`):
 1. Właściciel występuje pod pseudonimem **`Henrich2137`** — `LICENSE.md` linie 1–2
    + `CONTRIBUTING.md` punkt 2. **Zmieniaj oba naraz**, jeśli prawdziwe nazwisko kiedyś zostanie
    upublicznione (CLA na pseudonim jest słabsze dowodowo).
-2. URL w `Required Notice:` wskazuje na GitHub Pages, dopóki `matematykazen.pl` faktycznie
-   nie ruszy. **Ta linia jest kopiowana przez każdego redystrybutora**, więc nigdy nie może
-   prowadzić w martwy link.
+2. URL w `Required Notice:` wskazuje od 2026-08-23 na **`https://matematykazen.pl`** (wcześniej
+   na GitHub Pages, bo domena jeszcze nie działała). **Ta linia jest kopiowana przez każdego
+   redystrybutora**, więc nigdy nie może prowadzić w martwy link: gdyby domena kiedyś wygasła,
+   trzeba ją tu podmienić z powrotem na adres, który faktycznie odpowiada.

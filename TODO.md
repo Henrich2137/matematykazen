@@ -4,42 +4,18 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.     
 
-  - 2024-grudzień
-    - Zad 2
-      - Rozwiązanie krok po kroku - Przerenderować krok 3 tak aby jedynka nie przemiszczała się z licznika do mianownika, to nie ma nic wspólnego. Zrób zamiast tego 2 animacje
-        - Pojawienie się zielonej 1 w wykładniuku 5 w mianowniku. 
-        - To ta zielona jedynka ma się przemieścić do nowego wykładnika. W międzyczasie 1/ ma zniknąć a minus ma się pojawić w wykładniku.
-    - Zad 8
-      - Rozwiązanie krok po kroku - Napisz od nowa scenariusz tak aby się zgadzał z rozwiązanie mzwykłym i popraw wszystkei kroki wg zasad i tego ja ksą wykonane poprzednie zadania (1-7)
-
-
-
-WZÓR PROMPTU DLA OPUSA POST-FABLE:
-
-  Fable pracowało nad wybranymi zadaniami 1-13 i zrobiło  wnich:
-    - Interaktywne rozwiązanie (widżet)
-    - Zwykłe rozwiązanie
-    - Podpowiedź
-
-  Sprawdź jakie wskazówki zostawiło po sobie Fable. Zrób podobny do powyższego zestaw dla poniższego zadania. Wzoruj się na poprzednich. Korzystaj również z transktyptów oraz plików (w potrzebie zobaczenia grafiki) arkusz.pdf odpowiedzi.pdf tablica-wzorow.pdf itd.  
-  
-  Zadaj pytania doprecyzowujące i ruszaj do autonomiicznej pracy.
-
-
 <br>
 
 
 + NIE REALIZUJ, CZEKAJĄ W KOLEJCE:
 
-
-
-
-    - Rozwiązania krok po kroku - kropki kroków (np w zad 1.) przy szerokości okna około 310 do 325 px już się chowają, a strzałki przewijania jeszcze się nie pokazują, więc w tym wąskim zakresie nie da się przejść do innego kroku. Poza tym zakresem przewijanie działa
+  - Rozwiązania krok po kroku - kropki kroków (np w zad 1.) przy szerokości okna około 310 do 325 px już się chowają, a strzałki przewijania jeszcze się nie pokazują, więc w tym wąskim zakresie nie da się przejść do innego kroku. Poza tym zakresem przewijanie działa
 
   - to samo do decyzji z „finalAnswer.label": renderer je ignoruje (świadomie, od 2026-08-06),
     a pole nadal siedzi w danych wszystkich arkuszy
 
   - w trzech zadaniach grudnia (10, 19, 30) w rozwiązaniu siedzi nagłówek „DAWNE POKAŻ WIĘCEJ" i doklejona pod nim dawna treść; celowo brzydkie, żeby było widać, gdzie zredagować tekst w jedną całość. Scalać samemu czy zostawiasz to sobie
+
 
 <br>
 
@@ -49,10 +25,6 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
 <br> Mój telefon na chrome ma "okno": 485x945
 <br> Próg wejścia jest wysoki, patrz ZASADY DLA CLAUDE-A niżej. Archiwum dawnych list: issues/testowanie-archiwum.md.
 
-  - wejdź z telefonu na matematykazen.pl (Cloudflare) i sprawdź dwie rzeczy, których z sesji nie sprawdzę (z kontenera nie ma dostępu do domeny, firewall)
-    - w rozwiązaniu krok po kroku przewiń film kropkami w przód i w tył, film ma skakać, a nie wracać do zera (to jest ta sama pułapka co z python -m http.server, tylko po stronie hostingu)
-
-    - otwórz panel „zasady oceniania", PDF ma się wyświetlić w panelu, a nie pobrać jako plik
 
 <br>
 
@@ -61,7 +33,7 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
 
   - popraw z hosta plik .devcontainer/README.md: w dwóch miejscach mówi o `origin/master`, którego już nie ma (ma być `origin/dev`). Z kontenera się nie da, ten katalog jest tam tylko do odczytu
 
-  - domena działa, więc podmień adres w linii „Required Notice" w LICENSE.md na matematykazen.pl (szczegóły niżej, w punkcie o licencji: ta linijka jedzie w parze z resztą listy z issues/licencja-i-cla.md)
+  - odkomentuj z hosta wpis matematykazen.pl w CONTENT_DOMAINS w .devcontainer/init-firewall.sh (dwie linijki, są tam zakomentowane z adnotacją „ODKOMENTUJ, GDY RUSZY"). Domena już działa, więc bez tego z kontenera nadal jej nie widać
 
 
 <br>
@@ -248,14 +220,6 @@ WZÓR PROMPTU DLA OPUSA POST-FABLE:
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI, ZAZWYCZAJ NA KOŃCU PUNKTU.
 
   + HENRICH MÓWI "MA TO SENS", STĄD MOŻE WESPNĄ SIĘ JESZCZE WYŻEJ:
-
-    - FAZA 2.3 — gdy ruszy matematykazen.pl:
-
-      - podmienić URL w LICENSE.md:2 („Required Notice" — tę linijkę kopiuje każdy
-        redystrybutor) oraz w README.md; dziś oba wskazują na GitHub Pages
-
-      - odkomentować wpis matematykazen.pl w CONTENT_DOMAINS w .devcontainer/init-firewall.sh
-        (dziś domeny nie ma w DNS)
 
     - FAZA 3.
       - WKLEJ CO TAM PODPASUJE

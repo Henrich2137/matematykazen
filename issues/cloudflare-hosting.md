@@ -171,14 +171,18 @@ Nie zmienia się po zmianie `.assetsignore` i nie jest powodem do niepokoju.
    `wrangler.jsonc` zamiast zgadywać. Ustawienia z panelu („Detected Project
    Settings") przestają mieć znaczenie.
 
-## Do zrobienia teraz, gdy domena ruszyła
+## Zrobione, gdy domena ruszyła (2026-08-23)
 
-Linia `Required Notice:` w `LICENSE.md` wskazuje dziś na GitHub Pages i jest
-**kopiowana przez każdego, kto rozpowszechnia kod**, więc nie może prowadzić w
-martwy adres. Gdy docelowa domena zacznie działać, trzeba ją tam wpisać. To jest
-jeden z dwóch świadomych placeholderów opisanych w
-[licencja-i-cla.md](licencja-i-cla.md); zmiana idzie w parze z resztą tamtej
-listy, nie na własną rękę.
+Linia `Required Notice:` w `LICENSE.md` wskazuje już na `https://matematykazen.pl`
+(wcześniej na GitHub Pages, bo domena jeszcze nie odpowiadała). Ta linia jest
+**kopiowana przez każdego, kto rozpowszechnia kod**, więc nie może prowadzić
+w martwy adres: gdyby domena kiedyś wygasła, trzeba ją tam podmienić z powrotem.
+To jeden z dwóch świadomych placeholderów opisanych w
+[licencja-i-cla.md](licencja-i-cla.md); zmiana idzie w parze z resztą tamtej listy.
 
-Warto też wtedy przemyśleć, czy GitHub Pages ma dalej stać obok domeny (dwa
-adresy z tą samą treścią to dla wyszukiwarek duplikat), ale to temat na osobno.
+Adres w `README.md` też pokazuje teraz domenę jako główną, a GitHub Pages jako
+wersję roboczą z gałęzi `dev`.
+
+Zostało do przemyślenia: czy GitHub Pages ma dalej stać obok domeny. Dwa adresy
+z tą samą treścią to dla wyszukiwarek duplikat, ale przy obecnym ruchu to nie
+pali się; temat czeka w TODO.md w notatkach do przekminienia.

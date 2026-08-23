@@ -162,7 +162,9 @@ Twarde reguły. Przed renderem przeczytaj, po renderze sprawdź.
 11. **Zielone jest to, co się ZMIENIA**: znika, pojawia się, zmienia wartość albo zmienia rolę.
    **Czarne zostaje to, co jedzie w nowe miejsce zapisu, ale dalej znaczy to samo.**
    - `1/5` → `5^{-1}`: piątka dalej jest tą samą piątką i tylko jedzie na podstawę, więc czarna.
-     Zielona jest jedynka, która razem z kreską staje się wykładnikiem `-1`.
+     Zielona jest jedynka, która pojawia się jako wykładnik piątki w mianowniku (`1/5 = 1/5^1`),
+     a potem jedzie na miejsce wykładnika, oraz minus, który przy tym powstaje. Dlaczego
+     dwoma ruchami, a nie jednym: punkt 17 niżej.
    - `⁵√5` → `5^{1/5}`: liczba spod pierwiastka była podstawą i nią zostaje, więc czarna.
      Zielony jest znak pierwiastka (znika), licznik `1` (pojawia się) i stopień pierwiastka,
      bo przestaje być stopniem, a zaczyna być mianownikiem wykładnika.
@@ -215,10 +217,16 @@ Twarde reguły. Przed renderem przeczytaj, po renderze sprawdź.
     klatce, i popatrz na krzywą: ma zjechać do zera jednym ruchem. Zatrzymanie się na małej,
     stałej wartości tuż przed końcem znaczy, że jeden glif nie gaśnie razem z resztą.
 
+    Robi to **[tools/zielen-krokow.py](../tools/zielen-krokow.py)** (dodane 2026-08-23),
+    więc nie licz tego ręcznie:
+
     ```
-    ffmpeg -v error -i stepN.mp4 -vf fps=5 /tmp/k/f%02d.png
-    # potem w Pythonie: piksel jest zielony, gdy g > r+25 i g > b+25
+    python3 tools/zielen-krokow.py matura/2024-grudzien/media/zad8/solution-step-by-step
+    python3 tools/zielen-krokow.py <katalog> --krok 3 --krzywa   # jeden krok, klatka po klatce
     ```
+
+    Skrypt wypisuje na każdy krok liczbę zielonych pikseli na starcie, w szczycie i na końcu,
+    i sam zgłasza trzy usterki: brudną pierwszą klatkę, brudną ostatnią i zieleń gasnącą ratami.
 
 ### Pułapki Manima, na których te sceny się przejechały (2026-08-21, zad. 3 i 7)
 

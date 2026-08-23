@@ -20,8 +20,18 @@ class ScenaZadania2(Scene):
     znaczy to samo.
 
     Krok 3, 1/5 staje się 5^(-1): piątka dalej jest tą samą piątką i tylko jedzie
-    na podstawę, więc jest CZARNA. Zielona jest jedynka, która razem z kreską
-    ułamka staje się wykładnikiem -1.
+    na podstawę, więc jest CZARNA. Krok idzie DWIEMA animacjami, bo brakującego
+    ogniwa (5 = 5^1) nie widać w zapisie z zadania, a bez niego jedynka leciałaby
+    z licznika ułamka wprost do wykładnika, czyli przez pół kadru, między miejsca,
+    które nic ze sobą nie mają (polecenie Henricha, 2026-08-23; README, punkt 17):
+
+        A. przy piątce w mianowniku POJAWIA SIĘ zielona jedynka: 1/5 = 1/5^1,
+        B. ta sama jedynka jedzie na miejsce wykładnika, a w tym samym ruchu
+           „1/" znika i przed jedynką pojawia się minus.
+
+    Zielona jest tylko jedynka (bohater kroku) i minus (pojawia się z niczego).
+    Znikający licznik i kreska zostają czarne: gdyby i one były zielone, kolor
+    przestałby wskazywać, na co patrzeć.
 
     Krok 2, ⁵√5 staje się 5^(1/5): liczba spod pierwiastka była podstawą i nią
     zostaje, więc CZARNA. Zielony jest znak pierwiastka (znika), licznik 1
@@ -50,6 +60,7 @@ class ScenaZadania2(Scene):
     #
     #   \sqrt[5]{5}                0 stopień 5   1 znak pierwiastka   2 kreska   3 liczba 5
     #   \frac{1}{5}                0 licznik 1   1 kreska   2 mianownik 5
+    #   \frac{1}{5^{1}}            0 licznik 1   1 kreska   2 mianownik 5   3 wykładnik 1
     #   ^{\frac{1}{5}}             0 licznik 1   1 kreska   2 mianownik 5
     #   ^{-5}  oraz  ^{-1}         0 minus       1 cyfra
     #   ^{\frac{1}{5}\cdot(-5)}    0 1  1 kreska  2 5  3 kropka  4 (  5 minus  6 5  7 )
@@ -74,6 +85,13 @@ class ScenaZadania2(Scene):
         # przylecieć ze swojej strony.
         k[6] = MathTex(r"5", r"^{-1", r"+5}")
         k[7] = MathTex(r"5", r"^{4}")
+
+        # STAN POŚREDNI kroku 3, między k[1] a k[2]. Nie jest osobnym krokiem
+        # filmu: kropek zostaje osiem, a ten zapis żyje tylko wewnątrz kroku 3
+        # jako brakujące ogniwo 5 = 5^1.
+        kp = MathTex(r"\left(", r"5", r"^{\frac{1}{5}}", r"\cdot", r"\frac{1}{5^{1}}",
+                     r"\right)", r"^{-5}")
+        k.append(kp)
 
         for stan in k:
             stan.fill_color = BLACK
@@ -161,28 +179,54 @@ class ScenaZadania2(Scene):
         zgas([k[0][1][0], k[1][2][0]], [k[1][2][0], k[1][2][2]], k[1])
 
         self.next_section("krok3")
-        # Ułamek 1/5 na potęgę o ujemnym wykładniku:
+        # Ułamek 1/5 na potęgę o ujemnym wykładniku. DWIE ANIMACJE w jednym kroku,
+        # bo jedynka z licznika i jedynka w wykładniku to NIE JEST ta sama jedynka:
+        # gdyby licznik poleciał wprost do wykładnika, uczeń zobaczyłby lot przez
+        # pół kadru i nie wiedziałby, co się właściwie stało.
         #
-        #   piątka spod kreski  ->  podstawa potęgi
-        #   jedynka znad kreski ->  cyfra w wykładniku    (na zielono)
-        #   kreska ułamka       ->  minus w wykładniku    (na zielono)
-        #
-        # Piątka zostaje piątką i tylko jedzie na podstawę, więc jest czarna.
-        # Zmienia się jedynka: razem z kreską ułamka staje się wykładnikiem -1.
-        zapal(k[1][4][0])
-        k[2][5].set_color(self.ZIELONY)
+        #   A. przy piątce w mianowniku pojawia się jedynka:  1/5 = 1/5^1
+        #   B. ta jedynka wychodzi ponad kreskę i staje się wykładnikiem, „1/"
+        #      znika, a przed jedynką pojawia się minus:      1/5^1 = 5^{-1}
+
+        # ANIMACJA A. Zapis się rozsuwa, żeby zrobić miejsce na wykładnik; nic
+        # jeszcze nie zmienia miejsca w rachunku, więc rozsuwa się na czarno.
+        # Zielona jest sama jedynka, bo tylko ona się pojawia.
+        kp[4][3].set_color(self.ZIELONY)
+        self.play(
+            Transform(k[1][0], kp[0]),
+            Transform(k[1][1], kp[1]),
+            Transform(k[1][2], kp[2]),
+            Transform(k[1][3], kp[3]),
+            Transform(k[1][4][0], kp[4][0]),     # licznik 1
+            Transform(k[1][4][1], kp[4][1]),     # kreska ułamka
+            Transform(k[1][4][2], kp[4][2]),     # mianownik 5
+            Transform(k[1][5], kp[5]),
+            Transform(k[1][6], kp[6]),
+            FadeIn(kp[4][3]),                    # jedynka: wykładnik piątki
+        )
+        self.wait(0.35)
+
+        # ANIMACJA B. Zielona jedynka jedzie na miejsce wykładnika przy podstawie,
+        # a to, co przestaje być potrzebne, znika w tym samym ruchu. Minus pojawia
+        # się z niczego, więc też jest zielony. Piątka zostaje piątką i tylko jedzie
+        # na podstawę, więc jest czarna.
+        k[2][5][0].set_color(self.ZIELONY)
         self.play(
             Transform(k[1][0], k[2][0]),
-            Transform(k[1][1], k[2][1]),         # podstawa 5: przesunięcie
+            Transform(k[1][1], k[2][1]),         # podstawa pierwszego czynnika
             Transform(k[1][2], k[2][2]),
             Transform(k[1][3], k[2][3]),
             Transform(k[1][4][2], k[2][4]),      # mianownik 5 -> podstawa
-            Transform(k[1][4][0], k[2][5][1]),   # licznik 1 -> cyfra wykładnika
-            Transform(k[1][4][1], k[2][5][0]),   # kreska ułamka -> minus
+            Transform(kp[4][3], k[2][5][1]),     # zielona jedynka -> cyfra wykładnika
+            FadeOut(k[1][4][0]), FadeOut(k[1][4][1]),   # „1/" znika
+            FadeIn(k[2][5][0]),                  # minus, którego wcześniej nie było
             Transform(k[1][5], k[2][6]),
             Transform(k[1][6], k[2][7]),
         )
-        zgas([k[1][4][0], k[1][4][1]], [k[2][5]], k[2])
+        # W kadrze zostają zielone: jedynka (obiekt kp, źródło ostatniego Transform)
+        # i minus (dodany FadeIn-em). Licznika i kreski nie gasimy, bo wyszły
+        # z kadru FadeOut-em, a animacja na obiekcie spoza sceny wstawiłaby go z powrotem.
+        zgas([kp[4][3], k[2][5][0]], [k[2][5]], k[2])
 
         self.next_section("krok4")
         # Opuszczenie nawiasu: (a·b)^r = a^r · b^r. Sedno kroku to ROZDWOJENIE

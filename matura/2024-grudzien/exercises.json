@@ -98,7 +98,7 @@
         {
             "type": "video",
             "src": "media/zad2/solution-step-by-step/step3.mp4",
-            "text": "Ułamek \\(\\frac{1}{5}\\) też zapisujemy jako potęgę. Odwrotność liczby to ta sama liczba z minusem w wykładniku:\\[a^{-n}=\\frac{1}{a^n}\\]"
+            "text": "Ułamek \\(\\frac{1}{5}\\) też zapisujemy jako potęgę.<br>Najpierw dopisujemy jedynkę w wykładniku, bo \\(5\\) to to samo co \\(5^1\\).<br>Potem ta jedynka wychodzi ponad kreskę ułamka i po drodze zmienia znak:\\[a^{-n}=\\frac{1}{a^n}\\]"
         },
         {
             "type": "video",
@@ -422,7 +422,7 @@
         ],
         "hint": "Zacznij od określenia dziedziny (mianowniki \\(\\ne 0\\)). Zauważ, że \\(2x - 2 = 2(x - 1)\\) — oba mianowniki znikną po pomnożeniu przez \\(2(x - 1)\\).",
         "formulasPage": null,
-        "solutionText": "Mianownik nie może być zerem. Oba mianowniki, \\(x-1\\) oraz \\(2x-2\\), zerują się dla \\(x=1\\), więc zapisujemy założenie:\\[x \\ne 1\\]<div class=\"rozwiazanie-kroki\">\\(\\dfrac{x+3}{x-1} = \\dfrac{x}{2x-2}\\)<br>\\(\\dfrac{x+3}{x-1} = \\dfrac{x}{2(x-1)} \\;\\big/ \\cdot\\, 2(x-1)\\)<br>\\(2(x+3) = x\\)<br>\\(2x + 6 = x\\)<br>\\(2x - x = -6\\)<br>\\(\\boldsymbol{x = -6}\\)<br>Wynik spełnia założenie, bo \\(-6 \\ne 1\\), więc rozwiązaniem równania jest \\(\\boldsymbol{x = -6}\\).</div>",
+        "solutionText": "Mianownik nie może być zerem. Oba mianowniki, \\(x-1\\) oraz \\(2x-2\\), zerują się dla \\(x=1\\), więc zapisujemy założenie:\\[x \\ne 1\\]<div class=\"rozwiazanie-kroki\">\\(\\dfrac{x+3}{x-1} = \\dfrac{x}{2x-2}\\)<br>\\(\\dfrac{x+3}{x-1} = \\dfrac{x}{2(x-1)}\\)<br>\\(\\dfrac{x+3}{x-1} = \\dfrac{x}{2(x-1)} \\;\\big/ \\cdot\\, 2(x-1)\\)<br>\\(2(x+3) = x\\)<br>\\(2x + 6 = x\\)<br>\\(2x - x = -6\\)<br>\\(\\boldsymbol{x = -6}\\)<br>Wynik spełnia założenie, bo \\(-6 \\ne 1\\), więc rozwiązaniem równania jest \\(\\boldsymbol{x = -6}\\).</div>",
         "solutionStepByStep": [
             {
                 "type": "video",
@@ -432,32 +432,42 @@
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step2.mp4",
-                "text": "W drugim mianowniku wyłączamy 2 przed nawias:\\[2x-2=2(x-1)\\]Teraz widać, że w obu mianownikach siedzi ten sam nawias \\((x-1)\\)."
+                "text": "Przez zero dzielić nie wolno, więc żaden mianownik nie może być zerem.<br>Oba zerują się dla \\(x=1\\), bo \\(2x-2\\) to \\(2\\) razy \\(x-1\\).<br>Bez zapisania tego założenia klucz CKE odbiera punkt, nawet przy dobrym wyniku."
             },
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step3.mp4",
-                "text": "Przez zero dzielić nie wolno, więc mianownik nie może być zerem:\\[x-1\\ne 0 \\quad \\Rightarrow \\quad x\\ne 1\\]Bez zapisania tego założenia klucz CKE odbiera punkt, nawet przy dobrym wyniku."
+                "text": "W drugim mianowniku wyłączamy dwójkę przed nawias, bo \\(2x-2\\) to \\(2\\) razy \\(x-1\\).<br>Teraz widać, że w obu mianownikach siedzi ten sam nawias."
             },
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step4.mp4",
-                "text": "Mnożymy obie strony przez \\(2(x-1)\\). Mianowniki się skracają i zostaje równanie bez ułamków."
+                "text": "Skoro w obu mianownikach jest \\(x-1\\), a w jednym dodatkowo dwójka, to pomnożenie obu stron przez \\(2(x-1)\\) usunie ułamki.<br>Zapisujemy to działanie z boku, po szkolnemu."
             },
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step5.mp4",
-                "text": "Opuszczamy nawias:\\[2(x+3)=2x+6\\]"
+                "text": "Mnożymy i mianowniki się skracają.<br>Po lewej z mnożnika zostaje sama dwójka, po prawej znika cały mianownik."
             },
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step6.mp4",
-                "text": "Iksy na lewo, liczby na prawo. Każdy przeniesiony składnik zmienia znak."
+                "text": "Opuszczamy nawias: dwójka mnoży osobno \\(x\\) i osobno \\(3\\)."
             },
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step7.mp4",
-                "text": "Zostaje \\(x=-6\\).<br>Sprawdzamy jeszcze założenie: \\(-6\\ne 1\\), więc wynik mieści się w dziedzinie i jest rozwiązaniem."
+                "text": "Iksy na lewo, liczby na prawo.<br>Każdy przeniesiony składnik zmienia znak."
+            },
+            {
+                "type": "video",
+                "src": "media/zad8/solution-step-by-step/step8.mp4",
+                "text": "Po lewej zostaje jeden \\(x\\), bo \\(2x\\) bez jednego \\(x\\) to \\(x\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad8/solution-step-by-step/step9.mp4",
+                "text": "Wracamy do założenia i podstawiamy wynik.<br>Liczba \\(-6\\) nie jest jedynką, więc wynik mieści się w dziedzinie i jest rozwiązaniem równania."
             }
         ],
         "solutionWidget": null

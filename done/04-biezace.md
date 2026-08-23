@@ -1997,3 +1997,67 @@ co tylko zmienia miejsce.
 Przy okazji naprawione: w v67 zniknął z exercises.json pierwszy krok zadania 2 (step1.mp4),
 zjedzony przez moje własne podstawienie w surowym tekście pliku. Wykryte porównaniem obiektów
 JSON z wersją sprzed zmian; poza tym jednym polem nic innego w arkuszu się nie ruszyło.
+
+---
+
+## [ZROBIONE 2026-08-23] Zad. 2 krok 3 przerenderowany na dwie animacje, zad. 8 napisane od nowa (v83)
+
+**Zad. 2, krok 3** (`1/5` na `5^{-1}`). Henrich: jedynka nie ma jechać z licznika ułamka do
+wykładnika, bo te dwa miejsca nic ze sobą nie mają, a uczeń widzi tylko lot przez pół kadru.
+Krok idzie teraz dwiema animacjami w jednej kropce (kroków dalej osiem, `solutionText` bez zmian):
+- A: przy piątce w mianowniku pojawia się zielona jedynka, czyli brakujące ogniwo `1/5 = 1/5^1`;
+- B: ta sama jedynka jedzie na miejsce wykładnika, „1/" znika, a przed jedynką pojawia się minus.
+Zieleń niesie tylko jedynka i minus. Znikający licznik i kreska zostają czarne, bo inaczej kolor
+przestaje wskazywać, na co patrzeć. Stan pośredni `\frac{1}{5^{1}}` wchodzi do wspólnego
+skalowania kroków, żeby litery nie zmieniały rozmiaru w trakcie ruchu.
+
+**Zad. 8** (`(x+3)/(x-1) = x/(2x-2)`, wynik `x = -6`). Scena napisana od zera, bo poprzednia
+powstała przed zasadami z 21 sierpnia i łamała je wszystkie naraz: cały ruch szedł przez
+`TransformMatchingShapes`, kolor ustawiany był przed animacją (czyli pierwsza klatka kroku była
+już podświetlona), założenie było szare, a mnożenie obu stron i skracanie mianowników działy się
+w jednym kroku. Siedem kroków zastąpiło dziewięć, uzgodnionych z Henrichem przed pisaniem:
+1. równanie z zadania, 2. założenie `x ≠ 1` wjeżdża pod spodem i zostaje do końca (osobny punkt
+CKE), 3. `2x-2` na `2(x-1)`, 4. dopisek `/· 2(x-1)`, 5. skracanie do `2(x+3) = x`, 6. `2x+6 = x`,
+7. `2x-x = -6`, 8. `x = -6`, 9. pod założeniem staje `-6 ≠ 1`, gdzie `-6` przylatuje kopią z wyniku.
+`solutionText` dostał jedną linijkę więcej (rozdzielone `= x/(2(x-1))` od dopisku), więc linijek
+jest tyle co kroków; opisy pod filmem napisane od nowa pod nowy podział.
+
+Świadome uproszczenie w kroku 5: mnożnik `2(x-1)` jest w kadrze jeden, choć działa na obie strony.
+Jego dwójka jedzie przed nawias po lewej, a mianowniki gasną. Rozdwajanie mnożnika na dwie kopie
+dodawałoby ruchu, którego uczeń nie potrzebuje.
+
+Weryfikacja:
+- `tools/wgraj-kroki.sh 2` → 8 kroków, `tools/wgraj-kroki.sh 8` → 9 kroków, rewersy przeliczone
+  od nowa, styk klatek SSIM 0,99973 do 0,99994, „bez zastrzeżeń" w obu;
+- nowe `tools/zielen-krokow.py` (liczy zielone piksele klatka po klatce): wszystkie 17 kroków
+  startują i kończą na zerze, zieleń gaśnie jednym ruchem;
+- `tools/test-krokow.js --zadania=1,7`, ziarna 3/11/29, na szybkim serwerze i na zdławionym
+  (`--wolno=1200 --bps=60000`) → bez zastrzeżeń, Range na wideo zwraca 206;
+- klatki obejrzane okiem: pierwsza, po zapaleniu koloru, w połowie ruchu i ostatnia w każdym
+  zmienionym kroku;
+- zrzuty karty zad. 8 (1280 px jasny i ciemny, 390 px) plus pomiar `scrollWidth - clientWidth`
+  przy 320/390/768 px → zero, nic nie przewija się w bok.
+
+Nowe narzędzie: `tools/zielen-krokow.py`, opisane w `manimations/README.md` przy punkcie 26.
+Zasada 11 w tym README miała jeszcze stary przykład kroku 3 i została poprawiona.
+
+## [ZROBIONE 2026-08-23] Required Notice i README pokazują domenę
+
+`LICENSE.md` linia 2 wskazuje na `https://matematykazen.pl` zamiast na GitHub Pages. Ta linijka
+jest kopiowana przez każdego redystrybutora, więc nie może prowadzić w martwy adres; teraz
+prowadzi pod adres oficjalny. `README.md` podaje domenę jako adres główny, a GitHub Pages jako
+wersję roboczą z gałęzi `dev`. Notatki zaktualizowane: `issues/licencja-i-cla.md` (punkt 2 opisuje
+stan po zmianie i warunek powrotu, gdyby domena wygasła) oraz `issues/cloudflare-hosting.md`
+(sekcja „Do zrobienia teraz" zamieniona na „Zrobione").
+
+Zostało dla Henricha, bo `.devcontainer/` jest w kontenerze tylko do odczytu: odkomentowanie
+`matematykazen.pl` w `CONTENT_DOMAINS` w `.devcontainer/init-firewall.sh` i poprawka dwóch
+wzmianek o `origin/master` w `.devcontainer/README.md`.
+
+## [ZROBIONE 2026-08-23] Testy Henricha na domenie odklikane
+
+Sprawdzone przez Henricha na telefonie pod `matematykazen.pl` (Cloudflare):
+- przewijanie filmu kropkami w przód i w tył w rozwiązaniu krok po kroku: film skacze, nie wraca
+  do zera, czyli hosting obsługuje żądania zakresowe („WYGLĄDA WSZYSTKO DOBRZE");
+- panel „zasady oceniania": PDF wyświetla się w panelu, nie pobiera jako plik, także na telefonach
+  („DZIAŁA, DZIAŁA TEŻ TAK JAK POWINNO NA TELEFONACH").
