@@ -36,10 +36,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + DLA HENRICHA:
 
-  - zrób „Rebuild Container", żeby weszła dokumentacja LaTeX-a dla modeli (dopisana
-    do .devcontainer/Dockerfile 2026-08-25). Potem w kontenerze `texdoc -l amsmath`
-    ma wypisać ścieżkę do PDF-a zamiast „nie znaleziono". Gdyby rebuild padł na
-    „Unable to locate package", powiedz mi, poprawię nazwę pakietu
+  - nic
 
 
 
@@ -48,10 +45,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + DO ZROBIENIA HOŚCIE (POZA KONTENEREM)
 
-  - firewall: nic nie trzeba otwierać. To wynik sprawdzenia (2026-08-25), nie przeoczenie. Rozpisane w issues/dokumentacja-dla-modeli.md
-    - docs.manim.community: NIE otwierać. Cały Manim ze źródłami leży w kontenerze, a strona stoi na współdzielonym adresie Cloudflare (104.16.254.120), czyli tym samym przypadku co odrzucony formspree.io
-    - katex.org: NIE otwierać. Listę obsługiwanych poleceń da się wyciągnąć wprost z vendor/katex/katex.min.js, bez sieci
-    - pypi.org + files.pythonhosted.org: tylko jeśli kiedyś będziesz doinstalowywał paczki pythonowe. Leżą już w init-firewall.sh jako gotowy, zakomentowany kandydat, potrzebne są oba naraz
+  - nic
 
 
 <br>
@@ -107,7 +101,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
               — czy to dobry podział, czy parabola ma być też w filmie
 
 
-- Co zadawać Fable:
+  - Co zadawać Fable:
     - Rozwiązania interaktywne
     - Lista checkboxów "Sprawdzanie rozwiązania"
     - Weryfikacja poprawności matematycznej

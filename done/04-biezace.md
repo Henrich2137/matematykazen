@@ -1,5 +1,29 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-25] (Opus 5, high) Zamknięte dwa punkty hostowe z TODO.md: rebuild
+kontenera z dokumentacją LaTeX-a i przegląd firewalla pod dokumentację dla modeli.
+[kontener, latex, firewall, todo, dokumentacja]
+
+Rebuild Container został zrobiony przez Henricha, sprawdzone w kontenerze:
+`texdoc -l amsmath` wypisuje trzy PDF-y (`amsldoc.pdf`, `amsmath.pdf`, `subeqn.pdf`)
+z `/usr/share/texlive/texmf-dist/doc/latex/amsmath/`, więc nazwy pakietów
+`texlive-latex-base-doc` i `texlive-latex-recommended-doc` były trafione
+(wcześniej były tylko przypuszczeniem, patrz wpis wyżej z tego samego dnia).
+
+Wpis o firewallu usunięty z TODO.md, bo był wynikiem przeglądu („nic nie trzeba
+otwierać"), a nie zadaniem do wykonania, i nic się przez to nie gubi:
+uzasadnienia dla `docs.manim.community` i `katex.org` leżą w
+`issues/dokumentacja-dla-modeli.md`, a `pypi.org` + `files.pythonhosted.org`
+siedzą w `.devcontainer/init-firewall.sh` jako gotowy, zakomentowany kandydat
+z opisem, kiedy je odkomentować (linie 159-163).
+
+Przy okazji przegląd stanu kontenera (nic nie zmieniane w repo): Manim renderuje
+scenę z MathTex, Playwright/Chromium otwiera arkusz (42 karty, 481 wzorów KaTeX),
+`tools/serwer.js` oddaje 206 na żądanie zakresu, `statystyki.py`
+i `sprawdz-cloudflare.py` przechodzą, firewall przepuszcza listę dozwolonych
+i blokuje resztę.
+
+
 [ZROBIONE 2026-08-25] (Opus 5, medium) Dokumentacja LaTeX-a dla modeli dopisana
 do obrazu devkontenera (praca z hosta, bo zmiana jest w Dockerfile).
 [dockerfile, kontener, latex, manim, dokumentacja, host]
