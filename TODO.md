@@ -6,7 +6,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
   - nic
 
-
 <br>
 
 
@@ -29,7 +28,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Próg wejścia jest wysoki, patrz ZASADY DLA CLAUDE-A niżej. Archiwum dawnych list: issues/testowanie-archiwum.md.
 
   - sprawdź w ustawieniach VS Code (te globalne, User, nie te z repo), czy `task.allowAutomaticTasks` stoi na `on`. Bez tego zadanie „git fetch przy starcie" nie odpala się samo i klon po cichu zostaje w tyle, a nic tego nie widać. Z kontenera nie sprawdzę, bo ten przełącznik siedzi na hoście
-
+  SPRAWDZONE, JEST NA "ON", JEŻĘLI NIE MA ŻADNYCH PROBLEMÓW TO USUŃ TEN WPIS
 
 <br>
 
@@ -53,6 +52,22 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + INNE NOTATKI, DO PRZEKMINIENIA:
 
+  - podmienić Goatcunter na Cloudflare bo goatcounter jest noncomertial.
+
+  - Przycisk "Zresetuj ustawienia" z popup-em do potwierdzenie. Podświetlajacy się na czerwono po najechaniu i widoczny na samym dole side-bar-a.
+  
+  - Wsparcie, donate-y itd.
+    - W index.html dodać sekcję o autorze i link do Patronite
+    - Na githubie w ustawieniach repo też można coś podpiąć chyba ale trzeba sprawdizć czy byłoby to fair.
+
+  - wysyłanie całego localStorage przez użytkownika podczas zgłaszania błędu jest a bit scatchy też troche niebezpiczne
+
+  - Przy suwakach / sliderach w rozwiązaniach interaktywnych powinny być strzałki w lewo po lewe i po prawejktóre można klikać lub przytrzymywać również na telefonach, aby wartość suwaka. W stylu strzałek prev-step i next-step lub tych które pojawiają się prz yzaszerockich dotsach. 
+
+  - Zwykłe rozwiązania powinny składać się z arraya / listy wielu sposobów / podejść. Jeżeli jest tylko jeden element to UI wyświetla go tak jak dotychczas. Jeśli więcej to robią się zakładki w stylu tych w widgetach.
+
+  - dodać przycisk "pokaż zasady oceniania" na końcu "Sprawdzania obliczeń" który miałby podobną funkcjonalność co przycisk "Pokaż wzory" - otwierałby okienko i też by przenosił do odpowiedniej strony w PDF
+
   - Arkusz 2026-maj
     - treść zadań ✅
     - grafiki (wykresy, rysunki itd.) - chyba wszystkie, ale trzeba sprawdzić
@@ -69,6 +84,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 
   - Arkusz 2024-grudzien:
+
     - Zad 7
       - Rozwiązanie krok po kroku
         - krok 2: Nie wiadomoco skąd się wzięło założenie. Trzba go rozłożyć na wiele kroków z dopisanym u góry ZAŁOŻENIE. Może zaczyać się od wizualizacji czerwonego zera zamiast mianowników i potem przejśc do 2 nierówności uwtorzonych od tych mianowników
@@ -77,6 +93,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
         - krok 6 ma podobny problem jak 3
         - powinno być to zwizualizowane emotką odznaczenia zielonego przy x = 6 i jednoczesnym pokolorowaniem założenia na zielono
       - Rozwiązania zwykłe powinny follołować krok po kroku
+
     - Zad 9 - Sprawdzanie obliczeń - Pierwszy checkbox
       (sprawdzone 2026-08-20: trzy kryteria zgadzają się z kluczem CKE co do punktów,
       pierwsze jest za 0 pkt celowo, bo klucz daje punkt dopiero za pierwiastki.
@@ -99,6 +116,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
           - Rozwiązanie krok po kroku:
             - film robi sam rachunek, NIE rysuje paraboli (widżet niżej już ją pokazuje interaktywnie)
               — czy to dobry podział, czy parabola ma być też w filmie
+
 
 
   - Co zadawać Fable:
@@ -166,21 +184,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     - Zad 19. dopisać str 20 (pole trapezu [10.17], obok już wpisanej str 17 z podobieństwem trójkątów)
     - Zad 24. dopisać str 27 (jest tam rysunek ostrosłupa, obok już wpisanej str 11 z tangensem)
     - Zad 30. dopisać str 26 (pole całkowite prostopadłościanu [12.2], obok już wpisanej str 8 z wierzchołkiem paraboli)
-
-
-  - Przycisk "Zresetuj ustawienia" z popup-em do potwierdzenie. Podświetlajacy się na czerwono po najechaniu i widoczny na samym dole side-bar-a.
-  
-  - Wsparcie, donate-y itd.
-    - W index.html dodać sekcję o autorze i link do Patronite
-    - Na githubie w ustawieniach repo też można coś podpiąć chyba ale trzeba sprawdizć czy byłoby to fair.
-
-  - wysyłanie całego localStorage przez użytkownika podczas zgłaszania błędu jest a bit scatchy też troche niebezpiczne
-
-  - Przy suwakach / sliderach w rozwiązaniach interaktywnych powinny być strzałki w lewo po lewe i po prawejktóre można klikać lub przytrzymywać również na telefonach, aby wartość suwaka. W stylu strzałek prev-step i next-step lub tych które pojawiają się prz yzaszerockich dotsach. 
-
-  - Zwykłe rozwiązania powinny składać się z arraya / listy wielu sposobów / podejść. Jeżeli jest tylko jeden element to UI wyświetla go tak jak dotychczas. Jeśli więcej to robią się zakładki w stylu tych w widgetach.
-
-  - dodać przycisk "pokaż zasady oceniania" na końcu "Sprawdzania obliczeń" który miałby podobną funkcjonalność co przycisk "Pokaż wzory" - otwierałby okienko i też by przenosił do odpowiedniej strony w PDF
   
   - Remont struktury exercises.json ay ułatwić migrację do bazy danych
     - Dodać numery zadań
