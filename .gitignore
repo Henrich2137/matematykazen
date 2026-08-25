@@ -15,3 +15,10 @@ manimations/media/
 # w repo, patrz issues/cloudflare-hosting.md.
 .wrangler/
 node_modules/
+
+# Ustawienia widoku katalogu z Dolphina (menedżer plików KDE): zapamiętany
+# sposób sortowania, ikona folderu i podobne drobiazgi. Powstaje po cichu przy
+# klikaniu w folderze, jest osobisty i nie ma nic wspólnego z treścią strony.
+# Bez ukośnika, więc reguła łapie ten plik w każdym podkatalogu, nie tylko
+# w korzeniu.
+.directory
