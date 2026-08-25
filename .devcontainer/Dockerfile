@@ -218,7 +218,25 @@ USER root
 #
 # --no-install-recommends jak w pozostałych blokach: wszystkie potrzebne
 # kawałki TeX Live są wymienione z nazwy, więc nie ma po co ciągnąć
-# rekomendacji (głównie dokumentacja) i puchnąć obrazu.
+# rekomendacji i puchnąć obrazu.
+#
+# Pakiety z końcówką -doc to dokumentacja LaTeX-a DLA MODELI, nie dla renderu.
+# Bez nich `texdoc amsmath` odpowiada "nie znaleziono", bo TeX Live w obrazie
+# jest okrojony do plików roboczych, a wtedy model pisze polecenia z pamięci
+# i myli się w składni MathTex. Z nimi ma pod ręką źródło prawdy, offline,
+# bez wyjątku w firewallu.
+#
+# Wzięte są dwa, nie wszystkie: to dokumentacja tych kawałków, w których
+# siedzą polecenia używane w naszych scenach (amsmath, amssymb, ułamki,
+# środowiska równań). Świadomie NIE bierzemy texlive-latex-extra-doc ani
+# texlive-fonts-extra-doc: to setki megabajtów opisów pakietów, których
+# sceny nie tykają. Gdyby kiedyś zabrakło konkretnego opisu, dopisz do listy
+# niżej dokładnie ten jeden -doc, którego brakuje:
+#   texlive-latex-extra-doc     # pakiety dodatkowe (duże, ~0,5 GB)
+#   texlive-science-doc         # dokumentacja texlive-science
+#   texlive-fonts-extra-doc     # opisy krojów pisma
+# Sprawdzenie po rebuildzie: `texdoc -l amsmath` ma wypisać ścieżkę do PDF-a,
+# a nie "nie znaleziono".
 RUN apt-get update && apt-get install -y --no-install-recommends \
   python3 \
   python3-dev \
@@ -232,6 +250,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   texlive-latex-recommended \
   texlive-fonts-extra \
   texlive-science \
+  texlive-latex-base-doc \
+  texlive-latex-recommended-doc \
   dvisvgm \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 

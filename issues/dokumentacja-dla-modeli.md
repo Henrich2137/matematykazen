@@ -64,8 +64,22 @@ dokumentacji pakietów. Czyli przy pytaniu o pakiet LaTeX-a **nie ma dokąd
 zajrzeć w kontenerze**.
 
 Mniej pilne niż KaTeX, bo sceny Manima używają wąskiego zestawu poleceń.
-Doinstalowanie dokumentacji wymaga zmiany w `.devcontainer/Dockerfile`,
-czyli pracy z hosta i przebudowy obrazu. Leży jako punkt opcjonalny w `TODO.md`.
+
+**Stan od 2026-08-25: załatwione w `.devcontainer/Dockerfile`, czeka na rebuild.**
+Do bloku `apt-get` z pakietami TeX Live dopisane są `texlive-latex-base-doc`
+i `texlive-latex-recommended-doc`, czyli dokumentacja dokładnie tych kawałków,
+w których siedzą polecenia używane w scenach (amsmath, amssymb, ułamki,
+środowiska równań). Dokumentacja zacznie istnieć dopiero po „Rebuild Container",
+bo zmiana jest w obrazie, nie w kontenerze.
+
+Sprawdzenie po rebuildzie, jednym poleceniem w kontenerze:
+
+```sh
+texdoc -l amsmath
+```
+
+Ma wypisać ścieżkę do pliku PDF. Jeśli dalej mówi „nie znaleziono", rebuild się
+nie odbył albo nazwa pakietu w Debianie jest inna, niż zakładaliśmy (patrz niżej).
 
 ## Czego NIE ustalono
 
@@ -73,4 +87,12 @@ czyli pracy z hosta i przebudowy obrazu. Leży jako punkt opcjonalny w `TODO.md`
   trafienia. Zmierzono tylko, że na pięciu kontrolnych przypadkach jedno pudło
   się zdarzyło.
 - Nie sprawdzano, jak duża jest paczka dokumentacji TeX Live ani czy mieści się
-  w rozsądnym rozmiarze obrazu.
+  w rozsądnym rozmiarze obrazu. Wpisane do Dockerfile'a dwa pakiety wybrano jako
+  najmniejszy zestaw pokrywający amsmath, nie zmierzono ich rozmiaru.
+- Nie zweryfikowano nazw `texlive-latex-base-doc` i `texlive-latex-recommended-doc`
+  w repozytorium Debiana: host stoi na Fedorze (Bazzite), więc nie ma tam bazy
+  pakietów Debiana, a sprawdzenie w sieci wymagałoby zgody (HOSTRULES.md).
+  To są nazwy siostrzane wobec już zainstalowanych `texlive-latex-base`
+  i `texlive-latex-recommended`, czyli mocne przypuszczenie, nie pomiar.
+  Gdyby któraś była zła, rebuild padnie głośno, z komunikatem
+  „Unable to locate package", a wtedy poprawka to jedna linijka w Dockerfile.

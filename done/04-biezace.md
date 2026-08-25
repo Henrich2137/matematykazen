@@ -1,5 +1,29 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-25] (Opus 5, medium) Dokumentacja LaTeX-a dla modeli dopisana
+do obrazu devkontenera (praca z hosta, bo zmiana jest w Dockerfile).
+[dockerfile, kontener, latex, manim, dokumentacja, host]
+
+Zamknięcie opcjonalnego punktu hostowego z TODO. `texdoc` był w obrazie, ale nie miał
+czego pokazywać (`texdoc -l amsmath` zwracało „nie znaleziono"), bo TeX Live jest tam
+okrojony do plików roboczych. Model pytany o składnię MathTex nie miał więc gdzie
+zajrzeć i pisał z pamięci.
+
+Do bloku `apt-get` w `.devcontainer/Dockerfile` dopisane `texlive-latex-base-doc`
+i `texlive-latex-recommended-doc`, czyli dokumentacja dokładnie tych kawałków,
+w których siedzą polecenia używane w scenach. Świadomie bez `texlive-latex-extra-doc`
+i `texlive-fonts-extra-doc` (setki megabajtów opisów pakietów, których sceny nie
+tykają); nazwy tych dwóch leżą w komentarzu nad blokiem jako kandydaci na później.
+
+Czego NIE ustalono: nazw obu pakietów nie zweryfikowano w repozytorium Debiana,
+bo host stoi na Fedorze, a sprawdzenie w sieci wymagałoby zgody (HOSTRULES.md).
+To nazwy siostrzane wobec już zainstalowanych, czyli przypuszczenie, nie pomiar;
+zły wpis wywali rebuild z komunikatem „Unable to locate package". Rozmiaru dodatku
+też nie mierzono. Szczegóły w `issues/dokumentacja-dla-modeli.md`.
+
+Działa dopiero po „Rebuild Container" - wpis dla Henricha jest w TODO.md.
+
+
 [ZROBIONE 2026-08-25] (Opus 5, medium) Poprawiony komentarz przy pypi.org
 w `.devcontainer/init-firewall.sh` (praca z hosta, plik jest w kontenerze tylko do odczytu).
 [firewall, kontener, manim, host, dokumentacja]

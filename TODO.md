@@ -36,7 +36,10 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + DLA HENRICHA:
 
-  - nic
+  - zrób „Rebuild Container", żeby weszła dokumentacja LaTeX-a dla modeli (dopisana
+    do .devcontainer/Dockerfile 2026-08-25). Potem w kontenerze `texdoc -l amsmath`
+    ma wypisać ścieżkę do PDF-a zamiast „nie znaleziono". Gdyby rebuild padł na
+    „Unable to locate package", powiedz mi, poprawię nazwę pakietu
 
 
 
@@ -49,8 +52,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     - docs.manim.community: NIE otwierać. Cały Manim ze źródłami leży w kontenerze, a strona stoi na współdzielonym adresie Cloudflare (104.16.254.120), czyli tym samym przypadku co odrzucony formspree.io
     - katex.org: NIE otwierać. Listę obsługiwanych poleceń da się wyciągnąć wprost z vendor/katex/katex.min.js, bez sieci
     - pypi.org + files.pythonhosted.org: tylko jeśli kiedyś będziesz doinstalowywał paczki pythonowe. Leżą już w init-firewall.sh jako gotowy, zakomentowany kandydat, potrzebne są oba naraz
-
-  - opcjonalnie, tylko gdy modele zaczną mylić się w LaTeX-u w scenach Manima: doinstalować dokumentację TeX Live. Wymaga dopisania pakietów w `.devcontainer/Dockerfile` (obok bloku z `ARG MANIM_VERSION`), więc robi się to z hosta i kończy przebudową obrazu („Rebuild Container"). Odkryta pułapka: `texdoc` jest zainstalowany, ale nie ma czego pokazywać (`texdoc -l amsmath` zwraca „nie znaleziono"), bo TeX Live w obrazie jest okrojony do plików roboczych
 
 
 <br>
