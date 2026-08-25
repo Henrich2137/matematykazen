@@ -1,5 +1,19 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-25] (Opus 5, medium) Poprawiony komentarz przy pypi.org
+w `.devcontainer/init-firewall.sh` (praca z hosta, plik jest w kontenerze tylko do odczytu).
+[firewall, kontener, manim, host, dokumentacja]
+
+Przy zakomentowanych wpisach `pypi.org` / `files.pythonhosted.org` stało „Odkomentuj,
+gdyby Manim albo inne narzędzia pythonowe miały renderować wideo w kontenerze". To tekst
+sprzed wrzucenia Manima do obrazu (2026-08-11): dziś paczki pythonowe wchodzą przy
+budowaniu obrazu, zanim firewall się nałoży, więc do samego renderu wideo ten wyjątek
+nie jest potrzebny i komentarz mylił. Nowa treść mówi, że wyjątek przydaje się wyłącznie
+przy doinstalowaniu paczki w DZIAŁAJĄCYM kontenerze, bez przebudowy obrazu, i że
+potrzebne są oba wpisy naraz (metadane + pliki). Sam wpis zostaje zakomentowany,
+firewall bez zmian. Sprawdzone `bash -n`.
+
+
 [ZROBIONE 2026-08-25] (Opus 5, medium) Dokumentacja dla modeli: rozpoznawanie środowiska,
 luka w liście stabilnych ID, przegląd tego, czego modelom brakuje offline.
 [dokumentacja, kontener, podman, host, firewall, manim, katex, id, exam-mode]

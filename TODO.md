@@ -50,8 +50,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     - katex.org: NIE otwierać. Listę obsługiwanych poleceń da się wyciągnąć wprost z vendor/katex/katex.min.js, bez sieci
     - pypi.org + files.pythonhosted.org: tylko jeśli kiedyś będziesz doinstalowywał paczki pythonowe. Leżą już w init-firewall.sh jako gotowy, zakomentowany kandydat, potrzebne są oba naraz
 
-  - drobna poprawka komentarza w `.devcontainer/init-firewall.sh` (plik jest w kontenerze tylko do odczytu, stąd host). Przy zakomentowanych wpisach `pypi.org` / `files.pythonhosted.org` stoi „Odkomentuj, gdyby Manim albo inne narzędzia pythonowe miały renderować wideo w kontenerze". To sprzed wrzucenia Manima do obrazu (2026-08-11): dziś Manim renderuje w kontenerze i wyjątku NIE potrzebuje, bo paczki wchodzą przy budowaniu obrazu, zanim firewall się nałoży. Sąsiedni `Dockerfile` ma to już opisane poprawnie. Proponowany tekst: „Odkomentuj tylko wtedy, gdy trzeba doinstalować paczkę pythonową w DZIAŁAJĄCYM kontenerze, bez przebudowy obrazu; POTRZEBNE SĄ OBA naraz (metadane + pliki)"
-
   - opcjonalnie, tylko gdy modele zaczną mylić się w LaTeX-u w scenach Manima: doinstalować dokumentację TeX Live. Wymaga dopisania pakietów w `.devcontainer/Dockerfile` (obok bloku z `ARG MANIM_VERSION`), więc robi się to z hosta i kończy przebudową obrazu („Rebuild Container"). Odkryta pułapka: `texdoc` jest zainstalowany, ale nie ma czego pokazywać (`texdoc -l amsmath` zwraca „nie znaleziono"), bo TeX Live w obrazie jest okrojony do plików roboczych
 
 

@@ -156,10 +156,12 @@ CONTENT_DOMAINS=(
     #                             # Odkomentuj, gdybyś chciał testować wysyłkę
     #                             # zgłoszeń Z WNĘTRZA kontenera — normalnie
     #                             # klika się to w przeglądarce na hoście.
-    # "pypi.org"                  # anycast Fastly (151.101.x). Odkomentuj,
-    # "files.pythonhosted.org"    # gdyby Manim albo inne narzędzia pythonowe
-    #                             # miały renderować wideo w kontenerze;
-    #                             # POTRZEBNE SĄ OBA naraz (metadane + pliki).
+    # "pypi.org"                  # anycast Fastly (151.101.x). Odkomentuj tylko
+    # "files.pythonhosted.org"    # wtedy, gdy trzeba doinstalować paczkę
+    #                             # pythonową w DZIAŁAJĄCYM kontenerze, bez
+    #                             # przebudowy obrazu; POTRZEBNE SĄ OBA naraz
+    #                             # (metadane + pliki). Manim jest już w obrazie,
+    #                             # więc do renderu wideo tego wyjątku NIE trzeba.
     # "developer.mozilla.org"     # anycast Fastly. Dokumentacja CSS/JS.
     #                             # Odkomentuj, jeśli chcesz do niej sięgać
     #                             # z kontenera zamiast z przeglądarki hosta.
