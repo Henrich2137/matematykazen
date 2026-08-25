@@ -133,7 +133,7 @@ Every commit (local or cloud) gets a `Co-Authored-By:` trailer in the form **`Lo
 
 ## Claude Code — plugins / skills
 
-`.claude/settings.json` (tracked) enables the **superpowers** plugin at scope `project`, so it travels with the repo; its 14 skills (`brainstorming`, `systematic-debugging`, `writing-plans`, …) only appear **after a Claude Code session restart**. Install details, the marketplace-cache search trap and why `vendor/superpowers/` holds no plugin code: [issues/claude-code-pluginy.md](issues/claude-code-pluginy.md).
+`.claude/settings.json` (tracked) enables **all four plugins** at scope `project`, so they travel with the repo: `superpowers` (14 skills: `brainstorming`, `systematic-debugging`, `writing-plans`, …), `frontend-design`, `chrome-devtools-mcp` and `github`. Since 2026-08-25 nothing is left at scope `local` (`.claude/settings.local.json` keeps only the sandbox settings). Skills only appear **after a Claude Code session restart**. Beyond the plugins, `.claude/skills/` holds two Manim skills copied from the MIT repo `adithya-s-k/manim_skill` (2026-08-25) - **house rules in `manimations/README.md` and `COLORS.md` win over them**; `.claude/skills/README.md` says why. Install details, the marketplace-cache search trap and why `vendor/superpowers/` holds no plugin code: [issues/claude-code-pluginy.md](issues/claude-code-pluginy.md).
 
 ## Test przed implementacją, ale tylko przy trudnych zmianach (dodane 2026-08-21)
 

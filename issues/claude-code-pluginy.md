@@ -13,6 +13,33 @@ jedzie razem z repo:
 { "enabledPlugins": { "superpowers@claude-plugins-official": true } }
 ```
 
+## Wszystko przeniesione do scope `project` (2026-08-25)
+
+Na prośbę Henricha wszystkie cztery pluginy siedzą dziś w scope `project`, czyli w śledzonym
+`.claude/settings.json`. `.claude/settings.local.json` ma już puste `enabledPlugins` i trzyma
+wyłącznie ustawienia sandboxa.
+
+Powód: `local` nie przeżywa przeprowadzki na inną maszynę, bo plik jest w `.gitignore`.
+Po tej zmianie świeży klon wie, które pluginy mają być włączone, i kod dociąga się do cache'u
+sam, tak jak od początku robił to `superpowers`.
+
+Przeniesienie zrobione przez CLI, nie ręczną edycją JSON-a, żeby zgadzał się też zapis
+instalacji w `~/.claude/plugins/installed_plugins.json`:
+
+```sh
+claude plugin install <nazwa>@claude-plugins-official --scope project -y
+claude plugin uninstall <nazwa>@claude-plugins-official --scope local -y
+```
+
+**Uwaga na duplikaty:** sama instalacja w `project` NIE kasuje starego wpisu `local` —
+`claude plugin list` pokazuje wtedy ten sam plugin dwa razy, raz z każdym scope. Dopiero
+`uninstall --scope local` porządkuje listę.
+
+**Co dalej zostaje per maszyna:** deklaracja jedzie z repo, ale środowisko nie. `github` dalej
+wymaga `gh auth login` na każdej nowej maszynie (patrz sekcja niżej), a `chrome-devtools-mcp`
+dalej nie ma w tym kontenerze przeglądarki Chrome. Tabelka poniżej opisuje stan sprzed tej
+zmiany i została dla historii.
+
 ## Świeży kontener gubi pluginy — jak je wrócić (2026-08-15)
 
 Sprawdzone w kontenerze, w którym z czterech pluginów działał tylko `superpowers`. Nie był
