@@ -13,6 +13,14 @@ Manim, ffmpeg i minimalny TeX Live siedzą w obrazie kontenera (blok w `.devcont
 - LaTeX to TeX Live w minimalnym zestawie z dokumentacji Manima (~1–1,5 GB), a nie `texlive-full` — pokrywa to, czego używają istniejące sceny. Gdyby render zgłosił brakujący plik `.sty`, dopisuje się konkretny pakiet w Dockerfile.
 - Instalacja nie wymaga wyjątku w firewallu (`pypi.org` jest poza allowlistą): obraz buduje się, zanim host nałoży firewall, a po starcie kontenera Manim nic już nie pobiera.
 - Przypięty jest **tylko sam Manim**. Zależności pod spodem instalują się w najnowszych wersjach (sprawdzone 2026-08-11: `ManimPango 0.6.1`, `numpy 2.4.6`, `Pillow 12.3.0`, ffmpeg **5.1.9** z Debiana 12). Dawny host Henricha miał inne (`0.6.0` / `2.2.1` / `11.0.0`, ffmpeg 7.1) i mimo to dawał ten sam obraz - patrz porównanie niżej.
+- **Dokumentację API Manima czytaj lokalnie, nie z internetu.** Kontener ma cały kod źródłowy Manima (163 pliki `.py`) razem z opisami funkcji, a firewall i tak nie przepuszcza `docs.manim.community`. Zamiast zgadywać nazwy argumentów:
+  ```sh
+  python3 -c "import manim, inspect; print(inspect.signature(manim.MathTex.__init__))"
+  python3 -c "import manim, inspect; print(inspect.getdoc(manim.TransformMatchingShapes))"
+  python3 -c "import manim, inspect; print(inspect.getsource(manim.Transform.__init__))"
+  ```
+  Offline nie ma tylko poradników i galerii przykładów ze strony. Dlaczego nie otwieramy tej domeny: [../issues/dokumentacja-dla-modeli.md](../issues/dokumentacja-dla-modeli.md).
+- **Co ten obraz na pewno umie: [test-mozliwosci.py](test-mozliwosci.py).** Siedem scen kontrolnych pokrywających to, co wychodzi na maturze: wyrażenia z liczbą zmienianą płynnie przez `ValueTracker`, układ współrzędnych z wykresami i polem pod krzywą, bryły 3D (kula, sześcian, stożek, walec, ostrosłup, powierzchnia siodłowa) z obracającą się kamerą, geometria płaska z kątami i klamrami, diagram słupkowy i tabela, trudniejszy LaTeX (układ równań, pierwiastek stopnia n, granica, symbol Newtona, przedziały) oraz polskie znaki. Wszystkie siedem przechodzi (sprawdzone 2026-08-25). **Puść je po każdej zmianie `MANIM_VERSION` w Dockerfile**, przepis w nagłówku pliku; to jedyny tani sposób, żeby wyłapać, że przebudowa obrazu coś urwała.
 - **Nie podawaj flagi jakości** (`-ql`/`-qh` itd.). Flaga jakości nadpisuje `pixel_width`/`pixel_height` z `manim.cfg`, a wraz z rozdzielczością zmieniają się **proporcje kadru**, czyli rozmieszczenie wzorów wychodzi inne niż w plikach już wgranych na stronę. Samo `manim plik.py Scena` czyta `manim.cfg` i trafia w obowiązujące **1280×720 @ 120 fps** (16:9). Porównanie host ↔ kontener niżej robione było jeszcze na starym kadrze 840×360 @ 60 fps (21:9), sprzed zmiany z 2026-08-11.
 
 #### Parametry renderu i waga plików
@@ -232,6 +240,13 @@ Twarde reguły. Przed renderem przeczytaj, po renderze sprawdź.
 
 Każda kosztowała osobny render, więc warto je znać z góry.
 
+- **Polskie znaki NIE przechodzą przez `Tex()` ani `MathTex()`** (zmierzone 2026-08-25).
+  LaTeX w tym obrazie jedzie w kodowaniu OT1, więc `Tex("Pole trójkąta")` wywala render
+  z błędem `Command \k unavailable in encoding OT1` (to ogonek od „ą"). Napisy z polskimi
+  znakami rób przez **`Text()`**, który idzie przez Pango i LaTeXa w ogóle nie dotyka;
+  sprawdzone na pełnym „Zażółć gęślą jaźń ĄĆĘŁŃÓŚŹŻ". `Text()` i `MathTex()` wolno
+  spokojnie łączyć w jednym `VGroup(...).arrange(RIGHT)`. W `solutionZad3.py` leży
+  zakomentowany `MathTex` z „liczbą całkowitą" w środku, czyli ktoś już się na tym przejechał.
 - **`Transform` zostawia w kadrze obiekt ŹRÓDŁOWY**, tylko wyglądający jak cel. Do gaszenia
   koloru wpisuj więc źródła, nie cele. A po `Transform(VGroup(a, b), cel)` w kadrze leżą OBA
   składniki grupy, więc oba trzeba wygasić. Tak właśnie gasło nierówno: pół zapisu czerniało,

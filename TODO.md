@@ -45,7 +45,14 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + DO ZROBIENIA HOŚCIE (POZA KONTENEREM)
 
-  - nic
+  - firewall: nic nie trzeba otwierać. To wynik sprawdzenia (2026-08-25), nie przeoczenie. Rozpisane w issues/dokumentacja-dla-modeli.md
+    - docs.manim.community: NIE otwierać. Cały Manim ze źródłami leży w kontenerze, a strona stoi na współdzielonym adresie Cloudflare (104.16.254.120), czyli tym samym przypadku co odrzucony formspree.io
+    - katex.org: NIE otwierać. Listę obsługiwanych poleceń da się wyciągnąć wprost z vendor/katex/katex.min.js, bez sieci
+    - pypi.org + files.pythonhosted.org: tylko jeśli kiedyś będziesz doinstalowywał paczki pythonowe. Leżą już w init-firewall.sh jako gotowy, zakomentowany kandydat, potrzebne są oba naraz
+
+  - drobna poprawka komentarza w `.devcontainer/init-firewall.sh` (plik jest w kontenerze tylko do odczytu, stąd host). Przy zakomentowanych wpisach `pypi.org` / `files.pythonhosted.org` stoi „Odkomentuj, gdyby Manim albo inne narzędzia pythonowe miały renderować wideo w kontenerze". To sprzed wrzucenia Manima do obrazu (2026-08-11): dziś Manim renderuje w kontenerze i wyjątku NIE potrzebuje, bo paczki wchodzą przy budowaniu obrazu, zanim firewall się nałoży. Sąsiedni `Dockerfile` ma to już opisane poprawnie. Proponowany tekst: „Odkomentuj tylko wtedy, gdy trzeba doinstalować paczkę pythonową w DZIAŁAJĄCYM kontenerze, bez przebudowy obrazu; POTRZEBNE SĄ OBA naraz (metadane + pliki)"
+
+  - opcjonalnie, tylko gdy modele zaczną mylić się w LaTeX-u w scenach Manima: doinstalować dokumentację TeX Live na hoście i przebudować obraz. `texdoc` jest w kontenerze, ale nie ma czego pokazywać (`texdoc -l amsmath` zwraca „nie znaleziono"), bo TeX Live jest okrojony do plików roboczych
 
 
 <br>
@@ -277,6 +284,11 @@ Oto plik który tworzy Henrich (ja, użytkownik).
   + OPUS 5 MEDIUM DOPISAŁ (2026-08-24, po wpuszczeniu matematykazen.pl do firewalla kontenera):
 
     - do Twojej akceptacji: wpuszczenie matematykazen.pl otwiera kontenerowi dwa adresy Cloudflare (104.21.63.231 i 172.67.172.150), a te są współdzielone z tysiącami cudzych stron, bo filtrujemy po adresie IP, a nie po nazwie. Dokładnie z tego powodu formspree.io leży w init-firewall.sh wśród odrzuconych. Zrobiłem tak, jak prosiłeś, i opisałem kompromis w komentarzu przy wpisie; jeśli wolisz szczelniej, wystarczy zakomentować dwie linijki z powrotem
+
+
+  + OPUS 5 MEDIUM DOPISAŁ (2026-08-25, po pomyleniu kontenera z hostem, patrz issues/host-czy-kontener.md):
+
+    - przy pierwszej sesji na Kubuntu odpal `uname -r`, `git config user.name` i `df -T .`, i wpisz wyniki do tabelki w MACHINES.md. Kolumna „Kubuntu" jest tam dziś pusta, bo zmierzyłem tylko Bazzite, a bez niej model nie odróżni laptopa od komputera
 
 
 + ZASADY DLA CLAUDE-A:

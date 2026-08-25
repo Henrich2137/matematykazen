@@ -1,5 +1,58 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-25] (Opus 5, medium) Dokumentacja dla modeli: rozpoznawanie środowiska,
+luka w liście stabilnych ID, przegląd tego, czego modelom brakuje offline.
+[dokumentacja, kontener, podman, host, firewall, manim, katex, id, exam-mode]
+
+Wyszło z sesji, w której model przez pół rozmowy twierdził, że jest na hoście, siedząc
+w devkontenerze.
+
+1. **Rozpoznanie host/kontener naprawione.** Model sprawdzał `/.dockerenv`, a ten plik
+   tworzy wyłącznie docker; kontenery stoją na rootless podmanie, więc test zawsze
+   wychodził „host". Nowy test bierze cztery markery naraz (`$REMOTE_CONTAINERS`,
+   `$DEVCONTAINER`, `$container`, `/run/.containerenv`, `/.dockerenv`) i jest sprawdzony
+   w obie strony. Trafił do CLAUDE.md, szczegóły w `issues/host-czy-kontener.md`.
+   Przy okazji: system hosta da się rozpoznać ze środka kontenera po `uname -r`
+   (jądro jest wspólne, `fc` = Bazzite), bo `/etc/os-release` opisuje obraz kontenera.
+   Tabelka markerów per maszyna w `MACHINES.md`, kolumna Kubuntu czeka na pomiar.
+
+2. **`issues/dokumentacja-exam-mode-luka.md` zamknięte.** Cztery braki wypunktowane
+   w zgłoszeniu (`#egzamin-koniec-bar`, `#egzamin-start-stopka`, `KLUCZ_OCENIANIA`,
+   faza „oceń się") były już uzupełnione w ARCHITECTURE.md; zgłoszenie było nieaktualne.
+   Natomiast **lista stabilnych ID w ARCHITECTURE_CSS.md faktycznie miała luki** i to
+   większe, niż zgłoszenie opisywało. Porównanie skryptem (ID z template.html kontra
+   użycia w `app/*.js`) pokazało 19 identyfikatorów odpytywanych z kodu, a nieobecnych
+   na liście: cała stopka arkusza, overlay podsumowania egzaminu, `#exercises-wrapper`,
+   `#exercise-template` i dziewięć pól formularza zgłaszania błędów. Dodane w czterech
+   grupach. Poprawiona też sama zapowiedź listy: dwa wpisy (`#wersja`,
+   `#tryb-przelacznik`) NIE są odpytywane z JS i są stabilne z innych powodów, co
+   wcześniej lista przemilczała. Po poprawce skrypt daje zero luk.
+   Uwaga metodyczna: pierwsze porównanie dało sześć fałszywych trafień, bo część ID
+   kod pobiera pętlą po tablicy stringów, nie literalnym `getElementById("…")`.
+
+3. **Przegląd „czego modelom brakuje offline"** (`issues/dokumentacja-dla-modeli.md`).
+   Wniosek: firewalla nie trzeba otwierać na nic. Pełne źródła Manima 0.18.1 leżą
+   w kontenerze i czyta się je przez `inspect` (przepis dopisany do
+   `manimations/README.md`), a listę poleceń KaTeX da się wyłuskać wprost
+   z `vendor/katex/katex.min.js` (1011 nazw, z jednym zmierzonym fałszywym trafieniem
+   na pięć kontrolnych). `docs.manim.community` stoi na współdzielonym adresie
+   Cloudflare (104.16.254.120), czyli tym samym przypadku co odrzucony formspree.io.
+   Wykryta pułapka: `texdoc` jest zainstalowany, ale nie ma czego pokazywać.
+
+4. **Sprawdzone renderem, co Manim w tym obrazie faktycznie umie** (pytanie Henricha
+   o maturalne typy rysunków). Siedem scen kontrolnych przeszło i każda została
+   obejrzana klatka po klatce, nie tylko „render nie zwrócił błędu": liczby zmieniane
+   płynnie przez `ValueTracker`, układ współrzędnych z wykresami i polem pod krzywą,
+   bryły 3D z obrotem kamery, geometria płaska z kątami i klamrami, diagram słupkowy
+   i tabela, trudniejszy LaTeX. Sceny wylądowały jako `manimations/test-mozliwosci.py`,
+   do puszczenia po każdej zmianie `MANIM_VERSION`.
+   **Jedna rzecz NIE działa:** polskie znaki w `Tex()`/`MathTex()` wywalają render
+   (`Command \k unavailable in encoding OT1`, czyli ogonek od „ą"); napisy z polskimi
+   znakami idą przez `Text()` (Pango). Dopisane do „Pułapek Manima" w README.
+   Ślad, że ktoś się już na tym przejechał: zakomentowany `MathTex` z „liczbą
+   całkowitą" w `solutionZad3.py`.
+
+
 [ZROBIONE 2026-08-24] (Opus 5, medium) Trzy punkty z sekcji „DO ZROBIENIA HOŚCIE":
 poprawki, których nie dało się zrobić z kontenera, plus przegląd repo pod kątem dwóch gałęzi.
 [host, devcontainer, firewall, galezie, dev, main, cloudflare, hosting]

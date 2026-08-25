@@ -13,7 +13,6 @@ Zasady:
 - [dwie-karty-tryb-egzaminu.md](dwie-karty-tryb-egzaminu.md) — dwie karty tego samego arkusza blokują "zakończ egzamin"
 - [dark-mode-wskazniki-scroll.md](dark-mode-wskazniki-scroll.md) — kropki wskaźników "gumkują" przy scrollowaniu
 - [dark-mode-inwersja-przegladarki.md](dark-mode-inwersja-przegladarki.md) — odwracanie kolorów grafik/wideo w dark mode działa inaczej w Chrome/Brave (jaśniejszy prostokąt) i w ogóle nie działa w Samsung Internet
-- [dokumentacja-exam-mode-luka.md](dokumentacja-exam-mode-luka.md) — ARCHITECTURE.md nie opisuje połowy trybu egzaminu
 - [numer-zadania-podnumer.md](numer-zadania-podnumer.md) — regex numeru zadania gubi podnumery (12.1 vs 12.2)
 - [motyw-rozjezdza-sie-miedzy-kartami.md](motyw-rozjezdza-sie-miedzy-kartami.md) — dark/light mode niespójny między kartami przeglądarki
 - [ocenianie-cichy-blad-zapisu.md](ocenianie-cichy-blad-zapisu.md) — `ustawFazeOceniania()` cicho połyka błędy zapisu do localStorage
@@ -36,6 +35,8 @@ CLAUDE.md ma z każdej z nich tylko kilka linijek i odnośnik tutaj.
 - [git-i-gitdoc.md](git-i-gitdoc.md) — gitdoc (wyłączony) + natywny auto-fetch/auto-pull: dlaczego gitdoc da się włączyć tylko per-workspace, co by robił po włączeniu, `forcePush`, debounce `autoCommitDelay`, `task.allowAutomaticTasks`
 - [licencja-i-cla.md](licencja-i-cla.md) — PolyForm Noncommercial + CLA: co jest w którym pliku meta i dwa placeholdery (pseudonim, URL Required Notice) zmieniane parami
 - [licencja-premium.md](licencja-premium.md) — rozdział licencyjny: `widgets/` na licencji zastrzeżonej (premium), reszta na PolyForm; gdzie biegnie granica, dlaczego bez daty i hasha, i czego w `widgets/` kłaść nie wolno
+- [host-czy-kontener.md](host-czy-kontener.md) — jak model ma ustalić, czy działa na hoście czy w devcontainerze (`/.dockerenv` kłamie, bo to podman) i na której maszynie stoi host
+- [dokumentacja-dla-modeli.md](dokumentacja-dla-modeli.md) — czego modelom brakuje offline, a co już mają pod ręką: API Manima przez `inspect`, lista poleceń KaTeX z `katex.min.js`, pusty `texdoc`, i dlaczego żadnej domeny nie trzeba otwierać w firewallu
 - [claude-code-pluginy.md](claude-code-pluginy.md) — plugin superpowers: scope project, przypięty SHA, pułapka przy szukaniu w cache'u marketplace'u, pusty `vendor/superpowers/`
 
 ## Archiwum (kod usunięty, ale trzymany na wypadek powrotu)

@@ -16,6 +16,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Sprawdź na starcie sesji, czy działasz na hoście (poza devcontainerem), czy w devcontainerze.** Jeśli na hoście — obowiązują zasady z [HOSTRULES.md](HOSTRULES.md) jako **twarde ograniczenia, nie sugestie**: stosuj się do nich automatycznie, przy każdym działaniu, bez czekania na przypomnienie i niezależnie od tego, czy bieżące zadanie o nich wspomina. Nie omijaj ich dla wygody ani żeby "po prostu skończyć zadanie" — jeśli zadanie wymaga czegoś, co HOSTRULES.md zabrania, zatrzymaj się i zapytaj, zamiast szukać obejścia. W razie wątpliwości, czy jesteś na hoście czy w kontenerze, załóż, że na hoście, i działaj wg HOSTRULES.md.
 
+**Sprawdzasz to tą komendą, nie samym `/.dockerenv`** (kontenery stoją na podmanie, a `/.dockerenv` tworzy wyłącznie docker, więc sam ten plik zawsze pokazuje fałszywy „host"):
+
+```sh
+if [ -n "$REMOTE_CONTAINERS$DEVCONTAINER$container" ] || [ -e /run/.containerenv ] || [ -e /.dockerenv ]; then echo KONTENER; else echo HOST; fi
+```
+
+Brak jednego markera to nie dowód na hosta: „jesteśmy na hoście" piszesz dopiero, gdy nie zadziałał żaden. System hosta rozpoznasz po `uname -r` (jądro jest wspólne z hostem, `fc` w wersji = Bazzite); `/etc/os-release` opisuje obraz kontenera, nie host. Markery, pomiary i to, czego nie ustalono: [issues/host-czy-kontener.md](issues/host-czy-kontener.md).
+
 ## Product context
 
 Matematyka Zen is an interactive platform for learning math for the Polish "matura podstawowa" exam, inspired by Brilliant.org. Current phase: demo/MVP. Content = official CKE exam sheets: closed-form exercises get hints/explanations (sometimes interactive widgets); open-form exercises use an off-platform-solve + self-grade flow (`selfScore`). UI philosophy: minimalist, no ads. Business model: freemium (CKE base free, proprietary content paid). This repo is one instance of the exam-sheet page pattern; sibling folders (e.g. `matematykazen11`) hold other sheets with the same structure.
