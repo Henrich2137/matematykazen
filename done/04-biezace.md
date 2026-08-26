@@ -2244,3 +2244,35 @@ Nie do sprawdzenia z kontenera i dlatego oddane Henrichowi:
 Do poprawy z hosta (`.devcontainer/` jest w kontenerze read-only):
 - `.devcontainer/README.md` mówi o `origin/master` w TRZECH miejscach (linie 202, 203, 204),
   a nie w dwóch, jak zakładał wcześniejszy wpis w TODO. Doprecyzowane, z gotową komendą.
+
+## [ZROBIONE] 2026-08-26 - skill `projektowanie-rozwiazan` plus domknięcie `task.allowAutomaticTasks`
+
+**Skill.** `.claude/skills/projektowanie-rozwiazan/` (scope projektu, jedzie z repo). Pierwszy
+własny skill tego projektu, reszta w `.claude/skills/` to kopie z zewnątrz. Odpowiada na pytanie
+„co uczeń ma zobaczyć i zrozumieć", zanim powstanie scena Manim, znaczniki `solutionText` albo
+widżet. Oddaje **dokument projektowy po polsku, nie kod** (decyzja Henricha 2026-08-26: skill ma
+skupiać uwagę na dydaktyce i rachunku, a na technikaliach tylko tyle, żeby nie zaprojektować
+czegoś niewykonalnego albo odstającego od dotychczasowych rozwiązań).
+
+Powstał ze szkicu Henricha plus listy dziewięciu technik dydaktycznych z researchu. Cztery pliki
+w `references/`: `zasady-wizualne.md` (film), `zasady-tekstowe.md` (rozwiązanie opisowe),
+`poe-wzorzec.md` (widżet), `typowe-bledy.md` (lista Henricha ze sprawozdań CKE 2024 i 2025).
+
+Trzy rzeczy w szkicu były nietrafione i zostały poprawione przy pisaniu:
+- szkic odsyłał po „wpis w transkrypcie zasad oceniania CKE", a takiego transkryptu nie ma:
+  zasady oceniania to `matura/<arkusz>/odpowiedzi.pdf`, wyciąg tekstowy to `odpowiedzi.txt`
+  (dla `2024-grudzien` w cp1250 i bez ogonków). SKILL.md ma teraz tabelę, gdzie co leży;
+- szkic odsyłał do `references/typowe-bledy.md`, którego nie było. Listę dosłał Henrich w tej
+  samej sesji, weszła w całości, z dopisaną pod każdą grupą linijką „Jak rozbroić";
+- technika „informacji przemijającej" kazała zostawiać poprzednią linijkę w kadrze wyszarzoną.
+  **Rozstrzygnięcie Henricha: kadr zostaje czysty**, zasada domowa z `manimations/README.md`
+  wygrywa. Zapisane w `zasady-wizualne.md` jako decyzja z datą, żeby kolejny model tego nie
+  „poprawił"; przemijanie obrazu rekompensują rozwiązanie opisowe obok filmu, kropki i cofanie.
+
+Nie odpalono testów na podagentach, których wymaga `superpowers:writing-skills` (kosztowne,
+Henrich prosi o ostrzeżenie przed taką robotą). Skill sprawdzi się na pierwszym prawdziwym zadaniu.
+
+**`task.allowAutomaticTasks`.** Wpis z TESTOWANIE HENRICH domknięty i usunięty z TODO.md:
+Henrich sprawdził na hoście, przełącznik stoi na `on`, a klon w tej sesji był na bieżąco
+(`git rev-list --left-right --count HEAD...@{u}` dało 0/0), czyli zadanie startowe faktycznie
+się odpala.

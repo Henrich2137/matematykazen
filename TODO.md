@@ -11,8 +11,8 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + NIE REALIZUJ, CZEKAJĄ W KOLEJCE:
 
-  - Rozwiązania krok po kroku - kropki kroków (np w zad 1.) przy szerokości okna około 310 do 325 px już się chowają, a strzałki przewijania jeszcze się nie pokazują, więc w tym wąskim zakresie nie da się przejść do innego kroku. Poza tym zakresem przewijanie działa
-
+  - Rozwiązania krok po kroku - kropki kroków (np w zad 1.) przy szerokości okna około 310 do 325 px już się chowają, a strzałki przewijania jeszcze się nie pokazują, więc w tym wąskim zakresie nie da się przejść do innego kroku. Poza tym zakresem przewijanie działa. Zlikwiduj tą strefe pomiędzy, ma być albo wszystko widoczne, albo poprawnie strzałki i przewijanie.
+  
   - to samo do decyzji z „finalAnswer.label": renderer je ignoruje (świadomie, od 2026-08-06),
     a pole nadal siedzi w danych wszystkich arkuszy
 
@@ -26,9 +26,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945
 <br> Próg wejścia jest wysoki, patrz ZASADY DLA CLAUDE-A niżej. Archiwum dawnych list: issues/testowanie-archiwum.md.
-
-  - sprawdź w ustawieniach VS Code (te globalne, User, nie te z repo), czy `task.allowAutomaticTasks` stoi na `on`. Bez tego zadanie „git fetch przy starcie" nie odpala się samo i klon po cichu zostaje w tyle, a nic tego nie widać. Z kontenera nie sprawdzę, bo ten przełącznik siedzi na hoście
-  SPRAWDZONE, JEST NA "ON", JEŻĘLI NIE MA ŻADNYCH PROBLEMÓW TO USUŃ TEN WPIS
 
 <br>
 
