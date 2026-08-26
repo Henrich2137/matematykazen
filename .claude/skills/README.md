@@ -3,6 +3,19 @@
 Skille leżące tutaj Claude Code wczytuje automatycznie przy starcie sesji (scope projektu,
 jadą z repo tak samo jak wpisy w `.claude/settings.json`).
 
+## projektowanie-rozwiazan
+
+Własny skill projektu (2026-08-26), a nie kopia z zewnątrz. Odpowiada na pytanie „co uczeń
+ma zobaczyć i zrozumieć", zanim ktokolwiek napisze scenę Manim, znaczniki `solutionText`
+albo widżet.
+
+- Oddaje **dokument projektowy po polsku**, nie kod i nie gotowy wpis do `exercises.json`.
+  Wpisanie do repo to osobne polecenie.
+- Odbiorca: maturzysta celujący w próg zdawalności, czyli około 30%.
+- Cztery pliki pomocnicze w `references/`: zasady wizualne (film), zasady tekstowe
+  (rozwiązanie opisowe), wzorzec widżetu i lista typowych błędów maturzysty ze sprawozdań
+  CKE 2024 i 2025.
+
 ## manim-composer, manimce-best-practices
 
 Źródło: [adithya-s-k/manim_skill](https://github.com/adithya-s-k/manim_skill), licencja MIT,
