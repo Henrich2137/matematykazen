@@ -168,8 +168,8 @@ Oto plik który tworzy Henrich (ja, użytkownik).
       - Windows 10: działa w pełni na wszystkich najpopularniejszych przeglądarkach
       - Bazzite:
         - Firefox jako jedyny nie zawraca odcienia po v49 (wygląda jak stary goły invert), choć Chrome na tej samej maszynie tak. Kolejność sprawdzania: numer wersji w rogu → about:support (czy rysuje karta graficzna) → profil koloru i HDR
-        CHYBA TO JEST NIEAKTUALNE JUŻ
-      - Iphone i Safari: nie sprawdzone
+        KIEDYŚ TAK BYŁO TERAZ JUŻ USTAWIŁEM, ŻE WSZYSTKO DZIAŁA
+      - Iphone i Safari: Wydaje sie działać dobrze
       - Reszta najpopularniejszych przeglądarek działa dobrze
       - rozpoznanie i warianty naprawy: issues/dark-mode-inwersja-przegladarki.md
 
@@ -282,6 +282,10 @@ Oto plik który tworzy Henrich (ja, użytkownik).
   + OPUS 5 MEDIUM DOPISAŁ (2026-08-25, po pomyleniu kontenera z hostem, patrz issues/host-czy-kontener.md):
 
     - przy pierwszej sesji na Kubuntu odpal `uname -r`, `git config user.name` i `df -T .`, i wpisz wyniki do tabelki w MACHINES.md. Kolumna „Kubuntu" jest tam dziś pusta, bo zmierzyłem tylko Bazzite, a bez niej model nie odróżni laptopa od komputera
+
+  + OPUS 5 MEDIUM DOPISAŁ (2026-08-26, po wdrożeniu nowych rozwiązań do zad. 7 z 2024-grudnia, patrz issues/projekt-zad7-2024-grudzien.md):
+
+    - w układzie dwóch torów na telefonie długie linijki łamią się w środku wzoru (np. „a · (-1) + 3 ·" i niżej „6 = 20"). To nie jest nowe, było tak i przed tą zmianą, ale teraz łamią się dwie linijki zamiast jednej. Do rozważenia zwężenie zapisu albo osobna reguła w responsive.css
 
 
 + ZASADY DLA CLAUDE-A:

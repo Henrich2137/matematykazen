@@ -4,9 +4,14 @@ from manim import *
 class Zad7(Scene):
     """Zadanie 7, grudzien 2024: para x = -1, y = 6 spelnia uklad; szukamy a*b.
 
-    DWANASCIE KROKOW, jeden do jednego z dwunastoma linijkami rachunku
+    CZTERNASCIE KROKOW, jeden do jednego z czternastoma linijkami rachunku
     w rozwiazaniu opisowym (pole solutionText w exercises.json). Scenariusz
-    slowny: manimations/zad7-kroki.md.
+    slowny: manimations/zad7-kroki.md, projekt: issues/projekt-zad7-2024-grudzien.md.
+
+    DWA KROKI DOLOZONE 2026-08-26 (bylo dwanascie). Powod: w dwoch miejscach
+    jeden krok robil dwie rzeczy naraz. Krok 4 wydziela sama regule znaku
+    (a razy -1 daje -a), bo na niej powstaje dystraktor D; krok 10 wydziela
+    porzadkowanie zapisu (b razy 6 daje 6b), zeby prawy tor szedl tak samo jak lewy.
 
     DWA ETAPY, KAZDE ROWNANIE OSOBNO (zasada Henricha, 2026-08-21). Dawna wersja
     prowadzila oba rownania rownolegle w jednej klamrze; teraz film bierze
@@ -35,6 +40,7 @@ class Zad7(Scene):
         r2 = MathTex(r"x", r"+", r"b", r"y", r"=", r"5")              # w klamrze
         k2 = MathTex(r"a", r"x", r"+", r"3", r"y", r"=", r"20")       # samo, na srodku
         k3 = MathTex(r"a", r"\cdot", r"(-1)", r"+", r"3", r"\cdot", r"6", r"=", r"20")
+        k3b = MathTex(r"-", r"a", r"+", r"3", r"\cdot", r"6", r"=", r"20")
         k4 = MathTex(r"-", r"a", r"+", r"18", r"=", r"20")
         k5 = MathTex(r"-", r"a", r"=", r"2")
         k6 = MathTex(r"a", r"=", r"-", r"2")
@@ -43,7 +49,8 @@ class Zad7(Scene):
         # a pod nim idzie drugie rownanie.
         gora = MathTex(r"a", r"=", r"-", r"2")
         e2 = MathTex(r"x", r"+", r"b", r"y", r"=", r"5")
-        d8 = MathTex(r"(-1)", r"+", r"6", r"b", r"=", r"5")
+        d8 = MathTex(r"(-1)", r"+", r"b", r"\cdot", r"6", r"=", r"5")
+        d8b = MathTex(r"-1", r"+", r"6", r"b", r"=", r"5")
         d9 = MathTex(r"6", r"b", r"=", r"6")
         d10 = MathTex(r"b", r"=", r"1")
 
@@ -51,7 +58,8 @@ class Zad7(Scene):
         k11 = MathTex(r"a", r"\cdot", r"b", r"=", r"(-2)", r"\cdot", r"1")
         k12 = MathTex(r"a", r"\cdot", r"b", r"=", r"-2")
 
-        wszystkie = [r1, r2, k2, k3, k4, k5, k6, gora, e2, d8, d9, d10, k11, k12]
+        wszystkie = [r1, r2, k2, k3, k3b, k4, k5, k6, gora, e2, d8, d8b, d9, d10,
+                     k11, k12]
         for stan in wszystkie:
             stan.set_color(BLACK)
             stan.font_size = 90
@@ -76,10 +84,10 @@ class Zad7(Scene):
         uklad = VGroup(klamra, r1, r2)
         uklad.move_to(ORIGIN)
 
-        for stan in (k2, k3, k4, k5, k6, k11, k12):
+        for stan in (k2, k3, k3b, k4, k5, k6, k11, k12):
             stan.move_to(ORIGIN)
         gora.move_to(UP * 1.25)
-        for stan in (e2, d8, d9, d10):
+        for stan in (e2, d8, d8b, d9, d10):
             stan.move_to(DOWN * 0.95)
 
         def zapal(*co):
@@ -138,22 +146,40 @@ class Zad7(Scene):
              [k3[1], k3[2], k3[5], k3[6]], k3)
 
         self.next_section("krok4")
-        # Liczymy iloczyny: a razy (-1) to -a, a 3 razy 6 to 18. Zielone jest to,
-        # co sie zlewa w nowy zapis; sama litera a zostaje.
-        zapal(k3[1], k3[2], k3[4], k3[5], k3[6])
-        k4[0].set_color(self.ZIELONY)
-        k4[3].set_color(self.ZIELONY)
+        # SAMA REGULA ZNAKU. Mnozenie przez -1 nie rusza litery, zmienia tylko
+        # jej znak, wiec kropka i nawiasy znikaja, a minus staje sie znakiem
+        # calego wyrazu. Litera a zostaje czarna, bo dalej jest ta sama litera.
+        zapal(k3[1], k3[2])
+        k3b[0].set_color(self.ZIELONY)
         self.play(
-            Transform(k3[0], k4[1]),                          # a zostaje a
-            Transform(VGroup(k3[1], k3[2]), k4[0]),           # kropka i (-1) -> minus
-            Transform(k3[3], k4[2]),
-            Transform(VGroup(k3[4], k3[5], k3[6]), k4[3]),    # 3 razy 6 -> 18
-            Transform(k3[7], k4[4]),
-            Transform(k3[8], k4[5]),
+            # path_arc: minus obchodzi litere a lukiem, zamiast przez nia
+            # przelatywac. Bez tego w polowie ruchu wyglada to jak skreslenie.
+            Transform(VGroup(k3[1], k3[2]), k3b[0], path_arc=PI / 2),
+            Transform(k3[0], k3b[1]),                         # a zostaje a
+            Transform(k3[3], k3b[2]),
+            Transform(k3[4], k3b[3]),
+            Transform(k3[5], k3b[4]),
+            Transform(k3[6], k3b[5]),
+            Transform(k3[7], k3b[6]),
+            Transform(k3[8], k3b[7]),
         )
-        zgas([k3[1], k3[2], k3[4], k3[5], k3[6]], [k4[0], k4[3]], k4)
+        zgas([k3[1], k3[2]], [k3b[0]], k3b)
 
         self.next_section("krok5")
+        # SAM RACHUNEK: 3 razy 6 to 18. Zielone jest to, co zlewa sie w jedna liczbe.
+        zapal(k3b[3], k3b[4], k3b[5])
+        k4[3].set_color(self.ZIELONY)
+        self.play(
+            Transform(k3b[0], k4[0]),
+            Transform(k3b[1], k4[1]),
+            Transform(k3b[2], k4[2]),
+            Transform(VGroup(k3b[3], k3b[4], k3b[5]), k4[3]),  # 3 razy 6 -> 18
+            Transform(k3b[6], k4[4]),
+            Transform(k3b[7], k4[5]),
+        )
+        zgas([k3b[3], k3b[4], k3b[5]], [k4[3]], k4)
+
+        self.next_section("krok6")
         # 18 przechodzi na prawa strone i tam odejmuje sie od 20. Trzy elementy
         # zlewaja sie w jedna liczbe, wiec wszystkie trzy sa zielone.
         zapal(k4[2], k4[3], k4[5])
@@ -166,7 +192,7 @@ class Zad7(Scene):
         )
         zgas([k4[2], k4[3], k4[5]], [k5[3]], k5)
 
-        self.next_section("krok6")
+        self.next_section("krok7")
         # Obie strony mnozymy przez -1, czyli minus przechodzi od a do wyniku.
         # Zielony jest tylko ten minus, bo tylko on zmienia miejsce w rachunku.
         zapal(k5[0])
@@ -179,7 +205,7 @@ class Zad7(Scene):
         )
         zgas([k5[0]], [k6[2]], k6)
 
-        self.next_section("krok7")
+        self.next_section("krok8")
         # ETAP DRUGI. Wyliczone a odjezdza na gore kadru i tam zostaje do konca,
         # a pod nim wjezdza drugie rownanie z zadania. Nic sie nie przelicza,
         # wiec nie ma koloru.
@@ -189,36 +215,57 @@ class Zad7(Scene):
         )
         zgas([], [], VGroup(gora, e2))
 
-        self.next_section("krok8")
-        # To samo podstawienie co poprzednio, tylko w drugim rownaniu.
-        # Litera b jedzie przed szostke i zostaje czarna, bo dalej jest ta sama
-        # niewiadoma; zielone sa x i y, ktore zmieniaja sie w liczby.
+        self.next_section("krok9")
+        # Blizniak kroku 3: to samo podstawienie, tylko w drugim rownaniu.
+        # Litera b zostaje na swoim miejscu i jest czarna; zielone sa x i y,
+        # ktore zmieniaja sie w liczby, oraz nowa kropka mnozenia.
         zapal(e2[0], e2[3])
-        d8[0].set_color(self.ZIELONY)
-        d8[2].set_color(self.ZIELONY)
+        for cel in (d8[0], d8[3], d8[4]):
+            cel.set_color(self.ZIELONY)
         self.play(
             Transform(e2[0], d8[0]),      # x -> (-1)
             Transform(e2[1], d8[1]),
-            Transform(e2[2], d8[3]),      # b przesuwa sie za szostke
-            Transform(e2[3], d8[2]),      # y -> 6
-            Transform(e2[4], d8[4]),
-            Transform(e2[5], d8[5]),
+            Transform(e2[2], d8[2]),      # b zostaje b
+            Transform(e2[3], d8[4]),      # y -> 6
+            Transform(e2[4], d8[5]),
+            Transform(e2[5], d8[6]),
+            FadeIn(d8[3]),                # kropka mnozenia
         )
-        zgas([e2[0], e2[3]], [d8[0], d8[2]], VGroup(gora, d8))
-
-        self.next_section("krok9")
-        # -1 przechodzi na prawa strone i dodaje sie do 5.
-        zapal(d8[0], d8[1], d8[5])
-        d9[3].set_color(self.ZIELONY)
-        self.play(
-            Transform(d8[2], d9[0]),
-            Transform(d8[3], d9[1]),
-            Transform(d8[4], d9[2]),
-            Transform(VGroup(d8[0], d8[1], d8[5]), d9[3]),    # (-1) i 5 -> 6
-        )
-        zgas([d8[0], d8[1], d8[5]], [d9[3]], VGroup(gora, d9))
+        zgas([e2[0], e2[3], d8[3]], [d8[0], d8[3], d8[4]], VGroup(gora, d8))
 
         self.next_section("krok10")
+        # SAM PORZADEK ZAPISU. Liczbe przy niewiadomej piszemy z przodu, wiec
+        # kropka znika, a szostka przesuwa sie przed litere b. Zielona jest
+        # kropka i szostka, bo to one zmieniaja miejsce i role; litera b oraz
+        # sama -1 zostaja czarne, nawiasow nie kolorujemy.
+        zapal(d8[3], d8[4])
+        d8b[2].set_color(self.ZIELONY)
+        self.play(
+            Transform(d8[0], d8b[0]),     # (-1) traci nawiasy
+            Transform(d8[1], d8b[1]),
+            # path_arc na obu: szostka i litera b zamieniaja sie miejscami,
+            # obchodzac sie luką, a nie przelatujac jedna przez druga.
+            Transform(d8[4], d8b[2], path_arc=PI / 2),   # 6 przesuwa sie przed b
+            Transform(d8[2], d8b[3], path_arc=PI / 2),   # b zostaje b
+            Transform(d8[5], d8b[4]),
+            Transform(d8[6], d8b[5]),
+            FadeOut(d8[3]),               # kropka mnozenia znika
+        )
+        zgas([d8[4]], [d8b[2]], VGroup(gora, d8b))
+
+        self.next_section("krok11")
+        # -1 przechodzi na prawa strone i dodaje sie do 5.
+        zapal(d8b[0], d8b[1], d8b[5])
+        d9[3].set_color(self.ZIELONY)
+        self.play(
+            Transform(d8b[2], d9[0]),
+            Transform(d8b[3], d9[1]),
+            Transform(d8b[4], d9[2]),
+            Transform(VGroup(d8b[0], d8b[1], d8b[5]), d9[3]),  # -1 i 5 -> 6
+        )
+        zgas([d8b[0], d8b[1], d8b[5]], [d9[3]], VGroup(gora, d9))
+
+        self.next_section("krok12")
         # Obie strony dzielimy przez 6, wiec obie szostki znikaja i zostaje 1.
         zapal(d9[0], d9[3])
         d10[2].set_color(self.ZIELONY)
@@ -229,7 +276,7 @@ class Zad7(Scene):
         )
         zgas([d9[0], d9[3]], [d10[2]], VGroup(gora, d10))
 
-        self.next_section("krok11")
+        self.next_section("krok13")
         # ETAP TRZECI. Zadanie pyta o iloczyn, wiec obie wyliczone wartosci
         # zjezdzaja do jednej linijki. Same wartosci tylko sie przesuwaja, wiec
         # sa czarne; zielone sa kropki mnozenia, ktorych wczesniej nie bylo.
@@ -246,7 +293,7 @@ class Zad7(Scene):
         )
         zgas([k11[1], k11[5]], [k11[1], k11[5]], k11)
 
-        self.next_section("krok12")
+        self.next_section("krok14")
         # Mnozenie przez 1 nic nie zmienia, wiec kropka z jedynka znikaja,
         # a wynik zostaje. Zielone jest to, co znika.
         zapal(k11[5], k11[6])

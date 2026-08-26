@@ -336,14 +336,14 @@
         "correctAnswerIndex": 0,
         "maxScore": 1,
         "selfScore": false,
-        "hint": "Podstaw podane wartości x i y do obu równań, oblicz a i b, a następnie ich iloczyn.",
+        "hint": "Zapis „para \\(x=-1\\), \\(y=6\\) jest rozwiązaniem układu\" znaczy, że po wstawieniu tych dwóch liczb <b>oba</b> równania mają się zgadzać.<br>Popatrz, co po takim wstawieniu zostaje niewiadomą.",
         "formulasPage": null,
-        "solutionText": "<div class=\"rozw-2kol rozw-dwatory rozw-srodek\"><div class=\"rozw-wiersz rozw-pelny\"><div class=\"rozw-obl\">\\(\\begin{cases} ax + 3y = 20 \\\\ x + by = 5 \\end{cases}\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(ax + 3y = 20\\)</div><div class=\"rozw-obl\">\\(x + by = 5\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(a \\cdot (-1) + 3 \\cdot 6 = 20\\)</div><div class=\"rozw-obl\">\\((-1) + 6b = 5\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(-a + 18 = 20\\)</div><div class=\"rozw-obl\">\\(6b = 6\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(-a = 2\\)</div><div class=\"rozw-obl\">\\(b = 1\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(a = -2\\)</div><div class=\"rozw-obl\"></div></div><div class=\"rozw-wiersz rozw-pelny\"><div class=\"rozw-obl\">\\(a \\cdot b = (-2) \\cdot 1\\)</div></div><div class=\"rozw-wiersz rozw-pelny\"><div class=\"rozw-obl\">\\(\\boldsymbol{a \\cdot b = -2}\\)</div></div><div class=\"rozw-wiersz rozw-pelny\"><div class=\"rozw-obl\">Odpowiedź <b>A</b>.</div></div></div>",
+        "solutionText": "<div class=\"rozw-2kol rozw-dwatory rozw-srodek\"><div class=\"rozw-wiersz rozw-pelny\"><div class=\"rozw-obl\">\\(\\begin{cases} ax + 3y = 20 \\\\ x + by = 5 \\end{cases}\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(ax + 3y = 20\\)</div><div class=\"rozw-obl\">\\(x + by = 5\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(a \\cdot (-1) + 3 \\cdot 6 = 20\\)</div><div class=\"rozw-obl\">\\((-1) + b \\cdot 6 = 5\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(-a + 3 \\cdot 6 = 20\\)</div><div class=\"rozw-obl\">\\(-1 + 6b = 5\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(-a + 18 = 20\\)</div><div class=\"rozw-obl\">\\(6b = 6\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(-a = 2\\)</div><div class=\"rozw-obl\">\\(b = 1\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(a = -2\\)</div><div class=\"rozw-obl\"></div></div><div class=\"rozw-wiersz rozw-pelny\"><div class=\"rozw-obl\">\\(a \\cdot b = (-2) \\cdot 1\\)</div></div><div class=\"rozw-wiersz rozw-pelny\"><div class=\"rozw-obl\">\\(\\boldsymbol{a \\cdot b = -2}\\)</div></div><div class=\"rozw-wiersz rozw-pelny\"><div class=\"rozw-obl\">Odpowiedź <b>A</b>.</div></div></div>",
         "solutionStepByStep": [
             {
                 "type": "video",
                 "src": "media/zad7/solution-step-by-step/step1.mp4",
-                "text": "Zapisujemy układ z zadania.<br>Szukamy \\(a\\) i \\(b\\), a \\(x\\) oraz \\(y\\) akurat znamy: \\(x=-1\\), \\(y=6\\)."
+                "text": "Znane są \\(x\\) i \\(y\\). Szukamy \\(a\\) oraz \\(b\\)."
             },
             {
                 "type": "video",
@@ -353,52 +353,62 @@
             {
                 "type": "video",
                 "src": "media/zad7/solution-step-by-step/step3.mp4",
-                "text": "W miejsce \\(x\\) wstawiamy \\(-1\\), a w miejsce \\(y\\) wstawiamy \\(6\\).<br>Skoro ta para jest rozwiązaniem, to po podstawieniu równanie musi się zgadzać."
+                "text": "Skoro ta para jest rozwiązaniem, to po wstawieniu liczb równanie musi się zgadzać."
             },
             {
                 "type": "video",
                 "src": "media/zad7/solution-step-by-step/step4.mp4",
-                "text": "Liczymy iloczyny. \\(a\\cdot(-1)\\) to po prostu \\(-a\\), a \\(3\\cdot 6\\) to \\(18\\)."
+                "text": "Mnożenie przez \\(-1\\) nie zmienia litery, zmienia tylko jej znak.<br>Na liczbach widać to od razu: \\(7 \\cdot (-1)\\) to \\(-7\\)."
             },
             {
                 "type": "video",
                 "src": "media/zad7/solution-step-by-step/step5.mp4",
-                "text": "Osiemnastkę przenosimy na prawą stronę, gdzie zmienia znak:\\[20-18=2\\]"
+                "text": ""
             },
             {
                 "type": "video",
                 "src": "media/zad7/solution-step-by-step/step6.mp4",
-                "text": "Zostało \\(-a\\), a chcemy samo \\(a\\), więc obie strony mnożymy przez \\(-1\\). Minus przechodzi do wyniku."
+                "text": "Osiemnastka zmienia znak, bo przechodzi na drugą stronę:\\[20 - 18 = 2\\]"
             },
             {
                 "type": "video",
                 "src": "media/zad7/solution-step-by-step/step7.mp4",
-                "text": "Pierwsza wartość gotowa i zostaje na górze.<br>Teraz to samo z drugim równaniem."
+                "text": "Chcemy samo \\(a\\), więc obie strony mnożymy przez \\(-1\\). Minus wędruje na wynik."
             },
             {
                 "type": "video",
                 "src": "media/zad7/solution-step-by-step/step8.mp4",
-                "text": "Znowu wstawiamy \\(x=-1\\) oraz \\(y=6\\). Liczbę przy niewiadomej zapisujemy z przodu, więc zamiast \\(b\\cdot 6\\) piszemy \\(6b\\)."
+                "text": ""
             },
             {
                 "type": "video",
                 "src": "media/zad7/solution-step-by-step/step9.mp4",
-                "text": "Minus jedynkę przenosimy na prawą stronę, gdzie zmienia znak:\\[5+1=6\\]"
+                "text": ""
             },
             {
                 "type": "video",
                 "src": "media/zad7/solution-step-by-step/step10.mp4",
-                "text": "Obie strony dzielimy przez 6."
+                "text": "Liczbę przy niewiadomej zapisujemy z przodu, więc zamiast \\(b \\cdot 6\\) piszemy \\(6b\\)."
             },
             {
                 "type": "video",
                 "src": "media/zad7/solution-step-by-step/step11.mp4",
-                "text": "Zadanie pyta o iloczyn \\(a\\cdot b\\), a nie o samo \\(a\\) czy \\(b\\), więc wstawiamy obie wyliczone wartości."
+                "text": "Znów zmiana znaku przy przejściu na drugą stronę:\\[5 + 1 = 6\\]"
             },
             {
                 "type": "video",
                 "src": "media/zad7/solution-step-by-step/step12.mp4",
-                "text": "Mnożenie przez 1 niczego nie zmienia. Odpowiedź <b>A</b>."
+                "text": ""
+            },
+            {
+                "type": "video",
+                "src": "media/zad7/solution-step-by-step/step13.mp4",
+                "text": "Pytanie dotyczy iloczynu \\(a \\cdot b\\), a nie samego \\(a\\) ani samego \\(b\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad7/solution-step-by-step/step14.mp4",
+                "text": "Mnożenie przez \\(1\\) niczego nie zmienia. Odpowiedź <b>A</b>."
             }
         ],
         "solutionWidget": null
