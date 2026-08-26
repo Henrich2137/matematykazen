@@ -432,7 +432,7 @@
         ],
         "hint": "Zanim cokolwiek policzysz, sprawdź, dla jakiego \\(x\\) mianownik byłby zerem.<br>Potem popatrz na oba mianowniki uważnie: nie są tak różne, jak wyglądają.",
         "formulasPage": null,
-        "solutionText": "Mianownik nie może być zerem. Oba mianowniki, \\(x-1\\) oraz \\(2x-2\\), zerują się dla \\(x=1\\), więc zapisujemy założenie:\\[x \\ne 1\\]<div class=\"rozwiazanie-kroki\">\\(\\dfrac{x+3}{x-1} = \\dfrac{x}{2x-2}\\)<br>\\(\\dfrac{x+3}{x-1} = \\dfrac{x}{2(x-1)}\\)<br>\\(\\dfrac{x+3}{x-1} = \\dfrac{x}{2(x-1)} \\;\\big/ \\cdot\\, 2(x-1)\\)<br>\\(2(x+3) = x\\)<br>\\(2x + 6 = x\\)<br>\\(2x = x - 6\\)<br>\\(2x - x = -6\\)<br>\\(\\boldsymbol{x = -6}\\)<br>Wynik spełnia założenie, bo \\(-6 \\ne 1\\), więc rozwiązaniem równania jest \\(\\boldsymbol{x = -6}\\).</div>",
+        "solutionText": "Mianownik nie może być zerem, więc zaczynamy od sprawdzenia, kiedy się zeruje.<br>Pierwszy mianownik, \\(x-1\\), jest zerem dla \\(x=1\\).<br>Drugi, \\(2x-2\\), zeruje się dla tej samej liczby, bo \\(2 \\cdot 1 - 2 = 0\\).<br>Zapisujemy założenie:\\[x \\ne 1\\]<div class=\"rozwiazanie-kroki\">\\(\\dfrac{x+3}{x-1} = \\dfrac{x}{2x-2}\\)<br>\\(\\dfrac{x+3}{x-1} = \\dfrac{x}{2(x-1)} \\;\\big/ \\cdot\\, 2(x-1)\\)<br>\\(2(x+3) = x\\)<br>\\(2x + 6 = x\\)<br>\\(2x = x - 6\\)<br>\\(2x - x = -6\\)<br>\\(\\boldsymbol{x = -6}\\)<br>Liczba \\(-6\\) nie jest jedynką, więc wynik spełnia założenie. Rozwiązaniem równania jest \\(\\boldsymbol{x = -6}\\).</div>",
         "solutionStepByStep": [
             {
                 "type": "video",
