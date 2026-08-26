@@ -4,9 +4,14 @@ from manim import *
 class Zad8(Scene):
     """Zadanie 8, grudzien 2024: rozwiaz (x+3)/(x-1) = x/(2x-2). Wynik x = -6.
 
-    DZIEWIEC KROKOW, jeden do jednego z rozwiazaniem opisowym (pole solutionText
-    w matura/2024-grudzien/exercises.json): siedem linijek rachunku, zalozenie
+    DZIESIEC KROKOW, jeden do jednego z rozwiazaniem opisowym (pole solutionText
+    w matura/2024-grudzien/exercises.json): osiem linijek rachunku, zalozenie
     nad nimi i zdanie ze sprawdzeniem pod nimi. Zmieniasz jedno, popraw drugie.
+
+    KROK DOLOZONY 2026-08-26 (bylo dziewiec). Dawny krok 7 przenosil naraz
+    szostke w prawo i x w lewo, czyli dwa skladniki zmienialy znak w jednym
+    ruchu. Teraz sa to dwa kroki: 7 przenosi sama liczbe, 8 sama niewiadoma.
+    Projekt: issues/projekt-zad8-2024-grudzien.md.
 
     SCENA NAPISANA OD NOWA 2026-08-23 (polecenie Henricha). Poprzednia wersja
     powstala przed zasadami z 21 sierpnia i lamala je wszystkie naraz: caly ruch
@@ -56,10 +61,11 @@ class Zad8(Scene):
                      r"\;\big/ \cdot\, 2(x-1)")
         s5 = MathTex(r"2", r"(x+3)", r"=", r"x")
         s6 = MathTex(r"2", r"x", r"+", r"6", r"=", r"x")
+        s6b = MathTex(r"2", r"x", r"=", r"x", r"-", r"6")
         s7 = MathTex(r"2", r"x", r"-", r"x", r"=", r"-", r"6")
         s8 = MathTex(r"x", r"=", r"-", r"6")
 
-        rownania = [s1, s3, s4, s5, s6, s7, s8]
+        rownania = [s1, s3, s4, s5, s6, s6b, s7, s8]
         for stan in rownania:
             stan.set_color(BLACK)
             stan.font_size = 90
@@ -217,25 +223,46 @@ class Zad8(Scene):
         zgas([s5[0], kopia_dwojki, s5[1][3]], [s6[3]], VGroup(s6, zalozenie))
 
         self.next_section("krok7")
-        # Iksy na lewo, liczby na prawo. Kazdy przeniesiony skladnik zmienia znak,
-        # wiec zielone jest to, co zmienia strone: szostka i x z prawej strony.
-        # Plus nie znika: ZAMIENIA SIE w minus, ktory staje przed szostka.
-        # Minus przed x po lewej pojawia sie z niczego, wiec tez jest zielony.
-        zapal(s6[2], s6[3], s6[5])
-        s7[2].set_color(self.ZIELONY)
-        s7[5].set_color(self.ZIELONY)
+        # PRZENOSIMY SAMA LICZBE. Szostka idzie na prawa strone i po drodze
+        # zmienia znak, wiec zielony jest plus (ZAMIENIA sie w minus, a nie znika)
+        # oraz sama szostka. Litera x po prawej stoi w miejscu i zostaje czarna:
+        # w tym kroku nikt jej nie rusza.
+        zapal(s6[2], s6[3])
+        s6b[4].set_color(self.ZIELONY)
+        s6b[5].set_color(self.ZIELONY)
         self.play(
-            Transform(s6[0], s7[0]),           # dwojka
-            Transform(s6[1], s7[1]),           # x
-            Transform(s6[2], s7[5]),           # plus -> minus przy szostce
-            Transform(s6[3], s7[6]),           # szostka na prawa strone
-            Transform(s6[4], s7[4]),           # znak =
-            Transform(s6[5], s7[3]),           # x na lewa strone
-            FadeIn(s7[2]),                     # minus przed przeniesionym x
+            Transform(s6[0], s6b[0]),          # dwojka
+            Transform(s6[1], s6b[1]),          # x po lewej
+            Transform(s6[4], s6b[2]),          # znak =
+            Transform(s6[5], s6b[3]),          # x po prawej stoi w miejscu
+            Transform(s6[2], s6b[4]),          # plus -> minus przy szostce
+            Transform(s6[3], s6b[5]),          # szostka na prawa strone
         )
-        zgas([s6[2], s6[3], s6[5], s7[2]], [s7[2], s7[5]], VGroup(s7, zalozenie))
+        zgas([s6[2], s6[3]], [s6b[4], s6b[5]], VGroup(s6b, zalozenie))
 
         self.next_section("krok8")
+        # PRZENOSIMY SAMA NIEWIADOMA. x idzie na lewa strone, a przed nim
+        # POJAWIA SIE minus, ktorego wczesniej nie bylo, wiec zielone sa oba.
+        # Szostka razem ze swoim minusem stoi w miejscu i zostaje czarna.
+        zapal(s6b[3])
+        s7[2].set_color(self.ZIELONY)
+        s7[3].set_color(self.ZIELONY)
+        self.play(
+            Transform(s6b[0], s7[0]),          # dwojka
+            Transform(s6b[1], s7[1]),          # x po lewej
+            Transform(s6b[2], s7[4]),          # znak =
+            # BEZ path_arc, swiadomie. W zad. 7 luk byl po to, zeby znak nie
+            # przelatywal przez LITERE (wygladalo to jak skreslenie). Tutaj x
+            # przelatuje przez ZNAK ROWNOSCI i wlasnie o to chodzi: tak opisuje
+            # przenoszenie na druga strone tabela w references/zasady-wizualne.md.
+            Transform(s6b[3], s7[3]),          # x na lewa strone
+            Transform(s6b[4], s7[5]),          # minus zostaje przy szostce
+            Transform(s6b[5], s7[6]),          # szostka stoi w miejscu
+            FadeIn(s7[2]),                     # minus przed przeniesionym x
+        )
+        zgas([s6b[3], s7[2]], [s7[2], s7[3]], VGroup(s7, zalozenie))
+
+        self.next_section("krok9")
         # 2x - x = x. Cztery znaki po lewej zlewaja sie w jedna litere, wiec
         # wszystkie sa zielone razem z wynikiem. Prawa strona sie nie zmienia.
         zapal(s7[0], s7[1], s7[2], s7[3])
@@ -248,7 +275,7 @@ class Zad8(Scene):
         )
         zgas([s7[0], s7[1], s7[2], s7[3]], [s8[0]], VGroup(s8, zalozenie))
 
-        self.next_section("krok9")
+        self.next_section("krok10")
         # SPRAWDZENIE ZALOZENIA. Wynik zjezdza kopia pod zalozenie i staje na
         # miejscu x: widac wtedy, ze -6 to nie jest 1, czyli wynik miesci sie
         # w dziedzinie. Znak "rozne od" i jedynka tez przylatuja kopiami

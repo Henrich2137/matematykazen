@@ -430,14 +430,14 @@
             { "tekst": "Równanie sprowadzone do postaci bez ułamków, np. \\(2(x + 3) = x\\)", "punkty": 1 },
             { "tekst": "Obliczony wynik: \\(x = -6\\) (należy do dziedziny)", "punkty": 1 }
         ],
-        "hint": "Zacznij od określenia dziedziny (mianowniki \\(\\ne 0\\)). Zauważ, że \\(2x - 2 = 2(x - 1)\\) — oba mianowniki znikną po pomnożeniu przez \\(2(x - 1)\\).",
+        "hint": "Zanim cokolwiek policzysz, sprawdź, dla jakiego \\(x\\) mianownik byłby zerem.<br>Potem popatrz na oba mianowniki uważnie: nie są tak różne, jak wyglądają.",
         "formulasPage": null,
-        "solutionText": "Mianownik nie może być zerem. Oba mianowniki, \\(x-1\\) oraz \\(2x-2\\), zerują się dla \\(x=1\\), więc zapisujemy założenie:\\[x \\ne 1\\]<div class=\"rozwiazanie-kroki\">\\(\\dfrac{x+3}{x-1} = \\dfrac{x}{2x-2}\\)<br>\\(\\dfrac{x+3}{x-1} = \\dfrac{x}{2(x-1)}\\)<br>\\(\\dfrac{x+3}{x-1} = \\dfrac{x}{2(x-1)} \\;\\big/ \\cdot\\, 2(x-1)\\)<br>\\(2(x+3) = x\\)<br>\\(2x + 6 = x\\)<br>\\(2x - x = -6\\)<br>\\(\\boldsymbol{x = -6}\\)<br>Wynik spełnia założenie, bo \\(-6 \\ne 1\\), więc rozwiązaniem równania jest \\(\\boldsymbol{x = -6}\\).</div>",
+        "solutionText": "Mianownik nie może być zerem. Oba mianowniki, \\(x-1\\) oraz \\(2x-2\\), zerują się dla \\(x=1\\), więc zapisujemy założenie:\\[x \\ne 1\\]<div class=\"rozwiazanie-kroki\">\\(\\dfrac{x+3}{x-1} = \\dfrac{x}{2x-2}\\)<br>\\(\\dfrac{x+3}{x-1} = \\dfrac{x}{2(x-1)}\\)<br>\\(\\dfrac{x+3}{x-1} = \\dfrac{x}{2(x-1)} \\;\\big/ \\cdot\\, 2(x-1)\\)<br>\\(2(x+3) = x\\)<br>\\(2x + 6 = x\\)<br>\\(2x = x - 6\\)<br>\\(2x - x = -6\\)<br>\\(\\boldsymbol{x = -6}\\)<br>Wynik spełnia założenie, bo \\(-6 \\ne 1\\), więc rozwiązaniem równania jest \\(\\boldsymbol{x = -6}\\).</div>",
         "solutionStepByStep": [
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step1.mp4",
-                "text": "Zapisujemy równanie z zadania."
+                "text": ""
             },
             {
                 "type": "video",
@@ -467,16 +467,21 @@
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step7.mp4",
-                "text": "Iksy na lewo, liczby na prawo.<br>Każdy przeniesiony składnik zmienia znak."
+                "text": "Najpierw przenosimy tylko liczbę. Szóstka zmienia znak, bo przechodzi na drugą stronę."
             },
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step8.mp4",
-                "text": "Po lewej zostaje jeden \\(x\\), bo \\(2x\\) bez jednego \\(x\\) to \\(x\\)."
+                "text": "Teraz przenosimy \\(x\\). On też zmienia znak."
             },
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step9.mp4",
+                "text": "Po lewej zostaje jeden \\(x\\), bo \\(2x\\) bez jednego \\(x\\) to \\(x\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad8/solution-step-by-step/step10.mp4",
                 "text": "Wracamy do założenia i podstawiamy wynik.<br>Liczba \\(-6\\) nie jest jedynką, więc wynik mieści się w dziedzinie i jest rozwiązaniem równania."
             }
         ],
