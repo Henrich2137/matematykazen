@@ -549,7 +549,7 @@ class Zad9(Scene):
         # ================================================================
         self.next_section("krok21")
         wynik = MathTex(r"x \in \langle -1,\ 7\rangle", color=BLACK, font_size=90)
-        wynik.move_to(DOWN * 1.7)
+        wynik.move_to(DOWN * 2.7)
         self.play(
             ReplacementTransform(VGroup(odcinek, kropka_l, kropka_p), wynik),
             run_time=1.2,
