@@ -551,7 +551,7 @@
         ],
         "hint": "Przenieś wszystkie wyrazy na jedną stronę, rozwiąż równanie kwadratowe, naszkicuj parabolę i odczytaj, gdzie nierówność jest spełniona.",
         "formulasPage": 8,
-        "solutionText": "Wzory:\\[\\Delta = b^{2} - 4ac \\qquad x_{1,2} = \\frac{-b \\pm \\sqrt{\\Delta}}{2a}\\]<div class=\"rozwiazanie-kroki\">\\(x(x - 6) \\le 7\\)<br>\\(x^{2} - 6x \\le 7\\)<br>\\(x^{2} - 6x - 7 \\le 0\\)<br>\\(\\Delta = 36 + 28 = 64, \\quad \\sqrt{\\Delta} = 8\\)<br>\\(x_1 = \\frac{6 - 8}{2} = -1, \\quad x_2 = \\frac{6 + 8}{2} = 7\\)<br>Ramiona paraboli idą w górę, więc wartości \\(\\le 0\\) leżą między miejscami zerowymi.<br>\\(\\boldsymbol{x \\in \\langle -1,\\ 7\\rangle}\\)</div>",
+        "solutionText": "<div class=\"rozwiazanie-kroki\"><div class=\"rozw-linia\">\\(x(x - 6) \\le 7\\)</div><div class=\"rozw-komentarz\">Chcemy mieć po prawej stronie zero. Najpierw opuszczamy nawias.</div><div class=\"rozw-linia\">\\(x \\cdot x - x \\cdot 6 \\le 7\\)</div><div class=\"rozw-linia\">\\(x^{2} - 6x \\le 7\\)<span class=\"rozw-dzialanie\">\\(\\big/ - 7\\)</span></div><div class=\"rozw-linia\">\\(x^{2} - 6x - 7 \\le 0\\)</div><div class=\"rozw-komentarz\">Po prawej stoi zero, więc szukamy miejsc zerowych. Współczynniki odczytujemy z lewej strony, razem ze znakami.</div><div class=\"rozw-linia rozw-odstep\"><b>Współczynniki:</b> \\(a = 1\\), \\(b = -6\\), \\(c = -7\\)</div><div class=\"rozw-komentarz\">Przy \\(x^{2}\\) nie stoi żadna liczba, czyli stoi tam \\(1\\). Minus przed \\(6x\\) i przed \\(7\\) należy do współczynnika.</div><div class=\"rozw-linia\">\\(\\Delta = (-6)^{2} - 4 \\cdot 1 \\cdot (-7)\\)</div><div class=\"rozw-komentarz\">\\(-4 \\cdot 1 \\cdot (-7)\\) to iloczyn dwóch liczb ujemnych, więc wychodzi plus: \\(-4 \\cdot (-7) = 28\\).</div><div class=\"rozw-linia\">\\(\\Delta = 36 + 28\\)</div><div class=\"rozw-linia\">\\(\\Delta = 64\\)</div><div class=\"rozw-linia\">\\(\\sqrt{\\Delta} = 8\\)</div><div class=\"rozw-linia\">\\(x_{1,2} = \\dfrac{-(-6) \\pm 8}{2 \\cdot 1}\\)</div><div class=\"rozw-komentarz\">\\(-b\\) znaczy liczbę przeciwną do \\(b\\). Skoro \\(b = -6\\), to \\(-b = 6\\).</div><div class=\"rozw-linia\">\\(x_{1,2} = \\dfrac{6 \\pm 8}{2}\\)</div><div class=\"rozw-komentarz\">Znak \\(\\pm\\) mówi, że wyniki są dwa. Liczymy każdy osobno.</div><div class=\"rozw-2kol rozw-dwatory rozw-srodek\"><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(x_{1} = \\dfrac{6 - 8}{2}\\)</div><div class=\"rozw-obl\">\\(x_{2} = \\dfrac{6 + 8}{2}\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(x_{1} = \\dfrac{-2}{2}\\)</div><div class=\"rozw-obl\">\\(x_{2} = \\dfrac{14}{2}\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(x_{1} = -1\\)</div><div class=\"rozw-obl\">\\(x_{2} = 7\\)</div></div></div><div class=\"rozw-linia\"><b>Miejsca zerowe:</b> \\(\\boldsymbol{x_{1} = -1}\\), \\(\\boldsymbol{x_{2} = 7}\\)</div><div class=\"rozw-linia rozw-odstep\">\\(a = 1 > 0\\), czyli ramiona paraboli idą w górę</div><div class=\"rozw-komentarz\">Parabola przecina oś w \\(-1\\) i \\(7\\), a ramiona ma w górę, więc pod osią leży dokładnie między nimi.</div><div class=\"rozw-linia\">Pod osią parabola leży między \\(-1\\) a \\(7\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{x \\in \\langle -1,\\ 7\\rangle}\\)</div><div class=\"rozw-linia\">Rozwiązaniem nierówności są wszystkie liczby od \\(-1\\) do \\(7\\), razem z końcami.</div></div>",
         "solutionStepByStep": [
             {
                 "type": "video",
@@ -561,37 +561,102 @@
             {
                 "type": "video",
                 "src": "media/zad9/solution-step-by-step/step2.mp4",
-                "text": "Wymnażamy nawias:\\[x(x-6)=x^{2}-6x\\]"
+                "text": "Opuszczamy nawias: \\(x\\) mnoży każdy składnik osobno."
             },
             {
                 "type": "video",
                 "src": "media/zad9/solution-step-by-step/step3.mp4",
-                "text": "Przenosimy 7 na lewą stronę, żeby po prawej zostało zero. Dopiero wtedy da się skorzystać z miejsc zerowych."
+                "text": "Wykonujemy oba mnożenia: \\(x \\cdot x = x^{2}\\) oraz \\(x \\cdot 6 = 6x\\)."
             },
             {
                 "type": "video",
                 "src": "media/zad9/solution-step-by-step/step4.mp4",
-                "text": "Wyróżnik liczymy ze wzoru:\\[\\Delta=b^{2}-4ac\\]U nas \\(a=1\\), \\(b=-6\\), \\(c=-7\\).<br>Uwaga na znaki: \\(c\\) jest ujemne, więc \\(-4ac\\) wychodzi na plus."
+                "text": "Siódemka przechodzi na drugą stronę i zmienia znak.<br>Po prawej zostaje zero i dopiero teraz da się szukać miejsc zerowych."
             },
             {
                 "type": "video",
                 "src": "media/zad9/solution-step-by-step/step5.mp4",
-                "text": "\\(36+28=64\\), a \\(\\sqrt{64}=8\\)."
+                "text": "Odczytujemy współczynniki.<br>Przy \\(x^{2}\\) nie stoi żadna liczba, czyli stoi tam \\(1\\). Minusy należą do współczynników."
             },
             {
                 "type": "video",
                 "src": "media/zad9/solution-step-by-step/step6.mp4",
-                "text": "Miejsca zerowe liczymy ze wzoru:\\[x_{1,2}=\\frac{-b\\pm\\sqrt{\\Delta}}{2a}\\]Skoro \\(b=-6\\), to \\(-b=6\\)."
+                "text": "Wyróżnik liczymy ze wzoru:\\[\\Delta = b^{2} - 4ac\\]Liczby ujemne wstawiamy w nawiasach."
             },
             {
                 "type": "video",
                 "src": "media/zad9/solution-step-by-step/step7.mp4",
-                "text": "Wychodzi \\(x_{1}=-1\\) oraz \\(x_{2}=7\\). Za samo to klucz CKE daje punkt."
+                "text": "\\((-6)^{2} = 36\\), a \\(-4 \\cdot 1 \\cdot (-7) = 28\\).<br>Dwie liczby ujemne w iloczynie dają plus, więc dodajemy."
             },
             {
                 "type": "video",
                 "src": "media/zad9/solution-step-by-step/step8.mp4",
-                "text": "Współczynnik przy \\(x^{2}\\) jest dodatni, więc ramiona paraboli idą do góry, a wartości \\(\\le 0\\) leżą <b>między</b> miejscami zerowymi.<br>Przedział jest domknięty, bo nierówność jest nieostra:\\[x\\in\\langle -1,\\ 7\\rangle\\]"
+                "text": "\\(36 + 28 = 64\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad9/solution-step-by-step/step9.mp4",
+                "text": "\\(\\sqrt{64} = 8\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad9/solution-step-by-step/step10.mp4",
+                "text": "Miejsca zerowe liczymy ze wzoru:\\[x_{1,2} = \\frac{-b \\pm \\sqrt{\\Delta}}{2a}\\]"
+            },
+            {
+                "type": "video",
+                "src": "media/zad9/solution-step-by-step/step11.mp4",
+                "text": "\\(-b\\) to liczba przeciwna do \\(b\\), a \\(b = -6\\), więc \\(-b = 6\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad9/solution-step-by-step/step12.mp4",
+                "text": "Znak \\(\\pm\\) daje dwa wyniki. Liczymy najpierw ten z minusem."
+            },
+            {
+                "type": "video",
+                "src": "media/zad9/solution-step-by-step/step13.mp4",
+                "text": "\\(6 - 8 = -2\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad9/solution-step-by-step/step14.mp4",
+                "text": "\\(\\dfrac{-2}{2} = -1\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad9/solution-step-by-step/step15.mp4",
+                "text": "Pierwszy wynik odstawiamy na górę. Teraz ten sam rachunek z plusem."
+            },
+            {
+                "type": "video",
+                "src": "media/zad9/solution-step-by-step/step16.mp4",
+                "text": "\\(6 + 8 = 14\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad9/solution-step-by-step/step17.mp4",
+                "text": "\\(\\dfrac{14}{2} = 7\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad9/solution-step-by-step/step18.mp4",
+                "text": "Mamy oba miejsca zerowe. Za samo to klucz CKE daje punkt."
+            },
+            {
+                "type": "video",
+                "src": "media/zad9/solution-step-by-step/step19.mp4",
+                "text": "Współczynnik przy \\(x^{2}\\) jest dodatni, więc ramiona paraboli idą w górę.<br>Parabola przecina oś w miejscach zerowych."
+            },
+            {
+                "type": "video",
+                "src": "media/zad9/solution-step-by-step/step20.mp4",
+                "text": "Szukamy \\(x\\), dla których wartość jest mniejsza lub równa zeru, czyli miejsc, gdzie parabola leży pod osią. To fragment między miejscami zerowymi."
+            },
+            {
+                "type": "video",
+                "src": "media/zad9/solution-step-by-step/step21.mp4",
+                "text": "Nierówność jest nieostra, więc same miejsca zerowe też pasują: w nich lewa strona równa się zeru. Dlatego końce należą do przedziału."
             }
         ],
         "solutionWidget": "widgetNierownoscKwadratowa"
@@ -631,8 +696,89 @@
         "selfScore": false,
         "hint": "Dziedzina to wszystkie x, dla których wykres istnieje (uwaga na kółko otwarte przy \\(x = -4\\)). Zbiór wartości odczytasz z osi y. Wartości ujemne = fragmenty wykresu POD osią x.",
         "formulasPage": 23,
-        "solutionText": "1. Dziedzina: \\(\\boldsymbol{(-4,\\ 4\\rangle}\\). &nbsp; 2. Zbiór wartości: \\(\\boldsymbol{\\langle -1,\\ 3\\rangle}\\). &nbsp; 3. Wartości ujemne dla \\(\\boldsymbol{x \\in (1,\\ 3)}\\). &nbsp; 4. Największą wartość (3) funkcja przyjmuje dla \\(\\boldsymbol{x \\in (-4,\\ -2\\rangle}\\).<br><br><b>DAWNE \"POKAŻ WIĘCEJ\":</b><br>1. Wykres zaczyna się w \\(x = -4\\) (kółko otwarte → \\(-4\\) nie należy) i kończy w \\(x = 4\\) (kropka pełna → \\(4\\) należy): dziedzina \\(\\boldsymbol{(-4,\\ 4\\rangle}\\). <br><br> 2. Najniższy punkt wykresu to \\(y = -1\\) (w \\(x = 2\\)), najwyższy to \\(y = 3\\): zbiór wartości \\(\\boldsymbol{\\langle -1,\\ 3\\rangle}\\). <br><br> 3. Pod osią x wykres jest między \\(x = 1\\) a \\(x = 3\\) (w obu tych punktach \\(f(x) = 0\\), więc ich nie zaliczamy): \\(\\boldsymbol{(1,\\ 3)}\\). <br><br> 4. Wartość 3 (największa) jest przyjmowana na całym poziomym fragmencie: \\(\\boldsymbol{(-4,\\ -2\\rangle}\\).",
-        "solutionStepByStep": null,
+        "solutionText": "<div class=\"rozwiazanie-kroki\"><div class=\"rozw-linia\"><b>1. Dziedzina:</b> wszystkie \\(x\\), nad którymi wykres coś ma.</div><div class=\"rozw-komentarz\">Kółko z pustym środkiem znaczy, że tego punktu na wykresie nie ma. Zamalowana kropka znaczy, że jest.</div><div class=\"rozw-linia\">Kółko otwarte, więc \\(-4\\) nie należy: \\((-4\\)</div><div class=\"rozw-linia\">Kropka pełna, więc \\(4\\) należy: \\(4\\rangle\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{(-4,\\ 4\\rangle}\\)</div><div class=\"rozw-linia rozw-odstep\"><b>2. Zbiór wartości:</b> wszystkie wysokości, na których wykres coś ma. Patrzymy na oś \\(y\\).</div><div class=\"rozw-linia\">Najniżej wykres schodzi w punkcie \\((2,\\ -1)\\): \\(\\langle -1\\)</div><div class=\"rozw-komentarz\">Kółko otwarte stoi tylko na samym lewym końcu wykresu. Reszta poziomego odcinka leży na wysokości \\(3\\) i należy do wykresu, więc wartość \\(3\\) jest osiągana.</div><div class=\"rozw-linia\">Najwyżej wykres jest na wysokości \\(3\\): \\(3\\rangle\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{\\langle -1,\\ 3\\rangle}\\)</div><div class=\"rozw-linia rozw-odstep\"><b>3. Wartości ujemne:</b> \\(y < 0\\), czyli fragmenty wykresu pod osią \\(x\\).</div><div class=\"rozw-linia\">Pod osią wykres jest między \\(x = 1\\) a \\(x = 3\\).</div><div class=\"rozw-komentarz\">Wykres schodzi pod oś, dochodzi do najniższego punktu i wraca, nigdzie się nie urywając, więc to jeden przedział, a nie dwa.</div><div class=\"rozw-linia\">W \\(x = 1\\) wykres dotyka osi, czyli \\(f(1) = 0\\), a zero nie jest ujemne: \\((1\\)</div><div class=\"rozw-linia\">Tak samo w \\(x = 3\\): \\(3)\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{(1,\\ 3)}\\)</div><div class=\"rozw-linia rozw-odstep\"><b>4. Największa wartość</b> to \\(3\\), odczytana wyżej.</div><div class=\"rozw-linia\">Na tej wysokości leży poziomy odcinek, od \\(x = -4\\) (kółko otwarte) do \\(x = -2\\).</div><div class=\"rozw-komentarz\">W \\(x = -2\\) wykres tylko się załamuje, nie urywa, więc ten punkt należy i nawias jest kątowy.</div><div class=\"rozw-linia\">\\(\\boldsymbol{(-4,\\ -2\\rangle}\\)</div><div class=\"rozw-linia rozw-odstep\">W polach wpisujemy: \\((-4,\\ 4]\\), \\([-1,\\ 3]\\), \\((1,\\ 3)\\), \\((-4,\\ -2]\\). Nawias kwadratowy z polecenia znaczy to samo co kątowy: koniec należy do przedziału.</div></div>",
+        "solutionStepByStep": [
+            {
+                "type": "video",
+                "src": "media/zad10/solution-step-by-step/step1.mp4",
+                "text": "Dziedzina to wszystkie \\(x\\), nad którymi wykres w ogóle istnieje.<br>Rzutujemy więc cały wykres na oś \\(x\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad10/solution-step-by-step/step2.mp4",
+                "text": "Kółko z pustym środkiem znaczy, że tego punktu na wykresie nie ma.<br>Dlatego przy \\(-4\\) stoi nawias okrągły."
+            },
+            {
+                "type": "video",
+                "src": "media/zad10/solution-step-by-step/step3.mp4",
+                "text": "Zamalowana kropka znaczy, że punkt należy do wykresu.<br>Przy \\(4\\) stoi więc nawias kątowy."
+            },
+            {
+                "type": "video",
+                "src": "media/zad10/solution-step-by-step/step4.mp4",
+                "text": "Składamy oba końce w jeden przedział."
+            },
+            {
+                "type": "video",
+                "src": "media/zad10/solution-step-by-step/step5.mp4",
+                "text": "Teraz patrzymy na wysokości, czyli rzutujemy wykres na oś \\(y\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad10/solution-step-by-step/step6.mp4",
+                "text": "Najniżej wykres schodzi w punkcie \\((2,\\ -1)\\). Ten punkt należy do wykresu, więc \\(-1\\) jest wartością funkcji."
+            },
+            {
+                "type": "video",
+                "src": "media/zad10/solution-step-by-step/step7.mp4",
+                "text": "Najwyżej wykres jest na wysokości \\(3\\).<br>Kółko otwarte stoi tylko na samym lewym końcu, więc reszta poziomego odcinka należy i wartość \\(3\\) jest osiągana."
+            },
+            {
+                "type": "video",
+                "src": "media/zad10/solution-step-by-step/step8.mp4",
+                "text": "Składamy oba końce w jeden przedział."
+            },
+            {
+                "type": "video",
+                "src": "media/zad10/solution-step-by-step/step9.mp4",
+                "text": "Wartość ujemna to wartość mniejsza od zera, czyli miejsce, w którym wykres leży pod osią \\(x\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad10/solution-step-by-step/step10.mp4",
+                "text": "Pod osią wykres idzie jednym ciągiem: schodzi, dochodzi do najniższego punktu i wraca."
+            },
+            {
+                "type": "video",
+                "src": "media/zad10/solution-step-by-step/step11.mp4",
+                "text": "W \\(x = 1\\) wykres dotyka osi, czyli wartość wynosi tam zero. Zero nie jest ujemne, więc \\(1\\) nie należy."
+            },
+            {
+                "type": "video",
+                "src": "media/zad10/solution-step-by-step/step12.mp4",
+                "text": "W \\(x = 3\\) jest tak samo."
+            },
+            {
+                "type": "video",
+                "src": "media/zad10/solution-step-by-step/step13.mp4",
+                "text": "Składamy końce w jeden przedział."
+            },
+            {
+                "type": "video",
+                "src": "media/zad10/solution-step-by-step/step14.mp4",
+                "text": "Największą wartością jest \\(3\\), już ją odczytaliśmy.<br>Teraz szukamy \\(x\\), dla których wykres jest na tej wysokości."
+            },
+            {
+                "type": "video",
+                "src": "media/zad10/solution-step-by-step/step15.mp4",
+                "text": "Na wysokości \\(3\\) leży cały poziomy odcinek.<br>W \\(x = -2\\) wykres tylko się załamuje, nie urywa, więc ten punkt należy."
+            },
+            {
+                "type": "video",
+                "src": "media/zad10/solution-step-by-step/step16.mp4",
+                "text": "Cztery odpowiedzi gotowe."
+            }
+        ],
         "solutionWidget": "widgetFunkcjaPrzedzialami"
     },
     {

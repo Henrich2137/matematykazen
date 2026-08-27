@@ -479,7 +479,7 @@ class Zad9(Scene):
         os_x = NumberLine(
             x_range=[-3, 9, 1], length=9, include_ticks=False,
             color=SZARY_OSIE, stroke_width=3,
-        ).move_to(DOWN * 1.7)
+        ).move_to(DOWN * 0.9)
         etykieta_m1 = MathTex("-1", color=SZARY_OSIE, font_size=64)
         etykieta_m1.next_to(os_x.n2p(-1), DOWN, buff=0.2)
         etykieta_7 = MathTex("7", color=SZARY_OSIE, font_size=64)
@@ -515,6 +515,11 @@ class Zad9(Scene):
         self.play(Create(parabola), run_time=1.4)
         self.zakoncz(s18_gora, rysunek, parabola,
                      pomin=[s18_gora, parabola, *rysunek])
+        # Dłuższy postój na końcu kroku: rysunek zajmuje pół kadru gładkimi
+        # krzywymi, więc koder H.264 potrzebuje kilku klatek bez ruchu, żeby
+        # ostatnia klatka zgadzała się z pierwszą klatką następnego kroku
+        # (bez tego styk-klatek.sh schodzi poniżej progu 0,999).
+        self.wait(0.35)
 
         # ================================================================
         # KROK 20. Fragment paraboli pod osią i odcinek na osi zapalają
@@ -542,6 +547,7 @@ class Zad9(Scene):
         # w zapis przedziału.
         self.zakoncz(s18_gora, rysunek, parabola, odcinek, kropka_l, kropka_p,
                      pomin=[s18_gora, parabola, *rysunek])
+        self.wait(0.35)
 
         # ================================================================
         # KROK 21. Odcinek zamienia się w zapis x nalezy do <-1, 7>.
@@ -549,7 +555,7 @@ class Zad9(Scene):
         # ================================================================
         self.next_section("krok21")
         wynik = MathTex(r"x \in \langle -1,\ 7\rangle", color=BLACK, font_size=90)
-        wynik.move_to(DOWN * 2.7)
+        wynik.move_to(DOWN * 3.05)
         self.play(
             ReplacementTransform(VGroup(odcinek, kropka_l, kropka_p), wynik),
             run_time=1.2,

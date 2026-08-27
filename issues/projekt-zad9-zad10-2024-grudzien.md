@@ -373,3 +373,56 @@ Bez wzoru w ramce: w tablicy nie ma tu czego pokazać.
   16:9 bez zmniejszania wykresu. Jeżeli nie, wynik części znika przy zmianie etykiety,
   a zbiorczy widok czterech odpowiedzi wypada.
 - `formulasPage` zostaje na 23 bez weryfikacji, czy to najlepsza strona dla tego zadania.
+
+---
+
+# Wykonanie (2026-08-28)
+
+Projekt wpisany do repozytorium: `solutionText` i `solutionStepByStep` obu zadań
+w `matura/2024-grudzien/exercises.json`, sceny `manimations/solutionZad9.py`
+i `manimations/solutionZad10.py`, kroki opisowo w `manimations/zad9-kroki.md`
+i `manimations/zad10-kroki.md`. Wersja strony podbita na v95.
+
+## Co się zgadza z projektem
+
+- Zadanie 9: dwadzieścia jeden linijek i dwadzieścia jeden kroków, dwa tory na
+  \(x_{1}\) i \(x_{2}\), wszystkie pięć ogniw z osobnymi krokami, parabola w krokach
+  19 do 21. Siedem komentarzy między linijkami.
+- Zadanie 10: szesnaście linijek i szesnaście kroków, cztery części, cztery komentarze,
+  zdanie zamykające z odpowiedziami w zapisie z polecenia. Blok „DAWNE POKAŻ WIĘCEJ"
+  zniknął (zostaje jeszcze w zad. 19 i 30, wpis w `TODO.md` poprawiony).
+
+## Odstępstwa
+
+- **Zad. 9, krok 5.** Projekt pisał o „trzech minusach" do podświetlenia. W treści są dwa
+  (przy \(-6\) i przy \(-7\)), więc trzecim zielonym elementem jest jedynka, która pojawia
+  się jako \(a = 1\). Sensu kroku to nie zmienia: zielone jest to, co w tym kroku powstaje.
+- **Zad. 10, krok 9.** Projekt mówił „oś \(x\) zapala się na chwilę". Krok, który zapala
+  i gasi to samo, nic po sobie nie zostawia, więc zamiast tego przy osi \(y\), poniżej
+  zera, powstaje warunek \(y < 0\) ze strzałką w dół. Zostaje do końca części 3.
+- **Zad. 10, układ kadru.** Projekt nie rozstrzygał, gdzie w kadrze stoją zapisy. Wyszło:
+  wykres w lewej połowie, etykieta części i lista odpowiedzi w prawej. Zakres osi \(y\)
+  jest węższy niż w arkuszu (\(-2\) do \(4\)), przy równych jednostkach na obu osiach.
+
+## Co zmierzono
+
+| co | zad. 9 | zad. 10 |
+|---|---|---|
+| `tools/styk-klatek.sh` | dwadzieścia styków, 0,99900 do 0,99995, **bez zastrzeżeń** | trzynaście z piętnastu powyżej progu; **1→2 daje 0,99885, a 2→3 daje 0,99878** |
+| `tools/zielen-krokow.py` | bez zastrzeżeń | bez zastrzeżeń |
+| `tools/test-krokow.js` | dwa ziarna, bez zastrzeżeń | dwa ziarna, bez zastrzeżeń |
+| strona (Playwright, 1280 i 485 px) | zero błędów KaTeX, brak przewijania w bok | to samo |
+
+Rachunek zad. 9 przeliczony od zera i zgodny z kluczem CKE. Wszystkie cztery odpowiedzi
+zad. 10 wyprowadzone **ze wzorów**, nie z rysunku, i zgodne z kluczem.
+
+## Czego nie ustalono
+
+- Skąd biorą się dwa styki poniżej progu w zad. 10. Pomiary wykluczają różnicę treści
+  (mapa różnic pokazuje obrysy wszystkich krawędzi kadru, a klatki 0 do 5 kolejnego pliku
+  są między sobą nieruchome i odbiegają od poprzedniego kroku tak samo). Nie pomogło:
+  dłuższy postój na końcu kroku, rozjaśnienie i pocienienie siatki, wprowadzanie kopii
+  z zerową przezroczystością. Podejrzenie pada na kompresję przy scenie pełnej cienkich
+  linii, ale to przypuszczenie, nie pomiar.
+- Czy dwadzieścia jeden kropek kroków (zad. 9) i szesnaście przy gęstym kadrze (zad. 10)
+  dobrze się klika na telefonie. Oba wpisane do `TODO.md`, sekcja `TESTOWANIE HENRICH`.

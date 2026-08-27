@@ -15,12 +15,12 @@ Zobacz na żywo: **https://matematykazen.pl** (działa też z www). Wersja roboc
 - Zadania (osobne karty): 33 (30 poleceń CKE, część z podpunktami), 50 pkt
 - Podpowiedzi: 33/33
 - Rozwiązania opisowe: 33/33
-- Rozwiązania wideo (krok po kroku): 9/33 (zadania 1-9)
+- Rozwiązania wideo (krok po kroku): 10/33 (zadania 1-10)
 - Widżety interaktywne: 9 (nie 1:1 z zadaniami, nie każde tego wymaga)
 - Zadania otwarte z kryteriami CKE: 7/7
 - Odpowiedzi zweryfikowane z kluczem CKE: tak
 
-Zadania 1-8 są wstępnie odpicowane (rozwiązania i filmy dopracowane wg obecnych zasad). Pozostałe zadania wymagają jeszcze przeglądnięcia i poprawek.
+Zadania 1-10 są wstępnie odpicowane (rozwiązania i filmy dopracowane wg obecnych zasad). Pozostałe zadania wymagają jeszcze przeglądnięcia i poprawek.
 
 **2026 maj (właściwa)** - w opracowaniu:
 - Zadania (osobne karty): 37 (33 polecenia CKE, część z podpunktami), 50 pkt

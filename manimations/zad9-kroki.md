@@ -1,86 +1,74 @@
-# Zadanie 9 — kroki rozwiązania do sprawdzenia
+# Zadanie 9, kroki rozwiązania
 
 Otwórz w podglądzie (Ctrl+Shift+V). Notacja jak w `tablica-wzorow-transkrypt/`.
-Wzory z tablic: [7] funkcja kwadratowa — wyróżnik i miejsca zerowe, **s. 8**
-(`formulasPage` zadania jest już na 8; w TODO leży osobny pomysł, żeby dopisać też s. 7).
 
-To zadanie **otwarte, za 2 punkty**, więc kroki są ułożone pod klucz CKE:
+Scena: `solutionZad9.py`. Projekt dydaktyczny i uzasadnienie metody:
+[../issues/projekt-zad9-zad10-2024-grudzien.md](../issues/projekt-zad9-zad10-2024-grudzien.md).
 
-| Kryterium z klucza | Punkty | Krok |
-|---|---|---|
-| Nierówność w postaci \(x^{2}-6x-7\le 0\) | 0 (etap konieczny) | krok 3 |
-| Obliczone miejsca zerowe \(x=-1\) i \(x=7\) | 1 | krok 7 |
-| Zapisany zbiór rozwiązań \(\langle -1,\ 7\rangle\) | 1 | krok 8 |
+Napisane **od nowa 2026-08-28, na wzór zadań 7 i 8**. Poprzednia wersja miała osiem
+kroków, siedem linijek w rozwiązaniu opisowym (czyli rozjazd), liczyła ogniwa w głowie
+i nie pokazywała paraboli, przez co wniosek o przedziale niósł wyłącznie zwinięty opis
+pod krokiem. Ta wersja ma dwadzieścia jeden kroków, jeden do jednego z linijkami rachunku.
+
+## Co się zmieniło wobec starej wersji
+
+| dawniej | teraz |
+|---|---|
+| \(x(x-6)\) od razu na \(x^{2}-6x\) | osobny krok z ogniwem \(x \cdot x - x \cdot 6\) |
+| współczynniki wchodziły prosto do delty | osobna linijka „Współczynniki: \(a = 1\), \(b = -6\), \(c = -7\)" |
+| podstawienie do delty od razu na \(36+28\) | osobny krok: najpierw podstawienie w nawiasach, potem rozpisanie |
+| \(x_{1}\) i \(x_{2}\) w jednym kroku | dwa tory liczone **po kolei**, wynik pierwszego czeka na górze kadru |
+| \(\dfrac{6-8}{2}\) od razu na \(-1\) | osobne kroki z \(\dfrac{-2}{2}\) i \(\dfrac{14}{2}\) |
+| paraboli nie było w kadrze | trzy ostatnie kroki rysują szkic: parabola, fragment pod osią, zapis przedziału |
 
 ## Treść
 
-Rozwiąż nierówność \(x(x-6)\le 7\). Zapisz obliczenia.
+Rozwiąż nierówność \(x(x-6) \le 7\). Zapisz obliczenia. Zadanie otwarte, 2 punkty.
 
-Wynik: \(x \in \langle -1,\ 7\rangle\).
+Wynik: \(x \in \langle -1,\ 7\rangle\), zgodny z kluczem CKE.
 
-## Proponowane kroki
+| Kryterium z klucza | Punkty | Krok |
+|---|---|---|
+| nierówność w postaci \(x^{2}-6x-7 \le 0\) | 0, etap konieczny | 4 |
+| pierwiastki \(x_{1} = -1\), \(x_{2} = 7\) | 1 | 18 |
+| zbiór rozwiązań \(\langle -1,\ 7\rangle\) | 1 | 21 |
 
-Siedem kroków, osiem kropek.
+## Kroki
 
-### Krok 1 — zapisujemy nierówność
+| # | Stan po kroku | Zielone |
+|---|---|---|
+| 1 | \(x(x - 6) \le 7\) | nic |
+| 2 | \(x \cdot x - x \cdot 6 \le 7\) | dwa nowe \(x\) i kropki mnożenia |
+| 3 | \(x^{2} - 6x \le 7\) | wykładnik \(2\) |
+| 4 | \(x^{2} - 6x - 7 \le 0\) | minus przy siódemce i zero |
+| 5 | \(a = 1\), \(b = -6\), \(c = -7\) | znaki minus i nowa jedynka |
+| 6 | \(\Delta = (-6)^{2} - 4 \cdot 1 \cdot (-7)\) | wstawiane liczby |
+| 7 | \(\Delta = 36 + 28\) | plus przed \(28\) |
+| 8 | \(\Delta = 64\) | nic |
+| 9 | \(\sqrt{\Delta} = 8\) | \(8\) |
+| 10 | \(x_{1,2} = \dfrac{-(-6) \pm 8}{2 \cdot 1}\) | wstawiane liczby |
+| 11 | \(x_{1,2} = \dfrac{6 \pm 8}{2}\) | \(6\) z dwóch minusów |
+| 12 | \(x_{1} = \dfrac{6 - 8}{2}\) | znak minus |
+| 13 | \(x_{1} = \dfrac{-2}{2}\) | \(-2\) |
+| 14 | \(x_{1} = -1\) | nic |
+| 15 | wynik odjeżdża w górę, wjeżdża \(x_{2} = \dfrac{6+8}{2}\) | nic, krok przenoszący |
+| 16 | \(x_{2} = \dfrac{14}{2}\) | \(14\) |
+| 17 | \(x_{2} = 7\) | nic |
+| 18 | \(x_{1} = -1\), \(x_{2} = 7\) w jednej linijce | nic |
+| 19 | szkic paraboli ramionami w górę przez \(-1\) i \(7\) | nic |
+| 20 | fragment pod osią i odcinek na osi | fragment i odcinek |
+| 21 | \(x \in \langle -1,\ 7\rangle\) | nic |
 
-\[x(x-6) \le 7\]
+Rysunek w krokach 19 do 21 jest **szkicem**: oś \(x\), dwa podpisane punkty, gładka
+parabola. Bez siatki, bez osi \(y\), bez skali. Chodzi o kształt i o to, gdzie parabola
+leży pod osią.
 
-*Opis:* Zapisujemy nierówność z zadania.
+## Co zmierzono po renderze (2026-08-28)
 
-### Krok 2 — wymnażamy nawias
-
-\[x^{2}-6x \le 7\]
-
-*Opis:* Wymnażamy nawias: \(x(x-6)=x^{2}-6x\).
-
-### Krok 3 — przenosimy wszystko na lewo (punkt konieczny)
-
-\[x^{2}-6x-7 \le 0\]
-
-Dopiero teraz to jest nierówność kwadratowa w postaci, z którą umiemy pracować: po prawej
-stronie zero.
-
-*Opis:* Przenosimy 7 na lewą stronę, żeby po prawej zostało zero — bez tego nie ma jak korzystać z miejsc zerowych.
-
-### Krok 4 — liczymy wyróżnik
-
-\[\Delta = (-6)^{2} - 4 \cdot 1 \cdot (-7)\]
-
-Tu siedzi najczęstszy błąd całego zadania: \(c=-7\), więc \(-4ac\) daje **plus** 28.
-
-*Opis:* Wyróżnik \(\Delta=b^{2}-4ac\), gdzie \(a=1\), \(b=-6\), \(c=-7\). Uwaga na znaki: \(c\) jest ujemne, więc \(-4ac\) wychodzi na plus.
-
-### Krok 5 — wynik wyróżnika
-
-\[\Delta = 64 \qquad \sqrt{\Delta} = 8\]
-
-*Opis:* \(36+28=64\), a \(\sqrt{64}=8\).
-
-### Krok 6 — podstawiamy do wzorów na miejsca zerowe
-
-\[x_{1} = \frac{6-8}{2} \qquad x_{2} = \frac{6+8}{2}\]
-
-*Opis:* Miejsca zerowe: \(x_{1,2}=\frac{-b\pm\sqrt{\Delta}}{2a}\). Skoro \(b=-6\), to \(-b=6\).
-
-### Krok 7 — miejsca zerowe (punkt)
-
-\[x_{1} = -1 \qquad x_{2} = 7\]
-
-*Opis:* Wychodzi \(x_{1}=-1\) oraz \(x_{2}=7\). Za samo to klucz CKE daje punkt.
-
-### Krok 8 — odczytujemy zbiór rozwiązań (punkt)
-
-\[x \in \langle -1,\ 7\rangle\]
-
-Współczynnik przy \(x^{2}\) jest dodatni, więc parabola ma ramiona **w górę** — wartości
-mniejsze lub równe zero przyjmuje **między** miejscami zerowymi. Przedział jest **domknięty**,
-bo w nierówności jest \(\le\), a nie \(<\).
-
-*Opis:* Współczynnik przy \(x^{2}\) jest dodatni, więc ramiona paraboli idą w górę i wartości \(\le 0\) są **między** miejscami zerowymi. Przedział domknięty, bo nierówność jest nieostra: \(x\in\langle -1,\ 7\rangle\).
-
-> **Moja decyzja, do korekty.** Film nie rysuje paraboli — pokazuje sam rachunek, a wniosek
-> „ramiona w górę → między miejscami zerowymi" jest tylko w opisie pod krokiem 8. Powód:
-> to zadanie ma już widżet `widgetNierownoscKwadratowa`, który rysunek pokazuje
-> interaktywnie, więc film by go dublował. Jeśli wolisz, żeby parabola pojawiła się też
-> w filmie — powiedz, to osobna scena i osobny krok.
+- `tools/styk-klatek.sh`: dwadzieścia styków, od 0,99900 do 0,99995, bez zastrzeżeń.
+- `tools/zielen-krokow.py`: każdy krok zaczyna i kończy się bez zieleni.
+- `tools/test-krokow.js --zadania=8`: dwa ziarna, bez zastrzeżeń.
+- Kroki 19 i 20 dostały dodatkowy postój 0,35 s na końcu. Bez niego styki 19→20 i 20→21
+  schodziły poniżej progu 0,999: rysunek zajmuje pół kadru gładkimi krzywymi, a koder
+  H.264 potrzebuje kilku klatek bez ruchu, żeby ostatnia klatka kroku zgadzała się
+  z pierwszą klatką następnego. Wydłużenie postoju do 0,8 s nie dało już nic.

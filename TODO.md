@@ -16,7 +16,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
   - to samo do decyzji z „finalAnswer.label": renderer je ignoruje (świadomie, od 2026-08-06),
     a pole nadal siedzi w danych wszystkich arkuszy
 
-  - w trzech zadaniach grudnia (10, 19, 30) w rozwiązaniu siedzi nagłówek „DAWNE POKAŻ WIĘCEJ" i doklejona pod nim dawna treść; celowo brzydkie, żeby było widać, gdzie zredagować tekst w jedną całość. Scalać samemu czy zostawiasz to sobie
+  - w dwóch zadaniach grudnia (19, 30) w rozwiązaniu siedzi nagłówek „DAWNE POKAŻ WIĘCEJ" i doklejona pod nim dawna treść; celowo brzydkie, żeby było widać, gdzie zredagować tekst w jedną całość. Scalać samemu czy zostawiasz to sobie (zad. 10 scalone 2026-08-28 przy okazji nowego rozwiązania)
 
 
 <br>
@@ -29,7 +29,9 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
   - v94, zad. 8 z grudnia 2024, film krok po kroku w CIEMNYM motywie na telefonie: szare \(x \ne 1\) nad równaniem i szary dopisek działania z boku (np. „/ · 2") mają być czytelne, a nie zlewać się z tłem
 
-  - v94, zad. 8 z grudnia 2024, film ma teraz 19 kroków, najwięcej w arkuszu: sprawdź na telefonie, czy rząd kropek kroków daje się wygodnie klikać i czy przewijanie kropek nie gubi się przy skoku na koniec
+  - v95, zad. 10 z grudnia 2024, nowy film krok po kroku na TELEFONIE: wykres siedzi po lewej, a wyniki czterech części po prawej. sprawdź, czy w pionie wykres nie robi się za mały do odczytania liczb przy osiach
+
+  - v95, zad. 9 z grudnia 2024, film ma teraz 21 kroków, najwięcej w arkuszu (zad. 8 ma 19): sprawdź na telefonie, czy rząd kropek kroków daje się wygodnie klikać i czy przewijanie kropek nie gubi się przy skoku na koniec
 
 <br>
 

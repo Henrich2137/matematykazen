@@ -12,6 +12,8 @@ tego samego dnia na zadaniach 3, 4, 6, 7 i 8. Wzorce do podejrzenia, wszystkie w
 | 6 | jedna kolumna, jeden wzór na górze, ułamki przez `\dfrac` |
 | 7 | dwa tory obok siebie, które na końcu schodzą się w jeden |
 | 8 | dwa tory **wewnątrz** rozwiązania jednokolumnowego, komentarze tylko w trudnych przejściach, przerwa między częściami, odkreślone sprawdzenie |
+| 9 | to samo w zadaniu z deltą: ogniwa (\(x \cdot x - x \cdot 6\), \(-(-6)\), \(\dfrac{-2}{2}\)) mają własne linijki, a wniosek z rysunku (ramiona paraboli) stoi jako zwykłe zdanie w linijce |
+| 10 | zadanie bez rachunku, sam odczyt z wykresu: cztery części z wytłuszczonym nagłówkiem wtopionym w pierwszą linijkę, przedział budowany z dwóch końców, zdanie zamykające podaje odpowiedzi w zapisie z polecenia |
 
 Bliźniaczy plik dla filmów: `manimations/README.md`, sekcja „Zasady krok po kroku, wersja krótka".
 Wygląd i nazwy klas CSS: `ARCHITECTURE_CSS.md`. Znaczenie kolorów: `COLORS.md`.
