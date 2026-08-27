@@ -288,11 +288,10 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     - w układzie dwóch torów na telefonie długie linijki łamią się w środku wzoru (np. „a · (-1) + 3 ·" i niżej „6 = 20"). To nie jest nowe, było tak i przed tą zmianą, ale teraz łamią się dwie linijki zamiast jednej. Do rozważenia zwężenie zapisu albo osobna reguła w responsive.css
 
 
-  + OPUS 5 MEDIUM DOPISAŁ (2026-08-27, po skasowaniu rozwiązań do zad. 8 z 2024-grudnia):
+  + OPUS 5 DOPISAŁ (2026-08-27, po napisaniu zad. 8 z 2024-grudnia od nowa):
 
-    - zad. 8 z 2024-grudnia: rozwiązanie opisowe napisane od nowa (2026-08-27, droga przez równanie kwadratowe, 23 pozycje, projekt w issues/projekt-zad8-2024-grudzien.md). **Filmu krok po kroku dalej nie ma**, scena i wideo zostały skasowane. Projekt zawiera gotowy podział na 23 kroki, więc film da się zrobić bez ponownego projektowania
-    - zad. 8 z 2024-grudnia: podpowiedź została stara i mówi o innej drodze niż rozwiązanie („popatrz na oba mianowniki uważnie: nie są tak różne, jak wyglądają" prowadzi do wyłączenia dwójki, a rozwiązanie mnoży obie strony przez oba mianowniki i idzie przez deltę). Nie zmieniałem jej, bo Henrich nie zamawiał. Propozycja nowej treści jest w projekcie, sekcja „Do decyzji"
-
+    - zad. 8 z 2024-grudnia: rozwiązanie opisowe gotowe (droga przez wspólny mianownik, 13 linijek z komentarzami, spec w issues/spec-zad8-2024-grudzien.md). **Filmu krok po kroku dalej nie ma**, scena i wideo zostały skasowane. Spec ma gotowy podział na 13 kroków i gotowe opisy pod film
+    - komentarze między linijkami (`rozw-komentarz`) i dopisek działania w osobnym spanie (`rozw-dzialanie`) to nowość z 2026-08-27, na razie użyta tylko w zad. 8. Jeśli się sprawdzi, warto przejrzeć starsze rozwiązania opisowe i przenieść je na ten sam układ
 
 + ZASADY DLA CLAUDE-A:
 

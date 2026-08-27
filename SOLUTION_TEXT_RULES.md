@@ -11,7 +11,7 @@ tego samego dnia na zadaniach 3, 4, 6, 7 i 8. Wzorce do podejrzenia, wszystkie w
 | 4 | wąskie rozwiązanie wyśrodkowane na karcie (`rozw-srodek`) |
 | 6 | jedna kolumna, jeden wzór na górze, ułamki przez `\dfrac` |
 | 7 | dwa tory obok siebie, które na końcu schodzą się w jeden |
-| 8 | zadanie otwarte: założenie na górze, sprawdzenie wyniku na dole |
+| 8 | linijki przeplecione bledszymi komentarzami, dopisek działania w osobnym spanie |
 
 Bliźniaczy plik dla filmów: `manimations/README.md`, sekcja „Zasady krok po kroku, wersja krótka".
 Wygląd i nazwy klas CSS: `ARCHITECTURE_CSS.md`. Znaczenie kolorów: `COLORS.md`.
@@ -36,9 +36,7 @@ jednym torem.
 - **Jedna kolumna** (`<div class="rozwiazanie-kroki">`, linijki rozdzielone `<br>`), gdy
   wzoru z tablicy nie ma wcale albo jest **jeden i stosuje się go na starcie**. Wzór stoi
   wtedy nad rachunkiem, wyśrodkowany przez `\[ … \]`, a pod nim idą same linijki.
-  Wzorce: zad. 5, 6 i 8 z 2024-grudnia. Zadanie 8 ma dwa wzory i wchodzą one w środku
-  rachunku, czyli wg litery tej zasady należałoby do dwóch kolumn. Zdecydowała jednak
-  szerokość telefonu, patrz ostrzeżenie niżej.
+  Wzorce: zad. 5, 6 i 8 z 2024-grudnia.
 - **Dwie kolumny** (`<div class="rozw-2kol">`), gdy wzorów jest kilka i każdy należy do
   innej linijki, a rachunek jest na tyle szeroki, że wzór dopisany pod nim rozbiłby czytanie.
   Wzorce: zad. 2, 3 i 4. Ten układ jest **chciany**, nie tymczasowy (Henrich, 2026-08-23,
@@ -52,7 +50,7 @@ jednym torem.
   Krótszy tor kończy się wyżej: **pusta komórka idzie na KONIEC tej kolumny, nie w jej
   środek** (Henrich, 2026-08-21). Dziura w środku wygląda jak zgubiona linijka.
 
-**Ostrzeżenie o telefonie, zmierzone 2026-08-27 na zad. 8.** Dwie kolumny kosztują dużo
+**Ostrzeżenie o telefonie, zmierzone 2026-08-27 na roboczej wersji zad. 8.** Dwie kolumny kosztują dużo
 miejsca: przy oknie 390 px kolumna wzorów bierze 104 px, przerwa między kolumnami 40 px,
 więc na rachunek zostaje 154 px z 298 px bloku. Linijka dłuższa niż mniej więcej
 \(2x^{2} + 4x - 6 = x^{2} - x\) łamie się wtedy w przypadkowym miejscu (KaTeX nie łamie
@@ -69,6 +67,32 @@ niż kilka linijek, oddaj kolumnę wzorów i przenieś wzory nad rachunek.
    nie wolno pominąć, bo siatka przesunie następny rachunek do prawej kolumny.
 10. **Kilka linijek rachunku pod jednym wzorem** idzie w jednym `.rozw-obl`, rozdzielone `<br>`.
     Wzór stanie wtedy na środku całej grupy.
+
+## Komentarze między linijkami (od 2026-08-27)
+
+Zasada Henricha z 2026-08-27, wprowadzona na zad. 8. Dotyczy układu jednokolumnowego.
+
+15a. **Między linijkami rachunku wolno napisać, co się w przejściu dzieje.** Jedno zdanie,
+     w `<div class="rozw-komentarz">`, bledsze od rachunku (ten sam token co kolumna wzorów).
+     Rachunek czyta się pierwszy, komentarz drugi.
+15b. **Linijki idą wtedy w `<div class="rozw-linia">`, nie przez `<br>`.** Div sam łamie
+     wiersz, a komentarz ma własny, ciaśniejszy odstęp.
+15c. **Komentarz mówi o przejściu do NASTĘPNEJ linijki**, więc stoi pod tą, z której
+     wychodzimy, i przykleja się do niej z góry.
+15d. **Nie opisuj tego, co widać.** „Mnożymy obie strony przez \(x-1\)" ma sens tylko wtedy,
+     gdy dopisuje coś ponad sam zapis (tu: że nawias dopisuje się w obu licznikach).
+15e. **Komentarz nie zastępuje rozbicia kroku.** Jeśli przejście robi dwie rzeczy naraz,
+     rozbij je na dwie linijki, a nie tłumacz zdaniem.
+
+Szkielet do przeklejania:
+
+```html
+<div class="rozwiazanie-kroki">
+  <div class="rozw-linia">\(2x + 6 = x\)<span class="rozw-dzialanie">\(\big/ - 6\)</span></div>
+  <div class="rozw-komentarz">Liczby zbieramy po prawej stronie. Szóstka przechodzi ze zmianą znaku.</div>
+  <div class="rozw-linia">\(2x = x - 6\)</div>
+</div>
+```
 
 ## Kolor
 
@@ -130,10 +154,16 @@ niż kilka linijek, oddaj kolumnę wzorów i przenieś wzory nad rachunek.
 22. **Założenie (dziedzina) idzie NA GÓRĘ, nad rachunek**, razem z jednym zdaniem, skąd się
     wzięło („mianownik nie może być zerem, oba zerują się dla \(x=1\)"). CKE daje za nie
     osobny punkt, więc ma być widoczne, a nie schowane w środku rachunku.
+    W układzie z komentarzami wygląda to tak, że **założenie jest DRUGĄ linijką**, zaraz pod
+    zapisem z treści, a zdanie o mianowniku stoi nad nim jako komentarz (Henrich, 2026-08-27,
+    zad. 8). Osobny akapit nad blokiem przestaje być wtedy potrzebny.
 23. **Ostatnia linijka sprawdza założenie i ogłasza wynik**: „wynik spełnia założenie, bo
     \(-6 \ne 1\), więc rozwiązaniem równania jest \(x=-6\)".
 24. **Działanie wykonywane na obu stronach zapisuj po szkolnemu, na tej samej linijce**:
-    `\;\big/ \cdot\, 2(x-1)`. To nie jest wzór, więc nie idzie do kolumny wzorów.
+    `\big/ \cdot (x-1)`. To nie jest wzór, więc nie idzie do kolumny wzorów. Od 2026-08-27
+    idzie **w osobnym `<span class="rozw-dzialanie">` obok wzoru**, nie w środku tego samego
+    `\( … \)`: jest wtedy odsunięty i bledszy, a na telefonie zawija się w całości pod
+    rachunek, zamiast łamać rachunek w środku ułamka.
 
 ## Praca z plikiem
 

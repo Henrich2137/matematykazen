@@ -1215,6 +1215,52 @@ body.sidebar-otwarty #sidebar-linia {
     margin: 0.35em 0;
 }
 
+/* KOMENTARZ MIĘDZY LINIJKAMI RACHUNKU (Henrich, 2026-08-27, zad. 8 z 2024-grudnia).
+   Mówi, co dzieje się w przejściu z jednej linijki do następnej, i celowo jest
+   BLEDSZY od samego rachunku: rachunek ma być pierwszy w kolejności czytania,
+   komentarz drugi. Ten sam token co kolumna wzorów, więc ciemny motyw obsługuje
+   się sam. Zapis w exercises.json:
+
+       <div class="rozwiazanie-kroki">
+         <div class="rozw-linia">\(rachunek\)</div>
+         <div class="rozw-komentarz">co się zaraz stanie</div>
+         …
+       </div>
+
+   Linijki idą wtedy w .rozw-linia zamiast być rozdzielane <br>: div sam łamie
+   wiersz, a komentarz między nimi potrzebuje własnego, ciaśniejszego odstępu niż
+   line-height 2.1 ustawiony dla wzorów. */
+.rozwiazanie-kroki .rozw-komentarz {
+    color: var(--text-muted-2);
+    line-height: 1.45;
+    /* Zdanie komentarza przykleja się do linijki, którą opisuje, a odstaje od
+       następnej: inaczej nie wiadomo, do którego przejścia się odnosi. */
+    margin: -0.1em auto 0.65em;
+    max-width: 34em;
+}
+
+/* Wzór wewnątrz komentarza ma być tak samo blady jak zdanie wokół niego. KaTeX
+   maluje własny kolor na .katex, więc bez tego jeden wzór w środku komentarza
+   wychodzi czarny i wygląda jak osobna linijka rachunku. */
+.rozwiazanie-kroki .rozw-komentarz .katex { color: inherit; }
+
+/* Zapis działania wykonywanego na obu stronach („/ · (x-1)", „/ - 6"). Stoi w tej
+   samej linijce co rachunek, ale nie jest jego częścią: jest odsunięty i blady
+   jak komentarz. W exercises.json idzie jako OSOBNY span obok wzoru:
+
+       <div class="rozw-linia">\(2x + 6 = x\)<span class="rozw-dzialanie">\(\big/ - 6\)</span></div>
+
+   Osobny span, a nie \qquad wewnątrz tego samego \( … \), bo na telefonie
+   rachunek z doklejonym dopiskiem przekracza szerokość karty i KaTeX łamie go
+   w przypadkowym miejscu, w środku ułamka. Rozdzielony zawija się jako całość:
+   dopisek spada pod rachunek i dalej się czyta. */
+.rozw-linia .rozw-dzialanie {
+    margin-left: 2em;
+    color: var(--text-muted-2);
+    white-space: nowrap;
+}
+.rozw-linia .rozw-dzialanie .katex { color: inherit; }
+
 /* ROZWIĄZANIE W DWÓCH KOLUMNACH: rachunek z lewej, użyty wzór z prawej, na tej
    samej wysokości co linijka, w której się go stosuje. Zapis w exercises.json:
 
