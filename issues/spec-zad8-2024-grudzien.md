@@ -66,6 +66,18 @@ zostają bez komentarza.
 rachunku z obu stron, bo w pierwszej wersji kleiły się do wzorów i całość czytała się jak
 jeden blok.
 
+**Trzy poprawki językowe** (Henrich, 2026-08-28, po obejrzeniu wersji ze zdaniami):
+
+- **Żadnego „iks".** Nazwa litery zapisana słowem wypadła z rozwiązania i ze wszystkich
+  dziewiętnastu opisów kroków. „Dwa iksy bez jednego iksa to jeden iks" jest dziś zapisane
+  rachunkiem: \(2x - 1x = 1x\), czyli po prostu \(x\). Zasada trafiła do `CLAUDE.md`,
+  sekcja „Content notes", bo dotyczy całego projektu, nie tylko tego zadania.
+- **Założenie jest podpisane.** Linijka brzmi „Założenie (dziedzina): \(x \ne 1\)". Sam
+  zapis \(x \ne 1\) nie mówi uczniowi, czym jest i za co CKE daje punkt. To jedyne miejsce
+  w rozwiązaniu, gdzie przy rachunku stoi zwykły tekst.
+- **Zdania krótsze.** Wypadły wtręty, które niczego nie wnosiły („Wracamy do równania",
+  „a o to nam chodziło", „i właśnie tego pilnuje założenie", „więc znika z obu stron").
+
 **Koszt tej decyzji.** Kroków jest o dziewięć więcej i film trwa dłużej. Zysk: nie ma ani
 jednego miejsca, w którym coś jest liczone „na boku", a uczeń, który zatrzyma dowolny krok,
 widzi w kadrze pełną linijkę do przepisania, nie roboczy zapis mniejszym pismem.
@@ -91,7 +103,7 @@ Linijek rachunku jest dokładnie tyle, ile kroków filmu.
 | 4 | \(2x - 2 \ne 0\) | prawy tor |
 | 5 | \(2x \ne 2\) | |
 | 6 | \(x \ne 1\) | prawy tor, koniec |
-| 7 | \(\boldsymbol{x \ne 1}\) | oba tory dały to samo, więc jedno założenie |
+| 7 | **Założenie (dziedzina):** \(\boldsymbol{x \ne 1}\) | oba tory dały to samo, więc jedno założenie |
 | 8 | \(\dfrac{x + 3}{x - 1} = \dfrac{x}{2 \cdot x - 2 \cdot 1}\) | ogniwo: skąd wspólny czynnik |
 | 9 | \(\dfrac{x + 3}{x - 1} = \dfrac{x}{2(x - 1)}\) z dopiskiem \(\big/ \cdot (x - 1)\) | |
 | 10 | \(\dfrac{(x + 3)(x - 1)}{x - 1} = \dfrac{x(x - 1)}{2(x - 1)}\) | |
@@ -168,5 +180,8 @@ samym pomyśle.
 - Nie wiadomo, czy dziewiętnaście kropek kroków dobrze się klika na telefonie Henricha:
   to najdłuższy film w arkuszu (poprzedni rekord to czternaście kroków w zad. 7). Wpisane
   do `TODO.md`, sekcja `TESTOWANIE HENRICH`.
+- Film pokazuje w kroku 7 samo \(x \ne 1\), bez słownej etykiety „Założenie (dziedzina)",
+  którą ma rozwiązanie opisowe. Dołożenie jej wymagałoby przerenderowania kroków 7 do 19,
+  bo warunek stoi w kadrze do końca. Nie zrobione, do decyzji Henricha.
 - Zad. 8 jest nadal **jedynym** zadaniem z komentarzami `rozw-komentarz`. Czy siedem zdań
   na dziewiętnaście linijek to dobra proporcja, wyjdzie dopiero na innych zadaniach.

@@ -172,6 +172,11 @@ Szkielet do przeklejania:
     ledwo je widać (Henrich, 2026-08-21, na zad. 6).
 19. Cała matematyka w **KaTeX**, `\( ... \)` w linijkach. Pamiętaj, że JSON wymaga `\\`.
 20. **Bez myślników i półpauz** w tekście (zasada ogólna projektu, `CLAUDE.md`).
+20a. **Bez nazw liter zapisanych słowami.** Nie „iks", tylko \(x\) (zasada ogólna projektu,
+    `CLAUDE.md`). Zdanie, które musiałoby odmieniać nazwę litery, przepisz na rachunek:
+    zamiast „dwa iksy bez jednego iksa to jeden iks" napisz \(2x - 1x = 1x\).
+20b. **Zdania krótkie.** Wyrzuć części, które nic nie wnoszą („Wracamy do równania",
+    „a o to nam chodziło"). Henrich, 2026-08-28.
 
 ## Ustawienie bloku
 
@@ -184,6 +189,9 @@ Szkielet do przeklejania:
 22. **Założenie (dziedzina) idzie NA GÓRĘ, nad rachunek**, razem z jednym zdaniem, skąd się
     wzięło („mianownik nie może być zerem, oba zerują się dla \(x=1\)"). CKE daje za nie
     osobny punkt, więc ma być widoczne, a nie schowane w środku rachunku.
+    **Podpisz je słowem.** Sama linijka \(x \ne 1\) nie mówi uczniowi, czym jest, więc
+    stoi przed nią etykieta „Założenie (dziedzina):" (Henrich, 2026-08-28, zad. 8). To jedyne
+    miejsce, w którym linijka rachunku ma przy sobie zwykły tekst.
     Osobny akapit nad blokiem nie jest do tego potrzebny: założenie jest po prostu jedną
     z pierwszych linijek rachunku. W zad. 8 (wersja z 2026-08-28) idzie jeszcze dalej i samo
     **wyprowadzenie** dziedziny stoi na górze, dwoma torami, po jednym na każdy mianownik,
