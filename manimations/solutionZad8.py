@@ -80,11 +80,14 @@ ZIELONY = "#2e7d32"
 SZARY_ZALOZENIE = "#666666"
 SZARY_DOPISEK = "#888888"
 
-ROWNANIE_Y = UP * 1.05       # rachunek główny
-POMOCNICZY_Y = DOWN * 0.95   # pas rachunku pomocniczego, sprzątany przed końcem kroku
-ZALOZENIE_Y = DOWN * 2.25    # założenie, od kroku 2 do końca filmu
+ROWNANIE_Y = UP * 0.35          # rachunek główny
+POMOCNICZY_Y = DOWN * 1.6       # pas rachunku pomocniczego, sprzątany przed końcem kroku
+# Założenie stoi NAD rachunkiem i przy lewej krawędzi, tak jak zapisuje się je na
+# kartce (prośba Henricha, 2026-08-27 wieczorem): najpierw warunek, pod nim liczenie.
+# Wcześniej wisiało pod równaniem i czytało się jak dopisek na końcu.
+ZALOZENIE_POZ = LEFT * 3.7 + UP * 2.9
 # Ile nad równaniem zatrzymuje się czynnik, który wyleciał z dopisku działania.
-POSTOJ = 0.55
+POSTOJ = 0.45
 
 
 class Zad8(Scene):
@@ -186,7 +189,7 @@ class Zad8(Scene):
 
         for m in glowne:
             m.move_to(ROWNANIE_Y)
-        zalozenie.move_to(ZALOZENIE_Y)
+        zalozenie.move_to(ZALOZENIE_POZ)
 
         # Rachunek pomocniczy kroku 2 stoi w dwóch kolumnach, każda pod tym
         # mianownikiem, z którego wyszła. Kolejne linijki wyrównane do LEWEJ, żeby
@@ -286,13 +289,15 @@ class Zad8(Scene):
         )
         self.gas(w5[0][3])
 
-        # -- oba warunki dały to samo, więc schodzą się w jedną linijkę i bledną
-        self.play(
-            Transform(w2, zalozenie.copy()),
-            Transform(w5, zalozenie.copy()),
-            run_time=1.2,
-        )
-        self.remove(w2, w5)
+        # -- oba warunki dały to samo, więc prawy dojeżdża do lewego
+        self.play(Transform(w5, w2.copy()), run_time=1.0)
+        self.remove(w5)
+        self.wait(0.15)
+        # -- i gotowe założenie jedzie NAD rachunek, gdzie zostaje do końca filmu.
+        # Jedzie pionowo, wzdłuż lewej krawędzi kadru, a nie po skosie przez środek:
+        # po skosie przelatywałoby po literach równania.
+        self.play(Transform(w2, zalozenie.copy()), run_time=1.2)
+        self.remove(w2)
         self.add(zalozenie)
         self.zakoncz(s0, zalozenie, pomin=[zalozenie])
 

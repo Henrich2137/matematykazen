@@ -202,14 +202,66 @@ Twarde reguły. Przed renderem przeczytaj, po renderze sprawdź.
     nie było widać (tu zielona jedynka jako wykładnik piątki w mianowniku), dopiero potem
     ten sam znak jedzie na miejsce docelowe, a to, co przestaje być potrzebne, znika w tym
     samym ruchu (tu „1/" gaśnie, a w wykładniku pojawia się minus).
-18. **Pary wskazuj ręcznie, co do glifu.** Bez `TransformMatchingShapes` na dłuższych
-    wyrażeniach: paruje kształty po podobieństwie i wysyła cyfry nie tam, gdzie idą w rachunku.
+18. **Pary wskazuj ręcznie, co do glifu. Żadnego automatycznego dopasowania.**
+    Dotyczy to `TransformMatchingShapes` (paruje kształty po podobieństwie i wysyła cyfry nie
+    tam, gdzie idą w rachunku) oraz `TransformMatchingTex(..., transform_mismatches=True)`,
+    który wygląda niewinnie, a robi gorszą rzecz: **morfuje całą niedopasowaną stronę równania
+    naraz**. W połowie takiej animacji pół zapisu jest kleksem i nie da się odczytać ani
+    starego, ani nowego. Henrich, 2026-08-27, o pierwszej wersji zad. 8: „morf wrzucony na całą
+    stronę równania zasłania to, co dzieje się naprawdę". Pisz więc jawnie, glif po glifie:
+    `ReplacementTransform` na to, co jedzie w nowe miejsce, `FadeIn` na to, czego wcześniej nie
+    było, `FadeOut` na to, co znika. Wzorzec: `solutionZad8.py`.
 19. **Stany pisz jako `MathTex` pocięty na CZĘŚCI** (osobno podstawa, wykładnik, kropka,
     nawiasy). Wtedy parę wskazujesz czytelnym indeksem części, a nie zgadywanym numerem glifu.
 20. **Mapę glifów policz, nie zgaduj.** Wyrenderuj podgląd, w którym każdy glif ma inny kolor
     i numer, i wpisz mapę w komentarz na górze sceny (wzorzec: `solutionZad2.py`).
 21. **Pojawia się tylko to, czego wcześniej nie było** (nowy nawias, nowa kropka).
     Reszta ma skądś przylecieć.
+27. **Nie prowadź niczego po literach. Lot ma iść bokiem albo górą** (ustalone 2026-08-27
+    na zad. 8). Dwa miejsca, w których to wychodzi:
+    - **czynnik wylatujący z dopisku działania** (`\big/ \cdot (x-1)`) najpierw staje NAD
+      miejscem, w które wejdzie, i dopiero potem zjeżdża. Po skosie przez środek przechodziłby
+      po całym równaniu. Wzorzec: funkcja `postoj()` w `solutionZad8.py`, kroki 4 i 6;
+    - **składnik przenoszony na drugą stronę** leci `path_arc` nad znakiem równości, a nie
+      przez niego. Po prostej przez ułamek sekundy leży dokładnie na nim i oba znaki są
+      nieczytelne. Łuk dobierz do długości lotu: przy krótkim przeskoku `PI/3` jeszcze nie
+      podnosi glifu ponad znak, `2*PI/3` już tak.
+28. **Kopia, która ma trafić w dwa miejsca, rozdwaja się w obu naraz**, gdy działanie dotyczy
+    obu stron równania (mnożenie obu stron). To jest ten rzadki przypadek, w którym dwie
+    rzeczy dzieją się równolegle i tak ma być: uczeń widzi, że to jedna czynność.
+
+### Wyjaśnienie w środku kroku (ustalone 2026-08-27 na zad. 8)
+
+Zasada Henricha: **krok może w środku pokazać wyjaśnienie, byle kończył się prostą linijką.**
+Nie łam dla tego reguły „jeden krok = jedno przekształcenie": linijka, która zostaje w kadrze
+na końcu kroku, dalej jest jedna. Zmienia się tylko to, że po drodze widać, SKĄD się wzięła.
+
+29. **Rachunek pomocniczy liczy się w osobnym pasie pod równaniem, mniejszym pismem** (72
+    zamiast 100), i **znika przed końcem kroku**. Dzięki temu ostatnia klatka kroku dalej jest
+    czysta i styk klatek wychodzi sam, bez sztuczek.
+30. **Rozmiar niesie znaczenie**: duże pismo to linijka rozwiązania, małe to praca na boku.
+    Uczeń nie musi się zastanawiać, co przepisać do zeszytu.
+31. **Wyjaśnienie to najczęściej dopisane OGNIWO**, czyli to, co ekspert liczy w głowie:
+    \(2x-2 = 2\cdot x - 2\cdot 1 = 2(x-1)\), \(2(x+3) = 2\cdot x + 2\cdot 3\),
+    \(x = 1x\). Wypisz je jawnie, potem zwiń do wyniku.
+32. **To samo ogniwo ma stać w komentarzu rozwiązania opisowego.** Film i tekst mają tłumaczyć
+    to samo w tym samym miejscu, inaczej uczeń dostaje dwie różne wersje rachunku.
+33. **Wolny krok jest w porządku.** Krok 2 zad. 8 wyprowadza dziedzinę z obu mianowników po
+    kolei i trwa dwanaście sekund. Henrich to zaakceptował: lepszy jeden długi krok, w którym
+    wszystko widać, niż założenie spadające z nieba.
+
+### Układ kadru (ustalone 2026-08-27 na zad. 8)
+
+34. **Warunek, który obowiązuje przez całe zadanie (dziedzina, założenie), stoi NAD rachunkiem,
+    przy lewej krawędzi** i zostaje tam do końca filmu. Tak zapisuje się go na kartce: najpierw
+    warunek, pod nim liczenie. Do 2026-08-27 wisiał pod równaniem i czytał się jak dopisek
+    zrobiony na końcu (poprawione na prośbę Henricha).
+35. **Trzy pasy, zawsze te same**: warunek na górze, rachunek na środku, rachunek pomocniczy
+    pod spodem. Rachunek nie rusza się przez cały film, więc oko wie, gdzie patrzeć.
+36. **Szarość zamiast czerni tam, gdzie coś nie jest rachunkiem**: założenie `#666666`
+    (czytelne, ale słabsze), dopisek działania `#888888` (jeszcze słabsze, bo to zapowiedź,
+    a nie zapis). Sprawdzone `tools/odwroc-kolor.py`: w ciemnym motywie wychodzą `#959595`
+    i `#6a6a6a`, czyli nadal czytelnie.
 
 ### Po renderze
 

@@ -27,7 +27,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Mój telefon na chrome ma "okno": 485x945
 <br> Próg wejścia jest wysoki, patrz ZASADY DLA CLAUDE-A niżej. Archiwum dawnych list: issues/testowanie-archiwum.md.
 
-  - v90, zad. 8 z grudnia 2024, film krok po kroku w CIEMNYM motywie na telefonie: szare \(x \ne 1\) pod równaniem i szary dopisek działania z boku (np. „/ · 2") mają być czytelne, a nie zlewać się z tłem
+  - v91, zad. 8 z grudnia 2024, film krok po kroku w CIEMNYM motywie na telefonie: szare \(x \ne 1\) nad równaniem i szary dopisek działania z boku (np. „/ · 2") mają być czytelne, a nie zlewać się z tłem
 
 <br>
 
@@ -290,7 +290,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
   + OPUS 5 DOPISAŁ (2026-08-27, po napisaniu animacji zad. 8 od nowa):
 
     - `manimations/_wspolne.py` ma `ZIELONY = "#0AB32F"`, czyli zieleń „poprawne" (`--correct`), a README i COLORS.md każą w filmach używać `#2e7d32` („oznaczenie miejsca"). Sceny zad. 2, 3 i 8 mają dobry hex u siebie, ale zad. 1, 5 i 6 jadą na tym z `_wspolne`. Do decyzji: poprawić stałą i przerenderować trzy filmy, czy zostawić
-    - krok 2 zad. 8 trwa jedenaście sekund, bo pokazuje wyprowadzenie założenia (oba mianowniki po kolei). Jeśli to za wolno jak na jedną kropkę, można rozbić na dwa kroki, ale wtedy film ma jedenaście kroków przy dziesięciu linijkach rozwiązania opisowego
 
   + OPUS 5 DOPISAŁ (2026-08-27, po zad. 8 z 2024-grudnia):
 

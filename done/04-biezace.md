@@ -1,5 +1,38 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-27] (Opus 5, medium) Domknięcie zad. 8: założenie przeniesione nad rachunek,
+rozwiązanie opisowe zgrane z filmem, a wzorzec z tej pracy wpisany do plików z zasadami.
+[2024-grudzien, zad8, manim, zasady, solution-text, colors]
+
+Trzy rzeczy w jednej paczce, wszystkie z uwag Henricha po obejrzeniu poprzedniej wersji:
+
+1. Założenie stoi teraz NAD rachunkiem, przy lewej krawędzi kadru, a nie pod nim. Tak
+   zapisuje się warunek na kartce: najpierw założenie, pod nim liczenie. W kroku 2 oba wyniki
+   schodzą się w jeden i jadą pionowo w górę, wzdłuż lewego brzegu, żeby nie przelatywać po
+   literach równania. Kadr ma odtąd trzy stałe pasy: warunek, rachunek, rachunek pomocniczy.
+2. Rozwiązanie opisowe doszlifowane pod film: te same ogniwa pośrednie w komentarzach
+   (2x = 2*x oraz 2 = 2*1, 2*x = 2x oraz 2*3 = 6, x to 1x), to samo uzasadnienie mnożenia
+   obu stron i to samo zdanie o zmianie znaku. Dziesięć linijek na dziesięć kroków, treść
+   też się zgadza, nie tylko liczba.
+3. Zasady spisane tam, gdzie ich szuka następna sesja:
+   - manimations/README.md: zasada 18 rozszerzona o zakaz TransformMatchingTex z
+     transform_mismatches, nowe zasady 27 i 28 (lot bokiem albo górą, postój nad celem, łuk
+     nad znakiem równości), nowe sekcje „Wyjaśnienie w środku kroku" (29 do 33) i „Układ
+     kadru" (34 do 36),
+   - SOLUTION_TEXT_RULES.md: 15g (komentarz niesie ogniwo, którego w rachunku nie widać),
+     15h (film i tekst tłumaczą to samo w tym samym miejscu), zasada 26 rozszerzona o zgodność
+     treści, nie tylko liczby linijek,
+   - COLORS.md: tabelka dwóch szarości filmowych (#666666 założenie, #888888 dopisek) razem
+     z tym, co z nich wychodzi w ciemnym motywie,
+   - skill projektowanie-rozwiazan: nowy punkt 2b w references/zasady-wizualne.md („krok może
+     wyjaśniać, byle kończył się prostą linijką") plus doprecyzowanie, że zakaz wyszarzania
+     dotyczy poprzedniej linijki, a nie warunku trzymanego przez cały film.
+
+Zmierzone po zmianie: styki klatek SSIM 0,99970 do 0,99991, zieleń bez zastrzeżeń,
+test-krokow.js na dwóch ziarnach bez zastrzeżeń, telefon 390 px bez przewijania w bok
+(298 na 298) i bez łamania wzoru w środku (jeden komentarz trzeba było w tym celu rozbić
+na trzy krótkie wzory zamiast jednego długiego ciągu równości).
+
 [ZROBIONE 2026-08-27] (Opus 5, medium) Film krok po kroku do zad. 8 z 2024-grudnia napisany
 od nowa: koniec z automatycznym morfem całej strony równania, ruch wskazany co do glifu.
 [2024-grudzien, zad8, manim, animacja, krok-po-kroku]

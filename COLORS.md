@@ -66,6 +66,20 @@ jaśniej niż `#4a9d54` w CSS. Gdyby kiedyś ważniejszy okazał się ciemny mot
 film ma dostać `#30933c` (`python3 tools/odwroc-kolor.py --szukaj '#4a9d54'`),
 a rozjazd przeniesie się na jasny.
 
+**Dwie szarości w filmach** (od 2026-08-27, zad. 8 z 2024-grudnia). W scenie Manima
+poza czernią i zielenią używa się jeszcze dwóch szarości, obu w roli „to nie jest
+rachunek, tylko coś obok niego":
+
+| co to jest | hex w pliku | jak wychodzi w ciemnym motywie |
+|---|---|---|
+| założenie, dziedzina, warunek trzymany przez cały film | `#666666` | `#959595` |
+| dopisek działania obok linijki (\(\big/ \cdot 2\)) | `#888888` | `#6a6a6a` |
+
+Kolejność jest celowa: rachunek najmocniejszy, założenie słabsze, dopisek najsłabszy.
+Odcienie w ciemnym motywie policzone `python3 tools/odwroc-kolor.py`, nie zgadnięte.
+Nowej szarości nie dokładaj bez potrzeby: trzy stopnie mocy to już maksimum, które
+uczeń odróżni.
+
 **Zielony i czerwony znaczą wyłącznie poprawność.** Chcesz coś wyróżnić bez
 oceniania — weź niebieski albo pomarańczowy.
 

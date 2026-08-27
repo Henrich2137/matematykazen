@@ -87,6 +87,15 @@ Zasada Henricha z 2026-08-27, wprowadzona na zad. 8. Dotyczy układu jednokolumn
      na dole. Rachunek punktowany przez CKE kończy się wyżej, na wyniku, więc ma być widać,
      że zaczyna się część dobrowolna. Podstawiając liczbę ujemną, pisz ją **w nawiasie**
      (\((-6) + 3\), nie \(-6 + 3\)): to jedno z miejsc, w których uczniowie gubią znak.
+15g. **Komentarz niesie OGNIWO, którego w rachunku nie widać** (dopisane 2026-08-27, po
+     przerobieniu filmu do zad. 8). To, co ekspert liczy w głowie, wypisz w komentarzu jako
+     jeden ciąg równości: \(2x - 2 = 2 \cdot x - 2 \cdot 1 = 2(x - 1)\),
+     \(2 \cdot x = 2x\) oraz \(2 \cdot 3 = 6\), \(x\) to inaczej \(1x\). Linijka
+     rachunku zostaje krótka, a uczeń, który nie widzi przejścia, ma je pod nosem.
+15h. **Film i tekst tłumaczą TO SAMO, w tym samym miejscu.** Jeśli film pokazuje w kroku N
+     rachunek pomocniczy (patrz `manimations/README.md`, „Wyjaśnienie w środku kroku"), to
+     komentarz przy linijce N mówi to samo słowami. Dwie różne wersje tego samego przejścia
+     są gorsze niż jedna.
 
 Szkielet do przeklejania:
 
@@ -179,7 +188,8 @@ Szkielet do przeklejania:
 
 26. **Zmieniasz `solutionText`, przerenderuj film** (`tools/wgraj-kroki.sh <nr>`), i odwrotnie.
     Linijki i kroki są parami; rozjazd widać dopiero na stronie, kiedy podpis pod filmem mówi
-    co innego niż zapis obok.
+    co innego niż zapis obok. **Zgadzać ma się nie tylko liczba**, ale i treść: ta sama droga,
+    te same ogniwa pośrednie, ten sam warunek w tym samym miejscu (patrz 15g i 15h).
 
 ## Sprawdzenie
 

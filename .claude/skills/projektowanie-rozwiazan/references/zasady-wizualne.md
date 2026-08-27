@@ -1,6 +1,6 @@
 # Zasady wizualne (film krok po kroku)
 
-Trzy rzeczy, o których warto wiedzieć, projektując animację. Wszystkie dotyczą tego, że
+Cztery rzeczy, o których warto wiedzieć, projektując animację. Wszystkie dotyczą tego, że
 film to obraz, który **przemija**, a uczeń ogląda go bez lektora.
 
 Podstawa naukowa jest tu opisana uczciwie: gdzie coś jest zmierzone, jest napisane, że
@@ -22,6 +22,12 @@ cały ciężar niesie kanał, który sam siebie kasuje.
 linijka zostawała w kadrze wyszarzona, **odpada**. Kłóci się z zasadą, że krok zaczyna się
 i kończy tym samym czystym obrazem (`manimations/README.md`), i wymagałaby szarego tokenu,
 którego `COLORS.md` dla tej roli nie ma. Nie proponuj tego ponownie.
+
+**Uwaga, żeby nie pomylić tego z czymś innym.** Zakaz dotyczy **poprzedniej linijki rachunku**.
+Nie dotyczy **warunku**, który obowiązuje przez całe zadanie: założenie \(x \ne 1\) stoi
+w kadrze na szaro od kroku, w którym powstało, do końca filmu, i tak ma być, bo CKE daje za nie
+osobny punkt (zad. 8, 2026-08-27). Nie dotyczy też rachunku pomocniczego z punktu 2b: ten
+pojawia się i znika w środku jednego kroku.
 
 **Czym więc walczymy z przemijaniem.** Cztery rzeczy, wszystkie już w projekcie:
 
@@ -69,9 +75,39 @@ nie porusza, to jest to znak, że ten krok chce być rysunkiem albo linijką tek
 wtedy brakuje ogniwa i trzeba je dopisać jawnie, a ruch rozbić na dwie animacje w tym samym
 kroku (wzorzec: `manimations/README.md`, punkt 17).
 
+**Drugi zły ruch: morf całej strony równania naraz.** Henrich, 2026-08-27, o pierwszej wersji
+filmu do zad. 8: „morf wrzucony na całą stronę równania zasłania to, co dzieje się naprawdę".
+Przez pół animacji pół zapisu jest kleksem, więc uczeń nie ma czego czytać ani przed, ani po.
+W dokumencie projektowym pisz więc, **co robi każdy znak z osobna**: który jedzie i dokąd,
+który się pojawia, który znika, który zmienia się w co innego. Jeżeli tego nie umiesz napisać,
+to znaczy, że krok jest za duży, a nie że opis jest za drobiazgowy.
+
 W dokumencie projektowym pisz to zdaniami typu „piątka **przesuwa się** na miejsce podstawy",
 „jedynka **pojawia się** jako wykładnik", „znak pierwiastka **znika**". Rozróżnienie
 przesuwa/pojawia się/znika jest tym, co potem decyduje o kolorze.
+
+---
+
+## 2b. Krok może wyjaśniać, byle kończył się prostą linijką
+
+**Rozstrzygnięcie Henricha, 2026-08-27** (zad. 8): „krok mógłby zawierać wyjaśnienie, a dopiero
+się kończyć prostym". To nie łamie zasady „jeden krok = jedno przekształcenie": linijka, która
+zostaje w kadrze na końcu kroku, dalej jest jedna. Zmienia się tylko to, że po drodze widać,
+skąd się wzięła.
+
+**Jak to zaprojektować:**
+
+- Wyjaśnienie liczy się **w pasie pod rachunkiem, mniejszym pismem**, i znika przed końcem
+  kroku. Rozmiar mówi uczniowi, co jest linijką rozwiązania, a co pracą na boku.
+- Wyjaśnienie to najczęściej **dopisane ogniwo**: to, co ekspert robi w głowie.
+  \(2x-2 = 2\cdot x - 2\cdot 1 = 2(x-1)\), \(2(x+3) = 2\cdot x + 2\cdot 3\), \(x = 1x\).
+- **Warunek, który obowiązuje przez całe zadanie** (dziedzina, założenie), wyprowadź w kroku,
+  w którym powstaje, a potem **odstaw go NAD rachunek, przy lewej krawędzi**, gdzie zostanie
+  do końca filmu. Tak zapisuje się go na kartce.
+- **Wolny krok jest w porządku**, jeśli niesie treść. Krok wyprowadzający dziedzinę z dwóch
+  mianowników trwa w zad. 8 dwanaście sekund i tak ma być.
+- To samo ogniwo **powtórz w komentarzu rozwiązania opisowego**. Film i tekst mają tłumaczyć
+  to samo w tym samym miejscu.
 
 ---
 

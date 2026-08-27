@@ -6,7 +6,7 @@ Scena: `solutionZad8.py`. Projekt dydaktyczny i uzasadnienie metody:
 [../issues/spec-zad8-2024-grudzien.md](../issues/spec-zad8-2024-grudzien.md).
 
 Animacja napisana **od nowa 2026-08-27 wieczorem**, po uwagach Henricha do pierwszej wersji
-z tego samego dnia. Trzy uwagi i co z nich wyszło:
+z tego samego dnia. Cztery uwagi i co z nich wyszło:
 
 1. **„Morf wrzucony na całą stronę równania zasłania to, co dzieje się naprawdę."**
    Pierwsza wersja robiła każdy krok jednym `TransformMatchingTex(..., transform_mismatches=True)`.
@@ -21,6 +21,9 @@ z tego samego dnia. Trzy uwagi i co z nich wyszło:
    w osobnym pasie pod równaniem i po użyciu znika.
 3. **„Założenie mniej kontrastowe."** \(x \ne 1\) stoi w kadrze od kroku 2 do końca filmu,
    ale szarością `#666666`, nie czernią.
+4. **„Daj to założenie na górze, a nie na dole, taka jest konwencja przy rozwiązywaniu na
+   kartce."** Warunek stoi więc NAD rachunkiem, przy lewej krawędzi. Kadr ma trzy pasy:
+   warunek na górze, rachunek na środku, rachunek pomocniczy pod spodem.
 
 ## Treść
 
@@ -48,7 +51,7 @@ ważniejsza od kolumny „zapis po kroku": to ona mówi, co uczeń ma zobaczyć.
 | # | Zapis po kroku | Ruch, takt po takcie | Zieleń |
 |---|---|---|---|
 | 1 | \(\dfrac{x+3}{x-1} = \dfrac{x}{2x-2}\) | równanie wypisuje się samo | brak, nic się jeszcze nie dzieje |
-| 2 | pod spodem szare \(x \ne 1\) | (a) lewy mianownik zapala się i jego kopia zjeżdża w lewą kolumnę, dopisuje się \(\ne 0\); (b) jedynka przelatuje przez \(\ne\), minus i zero znikają, zostaje \(x \ne 1\); (c) to samo z prawym mianownikiem, w prawej kolumnie: \(2x-2 \ne 0\), potem \(2x \ne 2\), potem dzielimy przez dwa i zostaje \(x \ne 1\); (d) oba wyniki zjeżdżają się w jedną linijkę i bledną do szarości | element, który się rusza albo powstaje, po jednym na takt |
+| 2 | nad rachunkiem, przy lewej krawędzi, szare \(x \ne 1\) | (a) lewy mianownik zapala się i jego kopia zjeżdża w lewą kolumnę, dopisuje się \(\ne 0\); (b) jedynka przelatuje przez \(\ne\), minus i zero znikają, zostaje \(x \ne 1\); (c) to samo z prawym mianownikiem, w prawej kolumnie: \(2x-2 \ne 0\), potem \(2x \ne 2\), potem dzielimy przez dwa i zostaje \(x \ne 1\); (d) prawy wynik dojeżdża do lewego, bo oba są takie same; (e) gotowe założenie jedzie pionowo w górę, nad rachunek, i tam zostaje do końca filmu | element, który się rusza albo powstaje, po jednym na takt |
 | 3 | \(\dfrac{x+3}{x-1} = \dfrac{x}{2(x-1)}\) | (a) prawy mianownik zapala się, kopia zjeżdża pod ułamek; (b) dopisujemy ogniwo \(2\cdot x - 2\cdot 1\); (c) druga dwójka dojeżdża do pierwszej i zlewa się z nią, wjeżdżają nawiasy; (d) gotowe \(2(x-1)\) wraca w górę na miejsce starego mianownika, reszta równania przesuwa się glif po glifie | jedynka, gdy się pojawia; potem obie dwójki, gdy się zlewają |
 | 4 | \(\dfrac{(x+3)(x-1)}{x-1} = \dfrac{x(x-1)}{2(x-1)}\) | (a) nawias z dopisku \(\big/ \cdot (x-1)\) rozdwaja się i obie kopie lecą **górą**, nad równanie, każda nad swój licznik; (b) zjeżdżają w liczniki, równanie robi im miejsce | oba dopisane nawiasy |
 | 5 | \(x + 3 = \dfrac{x}{2}\) | najpierw lewa strona, potem prawa: nawias odjeżdża z licznika **i** z mianownika jednocześnie, do kreski ułamka, a kreska znika razem z nim | skracana para, osobno po lewej i po prawej |
@@ -62,7 +65,7 @@ Dopiski działań (\(\big/ \cdot (x-1)\), \(\big/ \cdot 2\), \(\big/ - 6\), \(\b
 `#888888`, pojawiają się na końcu kroku, w którym powstał stan, i gasną w kroku, który to
 działanie wykonuje. Tak samo wyglądają w rozwiązaniu opisowym (klasa `.rozw-dzialanie`).
 
-### Trzy chwyty, które warto powtórzyć w innych scenach
+### Cztery chwyty, które warto powtórzyć w innych scenach
 
 - **Postój nad celem.** Czynnik, który wylatuje z dopisku działania, nie leci po skosie przez
   środek równania (tak było w pierwszej wersji i w połowie animacji nie dało się nic odczytać),
@@ -74,6 +77,8 @@ działanie wykonuje. Tak samo wyglądają w rozwiązaniu opisowym (klasa `.rozw-
 - **Pas rachunku pomocniczego.** Wszystko, co jest wyjaśnieniem, a nie linijką rozwiązania,
   liczy się mniejszym pismem pod równaniem i znika przed końcem kroku. Dzięki temu ostatnia
   klatka kroku dalej jest czysta i styk klatek wychodzi sam.
+- **Warunek na górze, przy lewej krawędzi.** Wjeżdża tam pionowo, wzdłuż lewego brzegu kadru,
+  a nie po skosie przez środek: po skosie przelatywałby po literach równania.
 
 ## Czego film nie pokazuje
 
@@ -93,7 +98,7 @@ potem mianownik, a `\ne` to **dwa** glify (kreski i ukośnik).
 
 ## Sprawdzone po renderze
 
-- `tools/styk-klatek.sh`: wszystkie dziewięć styków SSIM od 0,99978 do 0,99993.
+- `tools/styk-klatek.sh`: wszystkie dziewięć styków SSIM od 0,99970 do 0,99991.
 - `tools/zielen-krokow.py`: w każdym kroku zieleń zapala się i gaśnie do zera jednym ruchem.
 - `tools/test-krokow.js --zadania=7` na dwóch ziarnach: bez zastrzeżeń.
 - Klatki obejrzane okiem w każdym kroku: pierwsza, po zapaleniu koloru, w połowie ruchu

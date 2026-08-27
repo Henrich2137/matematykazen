@@ -92,6 +92,9 @@ myślenia, jest za mocna. Podpowiedź to rusztowanie, nie skrót do odpowiedzi.
 ### Film krok po kroku (pole `solutionStepByStep`)
 
 - **Jeden krok = jedno przekształcenie algebraiczne.** Nie dwa naraz, nawet jeśli „to oczywiste".
+  Krok **może** za to pokazać po drodze, skąd to przekształcenie się bierze, i dopiero potem
+  zostawić w kadrze czystą linijkę (Henrich, 2026-08-27; wzorzec i warunki:
+  [references/zasady-wizualne.md](references/zasady-wizualne.md), punkt 2b).
 - **Animacja musi być zrozumiała bez czytania opisu.** Opis pod filmem jest domyślnie
   zwinięty i większość uczniów go nie rozwinie, więc cały ciężar niesie ruch, kolor
   i pozycja. Opis to bonus, nie proteza.

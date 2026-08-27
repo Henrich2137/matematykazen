@@ -112,8 +112,9 @@ i ten rozjazd jest świadomy.
 - Scena: `manimations/solutionZad8.py`, scenariusz ruchu z tabelą taktów i zieleni:
   `manimations/zad8-kroki.md`.
 - Założenie \(x \ne 1\) pojawia się w kroku 2 i **zostaje w kadrze do końca filmu**, bo za nie
-  jest osobny punkt. Od drugiej wersji jest **szare** (`#666666`), nie czarne: ma być czytelne,
-  ale nie ma konkurować wzrokowo z rachunkiem.
+  jest osobny punkt. Od drugiej wersji jest **szare** (`#666666`), nie czarne, i stoi **nad
+  rachunkiem, przy lewej krawędzi**, tak jak zapisuje się warunek na kartce (prośba Henricha).
+  Wcześniej wisiało pod równaniem i czytało się jak dopisek zrobiony na końcu.
 - Dopiski działań są jeszcze bledsze (`#888888`) i pojawiają się na końcu kroku, w którym
   powstał stan, a gasną w kroku, który to działanie wykonuje. Tak samo jak w rozwiązaniu
   opisowym.
@@ -134,15 +135,15 @@ się naprawdę"*, *„krok mógłby zawierać wyjaśnienie, a dopiero się końc
 - Pięć kroków (2, 3, 6, 7, 10) liczy w środku **rachunek pomocniczy** i dopiero potem zostawia
   czystą linijkę. Największy jest krok 2: pokazuje, skąd bierze się \(x \ne 1\), bo oba
   mianowniki zjeżdżają w dół, dostają warunek \(\ne 0\) i zostają rozwiązane po kolei.
-  Krok 2 trwa przez to około jedenastu sekund, i taka jest cena za to, że założenie przestaje
-  spadać z nieba.
+  Krok 2 trwa przez to około dwunastu sekund, i taka jest cena za to, że założenie przestaje
+  spadać z nieba. Henrich tę długość zaakceptował.
 - Dwa chwyty przeciw zasłanianiu: czynnik wylatujący z dopisku najpierw staje **nad** miejscem,
   w które wejdzie (kroki 4 i 6), a składnik przenoszony na drugą stronę leci **łukiem nad
   znakiem równości** (kroki 8 i 9). Po prostej oba przechodziły po literach.
 
 ### Sprawdzone po renderze
 
-Styki klatek SSIM od 0,99978 do 0,99993 (`tools/styk-klatek.sh`), zieleń zapala się i gaśnie
+Styki klatek SSIM od 0,99970 do 0,99991 (`tools/styk-klatek.sh`), zieleń zapala się i gaśnie
 w każdym kroku do zera jednym ruchem (`tools/zielen-krokow.py`), `tools/test-krokow.js
 --zadania=7` przechodzi na dwóch ziarnach, klatki obejrzane okiem w każdym kroku (pierwsza,
 po zapaleniu koloru, w połowie ruchu, ostatnia).
