@@ -432,59 +432,8 @@
         ],
         "hint": "Zanim cokolwiek policzysz, sprawdź, dla jakiego \\(x\\) mianownik byłby zerem.<br>Potem popatrz na oba mianowniki uważnie: nie są tak różne, jak wyglądają.",
         "formulasPage": null,
-        "solutionText": "Mianownik nie może być zerem, więc zaczynamy od sprawdzenia, kiedy się zeruje.<br>Pierwszy mianownik, \\(x-1\\), jest zerem dla \\(x=1\\).<br>Drugi, \\(2x-2\\), zeruje się dla tej samej liczby, bo \\(2 \\cdot 1 - 2 = 0\\).<br>Zapisujemy założenie:\\[x \\ne 1\\]<div class=\"rozwiazanie-kroki\">\\(\\dfrac{x+3}{x-1} = \\dfrac{x}{2x-2}\\)<br>\\(\\dfrac{x+3}{x-1} = \\dfrac{x}{2(x-1)} \\;\\big/ \\cdot\\, 2(x-1)\\)<br>\\(2(x+3) = x\\)<br>\\(2x + 6 = x\\)<br>\\(2x = x - 6\\)<br>\\(2x - x = -6\\)<br>\\(\\boldsymbol{x = -6}\\)<br>Liczba \\(-6\\) nie jest jedynką, więc wynik spełnia założenie. Rozwiązaniem równania jest \\(\\boldsymbol{x = -6}\\).</div>",
-        "solutionStepByStep": [
-            {
-                "type": "video",
-                "src": "media/zad8/solution-step-by-step/step1.mp4",
-                "text": ""
-            },
-            {
-                "type": "video",
-                "src": "media/zad8/solution-step-by-step/step2.mp4",
-                "text": "Przez zero dzielić nie wolno, więc żaden mianownik nie może być zerem.<br>Oba zerują się dla \\(x=1\\), bo \\(2x-2\\) to \\(2\\) razy \\(x-1\\).<br>Bez zapisania tego założenia klucz CKE odbiera punkt, nawet przy dobrym wyniku."
-            },
-            {
-                "type": "video",
-                "src": "media/zad8/solution-step-by-step/step3.mp4",
-                "text": "W drugim mianowniku wyłączamy dwójkę przed nawias, bo \\(2x-2\\) to \\(2\\) razy \\(x-1\\).<br>Teraz widać, że w obu mianownikach siedzi ten sam nawias."
-            },
-            {
-                "type": "video",
-                "src": "media/zad8/solution-step-by-step/step4.mp4",
-                "text": "Skoro w obu mianownikach jest \\(x-1\\), a w jednym dodatkowo dwójka, to pomnożenie obu stron przez \\(2(x-1)\\) usunie ułamki.<br>Zapisujemy to działanie z boku, po szkolnemu."
-            },
-            {
-                "type": "video",
-                "src": "media/zad8/solution-step-by-step/step5.mp4",
-                "text": "Mnożymy i mianowniki się skracają.<br>Po lewej z mnożnika zostaje sama dwójka, po prawej znika cały mianownik."
-            },
-            {
-                "type": "video",
-                "src": "media/zad8/solution-step-by-step/step6.mp4",
-                "text": "Opuszczamy nawias: dwójka mnoży osobno \\(x\\) i osobno \\(3\\)."
-            },
-            {
-                "type": "video",
-                "src": "media/zad8/solution-step-by-step/step7.mp4",
-                "text": "Najpierw przenosimy tylko liczbę. Szóstka zmienia znak, bo przechodzi na drugą stronę."
-            },
-            {
-                "type": "video",
-                "src": "media/zad8/solution-step-by-step/step8.mp4",
-                "text": "Teraz przenosimy \\(x\\). On też zmienia znak."
-            },
-            {
-                "type": "video",
-                "src": "media/zad8/solution-step-by-step/step9.mp4",
-                "text": "Po lewej zostaje jeden \\(x\\), bo \\(2x\\) bez jednego \\(x\\) to \\(x\\)."
-            },
-            {
-                "type": "video",
-                "src": "media/zad8/solution-step-by-step/step10.mp4",
-                "text": "Wracamy do założenia i podstawiamy wynik.<br>Liczba \\(-6\\) nie jest jedynką, więc wynik mieści się w dziedzinie i jest rozwiązaniem równania."
-            }
-        ],
+        "solutionText": "Mianownik nie może być zerem. Pierwszy mianownik: \\(x - 1 \\ne 0\\), czyli \\(x \\ne 1\\). Drugi: \\(2x - 2 \\ne 0\\), czyli \\(2x \\ne 2\\), czyli też \\(x \\ne 1\\).<br>Założenie: \\(\\boldsymbol{x \\ne 1}\\)<br><br>Wzory:\\[\\Delta = b^{2} - 4ac\\]\\[x_{1,2} = \\dfrac{-b \\pm \\sqrt{\\Delta}}{2a}\\]<div class=\"rozwiazanie-kroki\">\\(\\dfrac{x + 3}{x - 1} = \\dfrac{x}{2x - 2} \\;\\big/ \\cdot\\, (x - 1)\\)<br>\\(x + 3 = \\dfrac{x(x - 1)}{2x - 2} \\;\\big/ \\cdot\\, (2x - 2)\\)<br>\\((x + 3)(2x - 2) = x(x - 1)\\)<br>\\(2x^{2} - 2x + 6x - 6 = x(x - 1)\\)<br>\\(2x^{2} + 4x - 6 = x(x - 1)\\)<br>\\(2x^{2} + 4x - 6 = x^{2} - x \\;\\big/ - x^{2}\\)<br>\\(2x^{2} + 4x - 6 - x^{2} = -x \\;\\big/ + x\\)<br>\\(2x^{2} + 4x - 6 - x^{2} + x = 0\\)<br>\\(2x^{2} - x^{2} + 4x + x - 6 = 0\\)<br>\\(x^{2} + 4x + x - 6 = 0\\)<br>\\(x^{2} + 5x - 6 = 0\\)<br>\\(a = 1, \\quad b = 5, \\quad c = -6\\)<br>\\(\\Delta = 5^{2} - 4 \\cdot 1 \\cdot (-6)\\)<br>\\(\\Delta = 25 + 24 = 49\\)<br>\\(\\sqrt{\\Delta} = 7\\)<br>\\(x_{1} = \\dfrac{-5 - 7}{2 \\cdot 1} = \\dfrac{-12}{2} = -6\\)<br>\\(x_{2} = \\dfrac{-5 + 7}{2 \\cdot 1} = \\dfrac{2}{2} = 1\\)<br>Dlaczego jedynka odpada, skoro wyszła z rachunku? Bo dla \\(x = 1\\) oba mianowniki z zadania są zerem, a przez zero nie wolno dzielić. Zostaje drugi pierwiastek.<br>\\(\\boldsymbol{x = -6}\\)<br>Sprawdzenie: wstawiamy \\(-6\\) do równania z zadania i liczymy osobno lewą stronę \\(L\\) i prawą stronę \\(P\\).<br>\\(L = \\dfrac{-6 + 3}{-6 - 1} = \\dfrac{-3}{-7} = \\dfrac{3}{7}\\)<br>\\(P = \\dfrac{-6}{2 \\cdot (-6) - 2} = \\dfrac{-6}{-14} = \\dfrac{3}{7}\\)<br>Obie strony dały \\(\\dfrac{3}{7}\\), więc rozwiązaniem równania jest \\(x = -6\\).</div>",
+        "solutionStepByStep": null,
         "solutionWidget": null
     },
     {

@@ -229,7 +229,7 @@ Twarde reguły. Przed renderem przeczytaj, po renderze sprawdź.
     więc nie licz tego ręcznie:
 
     ```
-    python3 tools/zielen-krokow.py matura/2024-grudzien/media/zad8/solution-step-by-step
+    python3 tools/zielen-krokow.py matura/2024-grudzien/media/zad7/solution-step-by-step
     python3 tools/zielen-krokow.py <katalog> --krok 3 --krzywa   # jeden krok, klatka po klatce
     ```
 

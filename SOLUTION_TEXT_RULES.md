@@ -11,7 +11,7 @@ tego samego dnia na zadaniach 3, 4, 6, 7 i 8. Wzorce do podejrzenia, wszystkie w
 | 4 | wąskie rozwiązanie wyśrodkowane na karcie (`rozw-srodek`) |
 | 6 | jedna kolumna, jeden wzór na górze, ułamki przez `\dfrac` |
 | 7 | dwa tory obok siebie, które na końcu schodzą się w jeden |
-| 8 | zadanie otwarte z założeniem: dziedzina na górze, sprawdzenie na dole |
+| 8 | zadanie otwarte: założenie na górze, sprawdzenie wyniku na dole |
 
 Bliźniaczy plik dla filmów: `manimations/README.md`, sekcja „Zasady krok po kroku, wersja krótka".
 Wygląd i nazwy klas CSS: `ARCHITECTURE_CSS.md`. Znaczenie kolorów: `COLORS.md`.
@@ -36,7 +36,9 @@ jednym torem.
 - **Jedna kolumna** (`<div class="rozwiazanie-kroki">`, linijki rozdzielone `<br>`), gdy
   wzoru z tablicy nie ma wcale albo jest **jeden i stosuje się go na starcie**. Wzór stoi
   wtedy nad rachunkiem, wyśrodkowany przez `\[ … \]`, a pod nim idą same linijki.
-  Wzorce: zad. 5, 6 i 8 z 2024-grudnia.
+  Wzorce: zad. 5, 6 i 8 z 2024-grudnia. Zadanie 8 ma dwa wzory i wchodzą one w środku
+  rachunku, czyli wg litery tej zasady należałoby do dwóch kolumn. Zdecydowała jednak
+  szerokość telefonu, patrz ostrzeżenie niżej.
 - **Dwie kolumny** (`<div class="rozw-2kol">`), gdy wzorów jest kilka i każdy należy do
   innej linijki, a rachunek jest na tyle szeroki, że wzór dopisany pod nim rozbiłby czytanie.
   Wzorce: zad. 2, 3 i 4. Ten układ jest **chciany**, nie tymczasowy (Henrich, 2026-08-23,
@@ -49,6 +51,14 @@ jednym torem.
   ich iloczyn. Układ ma pokazywać to samo, co film.
   Krótszy tor kończy się wyżej: **pusta komórka idzie na KONIEC tej kolumny, nie w jej
   środek** (Henrich, 2026-08-21). Dziura w środku wygląda jak zgubiona linijka.
+
+**Ostrzeżenie o telefonie, zmierzone 2026-08-27 na zad. 8.** Dwie kolumny kosztują dużo
+miejsca: przy oknie 390 px kolumna wzorów bierze 104 px, przerwa między kolumnami 40 px,
+więc na rachunek zostaje 154 px z 298 px bloku. Linijka dłuższa niż mniej więcej
+\(2x^{2} + 4x - 6 = x^{2} - x\) łamie się wtedy w przypadkowym miejscu (KaTeX nie łamie
+wzoru mądrze), a ułamek rozjeżdża się na dwa wiersze i wygląda jak inne wyrażenie. Zanim
+wybierzesz dwie kolumny do długiego rachunku, zrób zrzut telefonu: jeśli łamie się więcej
+niż kilka linijek, oddaj kolumnę wzorów i przenieś wzory nad rachunek.
 
 ## Dwie kolumny
 

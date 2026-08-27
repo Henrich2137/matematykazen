@@ -288,6 +288,12 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     - w układzie dwóch torów na telefonie długie linijki łamią się w środku wzoru (np. „a · (-1) + 3 ·" i niżej „6 = 20"). To nie jest nowe, było tak i przed tą zmianą, ale teraz łamią się dwie linijki zamiast jednej. Do rozważenia zwężenie zapisu albo osobna reguła w responsive.css
 
 
+  + OPUS 5 MEDIUM DOPISAŁ (2026-08-27, po skasowaniu rozwiązań do zad. 8 z 2024-grudnia):
+
+    - zad. 8 z 2024-grudnia: rozwiązanie opisowe napisane od nowa (2026-08-27, droga przez równanie kwadratowe, 23 pozycje, projekt w issues/projekt-zad8-2024-grudzien.md). **Filmu krok po kroku dalej nie ma**, scena i wideo zostały skasowane. Projekt zawiera gotowy podział na 23 kroki, więc film da się zrobić bez ponownego projektowania
+    - zad. 8 z 2024-grudnia: podpowiedź została stara i mówi o innej drodze niż rozwiązanie („popatrz na oba mianowniki uważnie: nie są tak różne, jak wyglądają" prowadzi do wyłączenia dwójki, a rozwiązanie mnoży obie strony przez oba mianowniki i idzie przez deltę). Nie zmieniałem jej, bo Henrich nie zamawiał. Propozycja nowej treści jest w projekcie, sekcja „Do decyzji"
+
+
 + ZASADY DLA CLAUDE-A:
 
   - tu są TYLKO otwarte punkty. Zrobione wpisy [DONE]/[ZROBIONE] przenoszone są do bieżącego pliku pod done/ (patrz done/README.md i CLAUDE.md)

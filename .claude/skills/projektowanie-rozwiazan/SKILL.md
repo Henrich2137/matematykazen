@@ -42,7 +42,7 @@ podchwytliwe w szczegółach, a numery w kluczu rzadko wyglądają tak, jak się
 | poprawna odpowiedź i pełne zasady oceniania CKE | `matura/<arkusz>/odpowiedzi.pdf`, wyciąg tekstowy `odpowiedzi.txt` |
 | kryteria punktowe już spisane (zadania otwarte) | pole `gradingCriteria` w `exercises.json` |
 | wzory, które wolno położyć obok rachunku | `tablica-wzorow-transkrypt/`, zaczynając od `README.md` i jego skorowidza |
-| wzorce rejestru i tempa | tabela wzorców w `SOLUTION_TEXT_RULES.md` (zad. 2, 3, 4, 6, 7, 8 z 2024-grudnia); filmy mają zad. 1 do 9 |
+| wzorce rejestru i tempa | tabela wzorców w `SOLUTION_TEXT_RULES.md` (zad. 2, 3, 4, 6, 7, 8 z 2024-grudnia); filmy mają zad. 1 do 7 i 9 |
 | jakie arkusze w ogóle istnieją | `matura/README.md` |
 
 Dwie pułapki, które kosztowały czas:
