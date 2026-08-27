@@ -288,10 +288,10 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     - w układzie dwóch torów na telefonie długie linijki łamią się w środku wzoru (np. „a · (-1) + 3 ·" i niżej „6 = 20"). To nie jest nowe, było tak i przed tą zmianą, ale teraz łamią się dwie linijki zamiast jednej. Do rozważenia zwężenie zapisu albo osobna reguła w responsive.css
 
 
-  + OPUS 5 DOPISAŁ (2026-08-27, po napisaniu zad. 8 z 2024-grudnia od nowa):
+  + OPUS 5 DOPISAŁ (2026-08-27, po zad. 8 z 2024-grudnia):
 
-    - zad. 8 z 2024-grudnia: rozwiązanie opisowe gotowe (droga przez wspólny mianownik, 13 linijek z komentarzami, spec w issues/spec-zad8-2024-grudzien.md). **Filmu krok po kroku dalej nie ma**, scena i wideo zostały skasowane. Spec ma gotowy podział na 13 kroków i gotowe opisy pod film
-    - komentarze między linijkami (`rozw-komentarz`) i dopisek działania w osobnym spanie (`rozw-dzialanie`) to nowość z 2026-08-27, na razie użyta tylko w zad. 8. Jeśli się sprawdzi, warto przejrzeć starsze rozwiązania opisowe i przenieść je na ten sam układ
+    - komentarze między linijkami (`rozw-komentarz`), dopisek działania w osobnym spanie (`rozw-dzialanie`) i odkreślone sprawdzenie (`rozw-sprawdzenie`) to nowość z 2026-08-27, na razie użyta tylko w zad. 8. Jeśli się sprawdzi, warto przejrzeć starsze rozwiązania opisowe i przenieść je na ten sam układ
+    - rozwiązanie opisowe zad. 8 ma 13 pozycji, a film 10 kroków: różnica to sprawdzenie przez podstawienie, którego film nie pokazuje. Gdyby miało być też w filmie, dochodzą trzy kroki i trzeba przerenderować scenę
 
 + ZASADY DLA CLAUDE-A:
 

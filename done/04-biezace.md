@@ -2276,3 +2276,34 @@ Henrich prosi o ostrzeżenie przed taką robotą). Skill sprawdzi się na pierws
 Henrich sprawdził na hoście, przełącznik stoi na `on`, a klon w tej sesji był na bieżąco
 (`git rev-list --left-right --count HEAD...@{u}` dało 0/0), czyli zadanie startowe faktycznie
 się odpala.
+
+## [ZROBIONE 2026-08-27] Zadanie 8 z 2024-grudnia napisane od zera, razem z filmem
+
+Poprzednie rozwiązanie opisowe i film Henrich kazał skasować i pisać na świeżo, bez
+podawania, co konkretnie było złe. Powstały trzy wersje w jednej sesji, dwie pierwsze
+odrzucone przez Henricha:
+
+1. droga przez mnożenie na krzyż i równanie kwadratowe z deltą, 23 pozycje. Odrzucona:
+   „za dużo kroków i niepotrzebnie uwzględnia deltę";
+2. droga przez wspólny mianownik, 15 pozycji, zdania wplecione w ciąg rachunku;
+3. **wersja przyjęta**: ten sam rachunek, ale linijki i zdania rozdzielone. Każda linijka
+   w `.rozw-linia`, między nimi bledszy `.rozw-komentarz` mówiący, co się dzieje
+   w przejściu, dopisek działania obustronnego w osobnym `.rozw-dzialanie`, założenie
+   \(x \ne 1\) jako druga linijka rachunku, a sprawdzenie przez podstawienie jako
+   odkreślona część na dole (`.rozw-sprawdzenie`).
+
+Trzy rzeczy warte zapamiętania:
+
+- **Dwie kolumny nie mieszczą się na telefonie przy długim rachunku.** Zmierzone: przy oknie
+  390 px kolumna wzorów bierze 104 px, przerwa 40 px, na rachunek zostaje 154 px z 298 px
+  i łamie się 17 linijek z 23. Stąd układ jednokolumnowy. Ostrzeżenie z liczbami wisi
+  w `SOLUTION_TEXT_RULES.md`.
+- **Ułamka nie wolno ciąć na argumenty `MathTex`**: Manim renderuje każdy argument osobno
+  i domyka klamry, więc `\frac{(x+3)` staje się `\frac{(x+3)}` i render pada. Uchwyty do
+  wnętrza ułamka bierze się z glifów przez `rozbij_ulamek`.
+- **Film ma 10 kroków, rozwiązanie opisowe 13 pozycji** i to jest świadomy rozjazd: trzy
+  ostatnie pozycje to sprawdzenie, którego na życzenie Henricha film nie pokazuje.
+
+Film: `matura/2024-grudzien/media/zad8/solution-step-by-step/`, scena `manimations/solutionZad8.py`,
+scenariusz `manimations/zad8-kroki.md`, spec `issues/spec-zad8-2024-grudzien.md`.
+Styki klatek SSIM ≥ 0,99976, zieleń bez zastrzeżeń, `tools/test-krokow.js` na zad. 8 czysty.

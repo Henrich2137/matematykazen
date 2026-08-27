@@ -15,7 +15,7 @@ Zobacz na żywo: **https://matematykazen.pl** (działa też z www). Wersja roboc
 - Zadania (osobne karty): 33 (30 poleceń CKE, część z podpunktami), 50 pkt
 - Podpowiedzi: 33/33
 - Rozwiązania opisowe: 33/33
-- Rozwiązania wideo (krok po kroku): 8/33 (zadania 1-7 i 9)
+- Rozwiązania wideo (krok po kroku): 9/33 (zadania 1-9)
 - Widżety interaktywne: 9 (nie 1:1 z zadaniami, nie każde tego wymaga)
 - Zadania otwarte z kryteriami CKE: 7/7
 - Odpowiedzi zweryfikowane z kluczem CKE: tak

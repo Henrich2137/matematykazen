@@ -11,7 +11,7 @@ tego samego dnia na zadaniach 3, 4, 6, 7 i 8. Wzorce do podejrzenia, wszystkie w
 | 4 | wąskie rozwiązanie wyśrodkowane na karcie (`rozw-srodek`) |
 | 6 | jedna kolumna, jeden wzór na górze, ułamki przez `\dfrac` |
 | 7 | dwa tory obok siebie, które na końcu schodzą się w jeden |
-| 8 | linijki przeplecione bledszymi komentarzami, dopisek działania w osobnym spanie |
+| 8 | linijki przeplecione bledszymi komentarzami, dopisek działania w osobnym spanie, odkreślone sprawdzenie |
 
 Bliźniaczy plik dla filmów: `manimations/README.md`, sekcja „Zasady krok po kroku, wersja krótka".
 Wygląd i nazwy klas CSS: `ARCHITECTURE_CSS.md`. Znaczenie kolorów: `COLORS.md`.
@@ -83,6 +83,10 @@ Zasada Henricha z 2026-08-27, wprowadzona na zad. 8. Dotyczy układu jednokolumn
      gdy dopisuje coś ponad sam zapis (tu: że nawias dopisuje się w obu licznikach).
 15e. **Komentarz nie zastępuje rozbicia kroku.** Jeśli przejście robi dwie rzeczy naraz,
      rozbij je na dwie linijki, a nie tłumacz zdaniem.
+15f. **Sprawdzenie wyniku idzie w `<div class="rozw-sprawdzenie">`**, czyli pod kreskę,
+     na dole. Rachunek punktowany przez CKE kończy się wyżej, na wyniku, więc ma być widać,
+     że zaczyna się część dobrowolna. Podstawiając liczbę ujemną, pisz ją **w nawiasie**
+     (\((-6) + 3\), nie \(-6 + 3\)): to jedno z miejsc, w których uczniowie gubią znak.
 
 Szkielet do przeklejania:
 

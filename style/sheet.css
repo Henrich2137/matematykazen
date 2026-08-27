@@ -1231,11 +1231,16 @@ body.sidebar-otwarty #sidebar-linia {
    wiersz, a komentarz między nimi potrzebuje własnego, ciaśniejszego odstępu niż
    line-height 2.1 ustawiony dla wzorów. */
 .rozwiazanie-kroki .rozw-komentarz {
-    color: var(--text-muted-2);
-    line-height: 1.45;
-    /* Zdanie komentarza przykleja się do linijki, którą opisuje, a odstaje od
-       następnej: inaczej nie wiadomo, do którego przejścia się odnosi. */
-    margin: -0.1em auto 0.65em;
+    /* --text-faint, nie --text-muted-2: komentarz ma mieć MNIEJSZY kontrast niż
+       rachunek (Henrich, 2026-08-27). Niżej niż ten token już nie schodzimy,
+       bo #767676 na białym to jeszcze kontrast 4.6:1, czyli próg czytelności
+       dla zwykłego tekstu; --text-faint-2 byłoby już poniżej. */
+    color: var(--text-faint);
+    line-height: 1.5;
+    /* Powietrza z obu stron, więcej pod spodem niż nad: komentarz należy do
+       linijki NAD nim (opisuje przejście, które się z niej zaczyna), a od
+       następnej ma odstawać. */
+    margin: 0.55em auto 1.15em;
     max-width: 34em;
 }
 
@@ -1243,6 +1248,20 @@ body.sidebar-otwarty #sidebar-linia {
    maluje własny kolor na .katex, więc bez tego jeden wzór w środku komentarza
    wychodzi czarny i wygląda jak osobna linijka rachunku. */
 .rozwiazanie-kroki .rozw-komentarz .katex { color: inherit; }
+
+/* SPRAWDZENIE na końcu rozwiązania: osobna, odkreślona część (Henrich,
+   2026-08-27). Rachunek CKE kończy się wyżej, na wyniku; to, co niżej, jest
+   dobrowolną kontrolą, więc ma być widać, że zaczyna się nowa rzecz, a nie
+   ciągnie ten sam rachunek. Kreska jest wąska i wyśrodkowana, żeby nie robić
+   z tego drugiej karty. */
+.rozwiazanie-kroki .rozw-sprawdzenie {
+    margin-top: 2.4em;
+    padding-top: 1.5em;
+    border-top: 1px solid var(--border-muted);
+    max-width: 30em;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 /* Zapis działania wykonywanego na obu stronach („/ · (x-1)", „/ - 6"). Stoi w tej
    samej linijce co rachunek, ale nie jest jego częścią: jest odsunięty i blady
@@ -1256,7 +1275,7 @@ body.sidebar-otwarty #sidebar-linia {
    dopisek spada pod rachunek i dalej się czyta. */
 .rozw-linia .rozw-dzialanie {
     margin-left: 2em;
-    color: var(--text-muted-2);
+    color: var(--text-faint);
     white-space: nowrap;
 }
 .rozw-linia .rozw-dzialanie .katex { color: inherit; }

@@ -54,11 +54,25 @@ a zdanie o mianownikach jest komentarzem nad nim.
 | 8 | \(2x = x - 6\) z dopiskiem \(\big/ - x\) | Teraz to samo z niewiadomą: \(x\) przechodzi na lewo, też ze zmianą znaku. |
 | 9 | \(2x - x = -6\) | Dwa iksy bez jednego iksa to jeden iks. |
 | 10 | \(\boldsymbol{x = -6}\) | Wynik spełnia założenie, bo \(-6\) nie jest jedynką. |
-| 11 | \(L = \dfrac{-6 + 3}{-6 - 1} = \dfrac{-3}{-7} = \dfrac{3}{7}\) | nad nią: Sprawdzenie, wstawiamy \(-6\) i liczymy osobno \(L\) i \(P\) |
-| 12 | \(P = \dfrac{-6}{2 \cdot (-6) - 2} = \dfrac{-6}{-14} = \dfrac{3}{7}\) | |
-| 13 | Obie strony dały \(\dfrac{3}{7}\), więc rozwiązaniem równania jest \(x = -6\). | zdanie zamykające, wraca do polecenia |
+| 11 | \(L = \dfrac{(-6) + 3}{(-6) - 1} = \dfrac{-3}{-7} = \dfrac{3}{7}\) | część odkreślona, patrz niżej |
+| 12 | \(P = \dfrac{(-6)}{2 \cdot (-6) - 2} = \dfrac{-6}{-14} = \dfrac{3}{7}\) | |
+| 13 | \(L = P\), więc rozwiązaniem równania jest \(x = -6\). | zdanie zamykające, wraca do polecenia |
 
-Trzynaście linijek i jedenaście komentarzy.
+Dziesięć linijek rachunku, potem odkreślone sprawdzenie: trzynaście pozycji razem.
+
+## Sprawdzenie jako osobna część
+
+Sprawdzenie stoi **pod kreską**, w bloku `rozw-sprawdzenie`, i tak ma być z trzech powodów:
+
+- **Rachunek punktowany kończy się wyżej.** Klucz CKE daje trzeci punkt za wynik należący
+  do dziedziny, czyli za linijkę 10. Wszystko poniżej jest dobrowolne i uczeń ma to widzieć,
+  żeby nie myślał, że bez sprawdzenia rozwiązanie jest niepełne. Mówi to wprost pierwsze
+  zdanie bloku.
+- **Liczba ujemna wchodzi w nawiasie**: \((-6) + 3\), a nie \(-6 + 3\). Podstawianie liczby
+  ujemnej bez nawiasu to jedno z najczęstszych miejsc, w których ucieka znak, więc pokazujemy
+  zapis, który przed tym chroni, zamiast o tym ostrzegać.
+- **Liczymy \(L\) i \(P\) osobno**, a wniosek \(L = P\) jest dopiero na końcu. Uczeń widzi
+  metodę, którą może powtórzyć w każdym równaniu, a nie jednorazową sztuczkę.
 
 ## Trzy miejsca, w których celowo nie skracam
 
@@ -89,10 +103,20 @@ komputer i telefon, motyw jasny i ciemny.
   losowych ułamków), \(-6\) spełnia równanie wyjściowe (\(L = P = \tfrac{3}{7}\)),
   a \(x = 1\) zeruje oba mianowniki.
 
-## Film krok po kroku
+## Film krok po kroku (zrobiony 2026-08-27)
 
-Nie wchodzi w to zamówienie. Gdy przyjdzie, ma mieć **trzynaście kroków**, jeden do jednego
-z linijkami powyżej, a komentarze z tabeli są gotowymi opisami pod filmem.
+**Dziesięć kroków**, jeden do jednego z linijkami 1 do 10. Sprawdzenia film nie pokazuje
+(decyzja Henricha), więc rozwiązanie opisowe ma trzynaście pozycji, a film dziesięć kroków,
+i ten rozjazd jest świadomy.
+
+- Scena: `manimations/solutionZad8.py`, scenariusz z tabelą zieleni: `manimations/zad8-kroki.md`.
+- Założenie \(x \ne 1\) pojawia się w kroku 2 i **zostaje w kadrze do końca filmu**, bo za nie
+  jest osobny punkt.
+- Dopiski działań są szare i pojawiają się na końcu kroku, w którym powstał stan, a gasną
+  w kroku, który to działanie wykonuje. Tak samo jak w rozwiązaniu opisowym.
+- Sprawdzone po renderze: styki klatek SSIM od 0,99976 do 0,99993 (`tools/styk-klatek.sh`),
+  zieleń zapala się i gaśnie w każdym kroku do zera (`tools/zielen-krokow.py`),
+  `tools/test-krokow.js` na zadaniu 8 przechodzi na dwóch ziarnach.
 
 ## Podpowiedź
 
