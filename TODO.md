@@ -27,9 +27,9 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Mój telefon na chrome ma "okno": 485x945
 <br> Próg wejścia jest wysoki, patrz ZASADY DLA CLAUDE-A niżej. Archiwum dawnych list: issues/testowanie-archiwum.md.
 
-  - v92, zad. 8 z grudnia 2024, film krok po kroku w CIEMNYM motywie na telefonie: szare \(x \ne 1\) nad równaniem i szary dopisek działania z boku (np. „/ · 2") mają być czytelne, a nie zlewać się z tłem
+  - v93, zad. 8 z grudnia 2024, film krok po kroku w CIEMNYM motywie na telefonie: szare \(x \ne 1\) nad równaniem i szary dopisek działania z boku (np. „/ · 2") mają być czytelne, a nie zlewać się z tłem
 
-  - v92, zad. 8 z grudnia 2024, film ma teraz 19 kroków, najwięcej w arkuszu: sprawdź na telefonie, czy rząd kropek kroków daje się wygodnie klikać i czy przewijanie kropek nie gubi się przy skoku na koniec
+  - v93, zad. 8 z grudnia 2024, film ma teraz 19 kroków, najwięcej w arkuszu: sprawdź na telefonie, czy rząd kropek kroków daje się wygodnie klikać i czy przewijanie kropek nie gubi się przy skoku na koniec
 
 <br>
 
@@ -295,7 +295,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
   + OPUS 5 DOPISAŁ (2026-08-28, po napisaniu zad. 8 z 2024-grudnia od nowa na wzór zad. 7):
 
-    - `rozw-komentarz` (bledsze zdania między linijkami rachunku) nie jest już używane w ŻADNYM zadaniu żadnego arkusza: zad. 8 był jedynym i właśnie przeszedł na zapis samymi wzorami. CSS i zasady zostają w repo. Do decyzji: wracamy do tego układu gdzie indziej czy kasujemy. `rozw-dzialanie` i `rozw-sprawdzenie` są używane dalej, w zad. 8
+    - `rozw-komentarz` (bledsze zdania między linijkami rachunku) wrócił do zad. 8 tego samego dnia, ale już nie pod każdą linijką, tylko w siedmiu trudnych przejściach na dziewiętnaście. Nadal jest to jedyne zadanie, które go używa: jeśli układ się sprawdzi, warto przejrzeć starsze rozwiązania opisowe
     - to samo z pasem rachunku pomocniczego w filmach (mniejsze pismo pod równaniem): zad. 8 był jedyną sceną, która go miała, i już nie ma. Zasady zostały w `manimations/README.md` oznaczone jako nieużywane
     - film do zad. 8 ma teraz 19 kroków i jest najdłuższy w arkuszu (poprzedni rekord to 14 w zad. 7). Jeśli kropki kroków będą się źle klikać, alternatywa jest jedna: zwijać ogniwa (\(2 \cdot x - 2 \cdot 1\), \(2x - 1x\)) z powrotem do środka kroków
 

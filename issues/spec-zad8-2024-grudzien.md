@@ -42,17 +42,29 @@ W rozwiązaniu opisowym tory stoją **obok siebie** (`rozw-2kol rozw-dwatory`, j
 w filmie liczą się **po kolei**: najpierw cały lewy, potem cały prawy, a wynik lewego czeka
 w kadrze. To też jest wprost zasada z zad. 7 (`manimations/README.md`, „Ile kroków", punkt 4).
 
-**2. Same wzory, bez zdań między linijkami.** Rozwiązanie opisowe zadania 7 to czysty
-rachunek. Zadanie 8 miało między linijkami komentarze `rozw-komentarz`, a film miał pas
-rachunku pomocniczego mniejszym pismem. Jedno i drugie służyło temu samemu: pokazaniu
-ogniwa, którego ekspert nie zapisuje. **Teraz każde takie ogniwo jest pełną linijką
-rachunku i pełnym krokiem filmu**, więc ani komentarze, ani pas pomocniczy nie są
-potrzebne. Tak samo robi zad. 7, gdzie „sama reguła znaku" i „sam porządek zapisu"
+**2. Ogniwo dostaje własny krok, a nie pracę na boku.** Zadanie 8 miało film z pasem
+rachunku pomocniczego mniejszym pismem, w którym liczyło się to, czego ekspert nie zapisuje.
+**Teraz każde takie ogniwo jest pełną linijką rachunku i pełnym krokiem filmu**, więc pas
+pomocniczy zniknął. Tak samo robi zad. 7, gdzie „sama reguła znaku" i „sam porządek zapisu"
 dostały własne kroki.
 
 Cztery ogniwa wypisane jawnie: \(2 \cdot x - 2 \cdot 1\) (skąd \(2(x-1)\)),
 \(2 \cdot \dfrac{x}{2}\) (co się z czym skraca), \(2 \cdot x + 2 \cdot 3\) (opuszczanie
 nawiasu), \(2x - 1x\) (skąd jeden iks). Stąd dziewiętnaście kroków zamiast dziesięciu.
+
+**Zdania między linijkami wróciły tego samego dnia, ale wybiórczo** (Henrich, po obejrzeniu
+pierwszej wersji: „przywróć zdania tam, gdzie uczeń miałby problem zrozumieć, skąd się coś
+wzięło, lub gdy dużo się zmieniało, np. podczas skracania \((x-1)\)"). Jest ich siedem na
+dziewiętnaście linijek, a nie po jednym pod każdą, i stoją pod tymi przejściami, których
+sam zapis nie tłumaczy: skąd pomysł na wspólny nawias, dlaczego wolno mnożyć przez \((x-1)\),
+co dokładnie znika przy skracaniu, dlaczego dwójka staje przed nawiasem, po co dopisujemy
+jedynkę przy iksie. Przejścia oczywiste (przeniesienie składnika, policzenie \(2 \cdot 3\))
+zostają bez komentarza.
+
+**Przerwy.** Po wyliczeniu dziedziny idzie szersza przerwa (`rozw-odstep`), żeby było widać,
+że zaczyna się nowa część, i taka sama przed zdaniem zamykającym. Zdania są odsunięte od
+rachunku z obu stron, bo w pierwszej wersji kleiły się do wzorów i całość czytała się jak
+jeden blok.
 
 **Koszt tej decyzji.** Kroków jest o dziewięć więcej i film trwa dłużej. Zysk: nie ma ani
 jednego miejsca, w którym coś jest liczone „na boku", a uczeń, który zatrzyma dowolny krok,
@@ -156,6 +168,5 @@ samym pomyśle.
 - Nie wiadomo, czy dziewiętnaście kropek kroków dobrze się klika na telefonie Henricha:
   to najdłuższy film w arkuszu (poprzedni rekord to czternaście kroków w zad. 7). Wpisane
   do `TODO.md`, sekcja `TESTOWANIE HENRICH`.
-- Klasa `rozw-komentarz` nie jest już używana **w żadnym** zadaniu w żadnym arkuszu. CSS
-  i zasady zostają, ale to jest decyzja do podjęcia: albo wróci gdzie indziej, albo idzie
-  do kosza.
+- Zad. 8 jest nadal **jedynym** zadaniem z komentarzami `rozw-komentarz`. Czy siedem zdań
+  na dziewiętnaście linijek to dobra proporcja, wyjdzie dopiero na innych zadaniach.

@@ -1239,15 +1239,31 @@ body.sidebar-otwarty #sidebar-linia {
     line-height: 1.5;
     /* Powietrza z obu stron, więcej pod spodem niż nad: komentarz należy do
        linijki NAD nim (opisuje przejście, które się z niej zaczyna), a od
-       następnej ma odstawać. */
-    margin: 0.55em auto 1.15em;
+       następnej ma odstawać. Odstępy podniesione 2026-08-28 (Henrich: „między
+       zdaniami a równaniami ma być przerwa, nie mają być ściśnięte") — przy
+       0,55em/1,15em zdanie kleiło się do rachunku i całość czytała się jak
+       jeden blok tekstu. */
+    margin: 1.2em auto 1.8em;
     max-width: 34em;
 }
+
+/* PRZERWA MIĘDZY CZĘŚCIAMI ROZWIĄZANIA (Henrich, 2026-08-28, zad. 8): po
+   policzeniu dziedziny ma być widać, że zaczyna się nowa część, a nie ciągnie
+   ta sama kolumna rachunku. Klasa idzie na pierwszy element części, która się
+   zaczyna (linijkę albo komentarz nad nią). */
+.rozwiazanie-kroki .rozw-odstep { margin-top: 3em; }
 
 /* Wzór wewnątrz komentarza ma być tak samo blady jak zdanie wokół niego. KaTeX
    maluje własny kolor na .katex, więc bez tego jeden wzór w środku komentarza
    wychodzi czarny i wygląda jak osobna linijka rachunku. */
-.rozwiazanie-kroki .rozw-komentarz .katex { color: inherit; }
+.rozwiazanie-kroki .rozw-komentarz .katex {
+    color: inherit;
+    /* Bez zerowania marginesu wzór w środku zdania bierze 0,35em z reguły dla
+       .rozwiazanie-kroki .katex (ta jest tam po to, żeby wysokie ułamki nie
+       wchodziły na siebie między linijkami rachunku) i wiersz ze wzorem odjeżdża
+       od sąsiednich. Akapit czyta się wtedy jak rozstrzelony. */
+    margin: 0;
+}
 
 /* SPRAWDZENIE na końcu rozwiązania: osobna, odkreślona część (Henrich,
    2026-08-27). Rachunek CKE kończy się wyżej, na wyniku; to, co niżej, jest

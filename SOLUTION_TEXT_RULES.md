@@ -11,7 +11,7 @@ tego samego dnia na zadaniach 3, 4, 6, 7 i 8. Wzorce do podejrzenia, wszystkie w
 | 4 | wąskie rozwiązanie wyśrodkowane na karcie (`rozw-srodek`) |
 | 6 | jedna kolumna, jeden wzór na górze, ułamki przez `\dfrac` |
 | 7 | dwa tory obok siebie, które na końcu schodzą się w jeden |
-| 8 | dwa tory **wewnątrz** rozwiązania jednokolumnowego, dopisek działania w osobnym spanie, odkreślone sprawdzenie |
+| 8 | dwa tory **wewnątrz** rozwiązania jednokolumnowego, komentarze tylko w trudnych przejściach, przerwa między częściami, odkreślone sprawdzenie |
 
 Bliźniaczy plik dla filmów: `manimations/README.md`, sekcja „Zasady krok po kroku, wersja krótka".
 Wygląd i nazwy klas CSS: `ARCHITECTURE_CSS.md`. Znaczenie kolorów: `COLORS.md`.
@@ -68,17 +68,22 @@ niż kilka linijek, oddaj kolumnę wzorów i przenieś wzory nad rachunek.
 10. **Kilka linijek rachunku pod jednym wzorem** idzie w jednym `.rozw-obl`, rozdzielone `<br>`.
     Wzór stanie wtedy na środku całej grupy.
 
-## Komentarze między linijkami (od 2026-08-27, dziś nieużywane)
+## Komentarze między linijkami (od 2026-08-27)
 
 Zasada Henricha z 2026-08-27, wprowadzona na zad. 8. Dotyczy układu jednokolumnowego.
 
-**Uwaga, stan na 2026-08-28: `rozw-komentarz` nie stoi już w ŻADNYM zadaniu żadnego
-arkusza.** Zad. 8, jedyny użytkownik, został tego dnia przepisany na wzór zad. 7:
-zamiast tłumaczyć przejście zdaniem, dopisuje ogniwo jako osobną linijkę rachunku
-(\(2 \cdot x - 2 \cdot 1\), \(2 \cdot x + 2 \cdot 3\), \(2x - 1x\)). CSS i te
-zasady zostają, bo mogą się przydać, ale zanim ich użyjesz, sprawdź, czy przypadkiem
-nie chodzi po prostu o rozbicie kroku (punkt 15e). `rozw-dzialanie` i `rozw-sprawdzenie`
-z tej samej daty są używane dalej.
+**Nie pod każdą linijką** (doprecyzowane 2026-08-28, znowu na zad. 8). Komentarz pod każdym
+przejściem zamienia rozwiązanie w ścianę tekstu, w której rachunek ginie. Zdanie należy się
+przejściu, które spełnia jeden z dwóch warunków:
+
+- **uczeń nie zobaczy, skąd się coś wzięło** (skąd pomysł na wspólny nawias, po co dopisujemy
+  jedynkę przy iksie), albo
+- **zmienia się dużo naraz** (skracanie \((x-1)\) po obu stronach: znikają cztery nawiasy
+  i jeden ułamek).
+
+Przejścia oczywiste (przeniesienie składnika na drugą stronę, policzenie \(2 \cdot 3\))
+zostają bez komentarza, bo widać je w samym zapisie. W zad. 8 wychodzi z tego siedem
+komentarzy na dziewiętnaście linijek.
 
 15a. **Między linijkami rachunku wolno napisać, co się w przejściu dzieje.** Jedno zdanie,
      w `<div class="rozw-komentarz">`, bledsze od rachunku (ten sam token co kolumna wzorów).
@@ -100,6 +105,10 @@ z tej samej daty są używane dalej.
      jeden ciąg równości: \(2x - 2 = 2 \cdot x - 2 \cdot 1 = 2(x - 1)\),
      \(2 \cdot x = 2x\) oraz \(2 \cdot 3 = 6\), \(x\) to inaczej \(1x\). Linijka
      rachunku zostaje krótka, a uczeń, który nie widzi przejścia, ma je pod nosem.
+15i. **Między zdaniem a rachunkiem musi być przerwa** (Henrich, 2026-08-28: „nie mają być
+     ściśnięte"). Robi to CSS, nie `<br>`. Osobna przerwa, szersza, oddziela CAŁE części
+     rozwiązania: po wyliczeniu dziedziny idzie `class="rozw-odstep"` na pierwszym elemencie
+     następnej części, żeby było widać, że zaczyna się nowa rzecz.
 15h. **Film i tekst tłumaczą TO SAMO, w tym samym miejscu.** Jeśli film pokazuje w kroku N
      rachunek pomocniczy (patrz `manimations/README.md`, „Wyjaśnienie w środku kroku"), to
      komentarz przy linijce N mówi to samo słowami. Dwie różne wersje tego samego przejścia
