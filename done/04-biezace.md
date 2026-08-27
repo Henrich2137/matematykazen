@@ -1,5 +1,29 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-27] (Opus 5, medium) Film krok po kroku do zad. 8 z 2024-grudnia napisany
+od nowa: koniec z automatycznym morfem całej strony równania, ruch wskazany co do glifu.
+[2024-grudzien, zad8, manim, animacja, krok-po-kroku]
+
+Punkt z TODO brzmiał „rozwiązanie zwykłe napisane od nowa, ale FILM zostal stary i się z nim
+nie zgadza". Rozwiązanie opisowe i liczba kroków zgadzały się już rano, więc zostało samo
+przepisanie animacji, po trzech uwagach Henricha: morf zasłania to, co się dzieje; krok może
+zawierać wyjaśnienie i dopiero kończyć się prostą linijką; założenie ma być mniej kontrastowe.
+
+Co zrobione:
+- każdy z dziesięciu kroków ma ruch wskazany ręcznie, glif po glifie (zero
+  `TransformMatchingTex`), a mapa glifów jest policzona z renderu `index_labels`
+  i spisana w komentarzu sceny,
+- pięć kroków (2, 3, 6, 7, 10) liczy w środku rachunek pomocniczy i dopiero potem zostawia
+  czystą linijkę; krok 2 wyprowadza założenie z obu mianowników po kolei,
+- założenie `x \ne 1` jest szare `#666666`, dopiski działań `#888888`,
+- czynnik z dopisku najpierw staje NAD miejscem, w które wejdzie, a składnik przenoszony
+  na drugą stronę leci łukiem nad znakiem równości: po prostej oba przechodziły po literach,
+- opisy pod krokami przepisane, bo film pokazuje teraz to, co wcześniej niósł sam tekst.
+
+Sprawdzone: styki klatek SSIM 0,99978 do 0,99993, `tools/zielen-krokow.py` bez zastrzeżeń,
+`tools/test-krokow.js --zadania=7` na dwóch ziarnach bez zastrzeżeń, klatki obejrzane okiem
+w każdym kroku. Szczegóły: `manimations/zad8-kroki.md` i `issues/spec-zad8-2024-grudzien.md`.
+
 [ZROBIONE 2026-08-25] (Opus 5, high) Zamknięte dwa punkty hostowe z TODO.md: rebuild
 kontenera z dokumentacją LaTeX-a i przegląd firewalla pod dokumentację dla modeli.
 [kontener, latex, firewall, todo, dokumentacja]

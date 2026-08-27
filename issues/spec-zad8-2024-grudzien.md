@@ -103,20 +103,55 @@ komputer i telefon, motyw jasny i ciemny.
   losowych ułamków), \(-6\) spełnia równanie wyjściowe (\(L = P = \tfrac{3}{7}\)),
   a \(x = 1\) zeruje oba mianowniki.
 
-## Film krok po kroku (zrobiony 2026-08-27)
+## Film krok po kroku (zrobiony 2026-08-27, animacja napisana od nowa tego samego dnia)
 
 **Dziesięć kroków**, jeden do jednego z linijkami 1 do 10. Sprawdzenia film nie pokazuje
 (decyzja Henricha), więc rozwiązanie opisowe ma trzynaście pozycji, a film dziesięć kroków,
 i ten rozjazd jest świadomy.
 
-- Scena: `manimations/solutionZad8.py`, scenariusz z tabelą zieleni: `manimations/zad8-kroki.md`.
+- Scena: `manimations/solutionZad8.py`, scenariusz ruchu z tabelą taktów i zieleni:
+  `manimations/zad8-kroki.md`.
 - Założenie \(x \ne 1\) pojawia się w kroku 2 i **zostaje w kadrze do końca filmu**, bo za nie
-  jest osobny punkt.
-- Dopiski działań są szare i pojawiają się na końcu kroku, w którym powstał stan, a gasną
-  w kroku, który to działanie wykonuje. Tak samo jak w rozwiązaniu opisowym.
-- Sprawdzone po renderze: styki klatek SSIM od 0,99976 do 0,99993 (`tools/styk-klatek.sh`),
-  zieleń zapala się i gaśnie w każdym kroku do zera (`tools/zielen-krokow.py`),
-  `tools/test-krokow.js` na zadaniu 8 przechodzi na dwóch ziarnach.
+  jest osobny punkt. Od drugiej wersji jest **szare** (`#666666`), nie czarne: ma być czytelne,
+  ale nie ma konkurować wzrokowo z rachunkiem.
+- Dopiski działań są jeszcze bledsze (`#888888`) i pojawiają się na końcu kroku, w którym
+  powstał stan, a gasną w kroku, który to działanie wykonuje. Tak samo jak w rozwiązaniu
+  opisowym.
+
+### Co było złe w pierwszej wersji i co się zmieniło
+
+Henrich, wieczorem 2026-08-27: *„morf wrzucony na całą stronę równania zasłania to, co dzieje
+się naprawdę"*, *„krok mógłby zawierać wyjaśnienie, a dopiero się kończyć prostym"*,
+*„animacje zrób dokładnie, co do znaku"*.
+
+- Pierwsza wersja robiła każdy krok jednym `TransformMatchingTex(..., transform_mismatches=True)`,
+  czyli oddawała ruch automatowi. W połowie animacji pół równania było kleksem, w którym nie
+  dało się odczytać ani starego zapisu, ani nowego. Sprawdzone na klatkach: w kroku 4 nawiasy
+  i cyfry nakładały się na siebie w jednym miejscu.
+- Druga wersja nie ma **ani jednego** automatycznego dopasowania. Każdy glif ma wskazaną parę,
+  a to, co się pojawia albo znika, jest wypisane z nazwy. Mapa glifów jest policzona z renderu
+  `index_labels` i spisana w komentarzu na górze sceny.
+- Pięć kroków (2, 3, 6, 7, 10) liczy w środku **rachunek pomocniczy** i dopiero potem zostawia
+  czystą linijkę. Największy jest krok 2: pokazuje, skąd bierze się \(x \ne 1\), bo oba
+  mianowniki zjeżdżają w dół, dostają warunek \(\ne 0\) i zostają rozwiązane po kolei.
+  Krok 2 trwa przez to około jedenastu sekund, i taka jest cena za to, że założenie przestaje
+  spadać z nieba.
+- Dwa chwyty przeciw zasłanianiu: czynnik wylatujący z dopisku najpierw staje **nad** miejscem,
+  w które wejdzie (kroki 4 i 6), a składnik przenoszony na drugą stronę leci **łukiem nad
+  znakiem równości** (kroki 8 i 9). Po prostej oba przechodziły po literach.
+
+### Sprawdzone po renderze
+
+Styki klatek SSIM od 0,99978 do 0,99993 (`tools/styk-klatek.sh`), zieleń zapala się i gaśnie
+w każdym kroku do zera jednym ruchem (`tools/zielen-krokow.py`), `tools/test-krokow.js
+--zadania=7` przechodzi na dwóch ziarnach, klatki obejrzane okiem w każdym kroku (pierwsza,
+po zapaleniu koloru, w połowie ruchu, ostatnia).
+
+### Opisy pod filmem
+
+Przepisane razem z animacją. Film pokazuje teraz to, co wcześniej niósł sam tekst (dlaczego
+\(x \ne 1\), skąd \(2(x-1)\), co się z czym skraca), więc opisy mówią już tylko **dlaczego
+wolno** tak przekształcić, a nie **co widać**.
 
 ## Podpowiedź
 

@@ -20,7 +20,7 @@ Zobacz na żywo: **https://matematykazen.pl** (działa też z www). Wersja roboc
 - Zadania otwarte z kryteriami CKE: 7/7
 - Odpowiedzi zweryfikowane z kluczem CKE: tak
 
-Zadania 1-7 są wstępnie odpicowane (rozwiązania i filmy dopracowane wg obecnych zasad). Pozostałe zadania wymagają jeszcze przeglądnięcia i poprawek.
+Zadania 1-8 są wstępnie odpicowane (rozwiązania i filmy dopracowane wg obecnych zasad). Pozostałe zadania wymagają jeszcze przeglądnięcia i poprawek.
 
 **2026 maj (właściwa)** - w opracowaniu:
 - Zadania (osobne karty): 37 (33 polecenia CKE, część z podpunktami), 50 pkt

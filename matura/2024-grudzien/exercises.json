@@ -442,47 +442,47 @@
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step2.mp4",
-                "text": "Przez zero dzielić nie wolno, więc żaden mianownik nie może być zerem.<br>Sprawdzamy oba osobno: \\(x - 1 = 0\\) daje \\(x = 1\\), a \\(2x - 2 = 0\\) daje \\(2x = 2\\), czyli znowu \\(x = 1\\).<br>Zapisujemy więc \\(x \\ne 1\\). Bez tego założenia klucz CKE odbiera punkt, nawet przy dobrym wyniku."
+                "text": "Przez zero dzielić nie wolno, więc żaden mianownik nie może być zerem.<br>Oba mianowniki dają ten sam warunek, dlatego w rozwiązaniu wystarczy jedna linijka: \\(x \\ne 1\\).<br>Bez tego zapisu klucz CKE odbiera punkt, nawet przy dobrym wyniku."
             },
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step3.mp4",
-                "text": "Prawy mianownik zapisujemy inaczej, nie zmieniając jego wartości: wyłączamy dwójkę przed nawias.<br>Sprawdź na liczbach, dla \\(x = 5\\): \\(2 \\cdot 5 - 2 = 8\\) oraz \\(2(5 - 1) = 8\\).<br>Teraz w obu mianownikach stoi ten sam nawias \\(x - 1\\), a o to nam chodziło."
+                "text": "Wyłączamy dwójkę przed nawias, czyli zapisujemy ten sam mianownik inaczej.<br>Sprawdź na liczbach, dla \\(x = 5\\): \\(2 \\cdot 5 - 2 = 8\\) oraz \\(2(5 - 1) = 8\\).<br>Teraz w obu mianownikach stoi ten sam nawias \\(x - 1\\), a o to nam chodziło."
             },
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step4.mp4",
-                "text": "Mnożymy obie strony przez \\(x - 1\\).<br>Równanie zostaje prawdziwe, bo obie strony powiększamy tyle samo razy.<br>Nawias dopisuje się w liczniku po lewej i w liczniku po prawej, na zielono."
+                "text": "Obie strony mnożymy przez \\(x - 1\\).<br>Wolno, bo ten nawias nie jest zerem, i właśnie tego pilnuje założenie.<br>Równanie zostaje prawdziwe, skoro obie strony powiększamy tyle samo razy."
             },
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step5.mp4",
-                "text": "Ten sam czynnik w liczniku i w mianowniku skraca się do jedynki, więc znika z obu stron.<br>Wolno tak zrobić właśnie dzięki założeniu: skoro \\(x \\ne 1\\), to \\(x - 1\\) nie jest zerem, a tylko przez zero skracać nie można."
+                "text": "Ten sam czynnik w liczniku i w mianowniku skraca się do jedynki, więc znika z obu stron.<br>Znowu korzystamy z założenia: skracać przez zero nie można, a \\(x - 1\\) zerem nie jest."
             },
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step6.mp4",
-                "text": "Został jeden ułamek, więc mnożymy obie strony przez dwójkę.<br>Po prawej dwójka z mianownika znika, po lewej staje przed nawiasem."
+                "text": "Został jeden ułamek, więc obie strony mnożymy przez dwójkę.<br>Po prawej dwójka wchodzi przed ułamek i skraca się z dwójką z mianownika.<br>Po lewej staje przed nawiasem, bo mnoży całą sumę \\(x + 3\\), a nie sam iks."
             },
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step7.mp4",
-                "text": "Opuszczamy nawias. Dwójka mnoży każdy składnik osobno: \\(2 \\cdot x = 2x\\) oraz \\(2 \\cdot 3 = 6\\)."
+                "text": "Opuszczamy nawias. Dwójka mnoży każdy składnik osobno:<br>\\(2 \\cdot x = 2x\\) oraz \\(2 \\cdot 3 = 6\\)."
             },
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step8.mp4",
-                "text": "Porządkujemy równanie: niewiadome mają zostać po jednej stronie, a liczby po drugiej.<br>Szóstka przechodzi na prawo i przy przejściu zmienia znak."
+                "text": "Porządkujemy równanie: niewiadome mają zostać po jednej stronie, a liczby po drugiej.<br>Składnik, który przechodzi na drugą stronę, zmienia znak, więc \\(+6\\) staje się \\(-6\\).<br>Właśnie tu najczęściej ucieka znak, dlatego przenosimy po jednym składniku."
             },
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step9.mp4",
-                "text": "To samo robimy z iksem, który stoi po prawej.<br>Po przejściu na lewo też zmienia znak i staje się \\(-x\\)."
+                "text": "Teraz to samo z iksem, który stoi po prawej.<br>Przed nim nie ma żadnego znaku, czyli stoi tam plus, więc po przejściu na lewo pojawia się minus."
             },
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step10.mp4",
-                "text": "Po lewej został \\(2x - x\\), czyli dwa iksy bez jednego iksa, więc jeden iks.<br>Wynik \\(x = -6\\) mieści się w założeniu, bo nie jest jedynką."
+                "text": "Dwa iksy bez jednego iksa to jeden iks, bo \\(x\\) znaczy tyle samo co \\(1x\\).<br>Wynik \\(x = -6\\) mieści się w założeniu, bo nie jest jedynką."
             }
         ],
         "solutionWidget": null
