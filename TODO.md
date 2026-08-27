@@ -27,7 +27,9 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Mój telefon na chrome ma "okno": 485x945
 <br> Próg wejścia jest wysoki, patrz ZASADY DLA CLAUDE-A niżej. Archiwum dawnych list: issues/testowanie-archiwum.md.
 
-  - v91, zad. 8 z grudnia 2024, film krok po kroku w CIEMNYM motywie na telefonie: szare \(x \ne 1\) nad równaniem i szary dopisek działania z boku (np. „/ · 2") mają być czytelne, a nie zlewać się z tłem
+  - v92, zad. 8 z grudnia 2024, film krok po kroku w CIEMNYM motywie na telefonie: szare \(x \ne 1\) nad równaniem i szary dopisek działania z boku (np. „/ · 2") mają być czytelne, a nie zlewać się z tłem
+
+  - v92, zad. 8 z grudnia 2024, film ma teraz 19 kroków, najwięcej w arkuszu: sprawdź na telefonie, czy rząd kropek kroków daje się wygodnie klikać i czy przewijanie kropek nie gubi się przy skoku na koniec
 
 <br>
 
@@ -291,10 +293,11 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
     - `manimations/_wspolne.py` ma `ZIELONY = "#0AB32F"`, czyli zieleń „poprawne" (`--correct`), a README i COLORS.md każą w filmach używać `#2e7d32` („oznaczenie miejsca"). Sceny zad. 2, 3 i 8 mają dobry hex u siebie, ale zad. 1, 5 i 6 jadą na tym z `_wspolne`. Do decyzji: poprawić stałą i przerenderować trzy filmy, czy zostawić
 
-  + OPUS 5 DOPISAŁ (2026-08-27, po zad. 8 z 2024-grudnia):
+  + OPUS 5 DOPISAŁ (2026-08-28, po napisaniu zad. 8 z 2024-grudnia od nowa na wzór zad. 7):
 
-    - komentarze między linijkami (`rozw-komentarz`), dopisek działania w osobnym spanie (`rozw-dzialanie`) i odkreślone sprawdzenie (`rozw-sprawdzenie`) to nowość z 2026-08-27, na razie użyta tylko w zad. 8. Jeśli się sprawdzi, warto przejrzeć starsze rozwiązania opisowe i przenieść je na ten sam układ
-    - rozwiązanie opisowe zad. 8 ma 13 pozycji, a film 10 kroków: różnica to sprawdzenie przez podstawienie, którego film nie pokazuje. Gdyby miało być też w filmie, dochodzą trzy kroki i trzeba przerenderować scenę
+    - `rozw-komentarz` (bledsze zdania między linijkami rachunku) nie jest już używane w ŻADNYM zadaniu żadnego arkusza: zad. 8 był jedynym i właśnie przeszedł na zapis samymi wzorami. CSS i zasady zostają w repo. Do decyzji: wracamy do tego układu gdzie indziej czy kasujemy. `rozw-dzialanie` i `rozw-sprawdzenie` są używane dalej, w zad. 8
+    - to samo z pasem rachunku pomocniczego w filmach (mniejsze pismo pod równaniem): zad. 8 był jedyną sceną, która go miała, i już nie ma. Zasady zostały w `manimations/README.md` oznaczone jako nieużywane
+    - film do zad. 8 ma teraz 19 kroków i jest najdłuższy w arkuszu (poprzedni rekord to 14 w zad. 7). Jeśli kropki kroków będą się źle klikać, alternatywa jest jedna: zwijać ogniwa (\(2 \cdot x - 2 \cdot 1\), \(2x - 1x\)) z powrotem do środka kroków
 
 + ZASADY DLA CLAUDE-A:
 

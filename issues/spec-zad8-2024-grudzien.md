@@ -1,15 +1,21 @@
-# Spec: zadanie 8, arkusz 2024-grudzień, rozwiązanie opisowe
+# Spec: zadanie 8, arkusz 2024-grudzień, rozwiązanie opisowe i film
 
-Stan na 2026-08-27, **wpisane do `exercises.json`**. Zastępuje wcześniejszy tego samego dnia
-projekt przez równanie kwadratowe i deltę (Henrich: za dużo kroków, delta niepotrzebna);
-tamten plik został usunięty.
+Stan na **2026-08-28**, wpisane do `exercises.json` i wyrenderowane. Trzecie podejście do
+tego zadania:
+
+1. rano 2026-08-27: przez równanie kwadratowe i deltę. Skasowane (Henrich: za dużo kroków,
+   delta niepotrzebna);
+2. 2026-08-27: wspólny mianownik, dziesięć linijek przeplecionych bledszymi komentarzami,
+   film z pasem rachunku pomocniczego pod równaniem;
+3. **2026-08-28, to podejście**: ta sama metoda, ale zapis i film przerobione „jakby stare
+   nie istniało, na wzór zadania 7" (polecenie Henricha).
 
 ## Treść i wynik
 
 Rozwiąż równanie \(\dfrac{x + 3}{x - 1} = \dfrac{x}{2x - 2}\). Zapisz konieczne
 założenie i obliczenia. Zadanie otwarte, 3 punkty. Wynik: \(x = -6\), zgodny z kluczem CKE.
 
-## Metoda
+## Metoda (bez zmian od 2026-08-27)
 
 Wspólny mianownik i dwa mnożenia obu stron, każde przez inny czynnik:
 
@@ -21,53 +27,82 @@ Wspólny mianownik i dwa mnożenia obu stron, każde przez inny czynnik:
 Żadnego wzoru z tablicy, żadnej delty, żadnego równania kwadratowego. Klucz CKE wymienia
 tę drogę wprost jako poprawną (\(2(x+3) = x\) stoi w zasadach oceniania).
 
+## Co zmieniło podejście „na wzór zadania 7"
+
+Zadanie 7 ma dwie cechy, których zadanie 8 nie miało, i o te dwie chodziło:
+
+**1. Dwa tory, które schodzą się w jedną linijkę.** W zadaniu 7 osobno liczy się \(a\),
+osobno \(b\), a dopiero na końcu ich iloczyn. W zadaniu 8 taką parą są **dwa mianowniki**:
+lewy daje warunek \(x - 1 \ne 0\), prawy \(2x - 2 \ne 0\), oba kończą się na \(x \ne 1\)
+i dopiero wtedy powstaje jedno założenie. Wcześniej dziedzina spadała z nieba jako jedna
+linijka z komentarzem „oba zerują się dla \(x = 1\)"; teraz uczeń widzi, że sprawdzono oba
+mianowniki, i widzi, dlaczego wystarcza jeden warunek.
+
+W rozwiązaniu opisowym tory stoją **obok siebie** (`rozw-2kol rozw-dwatory`, jak w zad. 7),
+w filmie liczą się **po kolei**: najpierw cały lewy, potem cały prawy, a wynik lewego czeka
+w kadrze. To też jest wprost zasada z zad. 7 (`manimations/README.md`, „Ile kroków", punkt 4).
+
+**2. Same wzory, bez zdań między linijkami.** Rozwiązanie opisowe zadania 7 to czysty
+rachunek. Zadanie 8 miało między linijkami komentarze `rozw-komentarz`, a film miał pas
+rachunku pomocniczego mniejszym pismem. Jedno i drugie służyło temu samemu: pokazaniu
+ogniwa, którego ekspert nie zapisuje. **Teraz każde takie ogniwo jest pełną linijką
+rachunku i pełnym krokiem filmu**, więc ani komentarze, ani pas pomocniczy nie są
+potrzebne. Tak samo robi zad. 7, gdzie „sama reguła znaku" i „sam porządek zapisu"
+dostały własne kroki.
+
+Cztery ogniwa wypisane jawnie: \(2 \cdot x - 2 \cdot 1\) (skąd \(2(x-1)\)),
+\(2 \cdot \dfrac{x}{2}\) (co się z czym skraca), \(2 \cdot x + 2 \cdot 3\) (opuszczanie
+nawiasu), \(2x - 1x\) (skąd jeden iks). Stąd dziewiętnaście kroków zamiast dziesięciu.
+
+**Koszt tej decyzji.** Kroków jest o dziewięć więcej i film trwa dłużej. Zysk: nie ma ani
+jednego miejsca, w którym coś jest liczone „na boku", a uczeń, który zatrzyma dowolny krok,
+widzi w kadrze pełną linijkę do przepisania, nie roboczy zapis mniejszym pismem.
+
 ## Kryteria CKE i gdzie są pokryte
 
 | Kryterium | Punkty | Gdzie |
 |---|---|---|
-| zapisane założenie \(x \ne 1\) | 1 | linijka 2 |
-| równanie bez ułamków, np. \(2(x+3) = x\) | 1 | linijka 6 |
-| wynik \(x = -6\) należący do dziedziny | 1 | linijki 10 i 11 |
+| zapisane założenie \(x \ne 1\) | 1 | linijka 7 (wytłuszczona, pod torami) |
+| równanie bez ułamków, np. \(2(x+3) = x\) | 1 | linijka 13 |
+| wynik \(x = -6\) należący do dziedziny | 1 | linijki 19 i 20 |
 
-## Budowa: linijka, pod nią bledszy komentarz
+## Linijki
 
-Zasada Henricha z tego dnia. Rachunek idzie linijka pod linijką, a między nimi stoi jedno
-zdanie **bledszym kolorem**, mówiące, co się w tym przejściu dzieje. Zapis działania
-wykonywanego na obu stronach (\(\big/ \cdot (x-1)\)) też jest bledszy i odsunięty od rachunku,
-bo nie jest jego częścią. Znaczniki i reguły: `SOLUTION_TEXT_RULES.md`, sekcja „Komentarze
-między linijkami"; wygląd: `ARCHITECTURE_CSS.md`.
+Dziewiętnaście linijek rachunku, potem zdanie zamykające, potem odkreślone sprawdzenie.
+Linijek rachunku jest dokładnie tyle, ile kroków filmu.
 
-Założenie **nie stoi już w osobnym akapicie nad blokiem**, tylko jest drugą linijką rachunku,
-a zdanie o mianownikach jest komentarzem nad nim.
-
-## Linijki i komentarze
-
-| # | Linijka | Komentarz pod nią |
+| # | Linijka | Uwaga |
 |---|---|---|
-| 1 | \(\dfrac{x + 3}{x - 1} = \dfrac{x}{2x - 2}\) | Mianownik nie może być zerem, a oba zerują się dla \(x = 1\). Zapisujemy założenie. |
-| 2 | \(\boldsymbol{x \ne 1}\) | Prawy mianownik to dwójka razy ten sam nawias, który stoi po lewej: \(2x - 2 = 2(x - 1)\). |
-| 3 | \(\dfrac{x + 3}{x - 1} = \dfrac{x}{2(x - 1)}\) z dopiskiem \(\big/ \cdot (x - 1)\) | Mnożymy obie strony przez \(x - 1\), więc ten nawias dopisuje się w obu licznikach. |
-| 4 | \(\dfrac{(x + 3)(x - 1)}{x - 1} = \dfrac{x(x - 1)}{2(x - 1)}\) | Ten sam nawias stoi teraz w liczniku i w mianowniku, po obu stronach, więc go skreślamy. |
-| 5 | \(x + 3 = \dfrac{x}{2}\) z dopiskiem \(\big/ \cdot 2\) | Został jeden ułamek. Mnożymy obie strony przez dwójkę i po prawej też się ona skróci. |
-| 6 | \(2(x + 3) = x\) | Opuszczamy nawias: dwójka mnoży osobno \(x\) i osobno \(3\). |
-| 7 | \(2x + 6 = x\) z dopiskiem \(\big/ - 6\) | Liczby zbieramy po prawej stronie. Szóstka przechodzi ze zmianą znaku. |
-| 8 | \(2x = x - 6\) z dopiskiem \(\big/ - x\) | Teraz to samo z niewiadomą: \(x\) przechodzi na lewo, też ze zmianą znaku. |
-| 9 | \(2x - x = -6\) | Dwa iksy bez jednego iksa to jeden iks. |
-| 10 | \(\boldsymbol{x = -6}\) | Wynik spełnia założenie, bo \(-6\) nie jest jedynką. |
-| 11 | \(L = \dfrac{(-6) + 3}{(-6) - 1} = \dfrac{-3}{-7} = \dfrac{3}{7}\) | część odkreślona, patrz niżej |
-| 12 | \(P = \dfrac{(-6)}{2 \cdot (-6) - 2} = \dfrac{-6}{-14} = \dfrac{3}{7}\) | |
-| 13 | \(L = P\), więc rozwiązaniem równania jest \(x = -6\). | zdanie zamykające, wraca do polecenia |
+| 1 | \(\dfrac{x + 3}{x - 1} = \dfrac{x}{2x - 2}\) | zapis z treści |
+| 2 | \(x - 1 \ne 0\) | lewy tor |
+| 3 | \(x \ne 1\) | lewy tor, koniec |
+| 4 | \(2x - 2 \ne 0\) | prawy tor |
+| 5 | \(2x \ne 2\) | |
+| 6 | \(x \ne 1\) | prawy tor, koniec |
+| 7 | \(\boldsymbol{x \ne 1}\) | oba tory dały to samo, więc jedno założenie |
+| 8 | \(\dfrac{x + 3}{x - 1} = \dfrac{x}{2 \cdot x - 2 \cdot 1}\) | ogniwo: skąd wspólny czynnik |
+| 9 | \(\dfrac{x + 3}{x - 1} = \dfrac{x}{2(x - 1)}\) z dopiskiem \(\big/ \cdot (x - 1)\) | |
+| 10 | \(\dfrac{(x + 3)(x - 1)}{x - 1} = \dfrac{x(x - 1)}{2(x - 1)}\) | |
+| 11 | \(x + 3 = \dfrac{x}{2}\) z dopiskiem \(\big/ \cdot 2\) | |
+| 12 | \(2(x + 3) = 2 \cdot \dfrac{x}{2}\) | ogniwo: co się z czym skraca |
+| 13 | \(2(x + 3) = x\) | punkt CKE |
+| 14 | \(2 \cdot x + 2 \cdot 3 = x\) | ogniwo: opuszczanie nawiasu |
+| 15 | \(2x + 6 = x\) z dopiskiem \(\big/ - 6\) | |
+| 16 | \(2x = x - 6\) z dopiskiem \(\big/ - x\) | |
+| 17 | \(2x - x = -6\) | |
+| 18 | \(2x - 1x = -6\) | ogniwo: \(x\) to \(1x\) |
+| 19 | \(\boldsymbol{x = -6}\) | |
+| 20 | Wynik spełnia założenie, bo \(-6 \ne 1\), więc rozwiązaniem równania jest \(x = -6\). | wiersz na całą szerokość, nie jest krokiem filmu |
 
-Dziesięć linijek rachunku, potem odkreślone sprawdzenie: trzynaście pozycji razem.
+Pod kreską sprawdzenie: \(L\), \(P\), \(L = P\).
 
-## Sprawdzenie jako osobna część
+## Sprawdzenie jako osobna część (bez zmian)
 
 Sprawdzenie stoi **pod kreską**, w bloku `rozw-sprawdzenie`, i tak ma być z trzech powodów:
 
 - **Rachunek punktowany kończy się wyżej.** Klucz CKE daje trzeci punkt za wynik należący
-  do dziedziny, czyli za linijkę 10. Wszystko poniżej jest dobrowolne i uczeń ma to widzieć,
-  żeby nie myślał, że bez sprawdzenia rozwiązanie jest niepełne. Mówi to wprost pierwsze
-  zdanie bloku.
+  do dziedziny, czyli za linijkę 19. Wszystko poniżej jest dobrowolne i uczeń ma to widzieć,
+  żeby nie myślał, że bez sprawdzenia rozwiązanie jest niepełne.
 - **Liczba ujemna wchodzi w nawiasie**: \((-6) + 3\), a nie \(-6 + 3\). Podstawianie liczby
   ujemnej bez nawiasu to jedno z najczęstszych miejsc, w których ucieka znak, więc pokazujemy
   zapis, który przed tym chroni, zamiast o tym ostrzegać.
@@ -76,91 +111,51 @@ Sprawdzenie stoi **pod kreską**, w bloku `rozw-sprawdzenie`, i tak ma być z tr
 
 ## Trzy miejsca, w których celowo nie skracam
 
-- **Komentarz pod linijką 2.** Bez niego cała metoda wisi na dostrzeżeniu wspólnego czynnika,
-  a to jest ten pomysł, którego słabszy uczeń sam nie ma. Mówimy go wprost.
-- **Linijka 4.** Mnożenie i skracanie to dwie czynności. Przejście z 3 od razu do
+- **Linijki 2 do 7.** Cała metoda wisi na dostrzeżeniu wspólnego czynnika, a dziedzina jest
+  pierwszym miejscem, w którym oba mianowniki stoją obok siebie. Uczeń widzi tam, że
+  \(2x-2\) i \(x-1\) dają ten sam warunek, zanim jeszcze zacznie liczyć.
+- **Linijki 9 i 10.** Mnożenie i skracanie to dwie czynności. Przejście od razu do
   \(x + 3 = \dfrac{x}{2}\) kasuje dwa nawiasy naraz i wygląda jak magia.
-- **Linijki 7, 8 i 9.** Przenoszenie po jednym składniku, z dopiskiem działania. To jest
+- **Linijki 15 do 19.** Przenoszenie po jednym składniku, z dopiskiem działania. To jest
   miejsce, w którym ginie minus.
 
 ## Rozbrojone typowe błędy, dwa
 
-1. **Mianownik bez zastrzeżenia.** Założenie jest drugą linijką, zaraz po zapisie z treści,
-   a nie dopiskiem na końcu.
-2. **Zgubiony znak przy przenoszeniu.** Linijki 7 i 8 przenoszą po jednym składniku, każda
-   z widocznym dopiskiem działania, a komentarz obok nazywa zmianę znaku.
+1. **Mianownik bez zastrzeżenia.** Dziedzina zajmuje sześć pierwszych linijek rachunku,
+   zanim cokolwiek się policzy, a w filmie gotowy warunek stoi nad rachunkiem do końca.
+2. **Zgubiony znak przy przenoszeniu.** Linijki 16 i 17 przenoszą po jednym składniku, każda
+   z widocznym dopiskiem działania, a w filmie przenoszony składnik leci łukiem NAD znakiem
+   równości, więc widać, że to ten sam znak zmienia się w drodze.
 
-## Co zmierzono
+## Co zmierzono (2026-08-28)
 
 Serwer `tools/serwer.js`, Playwright, zadanie 8 z rozwiniętym rozwiązaniem, cztery ujęcia:
-komputer i telefon, motyw jasny i ciemny.
+komputer 1280 i telefon 485, motyw jasny i ciemny.
 
-- Strona nie przewija się w bok: `scrollWidth === clientWidth`, 1280 i 390.
-- Blok mieści się w karcie telefonu: 298 px treści na 298 px miejsca.
-- Żadna linijka nie łamie się w środku wzoru. Dopisek działania przy najszerszej linijce
-  zawija się pod rachunek jako całość, i tak było zaprojektowane.
-- Rachunek sprawdzony osobno: wszystkie przejścia są tożsamościami (test na 20 tysiącach
-  losowych ułamków), \(-6\) spełnia równanie wyjściowe (\(L = P = \tfrac{3}{7}\)),
-  a \(x = 1\) zeruje oba mianowniki.
-
-## Film krok po kroku (zrobiony 2026-08-27, animacja napisana od nowa tego samego dnia)
-
-**Dziesięć kroków**, jeden do jednego z linijkami 1 do 10. Sprawdzenia film nie pokazuje
-(decyzja Henricha), więc rozwiązanie opisowe ma trzynaście pozycji, a film dziesięć kroków,
-i ten rozjazd jest świadomy.
-
-- Scena: `manimations/solutionZad8.py`, scenariusz ruchu z tabelą taktów i zieleni:
-  `manimations/zad8-kroki.md`.
-- Założenie \(x \ne 1\) pojawia się w kroku 2 i **zostaje w kadrze do końca filmu**, bo za nie
-  jest osobny punkt. Od drugiej wersji jest **szare** (`#666666`), nie czarne, i stoi **nad
-  rachunkiem, przy lewej krawędzi**, tak jak zapisuje się warunek na kartce (prośba Henricha).
-  Wcześniej wisiało pod równaniem i czytało się jak dopisek zrobiony na końcu.
-- Dopiski działań są jeszcze bledsze (`#888888`) i pojawiają się na końcu kroku, w którym
-  powstał stan, a gasną w kroku, który to działanie wykonuje. Tak samo jak w rozwiązaniu
-  opisowym.
-
-### Co było złe w pierwszej wersji i co się zmieniło
-
-Henrich, wieczorem 2026-08-27: *„morf wrzucony na całą stronę równania zasłania to, co dzieje
-się naprawdę"*, *„krok mógłby zawierać wyjaśnienie, a dopiero się kończyć prostym"*,
-*„animacje zrób dokładnie, co do znaku"*.
-
-- Pierwsza wersja robiła każdy krok jednym `TransformMatchingTex(..., transform_mismatches=True)`,
-  czyli oddawała ruch automatowi. W połowie animacji pół równania było kleksem, w którym nie
-  dało się odczytać ani starego zapisu, ani nowego. Sprawdzone na klatkach: w kroku 4 nawiasy
-  i cyfry nakładały się na siebie w jednym miejscu.
-- Druga wersja nie ma **ani jednego** automatycznego dopasowania. Każdy glif ma wskazaną parę,
-  a to, co się pojawia albo znika, jest wypisane z nazwy. Mapa glifów jest policzona z renderu
-  `index_labels` i spisana w komentarzu na górze sceny.
-- Pięć kroków (2, 3, 6, 7, 10) liczy w środku **rachunek pomocniczy** i dopiero potem zostawia
-  czystą linijkę. Największy jest krok 2: pokazuje, skąd bierze się \(x \ne 1\), bo oba
-  mianowniki zjeżdżają w dół, dostają warunek \(\ne 0\) i zostają rozwiązane po kolei.
-  Krok 2 trwa przez to około dwunastu sekund, i taka jest cena za to, że założenie przestaje
-  spadać z nieba. Henrich tę długość zaakceptował.
-- Dwa chwyty przeciw zasłanianiu: czynnik wylatujący z dopisku najpierw staje **nad** miejscem,
-  w które wejdzie (kroki 4 i 6), a składnik przenoszony na drugą stronę leci **łukiem nad
-  znakiem równości** (kroki 8 i 9). Po prostej oba przechodziły po literach.
-
-### Sprawdzone po renderze
-
-Styki klatek SSIM od 0,99970 do 0,99991 (`tools/styk-klatek.sh`), zieleń zapala się i gaśnie
-w każdym kroku do zera jednym ruchem (`tools/zielen-krokow.py`), `tools/test-krokow.js
---zadania=7` przechodzi na dwóch ziarnach, klatki obejrzane okiem w każdym kroku (pierwsza,
-po zapaleniu koloru, w połowie ruchu, ostatnia).
-
-### Opisy pod filmem
-
-Przepisane razem z animacją. Film pokazuje teraz to, co wcześniej niósł sam tekst (dlaczego
-\(x \ne 1\), skąd \(2(x-1)\), co się z czym skraca), więc opisy mówią już tylko **dlaczego
-wolno** tak przekształcić, a nie **co widać**.
+- Strona nie przewija się w bok: `scrollWidth - clientWidth = 0` w każdym ujęciu.
+- Siatka dwóch torów nie obcina się: `el.scrollWidth - el.clientWidth = 0` w każdym ujęciu.
+- Film: `tools/styk-klatek.sh` wszystkie osiemnaście styków od 0,99977 do 0,99993;
+  `tools/zielen-krokow.py` bez zastrzeżeń; `tools/test-krokow.js --zadania=7` na dwóch
+  ziarnach, na serwerze zdławionym, bez zastrzeżeń.
+- Rachunek sprawdzony osobno: wszystkie przejścia są tożsamościami, \(-6\) spełnia równanie
+  wyjściowe (\(L = P = \tfrac{3}{7}\)), a \(x = 1\) zeruje oba mianowniki.
 
 ## Podpowiedź
 
 Pole `hint` zostaje bez zmian: „Zanim cokolwiek policzysz, sprawdź, dla jakiego \(x\)
 mianownik byłby zerem. Potem popatrz na oba mianowniki uważnie: nie są tak różne, jak
-wyglądają." Przy tej metodzie podpowiedź i rozwiązanie mówią o tym samym pomyśle.
+wyglądają." Przy tej metodzie podpowiedź, dwa tory dziedziny i rozwiązanie mówią o tym
+samym pomyśle.
 
 ## Czego nie ustalono
 
-Nie wiadomo, co dokładnie było złe w rozwiązaniu skasowanym rano 2026-08-27: Henrich
-poprosił o pracę od zera bez podawania przyczyny.
+- Nie wiadomo, co dokładnie było złe w wersji z 2026-08-27: Henrich poprosił o pracę od
+  zera „na wzór zadania 7" bez podawania przyczyny. Powyższe dwie cechy zadania 7 to
+  odczytanie tego polecenia, potwierdzone przez niego przed pisaniem sceny, a nie diagnoza
+  poprzedniej wersji.
+- Nie wiadomo, czy dziewiętnaście kropek kroków dobrze się klika na telefonie Henricha:
+  to najdłuższy film w arkuszu (poprzedni rekord to czternaście kroków w zad. 7). Wpisane
+  do `TODO.md`, sekcja `TESTOWANIE HENRICH`.
+- Klasa `rozw-komentarz` nie jest już używana **w żadnym** zadaniu w żadnym arkuszu. CSS
+  i zasady zostają, ale to jest decyzja do podjęcia: albo wróci gdzie indziej, albo idzie
+  do kosza.

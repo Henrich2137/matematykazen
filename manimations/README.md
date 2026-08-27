@@ -221,7 +221,7 @@ Twarde reguły. Przed renderem przeczytaj, po renderze sprawdź.
     na zad. 8). Dwa miejsca, w których to wychodzi:
     - **czynnik wylatujący z dopisku działania** (`\big/ \cdot (x-1)`) najpierw staje NAD
       miejscem, w które wejdzie, i dopiero potem zjeżdża. Po skosie przez środek przechodziłby
-      po całym równaniu. Wzorzec: funkcja `postoj()` w `solutionZad8.py`, kroki 4 i 6;
+      po całym równaniu. Wzorzec: funkcja `postoj()` w `solutionZad8.py`, kroki 10 i 12;
     - **składnik przenoszony na drugą stronę** leci `path_arc` nad znakiem równości, a nie
       przez niego. Po prostej przez ułamek sekundy leży dokładnie na nim i oba znaki są
       nieczytelne. Łuk dobierz do długości lotu: przy krótkim przeskoku `PI/3` jeszcze nie
@@ -230,11 +230,18 @@ Twarde reguły. Przed renderem przeczytaj, po renderze sprawdź.
     obu stron równania (mnożenie obu stron). To jest ten rzadki przypadek, w którym dwie
     rzeczy dzieją się równolegle i tak ma być: uczeń widzi, że to jedna czynność.
 
-### Wyjaśnienie w środku kroku (ustalone 2026-08-27 na zad. 8)
+### Wyjaśnienie w środku kroku (ustalone 2026-08-27 na zad. 8, dziś nieużywane)
 
 Zasada Henricha: **krok może w środku pokazać wyjaśnienie, byle kończył się prostą linijką.**
 Nie łam dla tego reguły „jeden krok = jedno przekształcenie": linijka, która zostaje w kadrze
 na końcu kroku, dalej jest jedna. Zmienia się tylko to, że po drodze widać, SKĄD się wzięła.
+
+**Uwaga, stan na 2026-08-28: pasa rachunku pomocniczego nie ma już w żadnej scenie.**
+Zad. 8, jedyny użytkownik, został przepisany na wzór zad. 7 i każde ogniwo dostało tam
+**własny krok**, pełnym pismem, w głównym pasie rachunku (kroki 8, 12, 14 i 18). Jest to
+droższe, bo kroków robi się dziewiętnaście zamiast dziesięciu, ale uczeń w każdej klatce
+widzi linijkę do przepisania, a nie zapis roboczy. Zanim sięgniesz po pas pomocniczy,
+sprawdź, czy nie wystarczy dołożyć kroku.
 
 29. **Rachunek pomocniczy liczy się w osobnym pasie pod równaniem, mniejszym pismem** (72
     zamiast 100), i **znika przed końcem kroku**. Dzięki temu ostatnia klatka kroku dalej jest
@@ -246,9 +253,11 @@ na końcu kroku, dalej jest jedna. Zmienia się tylko to, że po drodze widać, 
     \(x = 1x\). Wypisz je jawnie, potem zwiń do wyniku.
 32. **To samo ogniwo ma stać w komentarzu rozwiązania opisowego.** Film i tekst mają tłumaczyć
     to samo w tym samym miejscu, inaczej uczeń dostaje dwie różne wersje rachunku.
-33. **Wolny krok jest w porządku.** Krok 2 zad. 8 wyprowadza dziedzinę z obu mianowników po
-    kolei i trwa dwanaście sekund. Henrich to zaakceptował: lepszy jeden długi krok, w którym
-    wszystko widać, niż założenie spadające z nieba.
+33. **Wolny krok jest w porządku, ale krótkie kroki są lepsze.** Wersja zad. 8 z 2026-08-27
+    wyprowadzała całą dziedzinę w JEDNYM kroku trwającym dwanaście sekund i Henrich to
+    zaakceptował. Wersja z 2026-08-28 rozbiła to na sześć kroków po parę sekund, dwoma
+    torami jak w zad. 7. Zasada, która z tego zostaje: założenie nigdy nie spada z nieba,
+    a jeśli wybierasz między jednym długim krokiem a kilkoma krótkimi, bierz krótkie.
 
 ### Układ kadru (ustalone 2026-08-27 na zad. 8)
 
@@ -256,8 +265,10 @@ na końcu kroku, dalej jest jedna. Zmienia się tylko to, że po drodze widać, 
     przy lewej krawędzi** i zostaje tam do końca filmu. Tak zapisuje się go na kartce: najpierw
     warunek, pod nim liczenie. Do 2026-08-27 wisiał pod równaniem i czytał się jak dopisek
     zrobiony na końcu (poprawione na prośbę Henricha).
-35. **Trzy pasy, zawsze te same**: warunek na górze, rachunek na środku, rachunek pomocniczy
-    pod spodem. Rachunek nie rusza się przez cały film, więc oko wie, gdzie patrzeć.
+35. **Trzy pasy, zawsze te same**: warunek na górze, rachunek na środku, a pod spodem pas
+    roboczy. W zad. 8 ten dolny pas trzymają dziś **dwa tory dziedziny** (kroki 2 do 7,
+    pełnym pismem, bo to są linijki rozwiązania), a od kroku 8 zostaje pusty. Rachunek nie
+    rusza się przez cały film, więc oko wie, gdzie patrzeć.
 36. **Szarość zamiast czerni tam, gdzie coś nie jest rachunkiem**: założenie `#666666`
     (czytelne, ale słabsze), dopisek działania `#888888` (jeszcze słabsze, bo to zapowiedź,
     a nie zapis). Sprawdzone `tools/odwroc-kolor.py`: w ciemnym motywie wychodzą `#959595`

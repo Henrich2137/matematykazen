@@ -432,57 +432,102 @@
         ],
         "hint": "Zanim cokolwiek policzysz, sprawdź, dla jakiego \\(x\\) mianownik byłby zerem.<br>Potem popatrz na oba mianowniki uważnie: nie są tak różne, jak wyglądają.",
         "formulasPage": null,
-        "solutionText": "<div class=\"rozwiazanie-kroki\"><div class=\"rozw-linia\">\\(\\dfrac{x + 3}{x - 1} = \\dfrac{x}{2x - 2}\\)</div><div class=\"rozw-komentarz\">Mianownik nie może być zerem. Lewy zeruje się dla \\(x = 1\\), a prawy też, bo \\(2x - 2 = 0\\) daje \\(2x = 2\\), czyli \\(x = 1\\). Oba mianowniki dają ten sam warunek, więc zapisujemy jedno założenie.</div><div class=\"rozw-linia\">\\(\\boldsymbol{x \\ne 1}\\)</div><div class=\"rozw-komentarz\">Prawy mianownik to dwójka razy ten sam nawias, który stoi po lewej. Widać to po rozpisaniu: \\(2x = 2 \\cdot x\\) oraz \\(2 = 2 \\cdot 1\\), a stąd już \\(2x - 2 = 2(x - 1)\\).</div><div class=\"rozw-linia\">\\(\\dfrac{x + 3}{x - 1} = \\dfrac{x}{2(x - 1)}\\)<span class=\"rozw-dzialanie\">\\(\\big/ \\cdot (x - 1)\\)</span></div><div class=\"rozw-komentarz\">Obie strony mnożymy przez \\(x - 1\\). Wolno, bo z założenia ten nawias nie jest zerem. Nawias dopisuje się w obu licznikach.</div><div class=\"rozw-linia\">\\(\\dfrac{(x + 3)(x - 1)}{x - 1} = \\dfrac{x(x - 1)}{2(x - 1)}\\)</div><div class=\"rozw-komentarz\">Ten sam nawias stoi teraz w liczniku i w mianowniku, po obu stronach, więc go skreślamy.</div><div class=\"rozw-linia\">\\(x + 3 = \\dfrac{x}{2}\\)<span class=\"rozw-dzialanie\">\\(\\big/ \\cdot 2\\)</span></div><div class=\"rozw-komentarz\">Został jeden ułamek. Mnożymy obie strony przez dwójkę: po lewej staje ona przed nawiasem, bo mnoży całą sumę, a po prawej skraca się z dwójką z mianownika.</div><div class=\"rozw-linia\">\\(2(x + 3) = x\\)</div><div class=\"rozw-komentarz\">Opuszczamy nawias, czyli dwójka mnoży każdy składnik osobno: \\(2 \\cdot x = 2x\\) oraz \\(2 \\cdot 3 = 6\\).</div><div class=\"rozw-linia\">\\(2x + 6 = x\\)<span class=\"rozw-dzialanie\">\\(\\big/ - 6\\)</span></div><div class=\"rozw-komentarz\">Liczby zbieramy po prawej stronie. Szóstka przechodzi ze zmianą znaku, więc \\(+6\\) staje się \\(-6\\).</div><div class=\"rozw-linia\">\\(2x = x - 6\\)<span class=\"rozw-dzialanie\">\\(\\big/ - x\\)</span></div><div class=\"rozw-komentarz\">Teraz to samo z niewiadomą. Przed iksem po prawej stoi plus, więc po przejściu na lewo pojawia się minus.</div><div class=\"rozw-linia\">\\(2x - x = -6\\)</div><div class=\"rozw-komentarz\">Dwa iksy bez jednego iksa to jeden iks, bo \\(x\\) znaczy tyle samo co \\(1x\\).</div><div class=\"rozw-linia\">\\(\\boldsymbol{x = -6}\\)</div><div class=\"rozw-komentarz\">Wynik spełnia założenie, bo \\(-6\\) nie jest jedynką.</div><div class=\"rozw-sprawdzenie\"><div class=\"rozw-komentarz\"><b>Sprawdzenie.</b> W miejsce każdego \\(x\\) wstawiamy \\((-6)\\), koniecznie w nawiasie, i liczymy osobno lewą stronę \\(L\\) oraz prawą stronę \\(P\\). Do punktów to już nie jest potrzebne, ale w minutę daje pewność, że nigdzie nie ma pomyłki.</div><div class=\"rozw-linia\">\\(L = \\dfrac{(-6) + 3}{(-6) - 1} = \\dfrac{-3}{-7} = \\dfrac{3}{7}\\)</div><div class=\"rozw-linia\">\\(P = \\dfrac{(-6)}{2 \\cdot (-6) - 2} = \\dfrac{-6}{-14} = \\dfrac{3}{7}\\)</div><div class=\"rozw-komentarz\">Obie strony dały tę samą liczbę.</div><div class=\"rozw-linia\">\\(L = P\\), więc rozwiązaniem równania jest \\(x = -6\\).</div></div></div>",
+        "solutionText": "<div class=\"rozwiazanie-kroki\"><div class=\"rozw-linia\">\\(\\dfrac{x + 3}{x - 1} = \\dfrac{x}{2x - 2}\\)</div><div class=\"rozw-2kol rozw-dwatory rozw-srodek\"><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(x - 1 \\ne 0\\)</div><div class=\"rozw-obl\">\\(2x - 2 \\ne 0\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(x \\ne 1\\)</div><div class=\"rozw-obl\">\\(2x \\ne 2\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\"></div><div class=\"rozw-obl\">\\(x \\ne 1\\)</div></div></div><div class=\"rozw-linia\">\\(\\boldsymbol{x \\ne 1}\\)</div><div class=\"rozw-linia\">\\(\\dfrac{x + 3}{x - 1} = \\dfrac{x}{2 \\cdot x - 2 \\cdot 1}\\)</div><div class=\"rozw-linia\">\\(\\dfrac{x + 3}{x - 1} = \\dfrac{x}{2(x - 1)}\\)<span class=\"rozw-dzialanie\">\\(\\big/ \\cdot (x - 1)\\)</span></div><div class=\"rozw-linia\">\\(\\dfrac{(x + 3)(x - 1)}{x - 1} = \\dfrac{x(x - 1)}{2(x - 1)}\\)</div><div class=\"rozw-linia\">\\(x + 3 = \\dfrac{x}{2}\\)<span class=\"rozw-dzialanie\">\\(\\big/ \\cdot 2\\)</span></div><div class=\"rozw-linia\">\\(2(x + 3) = 2 \\cdot \\dfrac{x}{2}\\)</div><div class=\"rozw-linia\">\\(2(x + 3) = x\\)</div><div class=\"rozw-linia\">\\(2 \\cdot x + 2 \\cdot 3 = x\\)</div><div class=\"rozw-linia\">\\(2x + 6 = x\\)<span class=\"rozw-dzialanie\">\\(\\big/ - 6\\)</span></div><div class=\"rozw-linia\">\\(2x = x - 6\\)<span class=\"rozw-dzialanie\">\\(\\big/ - x\\)</span></div><div class=\"rozw-linia\">\\(2x - x = -6\\)</div><div class=\"rozw-linia\">\\(2x - 1x = -6\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{x = -6}\\)</div><div class=\"rozw-linia\">Wynik spełnia założenie, bo \\(-6 \\ne 1\\), więc rozwiązaniem równania jest \\(x = -6\\).</div><div class=\"rozw-sprawdzenie\"><div class=\"rozw-linia\"><b>Sprawdzenie.</b> Liczbę ujemną wstawiamy w nawiasie.</div><div class=\"rozw-linia\">\\(L = \\dfrac{(-6) + 3}{(-6) - 1} = \\dfrac{-3}{-7} = \\dfrac{3}{7}\\)</div><div class=\"rozw-linia\">\\(P = \\dfrac{(-6)}{2 \\cdot (-6) - 2} = \\dfrac{-6}{-14} = \\dfrac{3}{7}\\)</div><div class=\"rozw-linia\">\\(L = P\\)</div></div></div>",
         "solutionStepByStep": [
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step1.mp4",
-                "text": "Zapisujemy równanie z zadania."
+                "text": "Iks stoi w obu mianownikach, więc zaczynamy od założenia."
             },
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step2.mp4",
-                "text": "Przez zero dzielić nie wolno, więc żaden mianownik nie może być zerem.<br>Oba mianowniki dają ten sam warunek, dlatego w rozwiązaniu wystarczy jedna linijka: \\(x \\ne 1\\).<br>Bez tego zapisu klucz CKE odbiera punkt, nawet przy dobrym wyniku."
+                "text": "Przez zero dzielić nie wolno, więc lewy mianownik nie może być zerem."
             },
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step3.mp4",
-                "text": "Wyłączamy dwójkę przed nawias, czyli zapisujemy ten sam mianownik inaczej.<br>Sprawdź na liczbach, dla \\(x = 5\\): \\(2 \\cdot 5 - 2 = 8\\) oraz \\(2(5 - 1) = 8\\).<br>Teraz w obu mianownikach stoi ten sam nawias \\(x - 1\\), a o to nam chodziło."
+                "text": "Jedynka przechodzi na drugą stronę i zmienia znak."
             },
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step4.mp4",
-                "text": "Obie strony mnożymy przez \\(x - 1\\).<br>Wolno, bo ten nawias nie jest zerem, i właśnie tego pilnuje założenie.<br>Równanie zostaje prawdziwe, skoro obie strony powiększamy tyle samo razy."
+                "text": "To samo pytanie o prawy mianownik.<br>Warunek z lewej zostaje na ekranie, bo na końcu oba się spotkają."
             },
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step5.mp4",
-                "text": "Ten sam czynnik w liczniku i w mianowniku skraca się do jedynki, więc znika z obu stron.<br>Znowu korzystamy z założenia: skracać przez zero nie można, a \\(x - 1\\) zerem nie jest."
+                "text": "Dwójka przechodzi na drugą stronę i zmienia znak."
             },
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step6.mp4",
-                "text": "Został jeden ułamek, więc obie strony mnożymy przez dwójkę.<br>Po prawej dwójka wchodzi przed ułamek i skraca się z dwójką z mianownika.<br>Po lewej staje przed nawiasem, bo mnoży całą sumę \\(x + 3\\), a nie sam iks."
+                "text": "Obie strony dzielimy przez dwa."
             },
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step7.mp4",
-                "text": "Opuszczamy nawias. Dwójka mnoży każdy składnik osobno:<br>\\(2 \\cdot x = 2x\\) oraz \\(2 \\cdot 3 = 6\\)."
+                "text": "Oba mianowniki dały ten sam warunek, więc w rozwiązaniu wystarczy jedna linijka.<br>Bez tego zapisu klucz CKE odbiera punkt, nawet przy dobrym wyniku."
             },
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step8.mp4",
-                "text": "Porządkujemy równanie: niewiadome mają zostać po jednej stronie, a liczby po drugiej.<br>Składnik, który przechodzi na drugą stronę, zmienia znak, więc \\(+6\\) staje się \\(-6\\).<br>Właśnie tu najczęściej ucieka znak, dlatego przenosimy po jednym składniku."
+                "text": "Rozpisujemy mianownik na iloczyny: \\(2x\\) to \\(2 \\cdot x\\), a \\(2\\) to \\(2 \\cdot 1\\)."
             },
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step9.mp4",
-                "text": "Teraz to samo z iksem, który stoi po prawej.<br>Przed nim nie ma żadnego znaku, czyli stoi tam plus, więc po przejściu na lewo pojawia się minus."
+                "text": "Obie dwójki to ta sama dwójka, więc wychodzi ona przed nawias.<br>Sprawdź na liczbach, dla \\(x = 5\\): \\(2 \\cdot 5 - 2 = 8\\) oraz \\(2(5 - 1) = 8\\).<br>Teraz w obu mianownikach stoi ten sam nawias, a o to nam chodziło."
             },
             {
                 "type": "video",
                 "src": "media/zad8/solution-step-by-step/step10.mp4",
-                "text": "Dwa iksy bez jednego iksa to jeden iks, bo \\(x\\) znaczy tyle samo co \\(1x\\).<br>Wynik \\(x = -6\\) mieści się w założeniu, bo nie jest jedynką."
+                "text": "Obie strony mnożymy przez \\(x - 1\\).<br>Wolno, bo ten nawias nie jest zerem, i właśnie tego pilnuje założenie."
+            },
+            {
+                "type": "video",
+                "src": "media/zad8/solution-step-by-step/step11.mp4",
+                "text": "Ten sam czynnik w liczniku i w mianowniku skraca się do jedynki, więc znika z obu stron."
+            },
+            {
+                "type": "video",
+                "src": "media/zad8/solution-step-by-step/step12.mp4",
+                "text": "Został jeden ułamek, więc obie strony mnożymy przez dwójkę.<br>Po lewej dwójka staje przed nawiasem, bo mnoży całą sumę \\(x + 3\\), a nie sam iks."
+            },
+            {
+                "type": "video",
+                "src": "media/zad8/solution-step-by-step/step13.mp4",
+                "text": "Po prawej dwójka wchodzi przed ułamek i skraca się z dwójką z mianownika."
+            },
+            {
+                "type": "video",
+                "src": "media/zad8/solution-step-by-step/step14.mp4",
+                "text": "Opuszczamy nawias, czyli dwójka mnoży każdy składnik osobno."
+            },
+            {
+                "type": "video",
+                "src": "media/zad8/solution-step-by-step/step15.mp4",
+                "text": "Wykonujemy oba mnożenia: \\(2 \\cdot x = 2x\\) oraz \\(2 \\cdot 3 = 6\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad8/solution-step-by-step/step16.mp4",
+                "text": "Szóstka przechodzi na drugą stronę i zmienia znak.<br>Właśnie tu najczęściej ucieka znak, dlatego przenosimy po jednym składniku."
+            },
+            {
+                "type": "video",
+                "src": "media/zad8/solution-step-by-step/step17.mp4",
+                "text": "Iks też przechodzi. Przed nim nie ma żadnego znaku, czyli stoi tam plus, więc po drugiej stronie pojawia się minus."
+            },
+            {
+                "type": "video",
+                "src": "media/zad8/solution-step-by-step/step18.mp4",
+                "text": "Przy drugim iksie dopisujemy jedynkę, bo \\(x\\) znaczy tyle samo co \\(1x\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad8/solution-step-by-step/step19.mp4",
+                "text": "Dwa iksy bez jednego iksa to jeden iks.<br>Wynik \\(x = -6\\) mieści się w założeniu, bo nie jest jedynką."
             }
         ],
         "solutionWidget": null

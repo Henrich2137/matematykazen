@@ -95,19 +95,31 @@ się kończyć prostym". To nie łamie zasady „jeden krok = jedno przekształc
 zostaje w kadrze na końcu kroku, dalej jest jedna. Zmienia się tylko to, że po drodze widać,
 skąd się wzięła.
 
-**Jak to zaprojektować:**
+**Najpierw sprawdź, czy nie wystarczy DOŁOŻYĆ KROKU** (dopisane 2026-08-28). Ogniwo
+zapisane jako pełna, osobna linijka rachunku jest lepsze od ogniwa liczonego na boku:
+uczeń w każdej klatce widzi zapis do przepisania, a rozwiązanie opisowe może zostać samymi
+wzorami. Tak robi zad. 7 („sama reguła znaku", „sam porządek zapisu") i tak robi zad. 8 po
+przeróbce z 2026-08-28: \(2 \cdot x - 2 \cdot 1\), \(2 \cdot \frac{x}{2}\),
+\(2 \cdot x + 2 \cdot 3\) i \(2x - 1x\) są tam osobnymi krokami. Kosztuje to więcej
+kroków (dziewiętnaście zamiast dziesięciu) i tyle.
+
+**Jeśli mimo to wyjaśniasz w środku kroku:**
 
 - Wyjaśnienie liczy się **w pasie pod rachunkiem, mniejszym pismem**, i znika przed końcem
   kroku. Rozmiar mówi uczniowi, co jest linijką rozwiązania, a co pracą na boku.
 - Wyjaśnienie to najczęściej **dopisane ogniwo**: to, co ekspert robi w głowie.
   \(2x-2 = 2\cdot x - 2\cdot 1 = 2(x-1)\), \(2(x+3) = 2\cdot x + 2\cdot 3\), \(x = 1x\).
-- **Warunek, który obowiązuje przez całe zadanie** (dziedzina, założenie), wyprowadź w kroku,
-  w którym powstaje, a potem **odstaw go NAD rachunek, przy lewej krawędzi**, gdzie zostanie
-  do końca filmu. Tak zapisuje się go na kartce.
-- **Wolny krok jest w porządku**, jeśli niesie treść. Krok wyprowadzający dziedzinę z dwóch
-  mianowników trwa w zad. 8 dwanaście sekund i tak ma być.
 - To samo ogniwo **powtórz w komentarzu rozwiązania opisowego**. Film i tekst mają tłumaczyć
   to samo w tym samym miejscu.
+
+**Niezależnie od tego wyboru:**
+
+- **Warunek, który obowiązuje przez całe zadanie** (dziedzina, założenie), wyprowadź tam,
+  gdzie powstaje, a potem **odstaw go NAD rachunek, przy lewej krawędzi**, gdzie zostanie
+  do końca filmu. Tak zapisuje się go na kartce.
+- **Wolny krok jest w porządku**, jeśli niesie treść, ale przy wyborze między jednym długim
+  a kilkoma krótkimi bierz krótkie. Dziedzina zad. 8 najpierw szła jednym krokiem na
+  dwanaście sekund, a potem sześcioma krokami po parę sekund; ta druga wersja jest lepsza.
 
 ---
 

@@ -11,7 +11,7 @@ tego samego dnia na zadaniach 3, 4, 6, 7 i 8. Wzorce do podejrzenia, wszystkie w
 | 4 | wąskie rozwiązanie wyśrodkowane na karcie (`rozw-srodek`) |
 | 6 | jedna kolumna, jeden wzór na górze, ułamki przez `\dfrac` |
 | 7 | dwa tory obok siebie, które na końcu schodzą się w jeden |
-| 8 | linijki przeplecione bledszymi komentarzami, dopisek działania w osobnym spanie, odkreślone sprawdzenie |
+| 8 | dwa tory **wewnątrz** rozwiązania jednokolumnowego, dopisek działania w osobnym spanie, odkreślone sprawdzenie |
 
 Bliźniaczy plik dla filmów: `manimations/README.md`, sekcja „Zasady krok po kroku, wersja krótka".
 Wygląd i nazwy klas CSS: `ARCHITECTURE_CSS.md`. Znaczenie kolorów: `COLORS.md`.
@@ -68,9 +68,17 @@ niż kilka linijek, oddaj kolumnę wzorów i przenieś wzory nad rachunek.
 10. **Kilka linijek rachunku pod jednym wzorem** idzie w jednym `.rozw-obl`, rozdzielone `<br>`.
     Wzór stanie wtedy na środku całej grupy.
 
-## Komentarze między linijkami (od 2026-08-27)
+## Komentarze między linijkami (od 2026-08-27, dziś nieużywane)
 
 Zasada Henricha z 2026-08-27, wprowadzona na zad. 8. Dotyczy układu jednokolumnowego.
+
+**Uwaga, stan na 2026-08-28: `rozw-komentarz` nie stoi już w ŻADNYM zadaniu żadnego
+arkusza.** Zad. 8, jedyny użytkownik, został tego dnia przepisany na wzór zad. 7:
+zamiast tłumaczyć przejście zdaniem, dopisuje ogniwo jako osobną linijkę rachunku
+(\(2 \cdot x - 2 \cdot 1\), \(2 \cdot x + 2 \cdot 3\), \(2x - 1x\)). CSS i te
+zasady zostają, bo mogą się przydać, ale zanim ich użyjesz, sprawdź, czy przypadkiem
+nie chodzi po prostu o rozbicie kroku (punkt 15e). `rozw-dzialanie` i `rozw-sprawdzenie`
+z tej samej daty są używane dalej.
 
 15a. **Między linijkami rachunku wolno napisać, co się w przejściu dzieje.** Jedno zdanie,
      w `<div class="rozw-komentarz">`, bledsze od rachunku (ten sam token co kolumna wzorów).
@@ -167,9 +175,10 @@ Szkielet do przeklejania:
 22. **Założenie (dziedzina) idzie NA GÓRĘ, nad rachunek**, razem z jednym zdaniem, skąd się
     wzięło („mianownik nie może być zerem, oba zerują się dla \(x=1\)"). CKE daje za nie
     osobny punkt, więc ma być widoczne, a nie schowane w środku rachunku.
-    W układzie z komentarzami wygląda to tak, że **założenie jest DRUGĄ linijką**, zaraz pod
-    zapisem z treści, a zdanie o mianowniku stoi nad nim jako komentarz (Henrich, 2026-08-27,
-    zad. 8). Osobny akapit nad blokiem przestaje być wtedy potrzebny.
+    Osobny akapit nad blokiem nie jest do tego potrzebny: założenie jest po prostu jedną
+    z pierwszych linijek rachunku. W zad. 8 (wersja z 2026-08-28) idzie jeszcze dalej i samo
+    **wyprowadzenie** dziedziny stoi na górze, dwoma torami, po jednym na każdy mianownik,
+    a wytłuszczony wspólny warunek zamyka tę część.
 23. **Ostatnia linijka sprawdza założenie i ogłasza wynik**: „wynik spełnia założenie, bo
     \(-6 \ne 1\), więc rozwiązaniem równania jest \(x=-6\)".
 24. **Działanie wykonywane na obu stronach zapisuj po szkolnemu, na tej samej linijce**:
