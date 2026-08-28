@@ -1,13 +1,5 @@
 # Zadanie 9, kroki rozwiązania
 
-> **Uwaga: czekają poprawki** (Henrich, 2026-08-28, wpisane w `TODO.md`, sekcja
-> DO ZROBIENIA). Krok 5: współczynniki mniejsze i rozsunięte, a przed \(x^{2}\) ma
-> najpierw pojawić się jedynka, z której rodzi się \(a = 1\). Krok 6: nierówność znika,
-> wjeżdża wzór na deltę w postaci literowej, a współczynniki wędrują na swoje miejsca
-> i tam zamieniają się w liczby. Kroki 10 i 11: oba wzory na pierwiastki wjeżdżają razem,
-> pierwszy jest podstawiany i rozwiązywany do końca, potem drugi, a współczynniki są
-> przywoływane, nie wstawiane znikąd. Zasady spisane: `manimations/README.md`, punkty 37 do 41.
-
 Otwórz w podglądzie (Ctrl+Shift+V). Notacja jak w `tablica-wzorow-transkrypt/`.
 
 Scena: `solutionZad9.py`. Projekt dydaktyczny i uzasadnienie metody:
@@ -16,7 +8,7 @@ Scena: `solutionZad9.py`. Projekt dydaktyczny i uzasadnienie metody:
 Napisane **od nowa 2026-08-28, na wzór zadań 7 i 8**. Poprzednia wersja miała osiem
 kroków, siedem linijek w rozwiązaniu opisowym (czyli rozjazd), liczyła ogniwa w głowie
 i nie pokazywała paraboli, przez co wniosek o przedziale niósł wyłącznie zwinięty opis
-pod krokiem. Ta wersja ma dwadzieścia jeden kroków, jeden do jednego z linijkami rachunku.
+pod krokiem. Wersja druga (2026-08-28, po uwagach Henricha) ma dwadzieścia dwa kroki, jeden do jednego z linijkami rachunku.
 
 ## Co się zmieniło wobec starej wersji
 
@@ -49,34 +41,49 @@ Wynik: \(x \in \langle -1,\ 7\rangle\), zgodny z kluczem CKE.
 | 2 | \(x \cdot x - x \cdot 6 \le 7\) | dwa nowe \(x\) i kropki mnożenia |
 | 3 | \(x^{2} - 6x \le 7\) | wykładnik \(2\) |
 | 4 | \(x^{2} - 6x - 7 \le 0\) | minus przy siódemce i zero |
-| 5 | \(a = 1\), \(b = -6\), \(c = -7\) | znaki minus i nowa jedynka |
-| 6 | \(\Delta = (-6)^{2} - 4 \cdot 1 \cdot (-7)\) | wstawiane liczby |
+| 5 | \(1x^{2} - 6x - 7 \le 0\) oraz pas notatek \(a = 1\), \(b = -6\), \(c = -7\) | jedynka, potem oba minusy |
+| 6 | \(\Delta = (-6)^{2} - 4 \cdot 1 \cdot (-7)\) | wartości przylatujące z pasa |
 | 7 | \(\Delta = 36 + 28\) | plus przed \(28\) |
 | 8 | \(\Delta = 64\) | nic |
 | 9 | \(\sqrt{\Delta} = 8\) | \(8\) |
-| 10 | \(x_{1,2} = \dfrac{-(-6) \pm 8}{2 \cdot 1}\) | wstawiane liczby |
-| 11 | \(x_{1,2} = \dfrac{6 \pm 8}{2}\) | \(6\) z dwóch minusów |
-| 12 | \(x_{1} = \dfrac{6 - 8}{2}\) | znak minus |
+| 10 | oba wzory na pierwiastki, literowo; \(\sqrt{\Delta}\) dołącza do pasa | nic |
+| 11 | \(x_{1} = \dfrac{-(-6) - 8}{2 \cdot 1}\) | wartości przywołane z pasa |
+| 12 | \(x_{1} = \dfrac{6 - 8}{2}\) | \(6\) z dwóch minusów |
 | 13 | \(x_{1} = \dfrac{-2}{2}\) | \(-2\) |
 | 14 | \(x_{1} = -1\) | nic |
-| 15 | wynik odjeżdża w górę, wjeżdża \(x_{2} = \dfrac{6+8}{2}\) | nic, krok przenoszący |
-| 16 | \(x_{2} = \dfrac{14}{2}\) | \(14\) |
-| 17 | \(x_{2} = 7\) | nic |
-| 18 | \(x_{1} = -1\), \(x_{2} = 7\) w jednej linijce | nic |
-| 19 | szkic paraboli ramionami w górę przez \(-1\) i \(7\) | nic |
-| 20 | fragment pod osią i odcinek na osi | fragment i odcinek |
-| 21 | \(x \in \langle -1,\ 7\rangle\) | nic |
+| 15 | \(x_{2} = \dfrac{-(-6) + 8}{2 \cdot 1}\), pierwszy wynik czeka po lewej | wartości przywołane z pasa |
+| 16 | \(x_{2} = \dfrac{6 + 8}{2}\) | \(6\) z dwóch minusów |
+| 17 | \(x_{2} = \dfrac{14}{2}\) | \(14\) |
+| 18 | \(x_{2} = 7\) | nic |
+| 19 | \(x_{1} = -1\), \(x_{2} = 7\) w jednej linijce, pas znika | nic |
+| 20 | szkic paraboli ramionami w górę przez \(-1\) i \(7\) | nic |
+| 21 | fragment pod osią i odcinek na osi | fragment i odcinek |
+| 22 | \(x \in \langle -1,\ 7\rangle\) | nic |
 
-Rysunek w krokach 19 do 21 jest **szkicem**: oś \(x\), dwa podpisane punkty, gładka
+Trzy rzeczy, o które prosił Henrich po pierwszej wersji, i jak zostały zrobione:
+
+- **jedynka przed \(x^{2}\)**: krok 5 najpierw dopisuje ją w samej nierówności, i dopiero
+  z niej rodzi się \(a = 1\);
+- **podstawianie do wzoru**: krok 6 najpierw pokazuje wzór literowy, a wartości przylatują
+  z pasa notatek na miejsca liter, zamiast pojawiać się z niczego;
+- **dwa wzory na pierwiastki**: krok 10 wprowadza oba naraz, tak jak stoją w tablicy, a potem
+  pierwszy jest liczony do końca (kroki 11 do 14) i dopiero potem drugi (15 do 18).
+
+**Pas notatek** (\(a\), \(b\), \(c\), a od kroku 10 też \(\sqrt{\Delta}\)) stoi pod
+rachunkiem od kroku 5 do 18, mniejszym pismem i rozsunięty. To z niego wracają wartości
+za każdym razem, gdy są potrzebne.
+
+Rysunek w krokach 20 do 22 jest **szkicem**: oś \(x\), dwa podpisane punkty, gładka
 parabola. Bez siatki, bez osi \(y\), bez skali. Chodzi o kształt i o to, gdzie parabola
 leży pod osią.
 
 ## Co zmierzono po renderze (2026-08-28)
 
-- `tools/styk-klatek.sh`: dwadzieścia styków, od 0,99900 do 0,99995, bez zastrzeżeń.
+- `tools/styk-klatek.sh`: dwadzieścia jeden styków, od 0,99924 do 0,99995, bez zastrzeżeń.
 - `tools/zielen-krokow.py`: każdy krok zaczyna i kończy się bez zieleni.
 - `tools/test-krokow.js --zadania=8`: dwa ziarna, bez zastrzeżeń.
-- Kroki 19 i 20 dostały dodatkowy postój 0,35 s na końcu. Bez niego styki 19→20 i 20→21
-  schodziły poniżej progu 0,999: rysunek zajmuje pół kadru gładkimi krzywymi, a koder
-  H.264 potrzebuje kilku klatek bez ruchu, żeby ostatnia klatka kroku zgadzała się
-  z pierwszą klatką następnego. Wydłużenie postoju do 0,8 s nie dało już nic.
+- Kroki 20 i 21 dostały dodatkowy postój 0,35 s na końcu, a krok 22 postój 0,2 s na starcie.
+  Bez tego styki przy rysunku schodziły poniżej progu 0,999: rysunek zajmuje pół kadru
+  gładkimi krzywymi, a koder H.264 potrzebuje kilku klatek bez ruchu. Postój na starcie
+  kroku daje najwięcej, bo pierwsza klatka pliku jest wtedy czystym stanem, a nie klatką
+  \(t = 0\) animacji (styk 21 do 22: 0,99895 przed, 0,99924 po).

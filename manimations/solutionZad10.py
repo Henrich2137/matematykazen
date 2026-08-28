@@ -3,23 +3,32 @@ from manim import *
 # Zadanie 10 (zamkniete z lukami, 4 pkt). Odczyt z wykresu funkcji danej trzema
 # wzorami. Odpowiedzi: (-4, 4>, <-1, 3>, (1, 3), (-4, -2>.
 #
-# Projekt: issues/projekt-zad9-zad10-2024-grudzien.md. Szesnascie krokow, jeden
-# do jednego z szesnastoma linijkami w solutionText.
+# Projekt: issues/projekt-zad9-zad10-2024-grudzien.md. Dziewiec krokow, jeden
+# do jednego z dziewiecioma linijkami w solutionText.
 #
-# Uklad sceny (inny niz w pozostalych scenach, bo tu nie ma rachunku do
-# rozpisania, tylko rysunek):
+# WERSJA DRUGA, 2026-08-28, po uwagach Henricha do pierwszej (TODO.md):
+#   - szesnascie krokow zeszlo do dziewieciu. W filmie, ktory nie liczy, tylko
+#     czyta rysunek, jednostka kroku jest JEDNA MYSL, a nie jeden symbol
+#     (README, punkt 42): oba konce przedzialu odczytuje sie razem;
+#   - krok z warunkiem y < 0 i strzalka w dol wypadl: nastepny krok i tak
+#     zapala fragment wykresu pod osia, wiec strzalka nic nie dokladala
+#     (README, punkt 43);
+#   - pierwsza czesc idzie wolniej (trzy kroki), bo tam pierwszy raz tlumaczy
+#     sie kolko i kropke; kazda kolejna ma dwa kroki;
+#   - w ostatnim kroku etykieta czesci znika, zeby na koniec w kadrze zostal
+#     sam wykres i cztery odpowiedzi.
+#
+# Uklad sceny:
 #   - LEWA polowa kadru: uklad wspolrzednych z wykresem, odwzorowany z arkusza
 #     (matura/2024-grudzien/media/zad10/zad10rys.png): ten sam fiolet, ten sam
 #     podpis y = f(x), kolko otwarte w (-4, 3) i kropka pelna w (4, 1).
-#     Zakres osi y jest wezszy niz w arkuszu (-2 do 4 zamiast -5 do 5), bo
-#     wykres i tak zyje miedzy -1 a 3, a kadr 16:9 jest niski. Jednostki na obu
-#     osiach sa rowne, wiec ksztalt wykresu jest ten sam co w arkuszu.
-#   - PRAWA polowa: etykieta biezacej czesci (zmienia sie cztery razy), zapis
-#     budowany z dwoch koncow przedzialu i lista zamknietych odpowiedzi, ktora
-#     rosnie do czterech pozycji i zostaje w kadrze do konca.
+#     Zakres osi y jest wezszy niz w arkuszu (-2 do 4 zamiast -5 do 5), bo kadr
+#     16:9 jest niski. Jednostki na obu osiach sa rowne, wiec ksztalt sie zgadza.
+#   - PRAWA polowa: etykieta biezacej czesci, zapis budowany z dwoch koncow
+#     i lista zamknietych odpowiedzi, ktora rosnie do czterech pozycji.
 #
-# Wykres, os, siatka i lista wynikow to SCENOGRAFIA: stoja przez caly film
-# i nigdy nie gasna. Kazdy krok dokłada tylko to, co w nim zielone.
+# Wykres, os, siatka i lista wynikow to SCENOGRAFIA: stoja przez caly film.
+# Kazdy krok dokłada tylko to, co w nim zielone.
 #
 # Kolor: zielone = to, na co uczen ma w tym kroku patrzec (COLORS.md, rola
 # "oznaczenie miejsca"). Wykres zostaje fioletowy (#7a3fa8, rola "wykres
@@ -90,8 +99,6 @@ class Zad10(Scene):
         def p(x, y):
             return plansza.c2p(x, y)
 
-        # Liczby przy osiach. Wpisywane recznie, bo include_numbers stawia je
-        # po obu stronach zera i przy tej skali wchodza na siatke.
         liczby = VGroup()
         for x in (-4, -2, 1, 2, 3, 4):
             n = MathTex(str(x), color=SZARY_OSIE, font_size=30)
@@ -107,7 +114,6 @@ class Zad10(Scene):
         os_y_podpis.next_to(p(0, 4), UP + LEFT, buff=0.06)
         liczby.add(os_x_podpis, os_y_podpis)
 
-        # Wykres: lamana przez cztery punkty, ciagla od (-4, 3) do (4, 1).
         wykres = VMobject(color=FIOLET, stroke_width=6)
         wykres.set_points_as_corners([p(-4, 3), p(-2, 3), p(2, -1), p(4, 1)])
 
@@ -120,10 +126,12 @@ class Zad10(Scene):
         podpis_f = MathTex("y = f(x)", color=FIOLET, font_size=40)
         podpis_f.move_to(p(2.5, 2.6))
 
-        scenografia = VGroup(plansza, liczby, wykres, koniec_otwarty,
-                             koniec_pelny, podpis_f)
+        def zapis(*czesci):
+            g = VGroup(*[MathTex(c, color=BLACK, font_size=60) for c in czesci])
+            g.arrange(RIGHT, buff=0.06)
+            g.move_to([KOLUMNA_X, ZAPIS_Y, 0])
+            return g
 
-        # Lista zamknietych odpowiedzi, po prawej. Powstaje po jednej pozycji.
         def pozycja_listy(nr, wzor):
             g = VGroup(
                 MathTex(f"{nr}.", color=BLACK, font_size=40),
@@ -132,6 +140,14 @@ class Zad10(Scene):
             g.move_to([KOLUMNA_X, LISTA_Y - (nr - 1) * LISTA_KROK, 0])
             g.shift(RIGHT * (LISTA_LEWO - g.get_left()[0]))
             return g
+
+        def duch(wzorzec, gdzie, kolo=False):
+            """Kopia znacznika, ktora startuje NIEWIDOCZNA. Dolozona wprost
+            na oryginal robilaby podwojna krawedz juz w pierwszej klatce
+            kroku, czyli rozjazd na styku (tools/styk-klatek.sh)."""
+            k = wzorzec.copy().set_opacity(0).move_to(gdzie)
+            self.add(k)
+            return k
 
         # ================================================================
         # KROK 1. Wykres pojawia sie od zera. Pod nim, na osi x, zapala sie
@@ -159,54 +175,36 @@ class Zad10(Scene):
         self.wait(0.6)
 
         # ================================================================
-        # KROK 2. Lewy koniec: kolko otwarte zjezdza na os i zostaje tam
-        # jako pusta kropka. Po prawej pojawia sie zapis "(-4".
+        # KROK 2. OBA konce naraz: kolko otwarte zjezdza na os jako pusta
+        # kropka, kropka pelna jako zamalowana. Po prawej powstaja dwa
+        # kawalki zapisu. Zielone: konce i to, co z nich powstaje.
         # ================================================================
         self.next_section("krok2")
-        zapis1 = VGroup(
-            MathTex("(-4", color=BLACK, font_size=60),
-            MathTex(",\\ ", color=BLACK, font_size=60),
-            MathTex("4\\rangle", color=BLACK, font_size=60),
-        ).arrange(RIGHT, buff=0.06)
-        zapis1.move_to([KOLUMNA_X, ZAPIS_Y, 0])
+        zapis1 = zapis("(-4", ",\\ ", "4\\rangle")
 
-        # Kopia startuje NIEWIDOCZNA. Dolozona wprost na oryginal robilaby
-        # podwojna krawedz juz w pierwszej klatce kroku, czyli rozjazd ze
-        # styku z krokiem poprzednim (zlapane przez tools/styk-klatek.sh).
-        kopia_o = koniec_otwarty.copy().set_opacity(0)
-        self.add(kopia_o)
+        kopia_o = duch(koniec_otwarty, koniec_otwarty.get_center())
+        kopia_k = duch(koniec_pelny, koniec_pelny.get_center())
         self.play(
             kopia_o.animate.set_opacity(1).set_color(ZIELONY).set_fill(WHITE, 1),
-            run_time=0.3,
+            kopia_k.animate.set_opacity(1).set_color(ZIELONY),
+            run_time=0.4,
         )
-        cel_o = Circle(
-            radius=0.09, color=ZIELONY, stroke_width=5,
-            fill_color=WHITE, fill_opacity=1,
-        ).move_to(p(-4, 0))
-        self.play(Transform(kopia_o, cel_o), run_time=1.0)
+        self.play(
+            kopia_o.animate.move_to(p(-4, 0)),
+            kopia_k.animate.move_to(p(4, 0)),
+            run_time=1.0,
+        )
         zapis1[0].set_color(ZIELONY)
-        self.play(FadeIn(zapis1[0]), run_time=0.6)
-        self.zgas(kopia_o, zapis1[0])
-        self.wait(0.6)
-
-        # ================================================================
-        # KROK 3. Prawy koniec: kropka pelna zjezdza na os. Zapis "4>".
-        # ================================================================
-        self.next_section("krok3")
-        kopia_k = koniec_pelny.copy().set_opacity(0)
-        self.add(kopia_k)
-        self.play(kopia_k.animate.set_opacity(1).set_color(ZIELONY), run_time=0.3)
-        self.play(kopia_k.animate.move_to(p(4, 0)), run_time=1.0)
         zapis1[2].set_color(ZIELONY)
-        self.play(FadeIn(zapis1[2]), run_time=0.6)
-        self.zgas(kopia_k, zapis1[2])
+        self.play(FadeIn(zapis1[0]), FadeIn(zapis1[2]), run_time=0.7)
+        self.zgas(kopia_o, kopia_k, zapis1[0], zapis1[2])
         self.wait(0.6)
 
         # ================================================================
-        # KROK 4. Oba konce skladaja sie w jeden przedzial i odjezdzaja
+        # KROK 3. Oba konce skladaja sie w jeden przedzial i odjezdzaja
         # na liste odpowiedzi.
         # ================================================================
-        self.next_section("krok4")
+        self.next_section("krok3")
         self.play(FadeIn(zapis1[1]), run_time=0.4)
         poz1 = pozycja_listy(1, "(-4,\\ 4\\rangle")
         self.play(
@@ -220,9 +218,9 @@ class Zad10(Scene):
         self.wait(0.6)
 
         # ================================================================
-        # KROK 5. Druga czesc: ten sam wykres, ale rzut na os y.
+        # KROK 4. Druga czesc: ten sam wykres, ale rzut na os y.
         # ================================================================
-        self.next_section("krok5")
+        self.next_section("krok4")
         et2 = self.etykieta("2. Zbiór wartości")
         self.play(FadeOut(et1), FadeIn(et2), run_time=0.5)
         pas_wartosci = Line(p(0, -1), p(0, 3), color=ZIELONY, stroke_width=8)
@@ -237,50 +235,38 @@ class Zad10(Scene):
         self.wait(0.6)
 
         # ================================================================
-        # KROK 6. Najnizszy punkt wykresu jedzie na os y.
+        # KROK 5. Najnizszy punkt i poziomy odcinek jada na os y, a z nich
+        # od razu powstaje caly przedzial i idzie na liste.
         # ================================================================
-        self.next_section("krok6")
-        zapis2 = VGroup(
-            MathTex("\\langle -1", color=BLACK, font_size=60),
-            MathTex(",\\ ", color=BLACK, font_size=60),
-            MathTex("3\\rangle", color=BLACK, font_size=60),
-        ).arrange(RIGHT, buff=0.06)
-        zapis2.move_to([KOLUMNA_X, ZAPIS_Y, 0])
+        self.next_section("krok5")
+        zapis2 = zapis("\\langle -1", ",\\ ", "3\\rangle")
 
-        dol = Dot(p(2, -1), radius=0.09, color=ZIELONY)
-        self.play(FadeIn(dol), run_time=0.4)
-        self.play(dol.animate.move_to(p(0, -1)), run_time=1.0)
-        zapis2[0].set_color(ZIELONY)
-        self.play(FadeIn(zapis2[0]), run_time=0.6)
-        self.zgas(dol, zapis2[0])
-        self.wait(0.6)
-
-        # ================================================================
-        # KROK 7. Poziomy odcinek lezy na wysokosci 3, wiec ta wartosc
-        # jest osiagana. Jedzie na os y.
-        # ================================================================
-        self.next_section("krok7")
+        dol = Dot(p(2, -1), radius=0.09, color=ZIELONY).set_opacity(0)
         gora = Line(p(-4, 3), p(-2, 3), color=ZIELONY, stroke_width=8)
-        self.play(Create(gora), run_time=0.7)
-        kropka_g = Dot(p(-2, 3), radius=0.09, color=ZIELONY)
-        self.play(FadeIn(kropka_g), run_time=0.3)
-        self.play(kropka_g.animate.move_to(p(0, 3)), run_time=0.9)
+        kropka_g = Dot(p(-2, 3), radius=0.09, color=ZIELONY).set_opacity(0)
+        self.add(dol, kropka_g)
+        self.play(
+            dol.animate.set_opacity(1),
+            Create(gora),
+            kropka_g.animate.set_opacity(1),
+            run_time=0.8,
+        )
+        self.play(
+            dol.animate.move_to(p(0, -1)),
+            kropka_g.animate.move_to(p(0, 3)),
+            run_time=1.0,
+        )
+        zapis2[0].set_color(ZIELONY)
         zapis2[2].set_color(ZIELONY)
-        self.play(FadeIn(zapis2[2]), run_time=0.6)
-        self.zgas(gora, kropka_g, zapis2[2])
-        self.zamknij(gora)
-        self.wait(0.6)
-
-        # ================================================================
-        # KROK 8. Skladamy przedzial i odkladamy na liste.
-        # ================================================================
-        self.next_section("krok8")
+        self.play(FadeIn(zapis2[0]), FadeIn(zapis2[2]), run_time=0.7)
+        self.zgas(gora, dol, kropka_g, zapis2[0], zapis2[2])
         self.play(FadeIn(zapis2[1]), run_time=0.4)
         poz2 = pozycja_listy(2, "\\langle -1,\\ 3\\rangle")
         self.play(
             Transform(zapis2, poz2[1].copy()),
             FadeIn(poz2[0]),
-            FadeOut(pas_wartosci), FadeOut(kropka_g), FadeOut(dol),
+            FadeOut(pas_wartosci), FadeOut(gora), FadeOut(dol),
+            FadeOut(kropka_g),
             run_time=1.2,
         )
         self.remove(zapis2)
@@ -288,28 +274,12 @@ class Zad10(Scene):
         self.wait(0.6)
 
         # ================================================================
-        # KROK 9. Trzecia czesc: wartosc ujemna to y < 0, czyli wykres
-        # pod osia x.
+        # KROK 6. Trzecia czesc: fragment wykresu pod osia zapala sie
+        # jednym ciagiem i rzutuje na os x.
         # ================================================================
-        self.next_section("krok9")
+        self.next_section("krok6")
         et3 = self.etykieta("3. Wartości ujemne")
         self.play(FadeOut(et2), FadeIn(et3), run_time=0.5)
-        warunek = MathTex("y < 0", color=ZIELONY, font_size=40)
-        warunek.next_to(p(-3.6, -1), LEFT, buff=0.0).shift(RIGHT * 0.35)
-        strzalka = Arrow(
-            start=p(-4.6, -0.2), end=p(-4.6, -1.6),
-            color=ZIELONY, stroke_width=4, buff=0,
-            max_tip_length_to_length_ratio=0.25,
-        )
-        self.play(FadeIn(warunek), GrowArrow(strzalka), run_time=0.8)
-        self.zgas(warunek, strzalka)
-        self.wait(0.6)
-
-        # ================================================================
-        # KROK 10. Fragment wykresu pod osia zapala sie jednym ciagiem
-        # i rzutuje sie na os x.
-        # ================================================================
-        self.next_section("krok10")
         fragment = VMobject(color=ZIELONY, stroke_width=8)
         fragment.set_points_as_corners([p(1, 0), p(2, -1), p(3, 0)])
         self.play(Create(fragment), run_time=1.1)
@@ -320,52 +290,30 @@ class Zad10(Scene):
         self.wait(0.6)
 
         # ================================================================
-        # KROK 11. W x = 1 wykres dotyka osi, wiec wartosc jest tam zerem.
-        # Zero nie jest ujemne: koniec wylaczony.
+        # KROK 7. Oba konce sa wylaczone, bo w tych punktach wartosc jest
+        # zerem, a zero nie jest ujemne. Przedzial powstaje od razu.
         # ================================================================
-        self.next_section("krok11")
-        zapis3 = VGroup(
-            MathTex("(1", color=BLACK, font_size=60),
-            MathTex(",\\ ", color=BLACK, font_size=60),
-            MathTex("3)", color=BLACK, font_size=60),
-        ).arrange(RIGHT, buff=0.06)
-        zapis3.move_to([KOLUMNA_X, ZAPIS_Y, 0])
-
+        self.next_section("krok7")
+        zapis3 = zapis("(1", ",\\ ", "3)")
         pusta_l = Circle(
             radius=0.09, color=ZIELONY, stroke_width=5,
             fill_color=WHITE, fill_opacity=1,
         ).move_to(p(1, 0))
-        self.play(FadeIn(pusta_l), run_time=0.5)
-        zapis3[0].set_color(ZIELONY)
-        self.play(FadeIn(zapis3[0]), run_time=0.6)
-        self.zgas(pusta_l, zapis3[0])
-        self.wait(0.6)
-
-        # ================================================================
-        # KROK 12. To samo w x = 3.
-        # ================================================================
-        self.next_section("krok12")
         pusta_p = Circle(
             radius=0.09, color=ZIELONY, stroke_width=5,
             fill_color=WHITE, fill_opacity=1,
         ).move_to(p(3, 0))
-        self.play(FadeIn(pusta_p), run_time=0.5)
+        self.play(FadeIn(pusta_l), FadeIn(pusta_p), run_time=0.6)
+        zapis3[0].set_color(ZIELONY)
         zapis3[2].set_color(ZIELONY)
-        self.play(FadeIn(zapis3[2]), run_time=0.6)
-        self.zgas(pusta_p, zapis3[2])
-        self.wait(0.6)
-
-        # ================================================================
-        # KROK 13. Skladamy przedzial i odkladamy na liste.
-        # ================================================================
-        self.next_section("krok13")
+        self.play(FadeIn(zapis3[0]), FadeIn(zapis3[2]), run_time=0.7)
+        self.zgas(pusta_l, pusta_p, zapis3[0], zapis3[2])
         self.play(FadeIn(zapis3[1]), run_time=0.4)
         poz3 = pozycja_listy(3, "(1,\\ 3)")
         self.play(
             Transform(zapis3, poz3[1].copy()),
             FadeIn(poz3[0]),
             FadeOut(pas_ujemne), FadeOut(pusta_l), FadeOut(pusta_p),
-            FadeOut(warunek), FadeOut(strzalka),
             run_time=1.2,
         )
         self.remove(zapis3)
@@ -373,10 +321,10 @@ class Zad10(Scene):
         self.wait(0.6)
 
         # ================================================================
-        # KROK 14. Czwarta czesc: najwieksza wartosc to 3. Rysujemy ten
+        # KROK 8. Czwarta czesc: najwieksza wartosc to 3. Rysujemy ten
         # poziom przez caly wykres.
         # ================================================================
-        self.next_section("krok14")
+        self.next_section("krok8")
         et4 = self.etykieta("4. Największa wartość")
         self.play(FadeOut(et3), FadeIn(et4), run_time=0.5)
         poziom = DashedLine(p(-5, 3), p(5, 3), color=ZIELONY, stroke_width=3,
@@ -388,10 +336,12 @@ class Zad10(Scene):
         self.wait(0.6)
 
         # ================================================================
-        # KROK 15. Na tej wysokosci lezy poziomy odcinek wykresu. Rzut na
-        # os x, z pusta kropka w -4 i pelna w -2.
+        # KROK 9. Na tej wysokosci lezy poziomy odcinek. Rzut na os x,
+        # z pusta kropka w -4 i pelna w -2, i od razu przedzial na liste.
+        # Etykieta czesci znika: na koniec w kadrze zostaje sam wykres
+        # i cztery odpowiedzi (Henrich, 2026-08-28).
         # ================================================================
-        self.next_section("krok15")
+        self.next_section("krok9")
         odcinek_max = Line(p(-4, 3), p(-2, 3), color=ZIELONY, stroke_width=8)
         self.play(Create(odcinek_max), run_time=0.7)
         rzut_a = DashedLine(p(-4, 3), p(-4, 0), color=ZIELONY, stroke_width=3,
@@ -407,30 +357,23 @@ class Zad10(Scene):
         koniec_b = Dot(p(-2, 0), radius=0.09, color=ZIELONY)
         self.play(Create(pas_max), FadeIn(koniec_a), FadeIn(koniec_b),
                   run_time=0.8)
-        self.zgas(pas_max, koniec_a, koniec_b)
-        self.zamknij(odcinek_max, rzut_a, rzut_b)
-        self.wait(0.6)
+        self.zgas(pas_max, koniec_a, koniec_b, odcinek_max)
+        self.play(FadeOut(rzut_a), FadeOut(rzut_b), FadeOut(odcinek_max),
+                  run_time=0.35)
 
-        # ================================================================
-        # KROK 16. Ostatni przedzial idzie na liste. W kadrze zostaja
-        # cztery odpowiedzi naraz.
-        # ================================================================
-        self.next_section("krok16")
         zapis4 = MathTex("(-4,\\ -2\\rangle", color=BLACK, font_size=60)
         zapis4.move_to([KOLUMNA_X, ZAPIS_Y, 0])
         self.play(
-            ReplacementTransform(
-                VGroup(pas_max, koniec_a, koniec_b), zapis4
-            ),
+            ReplacementTransform(VGroup(pas_max, koniec_a, koniec_b), zapis4),
             run_time=1.0,
         )
         poz4 = pozycja_listy(4, "(-4,\\ -2\\rangle")
         self.play(
             Transform(zapis4, poz4[1].copy()),
             FadeIn(poz4[0]),
-            FadeOut(poziom), FadeOut(podpis_poziom),
+            FadeOut(poziom), FadeOut(podpis_poziom), FadeOut(et4),
             run_time=1.2,
         )
         self.remove(zapis4)
         self.add(poz4)
-        self.wait(0.4)
+        self.wait(0.5)

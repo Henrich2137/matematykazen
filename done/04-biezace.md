@@ -1,5 +1,36 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-28] (Opus 5, high) Zadania 9 i 10 z grudnia 2024, wersja druga: poprawki
+Henricha do filmów i rozwiązań, plus zasady wyciągnięte z tych uwag.
+[2024-grudzien, zad9, zad10, manim, solution-text, zasady]
+
+Henrich obejrzał pierwszą wersję (v95) i wpisał uwagi do TODO.md. Wszystkie wykonane.
+
+- Zad. 9, dwadzieścia dwa kroki zamiast dwudziestu jeden. Krok 5 najpierw dopisuje jedynkę
+  przed \(x^{2}\), i dopiero z niej rodzi się \(a = 1\). Krok 6 pokazuje wzór na deltę
+  w postaci literowej, a wartości przylatują z pasa notatek na miejsca liter, zamiast
+  pojawiać się z niczego. Krok 10 wprowadza OBA wzory na pierwiastki, tak jak stoją
+  w tablicy, a potem pierwszy jest liczony do końca i dopiero potem drugi; wartości wracają
+  z pasa za każdym razem. Pas notatek (a, b, c, a od kroku 10 też pierwiastek z delty) stoi
+  pod rachunkiem mniejszym pismem i rozsunięty.
+- Zad. 10, dziewięć kroków zamiast szesnastu. Oba końce przedziału odczytuje się jednym
+  krokiem, krok ze strzałką \(y < 0\) wypadł, a w ostatnim kroku znika etykieta części,
+  więc na koniec w kadrze zostaje sam wykres i cztery odpowiedzi. Pierwsza część idzie
+  wolniej (trzy kroki), bo tam pierwszy raz tłumaczy się kółko i kropkę.
+- Zasady spisane tam, gdzie ich poszuka następna sesja: manimations/README.md punkty 37 do 45
+  (liczba przylatuje z miejsca odczytu, wartość wraca gdy znów potrzebna, brakującą jedynkę
+  najpierw dopisz na jej miejscu, dwa wzory używane po kolei wjeżdżają razem, notatka obok
+  rachunku jest mniejsza; osobno: kiedy krok NIE zasługuje na własną kropkę i po co postój
+  na starcie kroku), SOLUTION_TEXT_RULES.md 15j do 15l oraz punkt 2c w skillu
+  projektowanie-rozwiazan.
+- Dwie pułapki złapane po drodze i zapisane: Manim nie czyści katalogu sections, więc przy
+  ZMNIEJSZANIU liczby kroków trzeba go usunąć ręcznie (inaczej wgrywa się mieszanka dwóch
+  wersji); a kopia znacznika dołożona wprost na oryginał robi podwójną krawędź już
+  w pierwszej klatce kroku i psuje styk klatek.
+- Zmierzone: styki klatek obu zadań w całości powyżej progu (zad. 9 od 0,99924, zad. 10 od
+  0,99929), zieleń kroków i tools/test-krokow.js bez zastrzeżeń, strona bez błędów KaTeX
+  i bez przewijania w bok na 1280 i 485 px. Wersja v96.
+
 [ZROBIONE 2026-08-28] (Opus 5, high) Zadania 9 i 10 z grudnia 2024: rozwiązanie opisowe
 i film krok po kroku napisane od nowa, na wzór zadań 7 i 8.
 [2024-grudzien, zad9, zad10, manim, solution-text, wykres]

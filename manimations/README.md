@@ -65,6 +65,12 @@ Wniosek: kontener nadaje się także do **finalnych** renderów, nie tylko do po
 
 - `self.wait(0.25)` na końcu KAŻDEJ sekcji (punkt 0 wyżej) i **zawsze przed** `self.clear()`/`self.remove()`. Przytrzymanie po wyczyszczeniu sceny trzyma białą planszę — i to ona zostaje uczniowi na ekranie. Złapane porównaniem SSIM z wgranym plikiem (krok 2 zad. 2 wypadał 0,9967 zamiast 1,0).
 - Wspólne skalowanie kroków pod kadr 16:9: jeden współczynnik liczony z najszerszego kroku (`MARGINES = 0.85`), a nie dopasowanie każdego kroku osobno — inaczej litery zmieniają rozmiar w trakcie przekształcenia i `Transform` robi z tego zoom. Wzorzec jest w każdej z czterech scen.
+2a. **Zmniejszasz liczbę kroków w scenie? Usuń najpierw `media/videos/<scena>/` ręcznie**
+   (złapane 2026-08-28 na zad. 10). Manim nie czyści katalogu `sections/`, więc po renderze
+   sceny z dziewięcioma krokami leżą tam nadal pliki z poprzednich szesnastu, a
+   `tools/wgraj-kroki.sh` skopiuje mieszankę obu wersji i wszystko wygląda na wyrenderowane.
+   Objaw: `styk-klatek.sh` pokazuje więcej kroków, niż ma scena.
+
 3. Skopiować pocięte pliki do `matura/<sheet-id>/media/zadN/solution-step-by-step/` pod nazwami `stepM.mp4` (nazwy lowercase, patrz CLAUDE.md). Zmiana z 2026-08-11: wcześniej leżały płasko jako `zadNrozw_stepM.mp4`.
 4. Wygenerować rewersy: `tools/rewersy.sh matura/<sheet-id>/media/zadN/solution-step-by-step`. Przycisk ◄ w odtwarzaczu odtwarza `stepMreverse.mp4`. Rewersu **nie renderuje Manim**, powstaje z gotowego pliku jedną linijką ffmpega, więc nie może się z nim rozjechać:
 
@@ -297,6 +303,12 @@ Uwagi Henricha po pierwszej wersji filmu do zad. 9. Wszystkie sprowadzają się 
 41. **Zapisy odstawione obok siebie są MNIEJSZE od rachunku i wyraźnie rozdzielone.** Trzy
     współczynniki złożone tym samym pismem co równanie i postawione blisko siebie czytają się
     jak jedno długie wyrażenie.
+
+45. **Krok, ktory zaczyna sie od razu animacja, dostaje krotki `self.wait(0.2)` na
+    starcie** (zmierzone 2026-08-28 na zad. 9, krok 22). Pierwsza klatka pliku jest wtedy
+    czystym stanem koncowym poprzedniego kroku, a nie klatka `t = 0` animacji, ktora potrafi
+    juz roznic sie o wlos. Styk 21 do 22 podskoczyl z 0,99895 (ponizej progu) na 0,99924
+    samym dodaniem tego postoju.
 
 ### Kiedy krok NIE zasługuje na własną kropkę (ustalone 2026-08-28 na zad. 10)
 

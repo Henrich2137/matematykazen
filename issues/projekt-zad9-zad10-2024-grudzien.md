@@ -426,3 +426,61 @@ zad. 10 wyprowadzone **ze wzorów**, nie z rysunku, i zgodne z kluczem.
   linii, ale to przypuszczenie, nie pomiar.
 - Czy dwadzieścia jeden kropek kroków (zad. 9) i szesnaście przy gęstym kadrze (zad. 10)
   dobrze się klika na telefonie. Oba wpisane do `TODO.md`, sekcja `TESTOWANIE HENRICH`.
+
+
+---
+
+# Wersja druga (2026-08-28, po uwagach Henricha)
+
+Henrich obejrzał pierwszą wersję i wpisał uwagi do `TODO.md`. Wszystkie zostały wykonane.
+
+## Zadanie 9: z dwudziestu jeden kroków na dwadzieścia dwa
+
+| uwaga | co zrobione |
+|---|---|
+| „krok 5: zmniejsz współczynniki i oddziel je od siebie" | pas notatek jest mniejszym pismem (62 zamiast 100) i rozsunięty; w rozwiązaniu opisowym linijka rozdzielona odstępami, zmierzona na telefonie |
+| „zanim się pojawią, przed \(x^{2}\) powinna pojawić się jedynka, z której zrodzi się \(a = 1\)" | krok 5 ma dwa takty: najpierw jedynka staje w samej nierówności, potem z niej wychodzi \(a = 1\) |
+| „krok 6: nierówność znika, pojawia się wzór na deltę, współczynniki wędrują na swoje miejsca" | dokładnie tak; wzór wjeżdża literowy, a wartości przylatują z pasa i zamieniają litery w liczby |
+| „kroki 10, 11: powinny pojawić się oba wzory, najpierw jeden podstawiony i rozwiązany, potem drugi; przywołane współczynniki" | krok 10 wprowadza oba wzory naraz, tak jak stoją w tablicy; kroki 11 do 14 liczą \(x_{1}\), kroki 15 do 18 \(x_{2}\), a wartości wracają z pasa za każdym razem |
+
+Pas notatek stoi pod rachunkiem od kroku 5 do 18 i znika w kroku 19. Ułamki w torach są
+składane ręcznie (licznik, kreska, mianownik), bo `\dfrac` w jednym `MathTex` nie daje
+uchwytu do pojedynczej liczby, a bez tego nie da się zapalić samej szóstki powstałej
+z podwójnego minusa.
+
+## Zadanie 10: z szesnastu kroków na dziewięć
+
+| uwaga | co zrobione |
+|---|---|
+| „zapisy pod nagłówkiem źle się renderują, mają wyglądać jak pozycje listy" | zapis budowany i pozycje listy idą przez wspólne funkcje, więc mają ten sam rozmiar i to samo wyrównanie |
+| „krok 9 (ten ze strzałką w dół) jest niepotrzebny, wywal go" | wycięty |
+| „krok 2 i 3 mogą być razem", „kroki 11, 12 i 13 mogą być połączone", „itd." | oba końce przedziału odczytuje się jednym krokiem w każdej części |
+| „w ostatnim kroku nagłówek może zniknąć" | etykieta części znika razem z ostatnim przedziałem, więc na koniec w kadrze zostaje sam wykres i cztery odpowiedzi |
+
+Podział jest nierówny celowo: pierwsza część ma trzy kroki, bo tam pierwszy raz tłumaczy się
+kółko i kropkę; każda następna ma dwa.
+
+## Zasada, która z tego została spisana
+
+Uwagi Henricha trafiły do plików z zasadami, żeby nie wracać do tych samych błędów:
+`manimations/README.md` punkty 37 do 45, `SOLUTION_TEXT_RULES.md` punkty 15j do 15l
+oraz punkt 2c w `references/zasady-wizualne.md` skilla `projektowanie-rozwiazan`.
+
+## Co zmierzono (wersja druga)
+
+| co | zad. 9 | zad. 10 |
+|---|---|---|
+| `tools/styk-klatek.sh` | dwadzieścia jeden styków, 0,99924 do 0,99995, **bez zastrzeżeń** | osiem styków, 0,99929 do 0,99993, **bez zastrzeżeń** |
+| `tools/zielen-krokow.py` | bez zastrzeżeń | bez zastrzeżeń |
+| `tools/test-krokow.js` | dwa ziarna, bez zastrzeżeń | dwa ziarna, bez zastrzeżeń |
+| strona (Playwright, 1280 i 485 px) | zero błędów KaTeX, brak przewijania w bok | to samo |
+
+**Dwa styki, które w pierwszej wersji nie przechodziły, przechodzą teraz.** Pomogły dwie
+rzeczy, obie sprawdzone pomiarem: kopia znacznika startująca niewidoczna (nie dokłada drugiej
+krawędzi na oryginał w pierwszej klatce kroku) i krótki postój na starcie kroku, dzięki
+któremu pierwsza klatka pliku jest czystym stanem, a nie klatką \(t = 0\) animacji.
+
+**Uwaga o cache Manima:** katalog `media/videos/<scena>/720p120/sections/` nie jest czyszczony
+przy renderze. Gdy nowa wersja sceny ma MNIEJ kroków niż stara, zostają w nim stare pliki
+i `tools/wgraj-kroki.sh` skopiuje mieszankę. Przy zmniejszaniu liczby kroków usuń ten katalog
+ręcznie przed renderem.

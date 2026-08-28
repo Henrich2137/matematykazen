@@ -4,22 +4,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.     
   
-  - Zad 9
-    - Krok 5 - Zmiejsz troche te współczynniki i oddziel je od siebie. Zanim się pojawią przed x^2 powinna pojawić sie jedynka, z której potemn zrodzi się a=1
-
-    - Krok 6 powinien wyglądać tak: Nierówność znika, pojawia się wzór na delte, współczynniki wędrująw na swoje miejscawe wzorze zmieniając sie na właściwe liczbym.
-
-    - Krok 10, 11... - Powinny pojawić sie oba wzory, najepirw jeden powinien zostać podstawiony i rozwiązany, a potem drugi. Powinny też zostać przywołane współczynniki.
-
-
-  - Zad 10
-    - Rozwiązanie krok po kroku
-      - Zmieniajace się zapisy pod nagłówkiem w stylu "2. Zbiór wartości" źle sie renderują, zobacz screenshoty. Spraw aby wyglądały podobnie co punkty 1. 2. 3. Wymienione niżej.
-      - Krok 9. (ten z wektorem w dół) jest niepotrzebny, wywal go
-      - Krok 2 i 3 mogą być razem
-      - Kroki 11, 12 i 13 moga być połączone razem
-      - itd. z innymi zdaniami do uzupełnienia w zadaniu.
-    - Rozwiązanie zwykłe - rozdziel te współczynniki troszeczke aby były bardziej czytelne, ale uważaj aby nie udicekły poza krawędzie ekranu na tel.
+  - nic
 
 
 <br>
@@ -45,9 +30,9 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
   - v94, zad. 8 z grudnia 2024, film krok po kroku w CIEMNYM motywie na telefonie: szare \(x \ne 1\) nad równaniem i szary dopisek działania z boku (np. „/ · 2") mają być czytelne, a nie zlewać się z tłem
 
-  - v95, zad. 10 z grudnia 2024, nowy film krok po kroku na TELEFONIE: wykres siedzi po lewej, a wyniki czterech części po prawej. sprawdź, czy w pionie wykres nie robi się za mały do odczytania liczb przy osiach
+  - v96, zad. 10 z grudnia 2024, film krok po kroku na TELEFONIE: wykres siedzi po lewej, a wyniki czterech części po prawej. sprawdź, czy w pionie wykres nie robi się za mały do odczytania liczb przy osiach
 
-  - v95, zad. 9 z grudnia 2024, film ma teraz 21 kroków, najwięcej w arkuszu (zad. 8 ma 19): sprawdź na telefonie, czy rząd kropek kroków daje się wygodnie klikać i czy przewijanie kropek nie gubi się przy skoku na koniec
+  - v96, zad. 9 z grudnia 2024, film ma teraz 22 kroki, najwięcej w arkuszu (zad. 8 ma 19): sprawdź na telefonie, czy rząd kropek kroków daje się wygodnie klikać i czy przewijanie kropek nie gubi się przy skoku na koniec
 
 <br>
 
