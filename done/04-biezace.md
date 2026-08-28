@@ -1,5 +1,34 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-28] (Opus 5, high) Zadania 9 i 10 z grudnia 2024: rozwiązanie opisowe
+i film krok po kroku napisane od nowa, na wzór zadań 7 i 8.
+[2024-grudzien, zad9, zad10, manim, solution-text, wykres]
+
+Projekt dydaktyczny powstał najpierw jako osobny dokument
+(issues/projekt-zad9-zad10-2024-grudzien.md) i dopiero potem był wykonywany, więc opis
+kroków, kolory i liczba linijek były ustalone przed pisaniem sceny.
+
+- Zadanie 9 (nierówność \(x(x-6) \le 7\)): dwadzieścia jeden linijek i dwadzieścia jeden
+  kroków zamiast siedmiu i ośmiu, czyli koniec rozjazdu tekst/film. Ogniwa liczone dotąd
+  w głowie dostały własne kroki: \(x \cdot x - x \cdot 6\), odczyt współczynników
+  (tu ginie \(c = -7\)), \(36 + 28\) przed \(64\), \(-(-6)\) przed \(6\), oba
+  dzielenia. Miejsca zerowe idą dwoma torami po kolei, jak w zad. 7. Trzy ostatnie kroki
+  rysują szkic paraboli: wcześniej wniosek „ramiona w górę, więc między pierwiastkami"
+  niósł wyłącznie zwinięty opis pod filmem, a to jest krok wart punktu CKE.
+- Zadanie 10 (odczyt z wykresu): pierwszy film w projekcie, który nie rozpisuje rachunku,
+  tylko czyta rysunek. Szesnaście kroków, wykres po lewej stoi przez cały film, po prawej
+  rośnie lista czterech odpowiedzi, więc na końcu widać wszystkie naraz. Cztery pytania to
+  cztery różne ruchy: rzut na oś x, rzut na oś y, fragment pod osią, poziom największej
+  wartości. Rozwiązanie opisowe napisane w jedną całość, więc zniknął doklejony blok
+  „DAWNE POKAŻ WIĘCEJ" (zostają zad. 19 i 30).
+- Zmierzone: styki klatek zad. 9 od 0,99900 do 0,99995 bez zastrzeżeń, zieleń kroków
+  i tools/test-krokow.js bez zastrzeżeń w obu zadaniach, strona bez błędów KaTeX i bez
+  przewijania w bok na 1280 i 485 px. W zad. 10 dwa styki (1→2 i 2→3) wypadają 0,9988;
+  pomiar wyklucza różnicę treści, przyczyny NIE ustalono i tak jest to zapisane.
+- Wzorce dopisane do SOLUTION_TEXT_RULES.md (wiersze 9 i 10 w tabeli), kroki opisowo
+  w manimations/zad9-kroki.md i zad10-kroki.md, statystyki i OVERVIEW zaktualizowane
+  (wideo 10/33), wersja v95.
+
 [ZROBIONE 2026-08-27] (Opus 5, medium) Domknięcie zad. 8: założenie przeniesione nad rachunek,
 rozwiązanie opisowe zgrane z filmem, a wzorzec z tej pracy wpisany do plików z zasadami.
 [2024-grudzien, zad8, manim, zasady, solution-text, colors]
