@@ -211,10 +211,56 @@ add_domain() {
     done < <(echo "$ips")
 }
 
+# OPENAI — Codex CLI. Osobna lista, bo rządzi się innymi prawami niż dwie wyżej.
+#
+# Co jest do czego:
+# - auth.openai.com  — logowanie (OAuth): otwarcie strony zgody i wymiana kodu
+#                      na token. Wymiana dzieje się WEWNĄTRZ kontenera, więc bez
+#                      tej domeny `codex login` nie kończy się nigdy.
+# - chatgpt.com      — właściwy ruch Codeksa przy koncie ChatGPT, w tym
+#                      WebSocket (wss://) do streamowania odpowiedzi modelu.
+#                      Dla firewalla to zwykłe TCP 443, więc nic dodatkowego
+#                      nie trzeba; problem byłby dopiero przy proxy filtrującym
+#                      po ścieżce URL, którego tu nie ma.
+# - api.openai.com   — potrzebne tylko przy pracy na kluczu API zamiast na
+#                      koncie ChatGPT. Zostawione, bo kosztuje tyle co nic.
+#
+# ŚWIADOMY KOMPROMIS, ten sam co przy matematykazen.pl: wszystkie trzy stoją za
+# Cloudflare, czyli na adresach współdzielonych z tysiącami cudzych serwisów.
+# Filtrujemy po IP, nie po SNI, więc ten wpis otwiera kawałek wspólnej
+# infrastruktury. Bez tego Codeksa w kontenerze po prostu nie ma.
+#
+# ROTACJA ADRESÓW — to jest ta część, która potrafi ugryźć. Cloudflare zwraca
+# na te nazwy garść adresów z puli i pula ta zmienia się w trakcie dnia, a
+# ipset jest wypełniany RAZ, przy starcie kontenera. Objaw: Codex chodzi przez
+# godzinę, po czym nagle same timeouty. Dlatego host dokłada nowe adresy w tle
+# co dwie minuty — patrz tryb `--openai-watch` w host-firewall.sh. Ta lista
+# poniżej daje tylko stan początkowy.
+#
+# Czego tu ŚWIADOMIE NIE MA:
+# - pełnych zakresów Cloudflare (cloudflare.com/ips-v4) — najprostsze
+#   rozwiązanie rotacji i zarazem najszersza dziura: wpuszcza jakiś procent
+#   całego internetu. Odświeżanie po nazwie robi to samo, tylko wąsko.
+# - *.oaistatic.com, *.oaiusercontent.com, challenges.cloudflare.com i reszty
+#   listy OpenAI z Help Center — to ruch PRZEGLĄDARKI i aplikacji ChatGPT,
+#   czyli hosta. CLI w kontenerze tego nie tyka.
+OPENAI_DOMAINS=(
+    "auth.openai.com"
+    "chatgpt.com"
+    "api.openai.com"
+)
+
 for domain in "${CRITICAL_DOMAINS[@]}"; do
     add_domain "$domain" critical
 done
 for domain in "${CONTENT_DOMAINS[@]}"; do
+    add_domain "$domain" content
+done
+# Tryb "content", czyli warn-only: gdyby DNS do OpenAI chwilowo nie odpowiadał,
+# nie chcemy zablokować wejścia do kontenera (postStartCommand jest fail-closed).
+# Jedyny skutek to Codex bez połączenia do czasu, aż odświeżacz z hosta dopisze
+# adresy.
+for domain in "${OPENAI_DOMAINS[@]}"; do
     add_domain "$domain" content
 done
 

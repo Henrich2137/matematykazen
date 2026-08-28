@@ -282,12 +282,12 @@ niżej; jest bezpiecznik, który sam się włącza i pisze o tym w logu.
 
 Zakresy IP GitHuba (pobierane z `api.github.com/meta`), DNS do własnego
 resolwera, localhost oraz **port 53 na bramie i nic poza nim** (patrz „Brama:
-`/24` → `/32` → tylko port 53"), plus dwie listy domen w `init-firewall.sh`.
+`/24` → `/32` → tylko port 53"), plus trzy listy domen w `init-firewall.sh`.
 Wszystko inne dostaje `REJECT`. Filtrowanie jest **po docelowym IP**, nie po
 porcie ani po SNI — to dlatego domeny na współdzielonym anycaście CDN-a są
 problematyczne: wpuszczenie ich adresu otwiera kawałek cudzej infrastruktury.
 
-Listy są dwie, bo nie każda domena jest tak samo ważna:
+Listy są trzy, bo nie każda domena jest tak samo ważna:
 
 - **`CRITICAL_DOMAINS`** — `registry.npmjs.org`, `api.anthropic.com`,
   `sentry.io` i trzy domeny VS Code. Nierozwiązana domena przerywa skrypt, a że
@@ -298,6 +298,10 @@ Listy są dwie, bo nie każda domena jest tak samo ważna:
   serwisy bywają chwilowo niedostępne, więc brak rozwiązania daje tylko
   ostrzeżenie i skrypt leci dalej. Firewall zostaje szczelny — pominięta domena
   po prostu nie jest przepuszczona w tej sesji.
+- **`OPENAI_DOMAINS`** — `auth.openai.com`, `chatgpt.com`, `api.openai.com`,
+  czyli tyle, ile potrzebuje Codex CLI. Traktowane jak `CONTENT_DOMAINS`
+  (samo ostrzeżenie), bo brak DNS do OpenAI nie jest powodem, żeby nie wpuścić
+  Cię do kontenera. Mają osobną obsługę, bo rotują — patrz sekcja niżej.
 
 Pod aktywnymi wpisami w `CONTENT_DOMAINS` leży **blok zakomentowanych domen**:
 kandydaci (serwisy OKE) oraz świadomie odrzuceni, każdy z powodem odrzucenia
@@ -305,14 +309,50 @@ i warunkiem, w którym warto go odkomentować. Jeśli coś w kontenerze przestan
 działać z powodu sieci, zacznij od przejrzenia tego bloku — jest tam opisane,
 co dana domena obsługuje.
 
-### DO ZROBIENIA: odkomentować `matematykazen.pl`, gdy domena ruszy
+### Codex CLI (OpenAI) — dlaczego adresy trzeba odświeżać
 
-W `CONTENT_DOMAINS` czeka zakomentowany wpis `matematykazen.pl`. Dziś domena
-**nie istnieje w DNS** (`dig +short A matematykazen.pl` nie zwraca nic), więc
-trzymanie jej aktywnej byłoby martwym wpisem mylącym przy diagnozie. Gdy
-`matematykazen.pl` zacznie działać — odkomentuj tę linię. Ten sam moment
-dotyczy `Required Notice:` w `LICENSE.md`, które też wskazuje jeszcze na GitHub
-Pages (patrz `TODO.md`).
+`auth.openai.com`, `chatgpt.com` i `api.openai.com` stoją za Cloudflare, więc
+obowiązuje przy nich ten sam świadomy kompromis co przy `matematykazen.pl`:
+filtrujemy po IP, a te adresy są współdzielone z tysiącami cudzych serwisów.
+Bez tego Codeksa w kontenerze po prostu nie ma.
+
+Doszedł jednak drugi problem, którego przy pozostałych domenach nie było:
+**Cloudflare podmienia te adresy w ciągu dnia**, a `init-firewall.sh` wypełnia
+ipset tylko raz, przy starcie kontenera. Objaw jest mylący: Codex działa przez
+godzinę czy dwie, po czym nagle same timeouty, bez żadnej zmiany w konfiguracji.
+
+Dlatego host trzyma **drugiego obserwatora**: `host-firewall.sh --openai-watch`,
+odpalanego razem z tym od firewalla (jednostka `matematykazen-openai-ips`). Co
+dwie minuty rozwiązuje te trzy nazwy i dopisuje do ipsetu adresy, których tam
+jeszcze nie ma. Kończy pracę, gdy kontener zniknie na pięć kolejnych prób.
+
+Odświeżanie **musi** iść z hosta: kontener ma `--cap-drop=ALL`, więc sam nie
+tknie ipsetu — i o to chodzi, inaczej dopisałby sobie, co zechce.
+
+Gdy Codex nagle ucichnie, a nie chcesz restartować kontenera:
+
+```sh
+.devcontainer/host-firewall.sh --openai      # dopisz adresy teraz, jednorazowo
+systemctl --user status matematykazen-openai-ips   # czy obserwator w ogóle żyje
+```
+
+Test tego mechanizmu (bez sieci, na atrapach `podman` i `dig`):
+`bash tools/test-firewall-openai.sh`.
+
+Czego to **nie** załatwia:
+
+- **Codeksa nie ma w obrazie.** Instalacja w działającym kontenerze:
+  `npm install -g @openai/codex` (`registry.npmjs.org` jest na liście
+  krytycznej, więc przechodzi; `sudo` nie jest potrzebne, bo katalog globalny
+  npm należy do usera `node`). Żeby przeżyła przebudowę obrazu, musi trafić do
+  `Dockerfile`.
+- **Logowanie przez przeglądarkę.** `codex login` podnosi lokalny serwer na
+  porcie 1455 i chce otworzyć przeglądarkę, której w kontenerze nie ma. Jeśli
+  przekierowanie portu przez VS Code nie zadziała, użyj `codex login
+  --device-auth` (kod jednorazowy, bez portu 1455).
+- **WebSocket** (`wss://chatgpt.com/`) nie wymaga niczego dodatkowego: dla
+  iptables to zwykłe TCP 443. Byłby problem dopiero przy proxy filtrującym po
+  ścieżce URL, którego tu nie ma.
 
 ### Czego na liście świadomie nie ma
 
