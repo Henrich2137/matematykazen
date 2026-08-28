@@ -245,6 +245,28 @@ Opis pod filmem niesie w kroku 2 wzór \([9.1]\), a w kroku 5 wzór \([10.1]\), 
   przez cały czas, a rysunek jest szeroki (około \(1{,}8:1\)). Ryzyko jest to samo, co
   zgłoszone przy zad. 10, 11 i 12 (wpisy `TESTOWANIE HENRICH` v96 i v97), i sprawdza się
   je dopiero na wyrenderowanym filmie, nie na etapie projektu.
-- **Filmy nie są zrobione.** Ten dokument opisuje obie sceny, ale zrealizowane jest wyłącznie
-  rozwiązanie opisowe (2026-08-28). Sceny `solutionZad17_1.py` i `solutionZad17_2.py`
-  jeszcze nie istnieją.
+## Co zmieniło się przy realizacji (2026-08-28)
+
+Filmy są zrobione: `manimations/solutionZad17_1.py` (6 kroków) i `solutionZad17_2.py`
+(15 kroków). Trzy rzeczy wyszły przy renderze inaczej, niż zakładał projekt:
+
+- **Podpis odcinka \(AD\) nie mieści się pod podstawą.** \(AD\) ma jedną siódmą długości
+  podstawy, więc liczba wpisana pod nim zlewa się z literą \(D\) i z szóstką. Zamiast tego
+  są **dwie klamry na różnych głębokościach**: krótka pod \(AD\) (najpierw znak zapytania,
+  od kroku 13 jedynka) i długa pod \(AB\) (siódemka od kroku 11). Klamra mówi jednoznacznie,
+  którego odcinka dotyczy liczba, a ostatnia klatka pokazuje obie naraz, czyli dokładnie to,
+  o co w tym podpunkcie chodzi.
+- **W 17.1 liczby wlatują do wzoru z pasa odczytu, nie wprost z rysunku** (krok 5). Pas trzyma
+  obie potrzebne wartości, więc wracają stamtąd, gdzie je odczytaliśmy (`manimations/README.md`,
+  punkt 38). W 17.2 źródłem jest sam rysunek, bo ósemka nigdy nie trafia do pasa.
+- **Małe podpisy liter przy wzorach odpadły.** Projekt przewidywał legendę („\(a\) naprzeciw
+  kąta, \(c\) przeciwprostokątna") mniejszym pismem w kroku ze wzorem. To jest opisywanie
+  tego, co i tak widać w następnym kroku, więc kroki ze wzorem są dziś czyste i bez koloru.
+  Legenda została w opisie pod filmem.
+
+Rachunki pomocnicze, które zostały: \(\sqrt{15} < \sqrt{16} = 4\) w kroku 6 filmu 17.1
+oraz \(\sqrt{15} \cdot \sqrt{15} = 15\) (krok 8) i \(7 \cdot 7 = 49\) (krok 11)
+w filmie 17.2. Wszystkie stoją mniejszym pismem i znikają przed końcem swojego kroku.
+
+Sprawdzone po renderze: styki klatek od 0,9997 w górę w obu scenach, zieleń schodzi do zera
+w każdym kroku, `tools/test-krokow.js` na obu kartach bez zastrzeżeń.

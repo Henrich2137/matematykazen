@@ -322,8 +322,8 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
   + SONNET 5 MEDIUM DOPISAŁ (2026-08-28, po zrobieniu zad. 17.1 i 17.2 z 2024-grudnia):
 
-    - zrobione są tylko rozwiązania opisowe. Filmy do obu podpunktów są zaprojektowane krok po kroku w issues/projekt-zad17-2024-grudzien.md, ale scen jeszcze nie ma
-    - to pierwsze filmy w arkuszu, w których przez cały czas ma stać rysunek z arkusza (trójkąt), a rysunek jest szeroki. Przy renderze sprawdzić czytelność podpisów na telefonie, tak jak przy zad. 10, 11 i 12
+    - to pierwsze filmy w arkuszu z rysunkiem geometrycznym stojącym w kadrze przez cały czas (trójkąt z arkusza). Wzorzec do skopiowania przy zad. 19, 20 i 24
+    - w 17.2 długości \(AD\) i \(AB\) podpisałem klamrami pod podstawą, bo \(AD\) jest siedem razy krótsze od \(AB\) i liczba wpisana wprost zlewa się z literą \(D\). Szczegóły w issues/projekt-zad17-2024-grudzien.md
     - nie ustaliłem, skąd bierze się dystraktor C w 17.1 (\(\frac{\sqrt{15}}{4}\)). Dla A i B droga jest widoczna, dla C nie, więc rozwiązanie go nie rozbraja
 
 + ZASADY DLA CLAUDE-A:
