@@ -320,6 +320,12 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     - film do zad. 14 ma 18 kroków, drugi najdłuższy w arkuszu (zad. 9 ma 22, zad. 8 ma 19). Osiem z nich to pełny rachunek dwóch pierwszych wyrazów, bo tam siedzi cała trudność ze znakiem
     - zad. 13 to pierwszy film z wykresem o NIERÓWNEJ podziałce na osi (\(1\), \(6\), \(36\), czyli same policzone argumenty, a nie regularna siatka). Styki klatek przeszły bez żadnego z zabiegów z punktów 46 do 49 w manimations/README.md
 
+  + SONNET 5 MEDIUM DOPISAŁ (2026-08-28, po zrobieniu zad. 17.1 i 17.2 z 2024-grudnia):
+
+    - zrobione są tylko rozwiązania opisowe. Filmy do obu podpunktów są zaprojektowane krok po kroku w issues/projekt-zad17-2024-grudzien.md, ale scen jeszcze nie ma
+    - to pierwsze filmy w arkuszu, w których przez cały czas ma stać rysunek z arkusza (trójkąt), a rysunek jest szeroki. Przy renderze sprawdzić czytelność podpisów na telefonie, tak jak przy zad. 10, 11 i 12
+    - nie ustaliłem, skąd bierze się dystraktor C w 17.1 (\(\frac{\sqrt{15}}{4}\)). Dla A i B droga jest widoczna, dla C nie, więc rozwiązanie go nie rozbraja
+
 + ZASADY DLA CLAUDE-A:
 
   - tu są TYLKO otwarte punkty. Zrobione wpisy [DONE]/[ZROBIONE] przenoszone są do bieżącego pliku pod done/ (patrz done/README.md i CLAUDE.md)
