@@ -146,20 +146,20 @@ class Zad13(Scene):
         for x in (1, 6, 36):
             kreska = Line(p(x, 0) + DOWN * 0.09, p(x, 0) + UP * 0.09,
                           color=SZARY_OSIE, stroke_width=2.5)
-            opis = MathTex(str(x), color=SZARY_OSIE, font_size=30)
+            opis = MathTex(str(x), color=SZARY_OSIE, font_size=42)
             opis.next_to(p(x, 0), DOWN, buff=0.16)
             if x == 1:
-                opis.shift(RIGHT * 0.06)
+                opis.shift(RIGHT * 0.10)
             znaczniki.add(kreska, opis)
         for y in (1, 2):
             kreska = Line(p(0, y) + LEFT * 0.09, p(0, y) + RIGHT * 0.09,
                           color=SZARY_OSIE, stroke_width=2.5)
-            opis = MathTex(str(y), color=SZARY_OSIE, font_size=30)
+            opis = MathTex(str(y), color=SZARY_OSIE, font_size=42)
             opis.next_to(p(0, y), LEFT, buff=0.16)
             znaczniki.add(kreska, opis)
-        os_x_podpis = MathTex("x", color=SZARY_OSIE, font_size=30)
+        os_x_podpis = MathTex("x", color=SZARY_OSIE, font_size=38)
         os_x_podpis.next_to(p(41, 0), UP + RIGHT, buff=0.05)
-        os_y_podpis = MathTex("y", color=SZARY_OSIE, font_size=30)
+        os_y_podpis = MathTex("y", color=SZARY_OSIE, font_size=38)
         os_y_podpis.next_to(p(0, 2.6), UP + LEFT, buff=0.05)
         znaczniki.add(os_x_podpis, os_y_podpis)
 
@@ -170,7 +170,7 @@ class Zad13(Scene):
             x_range=[0.25, 40.5, 0.12],
             color=FIOLET, stroke_width=6,
         )
-        podpis_f = MathTex("y = f(x)", color=FIOLET, font_size=32)
+        podpis_f = MathTex("y = f(x)", color=FIOLET, font_size=40)
         podpis_f.move_to(p(28, 0.75))
 
         punkty = [Dot(p(1, 0), radius=0.085, color=BLACK),

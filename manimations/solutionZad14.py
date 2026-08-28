@@ -134,7 +134,9 @@ class Zad14(Scene):
         liczby.move_to([0, LISTA_Y, 0])
         numery = VGroup()
         for i, l in enumerate(liczby):
-            n = MathTex("a_{%d}" % (i + 1), color=BLACK, font_size=34)
+            # Numery czytelne takze wtedy, gdy film schodzi do szerokosci
+            # telefonu (okolo 330 px z 1280).
+            n = MathTex("a_{%d}" % (i + 1), color=BLACK, font_size=42)
             n.next_to(l, UP, buff=0.20)
             numery.add(n)
         lista = VGroup(liczby, numery)
