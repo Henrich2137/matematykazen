@@ -870,8 +870,44 @@
         "selfScore": false,
         "hint": "\\(\\log_{6} 36\\) to wykładnik, do którego trzeba podnieść 6, żeby dostać 36. Funkcja \\(\\log_a x\\) jest rosnąca, gdy \\(a > 1\\).",
         "formulasPage": 5,
-        "solutionText": "\\(f(36) = \\log_{6} 36 = \\boldsymbol{2}\\) (bo \\(6^{2} = 36\\)), a nie 6 — zdanie 1: <b>F</b>. Podstawa \\(6 > 1\\), więc logarytm jest funkcją rosnącą — zdanie 2: <b>P</b>.",
-        "solutionStepByStep": null,
+        "solutionText": "Logarytm to wykładnik potęgi. Definicja z tablicy wzorów:\\[\\log_{a} b = c \\quad \\text{czyli} \\quad a^{c} = b\\]<div class=\"rozwiazanie-kroki\"><div class=\"rozw-komentarz\">W miejsce \\(x\\) wstawiamy \\(36\\).</div><div class=\"rozw-linia\">\\(f(36) = \\log_{6} 36\\)</div><div class=\"rozw-komentarz\">Szukamy wykładnika \\(c\\): do której potęgi podnieść \\(6\\), żeby wyszło \\(36\\).</div><div class=\"rozw-linia\">\\(6^{c} = 36\\)</div><div class=\"rozw-komentarz\">\\(6^{2}\\) znaczy \\(6 \\cdot 6\\), a to jest \\(36\\).</div><div class=\"rozw-linia\">\\(6^{2} = 36\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{f(36) = 2}\\), a w zdaniu 1 stoi \\(6\\). Zdanie 1: <b>F</b></div><div class=\"rozw-komentarz rozw-odstep\">Czy ta funkcja rośnie? Liczymy tym samym sposobem jeszcze dwie wartości.</div><div class=\"rozw-linia\">\\(6^{0} = 1\\), więc \\(f(1) = 0\\)<br>\\(6^{1} = 6\\), więc \\(f(6) = 1\\)</div><div class=\"rozw-linia\">\\(1 < 6 < 36\\) &nbsp;&nbsp; oraz &nbsp;&nbsp; \\(0 < 1 < 2\\)</div><div class=\"rozw-komentarz\">Większy argument daje większą wartość. Tak zachowuje się każdy logarytm o podstawie większej od \\(1\\).</div><div class=\"rozw-linia\">Podstawa \\(6 > 1\\), więc \\(f\\) jest rosnąca. Zdanie 2: <b>P</b></div><div class=\"rozw-linia rozw-odstep\">Odpowiedź <b>FP</b>.</div></div>",
+        "solutionStepByStep": [
+            {
+                "type": "video",
+                "src": "media/zad13/solution-step-by-step/step1.mp4",
+                "text": "Wartość funkcji dla argumentu \\(36\\) zapisujemy \\(f(36)\\): w miejsce \\(x\\) wchodzi \\(36\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad13/solution-step-by-step/step2.mp4",
+                "text": "Logarytm to wykładnik potęgi.<br>Zapis \\(\\log_{6} 36\\) pyta: do której potęgi podnieść \\(6\\), żeby dostać \\(36\\)?\\[\\log_{a} b = c \\quad \\text{czyli} \\quad a^{c} = b\\]"
+            },
+            {
+                "type": "video",
+                "src": "media/zad13/solution-step-by-step/step3.mp4",
+                "text": "Podstawa \\(6\\) zostaje na swoim miejscu, szukamy tylko wykładnika.<br>\\(6^{2}\\) znaczy \\(6 \\cdot 6\\), czyli \\(36\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad13/solution-step-by-step/step4.mp4",
+                "text": "W zdaniu 1 stoi \\(6\\), czyli podstawa logarytmu.<br>Wynikiem jest jednak wykładnik, a ten wynosi \\(2\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad13/solution-step-by-step/step5.mp4",
+                "text": "Te same rachunki dla dwóch łatwiejszych argumentów.<br>\\(6^{0} = 1\\), bo każda liczba do potęgi zerowej daje \\(1\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad13/solution-step-by-step/step6.mp4",
+                "text": "Argument idzie \\(1\\), \\(6\\), \\(36\\), a wartość \\(0\\), \\(1\\), \\(2\\).<br>Punkty leżą coraz wyżej, a krzywa między nimi nigdzie nie zawraca."
+            },
+            {
+                "type": "video",
+                "src": "media/zad13/solution-step-by-step/step7.mp4",
+                "text": "Trzy punkty to za mało na pewność, ale reguła jest ogólna: logarytm o podstawie większej od \\(1\\) jest funkcją rosnącą.<br>Tutaj podstawą jest \\(6\\)."
+            }
+        ],
         "solutionWidget": null
     },
     {
@@ -893,8 +929,99 @@
         "selfScore": false,
         "hint": "Wypisz kilka pierwszych wyrazów: \\(a_1 = 7\\), \\(a_2 = 13\\), \\(a_3 = 7\\), ... Czy iloraz kolejnych wyrazów jest stały? Ile wynosi suma jednej pary \\((7 + 13)\\)?",
         "formulasPage": 9,
-        "solutionText": "Wyrazy to na przemian 7 i 13: \\(\\frac{13}{7} \\ne \\frac{7}{13}\\), więc iloraz nie jest stały — ciąg <b>nie jest</b> geometryczny (zdanie 1: <b>F</b>). Suma ośmiu wyrazów to cztery pary \\((7 + 13)\\): \\(4 \\cdot 20 = \\boldsymbol{80}\\) (zdanie 2: <b>P</b>).",
-        "solutionStepByStep": null,
+        "solutionText": "<div class=\"rozwiazanie-kroki\"><div class=\"rozw-komentarz\">Wzór ciągu liczy dowolny wyraz. Po pierwszy wstawiamy \\(n = 1\\).</div><div class=\"rozw-linia\">\\(a_{1} = 3 \\cdot (-1)^{1} + 10\\)</div><div class=\"rozw-komentarz\">Pierwsza potęga niczego nie zmienia: \\((-1)^{1} = -1\\).</div><div class=\"rozw-linia\">\\(a_{1} = 3 \\cdot (-1) + 10\\)</div><div class=\"rozw-komentarz\">\\(3 \\cdot (-1) = -3\\), bo liczba dodatnia razy ujemna daje ujemną.</div><div class=\"rozw-linia\">\\(a_{1} = -3 + 10\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{a_{1} = 7}\\)</div><div class=\"rozw-linia rozw-odstep\">\\(a_{2} = 3 \\cdot (-1)^{2} + 10\\)</div><div class=\"rozw-komentarz\">Druga potęga to iloczyn dwóch takich samych czynników.</div><div class=\"rozw-linia\">\\(a_{2} = 3 \\cdot (-1) \\cdot (-1) + 10\\)</div><div class=\"rozw-komentarz\">\\((-1) \\cdot (-1) = 1\\), bo dwa minusy dają plus.</div><div class=\"rozw-linia\">\\(a_{2} = 3 \\cdot 1 + 10\\)</div><div class=\"rozw-linia\">\\(a_{2} = 3 + 10\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{a_{2} = 13}\\)</div><div class=\"rozw-komentarz rozw-odstep\">Wykładnik idzie \\(1, 2, 3, 4, \\ldots\\), czyli na przemian nieparzysty i parzysty.</div><div class=\"rozw-linia\">\\((-1)^{1} = -1\\) &nbsp;&nbsp; \\((-1)^{2} = 1\\)<br>\\((-1)^{3} = -1\\) &nbsp;&nbsp; \\((-1)^{4} = 1\\)</div><div class=\"rozw-komentarz\">Skoro \\((-1)^{n}\\) skacze między dwiema wartościami, to i wyrazy skaczą między \\(7\\) a \\(13\\).</div><div class=\"rozw-linia\">\\(7,\\ 13,\\ 7,\\ 13,\\ 7,\\ 13,\\ 7,\\ 13\\)</div><div class=\"rozw-komentarz rozw-odstep\">W ciągu geometrycznym każdy wyraz podzielony przez poprzedni daje zawsze tę samą liczbę. Sprawdzamy dwie sąsiednie pary.</div><div class=\"rozw-linia\">\\(\\dfrac{a_{2}}{a_{1}} = \\dfrac{13}{7}\\)</div><div class=\"rozw-linia\">\\(\\dfrac{a_{3}}{a_{2}} = \\dfrac{7}{13}\\)</div><div class=\"rozw-komentarz\">Pierwszy iloraz jest większy od \\(1\\), drugi mniejszy, więc na pewno są różne.</div><div class=\"rozw-linia\">\\(\\dfrac{13}{7} \\ne \\dfrac{7}{13}\\)<br>iloraz nie jest stały. Zdanie 1: <b>F</b></div><div class=\"rozw-linia rozw-odstep\">\\(S_{8} = 7 + 13 + 7 + 13 + 7 + 13 + 7 + 13\\)</div><div class=\"rozw-komentarz\">Zamiast dodawać po kolei, łączymy składniki w pary.</div><div class=\"rozw-linia\">\\(S_{8} = (7 + 13) + (7 + 13) + (7 + 13) + (7 + 13)\\)</div><div class=\"rozw-linia\">\\(S_{8} = 20 + 20 + 20 + 20\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{S_{8} = 80}\\), a w zdaniu 2 też stoi \\(80\\). Zdanie 2: <b>P</b></div><div class=\"rozw-linia rozw-odstep\">Odpowiedź <b>FP</b>.</div></div>",
+        "solutionStepByStep": [
+            {
+                "type": "video",
+                "src": "media/zad14/solution-step-by-step/step1.mp4",
+                "text": "Wzór ciągu liczy dowolny wyraz.<br>Po pierwszy wstawiamy \\(n = 1\\), i to w obu miejscach, w których stoi \\(n\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad14/solution-step-by-step/step2.mp4",
+                "text": "Pierwsza potęga niczego nie zmienia, więc \\((-1)^{1}\\) to po prostu \\(-1\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad14/solution-step-by-step/step3.mp4",
+                "text": "Liczba dodatnia razy ujemna daje ujemną.<br>\\(3 \\cdot (-1) = -3\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad14/solution-step-by-step/step4.mp4",
+                "text": "\\(-3 + 10\\) to to samo, co \\(10 - 3\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad14/solution-step-by-step/step5.mp4",
+                "text": "Pierwszy wyraz odkładamy na górę, bo przyda się później.<br>Teraz ten sam rachunek dla \\(n = 2\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad14/solution-step-by-step/step6.mp4",
+                "text": "Druga potęga to iloczyn dwóch takich samych czynników.<br>Wykładnik \\(2\\) mówi, że \\((-1)\\) mnożymy przez siebie dwa razy."
+            },
+            {
+                "type": "video",
+                "src": "media/zad14/solution-step-by-step/step7.mp4",
+                "text": "Dwa minusy dają plus, więc \\((-1) \\cdot (-1) = 1\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad14/solution-step-by-step/step8.mp4",
+                "text": "Mnożenie przez \\(1\\) niczego nie zmienia."
+            },
+            {
+                "type": "video",
+                "src": "media/zad14/solution-step-by-step/step9.mp4",
+                "text": "Drugi wyraz wyszedł inny niż pierwszy."
+            },
+            {
+                "type": "video",
+                "src": "media/zad14/solution-step-by-step/step10.mp4",
+                "text": "Wykładnik idzie \\(1, 2, 3, 4, \\ldots\\), czyli raz nieparzysty, raz parzysty.<br>Nieparzysta liczba minusów daje minus, parzysta plus."
+            },
+            {
+                "type": "video",
+                "src": "media/zad14/solution-step-by-step/step11.mp4",
+                "text": "Skoro \\((-1)^{n}\\) skacze między \\(-1\\) a \\(1\\), to \\(3 \\cdot (-1)^{n}\\) skacze między \\(-3\\) a \\(3\\).<br>Cały wyraz skacze więc między \\(7\\) a \\(13\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad14/solution-step-by-step/step12.mp4",
+                "text": "W ciągu geometrycznym każdy wyraz podzielony przez poprzedni daje zawsze tę samą liczbę.<br>Sprawdzamy pierwszą parę sąsiadów."
+            },
+            {
+                "type": "video",
+                "src": "media/zad14/solution-step-by-step/step13.mp4",
+                "text": "Druga para sąsiadów, ten sam rachunek."
+            },
+            {
+                "type": "video",
+                "src": "media/zad14/solution-step-by-step/step14.mp4",
+                "text": "\\(\\dfrac{13}{7}\\) jest większe od \\(1\\), a \\(\\dfrac{7}{13}\\) mniejsze, więc równe być nie mogą.<br>Iloraz nie jest stały, czyli ciąg nie jest geometryczny."
+            },
+            {
+                "type": "video",
+                "src": "media/zad14/solution-step-by-step/step15.mp4",
+                "text": "Wzoru na sumę tu nie użyjemy, bo ciąg nie jest ani arytmetyczny, ani geometryczny.<br>Zostaje dodać osiem wyrazów wprost."
+            },
+            {
+                "type": "video",
+                "src": "media/zad14/solution-step-by-step/step16.mp4",
+                "text": "Każda para to \\(7\\) i \\(13\\), a takich par jest cztery."
+            },
+            {
+                "type": "video",
+                "src": "media/zad14/solution-step-by-step/step17.mp4",
+                "text": "Każda para daje \\(20\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad14/solution-step-by-step/step18.mp4",
+                "text": "\\(20 + 20 + 20 + 20 = 80\\), a dokładnie tę liczbę podano w zdaniu 2."
+            }
+        ],
         "solutionWidget": null
     },
     {
