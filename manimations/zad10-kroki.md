@@ -1,5 +1,12 @@
 # Zadanie 10, kroki rozwiązania
 
+> **Uwaga: czekają poprawki** (Henrich, 2026-08-28, wpisane w `TODO.md`, sekcja
+> DO ZROBIENIA). Zapis budowany pod nagłówkiem części ma wyglądać tak samo jak pozycje
+> listy odpowiedzi. Krok 9 (warunek \(y < 0\) ze strzałką) wypada. Kroki 2 i 3 łączą się
+> w jeden, tak samo 11, 12 i 13, i analogicznie pozostałe pary odczytujące te same symbole.
+> Zasady spisane: `manimations/README.md`, punkty 42 do 44, oraz punkt 2c w skillu
+> `projektowanie-rozwiazan`.
+
 Otwórz w podglądzie (Ctrl+Shift+V). Notacja jak w `tablica-wzorow-transkrypt/`.
 
 Scena: `solutionZad10.py`. Projekt dydaktyczny:

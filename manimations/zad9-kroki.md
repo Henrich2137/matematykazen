@@ -1,5 +1,13 @@
 # Zadanie 9, kroki rozwiązania
 
+> **Uwaga: czekają poprawki** (Henrich, 2026-08-28, wpisane w `TODO.md`, sekcja
+> DO ZROBIENIA). Krok 5: współczynniki mniejsze i rozsunięte, a przed \(x^{2}\) ma
+> najpierw pojawić się jedynka, z której rodzi się \(a = 1\). Krok 6: nierówność znika,
+> wjeżdża wzór na deltę w postaci literowej, a współczynniki wędrują na swoje miejsca
+> i tam zamieniają się w liczby. Kroki 10 i 11: oba wzory na pierwiastki wjeżdżają razem,
+> pierwszy jest podstawiany i rozwiązywany do końca, potem drugi, a współczynniki są
+> przywoływane, nie wstawiane znikąd. Zasady spisane: `manimations/README.md`, punkty 37 do 41.
+
 Otwórz w podglądzie (Ctrl+Shift+V). Notacja jak w `tablica-wzorow-transkrypt/`.
 
 Scena: `solutionZad9.py`. Projekt dydaktyczny i uzasadnienie metody:

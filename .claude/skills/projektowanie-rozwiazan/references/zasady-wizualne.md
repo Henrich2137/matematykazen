@@ -123,6 +123,28 @@ kroków (dziewiętnaście zamiast dziesięciu) i tyle.
 
 ---
 
+## 2c. Film, który czyta rysunek, dzieli się inaczej niż film, który liczy
+
+**Rozstrzygnięcie Henricha, 2026-08-28** (zad. 10, pierwszy film w projekcie bez rachunku).
+Projekt tego zadania rozbijał każdy koniec przedziału na osobny krok, przez wierność zasadzie
+„jeden krok = jedno przekształcenie". Henrich kazał je posklejać: „krok 2 i 3 mogą być
+razem", „kroki 11, 12 i 13 mogą być połączone".
+
+**Zasada, która z tego zostaje:** w filmie, który nie przekształca, tylko odczytuje,
+**jednostką kroku jest jedna myśl, nie jeden symbol**. Dwa końce tego samego przedziału
+odczytane tym samym sposobem to jedna myśl. Osobne kroki należą się dopiero wtedy, gdy każdy
+niesie coś innego: inne miejsce na rysunku, inne uzasadnienie, inny wniosek.
+
+**Drugie sito: czy krok coś po sobie zostawia.** Krok, który tylko nazywa to, co i tak zaraz
+widać, wypada. W zad. 10 osobny krok z warunkiem \(y < 0\) i strzałką w dół poszedł do kosza,
+bo następny krok i tak zapalał fragment wykresu pod osią.
+
+**Uwaga:** to NIE znosi zasady rozbijania w filmach z rachunkiem. Tam ogniwo dalej dostaje
+własny krok (zad. 7, 8 i 9). Różnica jest w materiale: przekształcenie algebraiczne można
+przegapić, odczyt z rysunku widać.
+
+---
+
 ## 3. Nie każ uczniowi patrzeć w dwa miejsca naraz
 
 **Na czym polega.** Efekt podzielonej uwagi: kiedy jeden kanał, wzrok, niesie dwie rzeczy,

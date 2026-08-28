@@ -3,8 +3,24 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.     
+  
+  - Zad 9
+    - Krok 5 - Zmiejsz troche te współczynniki i oddziel je od siebie. Zanim się pojawią przed x^2 powinna pojawić sie jedynka, z której potemn zrodzi się a=1
 
-  - nic
+    - Krok 6 powinien wyglądać tak: Nierówność znika, pojawia się wzór na delte, współczynniki wędrująw na swoje miejscawe wzorze zmieniając sie na właściwe liczbym.
+
+    - Krok 10, 11... - Powinny pojawić sie oba wzory, najepirw jeden powinien zostać podstawiony i rozwiązany, a potem drugi. Powinny też zostać przywołane współczynniki.
+
+
+  - Zad 10
+    - Rozwiązanie krok po kroku
+      - Zmieniajace się zapisy pod nagłówkiem w stylu "2. Zbiór wartości" źle sie renderują, zobacz screenshoty. Spraw aby wyglądały podobnie co punkty 1. 2. 3. Wymienione niżej.
+      - Krok 9. (ten z wektorem w dół) jest niepotrzebny, wywal go
+      - Krok 2 i 3 mogą być razem
+      - Kroki 11, 12 i 13 moga być połączone razem
+      - itd. z innymi zdaniami do uzupełnienia w zadaniu.
+    - Rozwiązanie zwykłe - rozdziel te współczynniki troszeczke aby były bardziej czytelne, ale uważaj aby nie udicekły poza krawędzie ekranu na tel.
+
 
 <br>
 

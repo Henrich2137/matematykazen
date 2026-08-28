@@ -274,6 +274,44 @@ sprawdź, czy nie wystarczy dołożyć kroku.
     a nie zapis). Sprawdzone `tools/odwroc-kolor.py`: w ciemnym motywie wychodzą `#959595`
     i `#6a6a6a`, czyli nadal czytelnie.
 
+### Podstawianie do wzoru i przywoływanie wartości (ustalone 2026-08-28 na zad. 9)
+
+Uwagi Henricha po pierwszej wersji filmu do zad. 9. Wszystkie sprowadzają się do jednego:
+**liczba nigdy nie pojawia się z niczego, tylko przylatuje stamtąd, skąd ją wzięliśmy.**
+
+37. **Liczba wchodząca do wzoru ma PRZYLECIEĆ z miejsca, w którym została odczytana.**
+    `FadeIn` w miejscu docelowym uczy „coś się wstawiło", a nie „to jest ten sam \(b\),
+    którego odczytaliśmy dwa kroki wcześniej". Podstawienie robi się dwutaktowo w jednym
+    kroku: najpierw w kadrze staje wzór w postaci literowej (\(\Delta = b^{2} - 4ac\)),
+    potem każda litera zamienia się w liczbę, która do niej dojechała.
+38. **Wartość policzona wcześniej wraca w kadr, kiedy jest znów potrzebna.** Współczynniki
+    odczytane przed liczeniem wyróżnika mają wrócić przy wzorze na pierwiastki, a nie
+    wjeżdżać drugi raz znikąd.
+39. **Wartości, której w zapisie NIE WIDAĆ, najpierw dopisz na jej miejscu.** Przy
+    \(x^{2}\) nie stoi żadna liczba, więc najpierw pojawia się tam jedynka, i dopiero
+    z niej rodzi się \(a = 1\). To ta sama zasada, co ogniwo \(x = 1x\): brakujący znak
+    staje się widoczny tam, gdzie należy, a dopiero potem wędruje.
+40. **Dwa wzory, z których korzysta się po kolei, wjeżdżają razem, a używa się ich
+    pojedynczo.** Najpierw oba stoją w kadrze, potem pierwszy dostaje podstawienie i wynik,
+    dopiero potem drugi. Uczeń widzi, że to jeden wzór z \(\pm\), a nie dwa różne przepisy.
+41. **Zapisy odstawione obok siebie są MNIEJSZE od rachunku i wyraźnie rozdzielone.** Trzy
+    współczynniki złożone tym samym pismem co równanie i postawione blisko siebie czytają się
+    jak jedno długie wyrażenie.
+
+### Kiedy krok NIE zasługuje na własną kropkę (ustalone 2026-08-28 na zad. 10)
+
+42. **„Jeden krok = jedno przekształcenie" dotyczy RACHUNKU.** W filmie, który nie liczy,
+    tylko czyta rysunek, jednostką kroku jest jedna myśl, a nie jeden symbol. Dwa końce tego
+    samego przedziału odczytane tym samym sposobem to jeden krok, nie dwa (Henrich: „krok 2
+    i 3 mogą być razem", „kroki 11, 12 i 13 mogą być połączone"). Rozbicie na osobne kropki
+    ma sens dopiero wtedy, gdy każda niesie inną myśl.
+43. **Krok, który tylko nazywa to, co i tak zaraz widać, wypada.** W zad. 10 osobny krok
+    z warunkiem \(y < 0\) i strzałką w dół został wycięty: następny krok zapala fragment
+    wykresu pod osią, więc strzałka nie dokładała niczego.
+44. **Elementy tej samej roli mają jeden rozmiar i jedno wyrównanie.** Przedział budowany
+    pod nagłówkiem części i ten sam przedział na liście odpowiedzi to jedna rzecz w dwóch
+    chwilach, więc nie wolno im się różnić wielkością ani osią, do której są dosunięte.
+
 ### Po renderze
 
 22. `tools/wgraj-kroki.sh <nr> <arkusz>` robi render, kopię, rewersy i styk klatek jedną komendą.

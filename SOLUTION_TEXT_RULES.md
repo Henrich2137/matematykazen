@@ -126,6 +126,21 @@ Szkielet do przeklejania:
 </div>
 ```
 
+## Linijka, w której stoi kilka wartości naraz (od 2026-08-28)
+
+Chodzi o linijki typu „Współczynniki: \(a = 1\), \(b = -6\), \(c = -7\)" albo o zestaw
+wyników cząstkowych. To wyjątek od zasady „jedna linijka, jedno wyrażenie": wartości są
+odczytane naraz, z jednego zapisu, więc rozbijanie ich na trzy linijki niczego nie tłumaczy.
+
+15j. **Rozdziel je odstępem, nie samym przecinkiem** (Henrich, 2026-08-28, zad. 9: „rozdziel
+     te współczynniki troszeczkę, aby były bardziej czytelne"). Trzy równości postawione
+     blisko siebie czytają się jak jedno długie wyrażenie.
+15k. **I zaraz to zmierz na telefonie.** Przy oknie 485 px linijka z trzema równościami jest
+     już blisko krawędzi, a KaTeX nie łamie wzoru mądrze: rozsuwanie na oko potrafi wypchnąć
+     ostatnią wartość poza kartę. Zrzut telefonu jest tu obowiązkowy, nie opcjonalny.
+15l. **W filmie ta sama linijka ma być MNIEJSZA od rachunku** (`manimations/README.md`,
+     punkt 41). To jest odczyt odstawiony z boku, a nie kolejny krok przekształcenia.
+
 ## Kolor
 
 11. **Zielony to `--accent-green`**, wołany z JSON-a jako `\htmlClass{zielony}{...}` wewnątrz
