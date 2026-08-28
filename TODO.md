@@ -38,6 +38,8 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
   - v97, te same trzy filmy w CIEMNYM motywie: wykres jest fioletowy, a siatka jasnoszara. sprawdź, czy siatka po odwróceniu kolorów nie znika zupełnie i czy fiolet nie robi się jaskrawy
 
+  - v99, zad. 16 z grudnia 2024, film krok po kroku na TELEFONIE: nad rachunkiem stoi pas czterech policzonych wartości (\(a_2\), \(a_3\), \(q\), \(a_4\)), każda ułamkiem. sprawdź, czy te ułamki da się odczytać, bo pas jest mniejszy od rachunku
+
 <br>
 
 
