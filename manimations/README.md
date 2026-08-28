@@ -324,6 +324,53 @@ Uwagi Henricha po pierwszej wersji filmu do zad. 9. Wszystkie sprowadzają się 
     pod nagłówkiem części i ten sam przedział na liście odpowiedzi to jedna rzecz w dwóch
     chwilach, więc nie wolno im się różnić wielkością ani osią, do której są dosunięte.
 
+### Sceny z wykresem: co psuje styk klatek (ustalone 2026-08-28 na zad. 11 i 12)
+
+Cztery sceny do zadań 11, 12.1, 12.2 i 12.3 to pierwsze, w których przez cały film stoi
+w kadrze **wykres**: prosta albo parabola. Okazało się, że `tools/styk-klatek.sh` schodzi
+wtedy poniżej progu 0,999 nawet wtedy, gdy obraz jest identyczny co do treści, bo cienka
+krzywa i szara siatka to dużo drobnego szczegółu, a koder H.264 koduje ostatnią klatkę
+kroku i pierwszą klatkę następnego pliku niezależnie od siebie. Wszystkie cztery punkty
+niżej są **zmierzone**, każdy osobnym renderem, a nie wydedukowane.
+
+46. **Podświetlenie krzywej zmienia TYLKO kolor, nigdy grubość.** To była największa
+    pojedyncza poprawka: zapalanie gałęzi paraboli przez `set_color(ZIELONY).set_stroke(width=9)`
+    i gaszenie z powrotem na `width=6` przerysowuje krzywą, koder inaczej ustala jej brzeg
+    i styk siada. Zdjęcie samej zmiany grubości podniosło styki zad. 12.1 z **0,9985 na 0,9998**.
+    Przy okazji: zielona nakładka położona NA fioletowej krzywej jest gorsza od pomalowania
+    samej krzywej, więc wykres dziel na kawałki (lewa gałąź, prawa gałąź) i zapalaj kawałek.
+47. **Przytrzymanie na końcu kroku co najmniej 0,45 s.** Wymagane w punkcie 0 workflow
+    `0.25` wystarcza scenom z samym rachunkiem, ale przy wykresie jest za krótkie:
+    w zad. 11 trzy styki po `wait(0.3)` wypadały na 0,9988, a po podbiciu do `wait(0.45)`
+    weszły na 0,9992 i wyżej. Dłużej niż 0,45 s nic już nie daje.
+48. **Krok nie zaczyna się od największego ruchu w scenie.** Pierwsza klatka pliku jest
+    klatką kluczową kodowaną razem z resztą swojego kawałka, więc gdy zaraz po niej jedzie
+    cały wykres, dostaje mniej bitów i różni się od spoczynkowej klatki poprzedniego kroku.
+    W zad. 12.3 przestawienie kolejności (najpierw strzałka „o ile", dopiero potem zsunięcie
+    wykresu) podniosło styk **0,99854 na 0,99901**, a przy okazji jest lepsze dydaktycznie.
+    Odwrotny zabieg, czyli `self.wait(0.2)` na starcie sekcji (punkt 45), przy wykresie
+    **szkodzi**: wszystkie styki zad. 12.3 spadły wtedy do 0,9975.
+49. **Siatka `#e0e0e0`, nie jaśniejsza.** `#e8e8e8` na białym tle jest tak słaba, że koder
+    raz ją zostawia, a raz zgniata do bieli. Samo przyciemnienie siatki podniosło pierwszy
+    styk zad. 12.1 z 0,9983 na 0,9995.
+50. **Zanim uznasz spadek styku za błąd sceny, policz różniące się piksele.** Szum kodera
+    wygląda inaczej niż przeskok obrazu: to kilkaset pikseli rozsianych po BRZEGU krzywej,
+    a nie zwarty kształt.
+
+    ```sh
+    ffmpeg -sseof -0.05 -i stepN.mp4 -frames:v 1 /tmp/a.png -y
+    ffmpeg -i stepN+1.mp4 -frames:v 1 /tmp/b.png -y
+    python3 -c "
+    from PIL import Image; import numpy as np
+    A=np.asarray(Image.open('/tmp/a.png').convert('RGB')).astype(int)
+    B=np.asarray(Image.open('/tmp/b.png').convert('RGB')).astype(int)
+    d=np.abs(A-B).sum(axis=2); print('pikseli >30:', int((d>30).sum()))
+    Image.fromarray((255-(d>30).astype('uint8')*255)).save('/tmp/roznica.png')"
+    ```
+
+    Obejrzyj `/tmp/roznica.png`. Zwarta plama znaczy prawdziwy przeskok i wtedy poprawiasz
+    scenę. Sam kontur krzywej znaczy szum kodera i wtedy pomagają punkty 46 do 49.
+
 ### Po renderze
 
 22. `tools/wgraj-kroki.sh <nr> <arkusz>` robi render, kopię, rewersy i styk klatek jedną komendą.

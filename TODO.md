@@ -34,6 +34,10 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
   - v96, zad. 9 z grudnia 2024, film ma teraz 22 kroki, najwięcej w arkuszu (zad. 8 ma 19): sprawdź na telefonie, czy rząd kropek kroków daje się wygodnie klikać i czy przewijanie kropek nie gubi się przy skoku na koniec
 
+  - v97, zad. 11 oraz 12.1 i 12.3 z grudnia 2024, filmy krok po kroku na TELEFONIE: w kadrze stoi wykres z liczbami przy osiach. sprawdź, czy te liczby da się odczytać, bo na komputerze są wyraźne, a kadr na telefonie schodzi do ułamka tej szerokości
+
+  - v97, te same trzy filmy w CIEMNYM motywie: wykres jest fioletowy, a siatka jasnoszara. sprawdź, czy siatka po odwróceniu kolorów nie znika zupełnie i czy fiolet nie robi się jaskrawy
+
 <br>
 
 
@@ -301,6 +305,12 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     - `rozw-komentarz` (bledsze zdania między linijkami rachunku) wrócił do zad. 8 tego samego dnia, ale już nie pod każdą linijką, tylko w siedmiu trudnych przejściach na dziewiętnaście. Nadal jest to jedyne zadanie, które go używa: jeśli układ się sprawdzi, warto przejrzeć starsze rozwiązania opisowe
     - to samo z pasem rachunku pomocniczego w filmach (mniejsze pismo pod równaniem): zad. 8 był jedyną sceną, która go miała, i już nie ma. Zasady zostały w `manimations/README.md` oznaczone jako nieużywane
     - film do zad. 8 ma teraz 19 kroków i jest najdłuższy w arkuszu (poprzedni rekord to 14 w zad. 7). Jeśli kropki kroków będą się źle klikać, alternatywa jest jedna: zwijać ogniwa (\(2 \cdot x - 2 \cdot 1\), \(2x - 1x\)) z powrotem do środka kroków
+
+  + OPUS 5 DOPISAŁ (2026-08-28, po zrobieniu zad. 11 i 12 z 2024-grudnia):
+
+    - `widgetParabola` (pod zad. 12.1) maluje gałąź rosnącą na zielono, a malejącą na czerwono. Wg COLORS.md te dwie barwy znaczą „dobrze/źle", a nie „rośnie/maleje". Do decyzji: przemalować na inne tokeny czy zostawić
+    - opis w tym samym widżecie ma półpauzy („monotoniczność zmienia się — dokładnie"), a te są w projekcie zakazane. Warto przejrzeć wszystkie widżety pod tym kątem jednym przebiegiem
+    - katalogi filmów dla podnumerów nazwałem `media/zad12_1`, `zad12_2`, `zad12_3` (opisane w `matura/README.md`). Pierwszy taki przypadek w repo, więc gdyby nazwa Ci nie pasowała, teraz jest tanio ją zmienić
 
 + ZASADY DLA CLAUDE-A:
 

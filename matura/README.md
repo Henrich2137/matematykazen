@@ -46,7 +46,7 @@ Plus dane platformy:
 | plik / katalog | co to |
 |---|---|
 | `exercises.json` | treść zadań, podpowiedzi i rozwiązania — schemat opisany w [ARCHITECTURE.md](../ARCHITECTURE.md) |
-| `media/zadN/` | grafiki (PNG) i animacje rozwiązań z Manima (MP4), jeden katalog na numer zadania |
+| `media/zadN/` | grafiki (PNG) i animacje rozwiązań z Manima (MP4), jeden katalog na numer zadania. Podnumer zapisuje się **podkreślnikiem**: `zad12_1`, `zad12_2`, `zad12_3` (2026-08-28, zad. 12 z grudnia 2024). Kropka w nazwie katalogu myli się z rozszerzeniem, a wspólny `zad12` zlepiłby trzy różne filmy w jednym miejscu |
 
 Arkusz bez `exercises.json` jest „niewpięty" — leży tu jako materiał źródłowy, ale
 `?arkusz=<id>` go nie wyrenderuje i nie ma go na stronie głównej.
