@@ -379,6 +379,20 @@ niżej są **zmierzone**, każdy osobnym renderem, a nie wydedukowane.
 24. **Puść `tools/test-krokow.js`** na zadaniu, które ruszałeś.
 25. **Obejrzyj klatki okiem**: pierwszą, po zapaleniu koloru, w połowie ruchu i ostatnią.
     „Wyrenderowało się bez błędu" nic nie znaczy.
+
+    Model nie widzi plików mp4, widzi obrazki, więc robi to
+    **[tools/klatki.sh](../tools/klatki.sh)** (dodane 2026-08-29). Kiedy sięgać po który
+    tryb i na co patrzeć, mówi skill `.claude/skills/ogladanie-krokow/`:
+
+    ```
+    tools/klatki.sh stany matura/2024-grudzien/media/zad9/solution-step-by-step --koniec
+    tools/klatki.sh film  <katalog> 7 --co 6     # jeden krok jako sekwencja, widać ruch
+    tools/klatki.sh styk  <katalog> 3            # złącze 3/4 + podbita różnica
+    ```
+
+    Tryb `styk` jest uzupełnieniem punktu 23: `styk-klatek.sh` mówi, ŻE para nie przechodzi,
+    a ten pokazuje, GDZIE siedzi różnica, i podaje najjaśniejszy piksel różnicy w skali
+    0-255 (kilka jednostek to szum kodera, nie usterka).
 26. Sprawdzian koloru na sucho: pierwsza i ostatnia klatka każdego kroku mają mieć **zero**
     zielonych pikseli, środek ma mieć ich sporo. Sam zero na końcu **nie wystarcza**, bo cięcie
     i tak obcina obraz na czystym stanie. Policz zielone piksele w CAŁYM kroku, klatka po

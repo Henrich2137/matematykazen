@@ -2424,3 +2424,55 @@ Trzy rzeczy warte zapamiętania:
 Film: `matura/2024-grudzien/media/zad8/solution-step-by-step/`, scena `manimations/solutionZad8.py`,
 scenariusz `manimations/zad8-kroki.md`, spec `issues/spec-zad8-2024-grudzien.md`.
 Styki klatek SSIM ≥ 0,99976, zieleń bez zastrzeżeń, `tools/test-krokow.js` na zad. 8 czysty.
+
+## [ZROBIONE] 2026-08-29 — model widzi wyrenderowane filmy: tools/klatki.sh + skill ogladanie-krokow
+
+Punkt z TODO „dla Henricha: przekminić i zainstalować visualise czy coś". Okazało się, że
+**nie ma czego instalować**: w oficjalnym magazynie pluginów Claude Code (sprawdzone
+2026-08-29, `plugins/` i `external_plugins/` w cache marketplace'u) nie ma nic do oglądania
+wideo, a jedyny kandydat wizualny, `playwright`, dubluje zainstalowany już
+`chrome-devtools-mcp`. Model przyjmuje na wejściu obrazki, nie pliki mp4, więc jedyna droga
+prowadzi przez zamianę filmu na klatki. To nie jest obejście ograniczenia, tylko jedyny
+format, który wchodzi.
+
+**Co powstało:**
+
+- **[tools/klatki.sh](../tools/klatki.sh)** — trzy tryby:
+  - `stany` — pierwsza i ostatnia klatka każdego kroku w zadaniu, sklejone w jedną kratkę
+    z podpisami. Jeden obrazek pokazuje cały tok rozwiązania; przy zad. 9 (22 kroki) to
+    strona 1 z 2 przy budżecie 2500 tokenów.
+  - `film` — jeden krok jako sekwencja co N-tej klatki. `--co 6` daje 20 klatek na sekundę,
+    `--co 20` mniej klatek, za to dużych i czytelnych.
+  - `styk` — para klatek na złączu kroków w pełnej rozdzielczości plus różnica wzmocniona
+    (domyślnie x25). Uzupełnia `styk-klatek.sh`: tamten mówi, ŻE para nie przechodzi, ten
+    pokazuje, GDZIE.
+- **`.claude/skills/ogladanie-krokow/SKILL.md`** — kiedy sięgać po który tryb, na co patrzeć
+  (styk, zieleń tylko w środku, ruch za rachunkiem), czego na klatkach nie widać i jak nie
+  przepalić kontekstu.
+- Punkt 25 w `manimations/README.md` („obejrzyj klatki okiem") dostał wreszcie narzędzie —
+  dotąd był poleceniem bez sposobu wykonania.
+
+**Cztery rzeczy warte zapamiętania:**
+
+- **Koszt obrazka zależy wyłącznie od jego powierzchni** (mniej więcej piksele/750), nie od
+  tego, ile klatek jest w środku. Trzydzieści małych kafelków kosztuje tyle samo co jedna
+  duża klatka o tej samej powierzchni; płaci się czytelnością. Stąd pokrętło `--tokeny`:
+  skrypt dobiera wielkość kafelka pod budżet i dzieli na strony, gdy się nie mieści.
+- **Bezruch trzeba odsiewać.** Zmierzone na zad. 9, krok 3: po wzięciu co szóstej klatki
+  zostają 72, z czego **44 to ta sama klatka** (`self.wait` na końcu kroku). Bez
+  `mpdecimate` większość budżetu szła na powtórzenia. Po odsianiu kafelki urosły ze 186 do
+  242 px przy tym samym koszcie.
+- **`eq=contrast` nie nadaje się do podbijania różnicy klatek.** Przy SSIM 0,9999 różnice
+  są rzędu jednostek na 255 i mnożenie przez 10 dało obraz nie do odróżnienia od czerni.
+  Działa dopiero `geq=lum='min(255,lum(X,Y)*25)'`. Do obrazka dochodzi liczba
+  `YMAX` z `signalstats`, bo bez niej nie wiadomo, czy jasne miejsca to rozjazd, czy szum
+  kodera podbity dwudziestopięciokrotnie.
+- **`ffmpeg -v error` gasi wynik filtra `ssim`** (wypisuje się na poziomie „info"), a
+  `metadata=print` wymaga `file=-`, żeby trafić na standardowe wyjście. Obie rzeczy
+  wyglądały jak brak wyniku.
+
+**Sprawdzone na zad. 9 arkusza 2024-grudzien** (22 kroki): wszystkie trzy tryby, obie strony
+`stany`, gęstsze i rzadsze `--co`, oraz błędy (nieistniejący krok, ostatni krok bez
+następnika). Tryb `styk` na parze 3/4 pokazał, że szare `/−7` widoczne na końcu kroku 3
+jest w OBU klatkach — różnica to same kontury glifów, czyli szum kodera H.264 (YMAX 55/255
+rozłożone po krawędziach całej linii), a nie usterka sceny.

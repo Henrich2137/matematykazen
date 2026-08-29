@@ -4,13 +4,58 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.     
   
-  - nic
+  - 2024-grudzien - Rozwiązania do zadań
+    - W rozwiazaniach zwykłych wytłuść finalne odpowiedzi takie jak: "x = -6", "x∈⟨−1, 7⟩"
+
+    - Zad 7
+      - krok po kroku
+        - krok 1 - klamra jest za "gruba", poszukaj innego znaku bo to wygląda jakbys powiększył zwykły nawias"{"
+      - zwykłe - brakuje wytłumaczeń takich jak w zad 8 - 17
+
+    - Zad 8
+      - zwykłe
+        - Dlaczego sprawdzenei jest za poziomą linią? Wygląda to jakby było oddzielną częścia niż rozwiązanie zwykłe. Zrób zamiast linii sam odstęp tej wielkości.
+        - po "Sprawdzenie." daj nową linijkę
+    
+    - Zad 9 
+      - krok po kroku
+        - spraw aby współczynniki były wycentrowane, obecnie są dosunięte do lewej. "b= -6" powinno być na środku. Wysokość jest dobrze, ewentualnie o ciupinkę w górę.
+        - krok w którym rozwiązania z z współczynnikami i deltą zmieniaja sie w rozwiązania po przecinku "x1=-1, x2=7"
+          - animacja zmiany nie ma sensu i wprowadza niepotrzebne zamieszanie, przecinek jest niepotrzeby, wystaczy aby zniknęły współczynniki i delta, a w ich miejsce pojawiła się parabola. Może to być w jednym kroku.
+          - "x1=-1, x2=7" miga
+      - zwykłe - zrób przerwę między końcówką kolumn liczenia rozwiązań x1 i x2 a zapisem "Miejsaca zerowe..."
+      - interaktywne - zrób przerwę między napisem "Kliknij na dowolne miejsce na osi lub przeciągnij punkty, aby podstawić liczbę pod x." a renderem widżetu.
+    
+    - Zad 10
+      - krok po kroku - zapisy przedziałów które pojawiaja sie pod nagłówkami typu "1. Dziedzina" co pojawiają się w kroku 2, 5 itd. źle się renderują. Zbuduj to wszystko prościej:
+        - krok 1 rozrysowanie wykresu
+        - krok 2 zaznaczenie dziedziny na osi OX (możesz podoświetlać na zielono), ładna nanimacja i pokolorowanie kropeki i pojawienie się " 1. (-4, 4)"
+        - krok 3 - zanalogicznie do kroku 1 ale dla zdania 2.
+        - krok 4 - zanalogicznie do kroku 1 ale dla zdania 3.
+        - krok 5 - zanalogicznie do kroku 1 ale dla zdania 4.
+        
+        OPRÓCZ TEGO:
+        - animacje na układzie współrzędnych są okej
+        - Animacje w ostatnik kroku wyglądaja świetnie, możewsz stosować podobne do reszty kroków, tam gdzie pasują.
+      
+      - zwykłe
+        - Dziedzina - zamiast opisywać słownie wykres:
+          - skup się na tym jak wyłuskać te rzeczy ze wzoru funkcji zapisz wzór funkcji i zaznacz na zielono "(-4" i "4⟩" i pod spodem zapisz dziedzinę.
+        - dla reszty opisz krócej, prościej i bardziej zrozumiale
+      
+
+        
+
 
 
 <br>
 
 
 + NIE REALIZUJ, CZEKAJĄ W KOLEJCE:
+  
+  - Saphari na mały iphonie SE - Rozwiązania krok po kroku
+    - Przyciskanie przycisku "steps-scroll-prawo" zbyt dużo razy na m sprawia, że kroki zostają po lewej. Przewijanie odjeższą za daleko.
+    - Cieżko trafić w kropki aby je przesunąć
 
   - Rozwiązania krok po kroku - kropki kroków (np w zad 1.) przy szerokości okna około 310 do 325 px już się chowają, a strzałki przewijania jeszcze się nie pokazują, więc w tym wąskim zakresie nie da się przejść do innego kroku. Poza tym zakresem przewijanie działa. Zlikwiduj tą strefe pomiędzy, ma być albo wszystko widoczne, albo poprawnie strzałki i przewijanie.
   
@@ -29,6 +74,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Próg wejścia jest wysoki, patrz ZASADY DLA CLAUDE-A niżej. Archiwum dawnych list: issues/testowanie-archiwum.md.
 
   - v94, zad. 8 z grudnia 2024, film krok po kroku w CIEMNYM motywie na telefonie: szare \(x \ne 1\) nad równaniem i szary dopisek działania z boku (np. „/ · 2") mają być czytelne, a nie zlewać się z tłem
+  JEST CZYTELNE NAWET NA MAŁEJ JASNOŚĆI
 
   - v96, zad. 10 z grudnia 2024, film krok po kroku na TELEFONIE: wykres siedzi po lewej, a wyniki czterech części po prawej. sprawdź, czy w pionie wykres nie robi się za mały do odczytania liczb przy osiach
 
@@ -128,6 +174,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
           - Rozwiązanie krok po kroku:
             - film robi sam rachunek, NIE rysuje paraboli (widżet niżej już ją pokazuje interaktywnie)
               — czy to dobry podział, czy parabola ma być też w filmie
+        POWYŻSZE SA CHYBA BARDZO NIEAKTUALNE
 
 
 

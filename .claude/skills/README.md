@@ -16,6 +16,17 @@ albo widżet.
   (rozwiązanie opisowe), wzorzec widżetu i lista typowych błędów maturzysty ze sprawozdań
   CKE 2024 i 2025.
 
+## ogladanie-krokow
+
+Własny skill projektu (2026-08-29). Odpowiada na pytanie „czy film wyszedł tak, jak miał
+wyjść", już po renderze. Model nie widzi plików mp4, więc skill obudowuje
+[tools/klatki.sh](../../tools/klatki.sh), które zamienia film na obrazki.
+
+- Trzy tryby: `stany` (pierwsza i ostatnia klatka każdego kroku), `film` (jeden krok jako
+  sekwencja, widać ruch), `styk` (złącze dwóch kroków plus podbita różnica).
+- Mówi też, czego na klatkach **nie** widać: płynności i tempa. To zostaje człowiekowi.
+- Pilnuje kosztu kontekstu - obrazki są tanie tylko wtedy, gdy się ich nie ogląda odruchowo.
+
 ## manim-composer, manimce-best-practices
 
 Źródło: [adithya-s-k/manim_skill](https://github.com/adithya-s-k/manim_skill), licencja MIT,
