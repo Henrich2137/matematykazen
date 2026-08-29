@@ -2458,10 +2458,20 @@ format, który wchodzi.
   tego, ile klatek jest w środku. Trzydzieści małych kafelków kosztuje tyle samo co jedna
   duża klatka o tej samej powierzchni; płaci się czytelnością. Stąd pokrętło `--tokeny`:
   skrypt dobiera wielkość kafelka pod budżet i dzieli na strony, gdy się nie mieści.
-- **Bezruch trzeba odsiewać.** Zmierzone na zad. 9, krok 3: po wzięciu co szóstej klatki
-  zostają 72, z czego **44 to ta sama klatka** (`self.wait` na końcu kroku). Bez
-  `mpdecimate` większość budżetu szła na powtórzenia. Po odsianiu kafelki urosły ze 186 do
-  242 px przy tym samym koszcie.
+- **Bezruch trzeba odsiewać, ale wyrzucony czas trzeba OZNACZYĆ.** Zmierzone na zad. 9,
+  krok 3: po wzięciu co szóstej klatki zostają 72, z czego **44 to ta sama klatka**
+  (`self.wait`). Bez `mpdecimate` większość budżetu szła na powtórzenia; po odsianiu
+  kafelki urosły ze 186 do 242 px przy tym samym koszcie. Samo odsianie jednak **kłamie** —
+  dwa sąsiednie kafelki wyglądają jak ciąg ruchu, a dzieli je pół sekundy postoju (pytanie
+  Henricha, które to wyłapało). Stąd podpis kafelka to **czas w filmie w milisekundach**,
+  a nie numer po kolei, plus pomarańczowy pasek „bezruch +X.XXs" na kafelku, na którym
+  obraz staje. Czasy bierze `showinfo` z przebiegu na sucho: `mpdecimate` zachowuje
+  oryginalne `pts`, więc luka między wypisanymi `pts_time` to dokładnie wyrzucony bezruch.
+  Próg „to już postój" to 2,5-krotność zwykłego odstępu (`--co` / fps).
+- **`drawtext` nie ma formatu ułamkowego z zadaną liczbą miejsc.** `%{eif:t:f:2}` odpada
+  („Invalid format 'f'"), `%{pts:flt}` wypisuje sześć miejsc po przecinku („0.200000").
+  Stąd milisekundy przez `%{eif:t*1000:d}`. Dwukropki w środku `%{...}` trzeba eskejpować,
+  inaczej ffmpeg czyta je jako separator opcji i skarży się o „both text and text file".
 - **`eq=contrast` nie nadaje się do podbijania różnicy klatek.** Przy SSIM 0,9999 różnice
   są rzędu jednostek na 255 i mnożenie przez 10 dało obraz nie do odróżnienia od czerni.
   Działa dopiero `geq=lum='min(255,lum(X,Y)*25)'`. Do obrazka dochodzi liczba

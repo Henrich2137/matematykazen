@@ -43,6 +43,16 @@
 # kosztują tyle samo co klatki z ruchem i nic nie pokazują. `--z-bezruchem` je zostawia,
 # gdy naprawdę trzeba zobaczyć, ile czegoś stoi w miejscu.
 #
+# ALE WYRZUCONY CZAS MUSI BYĆ WIDAĆ, inaczej kratka kłamie: dwa sąsiednie kafelki
+# wyglądają jak ciąg ruchu, a naprawdę dzieli je pół sekundy postoju. Stąd DWA
+# oznaczenia na każdym kafelku trybu `film`:
+#   - żółty podpis w lewym górnym rogu — CZAS W FILMIE w milisekundach, nie numer po
+#     kolei. Skok w tych liczbach sam z siebie zdradza, że coś wypadło.
+#   - pomarańczowy pasek „bezruch +X.XXs" na dole — ląduje na kafelku, na którym obraz
+#     STAJE, i mówi, jak długo stoi. To jego treść wisi przez ten czas na ekranie.
+# Ta sama lista przerw idzie na konsolę. Bez tych oznaczeń nie da się odróżnić
+# „dwa ruchy pod rząd" od „ruch, pauza, ruch".
+#
 # WYNIK ląduje w /tmp/klatki/<zadanie>/ (tak jak zrzuty z tools/zrzuty.js lądują
 # w /tmp/zrzuty/) — poza repozytorium, żeby nie zaśmiecać gita. Skrypt wypisuje
 # ścieżki powstałych plików; to je otwiera się potem Read-em.
@@ -141,26 +151,69 @@ film)
     # Zmierzone na zad. 9, krok 3: 72 klatki po przerzedzeniu, z czego 44 identyczne.
     if [ "$bezruch" = pomin ]; then odsiew="mpdecimate,"; else odsiew=""; fi
 
-    # Ile klatek naprawdę zostanie, wiadomo dopiero po odsianiu, więc najpierw
-    # przebieg na sucho (bez zapisu obrazu), a dopiero potem dobór siatki pod budżet.
-    wybrane=$(ffmpeg -v error -i "$plik" -fps_mode passthrough \
-        -vf "select='not(mod(n\,$co))',${odsiew}null" -f null -progress - -nostats - 2>/dev/null \
-        | awk -F= '/^frame=/{f=$2} END{print f+0}')
-    [ "${wybrane:-0}" -gt 0 ] || wybrane=$(( (wszystkie + co - 1) / co ))
+    # PRZEBIEG NA SUCHO. Potrzebne są z niego dwie rzeczy: ile klatek zostanie po
+    # odsianiu (bo dopiero wtedy da się dobrać siatkę pod budżet) i KIEDY dokładnie
+    # każda z nich siedzi w filmie. `showinfo` wypisuje `pts_time` każdej klatki,
+    # która przeszła przez filtry; `mpdecimate` zachowuje oryginalne znaczniki czasu,
+    # więc luka między kolejnymi wypisanymi czasami to dokładnie wyrzucony bezruch.
+    mapfile -t czasy < <(ffmpeg -i "$plik" -fps_mode passthrough \
+        -vf "select='not(mod(n\,$co))',${odsiew}showinfo" -f null - 2>&1 \
+        | grep -o 'pts_time:[0-9.]*' | cut -d: -f2)
+
+    wybrane=${#czasy[@]}
+    [ "$wybrane" -gt 0 ] || { echo "nie udało się odczytać klatek z $plik" >&2; exit 1; }
     uklad "$wybrane" "$tokeny" 0
 
-    # Numer na kafelku pozwala potem powiedzieć „w kafelku 12 nachodzi...", zamiast
-    # liczyć od lewej. drawtext idzie PO skalowaniu, więc rozmiar czcionki jest
-    # stały niezależnie od tego, jak drobne wyszły kafelki.
+    # Odstęp między sąsiednimi klatkami PRZED odsianiem: co ile sekund powinny po sobie
+    # następować, gdyby nic nie wypadło. Wszystko wyraźnie dłuższe to przerwa w ruchu.
+    fps=$(ffprobe -v error -select_streams v:0 -show_entries stream=r_frame_rate -of csv=p=0 "$plik" \
+        | awk -F/ '{print ($2?$1/$2:$1)}')
+    krok_czasu=$(awk -v c="$co" -v f="$fps" 'BEGIN{print c/f}')
+
+    # Przerwy zbieramy do dwóch rzeczy naraz: do wypisania na konsoli i do znaczników
+    # na samych kafelkach. Bez znacznika kratka kłamie — dwa sąsiednie kafelki wyglądają
+    # jak ciąg ruchu, a naprawdę dzieli je pół sekundy bezruchu.
+    przerwy=""
+    filtry_przerw=""
+    for ((i = 0; i < wybrane - 1; i++)); do
+        luka=$(awk -v a="${czasy[i]}" -v b="${czasy[i+1]}" 'BEGIN{print b-a}')
+        # Próg 2,5-krotności zwykłego odstępu: mniejsze wahania to zaokrąglenia
+        # znaczników czasu, a nie postój.
+        czy=$(awk -v l="$luka" -v k="$krok_czasu" 'BEGIN{print (l > 2.5*k) ? 1 : 0}')
+        [ "$czy" = 1 ] || continue
+        opis=$(awk -v l="$luka" 'BEGIN{printf "%.2f", l}')
+        przerwy+=$(printf ' %ss(+%ss)' "${czasy[i]}" "$opis")
+        # Znacznik ląduje na kafelku, na którym obraz STAJE, bo to jego treść wisi
+        # przez tę chwilę na ekranie. eps = pół zwykłego odstępu, żeby trafić w jedną klatkę.
+        eps=$(awk -v k="$krok_czasu" 'BEGIN{print k/2}')
+        od=$(awk -v t="${czasy[i]}" -v e="$eps" 'BEGIN{print t-e}')
+        do_=$(awk -v t="${czasy[i]}" -v e="$eps" 'BEGIN{print t+e}')
+        filtry_przerw+=",drawtext=fontfile=$CZCIONKA:text='bezruch +${opis}s':x=4:y=h-th-4:fontsize=FS:fontcolor=white:box=1:boxcolor=0xc06000@0.85:boxborderw=2:enable='between(t\,$od\,$do_)'"
+    done
+
+    # Podpis kafelka to CZAS W FILMIE, nie numer po kolei. Przy odsianym bezruchu numer
+    # po kolei nie mówi nic o tym, ile czasu minęło; czas mówi, i skok w czasie sam
+    # zdradza postój nawet bez pomarańczowego znacznika.
+    #
+    # W milisekundach, bo `%{pts:flt}` wypisuje sześć miejsc po przecinku („0.200000"),
+    # a drawtext nie ma formatu z zadaną liczbą miejsc dla ułamka.
     fs=$(awk -v t="$TW" 'BEGIN{f=int(t/22); if(f<9)f=9; if(f>28)f=28; print f}')
-    wynik="$WYJSCIE/film-krok$krok-co$co.png"
+    filtry_przerw=${filtry_przerw//FS/$fs}
+    # Wariant z bezruchem ma własną nazwę, żeby nie nadpisywał odsianego i żeby dało się
+    # oba porównać obok siebie.
+    wynik="$WYJSCIE/film-krok$krok-co$co$([ "$bezruch" = zostaw ] && echo -pelny).png"
 
     ffmpeg -v error -y -i "$plik" -fps_mode passthrough -vf \
-      "select='not(mod(n\,$co))',${odsiew}scale=$TW:$TH,drawtext=fontfile=$CZCIONKA:text='%{n}':x=4:y=4:fontsize=$fs:fontcolor=yellow:box=1:boxcolor=black@0.6:boxborderw=2,tile=${KOL}x${WIE}:margin=4:padding=3:color=0x303030" \
+      "select='not(mod(n\,$co))',${odsiew}scale=$TW:$TH,drawtext=fontfile=$CZCIONKA:text='%{eif\:t*1000\:d}ms':x=4:y=4:fontsize=$fs:fontcolor=yellow:box=1:boxcolor=black@0.6:boxborderw=2${filtry_przerw},tile=${KOL}x${WIE}:margin=4:padding=3:color=0x303030" \
       -frames:v 1 "$wynik" || exit 1
 
     echo "krok $krok: $wszystkie klatek w pliku, co $co daje $(( (wszystkie + co - 1) / co )), po odsianiu bezruchu $wybrane"
     echo "siatka ${KOL}x${WIE}, kafelek ${TW}x${TH} (źródło ${SZER_ZRODLA} szer.)"
+    if [ -n "$przerwy" ]; then
+        echo "wyrzucony bezruch (oznaczony na kafelkach):$przerwy"
+    else
+        echo "bez przerw w ruchu"
+    fi
     echo "$wynik"
     ;;
 

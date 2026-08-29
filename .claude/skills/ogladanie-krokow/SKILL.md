@@ -26,8 +26,11 @@ patrzą na sens.
 
 Powiedz to wprost, zamiast udawać, że sprawdziłeś:
 
-- **Płynności i tempa ruchu.** Klatki to przystanki, nie jazda. Czy coś jedzie za szybko
-  albo szarpie, ocenia człowiek w przeglądarce.
+- **Płynności ruchu.** Klatki to przystanki, nie jazda. Czy coś szarpie albo jedzie
+  nierówno, ocenia człowiek w przeglądarce.
+- **Tego, czy tempo jest DOBRE.** Ile co trwa, owszem, zmierzysz - kafelki są podpisane
+  czasem, a postoje mają swój znacznik. Ale „0,5 s bezruchu" to liczba, nie ocena; czy to
+  za długo dla ucznia, wie Henrich, nie Ty.
 - **Zachowania odtwarzacza.** Przewijanie, rewersy, przeskoki między krokami sprawdza
   [tools/test-krokow.js](../../../tools/test-krokow.js), nie obrazek.
 
@@ -49,6 +52,27 @@ tools/klatki.sh styk  <katalog> 3                 # złącze kroku 3 z krokiem 4
 
 Skrypt wypisuje ścieżkę powstałego pliku. Otwierasz go zwykłym **Read** - i dopiero wtedy
 naprawdę patrzysz, zamiast zgadywać z kodu sceny.
+
+## Jak czytać kratkę z trybu `film`
+
+Kafelki idą **od lewej do prawej, wierszami**, i każdy ma dwa oznaczenia:
+
+- **Żółty podpis w lewym górnym rogu to czas w filmie w milisekundach**, a nie numer po
+  kolei. To jest istotne: bezruch jest odsiewany, więc sąsiednie kafelki nie muszą dzielić
+  równego odstępu. Skok w tych liczbach (np. `1800ms` obok `2250ms`) znaczy, że między nimi
+  obraz stał.
+- **Pomarańczowy pasek „bezruch +0.45s" na dole kafelka** mówi to samo wprost i siedzi na
+  kafelku, na którym obraz **staje**. Ta treść wisi przez ten czas na ekranie ucznia.
+
+Ta sama lista przerw leci na konsolę, więc widać ją jeszcze przed otwarciem obrazka.
+
+**Po co Ci to.** Bez tych oznaczeń kratka kłamie - dwa kafelki obok siebie wyglądają jak
+ciąg ruchu, a naprawdę dzieli je pół sekundy postoju. Przerwa w środku kroku bywa
+sygnałem, że krok robi dwie rzeczy zamiast jednej: coś się dzieje, zastój, dzieje się
+druga rzecz. Wtedy sprawdź w scenie, czy to nie materiał na dwa kroki.
+
+Odstępu czasu **nie mylić z oceną tempa** - że coś stoi 0,5 s, widzisz; czy to za długo,
+nie. Zobacz sekcję wyżej.
 
 ## Kolejność, w której to robisz
 

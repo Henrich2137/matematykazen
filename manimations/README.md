@@ -393,6 +393,13 @@ niżej są **zmierzone**, każdy osobnym renderem, a nie wydedukowane.
     Tryb `styk` jest uzupełnieniem punktu 23: `styk-klatek.sh` mówi, ŻE para nie przechodzi,
     a ten pokazuje, GDZIE siedzi różnica, i podaje najjaśniejszy piksel różnicy w skali
     0-255 (kilka jednostek to szum kodera, nie usterka).
+
+    W trybie `film` bezruch (`self.wait`) jest odsiewany, bo pochłaniał połowę obrazka:
+    na zad. 9, kroku 3 z 72 przerzedzonych klatek 44 były tą samą klatką. Wyrzucony czas
+    jest jednak **oznaczony**, inaczej kratka kłamie: żółty podpis kafelka to czas w filmie
+    w milisekundach (a nie numer po kolei), a pomarańczowy pasek „bezruch +0.45s" siedzi na
+    kafelku, na którym obraz staje. Przerwa w ŚRODKU kroku bywa sygnałem, że krok robi dwie
+    rzeczy zamiast jednej, czyli łamie zasadę 1 z „Zasad krok po kroku".
 26. Sprawdzian koloru na sucho: pierwsza i ostatnia klatka każdego kroku mają mieć **zero**
     zielonych pikseli, środek ma mieć ich sporo. Sam zero na końcu **nie wystarcza**, bo cięcie
     i tak obcina obraz na czystym stanie. Policz zielone piksele w CAŁYM kroku, klatka po
