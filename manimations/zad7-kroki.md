@@ -72,3 +72,11 @@ miejsce na zgubienie punktu przez nieuwagę, dlatego mówi o tym wprost opis kro
 | B. \(-0{,}5\) | policzenie \(a:b\) zamiast \(a\cdot b\), z pomyloną kolejnością |
 | C. \(0{,}5\) | jak wyżej, dodatkowo zgubiony minus |
 | D. \(2\) | zgubiony minus przy \(a\), np. przeczytanie \(-a=2\) jako \(a=2\) |
+
+## Poprawka klamry (2026-08-29)
+
+Klamra układu w kroku 1 była zwykłym glifem `\{` przeskalowanym na wysokość dwóch równań,
+więc razem z wysokością rosła jej grubość i wyglądała na powiększony nawias (Henrich:
+„klamra jest za gruba"). Zastąpiona **rozciągalną**: `MathTex(r"\left\{\rule{0pt}{40pt}\right.")`.
+LaTeX składa taką klamrę z kawałków o stałej grubości, więc rośnie sama w pionie. Szczegóły
+i porównanie wariantów: `manimations/README.md`, sekcja „Pułapki Manima".

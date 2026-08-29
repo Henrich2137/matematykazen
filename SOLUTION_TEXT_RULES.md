@@ -10,7 +10,7 @@ tego samego dnia na zadaniach 3, 4, 6, 7 i 8. Wzorce do podejrzenia, wszystkie w
 | 3 | to samo w zadaniu na wykazanie, na końcu wniosek zamiast „Odpowiedź X." |
 | 4 | wąskie rozwiązanie wyśrodkowane na karcie (`rozw-srodek`) |
 | 6 | jedna kolumna, jeden wzór na górze, ułamki przez `\dfrac` |
-| 7 | dwa tory obok siebie, które na końcu schodzą się w jeden |
+| 7 | dwa tory obok siebie, które na końcu schodzą się w jeden, z komentarzami **wewnątrz** siatki |
 | 8 | dwa tory **wewnątrz** rozwiązania jednokolumnowego, komentarze tylko w trudnych przejściach, przerwa między częściami, odkreślone sprawdzenie |
 | 9 | to samo w zadaniu z deltą: ogniwa (\(x \cdot x - x \cdot 6\), \(-(-6)\), \(\dfrac{-2}{2}\)) mają własne linijki, a wniosek z rysunku (ramiona paraboli) stoi jako zwykłe zdanie w linijce |
 | 10 | zadanie bez rachunku, sam odczyt z wykresu: cztery części z wytłuszczonym nagłówkiem wtopionym w pierwszą linijkę, przedział budowany z dwóch końców, zdanie zamykające podaje odpowiedzi w zapisie z polecenia |
@@ -98,8 +98,11 @@ komentarzy na dziewiętnaście linijek.
      gdy dopisuje coś ponad sam zapis (tu: że nawias dopisuje się w obu licznikach).
 15e. **Komentarz nie zastępuje rozbicia kroku.** Jeśli przejście robi dwie rzeczy naraz,
      rozbij je na dwie linijki, a nie tłumacz zdaniem.
-15f. **Sprawdzenie wyniku idzie w `<div class="rozw-sprawdzenie">`**, czyli pod kreskę,
-     na dole. Rachunek punktowany przez CKE kończy się wyżej, na wyniku, więc ma być widać,
+15f. **Sprawdzenie wyniku idzie w `<div class="rozw-sprawdzenie">`**, czyli pod szerszy
+     odstęp, na dole (kreska stała tam do 2026-08-29; Henrich: „wygląda to jakby było
+     oddzielną częścią niż rozwiązanie zwykłe", więc została sam odstęp tej samej wielkości).
+     Po samym słowie **Sprawdzenie.** idzie nowa linijka, a zdanie wyjaśniające pod nim
+     jest komentarzem, nie dalszym ciągiem nagłówka. Rachunek punktowany przez CKE kończy się wyżej, na wyniku, więc ma być widać,
      że zaczyna się część dobrowolna. Podstawiając liczbę ujemną, pisz ją **w nawiasie**
      (\((-6) + 3\), nie \(-6 + 3\)): to jedno z miejsc, w których uczniowie gubią znak.
 15g. **Komentarz niesie OGNIWO, którego w rachunku nie widać** (dopisane 2026-08-27, po
@@ -125,6 +128,24 @@ Szkielet do przeklejania:
   <div class="rozw-linia">\(2x = x - 6\)</div>
 </div>
 ```
+
+## Komentarz w układzie dwutorowym (od 2026-08-29)
+
+15m. **W układzie dwutorowym komentarz idzie WEWNĄTRZ siatki**, jako wiersz rozpięty na obie
+     kolumny, a nie między dwoma blokami `.rozw-2kol`:
+
+     ```html
+     <div class="rozw-wiersz rozw-pelny">
+       <div class="rozw-komentarz">zdanie o przejściu w OBU torach</div>
+     </div>
+     ```
+
+     Powód jest mechaniczny: każdy blok `.rozw-2kol` liczy szerokość kolumn osobno
+     (`width: fit-content`), więc rozbicie rachunku na kilka bloków przedzielonych zdaniami
+     rozjeżdża tory w pionie. Cały blok musi zostać jeden.
+15n. **Jedno zdanie opisuje przejście w obu torach naraz**, bo wiersz jest wspólny:
+     „Po lewej \(3 \cdot 6 = 18\). Po prawej \(-1\) przechodzi na drugą stronę ze zmianą
+     znaku". Osobne zdanie dla każdego toru zrobiłoby z komentarza trzecią kolumnę.
 
 ## Linijka, w której stoi kilka wartości naraz (od 2026-08-28)
 

@@ -3,8 +3,8 @@ from manim import *
 # Zadanie 9 (otwarte, 2 pkt). Rozwiąż x(x-6) <= 7. Wynik: x nalezy do <-1, 7>.
 #
 # Projekt: issues/projekt-zad9-zad10-2024-grudzien.md. Scenariusz krokow opisowo:
-# manimations/zad9-kroki.md. Dwadziescia dwa kroki, jeden do jednego
-# z dwudziestoma dwoma linijkami rachunku w solutionText.
+# manimations/zad9-kroki.md. Dwadziescia jeden krokow (bylo dwadziescia dwa,
+# patrz komentarz przy kroku 19).
 #
 # WERSJA DRUGA, 2026-08-28, po uwagach Henricha do pierwszej (TODO.md):
 #   - krok 5: najpierw przed x^2 pojawia sie jedynka, i dopiero z niej rodzi sie
@@ -36,7 +36,7 @@ SZARY_DOPISEK = "#888888"
 
 ROWNANIE_Y = UP * 0.75
 GORA_Y = UP * 2.4
-KOEF_Y = DOWN * 2.35
+KOEF_Y = DOWN * 2.2      # ciupinke wyzej niz 2.35 (Henrich, 2026-08-29)
 POSTOJ = 0.45
 
 
@@ -106,9 +106,6 @@ class Zad9(Scene):
         s8 = self.stan(r"\Delta", "=", "64")
         s9 = self.stan(r"\sqrt{\Delta}", "=", "8")
 
-        s19 = self.stan(r"x_{1} = -1, \quad x_{2} = 7")
-        s19_gora = self.stan(r"x_{1} = -1, \quad x_{2} = 7")
-
         # Pas notatek: wartosci odczytane raz i przywolywane pozniej.
         # Mniejszym pismem niz rachunek, zeby bylo widac, ze to notatka
         # z boku, a nie kolejna linijka (README, punkt 41).
@@ -119,7 +116,7 @@ class Zad9(Scene):
 
         # Wspolna skala rachunku. Dopisek i pas licza sie osobno.
         MARGINES = 0.85
-        glowne = [s1, s2, s3, s4, s5, s6lit, s6, s7, s8, s9, s19, s19_gora]
+        glowne = [s1, s2, s3, s4, s5, s6lit, s6, s7, s8, s9]
         najszerszy = max(m.width for m in glowne)
         POLE = config.frame_width * MARGINES
         wsp = min(1.0, POLE / najszerszy)
@@ -127,10 +124,20 @@ class Zad9(Scene):
             m.scale(wsp)
         for m in glowne:
             m.move_to(ROWNANIE_Y)
-        s19_gora.move_to(GORA_Y)
 
-        pas = VGroup(a_cz, b_cz, c_cz, d_cz).arrange(RIGHT, buff=1.15)
-        pas.move_to(KOEF_Y)
+        # PAS NOTATEK: przez kroki 5 do 9 stoja w nim TRZY notatki, a czwarta
+        # (pierwiastek z delty) dolacza dopiero w kroku 10. Dlatego srodek liczy
+        # sie dla TROJKI, nie dla calej czworki (Henrich, 2026-08-29: „b = -6
+        # powinno byc na srodku"). Przy wysrodkowaniu czworki trzy widoczne
+        # notatki wisialy przez piec krokow zsuniete w lewo, bo miejsce po
+        # czwartej bylo juz zarezerwowane.
+        trojka = VGroup(a_cz, b_cz, c_cz).arrange(RIGHT, buff=1.15)
+        trojka.move_to(KOEF_Y)
+        d_cz.next_to(c_cz, RIGHT, buff=1.15)
+        pas = VGroup(a_cz, b_cz, c_cz, d_cz)
+        # O tyle caly pas zjedzie w lewo w kroku 10, kiedy dolaczy czwarta
+        # notatka: wtedy na srodku ma stanac czworka.
+        PRZESUW_PAS = LEFT * (pas.get_center()[0] - KOEF_Y[0])
 
         # ---- dwa tory: wzory na pierwiastki i ich kolejne stany --------
         w1 = self.tor(r"x_{1}", self.ulamek(("-b", "-", r"\sqrt{\Delta}"), ("2a",)))
@@ -392,7 +399,7 @@ class Zad9(Scene):
         self.remove(s9)
         self.add(d_cz)
         self.play(FadeIn(w1, shift=UP * 0.2), FadeIn(w2, shift=UP * 0.2),
-                  run_time=0.9)
+                  pas.animate.shift(PRZESUW_PAS), run_time=0.9)
         self.zakoncz(w1, w2, pas)
 
         # ================================================================
@@ -525,24 +532,20 @@ class Zad9(Scene):
         self.zakoncz(x1d, x2d, pas)
 
         # ================================================================
-        # KROK 19. Oba wyniki zjezdzaja w jedna linijke, a pas notatek
-        # znika: dalej juz nie jest potrzebny. Bez koloru.
+        # KROK 19. Pas notatek znika, oba wyniki jada w gore i zostaja tam
+        # do konca, a w miejscu po notatkach rysuje sie os x i parabola
+        # ramionami w gore. Bez koloru: sam rysunek niczego nie przelicza.
+        #
+        # DAWNIEJ BYLY TO DWA KROKI (Henrich, 2026-08-29). Krok 19 sklejal
+        # wtedy oba wyniki w jedna linijke „x_1 = -1, x_2 = 7" przez przecinek,
+        # a dopiero krok 20 odsylal ja w gore i rysowal parabole. Sklejanie
+        # niczego nie liczylo, a przecinek mieszal; do tego oba kroki robily
+        # `Transform` na KOPII stanu, po czym podmienialy obiekt na scenie
+        # (`remove` + `add`), przez co linijka wynikow mrugala na styku. Teraz
+        # jada w gore te same obiekty, ktore juz stoja w kadrze, wiec nie ma
+        # czego podmieniac.
         # ================================================================
         self.next_section("krok19")
-        self.play(
-            Transform(VGroup(x1d, x2d), s19.copy()),
-            FadeOut(pas, shift=DOWN * 0.3),
-            run_time=1.3,
-        )
-        self.remove(x1d, x2d)
-        self.zakoncz(s19)
-
-        # ================================================================
-        # KROK 20. Linijka wynikow odjezdza w gore i zostaje tam do konca.
-        # Pod nia rysuje sie os x, a przez -1 i 7 przechodzi parabola
-        # ramionami w gore. Bez koloru: sam rysunek niczego nie przelicza.
-        # ================================================================
-        self.next_section("krok20")
         os_x = NumberLine(
             x_range=[-3, 9, 1], length=9, include_ticks=False,
             color=SZARY_OSIE, stroke_width=3,
@@ -567,9 +570,14 @@ class Zad9(Scene):
         )
         rysunek = VGroup(os_x, znacznik_m1, znacznik_7, etykieta_m1, etykieta_7)
 
-        self.play(Transform(s19, s19_gora.copy()), run_time=1.0)
-        self.remove(s19)
-        self.add(s19_gora)
+        # Ruch jest czysto pionowy: wyniki zostaja w swoich torach, wiec oko
+        # nie musi ich szukac w nowym miejscu.
+        self.play(
+            x1d.animate.move_to(TOR_L - ROWNANIE_Y + GORA_Y),
+            x2d.animate.move_to(TOR_P - ROWNANIE_Y + GORA_Y),
+            FadeOut(pas, shift=DOWN * 0.3),
+            run_time=1.1,
+        )
         self.play(Create(os_x), run_time=0.8)
         self.play(
             FadeIn(znacznik_m1, etykieta_m1),
@@ -577,19 +585,18 @@ class Zad9(Scene):
             run_time=0.6,
         )
         self.play(Create(parabola), run_time=1.4)
-        self.zakoncz(s19_gora, rysunek, parabola,
-                     pomin=[s19_gora, parabola, rysunek, *rysunek])
+        self.zakoncz(x1d, x2d, rysunek, parabola,
+                     pomin=[x1d, x2d, parabola, rysunek, *rysunek])
         # Dluzszy postoj na koncu kroku: rysunek zajmuje pol kadru gladkimi
         # krzywymi, wiec koder H.264 potrzebuje kilku klatek bez ruchu, zeby
         # ostatnia klatka zgadzala sie z pierwsza klatka nastepnego kroku
         # (bez tego styk-klatek.sh schodzi ponizej progu 0,999).
         self.wait(0.35)
 
-        # ================================================================
-        # KROK 21. Fragment paraboli pod osia i odcinek na osi zapalaja
+        # KROK 20. Fragment paraboli pod osia i odcinek na osi zapalaja
         # sie na zielono, z pelnymi kropkami na koncach.
         # ================================================================
-        self.next_section("krok21")
+        self.next_section("krok20")
         fragment = ParametricFunction(
             punkt, t_range=[-1, 7], color=ZIELONY, stroke_width=7,
         )
@@ -604,14 +611,14 @@ class Zad9(Scene):
         self.wait(0.35)
         self.play(fragment.animate.set_color(BLACK), run_time=0.4)
         self.remove(fragment)
-        self.zakoncz(s19_gora, rysunek, parabola, odcinek, kropka_l, kropka_p,
-                     pomin=[s19_gora, parabola, rysunek, *rysunek])
+        self.zakoncz(x1d, x2d, rysunek, parabola, odcinek, kropka_l, kropka_p,
+                     pomin=[x1d, x2d, parabola, rysunek, *rysunek])
         self.wait(0.35)
 
         # ================================================================
-        # KROK 22. Odcinek zamienia sie w zapis x nalezy do <-1, 7>.
+        # KROK 21. Odcinek zamienia sie w zapis x nalezy do <-1, 7>.
         # ================================================================
-        self.next_section("krok22")
+        self.next_section("krok21")
         # Krotki postoj na starcie: pierwsza klatka kroku ma byc czystym stanem
         # koncowym poprzedniego, a nie klatka t=0 animacji.
         self.wait(0.2)
@@ -622,5 +629,5 @@ class Zad9(Scene):
             run_time=1.2,
         )
         self.remove(odcinek, kropka_l, kropka_p)
-        self.zakoncz(s19_gora, rysunek, parabola, wynik,
-                     pomin=[s19_gora, parabola, wynik, rysunek, *rysunek])
+        self.zakoncz(x1d, x2d, rysunek, parabola, wynik,
+                     pomin=[x1d, x2d, parabola, wynik, rysunek, *rysunek])

@@ -1,5 +1,75 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-29] (Opus 5, medium) Zadania 7, 8, 9 i 10 z grudnia 2024: paczka poprawek
+Henricha do filmów i rozwiązań zwykłych.
+[2024-grudzien, zad7, zad8, zad9, zad10, manim, solution-text, css]
+
+Uwagi z TODO.md, wszystkie wykonane. Wersja v102.
+
+- **Zad. 7, film, klamra układu.** Henrich: „klamra jest za gruba, wygląda jakbyś powiększył
+  zwykły nawias". I dokładnie tym była: `MathTex(r"\{")` przeskalowany `scale_to_fit_height`
+  na wysokość dwóch równań, więc razem z wysokością rosła grubość kreski. Zamiast tego
+  klamra ROZCIĄGALNA, składana przez LaTeX z kawałków o stałej grubości:
+  `MathTex(r"\left\{\rule{0pt}{40pt}\right.")`. Zmierzone porównanie czterech wariantów
+  na jednej klatce (`\{`, `\left\{\begin{array}…`, `\rule` 40pt i 80pt): 40pt wygrywa,
+  80pt gubi już przewężenie w talii. Zasada dopisana do manimations/README.md.
+
+- **Zad. 7, rozwiązanie zwykłe.** Brakowało komentarzy, jakie mają zadania 8 do 17. Doszło
+  siedem zdań między wierszami, w tym wyjaśnienie znaku przy \(a \cdot (-1)\) i porządku
+  zapisu przy \(b \cdot 6 = 6b\). Wytłuszczone są też wyniki cząstkowe \(a = -2\)
+  i \(b = 1\). Komentarz w układzie DWUTOROWYM musi stać wewnątrz siatki (nowa reguła CSS
+  `.rozw-2kol > .rozw-wiersz.rozw-pelny > .rozw-komentarz`), bo każdy blok `.rozw-2kol`
+  liczy szerokość kolumn osobno i rozbicie rachunku na kilka bloków rozjeżdża tory w pionie.
+
+- **Zad. 8, sprawdzenie.** Zdjęta pozioma kreska nad częścią „Sprawdzenie" (Henrich:
+  „wygląda to jakby było oddzielną częścią niż rozwiązanie zwykłe"). Odstęp został tej samej
+  wielkości, co dawny margines plus wypełnienie (3,9em). Po samym słowie „Sprawdzenie." idzie
+  nowa linijka, a zdanie o nawiasie przy liczbie ujemnej stało się komentarzem.
+
+- **Zad. 9, film, pas notatek.** Pas był wyśrodkowany dla całej czwórki (a, b, c, pierwiastek
+  z delty), a czwarta notatka dołącza dopiero w kroku 10, więc przez pięć kroków trzy widoczne
+  notatki wisiały zsunięte w lewo. Teraz środek liczy się dla trójki, a w kroku 10 cały pas
+  zjeżdża w lewo i czwórka staje na środku. Pas poszedł też o 0,15 jednostki wyżej.
+
+- **Zad. 9, film, koniec.** Dawne kroki 19 i 20 to dziś jeden krok, więc film ma 21 kroków
+  zamiast 22. Krok 19 sklejał wcześniej oba wyniki w jedną linijkę przez przecinek, a dopiero
+  krok 20 odsyłał ją w górę i rysował parabolę. Sklejanie niczego nie liczyło, a OBA kroki
+  robiły `Transform` na kopii stanu i podmieniały obiekt na scenie (`remove` + `add`), przez
+  co linijka wyników mrugała na styku. Teraz w górę jadą te same obiekty, które już stoją
+  w kadrze. Rozwiązanie zwykłe poszło za tym: linijka „a = 1 > 0, ramiona w górę" wtopiła się
+  w komentarz pod miejscami zerowymi.
+
+- **Zad. 9, drobiazgi.** Przerwa przed „Miejsca zerowe" (`rozw-odstep`) i przerwa między
+  poleceniem widżetu a płótnem (`.widget-title` margin-bottom 4px → 16px, dotyczy wszystkich
+  widżetów).
+
+- **Zad. 10, film przepisany od nowa: pięć kroków zamiast dziewięciu.** Henrich: „zapisy
+  przedziałów, które pojawiają się pod nagłówkami, źle się renderują". Renderowały się źle
+  z powodu, który był w samym pomyśle: przedział powstawał ze SKRAWKÓW (`"(-4"`, `",\ "`,
+  `"4\rangle"`) ustawionych obok siebie przez `arrange()`, a trzy osobne `MathTex`-y nie
+  stoją na wspólnej linii bazowej i mają przypadkowy odstęp. Etap pośredni wypadł w całości:
+  zielony pas na osi zamienia się od razu w gotowy przedział, złożony jednym `MathTex`-em,
+  i ląduje wprost na liście odpowiedzi. Krok 1 to sam rysunek, kroki 2 do 5 to po jednym
+  zdaniu do uzupełnienia, każdy tym samym schematem (podświetlenie na wykresie, rzut
+  kreskowany na oś, zielony pas z właściwymi końcami, pas zamienia się w zapis). Schemat
+  wzięty z dawnego kroku 9, o którym Henrich napisał, że wygląda świetnie.
+
+- **Zad. 10, rozwiązanie zwykłe.** Dziedzina wyprowadzana ze WZORU, a nie opisywana słowami
+  z wykresu: w kadrze stoi definicja klamrowa z zieloną częścią `(-4` w pierwszym wierszu
+  i `4⟩` w ostatnim, a pod nią gotowa dziedzina. Pozostałe trzy części skrócone.
+
+- **Dwa tory na telefonie.** Przy oknie 485px (telefon Henricha) na kolumnę zostaje około
+  200px i najdłuższa linijka zad. 7 („a · (-1) + 3 · 6 = 20") łamała się po znaku równości,
+  zostawiając samo „20" w drugim wierszu. `.rozw-2kol.rozw-dwatory` dostało poniżej 560px
+  `font-size: 0.85em`; przy tym rozmiarze mieszczą się też wszystkie ułamki zad. 9.
+
+Sprawdzone: `tools/styk-klatek.sh` bez zastrzeżeń na wszystkich trzech scenach (zad. 7
+trzynaście styków, zad. 9 dwadzieścia, zad. 10 cztery); `tools/test-krokow.js
+--zadania=6,8,9` bez zastrzeżeń; klatki obejrzane przez `tools/klatki.sh` (tryb `stany`
+dla zad. 9 i 10, tryb `film` dla kroku 1 zad. 7 i kroku 2 zad. 10); zrzuty rozwiązań
+zwykłych desktop i 485px nowym `tools/zrzut-rozwiazania.js`.
+
+
 [ZROBIONE 2026-08-28] (Opus 5, high) Zadania 9 i 10 z grudnia 2024, wersja druga: poprawki
 Henricha do filmów i rozwiązań, plus zasady wyciągnięte z tych uwag.
 [2024-grudzien, zad9, zad10, manim, solution-text, zasady]

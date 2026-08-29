@@ -1265,15 +1265,18 @@ body.sidebar-otwarty #sidebar-linia {
     margin: 0;
 }
 
-/* SPRAWDZENIE na końcu rozwiązania: osobna, odkreślona część (Henrich,
-   2026-08-27). Rachunek CKE kończy się wyżej, na wyniku; to, co niżej, jest
-   dobrowolną kontrolą, więc ma być widać, że zaczyna się nowa rzecz, a nie
-   ciągnie ten sam rachunek. Kreska jest wąska i wyśrodkowana, żeby nie robić
-   z tego drugiej karty. */
+/* SPRAWDZENIE na końcu rozwiązania: osobna część, oddzielona SAMYM ODSTĘPEM
+   (Henrich, 2026-08-27, poprawione 2026-08-29). Rachunek CKE kończy się wyżej,
+   na wyniku; to, co niżej, jest dobrowolną kontrolą, więc ma być widać, że
+   zaczyna się nowa rzecz, a nie ciągnie ten sam rachunek.
+
+   Kreska stała tu do 2026-08-29 i została zdjęta na prośbę Henricha
+   („wygląda to jakby było oddzielną częścią niż rozwiązanie zwykłe"): pozioma
+   linia czyta się jak koniec karty, a sprawdzenie ma być dalszym ciągiem tego
+   samego rozwiązania. Odstęp zostaje tej samej wielkości co przedtem, czyli
+   dawne 2,4em marginesu plus 1,5em wypełnienia. */
 .rozwiazanie-kroki .rozw-sprawdzenie {
-    margin-top: 2.4em;
-    padding-top: 1.5em;
-    border-top: 1px solid var(--border-muted);
+    margin-top: 3.9em;
     max-width: 30em;
     margin-left: auto;
     margin-right: auto;
@@ -1404,6 +1407,23 @@ body.sidebar-otwarty #sidebar-linia {
 .rozw-2kol > .rozw-wiersz.rozw-pelny > .rozw-obl {
     grid-column: 1 / -1;
     text-align: center;
+}
+
+/* KOMENTARZ WEWNĄTRZ SIATKI (dodane 2026-08-29 dla zad. 7). W układzie dwutorowym
+   komentarz nie może stać między dwoma blokami .rozw-2kol, bo każdy blok liczy
+   szerokość kolumn osobno (`width: fit-content`) i tory rozjechałyby się w pionie.
+   Idzie więc jako wiersz siatki, rozpięty na obie kolumny:
+
+       <div class="rozw-wiersz rozw-pelny">
+         <div class="rozw-komentarz">zdanie</div>
+       </div>
+
+   Marginesy pionowe zeruje row-gap siatki, który już daje odstęp; zostaje tylko
+   lekkie odsunięcie, żeby zdanie nie kleiło się do rachunku nad nim. */
+.rozw-2kol > .rozw-wiersz.rozw-pelny > .rozw-komentarz {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin: 0.5em auto 0.6em;
 }
 
 
@@ -1865,8 +1885,11 @@ canvas {
     text-align: center;
 }
 .widget-title {
-    /* Margines z góry: tytuł nie ma się kleić do separatora nad widżetem. */
-    margin: 14px 20px 4px;
+    /* Margines z góry: tytuł nie ma się kleić do separatora nad widżetem.
+       Margines z dołu podbity 4px → 16px (Henrich, 2026-08-29, zad. 9): przy
+       4px polecenie („kliknij na osi…") kleiło się do rysunku i czytało jak
+       jego podpis. Płótno dokłada do tego swoje 10px margin-top. */
+    margin: 14px 20px 16px;
     font-size: 15px;
     color: var(--text-muted-2);
 }

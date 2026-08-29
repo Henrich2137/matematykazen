@@ -3,20 +3,34 @@ from manim import *
 # Zadanie 10 (zamkniete z lukami, 4 pkt). Odczyt z wykresu funkcji danej trzema
 # wzorami. Odpowiedzi: (-4, 4>, <-1, 3>, (1, 3), (-4, -2>.
 #
-# Projekt: issues/projekt-zad9-zad10-2024-grudzien.md. Dziewiec krokow, jeden
-# do jednego z dziewiecioma linijkami w solutionText.
+# Projekt: issues/projekt-zad9-zad10-2024-grudzien.md.
 #
-# WERSJA DRUGA, 2026-08-28, po uwagach Henricha do pierwszej (TODO.md):
-#   - szesnascie krokow zeszlo do dziewieciu. W filmie, ktory nie liczy, tylko
-#     czyta rysunek, jednostka kroku jest JEDNA MYSL, a nie jeden symbol
-#     (README, punkt 42): oba konce przedzialu odczytuje sie razem;
-#   - krok z warunkiem y < 0 i strzalka w dol wypadl: nastepny krok i tak
-#     zapala fragment wykresu pod osia, wiec strzalka nic nie dokladala
-#     (README, punkt 43);
-#   - pierwsza czesc idzie wolniej (trzy kroki), bo tam pierwszy raz tlumaczy
-#     sie kolko i kropke; kazda kolejna ma dwa kroki;
-#   - w ostatnim kroku etykieta czesci znika, zeby na koniec w kadrze zostal
-#     sam wykres i cztery odpowiedzi.
+# WERSJA TRZECIA, 2026-08-29, po uwagach Henricha do drugiej (TODO.md).
+# Piec krokow zamiast dziewieciu, po jednym na kazde zdanie do uzupelnienia
+# plus jeden na sam rysunek:
+#
+#   krok 1  rysuje sie uklad wspolrzednych i wykres, nic wiecej;
+#   krok 2  zdanie 1 (dziedzina), calosc od podswietlenia do gotowej odpowiedzi;
+#   krok 3  zdanie 2 (zbior wartosci), tak samo;
+#   krok 4  zdanie 3 (wartosci ujemne), tak samo;
+#   krok 5  zdanie 4 (najwieksza wartosc), tak samo.
+#
+# CO SIE ZMIENILO I DLACZEGO. W wersji drugiej przedzial powstawal DWUETAPOWO:
+# najprzod skladal sie ze skrawkow ("(-4", ",\\ ", "4\\rangle") na wysokosci
+# ZAPIS_Y pod naglowkiem czesci, i dopiero stamtad odjezdzal na liste odpowiedzi.
+# Henrich: „zapisy przedzialow, ktore pojawiaja sie pod naglowkami, zle sie
+# renderuja". I renderowaly sie zle z powodu, ktory byl w samym pomysle: trzy
+# osobne MathTeksy ustawione obok siebie przez arrange() nie stoja na wspolnej
+# linii bazowej i maja przypadkowy odstep, wiec nawias, przecinek i liczba
+# rozjezdzaja sie tak, jak nie rozjechalyby sie w jednym wzorze. Dlatego etap
+# posredni znika w calosci: zielony pas na osi zamienia sie od razu w GOTOWY
+# przedzial, zlozony jednym MathTeksem, i laduje wprost na liscie odpowiedzi.
+#
+# Wzorcem ruchu jest dawny krok 9 („animacje w ostatnim kroku wygladaja
+# swietnie, mozesz stosowac podobne do reszty krokow"): podswietlenie na wykresie
+# -> rzut kreskowany na os -> zielony pas z wlasciwymi koncami -> pas zamienia
+# sie w zapis przedzialu. Ten sam schemat idzie teraz przez wszystkie cztery
+# czesci, z roznica w tym, co jest podswietlane.
 #
 # Uklad sceny:
 #   - LEWA polowa kadru: uklad wspolrzednych z wykresem, odwzorowany z arkusza
@@ -24,8 +38,8 @@ from manim import *
 #     podpis y = f(x), kolko otwarte w (-4, 3) i kropka pelna w (4, 1).
 #     Zakres osi y jest wezszy niz w arkuszu (-2 do 4 zamiast -5 do 5), bo kadr
 #     16:9 jest niski. Jednostki na obu osiach sa rowne, wiec ksztalt sie zgadza.
-#   - PRAWA polowa: etykieta biezacej czesci, zapis budowany z dwoch koncow
-#     i lista zamknietych odpowiedzi, ktora rosnie do czterech pozycji.
+#   - PRAWA polowa: naglowek biezacej czesci u gory, a pod nim lista odpowiedzi,
+#     ktora rosnie do czterech pozycji.
 #
 # Wykres, os, siatka i lista wynikow to SCENOGRAFIA: stoja przez caly film.
 # Kazdy krok dokłada tylko to, co w nim zielone.
@@ -44,10 +58,15 @@ SZARY_SIATKA = "#e0e0e0"
 SRODEK_WYKRESU = LEFT * 3.35 + DOWN * 0.35
 KOLUMNA_X = 3.9
 ETYKIETA_Y = 3.15
-ZAPIS_Y = 1.75
-LISTA_Y = 0.75
-LISTA_KROK = 0.8
+LISTA_Y = 1.3
+LISTA_KROK = 0.95
 LISTA_LEWO = 2.35
+
+# Postoj na koncu kroku. Przy wykresie 0,25 s nie wystarcza: cienka krzywa
+# i siatka to duzo drobnego szczegolu, wiec koder potrzebuje kilku klatek
+# bezruchu, zeby ostatnia klatka kroku zgadzala sie z pierwsza klatka
+# nastepnego (manimations/README.md, punkt 47).
+POSTOJ = 0.45
 
 
 class Zad10(Scene):
@@ -64,12 +83,6 @@ class Zad10(Scene):
         ostatnia klatka kroku byla czysta (README, punkt 1 zasad)."""
         if mobiekty:
             self.play(*[m.animate.set_color(BLACK) for m in mobiekty], run_time=czas)
-
-    def zamknij(self, *znika, czas=0.35):
-        """Usuwa pomocnicze podswietlenia i przytrzymuje czysty obraz."""
-        if znika:
-            self.play(*[FadeOut(m) for m in znika], run_time=czas)
-        self.wait(0.3)
 
     def construct(self):
         # ================================================================
@@ -126,12 +139,6 @@ class Zad10(Scene):
         podpis_f = MathTex("y = f(x)", color=FIOLET, font_size=40)
         podpis_f.move_to(p(2.5, 2.6))
 
-        def zapis(*czesci):
-            g = VGroup(*[MathTex(c, color=BLACK, font_size=60) for c in czesci])
-            g.arrange(RIGHT, buff=0.06)
-            g.move_to([KOLUMNA_X, ZAPIS_Y, 0])
-            return g
-
         def pozycja_listy(nr, wzor):
             g = VGroup(
                 MathTex(f"{nr}.", color=BLACK, font_size=40),
@@ -141,7 +148,13 @@ class Zad10(Scene):
             g.shift(RIGHT * (LISTA_LEWO - g.get_left()[0]))
             return g
 
-        def duch(wzorzec, gdzie, kolo=False):
+        def kropka_otwarta(gdzie, kolor=ZIELONY):
+            return Circle(
+                radius=0.09, color=kolor, stroke_width=5,
+                fill_color=WHITE, fill_opacity=1,
+            ).move_to(gdzie)
+
+        def duch(wzorzec, gdzie):
             """Kopia znacznika, ktora startuje NIEWIDOCZNA. Dolozona wprost
             na oryginal robilaby podwojna krawedz juz w pierwszej klatce
             kroku, czyli rozjazd na styku (tools/styk-klatek.sh)."""
@@ -149,38 +162,35 @@ class Zad10(Scene):
             self.add(k)
             return k
 
+        def kreska(od, do):
+            return DashedLine(od, do, color=ZIELONY, stroke_width=3,
+                              dash_length=0.1)
+
         # ================================================================
-        # KROK 1. Wykres pojawia sie od zera. Pod nim, na osi x, zapala sie
-        # cien calego wykresu: to jest dziedzina.
+        # KROK 1. Sam rysunek: uklad wspolrzednych, wykres i jego dwa konce.
+        # Nic sie tu jeszcze nie odczytuje, wiec nic nie jest zielone.
         # ================================================================
         self.next_section("krok1")
-        et1 = self.etykieta("1. Dziedzina")
         self.play(FadeIn(plansza), FadeIn(liczby), run_time=0.8)
-        self.play(Create(wykres), run_time=1.4)
+        self.play(Create(wykres), run_time=1.6)
         self.play(
             FadeIn(koniec_otwarty), FadeIn(koniec_pelny), FadeIn(podpis_f),
-            run_time=0.5,
+            run_time=0.6,
         )
-        self.play(FadeIn(et1), run_time=0.4)
-
-        pas_dziedziny = Line(p(-4, 0), p(4, 0), color=ZIELONY, stroke_width=8)
-        rzut_l = DashedLine(p(-4, 3), p(-4, 0), color=ZIELONY, stroke_width=3,
-                            dash_length=0.1)
-        rzut_p = DashedLine(p(4, 1), p(4, 0), color=ZIELONY, stroke_width=3,
-                            dash_length=0.1)
-        self.play(Create(rzut_l), Create(rzut_p), run_time=0.7)
-        self.play(Create(pas_dziedziny), run_time=0.8)
-        self.zgas(pas_dziedziny)
-        self.zamknij(rzut_l, rzut_p)
-        self.wait(0.6)
+        self.wait(POSTOJ)
 
         # ================================================================
-        # KROK 2. OBA konce naraz: kolko otwarte zjezdza na os jako pusta
-        # kropka, kropka pelna jako zamalowana. Po prawej powstaja dwa
-        # kawalki zapisu. Zielone: konce i to, co z nich powstaje.
+        # KROK 2. ZDANIE 1: dziedzina. Oba konce wykresu zjezdzaja na os x
+        # i zabieraja ze soba swoj rodzaj kropki, miedzy nimi zapala sie pas,
+        # a pas zamienia sie w gotowy przedzial na liscie.
         # ================================================================
         self.next_section("krok2")
-        zapis1 = zapis("(-4", ",\\ ", "4\\rangle")
+        et1 = self.etykieta("1. Dziedzina")
+        self.play(FadeIn(et1), run_time=0.4)
+
+        rzut_l = kreska(p(-4, 3), p(-4, 0))
+        rzut_p = kreska(p(4, 1), p(4, 0))
+        self.play(Create(rzut_l), Create(rzut_p), run_time=0.8)
 
         kopia_o = duch(koniec_otwarty, koniec_otwarty.get_center())
         kopia_k = duch(koniec_pelny, koniec_pelny.get_center())
@@ -194,186 +204,122 @@ class Zad10(Scene):
             kopia_k.animate.move_to(p(4, 0)),
             run_time=1.0,
         )
-        zapis1[0].set_color(ZIELONY)
-        zapis1[2].set_color(ZIELONY)
-        self.play(FadeIn(zapis1[0]), FadeIn(zapis1[2]), run_time=0.7)
-        self.zgas(kopia_o, kopia_k, zapis1[0], zapis1[2])
-        self.wait(0.6)
+        pas1 = Line(p(-4, 0), p(4, 0), color=ZIELONY, stroke_width=8)
+        self.play(Create(pas1), run_time=0.8)
+        self.wait(0.3)
+
+        poz1 = pozycja_listy(1, r"(-4,\ 4\rangle")
+        self.play(
+            ReplacementTransform(VGroup(pas1, kopia_o, kopia_k), poz1[1]),
+            FadeIn(poz1[0]),
+            FadeOut(rzut_l), FadeOut(rzut_p),
+            run_time=1.2,
+        )
+        self.wait(POSTOJ)
 
         # ================================================================
-        # KROK 3. Oba konce skladaja sie w jeden przedzial i odjezdzaja
-        # na liste odpowiedzi.
+        # KROK 3. ZDANIE 2: zbior wartosci. To samo, tylko rzut idzie na os y:
+        # najnizszy punkt wykresu i poziomy odcinek na wysokosci 3.
         # ================================================================
         self.next_section("krok3")
-        self.play(FadeIn(zapis1[1]), run_time=0.4)
-        poz1 = pozycja_listy(1, "(-4,\\ 4\\rangle")
-        self.play(
-            Transform(zapis1, poz1[1].copy()),
-            FadeIn(poz1[0]),
-            FadeOut(pas_dziedziny), FadeOut(kopia_o), FadeOut(kopia_k),
-            run_time=1.2,
-        )
-        self.remove(zapis1)
-        self.add(poz1)
-        self.wait(0.6)
-
-        # ================================================================
-        # KROK 4. Druga czesc: ten sam wykres, ale rzut na os y.
-        # ================================================================
-        self.next_section("krok4")
         et2 = self.etykieta("2. Zbiór wartości")
         self.play(FadeOut(et1), FadeIn(et2), run_time=0.5)
-        pas_wartosci = Line(p(0, -1), p(0, 3), color=ZIELONY, stroke_width=8)
-        rzut_d = DashedLine(p(2, -1), p(0, -1), color=ZIELONY, stroke_width=3,
-                            dash_length=0.1)
-        rzut_g = DashedLine(p(-3, 3), p(0, 3), color=ZIELONY, stroke_width=3,
-                            dash_length=0.1)
-        self.play(Create(rzut_d), Create(rzut_g), run_time=0.7)
-        self.play(Create(pas_wartosci), run_time=0.8)
-        self.zgas(pas_wartosci)
-        self.zamknij(rzut_d, rzut_g)
-        self.wait(0.6)
 
-        # ================================================================
-        # KROK 5. Najnizszy punkt i poziomy odcinek jada na os y, a z nich
-        # od razu powstaje caly przedzial i idzie na liste.
-        # ================================================================
-        self.next_section("krok5")
-        zapis2 = zapis("\\langle -1", ",\\ ", "3\\rangle")
+        dolny = Dot(p(2, -1), radius=0.09, color=ZIELONY)
+        gorny = Line(p(-4, 3), p(-2, 3), color=ZIELONY, stroke_width=8)
+        self.play(FadeIn(dolny), Create(gorny), run_time=0.8)
 
-        dol = Dot(p(2, -1), radius=0.09, color=ZIELONY).set_opacity(0)
-        gora = Line(p(-4, 3), p(-2, 3), color=ZIELONY, stroke_width=8)
-        kropka_g = Dot(p(-2, 3), radius=0.09, color=ZIELONY).set_opacity(0)
-        self.add(dol, kropka_g)
+        rzut_d = kreska(p(2, -1), p(0, -1))
+        rzut_g = kreska(p(-2, 3), p(0, 3))
+        self.play(Create(rzut_d), Create(rzut_g), run_time=0.8)
+
+        kopia_d = duch(dolny, dolny.get_center())
+        kopia_g = duch(Dot(p(-2, 3), radius=0.09, color=ZIELONY), p(-2, 3))
         self.play(
-            dol.animate.set_opacity(1),
-            Create(gora),
-            kropka_g.animate.set_opacity(1),
-            run_time=0.8,
-        )
-        self.play(
-            dol.animate.move_to(p(0, -1)),
-            kropka_g.animate.move_to(p(0, 3)),
+            kopia_d.animate.set_opacity(1).move_to(p(0, -1)),
+            kopia_g.animate.set_opacity(1).move_to(p(0, 3)),
             run_time=1.0,
         )
-        zapis2[0].set_color(ZIELONY)
-        zapis2[2].set_color(ZIELONY)
-        self.play(FadeIn(zapis2[0]), FadeIn(zapis2[2]), run_time=0.7)
-        self.zgas(gora, dol, kropka_g, zapis2[0], zapis2[2])
-        self.play(FadeIn(zapis2[1]), run_time=0.4)
-        poz2 = pozycja_listy(2, "\\langle -1,\\ 3\\rangle")
+        pas2 = Line(p(0, -1), p(0, 3), color=ZIELONY, stroke_width=8)
+        self.play(Create(pas2), run_time=0.8)
+        self.wait(0.3)
+
+        poz2 = pozycja_listy(2, r"\langle -1,\ 3\rangle")
         self.play(
-            Transform(zapis2, poz2[1].copy()),
+            ReplacementTransform(VGroup(pas2, kopia_d, kopia_g), poz2[1]),
             FadeIn(poz2[0]),
-            FadeOut(pas_wartosci), FadeOut(gora), FadeOut(dol),
-            FadeOut(kropka_g),
+            FadeOut(rzut_d), FadeOut(rzut_g),
+            FadeOut(dolny), FadeOut(gorny),
             run_time=1.2,
         )
-        self.remove(zapis2)
-        self.add(poz2)
-        self.wait(0.6)
+        self.wait(POSTOJ)
 
         # ================================================================
-        # KROK 6. Trzecia czesc: fragment wykresu pod osia zapala sie
-        # jednym ciagiem i rzutuje na os x.
+        # KROK 4. ZDANIE 3: wartosci ujemne. Zapala sie fragment wykresu pod
+        # osia, a jego oba konce sa PUSTE, bo w nich wartosc jest zerem.
         # ================================================================
-        self.next_section("krok6")
+        self.next_section("krok4")
         et3 = self.etykieta("3. Wartości ujemne")
         self.play(FadeOut(et2), FadeIn(et3), run_time=0.5)
+
         fragment = VMobject(color=ZIELONY, stroke_width=8)
         fragment.set_points_as_corners([p(1, 0), p(2, -1), p(3, 0)])
         self.play(Create(fragment), run_time=1.1)
-        pas_ujemne = Line(p(1, 0), p(3, 0), color=ZIELONY, stroke_width=8)
-        self.play(Create(pas_ujemne), run_time=0.7)
-        self.zgas(pas_ujemne)
-        self.zamknij(fragment)
-        self.wait(0.6)
 
-        # ================================================================
-        # KROK 7. Oba konce sa wylaczone, bo w tych punktach wartosc jest
-        # zerem, a zero nie jest ujemne. Przedzial powstaje od razu.
-        # ================================================================
-        self.next_section("krok7")
-        zapis3 = zapis("(1", ",\\ ", "3)")
-        pusta_l = Circle(
-            radius=0.09, color=ZIELONY, stroke_width=5,
-            fill_color=WHITE, fill_opacity=1,
-        ).move_to(p(1, 0))
-        pusta_p = Circle(
-            radius=0.09, color=ZIELONY, stroke_width=5,
-            fill_color=WHITE, fill_opacity=1,
-        ).move_to(p(3, 0))
-        self.play(FadeIn(pusta_l), FadeIn(pusta_p), run_time=0.6)
-        zapis3[0].set_color(ZIELONY)
-        zapis3[2].set_color(ZIELONY)
-        self.play(FadeIn(zapis3[0]), FadeIn(zapis3[2]), run_time=0.7)
-        self.zgas(pusta_l, pusta_p, zapis3[0], zapis3[2])
-        self.play(FadeIn(zapis3[1]), run_time=0.4)
-        poz3 = pozycja_listy(3, "(1,\\ 3)")
+        rzut_1 = kreska(p(1, 0), p(1, -0.75))
+        rzut_3 = kreska(p(3, 0), p(3, -0.75))
+        self.play(Create(rzut_1), Create(rzut_3), run_time=0.6)
+
+        pas3 = Line(p(1, 0), p(3, 0), color=ZIELONY, stroke_width=8)
+        pusta_l = kropka_otwarta(p(1, 0))
+        pusta_p = kropka_otwarta(p(3, 0))
+        self.play(Create(pas3), FadeIn(pusta_l), FadeIn(pusta_p), run_time=0.8)
+        self.wait(0.3)
+
+        poz3 = pozycja_listy(3, r"(1,\ 3)")
         self.play(
-            Transform(zapis3, poz3[1].copy()),
+            ReplacementTransform(VGroup(pas3, pusta_l, pusta_p), poz3[1]),
             FadeIn(poz3[0]),
-            FadeOut(pas_ujemne), FadeOut(pusta_l), FadeOut(pusta_p),
+            FadeOut(rzut_1), FadeOut(rzut_3), FadeOut(fragment),
             run_time=1.2,
         )
-        self.remove(zapis3)
-        self.add(poz3)
-        self.wait(0.6)
+        self.wait(POSTOJ)
 
         # ================================================================
-        # KROK 8. Czwarta czesc: najwieksza wartosc to 3. Rysujemy ten
-        # poziom przez caly wykres.
+        # KROK 5. ZDANIE 4: najwieksza wartosc. Poziom y = 3 przecina wykres
+        # wzdluz calego poziomego odcinka, wiec na os x schodzi caly ten
+        # odcinek: kolko otwarte w -4, kropka pelna w -2.
+        # Naglowek czesci na koniec znika, zeby zostal sam wykres i cztery
+        # odpowiedzi (Henrich, 2026-08-28).
         # ================================================================
-        self.next_section("krok8")
+        self.next_section("krok5")
         et4 = self.etykieta("4. Największa wartość")
         self.play(FadeOut(et3), FadeIn(et4), run_time=0.5)
-        poziom = DashedLine(p(-5, 3), p(5, 3), color=ZIELONY, stroke_width=3,
-                            dash_length=0.12)
+
+        poziom = kreska(p(-5, 3), p(5, 3))
         podpis_poziom = MathTex("y = 3", color=ZIELONY, font_size=36)
         podpis_poziom.next_to(p(4.2, 3), UP, buff=0.1)
         self.play(Create(poziom), FadeIn(podpis_poziom), run_time=0.9)
-        self.zgas(poziom, podpis_poziom)
-        self.wait(0.6)
 
-        # ================================================================
-        # KROK 9. Na tej wysokosci lezy poziomy odcinek. Rzut na os x,
-        # z pusta kropka w -4 i pelna w -2, i od razu przedzial na liste.
-        # Etykieta czesci znika: na koniec w kadrze zostaje sam wykres
-        # i cztery odpowiedzi (Henrich, 2026-08-28).
-        # ================================================================
-        self.next_section("krok9")
         odcinek_max = Line(p(-4, 3), p(-2, 3), color=ZIELONY, stroke_width=8)
         self.play(Create(odcinek_max), run_time=0.7)
-        rzut_a = DashedLine(p(-4, 3), p(-4, 0), color=ZIELONY, stroke_width=3,
-                            dash_length=0.1)
-        rzut_b = DashedLine(p(-2, 3), p(-2, 0), color=ZIELONY, stroke_width=3,
-                            dash_length=0.1)
-        self.play(Create(rzut_a), Create(rzut_b), run_time=0.7)
-        pas_max = Line(p(-4, 0), p(-2, 0), color=ZIELONY, stroke_width=8)
-        koniec_a = Circle(
-            radius=0.09, color=ZIELONY, stroke_width=5,
-            fill_color=WHITE, fill_opacity=1,
-        ).move_to(p(-4, 0))
-        koniec_b = Dot(p(-2, 0), radius=0.09, color=ZIELONY)
-        self.play(Create(pas_max), FadeIn(koniec_a), FadeIn(koniec_b),
-                  run_time=0.8)
-        self.zgas(pas_max, koniec_a, koniec_b, odcinek_max)
-        self.play(FadeOut(rzut_a), FadeOut(rzut_b), FadeOut(odcinek_max),
-                  run_time=0.35)
 
-        zapis4 = MathTex("(-4,\\ -2\\rangle", color=BLACK, font_size=60)
-        zapis4.move_to([KOLUMNA_X, ZAPIS_Y, 0])
+        rzut_a = kreska(p(-4, 3), p(-4, 0))
+        rzut_b = kreska(p(-2, 3), p(-2, 0))
+        self.play(Create(rzut_a), Create(rzut_b), run_time=0.8)
+
+        pas4 = Line(p(-4, 0), p(-2, 0), color=ZIELONY, stroke_width=8)
+        koniec_a = kropka_otwarta(p(-4, 0))
+        koniec_b = Dot(p(-2, 0), radius=0.09, color=ZIELONY)
+        self.play(Create(pas4), FadeIn(koniec_a), FadeIn(koniec_b), run_time=0.8)
+        self.wait(0.3)
+
+        poz4 = pozycja_listy(4, r"(-4,\ -2\rangle")
         self.play(
-            ReplacementTransform(VGroup(pas_max, koniec_a, koniec_b), zapis4),
-            run_time=1.0,
-        )
-        poz4 = pozycja_listy(4, "(-4,\\ -2\\rangle")
-        self.play(
-            Transform(zapis4, poz4[1].copy()),
+            ReplacementTransform(VGroup(pas4, koniec_a, koniec_b), poz4[1]),
             FadeIn(poz4[0]),
+            FadeOut(rzut_a), FadeOut(rzut_b), FadeOut(odcinek_max),
             FadeOut(poziom), FadeOut(podpis_poziom), FadeOut(et4),
             run_time=1.2,
         )
-        self.remove(zapis4)
-        self.add(poz4)
-        self.wait(0.5)
+        self.wait(POSTOJ)

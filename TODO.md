@@ -4,48 +4,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.     
   
-  - 2024-grudzien - Rozwiązania do zadań
-    - W rozwiazaniach zwykłych wytłuść finalne odpowiedzi takie jak: "x = -6", "x∈⟨−1, 7⟩"
-
-    - Zad 7
-      - krok po kroku
-        - krok 1 - klamra jest za "gruba", poszukaj innego znaku bo to wygląda jakbys powiększył zwykły nawias"{"
-      - zwykłe - brakuje wytłumaczeń takich jak w zad 8 - 17
-
-    - Zad 8
-      - zwykłe
-        - Dlaczego sprawdzenei jest za poziomą linią? Wygląda to jakby było oddzielną częścia niż rozwiązanie zwykłe. Zrób zamiast linii sam odstęp tej wielkości.
-        - po "Sprawdzenie." daj nową linijkę
-    
-    - Zad 9 
-      - krok po kroku
-        - spraw aby współczynniki były wycentrowane, obecnie są dosunięte do lewej. "b= -6" powinno być na środku. Wysokość jest dobrze, ewentualnie o ciupinkę w górę.
-        - krok w którym rozwiązania z z współczynnikami i deltą zmieniaja sie w rozwiązania po przecinku "x1=-1, x2=7"
-          - animacja zmiany nie ma sensu i wprowadza niepotrzebne zamieszanie, przecinek jest niepotrzeby, wystaczy aby zniknęły współczynniki i delta, a w ich miejsce pojawiła się parabola. Może to być w jednym kroku.
-          - "x1=-1, x2=7" miga
-      - zwykłe - zrób przerwę między końcówką kolumn liczenia rozwiązań x1 i x2 a zapisem "Miejsaca zerowe..."
-      - interaktywne - zrób przerwę między napisem "Kliknij na dowolne miejsce na osi lub przeciągnij punkty, aby podstawić liczbę pod x." a renderem widżetu.
-    
-    - Zad 10
-      - krok po kroku - zapisy przedziałów które pojawiaja sie pod nagłówkami typu "1. Dziedzina" co pojawiają się w kroku 2, 5 itd. źle się renderują. Zbuduj to wszystko prościej:
-        - krok 1 rozrysowanie wykresu
-        - krok 2 zaznaczenie dziedziny na osi OX (możesz podoświetlać na zielono), ładna nanimacja i pokolorowanie kropeki i pojawienie się " 1. (-4, 4)"
-        - krok 3 - zanalogicznie do kroku 1 ale dla zdania 2.
-        - krok 4 - zanalogicznie do kroku 1 ale dla zdania 3.
-        - krok 5 - zanalogicznie do kroku 1 ale dla zdania 4.
-        
-        OPRÓCZ TEGO:
-        - animacje na układzie współrzędnych są okej
-        - Animacje w ostatnik kroku wyglądaja świetnie, możewsz stosować podobne do reszty kroków, tam gdzie pasują.
-      
-      - zwykłe
-        - Dziedzina - zamiast opisywać słownie wykres:
-          - skup się na tym jak wyłuskać te rzeczy ze wzoru funkcji zapisz wzór funkcji i zaznacz na zielono "(-4" i "4⟩" i pod spodem zapisz dziedzinę.
-        - dla reszty opisz krócej, prościej i bardziej zrozumiale
-      
-
-        
-
+  (pusto: paczka zad. 7 do 10 z grudnia 2024 zrobiona 2026-08-29, przeniesiona do done/04-biezace.md)
 
 
 <br>
@@ -54,7 +13,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + NIE REALIZUJ, CZEKAJĄ W KOLEJCE:
   
   - Saphari na mały iphonie SE - Rozwiązania krok po kroku
-    - Przyciskanie przycisku "steps-scroll-prawo" zbyt dużo razy na m sprawia, że kroki zostają po lewej. Przewijanie odjeższą za daleko.
+    - Przyciskanie przycisku "steps-scroll-prawo" zbyt dużo razy na m sprawia, że kroki zostają po lewej. Przewijanie odjeższą za daleko.
     - Cieżko trafić w kropki aby je przesunąć
 
   - Rozwiązania krok po kroku - kropki kroków (np w zad 1.) przy szerokości okna około 310 do 325 px już się chowają, a strzałki przewijania jeszcze się nie pokazują, więc w tym wąskim zakresie nie da się przejść do innego kroku. Poza tym zakresem przewijanie działa. Zlikwiduj tą strefe pomiędzy, ma być albo wszystko widoczne, albo poprawnie strzałki i przewijanie.
@@ -76,9 +35,11 @@ Oto plik który tworzy Henrich (ja, użytkownik).
   - v94, zad. 8 z grudnia 2024, film krok po kroku w CIEMNYM motywie na telefonie: szare \(x \ne 1\) nad równaniem i szary dopisek działania z boku (np. „/ · 2") mają być czytelne, a nie zlewać się z tłem
   JEST CZYTELNE NAWET NA MAŁEJ JASNOŚĆI
 
-  - v96, zad. 10 z grudnia 2024, film krok po kroku na TELEFONIE: wykres siedzi po lewej, a wyniki czterech części po prawej. sprawdź, czy w pionie wykres nie robi się za mały do odczytania liczb przy osiach
+  - v102, zad. 10 z grudnia 2024, film krok po kroku na TELEFONIE: film ma teraz pięć kroków zamiast dziewięciu, wykres siedzi po lewej, a lista czterech odpowiedzi po prawej. sprawdź, czy w pionie wykres nie robi się za mały do odczytania liczb przy osiach
 
-  - v96, zad. 9 z grudnia 2024, film ma teraz 22 kroki, najwięcej w arkuszu (zad. 8 ma 19): sprawdź na telefonie, czy rząd kropek kroków daje się wygodnie klikać i czy przewijanie kropek nie gubi się przy skoku na koniec
+  - v102, zad. 7, 8 i 9 z grudnia 2024, rozwiązania zwykłe na TELEFONIE: rachunek w dwóch torach obok siebie dostał mniejsze pismo, żeby najdłuższa linijka zad. 7 mieściła się w jednym wierszu. sprawdź, czy przez to nie zrobiło się za drobne do czytania
+
+  - v102, zad. 9 z grudnia 2024, film ma teraz 21 kroków, najwięcej w arkuszu (zad. 8 ma 19): sprawdź na telefonie, czy rząd kropek kroków daje się wygodnie klikać i czy przewijanie kropek nie gubi się przy skoku na koniec
 
   - v97, zad. 11 oraz 12.1 i 12.3 z grudnia 2024, filmy krok po kroku na TELEFONIE: w kadrze stoi wykres z liczbami przy osiach. sprawdź, czy te liczby da się odczytać, bo na komputerze są wyraźne, a kadr na telefonie schodzi do ułamka tej szerokości
 

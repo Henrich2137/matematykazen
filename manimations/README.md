@@ -444,9 +444,25 @@ Każda kosztowała osobny render, więc warto je znać z góry.
   obiekcie spoza sceny WSTAWIA go z powrotem, więc wygaszony kawałek zapisu wróciłby na
   ostatnią klatkę. Jeśli po kroku nie zostaje nic zielonego, wywołaj gaszenie z pustą listą.
 - **Układ równań buduj z części, nie jednym `\begin{cases}`**: dwa `MathTex`-y ustawione
-  `arrange(DOWN, aligned_edge=LEFT)` plus osobny glif `\{`. Wtedy każde równanie ma własny
+  `arrange(DOWN, aligned_edge=LEFT)` plus osobna klamra. Wtedy każde równanie ma własny
   uchwyt i da się je wyjąć z klamry. Klamrę skaluj `scale_to_fit_height`, a nie
   `stretch_to_fit_height`: rozciąganie tylko w pionie robi z niej cienką kreskę z haczykiem.
+- **Klamra ma być ROZCIĄGALNA, a nie powiększonym małym nawiasem** (Henrich, 2026-08-29,
+  zad. 7: „klamra jest za gruba, wygląda jakbyś powiększył zwykły nawias"). `MathTex(r"\{")`
+  przeskalowany na wysokość dwóch równań rośnie w obie strony naraz, więc razem z wysokością
+  tyje kreska i wychodzi klamra grubsza niż całe pismo obok. Rozciągalną klamrę LaTeX składa
+  z osobnych kawałków o stałej grubości, więc rośnie sama w pionie:
+
+  ```python
+  # \rule to niewidzialna rozporka, która mówi LaTeX-owi, jak wysokiej klamry zażądać.
+  # 40pt daje kształt zbliżony do \begin{cases}, więc dalsze skalowanie jest niewielkie.
+  klamra = MathTex(r"\left\{\rule{0pt}{40pt}\right.", color=BLACK)
+  klamra.scale_to_fit_height(VGroup(r1, r2).height * 1.35)
+  ```
+
+  Zmierzone porównanie czterech wariantów (`\{`, `\left\{\begin{array}…`, `\rule` 40pt
+  i 80pt) na jednej klatce: 40pt wygrywa. Przy 80pt klamra jest już tak wyciągnięta, że gubi
+  przewężenie w talii i czyta się jak pionowa kreska.
 - **Kolor zapalaj animacją, nie przed pierwszym `play`.** Inaczej pierwsza klatka kroku jest
   już podświetlona, a ostatnia klatka kroku poprzedniego czysta, czyli dokładnie ten przeskok,
   którego pilnuje `tools/styk-klatek.sh`.

@@ -76,7 +76,15 @@ class Zad7(Scene):
 
         # Uklad z zadania: dwa rownania wyrownane do lewej plus klamra.
         VGroup(r1, r2).arrange(DOWN, buff=0.55, aligned_edge=LEFT)
-        klamra = MathTex(r"\{", color=BLACK)
+        # Klamra ROZCIAGALNA, budowana przez LaTeX (\left\{ ... \right.), a nie
+        # powiekszony maly glif "\{" (Henrich, 2026-08-29: „klamra jest za gruba,
+        # wyglada jakbys powiekszyl zwykly nawias"). Powiekszanie malego nawiasu
+        # skaluje tez grubosc kreski, wiec klamra tyje razem z wysokoscia. Klamra
+        # rozciagalna sklada sie z osobnych kawalkow o STALEJ grubosci, wiec rosnie
+        # sama w pionie. \rule{0pt}{40pt} to niewidoczna rozporka, ktora mowi
+        # LaTeX-owi, jak wysokiej klamry zazadac; 40pt daje ksztalt zblizony do tego
+        # z \begin{cases}, a dalsze skalowanie w Manimie jest juz niewielkie.
+        klamra = MathTex(r"\left\{\rule{0pt}{40pt}\right.", color=BLACK)
         # scale_to_fit_height, a nie stretch_to_fit_height: rozciaganie tylko w pionie
         # robi z klamry cienka kreske z haczykiem.
         klamra.scale_to_fit_height(VGroup(r1, r2).height * 1.35)

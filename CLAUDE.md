@@ -173,6 +173,8 @@ Inside the devcontainer there **is** a browser: Playwright + Chromium, for scree
 
 Don't hand-roll a Playwright script for routine visual work — [tools/zrzuty.js](tools/zrzuty.js) already takes the standard set (arkusz / landing / sidebar / exam mode × desktop + phone × light + dark) into `/tmp/zrzuty/<label>/`, so two runs can be compared frame by frame. Its header documents the flags and the two traps that make screenshots silently lie (the mandatory `NODE_PATH`, and the theme key/class mismatch it now guards against).
 
+Working on ONE exercise's written solution or widget, not the page chrome? [tools/zrzut-rozwiazania.js](tools/zrzut-rozwiazania.js) (added 2026-08-29) opens the sheet, clicks „Rozwiązania" on the exercises you name and shoots just their solution panel into `/tmp/zrzuty-rozw/<label>/` — `node tools/zrzut-rozwiazania.js 7 9 10 --etykieta=po`, `--szer=485` for Henrich's phone, `--ciemny` for the dark theme. Same mandatory `NODE_PATH` as `zrzuty.js`.
+
 ## Hosting (dodane 2026-08-22)
 
 Strona stoi w dwóch miejscach naraz, z tego samego repozytorium, każde z innej gałęzi:
