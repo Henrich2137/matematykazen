@@ -1,4 +1,4 @@
-Ostatnia weryfikacja  30.08.2026
+Ostatnia weryfikacja  30.08.2026 (wieczór)
 
 # Matematyka Zen
 
@@ -15,7 +15,7 @@ Zobacz na żywo: **https://matematykazen.pl** (działa też z www). Wersja roboc
 - Zadania (osobne karty): 33 (30 poleceń CKE, część z podpunktami), 50 pkt
 - Podpowiedzi: 33/33
 - Rozwiązania opisowe: 33/33
-- Rozwiązania wideo (krok po kroku): 20/33 (zadania 1-17)
+- Rozwiązania wideo (krok po kroku): 21/33 (zadania 1-17 oraz 19)
 - Widżety interaktywne: 9 (nie 1:1 z zadaniami, nie każde tego wymaga)
 - Zadania otwarte z kryteriami CKE: 7/7
 - Odpowiedzi zweryfikowane z kluczem CKE: tak

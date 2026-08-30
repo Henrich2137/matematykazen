@@ -4,7 +4,8 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.     
   
-  (pusto: filmy zad. 15, 16, 17.1 i 17.2 zrobione 2026-08-30, przeniesione do done/04-biezace.md)
+  - 2024 grudzien
+    - Zad 12.2 - krok po korku - krok 7 - popraw na "/* (-9). Jeżeli chcesz już minusa przerzucić.
 
 <br>
 
@@ -20,7 +21,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
   - to samo do decyzji z „finalAnswer.label": renderer je ignoruje (świadomie, od 2026-08-06),
     a pole nadal siedzi w danych wszystkich arkuszy
 
-  - w dwóch zadaniach grudnia (19, 30) w rozwiązaniu siedzi nagłówek „DAWNE POKAŻ WIĘCEJ" i doklejona pod nim dawna treść; celowo brzydkie, żeby było widać, gdzie zredagować tekst w jedną całość. Scalać samemu czy zostawiasz to sobie (zad. 10 scalone 2026-08-28 przy okazji nowego rozwiązania)
+  - w zadaniu 30 z grudnia 2024 w rozwiązaniu siedzi nagłówek „DAWNE POKAŻ WIĘCEJ" i doklejona pod nim dawna treść; celowo brzydkie, żeby było widać, gdzie zredagować tekst w jedną całość. Scalać samemu czy zostawiasz to sobie (zad. 10 scalone 2026-08-28, zad. 19 scalone 2026-08-30 przy okazji nowych rozwiązań)
 
 
 <br>
@@ -30,6 +31,10 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945
 <br> Próg wejścia jest wysoki, patrz ZASADY DLA CLAUDE-A niżej. Archiwum dawnych list: issues/testowanie-archiwum.md.
+
+  - v106, zad. 18 z grudnia 2024: nowe rozwiązanie zwykłe (jedynka trygonometryczna). sprawdź, czy nadal pasuje do widżetu koła trygonometrycznego, który stoi obok
+
+  - v106, zad. 19 z grudnia 2024: nowe rozwiązanie zwykłe i pierwszy film krok po kroku (24 kroki, najdłuższy w arkuszu, poprzedni rekord to 21 w zad. 9). sprawdź na TELEFONIE, czy rząd kropek kroków daje się wygodnie przewijać przy takiej ich liczbie, i czy trapez z zaznaczonymi kątami przy wierzchołkach nie robi się za ciasny do odczytania (etykieta \(C\), łuk kąta i znacznik kąta prostego stoją blisko siebie)
 
   - v105, zad. 17.1 i 17.2 z grudnia 2024, filmy krok po kroku na TELEFONIE: rysunek trójkąta jest teraz szerszy, a podpisy \(\sqrt{15}\), \(8\), \(6\) większe. sprawdź, czy przy tej szerokości nadal da się je odczytać i czy w 17.2 klamry pod podstawą nie wychodzą poza kadr
 

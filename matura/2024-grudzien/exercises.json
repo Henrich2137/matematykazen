@@ -1256,7 +1256,7 @@
         "selfScore": false,
         "hint": "Skorzystaj z jedynki trygonometrycznej \\(\\sin^{2}\\alpha + \\cos^{2}\\alpha = 1\\) oraz z faktu, że dla kąta rozwartego \\(\\cos\\alpha < 0\\).",
         "formulasPage": 12,
-        "solutionText": "Z jedynki trygonometrycznej: \\(\\cos^{2}\\alpha = 1 - \\frac{3}{16} = \\frac{13}{16}\\), więc \\(\\cos\\alpha = \\pm\\frac{\\sqrt{13}}{4}\\). Kąt jest rozwarty, więc cosinus jest ujemny: \\(\\boldsymbol{\\cos\\alpha = -\\frac{\\sqrt{13}}{4}}\\), odpowiedź <b>A</b>.",
+        "solutionText": "\\[\\sin^{2}\\alpha + \\cos^{2}\\alpha = 1\\]<div class=\"rozwiazanie-kroki\"><div class=\"rozw-linia\">\\(\\cos^{2}\\alpha = 1 - \\sin^{2}\\alpha\\)</div><div class=\"rozw-linia\">\\(\\cos^{2}\\alpha = 1 - \\left(\\dfrac{\\sqrt{3}}{4}\\right)^{2}\\)</div><div class=\"rozw-linia\">\\(\\cos^{2}\\alpha = 1 - \\dfrac{3}{16}\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{\\cos^{2}\\alpha = \\dfrac{13}{16}}\\)</div><div class=\"rozw-komentarz\">Pierwiastkujemy obie strony. Zostają na razie dwie możliwości, ze znakiem plus i minus.</div><div class=\"rozw-linia\">\\(\\cos\\alpha = \\pm\\dfrac{\\sqrt{13}}{4}\\)</div><div class=\"rozw-komentarz\">Kąt \\(\\alpha\\) jest rozwarty, czyli leży między \\(90°\\) a \\(180°\\). W tym zakresie cosinus jest ujemny.</div><div class=\"rozw-linia\">\\(\\boldsymbol{\\cos\\alpha = -\\dfrac{\\sqrt{13}}{4}}\\)</div><div class=\"rozw-linia\">Odpowiedź <b>A</b>.</div></div>",
         "solutionStepByStep": null,
         "solutionWidget": "widgetKoloTrygonometryczne"
     },
@@ -1275,8 +1275,129 @@
         ],
         "hint": "W trójkącie ABC (prostokątnym przy C) oblicz BC z Pitagorasa. Kąty CAB i DCA są naprzemianległe (\\(DC \\parallel AB\\)), wykorzystaj to w trójkącie ACD do wyznaczenia wysokości AD i podstawy DC.",
         "formulasPage": 17,
-        "solutionText": "\\(|BC| = \\sqrt{7{,}5^{2} - 6^{2}} = 4{,}5\\). Z podobieństwa kątów: \\(|AD| = 3{,}6\\) i \\(|DC| = 4{,}8\\). Pole: \\(P = \\frac{1}{2} \\cdot (7{,}5 + 4{,}8) \\cdot 3{,}6 = \\boldsymbol{22{,}14}\\).<br><br><b>DAWNE \"POKAŻ WIĘCEJ\":</b><br>1. Trójkąt ABC jest prostokątny przy C: \\(|BC| = \\sqrt{7{,}5^{2} - 6^{2}} = \\sqrt{20{,}25} = 4{,}5\\). <br><br> 2. W tym trójkącie: \\(\\sin(\\angle CAB) = \\frac{4{,}5}{7{,}5} = 0{,}6\\) oraz \\(\\cos(\\angle CAB) = \\frac{6}{7{,}5} = 0{,}8\\). <br><br> 3. \\(DC \\parallel AB\\), więc \\(\\angle DCA = \\angle CAB\\) (kąty naprzemianległe). W trójkącie ACD (prostokątnym przy D): <br> \\(|AD| = |AC| \\cdot \\sin(\\angle DCA) = 6 \\cdot 0{,}6 = 3{,}6\\) (wysokość trapezu), <br> \\(|DC| = |AC| \\cdot \\cos(\\angle DCA) = 6 \\cdot 0{,}8 = 4{,}8\\) (krótsza podstawa). <br><br> 4. \\(P = \\frac{1}{2}(a + b) \\cdot h = \\frac{1}{2}(7{,}5 + 4{,}8) \\cdot 3{,}6 = \\frac{1}{2} \\cdot 12{,}3 \\cdot 3{,}6 = \\boldsymbol{22{,}14}\\).",
-        "solutionStepByStep": null,
+        "solutionText": "<div class=\"rozw-2kol\"><div class=\"rozw-wiersz rozw-pelny\"><div class=\"rozw-obl\">Z rysunku: trójkąt \\(ABC\\) ma kąt prosty przy \\(C\\), trójkąt \\(ACD\\) ma kąt prosty przy \\(D\\).</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(|BC|^{2} + 6^{2} = 7{,}5^{2}\\)</div><div class=\"rozw-wzor\">\\(a^{2}+b^{2}=c^{2}\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(|BC|^{2} + 36 = 56{,}25\\)</div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(|BC|^{2} = 56{,}25 - 36\\)</div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(|BC|^{2} = 20{,}25\\)</div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(\\boldsymbol{|BC| = 4{,}5}\\)</div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz rozw-pelny\"><div class=\"rozw-obl\">Odcinki \\(DC\\) i \\(AB\\) są równoległe (trapez), więc kąt \\(DCA\\) ma tę samą miarę co kąt \\(CAB\\). Nazwijmy go \\(\\alpha\\).</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(\\sin\\alpha = \\dfrac{|BC|}{|AB|}\\)</div><div class=\"rozw-wzor\">\\(\\sin\\alpha = \\dfrac{a}{c}\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(\\sin\\alpha = \\dfrac{4{,}5}{7{,}5}\\)</div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(\\boldsymbol{\\sin\\alpha = 0{,}6}\\)</div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz rozw-pelny\"><div class=\"rozw-obl\">W trójkącie \\(ACD\\) kąt \\(\\alpha\\) leży przy \\(C\\). Przeciwprostokątną jest \\(|AC| = 6\\), a naprzeciw kąta \\(\\alpha\\) leży odcinek \\(AD\\).</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(|AD| = 6 \\cdot \\sin\\alpha\\)</div><div class=\"rozw-wzor\">\\(a = c \\cdot \\sin\\alpha\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(|AD| = 6 \\cdot 0{,}6\\)</div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(\\boldsymbol{|AD| = 3{,}6}\\)</div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(|DC|^{2} + 3{,}6^{2} = 6^{2}\\)</div><div class=\"rozw-wzor\">\\(a^{2}+b^{2}=c^{2}\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(|DC|^{2} + 12{,}96 = 36\\)</div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(|DC|^{2} = 36 - 12{,}96\\)</div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(|DC|^{2} = 23{,}04\\)</div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(\\boldsymbol{|DC| = 4{,}8}\\)</div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(P = \\dfrac{7{,}5 + 4{,}8}{2} \\cdot 3{,}6\\)</div><div class=\"rozw-wzor\">\\(P = \\dfrac{a+b}{2} \\cdot h\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(P = \\dfrac{12{,}3}{2} \\cdot 3{,}6\\)</div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(P = 6{,}15 \\cdot 3{,}6\\)</div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(\\boldsymbol{P = 22{,}14}\\)</div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz rozw-pelny\"><div class=\"rozw-obl\">Pole trapezu \\(ABCD\\) jest równe \\(22{,}14\\).</div></div></div>",
+        "solutionStepByStep": [
+        {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step1.mp4",
+                "text": "Trapez prostokątny \\(ABCD\\). Przekątna \\(AC\\) dzieli go na dwa trójkąty: \\(ABC\\) ma kąt prosty przy \\(C\\), \\(ACD\\) ma kąt prosty przy \\(D\\)."
+        },
+        {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step2.mp4",
+                "text": "Twierdzenie Pitagorasa w trójkącie \\(ABC\\), tablica strona \\(15\\). Przeciwprostokątną jest \\(AB\\).\\[a^{2}+b^{2}=c^{2}\\]"
+        },
+        {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step3.mp4",
+                "text": "Podnosimy do kwadratu: \\(6^{2}=36\\) i \\(7{,}5^{2}=56{,}25\\)."
+        },
+        {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step4.mp4",
+                "text": "Liczba \\(36\\) przechodzi na drugą stronę ze zmianą znaku."
+        },
+        {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step5.mp4",
+                "text": "Odejmujemy: \\(56{,}25-36=20{,}25\\)."
+        },
+        {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step6.mp4",
+                "text": "Pierwiastkujemy. Bierzemy tylko wynik dodatni, bo długość boku nie bywa ujemna. Wynik wraca na rysunek."
+        },
+        {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step7.mp4",
+                "text": "Odcinki \\(DC\\) i \\(AB\\) są równoległe, więc kąt \\(DCA\\) ma tę samą miarę co kąt \\(CAB\\) (kąty naprzemianległe). Nazywamy go \\(\\alpha\\)."
+        },
+        {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step8.mp4",
+                "text": "Wzór z tablicy, strona \\(11\\). \\(a\\) to bok leżący naprzeciw kąta, \\(c\\) to przeciwprostokątna.\\[\\sin\\alpha=\\dfrac{a}{c}\\]W trójkącie \\(ABC\\) naprzeciw kąta \\(\\alpha\\) leży \\(BC\\), a przeciwprostokątną jest \\(AB\\)."
+        },
+        {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step9.mp4",
+                "text": "Podstawiamy policzone długości."
+        },
+        {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step10.mp4",
+                "text": "Dzielimy: \\(4{,}5:7{,}5=0{,}6\\)."
+        },
+        {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step11.mp4",
+                "text": "W trójkącie \\(ACD\\) kąt \\(\\alpha\\) leży teraz przy \\(C\\). Przeciwprostokątną jest \\(AC=6\\), a naprzeciw kąta \\(\\alpha\\) leży szukany odcinek \\(AD\\)."
+        },
+        {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step12.mp4",
+                "text": "Ten sam wzór, tym razem żeby wyznaczyć bok leżący naprzeciw kąta. Tablica strona \\(16\\).\\[a=c\\cdot\\sin\\alpha\\]"
+        },
+        {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step13.mp4",
+                "text": "Podstawiamy \\(\\sin\\alpha=0{,}6\\), policzone w poprzednim etapie."
+        },
+        {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step14.mp4",
+                "text": "Mnożymy: \\(6\\cdot0{,}6=3{,}6\\). Wynik wraca na rysunek."
+        },
+        {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step15.mp4",
+                "text": "Twierdzenie Pitagorasa jeszcze raz, tym razem w trójkącie \\(ACD\\). Przeciwprostokątną jest \\(AC\\).\\[a^{2}+b^{2}=c^{2}\\]"
+        },
+        {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step16.mp4",
+                "text": "Podnosimy do kwadratu: \\(3{,}6^{2}=12{,}96\\) i \\(6^{2}=36\\)."
+        },
+        {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step17.mp4",
+                "text": "Liczba \\(12{,}96\\) przechodzi na drugą stronę ze zmianą znaku."
+        },
+        {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step18.mp4",
+                "text": "Odejmujemy: \\(36-12{,}96=23{,}04\\)."
+        },
+        {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step19.mp4",
+                "text": "Pierwiastkujemy. Wynik wraca na rysunek: to krótsza podstawa trapezu."
+        },
+        {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step20.mp4",
+                "text": "Wzór na pole trapezu, tablica strona \\(20\\). \\(a\\), \\(b\\) to podstawy, \\(h\\) to wysokość.\\[P=\\dfrac{a+b}{2}\\cdot h\\]Podstawami trapezu są \\(AB\\) i \\(DC\\), wysokością jest \\(AD\\)."
+        },
+        {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step21.mp4",
+                "text": "Dodajemy podstawy: \\(7{,}5+4{,}8=12{,}3\\)."
+        },
+        {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step22.mp4",
+                "text": "Dzielimy przez \\(2\\): \\(12{,}3:2=6{,}15\\)."
+        },
+        {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step23.mp4",
+                "text": "Mnożymy: \\(6{,}15\\cdot3{,}6=22{,}14\\)."
+        },
+        {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step24.mp4",
+                "text": "Pole trapezu \\(ABCD\\) jest równe \\(22{,}14\\)."
+        }
+],
         "solutionWidget": null
     },
     {

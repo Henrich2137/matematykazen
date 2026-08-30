@@ -1,5 +1,33 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-30] (Sonnet 5) Zad. 18 i 19 z grudnia 2024: rozwiązanie zwykłe do
+zad. 18 (jedynka trygonometryczna) w stylu pozostałych zadań, oraz zad. 19 (pole trapezu
+z dwóch trójkątów prostokątnych) od zera: rozwiązanie zwykłe (scaliło dawne „POKAŻ WIĘCEJ")
+i film krok po kroku, 24 kroki, nowa scena `solutionZad19.py`.
+[2024-grudzien, zad18, zad19, manim]
+
+Projekt zweryfikowany od zera z kluczem CKE (obie odpowiedzi się zgadzają, wszystkie
+cztery kryteria punktowe zad. 19 pokryte w rozwiązaniu opisowym). Trzy błędy złapane
+i poprawione podczas budowy sceny zad. 19, warte zapamiętania:
+
+- **`zgas()` (lokalny helper sceny) tylko czerni obiekt, nie usuwa go ze sceny.** Formuły
+  referencyjne (`wzorN`) z wcześniejszych etapów zostawały niewidoczne-czarne, ale WCIĄŻ
+  W SCENIE, i nakładały się na kolejne wzory w tym samym miejscu kadru (widoczne jako
+  bełkot liter na styku klatek). Formuły i równania kończące etap trzeba jawnie `FadeOut`,
+  nie tylko zaczerniać.
+- **`mobject.set_color()` poza `self.play()`/`self.wait()` nie renderuje klatki.** Instant
+  reset koloru „po cichu" po `zgas()` (bez animacji) zostawiał na styku klatek stan sprzed
+  resetu, bo żadna klatka z nowym kolorem nigdy nie została narysowana przed cięciem sekcji.
+- **`zgas()` nie miał końcowego przytrzymania** (`self.wait(0.25)`, wymaganego przez
+  workflow pkt. 0 z `manimations/README.md`) po ściemnieniu koloru. Brak przytrzymania dawał
+  SSIM tuż poniżej progu 0,999 na WIELU stykach naraz (encoder łapał klatkę w trakcie/na
+  granicy animacji, nie stan ustabilizowany). Dodanie `self.wait(0.25)` na końcu helpera
+  podniosło wszystkie graniczne styki powyżej progu jedną zmianą.
+- **Różnica kątów przy rysowaniu łuku kąta bez normalizacji do (-π, π] potrafi objechać
+  długą stroną.** Łuk kąta \(DCA\) okrążał 323° zamiast 37°, co na oko wyglądało jak niemal
+  pełne kółko nałożone na etykietę wierzchołka. Poprawka: `znorm()` przed przekazaniem
+  rozpiętości do `Arc`.
+
 [ZROBIONE 2026-08-30] (Opus 5, medium) Filmy krok po kroku do zadań 15, 16, 17.1 i 17.2
 z grudnia 2024: dwie poprawki renderu i dwie sceny napisane od nowa.
 [2024-grudzien, zad15, zad16, zad17, manim, zasady]
