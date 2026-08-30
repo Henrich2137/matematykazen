@@ -28,7 +28,14 @@ Wygląd i nazwy klas CSS: `ARCHITECTURE_CSS.md`. Znaczenie kolorów: `COLORS.md`
    to `Odpowiedź X.`, w zadaniu na wykazanie zdanie z wnioskiem („… więc iloczyn dzieli się
    przez 21, co należało wykazać"). Sam wynik rachunku, wytłuszczony, zostaje linijkę wyżej,
    w kolumnie rachunku.
-6. **Tyle linijek, ile kroków filmu**, jeden do jednego. Zmieniasz tu, przerenderuj film.
+6. **Tyle linijek, ile kroków filmu**, jeden do jednego, ale **domyślnie, a nie za wszelką
+   cenę** (Henrich, 2026-08-30: „rozwiązania krok po kroku i zwykłe nie muszą być koniecznie
+   ze sobą zgrane, szczególnie jeśli miałoby to zaszkodzić uczniowi w zrozumieniu któregoś
+   z nich"). Zaczynasz od jeden do jednego. Rozjazd wolno zrobić wtedy, gdy trzymanie się go
+   psuje którąś formę: film ma kroki, których tekst nie potrzebuje (sprzątanie kadru,
+   podsumowanie z obiema postaciami wzoru), a tekst ma zdania, które w filmie są komentarzem
+   pod kadrem, a nie osobną kropką. Zmieniasz tu, **przejrzyj film** i albo popraw, albo
+   świadomie zostaw rozjazd.
 
 ## Który układ wybrać
 

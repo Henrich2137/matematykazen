@@ -106,6 +106,23 @@ wersji do done/04-biezace.md. Weryfikacja przed commitem: Playwright
 (serwer `node tools/serwer.js 8001`, `.katex-error` musi być 0, zrzuty w obu
 motywach), nigdy "na oko".
 
+## Dopisane po zad. 10 i 12.1 (2026-08-30, uwagi Henricha)
+
+- **Kolor nie może odpowiadać na pytanie zadania.** Pełna reguła i dlaczego, w COLORS.md,
+  sekcja „Kolor nie może odpowiadać na pytanie zadania". Skrót: zieleń i czerwień
+  przypisane na stałe dwóm kawałkom rysunku czytają się jako „ta odpowiedź dobra, ta zła",
+  i w zad. 12.1 wyszło dokładnie odwrotnie, niż jest naprawdę. Zieleń ma WĘDROWAĆ za
+  punktem ucznia, a nie siedzieć na jednym kawałku.
+- **Ograniczenie zakresu suwaka bywa treścią, nie kosmetyką.** W zad. 10 dziedzina to
+  \((-4,\ 4\rangle\), więc suwak nie może dochodzić do \(-4\). Stało tam \(-3{,}98\):
+  formalnie poprawnie, ale różnica wynosiła niecały piksel, więc punkt siadał na kółku
+  otwartym i wyglądało to tak, jakby \(-4\) do dziedziny należało. **Jeśli coś ma być
+  WIDAĆ, zmierz to w pikselach, a nie w jednostkach dziedziny.**
+- **`min` suwaka musi być podzielne przez `step`.** Przeglądarka liczy dozwolone wartości
+  jako `min + k * step`, więc przy `min="-3.75" step="0.02"` zero nie jest osiągalne
+  i widżet startuje od \(x = 0{,}01\). Zapis \(-3{,}76\) wygląda tak samo, a wraca okrągłe
+  wartości. Sprawdzasz to zrzutem odczytu, nie w kodzie.
+
 ## Checklist nowego widżetu
 
 1. Sedno + typowy błąd ucznia -> co uczeń rusza i co ma zauważyć.
@@ -119,5 +136,7 @@ motywach), nigdy "na oko".
    wgMath/wgTexLiczba/wgUstawHTML (odczyt), wgZarejestrujRysowanie
    (OBOWIĄZKOWE, inaczej motyw nie przemaluje płótna).
 5. Kolory tylko z WG_KOLORY; suwak slider.style.accentColor w draw().
+   Sprawdź, czy zieleń/czerwień nie pokrywa się z podziałem na odpowiedź dobrą
+   i złą (COLORS.md), a przy suwaku, czy `min` dzieli się przez `step`.
 6. hint (nie zdradza) + solutionText (wzór, potem rozwiazanie-kroki).
 7. Test w Playwright, wersja, TODO, done/, commit, push.

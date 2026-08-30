@@ -21,8 +21,19 @@ function widgetFunkcjaPrzedzialami(container) {
         `<div class="wg-formula" data-i="2">${wgMath("x - 3 \\quad \\text{dla } x \\in (2,\\ 4\\rangle")}</div>`);
     wrap.appendChild(formulas);
 
+    // Suwak nie dochodzi do -4, i to WIDOCZNIE: lewy koniec to -3,76, czyli
+    // jedenaście pikseli od kółka (Henrich, 2026-08-30). Wcześniej stało tam
+    // -3,98, formalnie poprawnie, ale różnica wynosiła niecały piksel, więc
+    // punkt siadał na kółku otwartym i wyglądało to tak, jakby -4 należało do
+    // dziedziny. Teraz widać, że kółko po lewej zostaje puste, i to jest cała
+    // treść tego przedziału: (-4, 4>, lewy koniec wyłączony.
+    //
+    // -3,76, a nie -3,75, i to jest istotne: przeglądarka liczy dozwolone
+    // wartości suwaka jako min + k * step, więc przy -3,75 i kroku 0,02 zero
+    // w ogóle nie jest osiągalne i widżet startował od x = 0,01. -3,76 dzieli
+    // się przez 0,02 bez reszty, więc okrągłe wartości wracają na miejsce.
     const controls = wgElement("div", "widget-controls",
-        `<input type="range" min="-3.98" max="4" step="0.02" value="0">`);
+        `<input type="range" min="-3.76" max="4" step="0.02" value="0">`);
     wrap.appendChild(controls);
     const readout = wgElement("div", "widget-readout", "");
     wrap.appendChild(readout);

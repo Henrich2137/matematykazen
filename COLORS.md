@@ -99,6 +99,26 @@ Jasny wariant to `#0077b6`, nie `#72d9fe`: ten drugi ma na białym tle kontrast
 > dopasowywał. Po dołożeniu `hue-rotate(180deg)` film zostaje niebieski, więc
 > pomarańcz stracił powód istnienia i wrócił błękit.
 
+## Kolor nie może odpowiadać na pytanie zadania (2026-08-30)
+
+Reguła wyciągnięta z widżetu do zad. 12.1, gdzie została złamana. Rysunek miał gałąź
+rosnącą na stałe **zieloną**, a malejącą na stałe **czerwoną**. Pytanie zadania brzmiało
+„w jakim przedziale funkcja maleje", więc poprawna odpowiedź była pomalowana na czerwono,
+a dystraktor na zielono. Henrich: „użyj innych kolorów, bo obecne wprowadzają w błąd co do
+tego, którą odpowiedź wybrać".
+
+- **Zanim pomalujesz cokolwiek na zieleń albo czerwień, sprawdź, czy ten podział nie pokrywa
+  się z podziałem na odpowiedź dobrą i złą.** Jeśli się pokrywa, uczeń przeczyta kolor jako
+  podpowiedź, i to często odwrotną.
+- **Kolor STAŁY jest groźniejszy niż RUCHOMY.** Barwa przypisana na sztywno kawałkowi
+  rysunku wygląda jak jego ocena. Ta sama zieleń, która wędruje za palcem ucznia (zapala
+  się gałąź, na której właśnie stoi punkt), znaczy „tu jesteś" i nie ocenia niczego.
+- **Do rozróżnienia dwóch kawałków tego samego obiektu bierz role, nie sygnały.** Wykres
+  zostaje fioletowy, punkt przeciągany błękitny (rola „podstawianie pod \(x\)"), stały punkt
+  odniesienia pomarańczowy. Zieleń zostaw na „tu patrz".
+- **W odczycie pod widżetem to samo**: opis stanu, który nie jest oceną („funkcja maleje"),
+  idzie klasą `wg-neutral`, a nie `wg-ok` / `wg-zle`.
+
 ## We wzorach (KaTeX)
 
 `\textcolor` wymaga hexa, więc przez `wgHex`, nie z palca:

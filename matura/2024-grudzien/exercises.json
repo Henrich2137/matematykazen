@@ -745,7 +745,7 @@
         "selfScore": false,
         "hint": "Współczynnik kierunkowy odczytasz z dwóch punktów, które są podane: \\(( 0,\\ 4)\\) oraz \\((2,\\ 0)\\). W drugim zdaniu zacznij od zaznaczenia na rysunku, o który trójkąt chodzi.",
         "formulasPage": 23,
-        "solutionText": "<div class=\"rozw-2kol\"><div class=\"rozw-wiersz rozw-pelny\"><div class=\"rozw-obl\">Z wykresu odczytujemy dwa punkty: &nbsp; \\(A = (0,\\ 4)\\) &nbsp;&nbsp; \\(B = (2,\\ 0)\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(a = \\dfrac{0 - 4}{2 - 0}\\)</div><div class=\"rozw-wzor\">\\(a = \\dfrac{y_{B} - y_{A}}{x_{B} - x_{A}}\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(a = \\dfrac{-4}{2}\\)</div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(\\boldsymbol{a = -2}\\), czyli tyle, ile mówi zdanie 1: <b>P</b></div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz rozw-pelny\"><div class=\"rozw-obl\">Trójkąt ma wierzchołki \\((0,\\ 0)\\), \\((2,\\ 0)\\), \\((0,\\ 4)\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">Podstawa \\(2\\), &nbsp; wysokość \\(4\\)</div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(P = \\dfrac{1}{2} \\cdot 2 \\cdot 4\\)</div><div class=\"rozw-wzor\">\\(P = \\dfrac{1}{2} a \\cdot h_{a}\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(\\boldsymbol{P = 4}\\), a w zdaniu 2 stoi \\(8\\): <b>F</b></div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz rozw-pelny\"><div class=\"rozw-obl\">Odpowiedź <b>PF</b>.</div></div></div>",
+        "solutionText": "<div class=\"rozw-2kol\"><div class=\"rozw-wiersz rozw-pelny\"><div class=\"rozw-obl\">Z wykresu odczytujemy dwa punkty: &nbsp; \\(A = (0,\\ 4)\\) &nbsp;&nbsp; \\(B = (2,\\ 0)\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(a = \\dfrac{0 - 4}{2 - 0}\\)</div><div class=\"rozw-wzor\">\\(a = \\dfrac{y_{B} - y_{A}}{x_{B} - x_{A}}\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(a = \\dfrac{-4}{2}\\)</div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(\\boldsymbol{a = -2}\\)</div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">Zgadza się ze zdaniem 1. <b>Prawda</b>.</div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz rozw-pelny\"><div class=\"rozw-obl\">Trójkąt ma wierzchołki \\((0,\\ 0)\\), \\((2,\\ 0)\\), \\((0,\\ 4)\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">Podstawa \\(2\\), &nbsp; wysokość \\(4\\)</div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(P = \\dfrac{1}{2} \\cdot 2 \\cdot 4\\)</div><div class=\"rozw-wzor\">\\(P = \\dfrac{1}{2} a \\cdot h_{a}\\)</div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">\\(\\boldsymbol{P = 4}\\)</div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz\"><div class=\"rozw-obl\">a w zdaniu 2. mówią, że \\(P = 8\\). <b>Fałsz</b>.</div><div class=\"rozw-wzor\"></div></div><div class=\"rozw-wiersz rozw-pelny\"><div class=\"rozw-obl\">Odpowiedzi: <b>P</b>, <b>F</b></div></div></div>",
         "solutionStepByStep": [{"type": "video", "src": "media/zad11/solution-step-by-step/step1.mp4", "text": "Miejsce zerowe to \\(x\\), przy którym wykres przecina oś \\(x\\).<br>Drugi punkt jest podany wprost: tam wykres przecina oś \\(y\\)."}, {"type": "video", "src": "media/zad11/solution-step-by-step/step2.mp4", "text": "Współczynnik kierunkowy mówi, o ile zmienia się \\(y\\), gdy \\(x\\) rośnie o \\(1\\).<br>Z dwóch punktów liczy się go wzorem:\\[a = \\dfrac{y_{B} - y_{A}}{x_{B} - x_{A}}\\]"}, {"type": "video", "src": "media/zad11/solution-step-by-step/step3.mp4", "text": "W liczniku i w mianowniku odejmujemy w tej samej kolejności: najpierw \\(B\\), potem \\(A\\).<br>Zamiana kolejności odwróciłaby znak wyniku."}, {"type": "video", "src": "media/zad11/solution-step-by-step/step4.mp4", "text": "Wynik ujemny zgadza się z rysunkiem, bo prosta opada."}, {"type": "video", "src": "media/zad11/solution-step-by-step/step5.mp4", "text": "Trójkąt ograniczony osiami i wykresem to ten, którego dwa boki leżą na osiach, a trzeci na prostej."}, {"type": "video", "src": "media/zad11/solution-step-by-step/step6.mp4", "text": "Trójkąt jest prostokątny, więc podstawa i wysokość leżą na osiach.<br>Ich długości odczytujemy wprost z rysunku."}, {"type": "video", "src": "media/zad11/solution-step-by-step/step7.mp4", "text": "Pole trójkąta:\\[P = \\dfrac{1}{2} a \\cdot h_{a}\\]Tutaj \\(a\\) to podstawa, a \\(h_{a}\\) wysokość poprowadzona do niej."}, {"type": "video", "src": "media/zad11/solution-step-by-step/step8.mp4", "text": "W zdaniu 2 podano \\(8\\), a wyszło \\(4\\), więc zdanie jest fałszywe."}],
         "solutionWidget": null
     },
@@ -799,8 +799,79 @@
         "selfScore": false,
         "hint": "Wierzchołek podaje \\(p\\) i \\(q\\) do postaci kanonicznej, a podany punkt pozwala wyliczyć \\(a\\). Odpowiedzi są dwie, bo ten sam wzór da się zapisać ze zwiniętym i z rozwiniętym nawiasem.",
         "formulasPage": 8,
-        "solutionText": "Postać kanoniczna funkcji kwadratowej:\\[f(x) = a(x - p)^{2} + q\\]<div class=\"rozwiazanie-kroki\"><div class=\"rozw-komentarz\">Wierzchołek ma współrzędne \\((p,\\ q)\\), więc obie liczby odczytujemy z jednego zapisu.</div><div class=\"rozw-linia\"><b>Wierzchołek</b> \\((3,\\ 0)\\): &nbsp; \\(p = 3\\) &nbsp;&nbsp; \\(q = 0\\)</div><div class=\"rozw-linia rozw-odstep\">\\(f(x) = a(x - 3)^{2} + 0\\)</div><div class=\"rozw-komentarz\">Dodanie zera niczego nie zmienia.</div><div class=\"rozw-linia\">\\(f(x) = a(x - 3)^{2}\\)</div><div class=\"rozw-komentarz\">„Przechodzi przez punkt \\((0,\\ -9)\\)” znaczy, że dla \\(x = 0\\) wartość funkcji wynosi \\(-9\\).</div><div class=\"rozw-linia\">\\(-9 = a(0 - 3)^{2}\\)</div><div class=\"rozw-linia\">\\(-9 = a(-3)^{2}\\)</div><div class=\"rozw-komentarz\">Kwadrat liczby ujemnej jest dodatni: \\((-3) \\cdot (-3) = 9\\).</div><div class=\"rozw-linia\">\\(-9 = a \\cdot 9\\)<span class=\"rozw-dzialanie\">\\(\\big/ : 9\\)</span></div><div class=\"rozw-komentarz\">\\(\\dfrac{-9}{9} = -1\\).</div><div class=\"rozw-linia\">\\(\\boldsymbol{a = -1}\\)</div><div class=\"rozw-linia rozw-odstep\">\\(f(x) = -1 \\cdot (x - 3)^{2}\\)</div><div class=\"rozw-komentarz\">Mnożenie przez \\(-1\\) zapisujemy samym minusem.</div><div class=\"rozw-linia\">\\(\\boldsymbol{f(x) = -(x - 3)^{2}}\\) &nbsp; to odpowiedź <b>B</b></div><div class=\"rozw-komentarz rozw-odstep\">Nawias rozwijamy wzorem na kwadrat różnicy \\((a - b)^{2} = a^{2} - 2ab + b^{2}\\), w którym \\(x\\) wchodzi na miejsce \\(a\\), a \\(3\\) na miejsce \\(b\\).</div><div class=\"rozw-linia\">\\(f(x) = -(x^{2} - 2 \\cdot x \\cdot 3 + 3^{2})\\)</div><div class=\"rozw-linia\">\\(f(x) = -(x^{2} - 6x + 9)\\)</div><div class=\"rozw-komentarz\">Minus przed nawiasem zmienia znak każdego składnika w środku.</div><div class=\"rozw-linia\">\\(\\boldsymbol{f(x) = -x^{2} + 6x - 9}\\) &nbsp; to odpowiedź <b>D</b></div><div class=\"rozw-linia rozw-odstep\">Odpowiedź <b>B</b> i <b>D</b>.</div></div>",
-        "solutionStepByStep": [{"type": "video", "src": "media/zad12_2/solution-step-by-step/step1.mp4", "text": "Wierzchołek paraboli ma współrzędne \\((p,\\ q)\\), więc obie liczby odczytujemy z jednego zapisu."}, {"type": "video", "src": "media/zad12_2/solution-step-by-step/step2.mp4", "text": "Postać kanoniczna funkcji kwadratowej:\\[f(x) = a(x - p)^{2} + q\\]W miejsce \\(p\\) i \\(q\\) wstawiamy odczytane liczby."}, {"type": "video", "src": "media/zad12_2/solution-step-by-step/step3.mp4", "text": "Dodanie zera niczego nie zmienia."}, {"type": "video", "src": "media/zad12_2/solution-step-by-step/step4.mp4", "text": "„Przechodzi przez punkt \\((0,\\ -9)\\)” znaczy, że dla \\(x = 0\\) wartość funkcji wynosi \\(-9\\)."}, {"type": "video", "src": "media/zad12_2/solution-step-by-step/step5.mp4", "text": "\\(0 - 3\\) to \\(-3\\). Minus zostaje w nawiasie, bo do kwadratu podnosimy całość."}, {"type": "video", "src": "media/zad12_2/solution-step-by-step/step6.mp4", "text": "Kwadrat liczby ujemnej jest dodatni: \\((-3) \\cdot (-3) = 9\\)."}, {"type": "video", "src": "media/zad12_2/solution-step-by-step/step7.mp4", "text": "Dzielimy obie strony przez \\(9\\), a \\(\\dfrac{-9}{9}\\) to \\(-1\\)."}, {"type": "video", "src": "media/zad12_2/solution-step-by-step/step8.mp4", "text": "Wracamy do postaci kanonicznej i wstawiamy policzone \\(a\\)."}, {"type": "video", "src": "media/zad12_2/solution-step-by-step/step9.mp4", "text": "Mnożenie przez \\(-1\\) zapisujemy samym minusem. Tak wygląda odpowiedź <b>B</b>."}, {"type": "video", "src": "media/zad12_2/solution-step-by-step/step10.mp4", "text": "Kwadrat różnicy:\\[(a - b)^{2} = a^{2} - 2ab + b^{2}\\]Tutaj \\(x\\) wchodzi na miejsce \\(a\\), a \\(3\\) na miejsce \\(b\\)."}, {"type": "video", "src": "media/zad12_2/solution-step-by-step/step11.mp4", "text": "\\(2 \\cdot x \\cdot 3\\) to \\(6x\\), a \\(3^{2}\\) to \\(9\\)."}, {"type": "video", "src": "media/zad12_2/solution-step-by-step/step12.mp4", "text": "Minus przed nawiasem zmienia znak każdego składnika. Tak wygląda odpowiedź <b>D</b>."}],
+        "solutionText": "Postać kanoniczna funkcji kwadratowej:\\[f(x) = a(x - p)^{2} + q\\]<div class=\"rozwiazanie-kroki\"><div class=\"rozw-komentarz\">Wierzchołek ma współrzędne \\((p,\\ q)\\), więc obie liczby odczytujemy z jednego zapisu.</div><div class=\"rozw-linia\"><b>Wierzchołek</b> \\((3,\\ 0)\\): &nbsp; \\(p = 3\\) &nbsp;&nbsp; \\(q = 0\\)</div><div class=\"rozw-linia rozw-odstep\">\\(f(x) = a(x - 3)^{2} + 0\\)</div><div class=\"rozw-komentarz\">Dodanie zera niczego nie zmienia.</div><div class=\"rozw-linia\">\\(f(x) = a(x - 3)^{2}\\)</div><div class=\"rozw-komentarz\">„Przechodzi przez punkt \\((0,\\ -9)\\)” znaczy, że dla \\(x = 0\\) wartość funkcji wynosi \\(-9\\).</div><div class=\"rozw-linia\">\\(-9 = a(0 - 3)^{2}\\)</div><div class=\"rozw-linia\">\\(-9 = a(-3)^{2}\\)</div><div class=\"rozw-komentarz\">Kwadrat liczby ujemnej jest dodatni: \\((-3) \\cdot (-3) = 9\\).</div><div class=\"rozw-linia\">\\(-9 = a \\cdot 9\\)<span class=\"rozw-dzialanie\">\\(\\big/ : 9\\)</span></div><div class=\"rozw-komentarz\">\\(\\dfrac{-9}{9} = -1\\).</div><div class=\"rozw-linia\">\\(\\boldsymbol{a = -1}\\)</div><div class=\"rozw-linia rozw-odstep\">\\(f(x) = -1 \\cdot (x - 3)^{2}\\)</div><div class=\"rozw-komentarz\">Mnożenie przez \\(-1\\) zapisujemy samym minusem.</div><div class=\"rozw-linia\">\\(\\boldsymbol{f(x) = -(x - 3)^{2}}\\) &nbsp; to odpowiedź <b>B</b></div><div class=\"rozw-komentarz rozw-odstep\">Nawias rozwijamy wzorem na kwadrat różnicy \\((a - b)^{2} = a^{2} - 2ab + b^{2}\\), w którym \\(x\\) wchodzi na miejsce \\(a\\), a \\(3\\) na miejsce \\(b\\).</div><div class=\"rozw-linia\">\\(f(x) = -(x^{2} - 2 \\cdot x \\cdot 3 + 3^{2})\\)</div><div class=\"rozw-linia\">\\(f(x) = -(x^{2} - 6x + 9)\\)</div><div class=\"rozw-komentarz\">Minus przed nawiasem zmienia znak każdego składnika w środku.</div><div class=\"rozw-linia\">\\(\\boldsymbol{f(x) = -x^{2} + 6x - 9}\\) &nbsp; to odpowiedź <b>D</b></div><div class=\"rozw-komentarz rozw-odstep\">To jest ten sam wzór w dwóch postaciach: zwiniętej i rozwiniętej. Obie stoją wśród odpowiedzi, więc zaznaczamy obie.</div><div class=\"rozw-linia\">\\(\\boldsymbol{f(x) = -(x - 3)^{2}}\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{f(x) = -x^{2} + 6x - 9}\\)</div><div class=\"rozw-linia rozw-odstep\">Odpowiedzi: <b>B</b>, <b>D</b></div></div>",
+        "solutionStepByStep": [
+            {
+                "type": "video",
+                "src": "media/zad12_2/solution-step-by-step/step1.mp4",
+                "text": "Postać kanoniczna funkcji kwadratowej:\\[f(x) = a(x - p)^{2} + q\\]Stoją w niej trzy nieznane liczby: \\(a\\), \\(p\\) i \\(q\\). Wierzchołek \\(W\\) i punkt \\(A\\) wystarczą, żeby je wyliczyć."
+            },
+            {
+                "type": "video",
+                "src": "media/zad12_2/solution-step-by-step/step2.mp4",
+                "text": "Wierzchołek ma współrzędne \\((p,\\ q)\\), więc obie liczby odczytujemy z jednego zapisu i od razu wstawiamy do wzoru."
+            },
+            {
+                "type": "video",
+                "src": "media/zad12_2/solution-step-by-step/step3.mp4",
+                "text": "Dodanie zera niczego nie zmienia."
+            },
+            {
+                "type": "video",
+                "src": "media/zad12_2/solution-step-by-step/step4.mp4",
+                "text": "„Wykres przechodzi przez \\(A\\)” znaczy, że dla \\(x = 0\\) wartość funkcji wynosi \\(-9\\).<br>Pierwsza współrzędna punktu idzie pod \\(x\\), druga na miejsce wartości."
+            },
+            {
+                "type": "video",
+                "src": "media/zad12_2/solution-step-by-step/step5.mp4",
+                "text": "\\(0 - 3\\) to \\(-3\\). Minus zostaje w nawiasie, bo do kwadratu podnosimy całość."
+            },
+            {
+                "type": "video",
+                "src": "media/zad12_2/solution-step-by-step/step6.mp4",
+                "text": "Kwadrat liczby ujemnej jest dodatni: \\((-3) \\cdot (-3) = 9\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad12_2/solution-step-by-step/step7.mp4",
+                "text": "Dzielimy obie strony przez \\(9\\), a \\(\\dfrac{-9}{9}\\) to \\(-1\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad12_2/solution-step-by-step/step8.mp4",
+                "text": "Wierzchołek i punkt \\(A\\) są już wykorzystane, więc schodzą z kadru.<br>Zostaje z nich tylko to, co dalej potrzebne: \\(a = -1\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad12_2/solution-step-by-step/step9.mp4",
+                "text": "Wracamy do postaci kanonicznej i wstawiamy policzone \\(a\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad12_2/solution-step-by-step/step10.mp4",
+                "text": "Mnożenie przez \\(-1\\) zapisujemy samym minusem. Tak wygląda odpowiedź <b>B</b>."
+            },
+            {
+                "type": "video",
+                "src": "media/zad12_2/solution-step-by-step/step11.mp4",
+                "text": "Kwadrat różnicy:\\[(a - b)^{2} = a^{2} - 2ab + b^{2}\\]Tutaj \\(x\\) wchodzi na miejsce \\(a\\), a \\(3\\) na miejsce \\(b\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad12_2/solution-step-by-step/step12.mp4",
+                "text": "\\(2 \\cdot x \\cdot 3\\) to \\(6x\\), a \\(3^{2}\\) to \\(9\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad12_2/solution-step-by-step/step13.mp4",
+                "text": "Minus przed nawiasem zmienia znak każdego składnika. Tak wygląda odpowiedź <b>D</b>."
+            },
+            {
+                "type": "video",
+                "src": "media/zad12_2/solution-step-by-step/step14.mp4",
+                "text": "Ten sam wzór w dwóch postaciach: zwiniętej i rozwiniętej.<br>Obie stoją wśród odpowiedzi, więc zaznaczamy obie."
+            }
+        ],
         "solutionWidget": null
     },
     {

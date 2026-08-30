@@ -10,7 +10,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - **`solutionText` (rozwiązanie zwykłe) → [SOLUTION_TEXT_RULES.md](SOLUTION_TEXT_RULES.md).** One expression per line; green marks what changes. Three layouts to pick from (one column, two columns, two parallel tracks) — the file says which fits what, and only formulas that are actually in `tablica-wzorow.pdf` may sit beside a line.
 - **Manim scene (rozwiązanie krok po kroku) → „Zasady krok po kroku" in [manimations/README.md](manimations/README.md).** One step = one transformation; every step goes black → green → animation → black.
-- **They must stay in step: one line of the written solution = one step of the film.** Change one, change the other.
+- **They stay in step by default: one line of the written solution = one step of the film.** Change one, look at the other. Since 2026-08-30 this is a default, not a hard rule (Henrich: the two forms „nie muszą być koniecznie ze sobą zgrane, szczególnie jeśli miałoby to zaszkodzić uczniowi w zrozumieniu któregoś z nich") — a film may carry steps the text does not need (clearing the frame, a closing summary) and the text may carry sentences that live under the film rather than as their own dot. Drifting apart has to be a decision, not neglect.
 
 ## Bezpieczeństwo poza devcontainerem
 
@@ -49,6 +49,7 @@ Counting rules (implemented in the script, repeated here so you know what you ar
 - **Podpowiedź / rozwiązanie opisowe / rozwiązanie wideo / widżet** = the matching field (`hint` / `solutionText` / `solutionStepByStep` / `solutionWidget`) is non-empty.
 - **Widżety** are reported as a count of distinct widgets in the sheet, never as a fraction of exercises — not every exercise can or should get one.
 - **Odpowiedzi zweryfikowane z kluczem CKE** = the closed-form answers were compared against `matura/<id>/odpowiedzi.pdf`.
+- **Odpicowane** (added 2026-08-30) is the one line the script does **not** compute and cannot: it counts the exercises that have been through a full round of Henrich's review and the fixes that followed. Bump it by hand when a batch of his notes is closed, and say which exercises (`Odpicowane: 6 (zad. 7-12)`).
 
 **Run the script and rewrite the numbers (and the date at the top) whenever you finish a batch of work on a sheet** — new hints, solutions, videos or widgets. It is one command, so that section has no excuse to drift.
 

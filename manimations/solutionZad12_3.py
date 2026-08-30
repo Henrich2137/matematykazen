@@ -159,6 +159,11 @@ class Zad12_3(Scene):
         # KROK 2. Odejmowanie jedynki zsuwa CALY wykres o jedna kratke
         # w dol. Stara pozycja zostaje na chwile jako przerywana, zeby
         # bylo widac, o ile to jest.
+        #
+        # ZIELONE JEST TU DWOJE NARAZ i to jest caly sens kroku: strzalka
+        # w kadrze oraz „- 1" we wzorze g (Henrich, 2026-08-30). To ta sama
+        # jedynka, raz zapisana, raz narysowana; zapalona osobno strzalka mowila
+        # „o tyle w dol", ale nie mowila, SKAD ta liczba sie wziela.
         # ================================================================
         self.next_section("krok2")
         # Slad startuje NIEWIDOCZNY i zapala sie dopiero w trakcie zsuwania.
@@ -184,7 +189,12 @@ class Zad12_3(Scene):
         # a przy okazji krok zaczyna sie drobnym ruchem zamiast przejazdu calego
         # wykresu: pierwsza klatka pliku jest wtedy kodowana tak samo dokladnie
         # jak spoczynkowa klatka poprzedniego kroku (styk 0,99854 -> 0,99901).
-        self.play(GrowArrow(strzalka), FadeIn(etykieta_1), run_time=0.8)
+        self.play(
+            GrowArrow(strzalka), FadeIn(etykieta_1),
+            g_pel[12].animate.set_color(ZIELONY),
+            g_pel[13].animate.set_color(ZIELONY),
+            run_time=0.8,
+        )
         self.play(
             wykres.animate.shift(KRATKA),
             podpis_f.animate.shift(KRATKA),
@@ -199,7 +209,7 @@ class Zad12_3(Scene):
         opis_w.move_to(p(4.5, -0.5))
         self.play(FadeIn(nowy_w), FadeIn(opis_w), run_time=0.7)
         self.wait(0.4)
-        self.zgas(nowy_w, opis_w)
+        self.zgas(nowy_w, opis_w, g_pel[12], g_pel[13])
         self.play(FadeOut(slad), FadeOut(strzalka), FadeOut(etykieta_1),
                   run_time=0.5)
         # Podpis wykresu nazywa juz inna funkcje.

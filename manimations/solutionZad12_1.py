@@ -83,8 +83,16 @@ class Zad12_1(Scene):
                 color=kolor, stroke_width=grubosc,
             )
 
-        LEWY_KRANIEC = 3 - 10.2 ** 0.5    # tam, gdzie parabola schodzi do dolu kadru
-        PRAWY_KRANIEC = 3 + 10.2 ** 0.5
+        # Parabola jest rysowana KAWALEK PONIZEJ dolnej krawedzi kadru (y = -11.2,
+        # a plansza konczy sie na -10.2), zeby wychodzila z kadru, a nie urywala
+        # sie w powietrzu. Dzieki temu wedrujaca kropka wjezdza w kadr zza jego
+        # krawedzi i wyjezdza za nia (Henrich, 2026-08-30: „wedrujaca kropka
+        # powinna pojawiac sie zza kadru oraz zniknac za kadrem"). Przedtem
+        # zaczynala i konczyla bieg na widocznym koncu krzywej, wiec wygladalo to
+        # tak, jakby wyskakiwala znikad i znikala w niczym.
+        POZA_KADREM = 11.2
+        LEWY_KRANIEC = 3 - POZA_KADREM ** 0.5
+        PRAWY_KRANIEC = 3 + POZA_KADREM ** 0.5
 
         # Parabola jest ZLOZONA Z DWOCH KAWALKOW, lewego i prawego, mimo ze
         # w kadrze wyglada jak jedna krzywa. Dzieki temu galaz zapala sie
@@ -149,7 +157,9 @@ class Zad12_1(Scene):
         # KROK 3. Lewa galaz: idac od lewej do wierzcholka, wykres ROSNIE.
         # ================================================================
         self.next_section("krok3")
-        kropka = Dot(p(LEWY_KRANIEC, -10.2), radius=0.10, color=ZIELONY)
+        # Start bierzemy z samej krzywej, zeby kropka nie odstawala od toru,
+        # gdyby kiedys zmienil sie zakres. Punkt lezy pod krawedzia kadru.
+        kropka = Dot(lewa_k.get_start(), radius=0.10, color=ZIELONY)
         napis_ro = Text("rośnie", font_size=32, color=ZIELONY)
         napis_ro.move_to(p(0.55, -2.1))
 

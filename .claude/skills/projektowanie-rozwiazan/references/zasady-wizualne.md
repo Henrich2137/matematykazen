@@ -164,6 +164,25 @@ zdejmuje.
 
 ---
 
+## 4. Kolor nie może odpowiadać na pytanie zadania (2026-08-30)
+
+Reguła z widżetu do zad. 12.1, gdzie została złamana. Gałąź rosnąca była na stałe
+**zielona**, malejąca na stałe **czerwona**. Pytanie brzmiało „w jakim przedziale funkcja
+maleje", więc poprawna odpowiedź świeciła na czerwono, a dystraktor na zielono. Henrich:
+„użyj innych kolorów, bo obecne wprowadzają w błąd co do tego, którą odpowiedź wybrać".
+
+Przy projektowaniu sprawdzaj to **zanim** cokolwiek zostanie zakodowane:
+
+- Czy podział kolorów na rysunku pokrywa się z podziałem na odpowiedź dobrą i złą? Jeśli
+  tak, projekt jest do zmiany, choćby kolory były „ładne".
+- Kolor **stały** przypisany kawałkowi rysunku wygląda jak jego ocena. Kolor **ruchomy**,
+  idący za palcem ucznia, znaczy „tu jesteś" i jest bezpieczny.
+- Do rozróżniania kawałków tego samego obiektu bierz role z COLORS.md (wykres fioletowy,
+  punkt przeciągany błękitny, punkt odniesienia pomarańczowy), a zieleń zostaw na „tu patrz".
+
+To samo dotyczy filmu: zieleń w scenie znaczy „to się właśnie zmienia" albo „tutaj patrz",
+nigdy „to jest dobra odpowiedź".
+
 ## Czego świadomie nie stosujemy
 
 - **Zasady Mayera zakładające lektora**: modality, redundancy, temporal contiguity, voice.

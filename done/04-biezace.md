@@ -1,5 +1,88 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-30] (Opus 5, medium) Zadania 9, 10, 11, 12.1, 12.2 i 12.3 z grudnia 2024:
+druga runda uwag Henricha, plus zluzowanie reguły „film jeden do jednego z tekstem".
+[2024-grudzien, zad9, zad10, zad11, zad12, manim, widzety, kolory, zasady]
+
+Wersja v103. Uwagi z TODO.md, wszystkie wykonane.
+
+- **Zad. 9, trzy ostatnie kroki filmu.** Wraca w kadr nierówność w postaci z zerem po prawej
+  (\(1x^{2} - 6x - 7 \le 0\)), nad linijką wyników. Podczas rysowania paraboli zapala się
+  w niej JEDYNKA przy \(x^{2}\), bo to ona odpowiada na pytanie, dlaczego ramiona idą
+  w górę. Przy zaznaczaniu fragmentu pod osią zapala się \(\le 0\): to samo pytanie raz
+  zapisane, raz narysowane. W ostatnim kroku nierówność znika na starcie i odpowiedź
+  zostaje w kadrze sama.
+
+- **Zad. 10, widżet.** Suwak nie dochodzi już do \(-4\) i to WIDOCZNIE: lewy koniec to
+  \(-3{,}76\), czyli jedenaście pikseli od kółka. Stało tam \(-3{,}98\), formalnie poprawnie,
+  ale różnica wynosiła niecały piksel, więc punkt siadał na kółku otwartym i wyglądało to
+  tak, jakby \(-4\) należało do dziedziny. Drugi szczegół, złapany dopiero na zrzucie:
+  `min` suwaka musi dzielić się przez `step`, bo przeglądarka liczy dozwolone wartości jako
+  `min + k * step`; przy \(-3{,}75\) i kroku \(0{,}02\) zero było nieosiągalne i widżet
+  startował od \(x = 0{,}01\).
+
+- **Zad. 11, rozwiązanie zwykłe.** Werdykt każdego zdania dostał własną linijkę pod wynikiem,
+  a zamknięcie brzmi „Odpowiedzi: **P**, **F**". Przedtem werdykt był doklejony do linijki
+  z wynikiem i ginął w rachunku.
+
+- **Zad. 12.1, film.** Wędrująca kropka wjeżdża zza krawędzi kadru i wyjeżdża za nią.
+  Parabola jest rysowana kawałek poniżej dolnej krawędzi; przedtem kończyła się wewnątrz
+  kadru, więc kropka wyskakiwała znikąd i znikała w niczym.
+
+- **Zad. 12.1, widżet: kolory kłamały o odpowiedzi.** Gałąź rosnąca była na stałe ZIELONA,
+  malejąca na stałe CZERWONA, a pytanie brzmi „w jakim przedziale funkcja maleje", więc
+  poprawna odpowiedź świeciła na czerwono, a dystraktor na zielono. Teraz cała parabola jest
+  fioletowa, zapala się na zielono ta gałąź, na której właśnie stoi punkt ucznia, punkt jest
+  błękitny (rola „podstawianie pod \(x\)"), wierzchołek pomarańczowy. Zieleń jest RUCHOMA,
+  więc znaczy „tu jesteś", a nie „to jest dobra odpowiedź".
+
+- **Zad. 12.2, film przebudowany: czternaście kroków zamiast dwunastu.** Krok 1 pokazuje
+  trójkę danych naraz (wzór postaci kanonicznej, punkt \(W\), punkt \(A\)); punkt
+  \((0,\ -9)\) nazywa się teraz \(A\), a \(f(0) = -9\) dopisuje się dopiero przy
+  podstawieniu, jako tłumaczenie „przechodzi przez \(A\)" na język równania. Krok 8 CZYŚCI
+  GÓRĘ KADRU: dane i pas odczytu znikają, a \(a = -1\) jedzie na ich miejsce, na środek.
+  Wzór na kwadrat różnicy wjeżdża już na końcu kroku 10. Lista odpowiedzi to
+  „Odpowiedzi: B, D". Krok 14 zdejmuje \(a = -1\) i zostawia w kadrze obie postacie wzoru,
+  jedna pod drugą.
+
+- **Zad. 12.3, film.** W kroku 2 na zielono zapala się nie tylko strzałka „o ile", ale też
+  \(- 1\) we wzorze \(g\).
+
+**Zasada zluzowana przez Henricha: film i rozwiązanie zwykłe nie muszą być jeden do jednego**
+(„szczególnie jeśli miałoby to zaszkodzić uczniowi w zrozumieniu któregoś z nich"). Zaczyna
+się od jeden do jednego i trzyma tego, dopóki nic nie boli; rozjazd ma być decyzją, nie
+zaniedbaniem. Zapisane w `manimations/README.md` (punkt 2), `SOLUTION_TEXT_RULES.md`
+(punkt 6) i `CLAUDE.md`.
+
+**Zdjęty przymus trybu `film` w `tools/klatki.sh`.** `manimations/README.md` kazał po każdym
+renderze obejrzeć „pierwszą klatkę, po zapaleniu koloru, w połowie ruchu i ostatnią", czyli
+wymuszał `film`. Płaciło się kontekstem za obrazki, które prawie zawsze potwierdzały to, co
+już widać w `stany`. Teraz `stany --koniec` jest narzędziem pierwszego wyboru do CAŁEJ pracy
+nad sceną (jeden obrazek na zadanie, koszt jednej klatki), a `film` odpala się dopiero, gdy
+`stany` da powód. Dopisany też wniosek o gęstości: `--co 20` albo rzadziej, gdy chcesz
+PRZECZYTAĆ, co jest w kadrze; gęsto tylko wtedy, gdy oceniasz sam RUCH, bo przy `--co 6`
+wzoru w kafelku już się nie odczyta.
+
+**Pięć nowych reguł w `manimations/README.md` (51 do 55), wyciągniętych z tej paczki:**
+krzywa musi wychodzić poza kadr, sprzątanie kadru zasługuje na własny krok, wzór z tablicy
+wjeżdża na końcu poprzedniego kroku, napis który dorasta ustawia się z góry w całości,
+nowa notatka dostaje własny wiersz. Do tego sekcja „Kolor nie może odpowiadać na pytanie
+zadania" w `COLORS.md`, powtórzona w `widgets/PROJEKTOWANIE.md` i w skillu
+`projektowanie-rozwiazan`.
+
+**W OVERVIEW.md doszła statystyka „Odpicowane: 6 (zad. 7-12)"** — jedyna liczba w tej sekcji,
+której `tools/statystyki.py` nie policzy, bo to ocena, a nie pole w danych. Podbija się ją
+ręcznie po zamknięciu paczki uwag.
+
+Sprawdzone: `tools/styk-klatek.sh` bez zastrzeżeń na czterech scenach (zad. 9 dwadzieścia
+styków, 12.1 cztery, 12.2 trzynaście, 12.3 cztery); `tools/zielen-krokow.py` bez zastrzeżeń
+na wszystkich czterech; `tools/test-krokow.js --zadania=8,12,13,14` bez zastrzeżeń;
+`tools/klatki.sh stany --koniec` na zad. 9 i 12.2, `film` na krokach 3 i 4 zad. 12.1 oraz
+kroku 2 zad. 12.3; zrzuty rozwiązań zad. 10, 11 i 12.1 przez `tools/zrzut-rozwiazania.js`.
+Pierwsza wersja układu 12.2 padła właśnie na obrazku ze `stany`: dopisek \(f(0) = -9\)
+stanął obok \(q = 0\) i cała góra kadru czytała się jako jedna linijka.
+
+
 [ZROBIONE 2026-08-29] (Opus 5, medium) Zadania 7, 8, 9 i 10 z grudnia 2024: paczka poprawek
 Henricha do filmów i rozwiązań zwykłych.
 [2024-grudzien, zad7, zad8, zad9, zad10, manim, solution-text, css]

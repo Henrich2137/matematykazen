@@ -35,7 +35,8 @@ SZARY_OSIE = "#666666"
 SZARY_DOPISEK = "#888888"
 
 ROWNANIE_Y = UP * 0.75
-GORA_Y = UP * 2.4
+GORA_Y = UP * 2.15       # linijka wynikow x1 i x2 w trzech ostatnich krokach
+NIEROWNOSC_Y = UP * 3.15  # przywolana nierownosc nad wynikami (Henrich, 2026-08-30)
 KOEF_Y = DOWN * 2.2      # ciupinke wyzej niz 2.35 (Henrich, 2026-08-29)
 POSTOJ = 0.45
 
@@ -99,6 +100,14 @@ class Zad9(Scene):
         # Ta sama nierownosc z dopisana jedynka przy x^2.
         s5 = self.stan("1", "x", "^{2}", "-", "6", "x", "-", "7", r"\le", "0")
 
+        # Ta sama nierownosc, ktora wraca w kadr w trzech ostatnich krokach
+        # (Henrich, 2026-08-30: „mozna przywolac nierownosc w zmienionej postaci").
+        # Osobny obiekt, bo s5 wyjezdza z kadru w kroku 6 i juz nie wraca.
+        # Mniejsza od rachunku: to jest przypomnienie, do ktorego sie odnosimy,
+        # a nie kolejna linijka przeksztalcenia (README, punkt 41).
+        nier = self.stan("1", "x", "^{2}", "-", "6", "x", "-", "7", r"\le", "0",
+                         rozmiar=72)
+
         s6lit = self.stan(r"\Delta", "=", "b", "^{2}", "-", "4", "a", "c")
         s6 = self.stan(r"\Delta", "=", "(", "-", "6", ")", "^{2}", "-", "4",
                        r"\cdot", "1", r"\cdot", "(", "-", "7", ")")
@@ -124,6 +133,8 @@ class Zad9(Scene):
             m.scale(wsp)
         for m in glowne:
             m.move_to(ROWNANIE_Y)
+        nier.scale(wsp)
+        nier.move_to(NIEROWNOSC_Y)
 
         # PAS NOTATEK: przez kroki 5 do 9 stoja w nim TRZY notatki, a czwarta
         # (pierwiastek z delty) dolacza dopiero w kroku 10. Dlatego srodek liczy
@@ -533,8 +544,13 @@ class Zad9(Scene):
 
         # ================================================================
         # KROK 19. Pas notatek znika, oba wyniki jada w gore i zostaja tam
-        # do konca, a w miejscu po notatkach rysuje sie os x i parabola
-        # ramionami w gore. Bez koloru: sam rysunek niczego nie przelicza.
+        # do konca, nad nimi wraca w kadr nierownosc w postaci z zerem po prawej,
+        # a w miejscu po notatkach rysuje sie os x i parabola ramionami w gore.
+        #
+        # ZIELONA JEST JEDYNKA przy x^2, i to dokladnie w chwili, gdy rysuje sie
+        # parabola (Henrich, 2026-08-30: „podczas rysowania paraboli mozna
+        # zaznaczyc wspolczynnik a"). To ona odpowiada na pytanie, dlaczego
+        # ramiona ida w gore, a nie w dol; bez niej ksztalt bralby sie znikad.
         #
         # DAWNIEJ BYLY TO DWA KROKI (Henrich, 2026-08-29). Krok 19 sklejal
         # wtedy oba wyniki w jedna linijke „x_1 = -1, x_2 = 7" przez przecinek,
@@ -576,6 +592,7 @@ class Zad9(Scene):
             x1d.animate.move_to(TOR_L - ROWNANIE_Y + GORA_Y),
             x2d.animate.move_to(TOR_P - ROWNANIE_Y + GORA_Y),
             FadeOut(pas, shift=DOWN * 0.3),
+            FadeIn(nier, shift=DOWN * 0.3),
             run_time=1.1,
         )
         self.play(Create(os_x), run_time=0.8)
@@ -584,9 +601,11 @@ class Zad9(Scene):
             FadeIn(znacznik_7, etykieta_7),
             run_time=0.6,
         )
+        self.play(nier[0].animate.set_color(ZIELONY), run_time=0.3)
         self.play(Create(parabola), run_time=1.4)
-        self.zakoncz(x1d, x2d, rysunek, parabola,
-                     pomin=[x1d, x2d, parabola, rysunek, *rysunek])
+        self.play(nier[0].animate.set_color(BLACK), run_time=0.35)
+        self.zakoncz(x1d, x2d, nier, rysunek, parabola,
+                     pomin=[x1d, x2d, nier, parabola, rysunek, *rysunek])
         # Dluzszy postoj na koncu kroku: rysunek zajmuje pol kadru gladkimi
         # krzywymi, wiec koder H.264 potrzebuje kilku klatek bez ruchu, zeby
         # ostatnia klatka zgadzala sie z pierwsza klatka nastepnego kroku
@@ -594,7 +613,10 @@ class Zad9(Scene):
         self.wait(0.35)
 
         # KROK 20. Fragment paraboli pod osia i odcinek na osi zapalaja
-        # sie na zielono, z pelnymi kropkami na koncach.
+        # sie na zielono, z pelnymi kropkami na koncach, a RAZEM Z NIMI zapala
+        # sie „<= 0" w przywolanej nierownosci (Henrich, 2026-08-30). Zielen
+        # laczy wtedy pytanie z odpowiedzia: „mniejsze lub rowne zeru" i „ponizej
+        # osi" to jedno i to samo, tylko raz zapisane, a raz narysowane.
         # ================================================================
         self.next_section("krok20")
         fragment = ParametricFunction(
@@ -603,20 +625,31 @@ class Zad9(Scene):
         odcinek = Line(os_x.n2p(-1), os_x.n2p(7), color=ZIELONY, stroke_width=7)
         kropka_l = Dot(os_x.n2p(-1), radius=0.09, color=ZIELONY)
         kropka_p = Dot(os_x.n2p(7), radius=0.09, color=ZIELONY)
-        self.play(Create(fragment), run_time=1.0)
+        self.play(
+            Create(fragment),
+            nier[8:10].animate.set_color(ZIELONY),
+            run_time=1.0,
+        )
         self.play(
             Create(odcinek), FadeIn(kropka_l), FadeIn(kropka_p),
             run_time=0.8,
         )
         self.wait(0.35)
-        self.play(fragment.animate.set_color(BLACK), run_time=0.4)
+        self.play(
+            fragment.animate.set_color(BLACK),
+            nier[8:10].animate.set_color(BLACK),
+            run_time=0.4,
+        )
         self.remove(fragment)
-        self.zakoncz(x1d, x2d, rysunek, parabola, odcinek, kropka_l, kropka_p,
-                     pomin=[x1d, x2d, parabola, rysunek, *rysunek])
+        self.zakoncz(x1d, x2d, nier, rysunek, parabola, odcinek, kropka_l, kropka_p,
+                     pomin=[x1d, x2d, nier, parabola, rysunek, *rysunek])
         self.wait(0.35)
 
         # ================================================================
-        # KROK 21. Odcinek zamienia sie w zapis x nalezy do <-1, 7>.
+        # KROK 21. Najpierw znika przywolana nierownosc (Henrich, 2026-08-30:
+        # „w ostatnim kroku, na poczatku moze zniknac nierownosc"): zrobila juz
+        # swoje, a odpowiedz ma zostac w kadrze sama. Potem odcinek zamienia sie
+        # w zapis x nalezy do <-1, 7>.
         # ================================================================
         self.next_section("krok21")
         # Krotki postoj na starcie: pierwsza klatka kroku ma byc czystym stanem
@@ -624,6 +657,7 @@ class Zad9(Scene):
         self.wait(0.2)
         wynik = MathTex(r"x \in \langle -1,\ 7\rangle", color=BLACK, font_size=90)
         wynik.move_to(DOWN * 3.05)
+        self.play(FadeOut(nier, shift=UP * 0.3), run_time=0.6)
         self.play(
             ReplacementTransform(VGroup(odcinek, kropka_l, kropka_p), wynik),
             run_time=1.2,

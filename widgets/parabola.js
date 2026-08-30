@@ -4,13 +4,26 @@
 // NIE jest objęty PolyForm Noncommercial / NOT covered by PolyForm Noncommercial.
 
 // --- Zad 12.1: monotoniczność paraboli -------------------------------------
-// f(x) = −(x−3)²: lewa gałąź (rośnie) zielona, prawa (maleje) czerwona,
-// punkt do przeciągania po wykresie.
+// f(x) = −(x−3)²: punkt do przeciągania po wykresie, a gałąź, na której ten
+// punkt właśnie stoi, zapala się na zielono.
+//
+// KOLORY ZMIENIONE 2026-08-30 (Henrich: „użyj innych kolorów, bo obecne
+// wprowadzają w błąd co do tego, którą odpowiedź wybrać"). Wcześniej gałąź
+// rosnąca była na stałe ZIELONA, a malejąca CZERWONA, czyli dokładnie odwrotnie,
+// niż wypada odpowiedź: szukamy przedziału, w którym funkcja MALEJE, więc uczeń
+// widział poprawną odpowiedź pomalowaną na czerwono. To łamie też COLORS.md,
+// gdzie zieleń i czerwień znaczą wyłącznie „dobrze/źle".
+//
+// Teraz: cała parabola jest fioletowa (rola „wykres funkcji jak w arkuszach
+// CKE"), przeciągany punkt niebieski (rola „podstawianie pod x"), wierzchołek
+// pomarańczowy (rola „punkt / uchwyt"), a zieleń jest RUCHOMA i znaczy „tu
+// jesteś, tutaj patrz" (rola „oznaczenie miejsca"). Żaden kolor nie mówi już
+// „ta odpowiedź jest dobra".
 
 function widgetParabola(container) {
     const wrap = wgElement("div", "widget");
     wrap.appendChild(wgElement("div", "widget-title",
-        `${wgMath("f(x) = -(x - 3)^{2}")}. Przeciągaj punkt po paraboli — monotoniczność zmienia się dokładnie w wierzchołku:`));
+        `${wgMath("f(x) = -(x - 3)^{2}")}. Przeciągaj punkt po paraboli, a zapali się gałąź, na której stoisz. Monotoniczność zmienia się dokładnie w wierzchołku:`));
 
     const canvas = wgCanvas(wrap, 520, 260);
     const ctx = canvas.getContext("2d");
@@ -59,12 +72,16 @@ function widgetParabola(container) {
         ctx.stroke();
         ctx.setLineDash([]);
 
-        // Gałęzie: rosnąca zielona, malejąca czerwona.
-        rysujGalaz(X0, 3, WG_KOLORY.ok);
-        rysujGalaz(3, X1, WG_KOLORY.zle);
+        // Obie gałęzie fioletowe; zapala się tylko ta, na której stoi punkt.
+        // Zieleń znaczy „tu patrz", a nie „ta odpowiedź jest dobra".
+        const naLewej = state.x < 3;
+        const naPrawej = state.x > 3;
+        rysujGalaz(X0, 3, naLewej ? WG_KOLORY.zielony : WG_KOLORY.wykres);
+        rysujGalaz(3, X1, naPrawej ? WG_KOLORY.zielony : WG_KOLORY.wykres);
 
-        // Wierzchołek.
-        ctx.fillStyle = WG_KOLORY.wykres;
+        // Wierzchołek: stały punkt odniesienia, więc pomarańczowy, a nie
+        // w kolorze krzywej (na fiolecie by zniknął).
+        ctx.fillStyle = WG_KOLORY.punkt;
         ctx.beginPath();
         ctx.arc(px(3), py(0), 5, 0, Math.PI * 2);
         ctx.fill();
@@ -72,8 +89,8 @@ function widgetParabola(container) {
         ctx.textBaseline = "bottom";
         ctx.fillText("W = (3, 0)", px(3) + 38, py(0) - 4);
 
-        // Punkt użytkownika.
-        ctx.fillStyle = WG_KOLORY.tekst;
+        // Punkt użytkownika: to on podstawia liczbę pod x, więc błękit.
+        ctx.fillStyle = WG_KOLORY.niewiadoma;
         ctx.beginPath();
         ctx.arc(px(state.x), py(f(state.x)), 7, 0, Math.PI * 2);
         ctx.fill();
@@ -81,9 +98,9 @@ function widgetParabola(container) {
         const xTex = wgMath(`x = ${wgTexLiczba(state.x, 1)}`);
         wgUstawHTML(readout, state.x === 3
             ? `${xTex}<br><b>wierzchołek</b>: tu funkcja przechodzi z rośnięcia w malenie`
-            : state.x < 3
-                ? `${xTex}<br><span class="wg-ok">↗ funkcja rośnie (${wgMath("x < 3")})</span>`
-                : `${xTex}<br><span class="wg-zle">↘ funkcja maleje (${wgMath("x > 3")}) — przedział ${wgMath("\\langle 3, +\\infty)")}</span>`);
+            : naLewej
+                ? `${xTex}<br><span class="wg-neutral">↗ funkcja rośnie (${wgMath("x < 3")})</span>`
+                : `${xTex}<br><span class="wg-neutral">↘ funkcja maleje (${wgMath("x > 3")}), czyli w przedziale ${wgMath("\\langle 3, +\\infty)")}</span>`);
     }
 
     wgDraggable(canvas, null, pos => {

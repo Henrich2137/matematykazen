@@ -39,14 +39,25 @@ Powiedz to wprost, zamiast udawać, że sprawdziłeś:
 | tryb | co pokazuje | kiedy sięgasz |
 |---|---|---|
 | `stany` | pierwsza i ostatnia klatka **każdego** kroku, czytelnie | **domyślnie, po każdym renderze** - jeden obrazek na całe zadanie |
-| `film` | jeden krok jako sekwencja, widać ruch | gdy `stany` pokaże, że coś jest nie tak w konkretnym kroku |
+| `film` | jeden krok jako sekwencja, widać ruch | **tylko** gdy `stany` pokaże, że coś jest nie tak w konkretnym kroku |
 | `styk` | para klatek na złączu + podbita różnica | gdy `styk-klatek.sh` zgłosi liczbę poniżej progu |
+
+**`stany` jest tani i wystarcza w większości przypadków, więc rób nim całą bieżącą pracę
+nad sceną**, nie tylko odbiór końcowy: po każdym przerenderowaniu jeden `stany --koniec`
+na całe zadanie mówi, czy rachunek idzie poprawnie od pierwszego wiersza do ostatniego,
+czy nic nie zostało zielone na klatce brzegowej i czy styk kroków się zgadza. Jeden obrazek,
+koszt jednej klatki.
+
+**Trybu `film` NIC nie wymaga.** Nie ma zasady „po każdym renderze obejrzyj krok w ruchu"
+(stała w `manimations/README.md` do 2026-08-30 i została zdjęta): płaciło się kontekstem
+za obrazki, które prawie zawsze potwierdzały to, co już było widać w `stany`. Po `film`
+sięgasz, gdy masz konkretne pytanie o ruch, na które `stany` nie odpowiada.
 
 ```
 tools/klatki.sh stany matura/<arkusz>/media/zadN/solution-step-by-step
 tools/klatki.sh stany <katalog> --koniec          # same stany spoczynkowe, o połowę taniej
-tools/klatki.sh film  <katalog> 7 --co 6          # krok 7, mniej więcej 20 klatek na sekundę
-tools/klatki.sh film  <katalog> 7 --co 20         # rzadziej, za to każda klatka duża
+tools/klatki.sh film  <katalog> 7 --co 20         # DOMYŚLNIE: rzadziej, za to kafelek duży
+tools/klatki.sh film  <katalog> 7 --co 6          # gęsto: tylko gdy oceniasz sam RUCH
 tools/klatki.sh styk  <katalog> 3                 # złącze kroku 3 z krokiem 4
 ```
 
@@ -98,7 +109,14 @@ Pełne brzmienie w [manimations/README.md](../../../manimations/README.md) i
   wskazana ręcznie.
 - **Jeden krok = jedno przekształcenie.** Krok, w którym zmieniają się dwie rzeczy naraz,
   jest do rozbicia.
-- **Nic na siebie nie nachodzi** i nic nie wychodzi poza kadr.
+- **Nic na siebie nie nachodzi** i nic nie wychodzi poza kadr. Patrz szerzej niż na samo
+  nachodzenie: **dwa zapisy postawione na tej samej wysokości czytają się jak jedna długa
+  linijka**, nawet gdy formalnie dzieli je odstęp. To wychodzi TYLKO na klatce; w kodzie
+  sceny obie współrzędne wyglądają na dobrze rozsunięte (złapane 2026-08-30 na zad. 12.2,
+  gdzie dopisek \(f(0) = -9\) stanął obok \(q = 0\)).
+- **Krzywa nie urywa się w powietrzu.** Wykres dochodzący dokładnie do krawędzi planszy
+  kończy się wewnątrz kadru i wygląda, jakby funkcja się tam kończyła; punkt jadący po nim
+  wyskakuje wtedy znikąd. Ma wychodzić POZA kadr.
 - **Kolor znaczy to, co ma znaczyć.** Zieleń to „tu się zmienia", nie „to jest dobrze".
 
 ## Ile to kosztuje i jak nie przepalić kontekstu
@@ -115,8 +133,12 @@ budżet, a gdy się nie mieści, dzieli wynik na strony i mówi, ile ich jest.
   wtedy, gdy tamten obrazek da powód.
 - **Nie czytaj kolejnych stron „dla porządku".** Strona 2 ma sens, gdy na stronie 1 coś
   zgrzytnęło albo gdy naprawdę oglądasz całe zadanie po dużym przerenderowaniu.
-- **`film` z gęstym `--co` to najdroższy tryb pod względem czytelności**, bo kafelki robią
-  się drobne. Gdy chodzi o odczytanie wzoru, a nie o ruch, daj `--co 20` albo więcej.
+- **`film` z gęstym `--co` to najdroższy tryb pod względem czytelności**, i to jest jego
+  jedyny prawdziwy koszt. Obrazek kosztuje tyle samo niezależnie od liczby kafelków, ale
+  każdy kafelek jest wtedy mniejszy: przy `--co 6` wzoru w kafelku już się **nie odczyta**
+  (zmierzone 2026-08-29 na zad. 7 i 10). Reguła: **`--co 20` albo rzadziej, gdy chcesz
+  PRZECZYTAĆ, co jest w kadrze; gęsto tylko wtedy, gdy oceniasz sam RUCH** i treść jest
+  bez znaczenia. Zaczynaj od rzadkiego i zagęszczaj dopiero, gdy rzadki nie odpowiedział.
 - Bezruch (`self.wait`) jest odsiewany domyślnie, więc nie płacisz za tę samą klatkę
   powtórzoną czterdzieści razy.
 

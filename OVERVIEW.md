@@ -1,4 +1,4 @@
-Ostatnia weryfikacja  29.08.2026
+Ostatnia weryfikacja  30.08.2026
 
 # Matematyka Zen
 
@@ -19,8 +19,9 @@ Zobacz na żywo: **https://matematykazen.pl** (działa też z www). Wersja roboc
 - Widżety interaktywne: 9 (nie 1:1 z zadaniami, nie każde tego wymaga)
 - Zadania otwarte z kryteriami CKE: 7/7
 - Odpowiedzi zweryfikowane z kluczem CKE: tak
+- **Odpicowane: 6** (zad. 7-12), czyli przeszły pełną rundę uwag Henricha i poprawek
 
-Zadania 1-17 są wstępnie odpicowane (rozwiązania i filmy dopracowane wg obecnych zasad). Pozostałe zadania wymagają jeszcze przeglądnięcia i poprawek.
+„Odpicowane" to zadania doprowadzone do obecnego standardu: rozwiązanie opisowe z wyjaśnieniami, film krok po kroku obejrzany i poprawiony po uwagach, widżet w kolorach zgodnych z zasadami. Pozostałe zadania mają komplet treści, ale czekają jeszcze na taką rundę.
 
 **2026 maj (właściwa)** - w opracowaniu:
 - Zadania (osobne karty): 37 (33 polecenia CKE, część z podpunktami), 50 pkt

@@ -265,6 +265,56 @@ Kadr taki jak w 12.1, żeby uczeń rozpoznał ten sam wykres.
   tylko kolorem, przytrzymanie 0,45 s, krok nie zaczyna się od największego ruchu, siatka
   `#e0e0e0`). Spisane z pomiarami w `manimations/README.md`, sekcja „Sceny z wykresem".
 
+## Runda druga: uwagi Henricha (2026-08-30)
+
+Wszystkie wykonane. Numeracja kroków w tej sekcji jest już po zmianie.
+
+**Zad. 11, rozwiązanie zwykłe.** Werdykt każdego zdania dostał własną linijkę pod wynikiem
+(\(a = -2\), niżej „Zgadza się ze zdaniem 1. **Prawda**."; \(P = 4\), niżej „a w zdaniu 2.
+mówią, że \(P = 8\). **Fałsz**."), a zamknięcie brzmi „Odpowiedzi: **P**, **F**". Wcześniej
+werdykt był doklejony do tej samej linijki co wynik i ginął w rachunku.
+
+**Zad. 12.1, film.** Wędrująca kropka wjeżdża w kadr zza jego krawędzi i wyjeżdża za nią.
+Parabola jest teraz rysowana kawałek poniżej dolnej krawędzi (do \(y = -11{,}2\) przy
+planszy sięgającej \(-10{,}2\)); przedtem kończyła się wewnątrz kadru, więc kropka
+wyskakiwała znikąd. Reguła 51 w `manimations/README.md`.
+
+**Zad. 12.1, widżet.** Gałąź rosnąca była na stałe zielona, malejąca na stałe czerwona,
+a pytanie brzmi „w jakim przedziale funkcja maleje": poprawna odpowiedź świeciła na
+czerwono. Teraz cała parabola jest fioletowa, zapala się na zielono ta gałąź, na której
+stoi punkt ucznia, punkt jest błękitny, wierzchołek pomarańczowy. Reguła w `COLORS.md`,
+sekcja „Kolor nie może odpowiadać na pytanie zadania".
+
+**Zad. 12.2, film przebudowany, czternaście kroków zamiast dwunastu.**
+- krok 1 pokazuje trójkę danych naraz: wzór postaci kanonicznej, punkt \(W\) i punkt \(A\).
+  Punkt \((0,\ -9)\) nazywa się teraz \(A\), a zapis \(f(0) = -9\) dopisuje się dopiero
+  w kroku podstawienia, jako tłumaczenie „przechodzi przez \(A\)" na język równania;
+- wyłuskanie \(p\) i \(q\) z \(W\) razem z podstawieniem to jeden krok (2);
+- **krok 8 czyści górę kadru**: \(W\), \(A\), dopisek i pas odczytu znikają, a \(a = -1\)
+  jedzie na ich miejsce, na środek. Reguła 52;
+- wzór na kwadrat różnicy wjeżdża na końcu kroku 10, a nie na starcie kroku 11. Reguła 53;
+- lista odpowiedzi to „Odpowiedzi: B, D", zbudowana z góry w całości i odsłaniana po
+  kawałku, żeby dopisanie „, D" nie przesuwało B. Reguła 54;
+- **krok 14 to podsumowanie**: \(a = -1\) znika, a w kadrze zostają obie postacie wzoru,
+  jedna pod drugą. To jest odpowiedź na pytanie zadania.
+
+**Zad. 12.3, film.** W kroku 2 na zielono zapala się nie tylko strzałka „o ile", ale też
+\(- 1\) we wzorze \(g\). To ta sama jedynka, raz zapisana, raz narysowana.
+
+**Rozwiązanie zwykłe i film nie muszą już być jeden do jednego.** Henrich zluzował tę
+regułę tego samego dnia; zapisana w `manimations/README.md` (punkt 2 „Ile kroków")
+i w `SOLUTION_TEXT_RULES.md` (punkt 6).
+
+### Co zmierzono po tej rundzie
+
+- `tools/styk-klatek.sh`: zad. 12.1 cztery styki 0,99906 do 0,99994; zad. 12.2 trzynaście
+  styków 0,99976 do 1,00000; zad. 12.3 cztery styki 0,99904 do 0,99916. Bez zastrzeżeń.
+- `tools/zielen-krokow.py`: wszystkie cztery sceny (9, 12.1, 12.2, 12.3) bez zastrzeżeń.
+- `tools/klatki.sh stany --koniec` na zad. 12.2 i `film` na krokach 3 i 4 zad. 12.1 oraz
+  kroku 2 zad. 12.3. Pierwsza wersja układu 12.2 padła na tym obrazku: dopisek
+  \(f(0) = -9\) stanął obok \(q = 0\) i cała góra czytała się jako jedna linijka. Poprawione
+  osobnym wierszem pod \(A\); reguła 55.
+
 ## Czego nie ustalono
 
 - **Czy wykres w kadrze jest czytelny na telefonie.** Kadr 16:9 przy oknie 485 px daje

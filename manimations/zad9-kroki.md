@@ -55,9 +55,17 @@ Wynik: \(x \in \langle -1,\ 7\rangle\), zgodny z kluczem CKE.
 | 16 | \(x_{2} = \dfrac{6 + 8}{2}\) | \(6\) z dwóch minusów |
 | 17 | \(x_{2} = \dfrac{14}{2}\) | \(14\) |
 | 18 | \(x_{2} = 7\) | nic |
-| 19 | oba wyniki jadą w górę, pas znika, a w jego miejscu powstaje szkic paraboli ramionami w górę przez \(-1\) i \(7\) | nic |
-| 20 | fragment pod osią i odcinek na osi | fragment i odcinek |
-| 21 | \(x \in \langle -1,\ 7\rangle\) | nic |
+| 19 | oba wyniki jadą w górę, wraca nierówność \(1x^{2} - 6x - 7 \le 0\), pas znika, a w jego miejscu powstaje szkic paraboli ramionami w górę przez \(-1\) i \(7\) | jedynka przy \(x^{2}\), w chwili rysowania paraboli |
+| 20 | fragment pod osią i odcinek na osi | fragment, odcinek i \(\le 0\) w nierówności |
+| 21 | nierówność znika, odcinek zamienia się w \(x \in \langle -1,\ 7\rangle\) | nic |
+
+**Trzy ostatnie kroki mają przywołaną nierówność nad wynikami** (Henrich, 2026-08-30).
+Bez niej rysunek wisiał w powietrzu: parabola brała się znikąd, a „pod osią" nie miało do
+czego się odnieść. Teraz zieleń łączy zapis z rysunkiem dwa razy. Raz w kroku 19: zapala się
+jedynka przy \(x^{2}\), czyli współczynnik \(a\), dokładnie wtedy, gdy rysuje się parabola,
+bo to ona decyduje o kierunku ramion. Drugi raz w kroku 20: zapala się \(\le 0\) razem
+z fragmentem pod osią, bo „mniejsze lub równe zeru" i „poniżej osi" to jedno i to samo.
+W kroku 21 nierówność znika na starcie, żeby odpowiedź została w kadrze sama.
 
 Trzy rzeczy, o które prosił Henrich po pierwszej wersji, i jak zostały zrobione:
 

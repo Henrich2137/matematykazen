@@ -3,8 +3,8 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.     
-  
-  (pusto: paczka zad. 7 do 10 z grudnia 2024 zrobiona 2026-08-29, przeniesiona do done/04-biezace.md)
+
+  (pusto: paczka zad. 9 do 12 z grudnia 2024 zrobiona 2026-08-30, przeniesiona do done/04-biezace.md)
 
 
 <br>
@@ -34,6 +34,8 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
   - v94, zad. 8 z grudnia 2024, film krok po kroku w CIEMNYM motywie na telefonie: szare \(x \ne 1\) nad równaniem i szary dopisek działania z boku (np. „/ · 2") mają być czytelne, a nie zlewać się z tłem
   JEST CZYTELNE NAWET NA MAŁEJ JASNOŚĆI
+
+  - v103, zad. 12.2 z grudnia 2024, film krok po kroku na TELEFONIE: kroki 1 do 7 mają zajętą całą górę kadru (dwa punkty, pod nimi \(f(0) = -9\) i pas \(p = 3\), \(q = 0\), wszystko drobnym pismem). sprawdź, czy te zapisy da się odczytać, bo na komputerze są wyraźne
 
   - v102, zad. 10 z grudnia 2024, film krok po kroku na TELEFONIE: film ma teraz pięć kroków zamiast dziewięciu, wykres siedzi po lewej, a lista czterech odpowiedzi po prawej. sprawdź, czy w pionie wykres nie robi się za mały do odczytania liczb przy osiach
 
@@ -335,6 +337,11 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     - to pierwsze filmy w arkuszu z rysunkiem geometrycznym stojącym w kadrze przez cały czas (trójkąt z arkusza). Wzorzec do skopiowania przy zad. 19, 20 i 24
     - w 17.2 długości \(AD\) i \(AB\) podpisałem klamrami pod podstawą, bo \(AD\) jest siedem razy krótsze od \(AB\) i liczba wpisana wprost zlewa się z literą \(D\). Szczegóły w issues/projekt-zad17-2024-grudzien.md
     - nie ustaliłem, skąd bierze się dystraktor C w 17.1 (\(\frac{\sqrt{15}}{4}\)). Dla A i B droga jest widoczna, dla C nie, więc rozwiązanie go nie rozbraja
+
+  + OPUS 5 MEDIUM DOPISAŁ (2026-08-30, po drugiej rundzie uwag do zad. 9 do 12):
+
+    - widżet do zad. 10 ma ten sam problem z kolorem, co poprawiony właśnie widżet do zad. 12.1: ruchomy punkt jest ZIELONY, gdy wartość jest nieujemna, i CZERWONY, gdy ujemna, a w odczycie pod spodem stoi zielone „największa wartość!" i czerwone „wartość ujemna". COLORS.md mówi, że zieleń i czerwień znaczą wyłącznie „dobrze/źle", więc uczeń może to przeczytać jako ocenę swojego ruchu. Nie ruszałem tego, bo nie było w zamówieniu; do decyzji, czy zmienić punkt na błękitny (rola „podstawianie pod \(x\)") i opisy na neutralne
+    - te same czerwono-zielone opisy siedzą jeszcze w kilku widżetach arkusza; jeśli zmieniamy, to lepiej jedną paczką niż po jednym
 
 + ZASADY DLA CLAUDE-A:
 

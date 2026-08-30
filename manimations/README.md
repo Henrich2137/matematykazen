@@ -144,8 +144,15 @@ Twarde reguły. Przed renderem przeczytaj, po renderze sprawdź.
 ### Ile kroków
 
 1. **Jeden krok = jedno przekształcenie.** Robisz dwie rzeczy naraz, rozbij na dwa kroki.
-2. **Tyle kroków filmu, ile linijek w rozwiązaniu opisowym.** Jeden do jednego, po kolei.
-   Zmieniasz film, popraw `solutionText`. Zmieniasz `solutionText`, przerenderuj film.
+2. **Tyle kroków filmu, ile linijek w rozwiązaniu opisowym, ale to jest DOMYŚLNIE, a nie
+   za wszelką cenę** (zluzowane przez Henricha 2026-08-30: „rozwiązania krok po kroku
+   i zwykłe nie muszą być koniecznie ze sobą zgrane, szczególnie jeśli miałoby to zaszkodzić
+   uczniowi w zrozumieniu któregoś z nich"). Zaczynaj od jeden do jednego, po kolei, i trzymaj
+   się tego, dopóki nic nie boli. Rozjazd jest dozwolony wtedy, gdy któraś forma traci na
+   dopasowaniu: film ma swoje kroki bez rachunku (sprzątanie kadru, podsumowanie), a tekst
+   swoje zdania, których film nie musi rozbijać na osobne kropki. **Rozjazd ma być decyzją,
+   nie zaniedbaniem**: jeśli zmieniasz jedno, przejrzyj drugie i albo popraw, albo świadomie
+   zostaw.
 3. **Jeden wzór na jeden krok.** Krok bez wzoru (sam rachunek na liczbach) jest w porządku.
    Wzór w ramce pod filmem tylko wtedy, gdy stoi w tablicy; reszta zwykłym zdaniem.
 4. **Dwie niezależne rzeczy licz PO KOLEI, nie równolegle** (Henrich, 2026-08-21, zad. 7).
@@ -371,14 +378,39 @@ niżej są **zmierzone**, każdy osobnym renderem, a nie wydedukowane.
     Obejrzyj `/tmp/roznica.png`. Zwarta plama znaczy prawdziwy przeskok i wtedy poprawiasz
     scenę. Sam kontur krzywej znaczy szum kodera i wtedy pomagają punkty 46 do 49.
 
+### Wnioski z zadan 9, 11 i 12 (ustalone 2026-08-30)
+
+51. **Krzywa, ktora urywa sie w powietrzu, klamie.** Wykres narysowany dokladnie do
+    krawedzi planszy konczy sie WEWNATRZ kadru, wiec wedrujaca po nim kropka wyskakuje
+    znikad i znika w niczym. Rysuj krzywa kawalek POZA kadr (w zad. 12.1 do \(y = -11{,}2\)
+    przy planszy siegajacej \(-10{,}2\)); przycieta krawedzia czyta sie jako „to leci dalej",
+    a punkt wjezdza i wyjezdza tam, gdzie powinien.
+52. **Sprzatanie kadru zasluguje na wlasny krok.** Material, ktory zrobil swoje (dane
+    z tresci, pas odczytu), ma zniknac, a jedyna wartosc potrzebna dalej jedzie na jego
+    miejsce, na srodek. W zad. 12.2 dane wisialy do konca filmu i konkurowaly z rachunkiem;
+    osobny krok „gora sie czysci, zostaje \(a = -1\)" kosztuje pare sekund, a reszta filmu
+    ma czysty kadr. Krok bez rachunku jest tu w porzadku: jednostka kroku jest jedna mysl.
+53. **Wzor z tablicy wjezdza na KONCU poprzedniego kroku.** Wtedy krok, ktory z niego
+    korzysta, zaczyna sie od rachunku, a nie od wjazdu wzoru. Dwa zyski naraz: uczen ma wzor
+    przed oczami, zanim zacznie sie przeksztalcenie, a pierwsza klatka pliku jest spokojna,
+    wiec styk klatek nie siada (to samo, co punkt 48).
+54. **Napis, ktory dorasta, ustawiaj z gory w calosci i odslaniaj po kawalku.** Lista
+    odpowiedzi „Odpowiedzi: B", do ktorej w ostatnim kroku dochodzi „, D", musi byc
+    zbudowana i wysrodkowana od razu jako cztery czesci; inaczej dopisanie drugiej litery
+    przesuwa pierwsza i na styku widac skok.
+55. **Nowa notatka w kadrze dostaje WLASNY wiersz.** Dwa zapisy postawione na tej samej
+    wysokosci czytaja sie jak jedna dluga linijka, nawet gdy formalnie sie nie nachodza:
+    w zad. 12.2 dopisek \(f(0) = -9\) stanal obok \(q = 0\) i gora kadru zlala sie w jeden
+    ciag. Zlapane na `tools/klatki.sh stany`, nie w kodzie: w scenie obie wspolrzedne
+    wygladaly na dobrze rozsuniete.
+
 ### Po renderze
 
 22. `tools/wgraj-kroki.sh <nr> <arkusz>` robi render, kopię, rewersy i styk klatek jedną komendą.
     **Rewersy przelicza od nowa**, bo po przerenderowaniu stare pokazują poprzednią animację.
 23. **Styk klatek musi przejść** (`tools/styk-klatek.sh`, wchodzi w skład powyższego).
 24. **Puść `tools/test-krokow.js`** na zadaniu, które ruszałeś.
-25. **Obejrzyj klatki okiem**: pierwszą, po zapaleniu koloru, w połowie ruchu i ostatnią.
-    „Wyrenderowało się bez błędu" nic nie znaczy.
+25. **Obejrzyj klatki okiem.** „Wyrenderowało się bez błędu" nic nie znaczy.
 
     Model nie widzi plików mp4, widzi obrazki, więc robi to
     **[tools/klatki.sh](../tools/klatki.sh)** (dodane 2026-08-29). Kiedy sięgać po który
@@ -386,13 +418,32 @@ niżej są **zmierzone**, każdy osobnym renderem, a nie wydedukowane.
 
     ```
     tools/klatki.sh stany matura/2024-grudzien/media/zad9/solution-step-by-step --koniec
-    tools/klatki.sh film  <katalog> 7 --co 6     # jeden krok jako sekwencja, widać ruch
+    tools/klatki.sh film  <katalog> 7 --co 20    # jeden krok jako sekwencja, widać ruch
     tools/klatki.sh styk  <katalog> 3            # złącze 3/4 + podbita różnica
     ```
+
+    **Domyślnie i najczęściej: `stany --koniec`.** Jeden obrazek pokrywa całe zadanie,
+    kosztuje tyle co jedna klatka, a pokazuje cały tok rozwiązania jak zapis na tablicy.
+    Przy PRACY nad sceną (a nie tylko przy odbiorze) to jest narzędzie pierwszego wyboru:
+    po każdym przerenderowaniu jeden `stany --koniec` mówi, czy rachunek idzie poprawnie
+    od pierwszego wiersza do ostatniego i czy nic nie zostało zielone na klatce brzegowej.
+
+    **`film` nie jest obowiązkowy.** Sięgasz po niego dopiero wtedy, gdy `stany` da powód:
+    coś w konkretnym kroku nie zgadza się z zamysłem i trzeba zobaczyć, co się dokąd rusza.
+    Wcześniej stało tu „obejrzyj pierwszą, po zapaleniu koloru, w połowie ruchu i ostatnią",
+    czyli wymuszenie `film` po każdym renderze; zdjęte 2026-08-30, bo płaciło się kontekstem
+    za obrazki, które prawie zawsze potwierdzały to, co już było widać w `stany`.
 
     Tryb `styk` jest uzupełnieniem punktu 23: `styk-klatek.sh` mówi, ŻE para nie przechodzi,
     a ten pokazuje, GDZIE siedzi różnica, i podaje najjaśniejszy piksel różnicy w skali
     0-255 (kilka jednostek to szum kodera, nie usterka).
+
+    **Gęste `--co` w trybie `film` kosztuje czytelnością, nie tokenami** (zmierzone
+    2026-08-29 na zad. 7 i 10). Obrazek kosztuje tyle samo niezależnie od tego, ile kafelków
+    jest w środku, ale im więcej kafelków, tym każdy mniejszy, i przy `--co 6` wzoru
+    w kafelku już się nie odczyta. Stąd prosta reguła: **`--co 20` albo rzadziej, gdy chcesz
+    PRZECZYTAĆ, co jest w kadrze; gęsto tylko wtedy, gdy oceniasz sam RUCH** (czy glif jedzie
+    tam, gdzie powinien) i treść jest bez znaczenia.
 
     W trybie `film` bezruch (`self.wait`) jest odsiewany, bo pochłaniał połowę obrazka:
     na zad. 9, kroku 3 z 72 przerzedzonych klatek 44 były tą samą klatką. Wyrzucony czas
