@@ -3,7 +3,8 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.     
-  (pusto: paczka zad. 1 do 6 oraz sprzątanie komentarzy w zad. 7 do 17 zrobione 2026-08-30, przeniesione do done/04-biezace.md)
+  
+  (pusto: filmy zad. 15, 16, 17.1 i 17.2 zrobione 2026-08-30, przeniesione do done/04-biezace.md)
 
 <br>
 
@@ -29,6 +30,10 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945
 <br> Próg wejścia jest wysoki, patrz ZASADY DLA CLAUDE-A niżej. Archiwum dawnych list: issues/testowanie-archiwum.md.
+
+  - v105, zad. 17.1 i 17.2 z grudnia 2024, filmy krok po kroku na TELEFONIE: rysunek trójkąta jest teraz szerszy, a podpisy \(\sqrt{15}\), \(8\), \(6\) większe. sprawdź, czy przy tej szerokości nadal da się je odczytać i czy w 17.2 klamry pod podstawą nie wychodzą poza kadr
+
+  - v105, zad. 17.1 i 17.2, filmy w CIEMNYM motywie: zielone boki trójkąta zostają podświetlone do końca filmu razem z liczbami we wzorze. sprawdź, czy po odwróceniu kolorów ta zieleń nadal wyraźnie odróżnia się od czarnych boków
 
   - v104, zad. 2 z grudnia 2024, rozwiązanie zwykłe na TELEFONIE: kolumna rachunku i kolumna wzorów dostały po połowie karty, żeby przerwa między nimi wypadała na środku. sprawdź, czy przez to któraś linijka nie łamie się w środku wzoru
 
@@ -331,6 +336,12 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     - podpowiedzi do obu tych zadań zdradzają odpowiedź: w zad. 13 druga linijka podaje wprost regułę „rosnąca, gdy \(a > 1\)", a w zad. 14 hint wypisuje gotowe wyrazy \(7\) i \(13\). Rozwiązania napisałem od nowa, hintów nie ruszałem. Do decyzji, czy osłabić
     - film do zad. 14 ma 18 kroków, drugi najdłuższy w arkuszu (zad. 9 ma 22, zad. 8 ma 19). Osiem z nich to pełny rachunek dwóch pierwszych wyrazów, bo tam siedzi cała trudność ze znakiem
     - zad. 13 to pierwszy film z wykresem o NIERÓWNEJ podziałce na osi (\(1\), \(6\), \(36\), czyli same policzone argumenty, a nie regularna siatka). Styki klatek przeszły bez żadnego z zabiegów z punktów 46 do 49 w manimations/README.md
+
+  + OPUS 5 MEDIUM DOPISAŁ (2026-08-30, po poprawkach do zad. 15, 16, 17.1 i 17.2):
+
+    - w widżetach (`widgets/*.js`) zostały pauzy „—" w tekstach widocznych dla ucznia, np. „Zmieniaj \(m\) i patrz na różnice między kolejnymi wyrazami — w ciągu arytmetycznym muszą być identyczne" (`ciagArytmetyczny`, `katWpisany`, `koloTrygonometryczne`, `nierownoscKwadratowa`). W `exercises.json` wyczyściłem je 2026-08-30, w widżetach nie, żeby nie mieszać dwóch tematów w jednym commicie. To ten sam punkt, który zgłosił Opus 2026-08-28
+
+    - `ReplacementTransform(cos, cel.copy())` w scenie Manim ZOSTAWIA tę kopię na ekranie do końca kroku, więc glif rysuje się dwa razy i wygląda na rozmazany. Właśnie to Henrich widział jako „krok 7 się źle renderuje" (zad. 15) i „strzałka q" (zad. 16). Poprawiłem w obu scenach i dopisałem regułę do `manimations/README.md`, ale wzorzec mógł się rozejść po starszych scenach: warto przejrzeć jednym grepem
 
   + SONNET 5 MEDIUM DOPISAŁ (2026-08-28, po zrobieniu zad. 17.1 i 17.2 z 2024-grudnia):
 

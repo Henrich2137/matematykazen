@@ -4,25 +4,36 @@ import numpy as np
 from manim import *
 
 # Zadanie 17.1 (zamkniete, 1 pkt). Trojkat prostokatny ABC, kat prosty przy A,
-# |AC| = sqrt(15), |BC| = 8. Szukamy sin(kata ABC). Wynik: sqrt(15)/8, odpowiedz D.
+# |AC| = sqrt(15), |BC| = 8. Szukamy sinusa kata ABC. Wynik sqrt(15)/8, odpowiedz D.
 #
-# Projekt: issues/projekt-zad17-2024-grudzien.md. Szesc krokow, jeden do jednego
-# z szescioma linijkami rachunku w solutionText.
+# WERSJA DRUGA, 2026-08-30. Pierwsza (szesc krokow, pas odczytu z |BC| = 8
+# i |AC| = sqrt(15) w prawym gornym rogu) zostala przez Henricha odrzucona
+# w calosci. Cztery jego uwagi i co z nich wyszlo:
 #
-# Uklad kadru (README, punkt 35: trzy pasy, zawsze te same):
-#   - LEWA polowa: rysunek z arkusza (matura/2024-grudzien/media/zad17/zad17.png),
-#     te same oznaczenia i te same podpisy bokow. Stoi w kadrze przez caly film,
-#     bo cale zadanie polega na czytaniu z niego rol bokow.
-#   - PRAWA polowa, cztery pasy: pas odczytu u gory (mniejszym pismem, README
-#     punkt 41), pod nim glowny rachunek, pod nim pas sprawdzenia, na dole werdykt.
+#   1. „niektore napisy sa za male" -> rysunek jest szerszy (6.6 zamiast 5.4),
+#      a podpisy bokow i wierzcholkow ida wieksza czcionka. Prawa polowa niesie
+#      dzis tylko JEDNA linijke rachunku, wiec jest na to miejsce.
+#   2. „spraw aby na rysunku boki 8 i pierwiastek 15 zostawaly podswietlone
+#      razem z tymi wartosciami we wzorze sinusa" -> zielen NIE gasnie na koncu
+#      kroku. Bok AC i licznik zapalaja sie razem w kroku 3 i zostaja zielone
+#      do konca filmu; bok BC i mianownik tak samo od kroku 4. Uczen w kazdej
+#      chwili widzi, ktora liczba we wzorze to ktory bok.
+#   3. „nazwy bokow w stylu |AC|, |BC| sa tutaj niepotrzebne, bo nie ma ich we
+#      wzorach" -> zniknal caly posredni stan sin(kat ABC) = |AC|/|BC| i pas
+#      odczytu w prawym gornym rogu. Wzor z tablicy jest literowy (a i c),
+#      a litery zamieniaja sie WPROST w liczby przylatujace z rysunku.
+#   4. „skasuj ostatni krok" -> sprawdzenie sqrt(15)/8 < 1 wypadlo i z filmu,
+#      i z rozwiazania zwykłego.
 #
-# Cala trudnosc zadania to dopasowanie dwoch bokow do dwoch miejsc we wzorze,
-# dlatego kroki 1 i 2 nazywaja te boki OSOBNO, z osobnym uzasadnieniem: krok 1
-# zapala przeciwprostokatna (bok naprzeciw kata prostego), krok 2 bok lezacy
-# naprzeciw pytanego kata. Dystraktor B (7/8) to cosinus, czyli bok przylegly.
+# Piec krokow, jeden do jednego z pieciu linijkami w solutionText.
 #
-# Kolor: zielone = to, na co uczen ma w danym kroku patrzec i co sie zmienia.
-# Rysunek jest czarny (jak w arkuszu), kat i podpisy szare.
+# Uklad kadru: rysunek z arkusza na calej lewej polowie (stoi przez caly film,
+# bo cale zadanie polega na czytaniu z niego rol bokow), jedna linijka rachunku
+# po prawej, werdykt pod nia.
+#
+# Wzor [9.1] z tablicy, strona 11: sin(alfa) = a/c, gdzie a to przyprostokatna
+# lezaca naprzeciw kata alfa, a c przeciwprostokatna. Dystraktor B (7/8) to
+# cosinus, czyli bok PRZYLEGLY, dlatego kroki 3 i 4 nazywaja role bokow osobno.
 #
 # Render: manim --save_sections solutionZad17_1.py Zad17_1
 #         (albo tools/wgraj-kroki.sh 17_1)
@@ -38,43 +49,35 @@ BOK_AC = math.sqrt(15.0)
 ODC_DB = 6.0
 
 JEDNOSTKA = 0.65
-SZEROKOSC_RYSUNKU = 5.4
-SRODEK_RYSUNKU = np.array([-4.15, -0.15, 0.0])
+SZEROKOSC_RYSUNKU = 6.6
+SRODEK_RYSUNKU = np.array([-3.75, -0.25, 0.0])
 
-KOLUMNA_X = 3.15
-PAS_Y = 2.95
-RACHUNEK_Y = 0.35
-SPRAWDZENIE_Y = -1.60
-WERDYKT_Y = -2.95
+KOLUMNA_X = 3.70
+RACHUNEK_Y = 0.60
+WERDYKT_Y = -2.10
 
 
 class Zad17_1(Scene):
 
     # ---- klocki -------------------------------------------------------
 
-    def stan(self, *args, rozmiar=54):
+    def stan(self, *args, rozmiar=64):
         m = MathTex(*args)
         m.set_color(BLACK)
         m.font_size = rozmiar
         return m
 
-    def ulamek(self, gora, dol, rozmiar=54):
+    def ulamek(self, gora, dol, rozmiar=64):
         """Ulamek zlozony recznie: licznik, kreska, mianownik. Daje osobny
         uchwyt do licznika i mianownika, czego \\dfrac w jednym MathTeksie
         nie daje (wzorzec z solutionZad11.py)."""
         g = self.stan(*gora, rozmiar=rozmiar)
         d = self.stan(*dol, rozmiar=rozmiar)
-        szer = max(g.width, d.width) + 0.20
+        szer = max(g.width, d.width) + 0.24
         kreska = Line(LEFT * szer / 2, RIGHT * szer / 2, color=BLACK, stroke_width=4)
-        g.next_to(kreska, UP, buff=0.13)
-        d.next_to(kreska, DOWN, buff=0.13)
+        g.next_to(kreska, UP, buff=0.15)
+        d.next_to(kreska, DOWN, buff=0.15)
         return VGroup(g, kreska, d)
-
-    def zgas(self, *mobiekty, czas=0.4):
-        """Gasi zielone na czarno. Wolane PRZED koncowym postojem, zeby ostatnia
-        klatka kroku byla czysta (README, zasada 1)."""
-        if mobiekty:
-            self.play(*[m.animate.set_color(BLACK) for m in mobiekty], run_time=czas)
 
     def postoj(self):
         # 0,45 s zamiast 0,25 s: w kadrze stoi rysunek, czyli duzo drobnego
@@ -116,18 +119,22 @@ class Zad17_1(Scene):
             radius=0.85, start_angle=kier_bc, angle=kier_ba - kier_bc,
             arc_center=B, color=SZARY, stroke_width=5,
         )
+        r["alfa"] = MathTex(r"\alpha", color=SZARY, font_size=46)
+        r["alfa"].move_to(B + np.array([-1.35, 0.30, 0.0]))
 
-        r["etyk_a"] = MathTex("A", color=BLACK, font_size=40).next_to(A, DOWN + LEFT, buff=0.10)
-        r["etyk_b"] = MathTex("B", color=BLACK, font_size=40).next_to(B, DOWN + RIGHT, buff=0.10)
-        r["etyk_c"] = MathTex("C", color=BLACK, font_size=40).next_to(C, UP + LEFT, buff=0.10)
-        r["etyk_d"] = MathTex("D", color=BLACK, font_size=40).next_to(D, DOWN, buff=0.22)
+        r["etyk_a"] = MathTex("A", color=BLACK, font_size=46).next_to(A, DOWN + LEFT, buff=0.10)
+        r["etyk_b"] = MathTex("B", color=BLACK, font_size=46).next_to(B, DOWN + RIGHT, buff=0.10)
+        r["etyk_c"] = MathTex("C", color=BLACK, font_size=46).next_to(C, UP + LEFT, buff=0.10)
+        r["etyk_d"] = MathTex("D", color=BLACK, font_size=46).next_to(D, DOWN, buff=0.24)
 
-        r["dl_ac"] = MathTex(r"\sqrt{15}", color=BLACK, font_size=40)
-        r["dl_ac"].next_to(Line(A, C).get_center(), LEFT, buff=0.22)
-        r["dl_cb"] = MathTex("8", color=BLACK, font_size=40)
-        r["dl_cb"].next_to(Line(C, B).get_center(), UP + RIGHT, buff=0.10)
-        r["dl_db"] = MathTex("6", color=BLACK, font_size=40)
-        r["dl_db"].next_to(Line(D, B).get_center(), DOWN, buff=0.22)
+        # Podpisy dlugosci sa WIEKSZE od nazw wierzcholkow: to one wchodza do
+        # rachunku, a litery A, B, C, D tylko mowia, gdzie co lezy.
+        r["dl_ac"] = MathTex(r"\sqrt{15}", color=BLACK, font_size=56)
+        r["dl_ac"].next_to(Line(A, C).get_center(), LEFT, buff=0.24)
+        r["dl_cb"] = MathTex("8", color=BLACK, font_size=56)
+        r["dl_cb"].next_to(Line(C, B).get_center(), UP + RIGHT, buff=0.12)
+        r["dl_db"] = MathTex("6", color=BLACK, font_size=56)
+        r["dl_db"].next_to(Line(D, B).get_center(), DOWN, buff=0.24)
 
         grupa = VGroup(*r.values())
         grupa.scale_to_fit_width(SZEROKOSC_RYSUNKU)
@@ -137,205 +144,130 @@ class Zad17_1(Scene):
     # ---- scena --------------------------------------------------------
 
     def construct(self):
-        rysunek = self.zbuduj_rysunek()
+        self.zbuduj_rysunek()
         r = self.rys
-        widoczne_od_startu = VGroup(
+        rysunek = VGroup(
             r["bok_ac"], r["bok_cb"], r["bok_ad"], r["bok_db"], r["odc_cd"],
             r["kat_prosty"], r["etyk_a"], r["etyk_b"], r["etyk_c"], r["etyk_d"],
             r["dl_ac"], r["dl_cb"], r["dl_db"],
         )
 
         # ================================================================
-        # PRAWA POLOWA
+        # PRAWA POLOWA: jedna linijka rachunku w trzech postaciach.
         # ================================================================
-        pas_bc = self.stan("|BC|", "=", "8", rozmiar=38)
-        pas_ac = self.stan("|AC|", "=", r"\sqrt{15}", rozmiar=38)
-        pas = VGroup(pas_bc, pas_ac).arrange(RIGHT, buff=0.85)
-        pas.move_to([KOLUMNA_X, PAS_Y, 0])
-
-        def wiersz(*czesci, buff=0.20):
+        def wiersz(*czesci, buff=0.22):
             return VGroup(*czesci).arrange(RIGHT, buff=buff)
 
-        w3 = wiersz(self.stan(r"\sin", r"\alpha"), self.stan("="),
+        w2 = wiersz(self.stan(r"\sin", r"\alpha"), self.stan("="),
                     self.ulamek(("a",), ("c",)))
-        w4 = wiersz(self.stan(r"\sin", r"(\angle ABC)"), self.stan("="),
-                    self.ulamek(("|AC|",), ("|BC|",)))
-        w5 = wiersz(self.stan(r"\sin", r"(\angle ABC)"), self.stan("="),
+        w3 = wiersz(self.stan(r"\sin", r"\alpha"), self.stan("="),
+                    self.ulamek((r"\sqrt{15}",), ("c",)))
+        w4 = wiersz(self.stan(r"\sin", r"\alpha"), self.stan("="),
                     self.ulamek((r"\sqrt{15}",), ("8",)))
 
         # Rzedy wyrownane po znaku rownosci, a nie po srodku: inaczej lewa strona
         # dryfuje w bok przy kazdym przeksztalceniu, mimo ze sie nie zmienia.
-        for w in (w3, w4, w5):
+        for w in (w2, w3, w4):
             w.move_to([KOLUMNA_X, RACHUNEK_Y, 0])
             w.shift(RIGHT * (KOLUMNA_X - w[1].get_center()[0]))
 
-        # Pas sprawdzenia: rachunek pomocniczy (mniejszym pismem, README punkt 29)
-        # i linijka, ktora po nim zostaje.
-        ogniwo = self.stan(r"\sqrt{15}", "<", r"\sqrt{16}", "=", "4", rozmiar=40)
-        ogniwo.move_to([KOLUMNA_X, SPRAWDZENIE_Y, 0])
-        w6 = wiersz(self.ulamek((r"\sqrt{15}",), ("8",), rozmiar=44),
-                    self.stan("<", rozmiar=44), self.stan("1", rozmiar=44))
-        w6.move_to([KOLUMNA_X, SPRAWDZENIE_Y, 0])
-
-        werdykt = Text("Odpowiedź D", font_size=34, weight=BOLD, color=BLACK)
+        werdykt = Text("Odpowiedź D", font_size=40, weight=BOLD, color=BLACK)
         werdykt.move_to([KOLUMNA_X, WERDYKT_Y, 0])
 
-        def przywolaj(zrodla, cele, czas=1.0, luk=-PI / 4):
-            """Kopie wartosci z pasa odczytu leca na miejsca liter we wzorze
-            (README, punkty 37 i 38). Zielone, bo to one sie w tym kroku zmieniaja."""
-            kopie = []
-            for zrodlo in zrodla:
-                k = zrodlo.copy().set_opacity(0)
-                self.add(k)
-                kopie.append(k)
-            self.play(
-                *[k.animate.set_opacity(1).set_color(ZIELONY).move_to(c)
-                  for k, c in zip(kopie, cele)],
-                run_time=czas, path_arc=luk,
-            )
-            return kopie
+        def przylec(zrodlo, cel, czas=1.1, luk=-PI / 4):
+            """Kopia liczby z rysunku leci na miejsce litery we wzorze
+            (README, punkt 37): liczba nie pojawia sie znikad, tylko przylatuje
+            stamtad, gdzie ja odczytalismy."""
+            k = zrodlo.copy()
+            self.add(k)
+            self.play(k.animate.move_to(cel.get_center()).scale(
+                cel.height / max(zrodlo.height, 0.01)),
+                run_time=czas, path_arc=luk)
+            return k
 
         # ================================================================
-        # KROK 1. Kat prosty przy A wskazuje przeciwprostokatna: bok lezacy
-        # naprzeciw niego, czyli BC. Zielony jest kwadracik (od niego zaczyna
-        # sie mysl) i sam bok BC z podpisem.
+        # KROK 1. Rysunek z arkusza i nazwanie kata, o ktory pyta zadanie.
+        # Luk i litera alfa sa szare: to oznaczenie, nie rachunek (README,
+        # punkt 36). Bez zieleni, bo nic sie tu nie przelicza (punkt 12).
         # ================================================================
         self.next_section("krok1")
-        self.play(FadeIn(widoczne_od_startu), run_time=1.0)
-        self.wait(0.35)
-
-        self.play(r["kat_prosty"].animate.set_color(ZIELONY), run_time=0.4)
-        self.play(
-            r["bok_cb"].animate.set_color(ZIELONY),
-            r["dl_cb"].animate.set_color(ZIELONY),
-            run_time=0.7,
-        )
-        kopia = przywolaj([r["dl_cb"]], [pas_bc[2].get_center()], czas=1.0)
-        pas_bc[2].set_color(ZIELONY)
-        self.play(
-            FadeIn(pas_bc[0], pas_bc[1]),
-            ReplacementTransform(kopia[0], pas_bc[2]),
-            run_time=0.9,
-        )
-        self.zgas(r["kat_prosty"], r["bok_cb"], r["dl_cb"], pas_bc[2])
+        self.play(FadeIn(rysunek), run_time=1.1)
+        self.wait(0.4)
+        self.play(Create(r["luk_b"]), FadeIn(r["alfa"]), run_time=0.8)
         self.postoj()
 
         # ================================================================
-        # KROK 2. Pytany kat siedzi przy B. Naprzeciw niego lezy bok AC.
-        # Zielony jest luk kata i bok AC z podpisem. Luk zostaje w kadrze
-        # do konca filmu, bo to on mowi, o ktory kat chodzi.
+        # KROK 2. Wzor z tablicy, strona 11. Wjezdza bez koloru: to dopiero
+        # przepis, jeszcze nie nasze liczby.
         # ================================================================
         self.next_section("krok2")
-        r["luk_b"].set_color(ZIELONY)
-        self.play(Create(r["luk_b"]), run_time=0.7)
+        self.play(FadeIn(w2, shift=LEFT * 0.25), run_time=0.9)
+        self.postoj()
+
+        # ================================================================
+        # KROK 3. Litera a to przyprostokatna lezaca NAPRZECIW kata alfa,
+        # czyli bok AC. Zapala sie razem z licznikiem, a potem przylatuje
+        # z rysunku jego dlugosc. Zielen zostaje do konca filmu: dzieki niej
+        # widac, ktora liczba we wzorze jest ktorym bokiem (prosba Henricha).
+        # ================================================================
+        self.next_section("krok3")
+        licz2, kreska2, mian2 = w2[2]
+        licz3, kreska3, mian3 = w3[2]
         self.play(
             r["bok_ac"].animate.set_color(ZIELONY),
             r["dl_ac"].animate.set_color(ZIELONY),
-            run_time=0.7,
+            licz2.animate.set_color(ZIELONY),
+            run_time=0.8,
         )
-        kopia = przywolaj([r["dl_ac"]], [pas_ac[2].get_center()], czas=1.0)
-        pas_ac[2].set_color(ZIELONY)
+        self.wait(0.3)
+        kopia = przylec(r["dl_ac"], licz3)
+        licz3.set_color(ZIELONY)
         self.play(
-            FadeIn(pas_ac[0], pas_ac[1]),
-            ReplacementTransform(kopia[0], pas_ac[2]),
-            run_time=0.9,
+            ReplacementTransform(kopia, licz3),
+            FadeOut(licz2, scale=0.4),
+            ReplacementTransform(kreska2, kreska3),
+            ReplacementTransform(mian2, mian3),
+            *[ReplacementTransform(w2[i], w3[i]) for i in (0, 1)],
+            run_time=1.0,
         )
-        self.zgas(r["bok_ac"], r["dl_ac"], pas_ac[2])
-        self.play(r["luk_b"].animate.set_color(SZARY), run_time=0.35)
         self.postoj()
 
         # ================================================================
-        # KROK 3. Wzor z tablicy, strona 11. Bez koloru: nic sie tu jeszcze
-        # nie przelicza (README, punkt 12).
-        # ================================================================
-        self.next_section("krok3")
-        self.play(FadeIn(w3), run_time=0.9)
-        self.postoj()
-
-        # ================================================================
-        # KROK 4. Litery wzoru zamieniaja sie w nazwy bokow. Zielone sa trzy
-        # nowe zapisy, bo kazdy z nich zmienia znaczenie: alfa staje sie NASZYM
-        # katem, a litery a i c naszymi bokami. Rownoczesnie na rysunku zapalaja
-        # sie oba boki, po jednym na litere.
+        # KROK 4. Litera c to przeciwprostokatna, czyli bok lezacy naprzeciw
+        # kata prostego: BC. Ten sam ruch co w kroku 3, druga liczba.
         # ================================================================
         self.next_section("krok4")
-        licz3, kreska3, mian3 = w3[2]
         licz4, kreska4, mian4 = w4[2]
-        for m in (w4[0][1], licz4, mian4):
-            m.set_color(ZIELONY)
         self.play(
-            w3[0][1].animate.set_color(ZIELONY),
-            licz3.animate.set_color(ZIELONY),
-            mian3.animate.set_color(ZIELONY),
-            run_time=0.4,
+            r["kat_prosty"].animate.set_color(ZIELONY),
+            run_time=0.5,
         )
         self.play(
-            ReplacementTransform(w3[0][0], w4[0][0]),
-            ReplacementTransform(w3[0][1], w4[0][1]),
-            ReplacementTransform(w3[1], w4[1]),
+            r["bok_cb"].animate.set_color(ZIELONY),
+            r["dl_cb"].animate.set_color(ZIELONY),
+            mian3.animate.set_color(ZIELONY),
+            r["kat_prosty"].animate.set_color(BLACK),
+            run_time=0.8,
+        )
+        self.wait(0.3)
+        kopia = przylec(r["dl_cb"], mian4, luk=PI / 4)
+        mian4.set_color(ZIELONY)
+        licz4.set_color(ZIELONY)
+        self.play(
+            ReplacementTransform(kopia, mian4),
+            FadeOut(mian3, scale=0.4),
             ReplacementTransform(kreska3, kreska4),
             ReplacementTransform(licz3, licz4),
-            ReplacementTransform(mian3, mian4),
-            r["bok_ac"].animate.set_color(ZIELONY),
-            r["bok_cb"].animate.set_color(ZIELONY),
-            run_time=1.4,
+            *[ReplacementTransform(w3[i], w4[i]) for i in (0, 1)],
+            run_time=1.0,
         )
-        self.zgas(w4[0][1], licz4, mian4, r["bok_ac"], r["bok_cb"])
         self.postoj()
 
         # ================================================================
-        # KROK 5. Nazwy bokow zamieniaja sie w liczby, ktore przylatuja z pasa
-        # odczytu, czyli stamtad, gdzie je odczytalismy (README, punkt 38).
+        # KROK 5. Werdykt. Zielone boki i zielone liczby zostaja w kadrze,
+        # bo o to prosil Henrich: ostatnia klatka ma pokazywac, skad wzial
+        # sie licznik i skad mianownik.
         # ================================================================
         self.next_section("krok5")
-        licz5, kreska5, mian5 = w5[2]
-        kopie = przywolaj(
-            [pas_ac[2], pas_bc[2]],
-            [licz4.get_center(), mian4.get_center()],
-            czas=1.1,
-        )
-        licz5.set_color(ZIELONY)
-        mian5.set_color(ZIELONY)
-        self.play(
-            ReplacementTransform(w4[0][0], w5[0][0]),
-            ReplacementTransform(w4[0][1], w5[0][1]),
-            ReplacementTransform(w4[1], w5[1]),
-            ReplacementTransform(kreska4, kreska5),
-            ReplacementTransform(kopie[0], licz5),
-            ReplacementTransform(kopie[1], mian5),
-            FadeOut(licz4, scale=0.4),
-            FadeOut(mian4, scale=0.4),
-            run_time=1.4,
-        )
-        self.play(FadeIn(werdykt), run_time=0.5)
-        self.zgas(licz5, mian5)
-        self.postoj()
-
-        # ================================================================
-        # KROK 6. Sprawdzenie sensu. Przeciwprostokatna jest najdluzszym bokiem,
-        # wiec sinus kata ostrego nie moze wyjsc wiekszy od 1. Ogniwo
-        # sqrt(15) < sqrt(16) = 4 stoi mniejszym pismem i znika przed koncem
-        # kroku (README, punkt 29); to samo ogniwo niesie komentarz w solutionText.
-        # ================================================================
-        self.next_section("krok6")
-        self.play(r["bok_cb"].animate.set_color(ZIELONY), run_time=0.4)
-        self.play(FadeIn(ogniwo), run_time=0.7)
-        self.wait(0.6)
-
-        licz6, kreska6, mian6 = w6[0]
-        kopie = przywolaj(
-            [licz5, mian5],
-            [licz6.get_center(), mian6.get_center()],
-            czas=1.0, luk=PI / 3,
-        )
-        w6[1].set_color(ZIELONY)
-        w6[2].set_color(ZIELONY)
-        self.play(
-            FadeOut(ogniwo, shift=DOWN * 0.3),
-            ReplacementTransform(kopie[0], licz6),
-            ReplacementTransform(kopie[1], mian6),
-            FadeIn(kreska6), FadeIn(w6[1]), FadeIn(w6[2]),
-            run_time=1.2,
-        )
-        self.zgas(licz6, mian6, w6[1], w6[2], r["bok_cb"])
+        self.play(FadeIn(werdykt, shift=UP * 0.25), run_time=0.8)
         self.postoj()

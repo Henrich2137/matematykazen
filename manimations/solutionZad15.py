@@ -7,8 +7,9 @@ from manim import *
 # do jednego z dziesiecioma linijkami w solutionText.
 #
 # Warunek bierzemy z tablicy, wzor [8.3] ze strony 9: srodkowy wyraz jest
-# srednia sasiadow. Wchodzi jednak dopiero PO przykladzie na liczbach (2, 5, 8),
-# bo uczen celujacy w 30% blokuje sie na literze, nie na rachunku.
+# srednia sasiadow. Do 2026-08-30 wchodzil dopiero po przykladzie na liczbach
+# (2, 5, 8); Henrich kazal ten przyklad wyciac, bo mieszal: srodkowa piatka,
+# czyli wynik rachunku, stala w kadrze, zanim ten rachunek sie zaczal.
 #
 # Dwa ostatnie kroki to sprawdzenie i one niosa cala dydaktyke tego zadania:
 # po podstawieniu m = 4 ciag wychodzi 20, 12, 4, czyli MALEJACY, a mimo to
@@ -66,32 +67,33 @@ class Zad15(Scene):
     def ciag_grupa(self, w1, w2, w3, rozmiar=82, podpisy=True):
         """(5m, 4+2m, m) z podpisami a_1, a_2, a_3 nad wyrazami.
 
-        Zwraca (grupa, [trzy wyrazy], [trzy podpisy], [nawiasy i przecinki]),
-        zeby kazda czesc dala sie ruszyc osobno: przecinki i nawiasy tylko
-        przesuwaja sie, a wyrazy zamieniaja sie w cos innego.
+        Caly ciag to JEDEN MathTex, nie siedem sklejanych recznie kawalkow
+        (poprawione 2026-08-30 po uwadze Henricha „wyraz w kroku 1 zle sie
+        renderuje"). Recznie sklejane czesci wyrownywalo `align_to(..., DOWN)`,
+        czyli po DOLE prostokata, a nie po linii pisma: nawiasy i przecinki maja
+        podciecie ponizej linii, wiec caly zapis chodzil po wysokosci. LaTeX
+        sklada to poprawnie sam, a kazdy argument dalej jest osobnym
+        podobiektem, wiec uchwyty do pojedynczych wyrazow zostaja.
+
+        Zwraca (grupa, [trzy wyrazy], [trzy podpisy], [nawiasy i przecinki]).
         """
-        naw_l = self.stan("(", rozmiar=rozmiar)
-        a = self.stan(*w1, rozmiar=rozmiar)
-        p1 = self.stan(",", rozmiar=rozmiar)
-        b = self.stan(*w2, rozmiar=rozmiar)
-        p2 = self.stan(",", rozmiar=rozmiar)
-        c = self.stan(*w3, rozmiar=rozmiar)
-        naw_p = self.stan(")", rozmiar=rozmiar)
-        kolejnosc = [naw_l, a, p1, b, p2, c, naw_p]
-        odstepy = [0.08, 0.04, 0.26, 0.04, 0.26, 0.08]
-        for i in range(1, len(kolejnosc)):
-            kolejnosc[i].next_to(kolejnosc[i - 1], RIGHT, buff=odstepy[i - 1])
-            kolejnosc[i].align_to(kolejnosc[0], DOWN)
-        wyrazy = [a, b, c]
-        znaki = [naw_l, p1, p2, naw_p]
+        m = MathTex("(", "".join(w1), ",", "".join(w2), ",", "".join(w3), ")",
+                    color=BLACK, font_size=rozmiar)
+        wyrazy = [m[1], m[3], m[5]]
+        znaki = [m[0], m[2], m[4], m[6]]
         etykiety = []
         if podpisy:
+            # Wszystkie podpisy na JEDNEJ wysokosci, liczonej od gory calego
+            # zapisu (a nie od gory swojego wyrazu): samotne `m` jest nizsze niz
+            # `4+2m`, wiec podpis liczony od niego zjezdzal w dol i wchodzil na
+            # nawias zamykajacy.
+            gora = m.get_top()[1] + 0.22
             for i, w in enumerate(wyrazy):
                 e = MathTex("a_{%d}" % (i + 1), color=BLACK,
                             font_size=int(rozmiar * 0.78))
-                e.next_to(w, UP, buff=0.26)
+                e.move_to([w.get_center()[0], gora + e.height / 2, 0])
                 etykiety.append(e)
-        grupa = VGroup(*kolejnosc, *etykiety)
+        grupa = VGroup(m, *etykiety)
         return grupa, wyrazy, etykiety, znaki
 
     def zapal(self, *mobiekty, czas=0.4):
@@ -131,19 +133,6 @@ class Zad15(Scene):
         pasl, pasl_w, pasl_e, pasl_z = self.ciag_grupa(
             ("20",), ("12",), ("4",), rozmiar=60)
         pasl.move_to([0, PAS_Y, 0])
-
-        # ================================================================
-        # KROK 2: przyklad na liczbach, a pod nim wzor z tablicy
-        # ================================================================
-        prz_ciag = self.stan("2", ",", "5", ",", "8", rozmiar=76)
-        prz_lewa = self.ulamek(("2", "+", "8"), ("2",), rozmiar=56)
-        prz_rown = self.stan("=", rozmiar=56)
-        prz_wynik = self.stan("5", rozmiar=56)
-        prz_rown.next_to(prz_lewa, RIGHT, buff=0.24)
-        prz_wynik.next_to(prz_rown, RIGHT, buff=0.24)
-        prz_rachunek = VGroup(prz_lewa, prz_rown, prz_wynik)
-        prz_ciag.move_to([0, 1.25, 0])
-        prz_rachunek.move_to([0, -0.35, 0])
 
         # ================================================================
         # STANY RACHUNKU
@@ -204,22 +193,14 @@ class Zad15(Scene):
         self.zakoncz(duzy)
 
         # ================================================================
-        # KROK 2. Skad wzor: najpierw przyklad na liczbach, potem postac
-        # literowa z tablicy. Zielone sa obie piatki, zeby bylo widac, ze
-        # srodkowy wyraz i srednia skrajnych to ta sama liczba.
+        # KROK 2. Ciag odjezdza na gore kadru, a na jego miejsce wchodzi wzor
+        # z tablicy. Bez koloru: nic sie tu nie przelicza. Przyklad na liczbach
+        # (2, 5, 8) stal tu do 2026-08-30 i zostal wyciety na prosbe Henricha,
+        # bo mieszal: piatka, ktora mial dopiero policzyc, stala juz w kadrze.
         # ================================================================
         self.next_section("krok2")
         self.play(ReplacementTransform(duzy, pas), run_time=1.1)
-        self.play(FadeIn(prz_ciag, shift=DOWN * 0.2), run_time=0.8)
-        self.play(FadeIn(prz_lewa), FadeIn(prz_rown), run_time=0.7)
-        prz_wynik.set_color(ZIELONY)
-        self.play(FadeIn(prz_wynik), prz_ciag[2].animate.set_color(ZIELONY),
-                  run_time=0.7)
-        self.wait(0.5)
-        self.play(prz_wynik.animate.set_color(BLACK),
-                  prz_ciag[2].animate.set_color(BLACK), run_time=0.35)
-        self.play(FadeOut(prz_ciag, shift=UP * 0.2),
-                  FadeOut(prz_rachunek, shift=UP * 0.2), run_time=0.7)
+        self.wait(0.3)
         self.play(FadeIn(s2, shift=DOWN * 0.2), run_time=0.9)
         self.zakoncz(s2, pas)
 
@@ -274,10 +255,11 @@ class Zad15(Scene):
             ReplacementTransform(s3b_ul[1], s4_ul[1]),
             ReplacementTransform(s3b_ul[2], s4_ul[2]),
             ReplacementTransform(s3b_ul[0][0], s4_ul[0][0]),
-            ReplacementTransform(s3b_ul[0][3], s4_ul[0][0].copy()),
-            ReplacementTransform(s3b_ul[0][2], s4_ul[0][0].copy()),
+            *[FadeOut(s3b_ul[0][i], target_position=s4_ul[0][0].get_center(),
+                      scale=0.4) for i in (2, 3)],
             ReplacementTransform(s3b_ul[0][1], s4_ul[0][1]),
-            ReplacementTransform(s3b_ul[0][4], s4_ul[0][1].copy()),
+            FadeOut(s3b_ul[0][4], target_position=s4_ul[0][1].get_center(),
+                    scale=0.4),
             run_time=1.3,
         )
         self.zakoncz(s4, pas)
@@ -291,7 +273,7 @@ class Zad15(Scene):
         self.play(
             *[ReplacementTransform(s4_lewa[i], s5[i]) for i in range(5)],
             ReplacementTransform(s4_ul[0][0], s5[5]),
-            ReplacementTransform(s4_ul[2][0], s5[5].copy()),
+            FadeOut(s4_ul[2][0], target_position=s5[5].get_center(), scale=0.4),
             FadeOut(s4_ul[1], scale=0.4),
             ReplacementTransform(s4_ul[0][1], s5[6]),
             run_time=1.4,
@@ -336,10 +318,10 @@ class Zad15(Scene):
             ReplacementTransform(s6[0], s6b[0]),
             ReplacementTransform(s6[1], s6b[1]),
             ReplacementTransform(s6[2], s6b[2]),
-            ReplacementTransform(s6[5], s6b[2].copy()),
-            ReplacementTransform(s6[4], s6b[2].copy()),
+            *[FadeOut(s6[i], target_position=s6b[2].get_center(), scale=0.4)
+              for i in (4, 5)],
             ReplacementTransform(s6[3], s6b[3]),
-            ReplacementTransform(s6[6], s6b[3].copy()),
+            FadeOut(s6[6], target_position=s6b[3].get_center(), scale=0.4),
             run_time=1.4,
         )
         self.wait(0.4)

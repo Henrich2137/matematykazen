@@ -1,5 +1,63 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-30] (Opus 5, medium) Filmy krok po kroku do zadań 15, 16, 17.1 i 17.2
+z grudnia 2024: dwie poprawki renderu i dwie sceny napisane od nowa.
+[2024-grudzien, zad15, zad16, zad17, manim, zasady]
+
+Wersja v105. Uwagi Henricha z TODO.md, wszystkie wykonane.
+
+- **Znaleziona przyczyna „źle się renderuje" (zad. 15 krok 7, zad. 16 strzałka q).**
+  W obu scenach siedział zapis `ReplacementTransform(cos, cel.copy())`. `ReplacementTransform`
+  na koniec dodaje swój cel do sceny, więc każda taka kopia zostawała w kadrze: na wyniku
+  łączenia leżały dwie albo trzy kopie tego samego glifu (stąd rozmazanie), a przy drugiej
+  animacji w tym samym kroku część z nich zostawała w miejscu, przez co w zad. 15 przez
+  półtorej sekundy stało w kadrze `4 = 1m` z jedynką, której już nie powinno być. Wzorzec
+  wystąpił dziewięć razy w zad. 16 i pięć w zad. 15. Zastąpiony przez
+  `FadeOut(b, target_position=cel.get_center())`. Reguła dopisana do `manimations/README.md`
+  jako punkt 56, bo mogła się rozejść po starszych scenach.
+
+- **Zad. 15, krok 1: ciąg składany ręcznie z siedmiu kawałków.** `align_to(..., DOWN)`
+  wyrównywał je po dole prostokąta, a nie po linii pisma, więc nawiasy i przecinki chodziły
+  po wysokości, a podpis \(a_3\) liczony od górnej krawędzi samotnego \(m\) zjeżdżał niżej
+  niż pozostałe i wchodził na nawias zamykający. Cały ciąg to teraz jeden `MathTex`
+  z siedmioma argumentami (LaTeX składa to sam, a uchwyty do wyrazów zostają), a podpisy
+  stoją na jednej wysokości liczonej od góry całego zapisu. Punkt 57 w README.
+
+- **Zad. 15, krok 2: wycięty przykład na liczbach 2, 5, 8.** Henrich: „wyjeb ten przykład,
+  wprowadza niepotrzebne confusion". Środkowa piątka, czyli wynik rachunku \(\frac{2+8}{2}\),
+  stała w kadrze, zanim ten rachunek się zaczął. Krok 2 robi dziś jedną rzecz: ciąg odjeżdża
+  na górę, a na jego miejsce wchodzi wzór z tablicy. To samo zdanie wycięte z opisu kroku
+  i z komentarza w rozwiązaniu zwykłym.
+
+- **Zad. 16: kolejność pasa na górze.** Było \(a_2\), \(a_3\), \(q\), \(a_4\); jest
+  \(a_2\), \(a_3\), \(a_4\), \(q\), z wyraźniejszą przerwą przed \(q\), bo iloraz
+  nie jest wyrazem ciągu. Uwaga brzmiała „zamień 1 z a4", co po dopytaniu okazało się
+  literówką („q" leży nad „1" na klawiaturze).
+
+- **Zad. 17.1 napisane od nowa, pięć kroków zamiast sześciu.** Zniknął pas odczytu
+  z prawego górnego rogu (\(|BC| = 8\), \(|AC| = \sqrt{15}\)) i pośredni stan
+  \(\sin(\angle ABC) = \frac{|AC|}{|BC|}\): Henrich uznał nazwy boków za zbędne, bo nie
+  ma ich we wzorze z tablicy. Litery \(a\) i \(c\) zamieniają się dziś WPROST w liczby
+  przylatujące z rysunku. Rysunek jest szerszy (6,6 zamiast 5,4) i ma większe podpisy.
+  Najważniejsza zmiana: **zieleń nie gaśnie na końcu kroku**, tylko zostaje do końca filmu,
+  więc widać, który bok jest którą liczbą we wzorze. Ostatni krok (sprawdzenie
+  \(\frac{\sqrt{15}}{8} < 1\)) wycięty z filmu i z rozwiązania zwykłego.
+
+- **Zad. 17.2 napisane od nowa, trzynaście kroków zamiast piętnastu.** Prawa połowa ma dziś
+  dwa pasy zamiast czterech: górny niesie tangens i stoi do końca filmu, dolny to miejsce
+  robocze na Pitagorasa, które po policzeniu podstawy CZYŚCI SIĘ (krok 11). To odpowiedź na
+  „nie wszystko musi być zawsze na ekranie". W kadrze nie ma ani jednego zapisu w rodzaju
+  \(|AB|\): nieznana podstawa dostaje literę \(x\) pod klamrą i ta litera jedzie do
+  Pitagorasa. Klamry i ich podpisy są szare przez cały film (uwaga o kroku 4: klamra to
+  oznaczenie, nie składnik rachunku). Łuk kąta przy \(D\) zmniejszony do promienia 0,30,
+  a kwadracik kąta prostego do 0,16, bo trójkąt ACD to wąski klin i przy większych
+  oznaczeniach wszystko na siebie wchodziło.
+
+- **Sprawdzenia.** Styki klatek bez zastrzeżeń we wszystkich czterech filmach (najgorszy
+  0,99968). `tools/test-krokow.js` na zadaniach 15, 16, 17.1 i 17.2 (ziarno 3, po 15 ruchów,
+  łącze szybkie i zdławione): bez zastrzeżeń. Obejrzane `tools/klatki.sh stany --koniec`
+  dla każdego z czterech filmów plus `film` dla kroków, które Henrich zgłosił.
+
 [ZROBIONE 2026-08-30] (Opus 5, medium) Rozwiązania zwykłe: przepisane zadania 1 do 6
 z grudnia 2024 na styl zadań 7 do 12 i wycięte oczywiste komentarze w zadaniach 7 do 17.
 [2024-grudzien, zad1, zad2, zad3, zad4, zad5, zad6, css, zasady]

@@ -404,6 +404,40 @@ niżej są **zmierzone**, każdy osobnym renderem, a nie wydedukowane.
     ciag. Zlapane na `tools/klatki.sh stany`, nie w kodzie: w scenie obie wspolrzedne
     wygladaly na dobrze rozsuniete.
 
+56. **`ReplacementTransform(cos, cel.copy())` zostawia tę kopię na ekranie.** To nie
+    jest niewinny zapis „przekształć w coś takiego jak cel": `ReplacementTransform` na
+    koniec USUWA źródło i DODAJE do sceny swój cel, więc każda `.copy()` podana jako cel
+    zostaje w kadrze na stałe. Gdy dwa glify łączą się w jeden (\(5m + 1m \to 6m\),
+    \(1 \cdot 6 \to 6\)), na wyniku leżą wtedy dwie albo trzy kopie tego samego znaku
+    i całość wygląda na rozmazaną albo pogrubioną, a przy drugiej animacji w tym samym
+    kroku część z nich zostaje w miejscu i widać zapis, którego już nie powinno być.
+    Znalezione 2026-08-30 przez Henricha jako „krok 7 się źle renderuje" (zad. 15)
+    i „strzałka q" (zad. 16); wzorzec siedział w obu scenach po kilka razy.
+
+    Tego samego celu nie wolno też podać DWA razy bez `.copy()`: `Scene.replace` wymaga,
+    żeby nowy obiekt nie był jeszcze w scenie, więc druga animacja doda go ponownie.
+
+    Poprawnie łączenie zapisuje się tak: jeden składnik jedzie `ReplacementTransform`,
+    a każdy następny **znika lecąc w to samo miejsce**:
+
+    ```python
+    ReplacementTransform(a, cel),
+    FadeOut(b, target_position=cel.get_center(), scale=0.4),
+    ```
+
+    `Transform(cos, cel.copy())` jest bezpieczne (Transform celu do sceny nie dodaje),
+    ale `.copy()` jest tam zbędne.
+
+57. **Elementy sklejane ręcznie wyrównuj po LINII PISMA, nie po dole prostokąta.**
+    `align_to(..., DOWN)` zrównuje dolne krawędzie ramek, a nawiasy, przecinki i litery
+    z podcięciem sięgają poniżej linii pisma, więc zapis zaczyna chodzić po wysokości:
+    przecinki jadą do góry, nawiasy wyglądają na przesunięte. Najprościej w ogóle tego
+    nie sklejać: **jeden `MathTex` z kilkoma argumentami** składa LaTeX poprawnie, a każdy
+    argument dalej jest osobnym podobiektem, więc uchwyty do pojedynczych kawałków zostają.
+    Podpisy stawiane NAD częściami takiego zapisu licz od góry CAŁEGO zapisu, nie od góry
+    swojej części: samotne `m` jest niższe niż `4+2m`, więc podpis liczony od niego zjeżdża
+    w dół i wchodzi na nawias. Zad. 15, uwaga Henricha „wyraz w kroku 1 źle się renderuje".
+
 ### Po renderze
 
 22. `tools/wgraj-kroki.sh <nr> <arkusz>` robi render, kopię, rewersy i styk klatek jedną komendą.

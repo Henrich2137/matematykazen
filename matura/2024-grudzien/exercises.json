@@ -1083,8 +1083,8 @@
         "selfScore": false,
         "hint": "W ciągu arytmetycznym środkowy wyraz jest średnią sąsiadów. Ten wzór stoi w tablicy na stronie \\(9\\).",
         "formulasPage": 9,
-        "solutionText": "<div class=\"rozwiazanie-kroki\"><div class=\"rozw-komentarz\">Trzy wyrazy ciągu nazywamy po kolei.</div><div class=\"rozw-linia\">\\(a_{1} = 5m\\) &nbsp;&nbsp;&nbsp;&nbsp; \\(a_{2} = 4 + 2m\\) &nbsp;&nbsp;&nbsp;&nbsp; \\(a_{3} = m\\)</div><div class=\"rozw-komentarz\">W ciągu arytmetycznym środkowy wyraz jest średnią sąsiadów. W ciągu \\(2,\\ 5,\\ 8\\) widać to od razu: \\(\\dfrac{2 + 8}{2} = 5\\).</div><div class=\"rozw-linia\">\\[a_{2} = \\dfrac{a_{1} + a_{3}}{2}\\]</div><div class=\"rozw-linia\">\\(4 + 2m = \\dfrac{5m + m}{2}\\)</div><div class=\"rozw-komentarz\">Samotne \\(m\\) to inaczej \\(1m\\), więc \\(5m + 1m = 6m\\).</div><div class=\"rozw-linia\">\\(4 + 2m = \\dfrac{6m}{2}\\)</div><div class=\"rozw-linia\">\\(4 + 2m = 3m\\)<span class=\"rozw-dzialanie\">\\(\\big/ - 2m\\)</span></div><div class=\"rozw-linia\">\\(4 = 3m - 2m\\)</div><div class=\"rozw-linia\">\\(4 = m\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{m = 4}\\)</div><div class=\"rozw-sprawdzenie\"><div class=\"rozw-komentarz\">Sprawdzenie. Podstawiamy \\(m = 4\\) do trzech wyrazów.</div><div class=\"rozw-linia\">\\(20,\\ 12,\\ 4\\)</div><div class=\"rozw-komentarz\">Od każdego wyrazu odejmujemy poprzedni. Wyniki mają być takie same.</div><div class=\"rozw-linia\">\\(12 - 20 = -8\\) &nbsp;&nbsp;&nbsp;&nbsp; \\(4 - 12 = -8\\)<br>różnica jest stała, więc ciąg jest arytmetyczny, choć maleje</div></div><div class=\"rozw-linia rozw-odstep\">Odpowiedź <b>D</b>.</div></div>",
-        "solutionStepByStep": [{"type": "video", "src": "media/zad15/solution-step-by-step/step1.mp4", "text": "Nazwy \\(a_{1}\\), \\(a_{2}\\), \\(a_{3}\\) nadajemy po to, żeby dało się skorzystać ze wzoru z tablicy. Nazywamy po kolei, od lewej."}, {"type": "video", "src": "media/zad15/solution-step-by-step/step2.mp4", "text": "W ciągu arytmetycznym każdy wyraz leży w połowie drogi między sąsiadami.<br>W ciągu \\(2,\\ 5,\\ 8\\) widać to od razu: od \\(2\\) do \\(5\\) jest tyle samo, co od \\(5\\) do \\(8\\).<br>\\[a_{n} = \\dfrac{a_{n-1} + a_{n+1}}{2}\\]Wzór stoi w tablicy na stronie \\(9\\)."}, {"type": "video", "src": "media/zad15/solution-step-by-step/step3.mp4", "text": "Wzór mówi o dowolnych trzech sąsiednich wyrazach, więc wstawiamy do niego nasze trzy."}, {"type": "video", "src": "media/zad15/solution-step-by-step/step4.mp4", "text": "Przy samotnym \\(m\\) nie widać żadnej liczby, ale ona tam jest: \\(m\\) to \\(1m\\).<br>Stąd \\(5m + 1m = 6m\\)."}, {"type": "video", "src": "media/zad15/solution-step-by-step/step5.mp4", "text": "Dzieli się sama liczba stojąca przy literze: \\(6 : 2 = 3\\), a \\(m\\) zostaje bez zmian."}, {"type": "video", "src": "media/zad15/solution-step-by-step/step6.mp4", "text": "Chcemy zebrać \\(m\\) po jednej stronie.<br>Odejmujemy \\(2m\\) od obu stron, więc po prawej dopisuje się \\(-2m\\)."}, {"type": "video", "src": "media/zad15/solution-step-by-step/step7.mp4", "text": "\\(3m - 2m = 1m\\), a \\(1m\\) to po prostu \\(m\\)."}, {"type": "video", "src": "media/zad15/solution-step-by-step/step8.mp4", "text": "Wynik zapisujemy tak, jak się go czyta: niewiadoma po lewej, liczba po prawej.<br>W odpowiedziach szukamy teraz \\(m = 4\\)."}, {"type": "video", "src": "media/zad15/solution-step-by-step/step9.mp4", "text": "Sprawdzamy, czy to naprawdę wychodzi.<br>Za \\(m\\) wstawiamy \\(4\\): \\(5 \\cdot 4 = 20\\) oraz \\(4 + 2 \\cdot 4 = 12\\)."}, {"type": "video", "src": "media/zad15/solution-step-by-step/step10.mp4", "text": "Od każdego wyrazu odejmujemy poprzedni. Obie różnice wychodzą \\(-8\\), czyli są równe, a dokładnie tego wymaga ciąg arytmetyczny.<br>Różnica bywa ujemna: ciąg wtedy maleje i nadal jest arytmetyczny."}],
+        "solutionText": "<div class=\"rozwiazanie-kroki\"><div class=\"rozw-komentarz\">Trzy wyrazy ciągu nazywamy po kolei.</div><div class=\"rozw-linia\">\\(a_{1} = 5m\\) &nbsp;&nbsp;&nbsp;&nbsp; \\(a_{2} = 4 + 2m\\) &nbsp;&nbsp;&nbsp;&nbsp; \\(a_{3} = m\\)</div><div class=\"rozw-komentarz\">W ciągu arytmetycznym środkowy wyraz jest średnią sąsiadów, czyli leży dokładnie w połowie drogi między nimi.</div><div class=\"rozw-linia\">\\[a_{2} = \\dfrac{a_{1} + a_{3}}{2}\\]</div><div class=\"rozw-linia\">\\(4 + 2m = \\dfrac{5m + m}{2}\\)</div><div class=\"rozw-komentarz\">Samotne \\(m\\) to inaczej \\(1m\\), więc \\(5m + 1m = 6m\\).</div><div class=\"rozw-linia\">\\(4 + 2m = \\dfrac{6m}{2}\\)</div><div class=\"rozw-linia\">\\(4 + 2m = 3m\\)<span class=\"rozw-dzialanie\">\\(\\big/ - 2m\\)</span></div><div class=\"rozw-linia\">\\(4 = 3m - 2m\\)</div><div class=\"rozw-linia\">\\(4 = m\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{m = 4}\\)</div><div class=\"rozw-sprawdzenie\"><div class=\"rozw-komentarz\">Sprawdzenie. Podstawiamy \\(m = 4\\) do trzech wyrazów.</div><div class=\"rozw-linia\">\\(20,\\ 12,\\ 4\\)</div><div class=\"rozw-komentarz\">Od każdego wyrazu odejmujemy poprzedni. Wyniki mają być takie same.</div><div class=\"rozw-linia\">\\(12 - 20 = -8\\) &nbsp;&nbsp;&nbsp;&nbsp; \\(4 - 12 = -8\\)<br>różnica jest stała, więc ciąg jest arytmetyczny, choć maleje</div></div><div class=\"rozw-linia rozw-odstep\">Odpowiedź <b>D</b>.</div></div>",
+        "solutionStepByStep": [{"type": "video", "src": "media/zad15/solution-step-by-step/step1.mp4", "text": "Nazwy \\(a_{1}\\), \\(a_{2}\\), \\(a_{3}\\) nadajemy po to, żeby dało się skorzystać ze wzoru z tablicy. Nazywamy po kolei, od lewej."}, {"type": "video", "src": "media/zad15/solution-step-by-step/step2.mp4", "text": "W ciągu arytmetycznym każdy wyraz leży w połowie drogi między sąsiadami, czyli jest średnią tych dwóch liczb.<br>\\[a_{n} = \\dfrac{a_{n-1} + a_{n+1}}{2}\\]Wzór stoi w tablicy na stronie \\(9\\)."}, {"type": "video", "src": "media/zad15/solution-step-by-step/step3.mp4", "text": "Wzór mówi o dowolnych trzech sąsiednich wyrazach, więc wstawiamy do niego nasze trzy."}, {"type": "video", "src": "media/zad15/solution-step-by-step/step4.mp4", "text": "Przy samotnym \\(m\\) nie widać żadnej liczby, ale ona tam jest: \\(m\\) to \\(1m\\).<br>Stąd \\(5m + 1m = 6m\\)."}, {"type": "video", "src": "media/zad15/solution-step-by-step/step5.mp4", "text": "Dzieli się sama liczba stojąca przy literze: \\(6 : 2 = 3\\), a \\(m\\) zostaje bez zmian."}, {"type": "video", "src": "media/zad15/solution-step-by-step/step6.mp4", "text": "Chcemy zebrać \\(m\\) po jednej stronie.<br>Odejmujemy \\(2m\\) od obu stron, więc po prawej dopisuje się \\(-2m\\)."}, {"type": "video", "src": "media/zad15/solution-step-by-step/step7.mp4", "text": "\\(3m - 2m = 1m\\), a \\(1m\\) to po prostu \\(m\\)."}, {"type": "video", "src": "media/zad15/solution-step-by-step/step8.mp4", "text": "Wynik zapisujemy tak, jak się go czyta: niewiadoma po lewej, liczba po prawej.<br>W odpowiedziach szukamy teraz \\(m = 4\\)."}, {"type": "video", "src": "media/zad15/solution-step-by-step/step9.mp4", "text": "Sprawdzamy, czy to naprawdę wychodzi.<br>Za \\(m\\) wstawiamy \\(4\\): \\(5 \\cdot 4 = 20\\) oraz \\(4 + 2 \\cdot 4 = 12\\)."}, {"type": "video", "src": "media/zad15/solution-step-by-step/step10.mp4", "text": "Od każdego wyrazu odejmujemy poprzedni. Obie różnice wychodzą \\(-8\\), czyli są równe, a dokładnie tego wymaga ciąg arytmetyczny.<br>Różnica bywa ujemna: ciąg wtedy maleje i nadal jest arytmetyczny."}],
         "solutionWidget": "widgetCiagArytmetyczny"
     },
     {
@@ -1130,37 +1130,32 @@
         "selfScore": false,
         "hint": "Sinus = przyprostokątna naprzeciw kąta / przeciwprostokątna. Naprzeciw kąta przy B leży bok AC, a przeciwprostokątną jest \\(BC = 8\\).",
         "formulasPage": 11,
-        "solutionText": "<div class=\"rozwiazanie-kroki\"><div class=\"rozw-komentarz\">Kąt prosty stoi przy \\(A\\). Naprzeciw kąta prostego zawsze leży przeciwprostokątna, więc tutaj jest nią bok \\(BC\\).</div><div class=\"rozw-linia\">\\(|BC| = 8\\)</div><div class=\"rozw-komentarz\">Pytany kąt jest przy \\(B\\). Naprzeciw niego leży bok \\(AC\\).</div><div class=\"rozw-linia\">\\(|AC| = \\sqrt{15}\\)</div><div class=\"rozw-komentarz\">Sinus kąta ostrego to bok leżący naprzeciw kąta podzielony przez przeciwprostokątną.</div><div class=\"rozw-linia\">\\[\\sin \\alpha = \\dfrac{a}{c}\\]</div><div class=\"rozw-linia\">\\(\\sin(\\angle ABC) = \\dfrac{|AC|}{|BC|}\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{\\sin(\\angle ABC) = \\dfrac{\\sqrt{15}}{8}}\\)</div><div class=\"rozw-sprawdzenie\"><div class=\"rozw-komentarz\">Sinus kąta ostrego zawsze wychodzi mniejszy od \\(1\\), bo przeciwprostokątna jest najdłuższym bokiem.</div><div class=\"rozw-linia\">\\(\\dfrac{\\sqrt{15}}{8} < 1\\)</div></div><div class=\"rozw-linia rozw-odstep\">Odpowiedź <b>D</b>.</div></div>",
+        "solutionText": "Kąt, o który pyta zadanie, siedzi przy wierzchołku \\(B\\). Nazywamy go \\(\\alpha\\):\\[\\sin \\alpha = \\dfrac{a}{c}\\]<div class=\"rozwiazanie-kroki\"><div class=\"rozw-komentarz\">\\(a\\) to przyprostokątna leżąca naprzeciw kąta \\(\\alpha\\), czyli bok o długości \\(\\sqrt{15}\\).</div><div class=\"rozw-linia\">\\(\\sin \\alpha = \\dfrac{\\sqrt{15}}{c}\\)</div><div class=\"rozw-komentarz\">\\(c\\) to przeciwprostokątna, czyli bok leżący naprzeciw kąta prostego: \\(8\\).</div><div class=\"rozw-linia\">\\(\\boldsymbol{\\sin \\alpha = \\dfrac{\\sqrt{15}}{8}}\\)</div><div class=\"rozw-linia\">Odpowiedź <b>D</b>.</div></div>",
         "solutionStepByStep": [
       {
             "type": "video",
             "src": "media/zad17_1/solution-step-by-step/step1.mp4",
-            "text": "Naprzeciw kąta prostego leży zawsze przeciwprostokątna, czyli najdłuższy bok trójkąta.<br>Kąt prosty jest przy \\(A\\), więc przeciwprostokątną jest \\(BC\\)."
+            "text": "Kąt, o który pyta zadanie, siedzi przy wierzchołku \\(B\\). Nazywamy go \\(\\alpha\\), żeby pasował do wzoru z tablicy."
       },
       {
             "type": "video",
             "src": "media/zad17_1/solution-step-by-step/step2.mp4",
-            "text": "Teraz drugi z potrzebnych boków.<br>Patrzymy z wierzchołka \\(B\\): naprzeciw tego kąta, po drugiej stronie trójkąta, leży bok \\(AC\\)."
+            "text": "Wzór z tablicy, strona \\(11\\).<br>\\(a\\) to przyprostokątna leżąca naprzeciw kąta \\(\\alpha\\), \\(c\\) to przeciwprostokątna.\\[\\sin \\alpha = \\dfrac{a}{c}\\]"
       },
       {
             "type": "video",
             "src": "media/zad17_1/solution-step-by-step/step3.mp4",
-            "text": "Wzór z tablicy, strona \\(11\\). Litera \\(a\\) oznacza bok leżący naprzeciw kąta, litera \\(c\\) przeciwprostokątną.\\[\\sin \\alpha = \\dfrac{a}{c}\\]"
+            "text": "Naprzeciw kąta \\(\\alpha\\) leży bok o długości \\(\\sqrt{15}\\), więc to on wchodzi na miejsce \\(a\\).<br>Bok i licznik zostają zielone, żeby było widać, że to jedno i to samo."
       },
       {
             "type": "video",
             "src": "media/zad17_1/solution-step-by-step/step4.mp4",
-            "text": "W miejsce liter wstawiamy nasze boki: naprzeciw kąta \\(ABC\\) leży \\(AC\\), a przeciwprostokątną jest \\(BC\\)."
+            "text": "Przeciwprostokątna leży naprzeciw kąta prostego, a ten jest przy \\(A\\). Jest nią bok o długości \\(8\\), i to on wchodzi na miejsce \\(c\\)."
       },
       {
             "type": "video",
             "src": "media/zad17_1/solution-step-by-step/step5.mp4",
-            "text": "Zostaje wpisać długości odczytane na początku."
-      },
-      {
-            "type": "video",
-            "src": "media/zad17_1/solution-step-by-step/step6.mp4",
-            "text": "Warto sprawdzić, czy wynik ma sens.<br>Przeciwprostokątna jest najdłuższym bokiem, więc sinus kąta ostrego zawsze wychodzi mniejszy od \\(1\\).<br>Tutaj \\(\\sqrt{15} < \\sqrt{16} = 4\\), a \\(4\\) jest mniejsze od \\(8\\)."
+            "text": "W odpowiedziach szukamy teraz \\(\\dfrac{\\sqrt{15}}{8}\\).<br>Odpowiedź \\(\\dfrac{7}{8}\\) wyszłaby komuś, kto wziął bok przyległy do kąta zamiast leżącego naprzeciw."
       }
 ],
         "solutionWidget": null
@@ -1178,82 +1173,72 @@
         "selfScore": false,
         "hint": "Najpierw oblicz AB z twierdzenia Pitagorasa (\\(AB^{2} + AC^{2} = BC^{2}\\)), potem \\(AD = AB - BD\\). Tangens = przyprostokątna naprzeciw / przyprostokątna przy kącie.",
         "formulasPage": 11,
-        "solutionText": "<div class=\"rozwiazanie-kroki\"><div class=\"rozw-komentarz\">Kąt \\(ADC\\) leży w trójkącie \\(ACD\\), a nie w \\(ABC\\). Ten trójkąt też ma kąt prosty przy \\(A\\).</div><div class=\"rozw-linia\">\\(|AC| = \\sqrt{15}\\) &nbsp;&nbsp;&nbsp;&nbsp; \\(|DB| = 6\\)</div><div class=\"rozw-komentarz\">Tangens kąta ostrego to bok leżący naprzeciw kąta podzielony przez bok przy kącie. Oba są przyprostokątnymi.</div><div class=\"rozw-linia\">\\[\\operatorname{tg} \\alpha = \\dfrac{a}{b}\\]</div><div class=\"rozw-linia\">\\(\\operatorname{tg}(\\angle ADC) = \\dfrac{|AC|}{|AD|}\\)</div><div class=\"rozw-komentarz\">Długości \\(|AD|\\) zadanie nie podaje. Punkt \\(D\\) leży na odcinku \\(AB\\), a od \\(D\\) do \\(B\\) jest \\(6\\).</div><div class=\"rozw-linia\">\\(|AD| = |AB| - 6\\)</div><div class=\"rozw-komentarz rozw-odstep\">Zostaje policzyć \\(|AB|\\). Trójkąt \\(ABC\\) jest prostokątny, więc korzystamy z twierdzenia Pitagorasa.</div><div class=\"rozw-linia\">\\[a^{2} + b^{2} = c^{2}\\]</div><div class=\"rozw-komentarz\">Literą \\(c\\) oznaczona jest przeciwprostokątna, czyli u nas \\(BC\\).</div><div class=\"rozw-linia\">\\(|AB|^{2} + |AC|^{2} = |BC|^{2}\\)</div><div class=\"rozw-linia\">\\(|AB|^{2} + (\\sqrt{15})^{2} = 8^{2}\\)</div><div class=\"rozw-linia\">\\(|AB|^{2} + 15 = 64\\)<span class=\"rozw-dzialanie\">\\(\\big/ - 15\\)</span></div><div class=\"rozw-linia\">\\(|AB|^{2} = 64 - 15\\)</div><div class=\"rozw-linia\">\\(|AB|^{2} = 49\\)</div><div class=\"rozw-komentarz\">Druga liczba, która pomnożona przez siebie daje \\(49\\), jest ujemna, a długość boku ujemna nie bywa.</div><div class=\"rozw-linia\">\\(\\boldsymbol{|AB| = 7}\\)</div><div class=\"rozw-linia rozw-odstep\">\\(|AD| = 7 - 6\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{|AD| = 1}\\)</div><div class=\"rozw-komentarz rozw-odstep\">Znamy obie przyprostokątne trójkąta \\(ACD\\), więc wstawiamy je do tangensa.</div><div class=\"rozw-linia\">\\(\\operatorname{tg}(\\angle ADC) = \\dfrac{\\sqrt{15}}{1}\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{\\operatorname{tg}(\\angle ADC) = \\sqrt{15}}\\)</div><div class=\"rozw-linia rozw-odstep\">Odpowiedź <b>A</b>.</div></div>",
+        "solutionText": "Kąt, o który pyta zadanie, siedzi przy \\(D\\), w trójkącie \\(ACD\\). Nazywamy go \\(\\alpha\\):\\[\\operatorname{tg} \\alpha = \\dfrac{a}{b}\\]<div class=\"rozwiazanie-kroki\"><div class=\"rozw-komentarz\">Naprzeciw kąta \\(\\alpha\\) leży bok \\(\\sqrt{15}\\), a przy kącie odcinek od \\(A\\) do \\(D\\), którego długości zadanie nie podaje.</div><div class=\"rozw-linia\">\\(\\operatorname{tg} \\alpha = \\dfrac{\\sqrt{15}}{b}\\)</div><div class=\"rozw-komentarz rozw-odstep\">Znamy tylko kawałek od \\(D\\) do \\(B\\), więc liczymy najpierw całą podstawę. Nazywamy ją \\(x\\) i bierzemy twierdzenie Pitagorasa w trójkącie \\(ABC\\), gdzie przeciwprostokątną jest bok \\(8\\).</div><div class=\"rozw-linia\">\\(x^{2} + \\left(\\sqrt{15}\\right)^{2} = 8^{2}\\)</div><div class=\"rozw-linia\">\\(x^{2} + 15 = 64\\)</div><div class=\"rozw-linia\">\\(x^{2} = 49\\)</div><div class=\"rozw-komentarz\">Bierzemy tylko wynik dodatni, bo długość boku nie bywa ujemna.</div><div class=\"rozw-linia\">\\(\\boldsymbol{x = 7}\\)</div><div class=\"rozw-komentarz rozw-odstep\">Odcinek przy kącie to cała podstawa bez znanego kawałka.</div><div class=\"rozw-linia\">\\(b = 7 - 6\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{b = 1}\\)</div><div class=\"rozw-linia rozw-odstep\">\\(\\operatorname{tg} \\alpha = \\dfrac{\\sqrt{15}}{1}\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{\\operatorname{tg} \\alpha = \\sqrt{15}}\\)</div><div class=\"rozw-linia\">Odpowiedź <b>A</b>.</div></div>",
         "solutionStepByStep": [
       {
             "type": "video",
             "src": "media/zad17_2/solution-step-by-step/step1.mp4",
-            "text": "Pytany kąt jest przy \\(D\\), więc pracujemy w trójkącie \\(ACD\\), a nie w \\(ABC\\).<br>Ten trójkąt też ma kąt prosty przy \\(A\\)."
+            "text": "Kąt, o który pyta zadanie, siedzi przy \\(D\\), w trójkącie \\(ACD\\). Nazywamy go \\(\\alpha\\).<br>To inny trójkąt niż w poprzedniej części."
       },
       {
             "type": "video",
             "src": "media/zad17_2/solution-step-by-step/step2.mp4",
-            "text": "Wzór z tablicy, strona \\(11\\). Litera \\(a\\) oznacza bok leżący naprzeciw kąta, litera \\(b\\) bok przy kącie. Oba są przyprostokątnymi.\\[\\operatorname{tg} \\alpha = \\dfrac{a}{b}\\]"
+            "text": "Wzór z tablicy, strona \\(11\\).<br>\\(a\\) to przyprostokątna leżąca naprzeciw kąta, \\(b\\) ta przy kącie.\\[\\operatorname{tg} \\alpha = \\dfrac{a}{b}\\]"
       },
       {
             "type": "video",
             "src": "media/zad17_2/solution-step-by-step/step3.mp4",
-            "text": "Naprzeciw kąta \\(ADC\\) leży \\(AC\\), a przy kącie leży \\(AD\\).<br>Długości \\(AD\\) zadanie nie podaje, więc trzeba ją wyliczyć."
+            "text": "Naprzeciw kąta \\(\\alpha\\) leży bok o długości \\(\\sqrt{15}\\), więc to on wchodzi na miejsce \\(a\\)."
       },
       {
             "type": "video",
             "src": "media/zad17_2/solution-step-by-step/step4.mp4",
-            "text": "Punkt \\(D\\) leży na odcinku \\(AB\\), a od \\(D\\) do \\(B\\) jest \\(6\\).<br>Odcinek \\(AD\\) to dokładnie to, co z \\(AB\\) zostaje."
+            "text": "Przy kącie leży odcinek od \\(A\\) do \\(D\\), a jego długości zadanie nie podaje. Stąd znak zapytania pod klamrą."
       },
       {
             "type": "video",
             "src": "media/zad17_2/solution-step-by-step/step5.mp4",
-            "text": "Trójkąt \\(ABC\\) ma kąt prosty przy \\(A\\), więc korzystamy z twierdzenia Pitagorasa.\\[a^{2} + b^{2} = c^{2}\\]"
+            "text": "Znamy tylko kawałek od \\(D\\) do \\(B\\). Żeby dojść do brakującego odcinka, liczymy najpierw całą podstawę i nazywamy ją \\(x\\)."
       },
       {
             "type": "video",
             "src": "media/zad17_2/solution-step-by-step/step6.mp4",
-            "text": "Literą \\(c\\) oznaczona jest przeciwprostokątna, czyli bok leżący naprzeciw kąta prostego. Tutaj jest nim \\(BC\\)."
+            "text": "Twierdzenie Pitagorasa, tablica strona \\(13\\). Bierzemy duży trójkąt \\(ABC\\).\\[a^{2} + b^{2} = c^{2}\\]"
       },
       {
             "type": "video",
             "src": "media/zad17_2/solution-step-by-step/step7.mp4",
-            "text": "Wstawiamy długości z rysunku. \\(AB\\) zostaje nazwą, bo to jest szukana."
+            "text": "Kąt prosty jest przy \\(A\\), więc przeciwprostokątną jest bok o długości \\(8\\) i to on idzie pod \\(c\\)."
       },
       {
             "type": "video",
             "src": "media/zad17_2/solution-step-by-step/step8.mp4",
-            "text": "Pierwiastek i kwadrat znoszą się nawzajem: \\(\\sqrt{15} \\cdot \\sqrt{15} = 15\\).<br>Poza tym \\(8^{2} = 64\\)."
+            "text": "Kwadrat pierwiastka wraca do liczby spod niego: \\(\\left(\\sqrt{15}\\right)^{2} = 15\\)."
       },
       {
             "type": "video",
             "src": "media/zad17_2/solution-step-by-step/step9.mp4",
-            "text": "Liczby zbieramy po prawej stronie.<br>Piętnastka przechodzi na drugą stronę ze zmianą znaku."
+            "text": "Piętnastka przechodzi na drugą stronę ze zmianą znaku: \\(64 - 15 = 49\\)."
       },
       {
             "type": "video",
             "src": "media/zad17_2/solution-step-by-step/step10.mp4",
-            "text": "\\(64 - 15 = 49\\)"
+            "text": "Pierwiastkujemy. Bierzemy tylko wynik dodatni, bo długość boku nie bywa ujemna.<br>Siódemka od razu wraca na rysunek, pod klamrę całej podstawy."
       },
       {
             "type": "video",
             "src": "media/zad17_2/solution-step-by-step/step11.mp4",
-            "text": "Szukamy liczby, która pomnożona przez siebie daje \\(49\\).<br>\\(7 \\cdot 7 = 49\\), a druga taka liczba jest ujemna i długość boku nie bywa ujemna.<br>Policzoną długość dopisujemy od razu na rysunku."
+            "text": "Cała podstawa bez znanego kawałka: \\(7 - 6 = 1\\). Tyle mierzy odcinek od \\(A\\) do \\(D\\).<br>Pitagoras zrobił swoje, więc dolna część kadru się czyści."
       },
       {
             "type": "video",
             "src": "media/zad17_2/solution-step-by-step/step12.mp4",
-            "text": "Wracamy do zapisu z czwartego kroku i wstawiamy policzone \\(AB\\)."
+            "text": "Jedynka wraca do wzoru, na miejsce litery \\(b\\)."
       },
       {
             "type": "video",
             "src": "media/zad17_2/solution-step-by-step/step13.mp4",
-            "text": "\\(7 - 6 = 1\\)<br>Na rysunku stoją teraz obok siebie \\(7\\) przy \\(AB\\) i \\(1\\) przy \\(AD\\), czyli dwa różne odcinki."
-      },
-      {
-            "type": "video",
-            "src": "media/zad17_2/solution-step-by-step/step14.mp4",
-            "text": "Obie przyprostokątne trójkąta \\(ACD\\) są już policzone, więc wstawiamy je do tangensa."
-      },
-      {
-            "type": "video",
-            "src": "media/zad17_2/solution-step-by-step/step15.mp4",
-            "text": "Dzielenie przez \\(1\\) niczego nie zmienia."
+            "text": "Dzielenie przez \\(1\\) niczego nie zmienia.<br>Odpowiedź \\(\\dfrac{\\sqrt{15}}{8}\\) wyszłaby komuś, kto wziął bok \\(8\\) zamiast odcinka przy kącie."
       }
 ],
         "solutionWidget": null

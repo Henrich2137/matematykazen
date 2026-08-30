@@ -31,7 +31,10 @@ PAS_Y = 2.70
 RACHUNEK_Y = 0.10
 CEL_Y = -2.35
 WERDYKT_Y = -2.35
-SLOTY = [-5.05, -1.85, 1.45, 4.65]
+# Kolejnosc pasa (Henrich, 2026-08-30): najpierw wyrazy ciagu po numerach
+# (a_2, a_3, a_4), a dopiero na koncu iloraz q, odsuniety wieksza przerwa,
+# bo nie jest wyrazem ciagu. Przedtem q stalo miedzy a_3 i a_4.
+SLOTY = [-5.30, -2.35, 0.60, 4.75]
 POSTOJ = 0.25
 
 
@@ -116,8 +119,8 @@ class Zad16(Scene):
 
         pas2 = self.wpis_pasa("a_{2}", ("1",), ("6",), 0)
         pas3 = self.wpis_pasa("a_{3}", ("1",), ("9",), 1)
-        pasq = self.wpis_pasa("q", ("2",), ("3",), 2)
-        pas4 = self.wpis_pasa("a_{4}", ("2",), ("27",), 3)
+        pas4 = self.wpis_pasa("a_{4}", ("2",), ("27",), 2)
+        pasq = self.wpis_pasa("q", ("2",), ("3",), 3)
 
         # Cel stoi na dole przez caly film: pytanie jest o a_5, nie o a_4.
         cel_e = self.stan("a_{5}", "=", rozmiar=54)
@@ -250,19 +253,19 @@ class Zad16(Scene):
                   ReplacementTransform(d3, pas3), run_time=1.1)
         self.play(Create(strzalka), FadeIn(podpis), run_time=0.9)
         self.wait(0.45)
-        kop_q = podpis[1].copy()
-        self.add(kop_q)
         L2[0].set_color(ZIELONY)
-        kop_a3 = pas3[0][0].copy()
-        kop_a2 = pas2[0][0].copy()
-        self.add(kop_a3, kop_a2)
+        # Sama litera q z podpisu strzalki jedzie w dol i staje sie lewa strona
+        # rownania. Do 2026-08-30 lecila tu KOPIA, a oryginal gasl w tym samym
+        # czasie: przez pol sekundy w kadrze stalo q na q i wygladalo to jak
+        # blad renderu (uwaga Henricha o „strzalce q").
         self.play(
-            FadeOut(strzalka), FadeOut(podpis),
-            Transform(kop_q, L2[0]),
+            FadeOut(strzalka),
+            FadeOut(podpis[0], scale=0.4),
+            ReplacementTransform(podpis[1], L2[0]),
             FadeIn(L2[1]), FadeIn(F2[1]),
-            Transform(kop_a3, F2[0]),
-            Transform(kop_a2, F2[2]),
-            run_time=1.4, path_arc=-PI / 6,
+            TransformFromCopy(pas3[0][0], F2[0]),
+            TransformFromCopy(pas2[0][0], F2[2]),
+            run_time=1.4, path_arc=-PI / 3,
         )
         self.zakoncz(s2, pas2, pas3, cel)
 
@@ -342,7 +345,7 @@ class Zad16(Scene):
             ReplacementTransform(B5[2], F6[2][2]),
             FadeIn(F6[2][1]),
             ReplacementTransform(A5[1], F6[1]),
-            ReplacementTransform(B5[1], F6[1].copy()),
+            FadeOut(B5[1], target_position=F6[1].get_center(), scale=0.4),
             run_time=1.6,
         )
         self.zakoncz(s6, pas2, pas3, cel)
@@ -356,10 +359,12 @@ class Zad16(Scene):
         self.play(
             *[ReplacementTransform(L6[i], L7[i]) for i in range(2)],
             ReplacementTransform(F6[1], F7[1]),
-            *[ReplacementTransform(F6[0][i], F7[0][0].copy()) for i in (0, 1)],
+            *[FadeOut(F6[0][i], target_position=F7[0][0].get_center(),
+                      scale=0.4) for i in (0, 1)],
             ReplacementTransform(F6[0][2], F7[0][0]),
             ReplacementTransform(F6[2][0], F7[2][0]),
-            *[ReplacementTransform(F6[2][i], F7[2][0].copy()) for i in (1, 2)],
+            *[FadeOut(F6[2][i], target_position=F7[2][0].get_center(),
+                      scale=0.4) for i in (1, 2)],
             run_time=1.4,
         )
         self.zakoncz(s7, pas2, pas3, cel)
@@ -424,7 +429,7 @@ class Zad16(Scene):
             ReplacementTransform(B10[2], F11[2][2]),
             FadeIn(F11[2][1]),
             ReplacementTransform(A10[1], F11[1]),
-            ReplacementTransform(B10[1], F11[1].copy()),
+            FadeOut(B10[1], target_position=F11[1].get_center(), scale=0.4),
             run_time=1.6,
         )
         self.zakoncz(s11, pas2, pas3, pasq, cel)
@@ -438,10 +443,12 @@ class Zad16(Scene):
         self.play(
             *[ReplacementTransform(L11[i], L12[i]) for i in range(2)],
             ReplacementTransform(F11[1], F12[1]),
-            *[ReplacementTransform(F11[0][i], F12[0][0].copy()) for i in (0, 1)],
+            *[FadeOut(F11[0][i], target_position=F12[0][0].get_center(),
+                      scale=0.4) for i in (0, 1)],
             ReplacementTransform(F11[0][2], F12[0][0]),
             ReplacementTransform(F11[2][0], F12[2][0]),
-            *[ReplacementTransform(F11[2][i], F12[2][0].copy()) for i in (1, 2)],
+            *[FadeOut(F11[2][i], target_position=F12[2][0].get_center(),
+                      scale=0.4) for i in (1, 2)],
             run_time=1.4,
         )
         self.zakoncz(s12, pas2, pas3, pasq, cel)
@@ -487,7 +494,7 @@ class Zad16(Scene):
             ReplacementTransform(B14[2], F15[2][2]),
             FadeIn(F15[2][1]),
             ReplacementTransform(A14[1], F15[1]),
-            ReplacementTransform(B14[1], F15[1].copy()),
+            FadeOut(B14[1], target_position=F15[1].get_center(), scale=0.4),
             run_time=1.6,
         )
         self.zakoncz(s15, pas2, pas3, pasq, pas4, cel)
@@ -502,10 +509,12 @@ class Zad16(Scene):
         self.play(
             *[ReplacementTransform(L15[i], L16[i]) for i in range(2)],
             ReplacementTransform(F15[1], F16[1]),
-            *[ReplacementTransform(F15[0][i], F16[0][0].copy()) for i in (0, 1)],
+            *[FadeOut(F15[0][i], target_position=F16[0][0].get_center(),
+                      scale=0.4) for i in (0, 1)],
             ReplacementTransform(F15[0][2], F16[0][0]),
             ReplacementTransform(F15[2][0], F16[2][0]),
-            *[ReplacementTransform(F15[2][i], F16[2][0].copy()) for i in (1, 2)],
+            *[FadeOut(F15[2][i], target_position=F16[2][0].get_center(),
+                      scale=0.4) for i in (1, 2)],
             run_time=1.4,
         )
         self.play(FadeOut(cel, shift=DOWN * 0.2), run_time=0.6)
