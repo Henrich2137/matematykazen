@@ -6,7 +6,8 @@ tego samego dnia na zadaniach 3, 4, 6, 7 i 8. Wzorce do podejrzenia, wszystkie w
 
 | zadanie | czego jest wzorcem |
 |---|---|
-| 2 | dwie kolumny, wzór przy każdej linijce, zielony przy każdym wzorze |
+| 1 | dwa tory dla dwóch przypadków (wartość bezwzględna), schodzące się w sumie na końcu |
+| 2 | dwie kolumny w równych połówkach karty (`rozw-polowki`), wzór przy każdej linijce, zielony przy każdym wzorze |
 | 3 | to samo w zadaniu na wykazanie, na końcu wniosek zamiast „Odpowiedź X." |
 | 4 | wąskie rozwiązanie wyśrodkowane na karcie (`rozw-srodek`) |
 | 6 | jedna kolumna, jeden wzór na górze, ułamki przez `\dfrac` |
@@ -224,6 +225,14 @@ odczytane naraz, z jednego zapisu, więc rozbijanie ich na trzy linijki niczego 
     „a o to nam chodziło"). Henrich, 2026-08-28.
 
 ## Ustawienie bloku
+
+21a. **Przerwa między kolumnami ma wypadać na środku karty** (Henrich, 2026-08-30, zad. 2).
+    Domyślne ustawienie liczy szerokość kolumn z ich treści i dosuwa całość do lewej, więc
+    przy wąskiej kolumnie wzorów obie kolumny zbijają się w lewy górny róg, a prawa połowa
+    karty stoi pusta. Blok dostaje wtedy `class="rozw-2kol rozw-polowki"`: każda kolumna
+    bierze połowę karty, rachunek dobija do środka z lewej, wzór idzie od środka w prawo.
+    Nie stosuj tego do bloku, w którym rachunek i tak jest szeroki (zad. 3): tam kolumny
+    same wypełniają kartę, a wymuszona połowa tylko rozerwałaby parę.
 
 21. **Blok stoi domyślnie przy lewej krawędzi karty.** Wąskie rozwiązanie (kilka krótkich
     linijek) wygląda przy niej na zgubione, więc dostaje `class="rozw-2kol rozw-srodek"`

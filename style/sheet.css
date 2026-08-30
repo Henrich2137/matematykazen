@@ -1386,6 +1386,18 @@ body.sidebar-otwarty #sidebar-linia {
    na zad. 4). */
 .rozw-2kol.rozw-srodek { margin: 0 auto; }
 
+/* RÓWNE POŁÓWKI KARTY. Domyślne `auto auto` + fit-content stawia cały blok przy
+   lewej krawędzi, więc przy wąskiej kolumnie wzorów obie kolumny zbijają się w
+   lewy górny róg karty, a po prawej zostaje pusto (Henrich, 2026-08-30, zad. 2).
+   Ta klasa daje każdej kolumnie połowę karty, dzięki czemu PRZERWA MIĘDZY NIMI
+   wypada dokładnie na środku: rachunek dobija do środka z lewej, wzór od środka
+   w prawo. Wyjątkowo szeroka linijka i tak rozepchnie swoją kolumnę, a blok
+   przewinie się wtedy w sobie (`overflow-x` wyżej). */
+.rozw-2kol.rozw-polowki {
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+}
+
 /* DWA TORY RACHUNKU OBOK SIEBIE, które na końcu schodzą się w jeden. Do zadań,
    w których liczy się dwie rzeczy niezależnie (zad. 7: osobno \(a\), osobno \(b\),
    dopiero na końcu ich iloczyn) — układ pokazuje to samo, co film: dwa etapy,

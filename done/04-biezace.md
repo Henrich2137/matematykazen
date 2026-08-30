@@ -1,5 +1,44 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-30] (Opus 5, medium) Rozwiązania zwykłe: przepisane zadania 1 do 6
+z grudnia 2024 na styl zadań 7 do 12 i wycięte oczywiste komentarze w zadaniach 7 do 17.
+[2024-grudzien, zad1, zad2, zad3, zad4, zad5, zad6, css, zasady]
+
+Wersja v104. Trzy punkty z TODO.md, wszystkie wykonane.
+
+- **Wycięte komentarze (zad. 7 do 17).** Henrich: „Wykasuj komentarze typu »Pierwiastek
+  i kwadrat znoszą się nawzajem«, »Skracamy przez 3«. Nie warto zabierać miejsca czymś aż
+  tak oczywistym". Poszło 23 komentarzy, 7 kolejnych skrócono. Kryterium było to samo, co
+  w SOLUTION_TEXT_RULES.md, punkt 15d: zostaje zdanie, które mówi, SKĄD coś się wzięło albo
+  co się zmienia naraz; wylatuje zdanie opisujące wynik działania, który i tak stoi w linijce
+  niżej (\(3 \cdot (-1) = -3\), \(6 : 3 = 2\), „mnożenie przez \(1\) niczego nie zmienia").
+  Zad. 8 nie ruszony wcale: to wzorzec z 2026-08-28 i wszystkie jego komentarze przechodzą
+  kryterium. Zad. 17.2 posprzątany mimo zakresu „7 do 16", bo to stamtąd pochodzi zdanie
+  o pierwiastku, które Henrich zacytował.
+
+- **Zad. 1 do 6 przepisane.** Dostały to, co mają 7 do 12: linijki w `.rozw-linia`
+  i krótkie komentarze przy przejściach, w których uczeń może się zgubić. Zad. 1 (wartość
+  bezwzględna) przeszedł z surowych bloków `\begin{aligned}` na dwa tory `.rozw-dwatory`,
+  po jednym na każdy przypadek, schodzące się w sumie na końcu. Zad. 5 i 6 z linijek
+  rozdzielanych `<br>` na `.rozw-linia` plus działanie na obu stronach w `.rozw-dzialanie`.
+  Zad. 2, 3 i 4 zostały dwukolumnowe (układ jest chciany, patrz reguła), doszły w nich tylko
+  komentarze: 2 w zad. 2, 3 w zad. 3, 1 w zad. 4. Liczba komentarzy jest celowo mała,
+  bo Henrich prosił „nie przesadź z opisywaniem".
+
+- **Zad. 2, kolumny na środek: nowa klasa `.rozw-polowki`.** Domyślne `auto auto`
+  z `width: fit-content` stawia cały blok przy lewej krawędzi karty, więc przy wąskiej
+  kolumnie wzorów obie kolumny zbijały się w lewy górny róg, a prawa połowa karty stała
+  pusta. Nowa klasa daje każdej kolumnie połowę karty (`1fr 1fr`, `width: 100%`), przez co
+  przerwa między nimi wypada dokładnie na środku: rachunek dobija do środka z lewej, wzór
+  idzie od środka w prawo. Zmierzone przy 390 i 485 px: strona nie przewija się w bok,
+  żaden blok nie musi przewijać się w sobie.
+
+- **Przy okazji: wycięte pauzy.** W ośmiu krótkich rozwiązaniach (zad. 18, 20 do 27, 29)
+  i w dwóch podpowiedziach (zad. 19, 27) siedziała pauza „—", zakazana w CLAUDE.md.
+  Zamieniona na przecinek albo dwukropek. Pauzy w polu `question` zostają: to dosłowna
+  treść arkusza CKE, której nie wolno przepisywać.
+
+
 [ZROBIONE 2026-08-30] (Opus 5, medium) Zadania 9, 10, 11, 12.1, 12.2 i 12.3 z grudnia 2024:
 druga runda uwag Henricha, plus zluzowanie reguły „film jeden do jednego z tekstem".
 [2024-grudzien, zad9, zad10, zad11, zad12, manim, widzety, kolory, zasady]

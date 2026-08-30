@@ -3,9 +3,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + DO ZROBIENIA
 <br> Jeżeli nie masz co robić, to rób stąd.     
-
-  (pusto: paczka zad. 9 do 12 z grudnia 2024 zrobiona 2026-08-30, przeniesiona do done/04-biezace.md)
-
+  (pusto: paczka zad. 1 do 6 oraz sprzątanie komentarzy w zad. 7 do 17 zrobione 2026-08-30, przeniesione do done/04-biezace.md)
 
 <br>
 
@@ -31,6 +29,8 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945
 <br> Próg wejścia jest wysoki, patrz ZASADY DLA CLAUDE-A niżej. Archiwum dawnych list: issues/testowanie-archiwum.md.
+
+  - v104, zad. 2 z grudnia 2024, rozwiązanie zwykłe na TELEFONIE: kolumna rachunku i kolumna wzorów dostały po połowie karty, żeby przerwa między nimi wypadała na środku. sprawdź, czy przez to któraś linijka nie łamie się w środku wzoru
 
   - v94, zad. 8 z grudnia 2024, film krok po kroku w CIEMNYM motywie na telefonie: szare \(x \ne 1\) nad równaniem i szary dopisek działania z boku (np. „/ · 2") mają być czytelne, a nie zlewać się z tłem
   JEST CZYTELNE NAWET NA MAŁEJ JASNOŚĆI
