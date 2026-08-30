@@ -3,7 +3,7 @@ from manim import *
 # Zadanie 12.2 (wybor dwoch odpowiedzi, 2 pkt). Parabola o wierzcholku (3, 0)
 # przechodzaca przez (0, -9). Wynik: f(x) = -(x-3)^2 = -x^2 + 6x - 9, czyli B i D.
 #
-# Projekt: issues/projekt-zad11-zad12-2024-grudzien.md. Czternascie krokow.
+# Projekt: issues/projekt-zad11-zad12-2024-grudzien.md. Pietnascie krokow.
 #
 # WERSJA DRUGA, 2026-08-30, po uwagach Henricha:
 #   - krok 1 pokazuje TROJKE danych naraz: wzor postaci kanonicznej, punkt W
@@ -21,16 +21,22 @@ from manim import *
 #   - ostatni krok zdejmuje a = -1 i zostawia w kadrze OBIE postaci wzoru,
 #     jedna pod druga: to jest cala odpowiedz na pytanie zadania.
 #
+# POPRAWKA, 2026-08-30 (Henrich, o kroku 7): dawny krok 7 dzielil obie strony
+# przez 9 i JEDNOCZESNIE zamienial strony, wiec z -9 = a * 9 robilo sie od razu
+# a = -1. Dwie rzeczy naraz, czyli zlamana zasada „jeden krok = jedno
+# przeksztalcenie". Dzis krok 7 tylko dzieli (-1 = a), a osobny krok 8 zamienia
+# strony. Kroki od dawnego 8 w gore przesunely sie o jeden.
+#
 # Sedno zadania: B i D to TEN SAM wzor, raz zwiniety, raz rozwiniety. Dlatego
 # rozwiazanie nie konczy sie na -(x-3)^2, tylko jedzie dalej i rozwija nawias.
-# Litera B zapala sie w kroku 10, litera D w kroku 13, a krok 14 stawia obie
+# Litera B zapala sie w kroku 11, litera D w kroku 14, a krok 15 stawia obie
 # postaci obok siebie.
 #
 # Uklad kadru (README, punkt 35: trzy pasy, zawsze te same):
 #   - u gory dane z tresci: W = (3, 0) oraz A = (0, -9), najmniejszym pismem,
 #   - pod nimi pas odczytu: p = 3, q = 0 (README, punkt 41: odczyt jest MNIEJSZY
 #     od rachunku, bo to notatka z boku, a nie kolejna linijka),
-#   - pas wzoru z tablicy, zajety w krokach 10 i 11 (kwadrat roznicy),
+#   - pas wzoru z tablicy, zajety w krokach 11 i 12 (kwadrat roznicy),
 #   - w srodku glowny rachunek,
 #   - na dole rosnaca lista wybranych odpowiedzi.
 #
@@ -93,7 +99,7 @@ class Zad12_2(Scene):
         dopisek_f0.move_to([3.6, DOPISEK_Y, 0])
 
         # Pas odczytu trzyma TYLKO p i q. Wspolczynnik a nie dolacza do pasa:
-        # po policzeniu zajmuje srodek sprzatnietej gory kadru (krok 8).
+        # po policzeniu zajmuje srodek sprzatnietej gory kadru (krok 9).
         p_cz = self.stan("p", "=", "3", rozmiar=58)
         q_cz = self.stan("q", "=", "0", rozmiar=58)
         pas = VGroup(p_cz, q_cz).arrange(RIGHT, buff=1.30)
@@ -118,7 +124,8 @@ class Zad12_2(Scene):
         s6 = self.stan("-9", "=", "a", r"\cdot", "9")
         dop6 = self.stan(r"\big/", ":", "9", rozmiar=62)
         dop6.set_color(SZARY_DOPISEK)
-        s7 = self.stan("a", "=", "-1")
+        s7 = self.stan("-1", "=", "a")
+        s7b = self.stan("a", "=", "-1")
         s3b = self.stan("f", "(", "x", ")", "=", "a",
                         "(", "x", "-", "3", ")", "^{2}")
         s8 = self.stan("f", "(", "x", ")", "=", "-1", r"\cdot",
@@ -139,7 +146,7 @@ class Zad12_2(Scene):
         # Wspolna skala liczona z najszerszego kroku, zeby litery nie zmienialy
         # wielkosci w trakcie przeksztalcenia (README, workflow).
         MARGINES = 0.85
-        glowne = [s2lit, s2, s3, s4, s5, s6, s7, s3b, s8, s9, s10, s11, s12,
+        glowne = [s2lit, s2, s3, s4, s5, s6, s7, s7b, s3b, s8, s9, s10, s11, s12,
                   podsum_b]
         POLE = config.frame_width * MARGINES
         wsp = min(1.0, POLE / max(m.width for m in glowne))
@@ -310,49 +317,67 @@ class Zad12_2(Scene):
         self.wait(POSTOJ)
 
         # ================================================================
-        # KROK 7. Dzielimy obie strony przez 9.
+        # KROK 7. Dzielimy obie strony przez 9. Zostaje -1 = a, czyli
+        # niewiadoma po prawej: krok robi TYLKO dzielenie (Henrich, 2026-08-30
+        # — wczesniej ta sama animacja dzielila i zamieniala strony naraz).
+        # Zielona jest jedynie nowa wartosc -1; litera a sie nie zmienia.
         # ================================================================
         self.next_section("krok7")
         self.zapal(s6[0], s6[3], s6[4])
-        s7[2].set_color(ZIELONY)
+        s7[0].set_color(ZIELONY)
         self.play(
-            ReplacementTransform(s6[2], s7[0]),
+            ReplacementTransform(VGroup(s6[0], s6[3], s6[4]), s7[0]),
             ReplacementTransform(s6[1], s7[1]),
-            ReplacementTransform(VGroup(s6[0], s6[3], s6[4]), s7[2]),
+            ReplacementTransform(s6[2], s7[2]),
             FadeOut(dop6, shift=RIGHT * 0.3),
             run_time=1.4,
         )
-        self.zgas(s7[2])
+        self.zgas(s7[0])
         self.wait(POSTOJ)
 
         # ================================================================
-        # KROK 8. Gora kadru sie czysci. W, A, dopisek i pas odczytu zrobily
+        # KROK 8. Zamiana stron: -1 = a zapisujemy jako a = -1. Rownosc
+        # dziala w obie strony, wiec nic sie tu nie przelicza i nic nie jest
+        # zielone. Oba zapisy leca po luku w te sama strone, wiec jeden idzie
+        # gora, a drugi dolem i nie przechodza po sobie (README, punkt 27).
+        # ================================================================
+        self.next_section("krok8")
+        self.play(
+            ReplacementTransform(s7[0], s7b[2], path_arc=-2 * PI / 3),
+            ReplacementTransform(s7[2], s7b[0], path_arc=-2 * PI / 3),
+            ReplacementTransform(s7[1], s7b[1]),
+            run_time=1.2,
+        )
+        self.wait(POSTOJ)
+
+        # ================================================================
+        # KROK 9. Gora kadru sie czysci. W, A, dopisek i pas odczytu zrobily
         # swoje, a jedyne, co z nich zostaje potrzebne, to a = -1, wiec ten
         # wynik jedzie na ich miejsce, na srodek (Henrich, 2026-08-30: „ten
         # caly balagan na gorze ma zniknac i a = -1 wejsc na jego miejsce").
         # Bez koloru: nic sie tu nie przelicza, tylko sprzata.
         # ================================================================
-        self.next_section("krok8")
-        przesuw = UP * A_GORA_Y - s7.get_center()
+        self.next_section("krok9")
+        przesuw = UP * A_GORA_Y - s7b.get_center()
         self.play(
             FadeOut(dane_w, shift=UP * 0.3),
             FadeOut(dane_a, shift=UP * 0.3),
             FadeOut(dopisek_f0, shift=UP * 0.3),
             FadeOut(p_cz, shift=UP * 0.3),
             FadeOut(q_cz, shift=UP * 0.3),
-            *[m.animate.shift(przesuw) for m in (s7[0], s7[1], s7[2])],
+            *[m.animate.shift(przesuw) for m in (s7b[0], s7b[1], s7b[2])],
             run_time=1.3,
         )
         self.wait(POSTOJ)
 
         # ================================================================
-        # KROK 9. Wraca postac kanoniczna, a w miejsce litery a wlatuje
+        # KROK 10. Wraca postac kanoniczna, a w miejsce litery a wlatuje
         # policzona liczba, prosto z gory kadru (README, punkt 38).
         # ================================================================
-        self.next_section("krok9")
+        self.next_section("krok10")
         self.play(FadeIn(s3b), run_time=0.8)
         self.wait(0.25)
-        kopie8 = przywolaj([s7[2]], [s3b[5].get_center()], czas=1.0)
+        kopie8 = przywolaj([s7b[2]], [s3b[5].get_center()], czas=1.0)
         s8[5].set_color(ZIELONY)
         s8[6].set_color(ZIELONY)
         self.play(
@@ -367,13 +392,13 @@ class Zad12_2(Scene):
         self.wait(POSTOJ)
 
         # ================================================================
-        # KROK 10. Mnozenie przez -1 zapisujemy samym minusem. To jest
+        # KROK 11. Mnozenie przez -1 zapisujemy samym minusem. To jest
         # odpowiedz B. Na KONCU tego kroku wjezdza wzor na kwadrat roznicy
         # (Henrich, 2026-08-30: „moze on sie pojawic juz na koncu poprzedniego
         # filmiku"): nastepny krok zaczyna sie wtedy od samego rachunku, a nie
         # od wjazdu wzoru, wiec pierwsza klatka pliku jest spokojna.
         # ================================================================
-        self.next_section("krok10")
+        self.next_section("krok11")
         self.zapal(s8[5], s8[6])
         s9[5].set_color(ZIELONY)
         self.play(
@@ -390,11 +415,11 @@ class Zad12_2(Scene):
         self.wait(POSTOJ)
 
         # ================================================================
-        # KROK 11. Kwadrat roznicy ze wzoru z tablicy, ktory stoi juz w kadrze
+        # KROK 12. Kwadrat roznicy ze wzoru z tablicy, ktory stoi juz w kadrze
         # od konca poprzedniego kroku. W nawiasie x wchodzi na miejsce a,
         # a trojka na miejsce b. Wzor znika na koncu tego kroku.
         # ================================================================
-        self.next_section("krok11")
+        self.next_section("krok12")
         self.zapal(wzor10[1], wzor10[3], s9[7], s9[9])
         for i in (10,):
             s10[i].set_color(ZIELONY)
@@ -425,9 +450,9 @@ class Zad12_2(Scene):
         self.wait(POSTOJ)
 
         # ================================================================
-        # KROK 12. 2 razy 3 to 6, a 3 do kwadratu to 9.
+        # KROK 13. 2 razy 3 to 6, a 3 do kwadratu to 9.
         # ================================================================
-        self.next_section("krok12")
+        self.next_section("krok13")
         self.zapal(s10[10], s10[11], s10[13], s10[14], s10[16], s10[17])
         s11[10].set_color(ZIELONY)
         s11[13].set_color(ZIELONY)
@@ -445,10 +470,10 @@ class Zad12_2(Scene):
         self.wait(POSTOJ)
 
         # ================================================================
-        # KROK 13. Minus przed nawiasem zmienia znak KAZDEGO skladnika.
+        # KROK 14. Minus przed nawiasem zmienia znak KAZDEGO skladnika.
         # Zielone: oba znaki, ktore sie odwracaja. To jest odpowiedz D.
         # ================================================================
-        self.next_section("krok13")
+        self.next_section("krok14")
         self.zapal(s11[5], s11[9], s11[12])
         s12[8].set_color(ZIELONY)
         s12[11].set_color(ZIELONY)
@@ -470,18 +495,18 @@ class Zad12_2(Scene):
         self.wait(POSTOJ)
 
         # ================================================================
-        # KROK 14. Podsumowanie. a = -1 zrobilo swoje i znika, a w kadrze
+        # KROK 15. Podsumowanie. a = -1 zrobilo swoje i znika, a w kadrze
         # zostaja OBIE postaci wzoru, jedna pod druga (Henrich, 2026-08-30).
         # To one sa odpowiedzia na pytanie zadania: ten sam wzor raz zwiniety,
         # raz rozwiniety. Bez koloru: nic sie tu nie przelicza.
         # ================================================================
-        self.next_section("krok14")
+        self.next_section("krok15")
         czesci12 = [s12[i] for i in range(13)]
         zjazd = UP * PODSUM_D_Y - s12.get_center()
         self.play(
-            FadeOut(s7[0], shift=UP * 0.3),
-            FadeOut(s7[1], shift=UP * 0.3),
-            FadeOut(s7[2], shift=UP * 0.3),
+            FadeOut(s7b[0], shift=UP * 0.3),
+            FadeOut(s7b[1], shift=UP * 0.3),
+            FadeOut(s7b[2], shift=UP * 0.3),
             *[m.animate.shift(zjazd) for m in czesci12],
             run_time=1.1,
         )

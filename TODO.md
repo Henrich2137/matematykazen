@@ -5,13 +5,26 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Jeżeli nie masz co robić, to rób stąd.     
   
   - 2024 grudzien
-    - Zad 12.2 - krok po korku - krok 7 - popraw na "/* (-9). Jeżeli chcesz już minusa przerzucić.
 
 <br>
 
 
 + NIE REALIZUJ, CZEKAJĄ W KOLEJCE:
   
+  DO DOKOŃCZENIA, ZAPISZ TU MYŚLNIKI NA RAZIE TYLKO
+  - Zad 20 - zwykłe
+  - Zad 21 - krok po kroku i zwykłe
+  - Zad 22 - krok po kroku i zwykłe
+  - Zad 23 - krok po kroku i zwykłe
+  - Zad 24 - zwykłe
+  - Zad 25 - zwykłe
+    Zad 26 - zwykłe 
+    Zad 27 - krok po kroku i zwykłe
+    (pomysł na 5 slotów ze zmieniajacymi się liczbami i licznikiem na górze kombinacji)
+    Zad 28 - zwykłe
+    Zad 29 - zwykłe
+    Zad 30 - zwykłe
+
   - Saphari na mały iphonie SE - Rozwiązania krok po kroku
     - Przyciskanie przycisku "steps-scroll-prawo" zbyt dużo razy na m sprawia, że kroki zostają po lewej. Przewijanie odjeższą za daleko.
     - Cieżko trafić w kropki aby je przesunąć
@@ -34,7 +47,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
   - v106, zad. 18 z grudnia 2024: nowe rozwiązanie zwykłe (jedynka trygonometryczna). sprawdź, czy nadal pasuje do widżetu koła trygonometrycznego, który stoi obok
 
-  - v106, zad. 19 z grudnia 2024: nowe rozwiązanie zwykłe i pierwszy film krok po kroku (24 kroki, najdłuższy w arkuszu, poprzedni rekord to 21 w zad. 9). sprawdź na TELEFONIE, czy rząd kropek kroków daje się wygodnie przewijać przy takiej ich liczbie, i czy trapez z zaznaczonymi kątami przy wierzchołkach nie robi się za ciasny do odczytania (etykieta \(C\), łuk kąta i znacznik kąta prostego stoją blisko siebie)
+  - v107, zad. 19 z grudnia 2024, NOWY film krok po kroku (17 kroków, liczony przez podobieństwo trójkątów zamiast przez sinus). w krokach 9 i 10 kopia trójkąta przekręca się na drugą stronę, odjeżdża w prawą połowę kadru i wraca powiększona na duży trójkąt. sprawdź na TELEFONIE, czy ten mały trójkąt w prawej połowie nie robi się za drobny, oraz w CIEMNYM motywie, czy zielona kopia leżąca na czarnych bokach trapezu nadal się od nich odróżnia
 
   - v105, zad. 17.1 i 17.2 z grudnia 2024, filmy krok po kroku na TELEFONIE: rysunek trójkąta jest teraz szerszy, a podpisy \(\sqrt{15}\), \(8\), \(6\) większe. sprawdź, czy przy tej szerokości nadal da się je odczytać i czy w 17.2 klamry pod podstawą nie wychodzą poza kadr
 
@@ -82,6 +95,9 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 
 + INNE NOTATKI, DO PRZEKMINIENIA:
+
+  - 2024-grudzien - zadania do których warto zrobić widżet 3D i/lub krok po kroku 3D - 24, 25, 26, 29
+
 
   - podmienić Goatcunter na Cloudflare bo goatcounter jest noncomertial.
 

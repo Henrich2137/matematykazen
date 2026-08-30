@@ -1,5 +1,55 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-08-30] (Opus 5) Zad. 19 z grudnia 2024 PO RAZ DRUGI, tym razem przez
+podobieństwo trójkątów zamiast przez sinus (uwaga Henricha), oraz zad. 12.2: krok 7
+rozbity na dwa. Nowa scena `solutionZad19.py`, 17 kroków (poprzednia miała 24),
+projekt w `issues/projekt-zad19-2024-grudzien.md`.
+[2024-grudzien, zad19, zad12_2, manim, podobienstwo]
+
+Wersja Sonneta (v106) liczyła przez cosinus kąta BAC; Henrich odrzucił ją w całości
+i sam wskazał drogę: „podobieństwo trójkątów, bo można to fajnie pokazać przez animację
+przeniesienia i przekręcania jednego trójkąta w miejsce drugiego". Stara scena i filmy
+zostały usunięte w `cbc7be9`, więc to była robota od czystej kartki.
+
+Droga rachunku (wybrana przez Henricha z dwóch przedstawionych): Pitagoras daje
+|BC| = 4,5, potem skala k = 6 : 7,5 = 0,8 i obie brakujące długości wychodzą zwykłym
+mnożeniem (|DC| = 4,8, |AD| = 3,6), na końcu pole 22,14. Klucz CKE idzie inaczej
+(proporcja |DC| : 6 = 6 : 7,5 i drugi Pitagoras), ale wszystkie cztery kryteria punktowe
+są pokryte.
+
+Rzecz, która zmieniła projekt animacji i której nie dało się zgadnąć:
+**podobieństwo tych dwóch trójkątów jest ODWROTNE.** Przy odpowiedniości C→A, D→C, A→B
+trójka (D, C, A) ma orientację przeciwną do obrazu (C, A, B) (pola zorientowane -17,28
+i +27 w jednostkach zadania). Sam obrót w płaszczyźnie nie nałoży małego trójkąta na duży,
+trzeba go najpierw przekręcić na drugą stronę jak kartkę (`Rotate(..., axis=UP)`).
+Pierwsza, szybka odpowiedź brzmiała „sam obrót wystarczy" i była błędna: policzona na
+niewłaściwej kolejności wierzchołków. Morał: przy nakładaniu figur orientację liczy się
+z odpowiedniości wierzchołków, a nie z wrażenia.
+
+Trzy rzeczy złapane na klatkach, nie w kodzie:
+- kopia trójkąta była zielona już na pierwszej klatce kroku 9 (kolor ustawiony przed
+  pierwszym `play`), co psuło styk z krokiem 8. Zapala się teraz animacją,
+- lot kopii szedł po prostej przez rysunek, po boku BC i po podpisie 4,5. Teraz leci
+  górą (`path_arc`), zgodnie z punktem 27 README,
+- samo pokrycie nie mówiło, KTÓRY bok jest którym. Na końcu kroku 10 kopia podpisu „6"
+  jedzie pod bok AB i staje obok „7,5", więc skala z kroku 11 ma widoczne źródło.
+
+Rozwiązanie zwykłe zaczęło w układzie dwukolumnowym (rachunek + wzór z tablicy obok).
+Na telefonie 485 px linijka |AD| = 4,5 · 0,8 = 3,6 łamała się w środku, więc kolumna
+wzorów poszła precz: Pitagoras stoi nad rachunkiem, wzór na pole trapezu w komentarzu.
+To dokładnie ostrzeżenie z SOLUTION_TEXT_RULES.md o koszcie dwóch kolumn na telefonie.
+
+Zad. 12.2, krok 7: dawniej z -9 = a · 9 robiło się od razu a = -1, czyli krok naraz
+dzielił i zamieniał strony. Dziś krok 7 tylko dzieli (-1 = a), a nowy krok 8 zamienia
+strony (oba zapisy lecą łukiem w tę samą stronę, więc jeden idzie górą, drugi dołem).
+Film ma 15 kroków zamiast 14, rozwiązanie zwykłe dostało linijkę -1 = a.
+
+Przy okazji: `tools/zrzut-rozwiazania.js --ciemny` nigdy nie działał. Ustawiał
+w localStorage klucz `motyw`, a `app/theme.js` czyta `matematykazen-motyw`, więc zrzuty
+„ciemne" wychodziły jasne i nic tego nie zgłaszało. To ta sama pułapka, którą
+`tools/zrzuty.js` ma opisaną w komentarzu od dawna. Poprawione.
+
+
 [ZROBIONE 2026-08-30] (Sonnet 5) Zad. 18 i 19 z grudnia 2024: rozwiązanie zwykłe do
 zad. 18 (jedynka trygonometryczna) w stylu pozostałych zadań, oraz zad. 19 (pole trapezu
 z dwóch trójkątów prostokątnych) od zera: rozwiązanie zwykłe (scaliło dawne „POKAŻ WIĘCEJ")

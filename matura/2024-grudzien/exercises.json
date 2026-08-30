@@ -799,7 +799,7 @@
         "selfScore": false,
         "hint": "Wierzchołek podaje \\(p\\) i \\(q\\) do postaci kanonicznej, a podany punkt pozwala wyliczyć \\(a\\). Odpowiedzi są dwie, bo ten sam wzór da się zapisać ze zwiniętym i z rozwiniętym nawiasem.",
         "formulasPage": 8,
-        "solutionText": "Postać kanoniczna funkcji kwadratowej:\\[f(x) = a(x - p)^{2} + q\\]<div class=\"rozwiazanie-kroki\"><div class=\"rozw-komentarz\">Wierzchołek ma współrzędne \\((p,\\ q)\\), więc obie liczby odczytujemy z jednego zapisu.</div><div class=\"rozw-linia\"><b>Wierzchołek</b> \\((3,\\ 0)\\): &nbsp; \\(p = 3\\) &nbsp;&nbsp; \\(q = 0\\)</div><div class=\"rozw-linia rozw-odstep\">\\(f(x) = a(x - 3)^{2} + 0\\)</div><div class=\"rozw-linia\">\\(f(x) = a(x - 3)^{2}\\)</div><div class=\"rozw-komentarz\">„Przechodzi przez punkt \\((0,\\ -9)\\)” znaczy, że dla \\(x = 0\\) wartość funkcji wynosi \\(-9\\).</div><div class=\"rozw-linia\">\\(-9 = a(0 - 3)^{2}\\)</div><div class=\"rozw-linia\">\\(-9 = a(-3)^{2}\\)</div><div class=\"rozw-linia\">\\(-9 = a \\cdot 9\\)<span class=\"rozw-dzialanie\">\\(\\big/ : 9\\)</span></div><div class=\"rozw-linia\">\\(\\boldsymbol{a = -1}\\)</div><div class=\"rozw-linia rozw-odstep\">\\(f(x) = -1 \\cdot (x - 3)^{2}\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{f(x) = -(x - 3)^{2}}\\) &nbsp; to odpowiedź <b>B</b></div><div class=\"rozw-komentarz rozw-odstep\">Nawias rozwijamy wzorem na kwadrat różnicy \\((a - b)^{2} = a^{2} - 2ab + b^{2}\\), w którym \\(x\\) wchodzi na miejsce \\(a\\), a \\(3\\) na miejsce \\(b\\).</div><div class=\"rozw-linia\">\\(f(x) = -(x^{2} - 2 \\cdot x \\cdot 3 + 3^{2})\\)</div><div class=\"rozw-linia\">\\(f(x) = -(x^{2} - 6x + 9)\\)</div><div class=\"rozw-komentarz\">Minus przed nawiasem zmienia znak każdego składnika w środku.</div><div class=\"rozw-linia\">\\(\\boldsymbol{f(x) = -x^{2} + 6x - 9}\\) &nbsp; to odpowiedź <b>D</b></div><div class=\"rozw-komentarz rozw-odstep\">To jest ten sam wzór w dwóch postaciach: zwiniętej i rozwiniętej. Obie stoją wśród odpowiedzi, więc zaznaczamy obie.</div><div class=\"rozw-linia\">\\(\\boldsymbol{f(x) = -(x - 3)^{2}}\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{f(x) = -x^{2} + 6x - 9}\\)</div><div class=\"rozw-linia rozw-odstep\">Odpowiedzi: <b>B</b>, <b>D</b></div></div>",
+        "solutionText": "Postać kanoniczna funkcji kwadratowej:\\[f(x) = a(x - p)^{2} + q\\]<div class=\"rozwiazanie-kroki\"><div class=\"rozw-komentarz\">Wierzchołek ma współrzędne \\((p,\\ q)\\), więc obie liczby odczytujemy z jednego zapisu.</div><div class=\"rozw-linia\"><b>Wierzchołek</b> \\((3,\\ 0)\\): &nbsp; \\(p = 3\\) &nbsp;&nbsp; \\(q = 0\\)</div><div class=\"rozw-linia rozw-odstep\">\\(f(x) = a(x - 3)^{2} + 0\\)</div><div class=\"rozw-linia\">\\(f(x) = a(x - 3)^{2}\\)</div><div class=\"rozw-komentarz\">„Przechodzi przez punkt \\((0,\\ -9)\\)” znaczy, że dla \\(x = 0\\) wartość funkcji wynosi \\(-9\\).</div><div class=\"rozw-linia\">\\(-9 = a(0 - 3)^{2}\\)</div><div class=\"rozw-linia\">\\(-9 = a(-3)^{2}\\)</div><div class=\"rozw-linia\">\\(-9 = a \\cdot 9\\)<span class=\"rozw-dzialanie\">\\(\\big/ : 9\\)</span></div><div class=\"rozw-linia\">\\(-1 = a\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{a = -1}\\)</div><div class=\"rozw-linia rozw-odstep\">\\(f(x) = -1 \\cdot (x - 3)^{2}\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{f(x) = -(x - 3)^{2}}\\) &nbsp; to odpowiedź <b>B</b></div><div class=\"rozw-komentarz rozw-odstep\">Nawias rozwijamy wzorem na kwadrat różnicy \\((a - b)^{2} = a^{2} - 2ab + b^{2}\\), w którym \\(x\\) wchodzi na miejsce \\(a\\), a \\(3\\) na miejsce \\(b\\).</div><div class=\"rozw-linia\">\\(f(x) = -(x^{2} - 2 \\cdot x \\cdot 3 + 3^{2})\\)</div><div class=\"rozw-linia\">\\(f(x) = -(x^{2} - 6x + 9)\\)</div><div class=\"rozw-komentarz\">Minus przed nawiasem zmienia znak każdego składnika w środku.</div><div class=\"rozw-linia\">\\(\\boldsymbol{f(x) = -x^{2} + 6x - 9}\\) &nbsp; to odpowiedź <b>D</b></div><div class=\"rozw-komentarz rozw-odstep\">To jest ten sam wzór w dwóch postaciach: zwiniętej i rozwiniętej. Obie stoją wśród odpowiedzi, więc zaznaczamy obie.</div><div class=\"rozw-linia\">\\(\\boldsymbol{f(x) = -(x - 3)^{2}}\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{f(x) = -x^{2} + 6x - 9}\\)</div><div class=\"rozw-linia rozw-odstep\">Odpowiedzi: <b>B</b>, <b>D</b></div></div>",
         "solutionStepByStep": [
             {
                 "type": "video",
@@ -839,36 +839,41 @@
             {
                 "type": "video",
                 "src": "media/zad12_2/solution-step-by-step/step8.mp4",
-                "text": "Wierzchołek i punkt \\(A\\) są już wykorzystane, więc schodzą z kadru.<br>Zostaje z nich tylko to, co dalej potrzebne: \\(a = -1\\)."
+                "text": "R\u00f3wno\u015b\u0107 dzia\u0142a w obie strony, wi\u0119c \\(-1 = a\\) znaczy to samo co \\(a = -1\\).<br>Niewiadom\u0105 zapisujemy po lewej, bo w tej postaci wstawimy j\u0105 do wzoru."
             },
             {
                 "type": "video",
                 "src": "media/zad12_2/solution-step-by-step/step9.mp4",
-                "text": "Wracamy do postaci kanonicznej i wstawiamy policzone \\(a\\)."
+                "text": "Wierzchołek i punkt \\(A\\) są już wykorzystane, więc schodzą z kadru.<br>Zostaje z nich tylko to, co dalej potrzebne: \\(a = -1\\)."
             },
             {
                 "type": "video",
                 "src": "media/zad12_2/solution-step-by-step/step10.mp4",
-                "text": "Mnożenie przez \\(-1\\) zapisujemy samym minusem. Tak wygląda odpowiedź <b>B</b>."
+                "text": "Wracamy do postaci kanonicznej i wstawiamy policzone \\(a\\)."
             },
             {
                 "type": "video",
                 "src": "media/zad12_2/solution-step-by-step/step11.mp4",
-                "text": "Kwadrat różnicy:\\[(a - b)^{2} = a^{2} - 2ab + b^{2}\\]Tutaj \\(x\\) wchodzi na miejsce \\(a\\), a \\(3\\) na miejsce \\(b\\)."
+                "text": "Mnożenie przez \\(-1\\) zapisujemy samym minusem. Tak wygląda odpowiedź <b>B</b>."
             },
             {
                 "type": "video",
                 "src": "media/zad12_2/solution-step-by-step/step12.mp4",
-                "text": "\\(2 \\cdot x \\cdot 3\\) to \\(6x\\), a \\(3^{2}\\) to \\(9\\)."
+                "text": "Kwadrat różnicy:\\[(a - b)^{2} = a^{2} - 2ab + b^{2}\\]Tutaj \\(x\\) wchodzi na miejsce \\(a\\), a \\(3\\) na miejsce \\(b\\)."
             },
             {
                 "type": "video",
                 "src": "media/zad12_2/solution-step-by-step/step13.mp4",
-                "text": "Minus przed nawiasem zmienia znak każdego składnika. Tak wygląda odpowiedź <b>D</b>."
+                "text": "\\(2 \\cdot x \\cdot 3\\) to \\(6x\\), a \\(3^{2}\\) to \\(9\\)."
             },
             {
                 "type": "video",
                 "src": "media/zad12_2/solution-step-by-step/step14.mp4",
+                "text": "Minus przed nawiasem zmienia znak każdego składnika. Tak wygląda odpowiedź <b>D</b>."
+            },
+            {
+                "type": "video",
+                "src": "media/zad12_2/solution-step-by-step/step15.mp4",
                 "text": "Ten sam wzór w dwóch postaciach: zwiniętej i rozwiniętej.<br>Obie stoją wśród odpowiedzi, więc zaznaczamy obie."
             }
         ],
@@ -1275,8 +1280,94 @@
         ],
         "hint": "W trójkącie ABC (prostokątnym przy C) oblicz BC z Pitagorasa. Kąty CAB i DCA są naprzemianległe (\\(DC \\parallel AB\\)), wykorzystaj to w trójkącie ACD do wyznaczenia wysokości AD i podstawy DC.",
         "formulasPage": 17,
-        "solutionText": null,
-        "solutionStepByStep": null,
+        "solutionText": "Przekątna \\(AC\\) dzieli trapez na dwa trójkąty prostokątne. Zaczynamy od większego, czyli \\(ABC\\), bo znamy w nim dwa boki. Przeciwprostokątną jest \\(AB\\):\\[a^{2} + b^{2} = c^{2}\\]<div class=\"rozwiazanie-kroki\"><div class=\"rozw-linia\">\\(6^{2} + |BC|^{2} = 7{,}5^{2}\\)</div><div class=\"rozw-linia\">\\(|BC|^{2} = 7{,}5^{2} - 6^{2}\\)</div><div class=\"rozw-linia\">\\(|BC|^{2} = 56{,}25 - 36\\)</div><div class=\"rozw-linia\">\\(|BC|^{2} = 20{,}25\\)</div><div class=\"rozw-komentarz\">Bierzemy tylko wynik dodatni, bo bok nie ma ujemnej długości.</div><div class=\"rozw-linia\">\\(\\boldsymbol{|BC| = 4{,}5}\\)</div><div class=\"rozw-komentarz rozw-odstep\">Kąty \\(DCA\\) i \\(CAB\\) są równe, bo \\(DC\\) jest równoległe do \\(AB\\), a przekątna przecina obie te proste (kąty naprzemianległe). Oba trójkąty mają też kąt prosty, więc z cechy kąt, kąt, kąt trójkąt \\(ACD\\) jest podobny do trójkąta \\(ABC\\).</div><div class=\"rozw-komentarz\">W mniejszym trójkącie przeciwprostokątną jest \\(AC = 6\\), w większym \\(AB = 7{,}5\\). Skala podobieństwa to iloraz tych długości.</div><div class=\"rozw-linia\">\\(k = \\dfrac{6}{7{,}5} = 0{,}8\\)</div><div class=\"rozw-komentarz\">Bok \\(DC\\) odpowiada bokowi \\(AC\\), a bok \\(AD\\) odpowiada bokowi \\(CB\\). Każdy z nich mnożymy przez skalę.</div><div class=\"rozw-linia\">\\(|DC| = 6 \\cdot 0{,}8 = \\boldsymbol{4{,}8}\\)</div><div class=\"rozw-linia\">\\(|AD| = 4{,}5 \\cdot 0{,}8 = \\boldsymbol{3{,}6}\\)</div><div class=\"rozw-komentarz rozw-odstep\">Pole trapezu liczymy ze wzoru \\(P = \\dfrac{a + b}{2} \\cdot h\\), w którym \\(a\\) i \\(b\\) to podstawy, czyli \\(7{,}5\\) oraz \\(4{,}8\\). Wysokością jest \\(AD\\), bo stoi prostopadle do obu podstaw.</div><div class=\"rozw-linia\">\\(P = \\dfrac{7{,}5 + 4{,}8}{2} \\cdot 3{,}6\\)</div><div class=\"rozw-linia\">\\(P = \\dfrac{12{,}3}{2} \\cdot 3{,}6\\)</div><div class=\"rozw-linia\">\\(P = 6{,}15 \\cdot 3{,}6\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{P = 22{,}14}\\)</div><div class=\"rozw-linia rozw-odstep\">Pole trapezu \\(ABCD\\) jest równe \\(22{,}14\\).</div></div>",
+        "solutionStepByStep": [
+            {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step1.mp4",
+                "text": "Trapez z zadania. Przekątna \\(AC\\) dzieli go na dwa trójkąty prostokątne: jeden leży przy podstawie \\(AB\\), drugi przy boku \\(AD\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step2.mp4",
+                "text": "Zaczynamy od większego trójkąta \\(ABC\\), bo znamy w nim dwa boki:\\[a^{2} + b^{2} = c^{2}\\]Przeciwprostokątna \\(c\\) leży naprzeciw kąta prostego, czyli tutaj jest to \\(AB\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step3.mp4",
+                "text": "Pod \\(a\\) i \\(b\\) wchodzą przyprostokątne, pod \\(c\\) przeciwprostokątna."
+            },
+            {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step4.mp4",
+                "text": "\\(6^{2}\\) przenosimy na drugą stronę. Przy przejściu przez znak równości zmienia znak na przeciwny."
+            },
+            {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step5.mp4",
+                "text": "\\(7{,}5^{2} = 56{,}25\\), a \\(6^{2} = 36\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step6.mp4",
+                "text": "\\(56{,}25 - 36 = 20{,}25\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step7.mp4",
+                "text": "Pierwiastkujemy obie strony: \\(4{,}5 \\cdot 4{,}5 = 20{,}25\\).<br>Wynik ujemny odpada, bo bok nie ma ujemnej długości."
+            },
+            {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step8.mp4",
+                "text": "Teraz mniejszy trójkąt. Kąt przy \\(A\\) i kąt przy \\(C\\) są równe: \\(DC\\) jest równoległe do \\(AB\\), a przekątna przecina obie te proste, więc powstają kąty naprzemianległe."
+            },
+            {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step9.mp4",
+                "text": "Oba trójkąty mają jeszcze kąt prosty, czyli wszystkie ich kąty są takie same. Kopia mniejszego przekręca się na drugą stronę i staje obok, żeby zostawić sam kształt, bez trapezu wokół."
+            },
+            {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step10.mp4",
+                "text": "Po powiększeniu \\(1{,}25\\) raza kopia pokrywa większy trójkąt dokładnie: to ten sam kształt w innej wielkości.<br>Najdłuższy bok małego trójkąta \\((6)\\) leży teraz na najdłuższym boku dużego \\((7{,}5)\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step11.mp4",
+                "text": "Skala podobieństwa to iloraz dwóch odpowiadających sobie boków. Bierzemy te najdłuższe, bo obie ich długości znamy."
+            },
+            {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step12.mp4",
+                "text": "Bok \\(DC\\) odpowiada bokowi \\(AC\\), więc jest od niego \\(0{,}8\\) raza krótszy."
+            },
+            {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step13.mp4",
+                "text": "Bok \\(AD\\) odpowiada bokowi \\(CB\\), czyli liczymy tak samo."
+            },
+            {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step14.mp4",
+                "text": "Pole trapezu:\\[P = \\dfrac{a + b}{2} \\cdot h\\]\\(a\\) i \\(b\\) to podstawy, czyli \\(7{,}5\\) oraz \\(4{,}8\\). Wysokością jest \\(AD\\), bo stoi prostopadle do obu podstaw."
+            },
+            {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step15.mp4",
+                "text": "\\(7{,}5 + 4{,}8 = 12{,}3\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step16.mp4",
+                "text": "\\(12{,}3 : 2 = 6{,}15\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad19/solution-step-by-step/step17.mp4",
+                "text": "\\(6{,}15 \\cdot 3{,}6 = 22{,}14\\)."
+            }
+        ],
         "solutionWidget": null
     },
     {

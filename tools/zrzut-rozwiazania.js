@@ -46,7 +46,13 @@ const KAT = `/tmp/zrzuty-rozw/${ETYKIETA}`;
     const page = await browser.newPage({ viewport: { width: SZER, height: 1000 }, deviceScaleFactor: 2 });
 
     if (jest('ciemny')) {
-        await page.addInitScript(() => localStorage.setItem('motyw', 'ciemny'));
+        /* Klucz musi być dokładnie ten, co w app/theme.js (KLUCZ_MOTYWU). Do
+           2026-08-30 stało tu 'motyw' i zrzuty „ciemne" wychodziły jasne, a nic
+           tego nie zgłaszało (ta sama pułapka, którą tools/zrzuty.js już ma
+           opisaną w komentarzu). */
+        await page.addInitScript(() => {
+            try { localStorage.setItem('matematykazen-motyw', 'ciemny'); } catch (e) { /* tryb prywatny */ }
+        });
     }
     await page.goto(`http://127.0.0.1:${PORT}/template.html?arkusz=${ARKUSZ}`, { waitUntil: 'networkidle' });
     await page.waitForFunction(() => document.querySelectorAll('.exercise-container').length > 2);
