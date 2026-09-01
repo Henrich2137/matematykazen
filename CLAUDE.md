@@ -1,7 +1,5 @@
 # CLAUDE.md
 
-Napisz na początku sesji: "Wczytałem CLAUDE.md"
-
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 **Detailed architecture and exercise data schema live in [ARCHITECTURE.md](ARCHITECTURE.md); the full CSS/layout reference lives in [ARCHITECTURE_CSS.md](ARCHITECTURE_CSS.md).** Read them before touching the rendering logic in template.html, the schema in a sheet's exercises.json, or the CSS in style/ — and keep them in sync when you change what they describe. Don't duplicate their content here. **[COLORS.md](COLORS.md) — what each colour *means* and which token to use** (blue = the student's choice, green/red = correctness only, default is *no* colour); read it before colouring anything in a widget, an exercise or a Manim scene.
@@ -222,4 +220,3 @@ Cztery pliki w korzeniu obsługują wariant Cloudflare: `wrangler.jsonc` (ustawi
 ## Cloud sessions / routines
 
 - Pushuj na `dev` (gałąź codziennej pracy, patrz sekcja Git) zamiast tworzyć nową gałąź. Samo „zrób push" nigdy nie znaczy `main`: tam idzie tylko to, o czym użytkownik wprost powie, że ma być widoczne publicznie dla zwykłych użytkowników.
-- Nie zaglądaj do brancha `backup-przed-squash-gitdoc` (lokalnie ani `origin/`) — to tylko archiwalny backup sprzed squasha autozapisów gitdoc. Wyjątek: gdy chcesz sprawdzić bardzo szczegółową historię automatycznych commitów generowanych przez gitdoca.
