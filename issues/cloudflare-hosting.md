@@ -186,3 +186,41 @@ wersję roboczą z gałęzi `dev`.
 Zostało do przemyślenia: czy GitHub Pages ma dalej stać obok domeny. Dwa adresy
 z tą samą treścią to dla wyszukiwarek duplikat, ale przy obecnym ruchu to nie
 pali się; temat czeka w TODO.md w notatkach do przekminienia.
+
+## Token API do odczytu, dla asystenta (2026-09-03)
+
+Henrich założył w panelu Cloudflare token API z szablonu **„Read all resources"**, czyli
+wyłącznie do odczytu, i położył go w kontenerze pod `~/.claude/cloudflare-token`
+(uprawnienia `600`, katalog jest wolumenem `matematykazen-claude-config`, więc przeżywa
+przebudowę). **W repo tokenu nie ma i być nie może**, repo jest publiczne.
+
+Powstał zamiast serwera MCP Cloudflare, który został świadomie nieużyty
+(patrz `issues/claude-code-pluginy.md`): OAuth dawałby prawa do zmian, a firewall i tak
+nie przepuszcza `mcp.cloudflare.com`. `api.cloudflare.com` jest w allowliście, więc
+zwykły `curl` wystarcza.
+
+Jak używać, bez wypisywania tokenu na ekran:
+
+```sh
+T=$(tr -d ' \t\r\n' < ~/.claude/cloudflare-token)
+curl -sS -H "Authorization: Bearer $T" https://api.cloudflare.com/client/v4/zones
+```
+
+Zmierzone przy pierwszym użyciu 2026-09-03 (`/user/tokens/verify` zwraca `active`):
+
+- strefa `matematykazen.pl`, plan Free, status `active`, serwery nazw `algin` i `kelly`
+  w `ns.cloudflare.com`,
+- DNS to dwa rekordy `AAAA` na adres `100::` (adres pusty, celowo), oba z włączonym proxy:
+  apex i `www`. Ruch obsługuje Worker, nie serwer origin, dlatego adres jest atrapą,
+- jeden Worker o nazwie `matematykazen`.
+
+**Czego ten token NIE potrafi:** niczego zmienić. Wdrożenie Workera, zmiana DNS i cokolwiek
+innego zapisującego wymaga osobnego tokenu z prawem zapisu i zostaje po stronie Henricha.
+
+**Uwaga na dwie rzeczy:**
+
+- token **nie ma daty ważności**, więc będzie działał, dopóki ktoś go ręcznie nie skasuje
+  w panelu (My Profile → API Tokens → Delete). Warto skasować, gdy przestanie być potrzebny,
+- plik może odczytać każdy proces w kontenerze, nie tylko asystent. To ten sam kompromis,
+  co przy tokenie GitHuba opisanym w `issues/claude-code-pluginy.md`; prawo tylko do odczytu
+  mocno ogranicza szkodę, ale jej nie zeruje.
