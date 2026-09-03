@@ -28,10 +28,10 @@ sam push na `dev` **nie** zmienia niczego pod `matematykazen.pl`, więc prosząc
 sprawdzenie zmiany, podaj adres GitHub Pages. Układ gałęzi opisuje sekcja „Git"
 w [CLAUDE.md](../CLAUDE.md).
 
-Uwaga przy sprawdzaniu z devcontainera: `curl` na domenę kończy się tam
-przeterminowaniem połączenia, bo firewall kontenera przepuszcza tylko wybrane
-adresy. To **nie** jest dowód, że strona nie działa. Sprawdzaj z przeglądarki
-poza kontenerem.
+Sprawdzanie z devcontainera **działa** od 2026-09-03: firewall przepuszcza już domenę,
+więc `curl https://matematykazen.pl/` zwraca stronę i asystent może sam potwierdzić, co
+stoi na żywo. Wcześniej kończyło się to przeterminowaniem i notatka mówiła, że trzeba
+sprawdzać z przeglądarki; to nieaktualne.
 
 ## Dlaczego Worker, a nie Pages
 
@@ -162,7 +162,7 @@ Nie zmienia się po zmianie `.assetsignore` i nie jest powodem do niepokoju.
    wskazać serwery nazw podane przez Cloudflare. Domena zostaje kupiona tam,
    gdzie jest; zmienia się tylko to, kto odpowiada na pytanie „gdzie stoi ta
    strona". Bez tego kroku Worker żyje wyłącznie pod adresem
-   `matematykazen.workers.dev`, bo własną domenę da się podpiąć tylko wtedy, gdy
+   `matematykazen-worker.workers.dev`, bo własną domenę da się podpiąć tylko wtedy, gdy
    jest obsługiwana przez Cloudflare.
 2. **Podpięcie domeny do Workera**: Worker → Settings → Domains & Routes → Add
    custom domain. Certyfikat HTTPS Cloudflare wystawia sam.
@@ -212,7 +212,7 @@ Zmierzone przy pierwszym użyciu 2026-09-03 (`/user/tokens/verify` zwraca `activ
   w `ns.cloudflare.com`,
 - DNS to dwa rekordy `AAAA` na adres `100::` (adres pusty, celowo), oba z włączonym proxy:
   apex i `www`. Ruch obsługuje Worker, nie serwer origin, dlatego adres jest atrapą,
-- jeden Worker o nazwie `matematykazen`.
+- jeden Worker o nazwie `matematykazen-worker`.
 
 **Czego ten token NIE potrafi:** niczego zmienić. Wdrożenie Workera, zmiana DNS i cokolwiek
 innego zapisującego wymaga osobnego tokenu z prawem zapisu i zostaje po stronie Henricha.
@@ -224,3 +224,80 @@ innego zapisującego wymaga osobnego tokenu z prawem zapisu i zostaje po stronie
 - plik może odczytać każdy proces w kontenerze, nie tylko asystent. To ten sam kompromis,
   co przy tokenie GitHuba opisanym w `issues/claude-code-pluginy.md`; prawo tylko do odczytu
   mocno ogranicza szkodę, ale jej nie zeruje.
+
+## Strona stała dwanaście dni na starej wersji (2026-09-03)
+
+Objaw: `matematykazen.pl` pokazywał v81 z 22 sierpnia, mimo że na `main` była v107.
+Wszystko po drodze wyglądało dobrze, budowanie z GitHuba chodziło po każdym pushu.
+
+**Przyczyna: w ustawieniach budowania Cloudflare wpisana była gałąź `master`.** Nazwa
+została zapamiętana 22 sierpnia, tego samego dnia, w którym `master` przemianowano na
+`main`, i od tej pory nie pasowała już do niczego.
+
+Cloudflare dzieli gałęzie na produkcyjną i wszystkie inne, i robi z nimi co innego:
+
+| gałąź | co robi build | widoczne dla ucznia |
+|---|---|---|
+| produkcyjna (`Production branch`) | **wersja + wdrożenie** | tak |
+| każda inna | **tylko wersja**, odłożona na półkę | nie |
+
+Skoro `master` nie istniał, to **każdy** push, także na `main`, był traktowany jak gałąź
+poboczna. Powstało w ten sposób 57 wersji, z których żadnej nigdy nie opublikowano.
+
+### Jak to rozpoznać, nie mając dostępu do zapisu
+
+Rozróżnienie wersja/wdrożenie widać wprost w API (token tylko do odczytu wystarczy):
+
+```sh
+T=$(tr -d ' \t\r\n' < ~/.claude/cloudflare-token); A=<id konta>; W=matematykazen-worker
+curl -sS -H "Authorization: Bearer $T" \
+  "https://api.cloudflare.com/client/v4/accounts/$A/workers/scripts/$W/versions?per_page=5"
+curl -sS -H "Authorization: Bearer $T" \
+  "https://api.cloudflare.com/client/v4/accounts/$A/workers/scripts/$W/deployments"
+```
+
+Trzy rzeczy warto z tego wyczytać:
+
+- **`workers/triggered_by`**: `version_upload` to półka, `deployment` to publikacja. Sama
+  data ostatniego wdrożenia od razu mówi, od kiedy strona stoi w miejscu.
+- **`workers/alias`** niesie nazwę gałęzi, z której build powstał. Build z gałęzi
+  produkcyjnej **nie ma** tego pola, więc `alias: main` przy wersji oznacza, że `main`
+  produkcyjna nie jest, i to jest ten błąd.
+- **Który commit jest na żywo** ustala się bez API: pobrać plik z domeny i porównać
+  odciski (`sha256sum`) z kolejnymi commitami (`git cat-file -p <commit>:index.html`).
+  To dało datę z dokładnością do commita.
+
+### Naprawa
+
+Panel → Worker → Settings → Build → `Production branch` na **`main`**. Polecenie
+wdrożeniowe ma być `npx wrangler deploy` (`wrangler versions upload` publikuje właśnie
+na półkę). **Poprawka działa tylko na przyszłość**: wersje, które już leżą, trzeba
+opublikować ręcznie (Deployments → Deploy version) albo pchnąć cokolwiek na `main`.
+Potwierdzone 2026-09-03: pierwszy push po zmianie ustawienia dał normalne wdrożenie
+i v108 pod domeną.
+
+## Nazwa Workera: `matematykazen-worker` (2026-09-03)
+
+Worker został przemianowany w panelu z `matematykazen` na `matematykazen-worker`.
+`wrangler.jsonc` niesie tę samą nazwę i **musi ją nieść dalej**.
+
+Wdrożeniom z GitHuba nazwa z pliku nie przeszkadza (build idzie do tego Workera, do
+którego jest podpięty), ale ręczne `npx wrangler deploy` przy rozjechanej nazwie
+**założy drugiego, pustego Workera** i nie ruszy strony pod domeną. Wygląda to na
+wdrożenie, które przeszło, a nic nie zmienia.
+
+## Cloudflare nie obsługuje żądań zakresowych (2026-09-03)
+
+Zmierzone na tym samym pliku wideo:
+
+| hosting | odpowiedź na `Range: bytes=0-100` |
+|---|---|
+| GitHub Pages | `206 Partial Content`, `Accept-Ranges: bytes` |
+| Cloudflare | `200 OK`, cały plik |
+
+Filmy do kroków ważą po jakieś 0,2 MB, więc prawdopodobnie nic to nie psuje, bo
+przeglądarka i tak pobierze całość w mgnieniu oka. **Nie zostało to sprawdzone
+klikaniem w odtwarzaczu pod domeną**, a to dokładnie ten mechanizm, przez który
+przewijanie raz już nie działało (`python3 -m http.server`, 2026-08-11, opisane w
+`issues/rozwiazanie-krok-po-kroku-odtwarzacz.md`). Warto kiedyś przejść krok po kroku
+na `matematykazen.pl`, nie tylko na wersji roboczej.
