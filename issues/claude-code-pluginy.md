@@ -197,6 +197,52 @@ Pytanie padło wprost i warto mieć odpowiedź pod ręką, zamiast odtwarzać j�
   tematu: token ma pełne uprawnienia (`repo`, `workflow`, `gist`, `read:org`) i widzi go
   każdy proces w kontenerze, więc wystarczyłaby jedna wroga zależność npm.
 
+## Piąta wtyczka: `cloudflare` (2026-09-03)
+
+Zainstalowana na prośbę Henricha, oficjalną procedurą Cloudflare z
+`https://developers.cloudflare.com/agent-setup/prompt.md` (ten adres jest w allowliście
+firewalla kontenera, więc `curl` na niego przechodzi). Instrukcja dla Claude Code sprowadza
+się do dwóch komend; scope `project` dołożony zgodnie z układem pozostałych czterech wtyczek:
+
+```sh
+claude plugin marketplace add cloudflare/skills --scope project
+claude plugin install cloudflare@cloudflare --scope project -y
+```
+
+W `.claude/settings.json` przybyły dwa wpisy: `"cloudflare@cloudflare": true` w
+`enabledPlugins` oraz `extraKnownMarketplaces` wskazujące repo GitHuba `cloudflare/skills`.
+Sekretów tam nie ma, a świeży klon dostaje pytanie o zaufanie do tego marketplace'u.
+
+Co wnosi: **15 skilli** (`wrangler`, `workers-best-practices`, `durable-objects`,
+`agents-sdk`, `web-perf`, `turnstile-spin`, `cloudflare-one`, `sandbox-*` i pokrewne),
+około **2,1 tys. tokenów always-on** na sesję wg `claude plugin details cloudflare@cloudflare`.
+
+### Serwer MCP: świadomie nieużywany
+
+Wtyczka deklaruje jeden serwer MCP (`plugin:cloudflare:cloudflare` na
+`https://mcp.cloudflare.com/mcp`). **Decyzja Henricha z 2026-09-03: same umiejętności, bez
+MCP.** Dwa powody, oba wystarczające same z siebie:
+
+- **Firewall go nie przepuszcza.** W allowliście są `developers.`, `api.` i `dash.`, nie ma
+  `mcp.cloudflare.com` ani czterech pokrewnych hostów (`docs.`, `bindings.`, `builds.`,
+  `observability.`). Zmierzone: `curl` na dwa pierwsze zwraca kod `000`,
+  `claude mcp list` pokazuje `✘ ConnectionRefused`. Otwarcie ich wymagałoby edycji
+  `.devcontainer/init-firewall.sh`, czyli pracy z hosta (w kontenerze katalog jest tylko do
+  odczytu), i wpuszczałoby kolejny kawałek anycastu Cloudflare, dokładnie ten sam kompromis
+  co przy `matematykazen.pl`.
+- **Logowanie OAuth do konta, na którym stoi produkcja.** Wdrażać da się `wranglerem`
+  z `api.cloudflare.com`, więc MCP nie jest do niczego potrzebny.
+
+**Czego NIE ustalono:** jak wyłączyć ten serwer deklaratywnie, żeby przestał się zgłaszać
+przy starcie sesji. Sprawdzone i nieskuteczne w `.claude/settings.json`:
+`disabledMcpjsonServers` oraz `disabledMcpServers` (po nazwie `plugin:cloudflare:cloudflare`,
+`claude mcp list` dalej go wypisuje). Z binarki CLI widać, że `disabledMcpServers` czyta się
+z konfiguracji użytkownika, nie z ustawień projektu, i taki wpis leży dziś w
+`~/.claude/.claude.json`, ale **nie zweryfikowano, czy działa**, bo `claude mcp list`
+wypisuje serwery niezależnie od tego przełącznika. Pewna droga to przełącznik w menu `/mcp`
+w sesji interaktywnej. Praktycznie nic to nie zmienia: bez dziury w firewallu serwer i tak
+nie wstanie, a logowanie OAuth nigdy nie dzieje się samo.
+
 ## vendor/superpowers/
 
 Zawiera tylko `LICENSE` (MIT) + `NOTICE.md` — miejsce na skille, które kiedyś ewentualnie
