@@ -294,10 +294,18 @@ Listy są trzy, bo nie każda domena jest tak samo ważna:
   `postStartCommand` jest fail-closed, oznacza to brak wejścia do kontenera.
   Tak ma być: lepiej nie wejść, niż pracować z połową milczących narzędzi.
 - **`CONTENT_DOMAINS`** — źródła treści i materiałów: `cke.gov.pl`,
-  `www.cke.gov.pl`, `arkusze.pl`, `zpe.gov.pl`, `ore.edu.pl`, `men.gov.pl`. Te
-  serwisy bywają chwilowo niedostępne, więc brak rozwiązania daje tylko
+  `www.cke.gov.pl`, `arkusze.pl`, `zpe.gov.pl`, `ore.edu.pl`, `men.gov.pl`,
+  własna strona (`matematykazen.pl`, `www.matematykazen.pl`) oraz trzy domeny
+  Cloudflare (`developers.cloudflare.com`, `api.cloudflare.com`,
+  `dash.cloudflare.com`, dodane 2026-09-04 pod wdrożenie Workera z kontenera).
+  Te serwisy bywają chwilowo niedostępne, więc brak rozwiązania daje tylko
   ostrzeżenie i skrypt leci dalej. Firewall zostaje szczelny — pominięta domena
   po prostu nie jest przepuszczona w tej sesji.
+  - Domeny Cloudflare stoją na anycaście dokładnie tak jak te z OpenAI, więc
+    ich adresy potrafią się w ciągu dnia zmienić. Odświeżacza z hosta na nie
+    **nie ma** (`host-firewall.sh` pilnuje tylko `OPENAI_DOMAINS`). Gdyby
+    wrangler nagle przestał się łączyć, najprostsza naprawa to restart
+    kontenera, bo `init-firewall.sh` rozwiązuje nazwy od nowa przy starcie.
 - **`OPENAI_DOMAINS`** — `auth.openai.com`, `chatgpt.com`, `api.openai.com`,
   czyli tyle, ile potrzebuje Codex CLI. Traktowane jak `CONTENT_DOMAINS`
   (samo ostrzeżenie), bo brak DNS do OpenAI nie jest powodem, żeby nie wpuścić

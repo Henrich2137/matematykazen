@@ -132,6 +132,19 @@ CONTENT_DOMAINS=(
     "matematykazen.pl"
     "www.matematykazen.pl"
 
+    # Cloudflare: dokumentacja, API i panel. Dodane 2026-09-04, żeby dało się
+    # z kontenera przejść oficjalną procedurę "agent setup" (wrangler, wdrożenie
+    # Workera z gałęzi main). Wrangler idzie z registry.npmjs.org, który jest
+    # już wyżej wśród CRITICAL_DOMAINS, więc nic dodatkowego na to nie trzeba.
+    #
+    # UWAGA, ten sam świadomy kompromis co przy matematykazen.pl: to anycast
+    # Cloudflare, czyli adresy współdzielone. Filtrujemy po IP, nie po SNI,
+    # więc wpis otwiera kawałek wspólnej infrastruktury. Wpuszczone mimo to,
+    # bo bez tego wdrożenie i dokumentacja są z kontenera niewidoczne.
+    "developers.cloudflare.com"   # dokumentacja, w tym /agent-setup/prompt.md
+    "api.cloudflare.com"          # właściwe API, tędy wdraża wrangler
+    "dash.cloudflare.com"         # panel i logowanie (wrangler login)
+
     # KANDYDACI — bezpieczni, ale niepotrzebni na dziś. Każdy ma własny,
     # pojedynczy adres IP, więc odkomentowanie wpuszcza dokładnie ten serwer
     # i nic poza nim. Odkomentuj, gdy zaczniesz ściągać arkusze z konkretnej

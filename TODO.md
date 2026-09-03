@@ -11,19 +11,18 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + NIE REALIZUJ, CZEKAJĄ W KOLEJCE:
   
-  DO DOKOŃCZENIA, ZAPISZ TU MYŚLNIKI NA RAZIE TYLKO
   - Zad 20 - zwykłe
   - Zad 21 - krok po kroku i zwykłe
   - Zad 22 - krok po kroku i zwykłe
   - Zad 23 - krok po kroku i zwykłe
   - Zad 24 - zwykłe
   - Zad 25 - zwykłe
-    Zad 26 - zwykłe 
-    Zad 27 - krok po kroku i zwykłe
+  - Zad 26 - zwykłe 
+  - Zad 27 - krok po kroku i zwykłe
     (pomysł na 5 slotów ze zmieniajacymi się liczbami i licznikiem na górze kombinacji)
-    Zad 28 - zwykłe
-    Zad 29 - zwykłe
-    Zad 30 - zwykłe
+  - Zad 28 - zwykłe
+  - Zad 29 - zwykłe
+  - Zad 30 - zwykłe
 
   - Saphari na mały iphonie SE - Rozwiązania krok po kroku
     - Przyciskanie przycisku "steps-scroll-prawo" zbyt dużo razy na m sprawia, że kroki zostają po lewej. Przewijanie odjeższą za daleko.
