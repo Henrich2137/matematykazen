@@ -1,5 +1,35 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-09-04] (Local Opus 5 High) Zad. 28 i 29 z grudnia 2024: rozwiazania
+zwykle, jedna kolumna. Oba mialy dotad jednozdaniowe zaslepki wciśnięte w akapit,
+wiec zostaly napisane od zera wg SOLUTION_TEXT_RULES.md. Wyniki zgodne z kluczem CKE:
+P(A) = 11/24 oraz srednia 6,38 i mediana 6,5.
+[2024-grudzien, zad28, zad29, prawdopodobienstwo, statystyka]
+
+Zad. 28 (prawdopodobienstwo klasyczne, otwarte na 2 pkt): trzy ponumerowane czesci
+w jednym bloku `rozwiazanie-kroki`, tak jak w zad. 27. Wzor [14.2] (s. 29, zgadza sie
+z `formulasPage`) stoi w `\[ … \]` nad rachunkiem. Sedno nie jest w rachunku, tylko
+w tym, ze 4 = 2 * 2, wiec kazda liczba ze zbioru D jest rozlozona na dwojki i widac,
+ile dwojek musi dolozyc liczba ze zbioru C: 8 daje dwie (6 par), 7 i 9 zadnej (2 pary),
+10 jedna (3 pary). Oba punkty CKE stoja jako osobne linijki (`|Omega| = 24`, `|A| = 11`).
+Na dole `rozw-sprawdzenie` z pelna lista jedenastu par, czyli sposobem I z klucza.
+
+Zad. 29 (srednia i mediana z tabeli, zadanie typu fillIn na 2 pkt): dwie niezalezne
+czesci, kazda z wlasnym wzorem z tablicy, wiec **sa tu dwa `\[ … \]` i dwa bloki
+`rozwiazanie-kroki`** rozdzielone `<br>`. To pierwszy taki uklad w arkuszu (przy zad. 26
+swiadomie tego nie zaczynano); zrzuty na 1300 i 485 px wygladaja dobrze, ale jesli
+Henrichowi sie to nie spodoba, do cofniecia jest tylko drugi naglowek. Wzory: srednia
+arytmetyczna [15.1] i mediana dla n parzystego [15.6] (s. 31 i 32; `formulasPage` = 31).
+Ogniwa, ktorych uczen nie widzi, ida w komentarzach: mnozenia w liczniku, sumowanie
+licznika po kawalku i rozszerzenie 319/50 do 638/100. Miejsca 25. i 26. sa znalezione
+przez wypisanie zakresow miejsc dla kolejnych kolumn tabeli, nie przez sam wynik.
+Wzory rozdzielone przecinkiem dostaly `&nbsp;&nbsp;`, bo bez tego "20, 8 * 5 = 40"
+czytalo sie jak jedna lista liczb.
+
+Sprawdzone: `json.load` przechodzi, zrzuty `tools/zrzut-rozwiazania.js` na 1300 px,
+485 px i w ciemnym motywie, plus test w Playwrighcie na `scrollWidth - clientWidth`
+strony i wszystkich blokow rozwiazania (0 na obu szerokosciach).
+
 [ZROBIONE 2026-09-04] (Cloud Opus 5) Zad. 26 i 27 z grudnia 2024: rozwiazania zwykle,
 jedna kolumna. Oba mialy dotad jednozdaniowe zaslepki (jedna linijka rachunku wciśnięta
 w akapit), wiec zostaly napisane od zera wg SOLUTION_TEXT_RULES.md. Film do zad. 27

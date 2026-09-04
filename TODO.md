@@ -14,8 +14,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     - Zad 27 - krok po kroku (rozwiązanie zwykłe już jest, film do zrobienia lokalnie,
       bo w chmurze nie ma Manima ani TeX Live)
       (pomysł na 5 slotów ze zmieniajacymi się liczbami i licznikiem na górze kombinacji)
-    - Zad 28 - zwykłe
-    - Zad 29 - zwykłe
     - Zad 30 - zwykłe
 
   - Saphari na mały iphonie SE - Rozwiązania krok po kroku
