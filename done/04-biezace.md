@@ -1,5 +1,40 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-09-04] (Opus 5) Zad. 20 i 21 z grudnia 2024: rozwiazania zwykle do obu,
+plus nowy film krok po kroku do zad. 21 (scena `solutionZad21.py`, 15 krokow). Projekt
+w `issues/projekt-zad20-zad21-2024-grudzien.md`.
+[2024-grudzien, zad20, zad21, manim, planimetria, geometria-analityczna]
+
+Zad. 20 (dlugosc luku): kat srodkowy dostal wlasna linijke, zanim w ogole pojawil sie wzor
+na luk. Chodzi o dystraktor A: uczen, ktory podstawi 60 stopni zamiast 120, dostaje 2pi
+i ma wrazenie, ze policzyl. Zaleznosc „wpisany to polowa srodkowego" idzie zdaniem, a nie
+wzorem w ramce, bo w tablicy wzorow stoi zdaniem (sekcja [10.13], s. 19).
+
+Zad. 21: w tablicy wzorow NIE MA przekatnej kwadratu (`a\sqrt{2}`), wiec obie dlugosci
+licza sie Pitagorasem. Henrich wybral droge i ksztalt filmu (2026-09-04): kwadrat widoczny
+od pierwszego kroku, trojkat pod przekatna pokazany jawnie, rysunek zostaje w kadrze do
+konca.
+
+Pulapka geometryczna, ktora zmienila projekt: z danych wychodzi B = (3, -1) i D = (-2, 4),
+czyli kwadrat lezy ROWNOLEGLE DO OSI, a przekatna dzieli go na dwa przystajace trojkaty.
+Gdyby obie czesci filmu uzyly tego samego trojkata, druga liczylaby to, co widac juz
+w pierwszej. Stad podzial: gorny trojkat ACD liczy przekatna (przyprostokatne to roznice
+wspolrzednych), dolny ABC liczy bok (przyprostokatne to boki kwadratu). Henrich zostal
+uprzedzony, ze przy takim polozeniu bok 5 daje sie odczytac z kratek, i mimo to wybral
+rysunek od pierwszego kroku.
+
+Druga decyzja warta zapamietania: niewiadoma zostaje po tej stronie, po ktorej postawilo ja
+podstawienie (`5^2 + 5^2 = |AC|^2`, potem `\sqrt{50} = |AC|`). Przestawienie stron rownania
+byloby drugim przeksztalceniem w tej samej linijce, a tak kazdy krok robi dokladnie jedno.
+
+Pierwszy render mial liczby na osiach polozone dokladnie na bokach kwadratu (kazdy bok
+przechodzi przez swoja liczbe), wiec „3" siedziala na kwadraciku kata prostego przy B.
+Zlapane na `tools/klatki.sh stany --koniec`, poprawione przesunieciem podpisow od bokow.
+
+Sprawdzone: styki klatek bez zastrzezen (najslabszy 0,99905), `tools/zielen-krokow.py` bez
+zastrzezen, `tools/test-krokow.js --zadania=25` przeszedl na trzech ziarnach, zrzuty
+rozwiazan na komputerze i na telefonie 485 px bez przewijania w bok.
+
 [ZROBIONE 2026-08-30] (Opus 5) Zad. 19 z grudnia 2024 PO RAZ DRUGI, tym razem przez
 podobieństwo trójkątów zamiast przez sinus (uwaga Henricha), oraz zad. 12.2: krok 7
 rozbity na dwa. Nowa scena `solutionZad19.py`, 17 kroków (poprzednia miała 24),

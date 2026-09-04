@@ -11,8 +11,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + NIE REALIZUJ, CZEKAJĄ W KOLEJCE:
   
-  - Zad 20 - zwykłe
-  - Zad 21 - krok po kroku i zwykłe
   - Zad 22 - krok po kroku i zwykłe
   - Zad 23 - krok po kroku i zwykłe
   - Zad 24 - zwykłe
@@ -43,6 +41,8 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945
 <br> Próg wejścia jest wysoki, patrz ZASADY DLA CLAUDE-A niżej. Archiwum dawnych list: issues/testowanie-archiwum.md.
+
+  - v109, zad. 21 z grudnia 2024, NOWY film krok po kroku (15 kroków, kwadrat na siatce kratek po lewej, rachunek po prawej). sprawdź na TELEFONIE, czy podpisy wierzchołków \(A\), \(B\), \(C\), \(D\), liczby przy osiach i podpis \(5\sqrt{2}\) na przekątnej dają się odczytać, bo rysunek zajmuje niecałą połowę kadru
 
   - v106, zad. 18 z grudnia 2024: nowe rozwiązanie zwykłe (jedynka trygonometryczna). sprawdź, czy nadal pasuje do widżetu koła trygonometrycznego, który stoi obok
 
