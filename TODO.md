@@ -2,23 +2,20 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 
 + DO ZROBIENIA
-<br> Jeżeli nie masz co robić, to rób stąd.     
-  
-  - 2024 grudzien
-      - Zad 27 - krok po kroku (rozwiązanie zwykłe już jest, film do zrobienia lokalnie,
-    bo w chmurze nie ma Manima ani TeX Live)
-    (pomysł na 5 slotów ze zmieniajacymi się liczbami i licznikiem na górze kombinacji)
+<br> Jeżeli nie masz co robić, to rób stąd.
 
-  - Saphari na mały iphonie SE - Rozwiązania krok po kroku
-    - Przyciskanie przycisku "steps-scroll-prawo" zbyt dużo razy na m sprawia, że kroki zostają po lewej. Przewijanie odjeższą za daleko.
-    - Cieżko trafić w kropki aby je przesunąć
-  
-  - Rozwiązania krok po kroku - kropki kroków (np w zad 1.) przy szerokości okna około 310 do 325 px już się chowają, a strzałki przewijania jeszcze się nie pokazują, więc w tym wąskim zakresie nie da się przejść do innego kroku. Poza tym zakresem przewijanie działa. Zlikwiduj tą strefe pomiędzy, ma być albo wszystko widoczne, albo poprawnie strzałki i przewijanie.
+  + Lekkie subagenty bez dużego kosztu tokenów
+    
+    - 2024 grudzien
+        - Zad 27 - krok po kroku (rozwiązanie zwykłe już jest, film do zrobienia lokalnie,
+      bo w chmurze nie ma Manima ani TeX Live)
+      (pomysł na 5 slotów ze zmieniajacymi się liczbami i licznikiem na górze kombinacji)
 
-  - Przy suwakach / sliderach w rozwiązaniach interaktywnych powinny być strzałki w lewo po lewe i po prawejktóre można klikać lub przytrzymywać również na telefonach, aby wartość suwaka. W stylu strzałek prev-step i next-step lub tych które pojawiają się prz yzaszerockich dotsach. 
+    - Przy suwakach / sliderach w rozwiązaniach interaktywnych powinny być strzałki w lewo po lewe i po prawejktóre można klikać lub przytrzymywać również na telefonach, aby wartość suwaka. W stylu strzałek prev-step i next-step lub tych które pojawiają się prz yzaszerockich dotsach. 
 
-  - zrób rzeczy z sekcji "+ UI" które są najlepiej opisane, nie ma w nich niejasności oraz są bezpieczneie do zrobienia autonomicznie bez ryzyka dziwnych błędów lub podjęcia ważnych decyzji przez henricha 
+    - zrób rzeczy z sekcji "+ UI" które są najlepiej opisane, nie ma w nich niejasności oraz są bezpieczneie do zrobienia autonomicznie bez ryzyka dziwnych błędów lub podjęcia ważnych decyzji przez henricha 
 
+    - Zaprojektuj i stwórz w Zad 24 rozwiązanie krok po kroku z animacjami 3D 
 <br>
 
 
@@ -36,6 +33,10 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945
 <br> Próg wejścia jest wysoki, patrz ZASADY DLA CLAUDE-A niżej. Archiwum dawnych list: issues/testowanie-archiwum.md.
+
+  - v114, pasek kropek w rozwiązaniu krok po kroku, na iPhonie SE w SAFARI: przyciśnij strzałkę w prawo kilkanaście razy pod rząd, potem tyle samo w lewo - pasek ma zatrzymać się na ostatniej i na pierwszej kropce, bez pustego miejsca po żadnej stronie
+
+  - v114, pasek kropek w zad. 1 z grudnia 2024, PALCEM na telefonie: postukaj w kolejne kropki - pole trafienia jest teraz szersze i sięga do połowy odcinka, więc każde dotknięcie paska ma przenosić do najbliższej kropki
 
   - v109, zad. 21 z grudnia 2024, NOWY film krok po kroku (15 kroków, kwadrat na siatce kratek po lewej, rachunek po prawej). sprawdź na TELEFONIE, czy podpisy wierzchołków \(A\), \(B\), \(C\), \(D\), liczby przy osiach i podpis \(5\sqrt{2}\) na przekątnej dają się odczytać, bo rysunek zajmuje niecałą połowę kadru
 
@@ -97,7 +98,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
   - Przycisk "Zresetuj ustawienia" z popup-em do potwierdzenie. Podświetlajacy się na czerwono po najechaniu i widoczny na samym dole side-bar-a.
 
   - wysyłanie całego localStorage przez użytkownika podczas zgłaszania błędu jest a bit scatchy też troche niebezpiczne
-
 
   - Zwykłe rozwiązania powinny składać się z arraya / listy wielu sposobów / podejść. Jeżeli jest tylko jeden element to UI wyświetla go tak jak dotychczas. Jeśli więcej to robią się zakładki w stylu tych w widgetach.
 

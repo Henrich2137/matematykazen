@@ -1574,6 +1574,9 @@ body.sidebar-otwarty #sidebar-linia {
     margin: 0 8px;
     overflow-x: auto;
     scrollbar-width: none;
+    /* Sprężynowanie na iOS ma zostać w tym pasku i nie ciągnąć za sobą strony;
+       przy okazji nie zostawia paska odbitego poza treścią. */
+    overscroll-behavior-x: contain;
 }
 .steps-dots-okno::-webkit-scrollbar {
     display: none;
@@ -1584,16 +1587,20 @@ body.sidebar-otwarty #sidebar-linia {
     justify-content: center;
     min-width: 100%;
     width: max-content;
-    /* Bez poziomego paddingu: przy siedmiu kropkach dokładał 8 px i pasek
-       zaczynał się przewijać, choć wg TODO ma się przewijać dopiero POWYŻEJ
-       siedmiu. */
-    padding: 8px 0;
+    /* box-sizing: border-box jest tu konieczne. Przy content-box poziomy padding
+       dokładał się do min-width: 100% i pasek zaczynał się przewijać wcześniej,
+       niż powinien (stąd dawny zakaz paddingu w poziomie). Przy border-box
+       padding mieści się w środku, a jest potrzebny: powiększone pola dotyku
+       skrajnych kropek wchodzą właśnie w te 5 px i nie wystają poza treść. */
+    box-sizing: border-box;
+    padding: 8px 5px;
 }
 /* Pole dotyku 44px (Henrich: dzisiejsze strzałki są za małe na kciuk) uzyskane
    paddingiem — sama kropka zostaje mała. box-sizing: content-box, żeby padding
    nie zjadł średnicy. */
 .step-dot {
     flex: none;
+    position: relative; /* kotwica dla powiększonego pola dotyku (::after) */
     box-sizing: content-box;
     width: 10px;
     height: 10px;
@@ -1613,6 +1620,17 @@ body.sidebar-otwarty #sidebar-linia {
     background-position: center;
     background-size: 10px 10px;
 }
+/* Pole dotyku szersze niż sama kropka (Henrich, iPhone SE: „ciężko trafić
+   w kropki"). Rozszerzamy pseudoelementem, a nie paddingiem, bo padding
+   zmieniłby układ i zmniejszył liczbę kropek mieszczących się w pasku.
+   Po 5 px na stronę przy odcinkach szerokich na 10 px znaczy, że pola dotyku
+   sąsiednich kropek dokładnie się stykają i nigdzie nie nachodzą: każde
+   dotknięcie paska trafia w najbliższą kropkę, żadna nie kradnie cudzego. */
+.step-dot::after {
+    content: "";
+    position: absolute;
+    inset: 0 -5px;
+}
 .step-dot.odwiedzona {
     background-image: radial-gradient(circle, var(--text-faint) 0 50%, transparent 50%);
 }
@@ -1627,6 +1645,10 @@ body.sidebar-otwarty #sidebar-linia {
    tylko w kroku bieżącym (--postep ustawia rysujPostep w app/steps.js). */
 .step-link {
     position: relative;
+    /* Odcinek jest wyłącznie ozdobą, a jako element pozycjonowany leżałby NAD
+       powiększonym polem dotyku sąsiedniej kropki i przechwytywał jej kliknięcia.
+       Przepuszczamy je dalej. */
+    pointer-events: none;
     flex: 1 1 14px;
     min-width: 10px;
     height: 2px;

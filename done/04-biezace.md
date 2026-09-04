@@ -1,5 +1,42 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-09-04] (Local Opus 5 High) Pasek kropek w rozwiazaniu krok po kroku:
+zlikwidowana martwa strefa szerokosci okna, ogranicznik przewijania i wieksze pole
+dotyku kropek.
+[odtwarzacz-krokow, kropki, responsywnosc, safari, test-playwright]
+
+MARTWA STREFA. `odswiezStrzalkiKropek` w app/steps.js porownywala szerokosc tresci
+kropek z `wiersz.clientWidth`, czyli z calym rzedem, a kropki dostaja rzad POMNIEJSZONY
+o wlasne marginesy okna (po 8 px). Prog stal przez to o 16 px za wysoko i przy paru
+szerokosciach okna kropki juz wystawaly poza okno, a strzalki jeszcze sie nie pokazywaly.
+Henrich trafil na to przy 310-325 px, Chromium w kontenerze pokazuje to samo przy 340 px.
+Teraz marginesy okna sa odczytywane z ukladu i odejmowane od szerokosci rzedu. Warunek
+w obu stanach sprowadza sie do „tresc > miejsce bez strzalek", wiec strzalki nie mrugaja.
+
+OGRANICZNIK. Strzalki wolaly `scrollBy({behavior:"smooth"})` prosto z app/render.js.
+W Chromium to sie przycina samo, na Safari (iPhone SE) po kilku szybkich klknieciach
+pasek wyjezdzal poza tresc i kropki zostawaly za lewa krawedzia. Skok liczy teraz nowa
+funkcja `przewinPasek(ctx, kierunek)` w app/steps.js i przycina cel do przedzialu
+[0, scrollWidth - clientWidth]; okno kropek dostalo tez `overscroll-behavior-x: contain`.
+Samego objawu nie da sie odtworzyc w Chromium (przycina sam), wiec test pilnuje
+niezmiennika, a nie odtwarza bledu.
+
+POLE DOTYKU. Kropka miala 20x44 px pola trafienia, w poziomie za waskie na palec.
+Rozszerzone pseudoelementem `.step-dot::after { inset: 0 -5px }` do 30 px, a nie
+paddingiem, bo padding zmniejszylby liczbe kropek mieszczacych sie w pasku. Przy
+odcinkach szerokich na 10 px pola sasiednich kropek dokladnie sie stykaja i nigdzie
+nie nachodza, wiec kazde dotkniecie paska trafia w najblizsza kropke. `.step-link`
+dostal `pointer-events: none` (jako element pozycjonowany lezal NAD tym polem
+i przechwytywal klikniecia), a `.steps-dots` `box-sizing: border-box` z paddingiem
+`8px 5px`, zeby pola skrajnych kropek nie wystawaly poza tresc i nie zawyzaly
+scrollWidth o 5 px.
+
+TEST. Nowy tools/test-paska-krokow.js: przy trzynastu szerokosciach okna sprawdza
+trzy niezmienniki (kazda kropka osiagalna, pole dotyku >= 30x44, scrollLeft w granicach
+tresci po kilkunastu klknieciach w kazda strone). Przed poprawka 14 zastrzezen
+(martwa strefa przy 340 px + pole dotyku 20 px wszedzie), po poprawce czysto.
+tools/test-krokow.js przechodzi na serwerze szybkim i zdlawionym.
+
 [ZROBIONE 2026-09-04] (Local Opus 5 High) Zad. 30 z grudnia 2024: rozwiazanie zwykle
 napisane od zera i scalone ze stara trescia (znikl naglowek „DAWNE POKAZ WIECEJ"
 i doklejony pod nim akapit). Wyniki zgodne z kluczem CKE: P(x) = -26x^2 + 96x,

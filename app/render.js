@@ -834,12 +834,10 @@ function loadExercises() {
             prevBtn.addEventListener("click", () => krokWstecz(krokiCtx));
             nextBtn.addEventListener("click", () => krokDalej(krokiCtx));
             playBtn.addEventListener("click", () => przelaczOdtwarzanie(krokiCtx));
-            przewinLewo.addEventListener("click", () => {
-                kropkiOkno.scrollBy({ left: -kropkiOkno.clientWidth * 0.7, behavior: "smooth" });
-            });
-            przewinPrawo.addEventListener("click", () => {
-                kropkiOkno.scrollBy({ left: kropkiOkno.clientWidth * 0.7, behavior: "smooth" });
-            });
+            // Skok liczy i przycina przewinPasek() w app/steps.js — samo scrollBy()
+            // potrafiło na Safarim wywieźć pasek poza treść (patrz komentarz tam).
+            przewinLewo.addEventListener("click", () => przewinPasek(krokiCtx, -1));
+            przewinPrawo.addEventListener("click", () => przewinPasek(krokiCtx, 1));
             podepnijPrzesuwanie(krokiCtx, solutionStepByStepContainer);
             // Filmy zadania ściągamy w tle, gdy tylko użytkownik do niego dojedzie
             // — zanim kliknie „Rozwiązanie". Obserwujemy przycisk, a nie sam
