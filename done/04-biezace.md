@@ -1,5 +1,39 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-09-04] (Cloud Opus 5) Zad. 26 i 27 z grudnia 2024: rozwiazania zwykle,
+jedna kolumna. Oba mialy dotad jednozdaniowe zaslepki (jedna linijka rachunku wciśnięta
+w akapit), wiec zostaly napisane od zera wg SOLUTION_TEXT_RULES.md. Film do zad. 27
+zostaje do zrobienia lokalnie: w chmurze nie ma Manima ani TeX Live.
+[2024-grudzien, zad26, zad27, stereometria, trygonometria, kombinatoryka]
+
+Zad. 26 (kat rozwarcia stozka, zadanie otwarte na 2 pkt): rozwiazanie ma dwie czesci
+i ida w jednym bloku `rozwiazanie-kroki`, tak jak w zad. 20. Wzor na objetosc stozka
+[12.6] (s. 27, zgadza sie z `formulasPage`) stoi w `\[ … \]` nad rachunkiem, a tangens
+[9.1] (s. 11) wchodzi dopiero w polowie, wiec jest wprowadzony komentarzem z `rozw-odstep`,
+nie drugim wysrodkowanym wzorem. Zadnego arkusza z dwoma `\[ … \]` w jednym rozwiazaniu
+jeszcze nie ma i nie chcialem tego zaczynac przy okazji.
+
+Sedno zadania nie jest w rachunku, tylko w tym, ze kat rozwarcia to DWA razy kat miedzy
+wysokoscia a tworzaca. Dlatego przekroj osiowy jest opisany zdaniem przed pierwsza linijka
+trygonometryczna, a `\big/ \cdot 2` na koncu ma wlasna linijke. Punkt posredni CKE
+(`r^2 = 12`) stoi jako osobna linijka, wiec widac, gdzie uczen dostaje pierwszy punkt.
+
+Zad. 27 (liczby pieciocyfrowe z cyfr 0-3, nieparzyste): uklad jak w zad. 10, czyli trzy
+czesci z wytluszczonym naglowkiem wtopionym w pierwsza linijke, po jednej na kazde
+ograniczenie. Regula mnozenia sama w tablicy nie stoi, ale trzy srodkowe miejsca to
+wariacje z powtorzeniami [13.3] (s. 28, zgadza sie z `formulasPage`), wiec `4^3` jest
+nazwane po imieniu w komentarzu. Dystraktor C (512) bierze sie z zapomnienia obu warunkow,
+a D (576) z zapomnienia tylko warunku na pierwsza cyfre, wiec kazdy warunek ma osobna
+czesc i wlasna liczbe mozliwosci, zamiast jednego iloczynu `3 · 4 · 4 · 4 · 2` w jednej linijce.
+
+Zieleni nie ma w zadnym z dwoch: uklad jednokolumnowy, wiec nie ma kolumny wzorow,
+przy ktorej zielony mialby cokolwiek wskazywac (regula 13 z SOLUTION_TEXT_RULES.md).
+
+Sprawdzone zrzutami (`tools/zrzut-rozwiazania.js`) przy 900, 485 i 390 px oraz w ciemnym
+motywie; osobnym skryptem Playwrighta zmierzone, ze przy 360, 485 i 900 px strona nie
+przewija sie w bok i zadna linijka nowych rozwiazan sie nie obcina (jedyny obciety element
+przy 360 px to stary wzor klamrowy w zad. 10, sprzed tej zmiany).
+
 [ZROBIONE 2026-09-04] (Cloud Opus 5) Zad. 24 i 25 z grudnia 2024: rozwiazania zwykle,
 jedna kolumna ze wzorem z tablicy nad rachunkiem. Bez filmow: w kolejce oba mialy tylko
 „zwykle", a w chmurze i tak nie ma Manima ani TeX Live.
