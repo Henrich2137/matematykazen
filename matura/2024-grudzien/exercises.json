@@ -1494,7 +1494,43 @@
         "hint": "Proste równoległe mają ten sam współczynnik kierunkowy. Punkt \\((0,\\ 6)\\) od razu daje wyraz wolny prostej l.",
         "formulasPage": 24,
         "solutionText": "Prosta l: \\(y = -7x + 6\\), więc \\(p = -7 \\cdot 1 + 6 = \\boldsymbol{-1}\\), odpowiedź <b>B</b>.",
-        "solutionStepByStep": null,
+        "solutionStepByStep": [
+            {
+                "type": "video",
+                "src": "media/zad22/solution-step-by-step/step1.mp4",
+                "text": "Prosta \\(k\\) jest dana w treści zadania. Punkt \\((0,\\ 6)\\) mówi, gdzie prosta \\(l\\) przecina oś \\(Oy\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad22/solution-step-by-step/step2.mp4",
+                "text": "Proste równoległe mają ten sam współczynnik kierunkowy.\\[a_1 = a_2\\]Prosta \\(l\\) ma więc taki sam współczynnik jak \\(k\\) i przechodzi przez \\((0,\\ 6)\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad22/solution-step-by-step/step3.mp4",
+                "text": "Współczynnik \\(-7\\) bierzemy z prostej \\(k\\), a wyraz wolny \\(6\\) z punktu \\((0,\\ 6)\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad22/solution-step-by-step/step4.mp4",
+                "text": "Punkt \\((1,\\ p)\\) leży na prostej \\(l\\), więc podstawiamy \\(x = 1\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad22/solution-step-by-step/step5.mp4",
+                "text": "\\(-7 \\cdot 1 = -7\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad22/solution-step-by-step/step6.mp4",
+                "text": "\\(-7 + 6 = -1\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad22/solution-step-by-step/step7.mp4",
+                "text": "Liczba \\(p\\) jest równa \\(-1\\), czyli odpowiedź <b>B</b>."
+            }
+        ],
         "solutionWidget": null
     },
     {
@@ -1511,7 +1547,38 @@
         "hint": "Okrąg o środku \\((a,\\ b)\\) i promieniu \\(r\\) nie dotyka osi, gdy \\(|a| > r\\) oraz \\(|b| > r\\). Sprawdź każdy okrąg po kolei.",
         "formulasPage": 24,
         "solutionText": "\\(o_3\\) ma środek \\((3,\\ 4)\\) i promień \\(2\\): odległości od osi (3 i 4) są większe od promienia, więc \\(\\boldsymbol{o_3}\\) nie dotyka żadnej z osi, odpowiedź <b>C</b>. (\\(o_1\\) jest styczny do osi \\(Oy\\), \\(o_2\\) i \\(o_4\\) przecinają osie.)",
-        "solutionStepByStep": null,
+        "solutionStepByStep": [
+            {
+                "type": "video",
+                "src": "media/zad23/solution-step-by-step/step1.mp4",
+                "text": "Sprawdzimy po kolei, jak każdy okrąg leży względem osi \\(Ox\\) i \\(Oy\\): porównujemy odległość środka od osi z promieniem."
+            },
+            {
+                "type": "video",
+                "src": "media/zad23/solution-step-by-step/step2.mp4",
+                "text": "\\(o_1\\): odległość środka od osi \\(Oy\\) to \\(|1| = 1\\), tyle samo co promień. Okrąg dotyka osi, więc odpada."
+            },
+            {
+                "type": "video",
+                "src": "media/zad23/solution-step-by-step/step3.mp4",
+                "text": "\\(o_2\\): obie odległości są mniejsze od promienia \\(3\\), więc \\(o_2\\) przecina obie osie."
+            },
+            {
+                "type": "video",
+                "src": "media/zad23/solution-step-by-step/step4.mp4",
+                "text": "\\(o_3\\): obie odległości (\\(3\\) i \\(4\\)) są większe od promienia \\(2\\), więc \\(o_3\\) nie ma żadnego punktu wspólnego z osiami."
+            },
+            {
+                "type": "video",
+                "src": "media/zad23/solution-step-by-step/step5.mp4",
+                "text": "\\(o_4\\): odległość od osi \\(Oy\\) (\\(3\\)) jest mniejsza od promienia \\(4\\), więc \\(o_4\\) też przecina oś."
+            },
+            {
+                "type": "video",
+                "src": "media/zad23/solution-step-by-step/step6.mp4",
+                "text": "Jedynym okręgiem bez punktu wspólnego z osiami jest \\(o_3\\), czyli odpowiedź <b>C</b>."
+            }
+        ],
         "solutionWidget": null
     },
     {

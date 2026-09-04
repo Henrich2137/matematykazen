@@ -11,10 +11,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + NIE REALIZUJ, CZEKAJĄ W KOLEJCE:
   - 2024-grudzen
-    - Zad 20 - zwykłe
-    - Zad 21 - krok po kroku i zwykłe
-    - Zad 22 - krok po kroku i zwykłe
-    - Zad 23 - krok po kroku i zwykłe
     - Zad 24 - zwykłe
     - Zad 25 - zwykłe
     - Zad 26 - zwykłe 
@@ -375,6 +371,13 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
     - widżet do zad. 10 ma ten sam problem z kolorem, co poprawiony właśnie widżet do zad. 12.1: ruchomy punkt jest ZIELONY, gdy wartość jest nieujemna, i CZERWONY, gdy ujemna, a w odczycie pod spodem stoi zielone „największa wartość!" i czerwone „wartość ujemna". COLORS.md mówi, że zieleń i czerwień znaczą wyłącznie „dobrze/źle", więc uczeń może to przeczytać jako ocenę swojego ruchu. Nie ruszałem tego, bo nie było w zamówieniu; do decyzji, czy zmienić punkt na błękitny (rola „podstawianie pod \(x\)") i opisy na neutralne
     - te same czerwono-zielone opisy siedzą jeszcze w kilku widżetach arkusza; jeśli zmieniamy, to lepiej jedną paczką niż po jednym
+
+  + SONNET 5 HIGH DOPISAŁ (2026-09-04, po zrobieniu filmów krok po kroku do zad. 22 i 23 z 2024-grudnia, sesja chmurowa bez Henricha na żywo):
+
+    - render zrobiłem **poza devkontenerem**, bo ta sesja go nie ma: zainstalowałem doraźnie Manim 0.18.1 + TeX Live z Ubuntu 24.04 (nie Debiana z Dockerfile) w wirtualnym środowisku Pythona. `test-mozliwosci.py` (5 z 7 scen, w tym MathTex i polski `Text()`) przeszło. Nic z tej instalacji nie zostaje w repo, ginie z sesją
+    - **nie widziałem filmów w przeglądarce** - Chromium w tej chmurowej piaskownicy nie odtwarza H.264 (to ten sam brak kodeka, o którym już jest notatka w CLAUDE.md przy sekcji o teście kroków). Zweryfikowałem inaczej: SSIM na stykach klatek (`styk-klatek.sh`, wszystkie pary ponad 0,999), `zielen-krokow.py` (zielone piksele czyste na starcie/końcu każdego kroku, poza świadomym wyjątkiem: w zad. 23 okrąg o3 zostaje zielony od kroku 4 do końca, tak jak wolno w README), oraz `klatki.sh stany`/`film` obejrzane okiem. `tools/test-krokow.js` odpalałem, ale dwa jego sprawdziany (dojście cofki do końca, klikanie kropek) failują identycznie na już wdrożonym zad. 21, więc to też środowisko, nie moja zmiana - ale **nikt nie widział tych dwóch filmów w prawdziwej przeglądarce**, więc przydałoby się, żeby ktoś kliknął je choć raz z hosta
+    - zad. 23 (cztery okręgi) ma na rysunku nachodzące się na siebie okręgi (o1 leży częściowo na o3, o2 częściowo na o4) - to wynika z samych danych zadania, nie da się tego uniknąć bez zniekształcenia skali. Sprawdź, czy przy szerokości telefonu nachodzenie nie utrudnia odróżnienia, który okrąg jest który
+    - oba filmy są krótkie (7 i 6 kroków) w porównaniu do reszty arkusza - to były proste zadania 1-punktowe, nie oszczędność na jakości
 
 + ZASADY DLA CLAUDE-A:
 
