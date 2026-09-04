@@ -11,8 +11,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 + NIE REALIZUJ, CZEKAJĄ W KOLEJCE:
   - 2024-grudzen
-    - Zad 24 - zwykłe
-    - Zad 25 - zwykłe
     - Zad 26 - zwykłe 
     - Zad 27 - krok po kroku i zwykłe
       (pomysł na 5 slotów ze zmieniajacymi się liczbami i licznikiem na górze kombinacji)

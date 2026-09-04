@@ -1594,7 +1594,7 @@
         "selfScore": false,
         "hint": "Kąt nachylenia ściany bocznej leży w trójkącie: wysokość ostrosłupa H i połowa boku podstawy (2). \\(\\operatorname{tg}\\alpha = \\frac{H}{2}\\).",
         "formulasPage": 11,
-        "solutionText": "\\(\\operatorname{tg}\\alpha = \\frac{H}{a/2}\\), czyli \\(3 = \\frac{H}{2}\\), stąd \\(\\boldsymbol{H = 6}\\), odpowiedź <b>B</b>.",
+        "solutionText": "Kąt nachylenia ściany bocznej do podstawy leży w trójkącie prostokątnym: wysokość ostrosłupa, połowa boku podstawy i wysokość ściany bocznej. Wzór na tangens: \\(a\\) to przyprostokątna naprzeciw kąta \\(\\alpha\\), \\(b\\) to przyprostokątna przy nim.\\[\\operatorname{tg}\\alpha = \\frac{a}{b}\\]<div class=\"rozwiazanie-kroki\"><div class=\"rozw-komentarz\">Wysokość ściany bocznej opada na środek krawędzi podstawy, a wysokość ostrosłupa na środek kwadratu. Odcinek między tymi punktami to połowa boku: \\(4 : 2 = 2\\). Naprzeciw kąta \\(\\alpha\\) stoi wysokość ostrosłupa \\(H\\), przy kącie stoi ta połowa boku.</div><div class=\"rozw-linia\">\\(\\operatorname{tg}\\alpha = \\dfrac{H}{2}\\)</div><div class=\"rozw-komentarz\">Z treści zadania \\(\\operatorname{tg}\\alpha = 3\\), więc ułamek \\(\\dfrac{H}{2}\\) też jest równy \\(3\\).</div><div class=\"rozw-linia\">\\(\\dfrac{H}{2} = 3\\)<span class=\"rozw-dzialanie\">\\(\\big/ \\cdot 2\\)</span></div><div class=\"rozw-linia\">\\(\\boldsymbol{H = 6}\\)</div><div class=\"rozw-linia\">Odpowiedź <b>B</b>.</div></div>",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -1611,7 +1611,7 @@
         "selfScore": false,
         "hint": "Kolejne parzyste liczby różnią się o 2, więc krawędzie to \\(p - 4\\), \\(p - 2\\) oraz \\(p\\). Wymnóż.",
         "formulasPage": 26,
-        "solutionText": "\\(V = (p - 4)(p - 2)p = (p^{2} - 6p + 8)p = \\boldsymbol{p^{3} - 6p^{2} + 8p}\\), odpowiedź <b>D</b>.",
+        "solutionText": "Kolejne liczby parzyste różnią się o \\(2\\). Najdłuższa krawędź ma długość \\(p\\), więc krótsze mają długości \\(p - 2\\) oraz \\(p - 4\\). Objętość prostopadłościanu to iloczyn trzech krawędzi \\(a\\), \\(b\\), \\(c\\) wychodzących z jednego wierzchołka.\\[V = abc\\]<div class=\"rozwiazanie-kroki\"><div class=\"rozw-linia\">\\(V = (p - 4)(p - 2) \\cdot p\\)</div><div class=\"rozw-komentarz\">Najpierw wymnażamy dwa nawiasy, każdy składnik przez każdy: \\(p \\cdot p = p^{2}\\), \\(p \\cdot (-2) = -2p\\), \\((-4) \\cdot p = -4p\\), \\((-4) \\cdot (-2) = 8\\). Środkowe wyrazy zbieramy: \\(-2p - 4p = -6p\\).</div><div class=\"rozw-linia\">\\(V = (p^{2} - 6p + 8) \\cdot p\\)</div><div class=\"rozw-komentarz\">Teraz każdy wyraz nawiasu mnożymy przez \\(p\\): \\(p^{2} \\cdot p = p^{3}\\), \\(-6p \\cdot p = -6p^{2}\\), \\(8 \\cdot p = 8p\\).</div><div class=\"rozw-linia\">\\(\\boldsymbol{V = p^{3} - 6p^{2} + 8p}\\)</div><div class=\"rozw-linia\">Odpowiedź <b>D</b>.</div></div>",
         "solutionStepByStep": null,
         "solutionWidget": null
     },

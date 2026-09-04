@@ -1,5 +1,30 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-09-04] (Cloud Opus 5) Zad. 24 i 25 z grudnia 2024: rozwiazania zwykle,
+jedna kolumna ze wzorem z tablicy nad rachunkiem. Bez filmow: w kolejce oba mialy tylko
+„zwykle", a w chmurze i tak nie ma Manima ani TeX Live.
+[2024-grudzien, zad24, zad25, stereometria, trygonometria]
+
+Zad. 24 (wysokosc ostroslupa): sedno nie jest w rachunku, tylko w tym, GDZIE lezy kat
+nachylenia sciany bocznej. Uczen bierze zwykle krawedz boczna zamiast wysokosci sciany,
+i wtedy przyprostokatna to polowa PRZEKATNEJ podstawy, a nie polowa boku. Dlatego trojkat
+jest opisany zdaniem przed pierwsza linijka rachunku, a nie zalozony po cichu. Wzor
+z tablicy to zwykly tangens [9.1], s. 11 (stereometrii tu nie ma wcale, mimo tematu
+zadania) i zgadza sie z `formulasPage`, ktore juz tam stalo.
+
+Zad. 25 (objetosc prostopadloscianu): wzor [12.2] `V = abc`, s. 26. Cala trudnosc siedzi
+w wymnozeniu `(p - 4)(p - 2)p`, wiec oba przejscia dostaly komentarz z ogniwami
+(kazdy skladnik przez kazdy, potem kazdy wyraz nawiasu przez `p`) zamiast jednej linijki
+z gotowym wynikiem. Dystraktor C rozni sie tylko znakiem przy `8p`, wiec `(-4)(-2) = 8`
+stoi w komentarzu jawnie.
+
+Zieleni nie ma w zadnym z dwoch: w obu wzor z tablicy obejmuje CALE wyrazenie linijki,
+a wtedy regula 13 z SOLUTION_TEXT_RULES.md mowi, ze nie ma czego wskazywac.
+
+Sprawdzone zrzutami (`tools/zrzut-rozwiazania.js`) przy 900 i 485 px oraz w ciemnym
+motywie; osobnym skryptem Playwrighta zmierzone, ze przy 360, 485 i 900 px strona nie
+przewija sie w bok, a zaden blok `.rozwiazanie-kroki` sie nie obcina.
+
 [ZROBIONE 2026-09-04] (Opus 5) Zad. 20 i 21 z grudnia 2024: rozwiazania zwykle do obu,
 plus nowy film krok po kroku do zad. 21 (scena `solutionZad21.py`, 15 krokow). Projekt
 w `issues/projekt-zad20-zad21-2024-grudzien.md`.
