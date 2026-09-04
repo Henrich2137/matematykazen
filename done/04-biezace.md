@@ -1,5 +1,30 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-09-04] (Local Opus 5 High) Zad. 30 z grudnia 2024: rozwiazanie zwykle
+napisane od zera i scalone ze stara trescia (znikl naglowek „DAWNE POKAZ WIECEJ"
+i doklejony pod nim akapit). Wyniki zgodne z kluczem CKE: P(x) = -26x^2 + 96x,
+dziedzina (0, 3), pole najwieksze dla x = 24/13.
+[2024-grudzien, zad30, funkcja-kwadratowa, optymalizacja, scalanie-pokaz-wiecej]
+
+Uklad jak w zad. 26, 28 i 29: trzy ponumerowane czesci, kazda we wlasnym bloku
+`rozwiazanie-kroki`, rozdzielone `<br>`, ze wzorem z tablicy w `\[ … \]` nad blokiem
+tam, gdzie taki wzor istnieje. Czesc 1 (krawedzie i dziedzina) wzoru nie ma, bo sumy
+dwunastu krawedzi w tablicy nie ma; czesc 2 stoi na [12.2] `P_c = 2(ab + bc + ca)`
+(s. 26), czesc 3 na [7.3] `p = -b/(2a)` (s. 8, zgadza sie z `formulasPage`).
+Trzecia krawedz nazwana `y` i wyliczona z sumy krawedzi, dziedzina wyprowadzona
+z warunku `y > 0` osobnymi linijkami, a nie podana gotowa, bo CKE daje za nia punkt.
+
+Ze starej tresci weszlo wszystko, co niosla: oznaczenia krawedzi, rownanie
+`4(x + y + 3x) = 48`, warunek `y > 0`, pole jako `6x^2 + 8xy`, podstawienie
+`y = 12 - 4x`, ramiona w dol i wierzcholek. Nie weszla jej forma: jednozdaniowe
+streszczenie z gory (powtarzalo koncowke) oraz jeden dlugi `\[ … \]` z calym lancuchem
+przeksztalcen pola, rozbity teraz na osiem linijek z komentarzami.
+
+Zrzuty obejrzane na 1300 px, na 485 px (telefon Henricha) i w ciemnym motywie: nic
+nie wychodzi poza karte, linijka „Krawedzie:" z trzema rownosciami miesci sie w jednym
+wierszu takze na telefonie. Filmu nie ma (`solutionStepByStep: null`), wiec nie bylo
+czego synchronizowac. Wersja podbita do v113.
+
 [ZROBIONE 2026-09-04] (Local Opus 5 High) Zad. 28 i 29 z grudnia 2024: rozwiazania
 zwykle, jedna kolumna. Oba mialy dotad jednozdaniowe zaslepki wciśnięte w akapit,
 wiec zostaly napisane od zera wg SOLUTION_TEXT_RULES.md. Wyniki zgodne z kluczem CKE:

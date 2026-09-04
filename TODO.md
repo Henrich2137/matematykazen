@@ -5,27 +5,28 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Jeżeli nie masz co robić, to rób stąd.     
   
   - 2024 grudzien
+      - Zad 27 - krok po kroku (rozwiązanie zwykłe już jest, film do zrobienia lokalnie,
+    bo w chmurze nie ma Manima ani TeX Live)
+    (pomysł na 5 slotów ze zmieniajacymi się liczbami i licznikiem na górze kombinacji)
+
+  - Saphari na mały iphonie SE - Rozwiązania krok po kroku
+    - Przyciskanie przycisku "steps-scroll-prawo" zbyt dużo razy na m sprawia, że kroki zostają po lewej. Przewijanie odjeższą za daleko.
+    - Cieżko trafić w kropki aby je przesunąć
+  
+  - Rozwiązania krok po kroku - kropki kroków (np w zad 1.) przy szerokości okna około 310 do 325 px już się chowają, a strzałki przewijania jeszcze się nie pokazują, więc w tym wąskim zakresie nie da się przejść do innego kroku. Poza tym zakresem przewijanie działa. Zlikwiduj tą strefe pomiędzy, ma być albo wszystko widoczne, albo poprawnie strzałki i przewijanie.
+
+  - Przy suwakach / sliderach w rozwiązaniach interaktywnych powinny być strzałki w lewo po lewe i po prawejktóre można klikać lub przytrzymywać również na telefonach, aby wartość suwaka. W stylu strzałek prev-step i next-step lub tych które pojawiają się prz yzaszerockich dotsach. 
+
+  - zrób rzeczy z sekcji "+ UI" które są najlepiej opisane, nie ma w nich niejasności oraz są bezpieczneie do zrobienia autonomicznie bez ryzyka dziwnych błędów lub podjęcia ważnych decyzji przez henricha 
 
 <br>
 
 
 + NIE REALIZUJ, CZEKAJĄ W KOLEJCE:
-  - 2024-grudzen
-    - Zad 27 - krok po kroku (rozwiązanie zwykłe już jest, film do zrobienia lokalnie,
-      bo w chmurze nie ma Manima ani TeX Live)
-      (pomysł na 5 slotów ze zmieniajacymi się liczbami i licznikiem na górze kombinacji)
-    - Zad 30 - zwykłe
 
-  - Saphari na mały iphonie SE - Rozwiązania krok po kroku
-    - Przyciskanie przycisku "steps-scroll-prawo" zbyt dużo razy na m sprawia, że kroki zostają po lewej. Przewijanie odjeższą za daleko.
-    - Cieżko trafić w kropki aby je przesunąć
-
-  - Rozwiązania krok po kroku - kropki kroków (np w zad 1.) przy szerokości okna około 310 do 325 px już się chowają, a strzałki przewijania jeszcze się nie pokazują, więc w tym wąskim zakresie nie da się przejść do innego kroku. Poza tym zakresem przewijanie działa. Zlikwiduj tą strefe pomiędzy, ma być albo wszystko widoczne, albo poprawnie strzałki i przewijanie.
-  
   - to samo do decyzji z „finalAnswer.label": renderer je ignoruje (świadomie, od 2026-08-06),
     a pole nadal siedzi w danych wszystkich arkuszy
 
-  - w zadaniu 30 z grudnia 2024 w rozwiązaniu siedzi nagłówek „DAWNE POKAŻ WIĘCEJ" i doklejona pod nim dawna treść; celowo brzydkie, żeby było widać, gdzie zredagować tekst w jedną całość. Scalać samemu czy zostawiasz to sobie (zad. 10 scalone 2026-08-28, zad. 19 scalone 2026-08-30 przy okazji nowych rozwiązań)
 
 
 <br>
@@ -91,18 +92,12 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
   - 2024-grudzien - zadania do których warto zrobić widżet 3D i/lub krok po kroku 3D - 24, 25, 26, 29
 
-
   - podmienić Goatcunter na Cloudflare bo goatcounter jest noncomertial.
 
   - Przycisk "Zresetuj ustawienia" z popup-em do potwierdzenie. Podświetlajacy się na czerwono po najechaniu i widoczny na samym dole side-bar-a.
-  
-  - Wsparcie, donate-y itd.
-    - W index.html dodać sekcję o autorze i link do Patronite
-    - Na githubie w ustawieniach repo też można coś podpiąć chyba ale trzeba sprawdizć czy byłoby to fair.
 
   - wysyłanie całego localStorage przez użytkownika podczas zgłaszania błędu jest a bit scatchy też troche niebezpiczne
 
-  - Przy suwakach / sliderach w rozwiązaniach interaktywnych powinny być strzałki w lewo po lewe i po prawejktóre można klikać lub przytrzymywać również na telefonach, aby wartość suwaka. W stylu strzałek prev-step i next-step lub tych które pojawiają się prz yzaszerockich dotsach. 
 
   - Zwykłe rozwiązania powinny składać się z arraya / listy wielu sposobów / podejść. Jeżeli jest tylko jeden element to UI wyświetla go tak jak dotychczas. Jeśli więcej to robią się zakładki w stylu tych w widgetach.
 
@@ -122,9 +117,8 @@ Oto plik który tworzy Henrich (ja, użytkownik).
       - Zwykłe - zrobione tylko w wybranych zadaniach, w reszcie trzeba zrobić
       - Interaktywne ✅ - zostają zad. 27 i 28 i czekają na przekminke o widżetach 3D
 
-
+  SPRAWDŹ TO I JEŚLI KTÓREŚ JEST EWIDENTNIE NIEAKTUALNE TO USUŃ:
   - Arkusz 2024-grudzien:
-
     - Zad 7
       - Rozwiązanie krok po kroku
         - krok 2: Nie wiadomoco skąd się wzięło założenie. Trzba go rozłożyć na wiele kroków z dopisanym u góry ZAŁOŻENIE. Może zaczyać się od wizualizacji czerwonego zera zamiast mianowników i potem przejśc do 2 nierówności uwtorzonych od tych mianowników
