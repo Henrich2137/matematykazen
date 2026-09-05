@@ -2,38 +2,68 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
 
 + DO ZROBIENIA
-<br> Jeżeli nie masz co robić, to rób stąd.     
-  
-  - 2024 grudzien
+<br> Jeżeli nie masz co robić, to rób stąd.
 
+  + Lekkie subagenty bez dużego kosztu tokenów
+    
+    - 2024 grudzien
+        - Zad 27 - krok po kroku (rozwiązanie zwykłe już jest, film do zrobienia lokalnie,
+      bo w chmurze nie ma Manima ani TeX Live)
+      (pomysł na 5 slotów ze zmieniajacymi się liczbami i licznikiem na górze kombinacji)
+
+    - Przy suwakach / sliderach w rozwiązaniach interaktywnych powinny być strzałki w lewo po lewe i po prawejktóre można klikać lub przytrzymywać również na telefonach, aby wartość suwaka. W stylu strzałek prev-step i next-step lub tych które pojawiają się prz yzaszerockich dotsach. 
+
+    - zrób rzeczy z sekcji "+ UI" które są najlepiej opisane, nie ma w nich niejasności oraz są bezpieczneie do zrobienia autonomicznie bez ryzyka dziwnych błędów lub podjęcia ważnych decyzji przez henricha 
+
+    - Zaprojektuj i stwórz w Zad 24 rozwiązanie krok po kroku z animacjami 3D
+
+
+
+    SPRAWDŹ TO I JEŚLI KTÓREŚ JEST EWIDENTNIE NIEAKTUALNE TO USUŃ:
+  
+    - Arkusz 2024-grudzien:
+      - Zad 7
+        - Rozwiązanie krok po kroku
+          - krok 2: Nie wiadomoco skąd się wzięło założenie. Trzba go rozłożyć na wiele kroków z dopisanym u góry ZAŁOŻENIE. Może zaczyać się od wizualizacji czerwonego zera zamiast mianowników i potem przejśc do 2 nierówności uwtorzonych od tych mianowników
+          - krok 3 źle koloruje, powinien najpierw kolorować obie 2jki a potem 2 przed nawiasem bo tam one powędrowały. Powinna to odwzorowywać też animacja.
+          - krok 5 jest za bardzo na skróty, też go trzeba rozłożyć na więcej
+          - krok 6 ma podobny problem jak 3
+          - powinno być to zwizualizowane emotką odznaczenia zielonego przy x = 6 i jednoczesnym pokolorowaniem założenia na zielono
+        - Rozwiązania zwykłe powinny follołować krok po kroku
+
+      - Zad 9 - Sprawdzanie obliczeń - Pierwszy checkbox
+        (sprawdzone 2026-08-20: trzy kryteria zgadzają się z kluczem CKE co do punktów,
+        pierwsze jest za 0 pkt celowo, bo klucz daje punkt dopiero za pierwiastki.
+        Napisz, co Ci w nim nie pasowało, bo w samym wpisie tego nie ma)
+        PO CO JEST ZDANIE PIERWSZE SKORO NIE DAJE ONO PUNKTÓW?
+
+      - Rozwiązania 
+        - Krok po kroku (zad. 1–9, komplet po v27) i ich opisy pod filmem:
+
+          - opisy pod filmami (v29, 51 sztuk, wg zasad z manimations/README.md): krótkie linijki,
+            wzory w osobnych wierszach, bez wstępów typu „zaczynamy od…”, bez myślników/podkreśleń
+            poza wzorami — sprawdzić brzmienie i czy nic nie ucieka poza ekran na telefonie
+
+          - zad. 7
+            - Rozwiązanie krok po kroku:
+              - oba równania układu jadą jedno pod drugim przez cały film — sprawdzić, czy klamra
+                z dwoma równaniami nie jest za mała na telefonie
+
+          - zad. 9
+            - Rozwiązanie krok po kroku:
+              - film robi sam rachunek, NIE rysuje paraboli (widżet niżej już ją pokazuje interaktywnie)
+                — czy to dobry podział, czy parabola ma być też w filmie
+          POWYŻSZE SA CHYBA BARDZO NIEAKTUALNE 
+
+          
 <br>
 
 
 + NIE REALIZUJ, CZEKAJĄ W KOLEJCE:
-  
-  - Zad 20 - zwykłe
-  - Zad 21 - krok po kroku i zwykłe
-  - Zad 22 - krok po kroku i zwykłe
-  - Zad 23 - krok po kroku i zwykłe
-  - Zad 24 - zwykłe
-  - Zad 25 - zwykłe
-  - Zad 26 - zwykłe 
-  - Zad 27 - krok po kroku i zwykłe
-    (pomysł na 5 slotów ze zmieniajacymi się liczbami i licznikiem na górze kombinacji)
-  - Zad 28 - zwykłe
-  - Zad 29 - zwykłe
-  - Zad 30 - zwykłe
 
-  - Saphari na mały iphonie SE - Rozwiązania krok po kroku
-    - Przyciskanie przycisku "steps-scroll-prawo" zbyt dużo razy na m sprawia, że kroki zostają po lewej. Przewijanie odjeższą za daleko.
-    - Cieżko trafić w kropki aby je przesunąć
-
-  - Rozwiązania krok po kroku - kropki kroków (np w zad 1.) przy szerokości okna około 310 do 325 px już się chowają, a strzałki przewijania jeszcze się nie pokazują, więc w tym wąskim zakresie nie da się przejść do innego kroku. Poza tym zakresem przewijanie działa. Zlikwiduj tą strefe pomiędzy, ma być albo wszystko widoczne, albo poprawnie strzałki i przewijanie.
-  
   - to samo do decyzji z „finalAnswer.label": renderer je ignoruje (świadomie, od 2026-08-06),
     a pole nadal siedzi w danych wszystkich arkuszy
 
-  - w zadaniu 30 z grudnia 2024 w rozwiązaniu siedzi nagłówek „DAWNE POKAŻ WIĘCEJ" i doklejona pod nim dawna treść; celowo brzydkie, żeby było widać, gdzie zredagować tekst w jedną całość. Scalać samemu czy zostawiasz to sobie (zad. 10 scalone 2026-08-28, zad. 19 scalone 2026-08-30 przy okazji nowych rozwiązań)
 
 
 <br>
@@ -43,6 +73,12 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Claude zapisuje małymi literami. HENRICH ZAPISUJE WIELKIMI LITERAMI.
 <br> Mój telefon na chrome ma "okno": 485x945
 <br> Próg wejścia jest wysoki, patrz ZASADY DLA CLAUDE-A niżej. Archiwum dawnych list: issues/testowanie-archiwum.md.
+
+  - v114, pasek kropek w rozwiązaniu krok po kroku, na iPhonie SE w SAFARI: przyciśnij strzałkę w prawo kilkanaście razy pod rząd, potem tyle samo w lewo - pasek ma zatrzymać się na ostatniej i na pierwszej kropce, bez pustego miejsca po żadnej stronie
+
+  - v114, pasek kropek w zad. 1 z grudnia 2024, PALCEM na telefonie: postukaj w kolejne kropki - pole trafienia jest teraz szersze i sięga do połowy odcinka, więc każde dotknięcie paska ma przenosić do najbliższej kropki
+
+  - v109, zad. 21 z grudnia 2024, NOWY film krok po kroku (15 kroków, kwadrat na siatce kratek po lewej, rachunek po prawej). sprawdź na TELEFONIE, czy podpisy wierzchołków \(A\), \(B\), \(C\), \(D\), liczby przy osiach i podpis \(5\sqrt{2}\) na przekątnej dają się odczytać, bo rysunek zajmuje niecałą połowę kadru
 
   - v106, zad. 18 z grudnia 2024: nowe rozwiązanie zwykłe (jedynka trygonometryczna). sprawdź, czy nadal pasuje do widżetu koła trygonometrycznego, który stoi obok
 
@@ -97,18 +133,11 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
   - 2024-grudzien - zadania do których warto zrobić widżet 3D i/lub krok po kroku 3D - 24, 25, 26, 29
 
-
   - podmienić Goatcunter na Cloudflare bo goatcounter jest noncomertial.
 
   - Przycisk "Zresetuj ustawienia" z popup-em do potwierdzenie. Podświetlajacy się na czerwono po najechaniu i widoczny na samym dole side-bar-a.
-  
-  - Wsparcie, donate-y itd.
-    - W index.html dodać sekcję o autorze i link do Patronite
-    - Na githubie w ustawieniach repo też można coś podpiąć chyba ale trzeba sprawdizć czy byłoby to fair.
 
   - wysyłanie całego localStorage przez użytkownika podczas zgłaszania błędu jest a bit scatchy też troche niebezpiczne
-
-  - Przy suwakach / sliderach w rozwiązaniach interaktywnych powinny być strzałki w lewo po lewe i po prawejktóre można klikać lub przytrzymywać również na telefonach, aby wartość suwaka. W stylu strzałek prev-step i next-step lub tych które pojawiają się prz yzaszerockich dotsach. 
 
   - Zwykłe rozwiązania powinny składać się z arraya / listy wielu sposobów / podejść. Jeżeli jest tylko jeden element to UI wyświetla go tak jak dotychczas. Jeśli więcej to robią się zakładki w stylu tych w widgetach.
 
@@ -127,44 +156,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
           tools/odwroc-kolor.py przed renderem
       - Zwykłe - zrobione tylko w wybranych zadaniach, w reszcie trzeba zrobić
       - Interaktywne ✅ - zostają zad. 27 i 28 i czekają na przekminke o widżetach 3D
-
-
-  - Arkusz 2024-grudzien:
-
-    - Zad 7
-      - Rozwiązanie krok po kroku
-        - krok 2: Nie wiadomoco skąd się wzięło założenie. Trzba go rozłożyć na wiele kroków z dopisanym u góry ZAŁOŻENIE. Może zaczyać się od wizualizacji czerwonego zera zamiast mianowników i potem przejśc do 2 nierówności uwtorzonych od tych mianowników
-        - krok 3 źle koloruje, powinien najpierw kolorować obie 2jki a potem 2 przed nawiasem bo tam one powędrowały. Powinna to odwzorowywać też animacja.
-        - krok 5 jest za bardzo na skróty, też go trzeba rozłożyć na więcej
-        - krok 6 ma podobny problem jak 3
-        - powinno być to zwizualizowane emotką odznaczenia zielonego przy x = 6 i jednoczesnym pokolorowaniem założenia na zielono
-      - Rozwiązania zwykłe powinny follołować krok po kroku
-
-    - Zad 9 - Sprawdzanie obliczeń - Pierwszy checkbox
-      (sprawdzone 2026-08-20: trzy kryteria zgadzają się z kluczem CKE co do punktów,
-      pierwsze jest za 0 pkt celowo, bo klucz daje punkt dopiero za pierwiastki.
-      Napisz, co Ci w nim nie pasowało, bo w samym wpisie tego nie ma)
-      PO CO JEST ZDANIE PIERWSZE SKORO NIE DAJE ONO PUNKTÓW?
-
-    - Rozwiązania 
-      - Krok po kroku (zad. 1–9, komplet po v27) i ich opisy pod filmem:
-
-        - opisy pod filmami (v29, 51 sztuk, wg zasad z manimations/README.md): krótkie linijki,
-          wzory w osobnych wierszach, bez wstępów typu „zaczynamy od…”, bez myślników/podkreśleń
-          poza wzorami — sprawdzić brzmienie i czy nic nie ucieka poza ekran na telefonie
-
-        - zad. 7
-          - Rozwiązanie krok po kroku:
-            - oba równania układu jadą jedno pod drugim przez cały film — sprawdzić, czy klamra
-              z dwoma równaniami nie jest za mała na telefonie
-
-        - zad. 9
-          - Rozwiązanie krok po kroku:
-            - film robi sam rachunek, NIE rysuje paraboli (widżet niżej już ją pokazuje interaktywnie)
-              — czy to dobry podział, czy parabola ma być też w filmie
-        POWYŻSZE SA CHYBA BARDZO NIEAKTUALNE
-
-
 
   - Co zadawać Fable:
     - Rozwiązania interaktywne
@@ -373,6 +364,13 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
     - widżet do zad. 10 ma ten sam problem z kolorem, co poprawiony właśnie widżet do zad. 12.1: ruchomy punkt jest ZIELONY, gdy wartość jest nieujemna, i CZERWONY, gdy ujemna, a w odczycie pod spodem stoi zielone „największa wartość!" i czerwone „wartość ujemna". COLORS.md mówi, że zieleń i czerwień znaczą wyłącznie „dobrze/źle", więc uczeń może to przeczytać jako ocenę swojego ruchu. Nie ruszałem tego, bo nie było w zamówieniu; do decyzji, czy zmienić punkt na błękitny (rola „podstawianie pod \(x\)") i opisy na neutralne
     - te same czerwono-zielone opisy siedzą jeszcze w kilku widżetach arkusza; jeśli zmieniamy, to lepiej jedną paczką niż po jednym
+
+  + SONNET 5 HIGH DOPISAŁ (2026-09-04, po zrobieniu filmów krok po kroku do zad. 22 i 23 z 2024-grudnia, sesja chmurowa bez Henricha na żywo):
+
+    - render zrobiłem **poza devkontenerem**, bo ta sesja go nie ma: zainstalowałem doraźnie Manim 0.18.1 + TeX Live z Ubuntu 24.04 (nie Debiana z Dockerfile) w wirtualnym środowisku Pythona. `test-mozliwosci.py` (5 z 7 scen, w tym MathTex i polski `Text()`) przeszło. Nic z tej instalacji nie zostaje w repo, ginie z sesją
+    - **nie widziałem filmów w przeglądarce** - Chromium w tej chmurowej piaskownicy nie odtwarza H.264 (to ten sam brak kodeka, o którym już jest notatka w CLAUDE.md przy sekcji o teście kroków). Zweryfikowałem inaczej: SSIM na stykach klatek (`styk-klatek.sh`, wszystkie pary ponad 0,999), `zielen-krokow.py` (zielone piksele czyste na starcie/końcu każdego kroku, poza świadomym wyjątkiem: w zad. 23 okrąg o3 zostaje zielony od kroku 4 do końca, tak jak wolno w README), oraz `klatki.sh stany`/`film` obejrzane okiem. `tools/test-krokow.js` odpalałem, ale dwa jego sprawdziany (dojście cofki do końca, klikanie kropek) failują identycznie na już wdrożonym zad. 21, więc to też środowisko, nie moja zmiana - ale **nikt nie widział tych dwóch filmów w prawdziwej przeglądarce**, więc przydałoby się, żeby ktoś kliknął je choć raz z hosta
+    - zad. 23 (cztery okręgi) ma na rysunku nachodzące się na siebie okręgi (o1 leży częściowo na o3, o2 częściowo na o4) - to wynika z samych danych zadania, nie da się tego uniknąć bez zniekształcenia skali. Sprawdź, czy przy szerokości telefonu nachodzenie nie utrudnia odróżnienia, który okrąg jest który
+    - oba filmy są krótkie (7 i 6 kroków) w porównaniu do reszty arkusza - to były proste zadania 1-punktowe, nie oszczędność na jakości
 
 + ZASADY DLA CLAUDE-A:
 

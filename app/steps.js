@@ -584,15 +584,30 @@ function skoczDoKropki(ctx, i) {
 // wiersza — ta druga nie zależy od tego, czy strzałki akurat widać:
 //   • strzałki widoczne, kropki się nie mieszczą → scrollWidth to realna
 //     szerokość treści, więc porównanie jest wprost;
-//   • kropki się mieszczą → scrollWidth schodzi do szerokości okna, która jest
-//     nie większa niż wiersz, więc wynik wychodzi „nie trzeba" — i słusznie,
-//     bo bez strzałek miejsca będzie tylko więcej.
+//   • kropki się mieszczą → scrollWidth schodzi do szerokości okna, więc
+//     porównanie i tak wypada „nie trzeba".
+//
+// PORÓWNUJEMY Z MIEJSCEM, JAKIE KROPKI DOSTAJĄ BEZ STRZAŁEK, nie z całym
+// wierszem. Wiersz jest szerszy od okna kropek o marginesy okna (po 8 px),
+// więc próg stał o te 16 px za wysoko i powstawała MARTWA STREFA: przy paru
+// szerokościach okna (Henrich: około 310-325 px) kropki już wystawały poza
+// okno, a strzałki jeszcze się nie pokazywały i do dalszych kroków nie było
+// jak dojść. Marginesy czytamy z układu, bo ta liczba siedzi w CSS-ie.
+//
+// Odczyt niczego nie przestawia, więc pętla ResizeObservera dalej nie grozi.
+// Wynik nie zależy też od tego, czy strzałki akurat widać: przy schowanych
+// strzałkach scrollWidth to max(treść, miejsceBezStrzalek), a przy pokazanych
+// max(treść, coś mniejszego) — w obu razach warunek sprowadza się do
+// „treść > miejsceBezStrzalek", więc strzałki nie mrugają w kółko.
 function odswiezStrzalkiKropek(ctx) {
     const okno = ctx.kropkiOkno;
     const wiersz = okno && okno.parentElement;
     if (!wiersz) return;
 
-    const trzeba = ctx.kropkiBox.scrollWidth > wiersz.clientWidth + 1;
+    const styl = getComputedStyle(okno);
+    const marginesy = (parseFloat(styl.marginLeft) || 0) + (parseFloat(styl.marginRight) || 0);
+    const miejsceBezStrzalek = wiersz.clientWidth - marginesy;
+    const trzeba = ctx.kropkiBox.scrollWidth > miejsceBezStrzalek + 1;
     if (trzeba === ctx.strzalkiWidoczne) return; // bez zmiany nie ruszamy DOM
 
     ctx.strzalkiWidoczne = trzeba;
@@ -608,6 +623,24 @@ function przewinDoKropki(ctx, i) {
     if (!kropka) return;
     const lewo = kropka.offsetLeft - okno.clientWidth / 2 + kropka.offsetWidth / 2;
     okno.scrollTo({ left: Math.max(0, lewo), behavior: "smooth" });
+}
+
+// Przewijanie paska strzałkami. Skok liczymy SAMI i przycinamy do przedziału
+// [0, scrollWidth - clientWidth] zamiast zdawać się na scrollBy().
+//
+// Powód: na Safari (iPhone SE) kilka szybkich kliknięć w strzałkę w prawo
+// wywoziło pasek poza treść i kropki zostawały za lewą krawędzią (Henrich).
+// scrollBy() liczy przesunięcie względem bieżącego położenia, a to w trakcie
+// płynnego przewijania i sprężynowania na iOS bywa czymś innym, niż się wydaje.
+// Własne przycięcie nie zależy od przeglądarki: dokądkolwiek pasek zdążył
+// dojechać, celu i tak nie da się ustawić poza treścią.
+function przewinPasek(ctx, kierunek) {
+    const okno = ctx.kropkiOkno;
+    if (!okno) return;
+    const max = Math.max(0, okno.scrollWidth - okno.clientWidth);
+    const skok = okno.clientWidth * 0.7 * kierunek;
+    const cel = Math.min(max, Math.max(0, okno.scrollLeft + skok));
+    okno.scrollTo({ left: cel, behavior: "smooth" });
 }
 
 // Buduje ROW 1: N+1 kropek przedzielonych odcinkami (odcinek k = krok k).

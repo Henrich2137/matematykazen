@@ -1383,7 +1383,7 @@
         "selfScore": false,
         "hint": "Kąt środkowy oparty na tym samym łuku jest DWA razy większy od kąta wpisanego. Długość łuku to odpowiedni ułamek całego obwodu \\(2\\pi r\\).",
         "formulasPage": 19,
-        "solutionText": "Kąt środkowy \\(\\angle ASB = 2 \\cdot 60^{\\circ} = 120^{\\circ}\\), czyli \\(\\frac{1}{3}\\) pełnego kąta. Długość łuku: \\(\\frac{1}{3} \\cdot 2\\pi \\cdot 6 = \\boldsymbol{4\\pi}\\), odpowiedź <b>B</b>.",
+        "solutionText": "Kąt \\(ACB\\) ma wierzchołek na okręgu, więc jest kątem wpisanym. Kąt \\(ASB\\) ma wierzchołek w środku okręgu, więc jest kątem środkowym. Oba są oparte na tym samym łuku \\(AB\\), a kąt wpisany jest połową środkowego.<div class=\"rozwiazanie-kroki\"><div class=\"rozw-linia\">\\(|\\angle ASB| = 2 \\cdot 60^{\\circ}\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{|\\angle ASB| = 120^{\\circ}}\\)</div><div class=\"rozw-komentarz rozw-odstep\">Długość łuku liczymy ze wzoru \\(L = \\dfrac{\\alpha}{360^{\\circ}} \\cdot 2\\pi r\\), w którym \\(\\alpha\\) to kąt środkowy, a \\(r\\) promień okręgu.</div><div class=\"rozw-linia\">\\(L = \\dfrac{120^{\\circ}}{360^{\\circ}} \\cdot 2\\pi \\cdot 6\\)</div><div class=\"rozw-komentarz\">\\(\\dfrac{120}{360} = \\dfrac{1}{3}\\), czyli łuk jest trzecią częścią całego okręgu.</div><div class=\"rozw-linia\">\\(L = \\dfrac{1}{3} \\cdot 2\\pi \\cdot 6\\)</div><div class=\"rozw-linia\">\\(L = \\dfrac{1}{3} \\cdot 12\\pi\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{L = 4\\pi}\\)</div><div class=\"rozw-linia rozw-odstep\">Odpowiedź <b>B</b>.</div></div>",
         "solutionStepByStep": null,
         "solutionWidget": "widgetKatWpisany"
     },
@@ -1398,10 +1398,86 @@
         "correctAnswerIndex": 0,
         "maxScore": 1,
         "selfScore": false,
-        "hint": "AC to przekątna kwadratu. Policz ją ze wzoru na długość odcinka, a potem skorzystaj z zależności: przekątna \\(= a\\sqrt{2}\\).",
-        "formulasPage": 22,
-        "solutionText": "\\(|AC| = \\sqrt{5^{2} + 5^{2}} = 5\\sqrt{2}\\), a bok kwadratu to przekątna podzielona przez \\(\\sqrt{2}\\): \\(\\boldsymbol{a = 5}\\), odpowiedź <b>A</b>.",
-        "solutionStepByStep": null,
+        "hint": "\\(AC\\) to przekątna kwadratu. Policz ją z twierdzenia Pitagorasa w trójkącie, którego przyprostokątne są różnicami współrzędnych. Potem tym samym twierdzeniem policz bok: przekątna jest przeciwprostokątną trójkąta o dwóch bokach kwadratu.",
+        "formulasPage": 15,
+        "solutionText": "Punkty \\(A\\) i \\(C\\) leżą naprzeciw siebie, więc odcinek \\(AC\\) jest przekątną kwadratu. Przekątna dzieli kwadrat na dwa trójkąty prostokątne i w obu korzystamy z tego samego wzoru:\\[a^{2} + b^{2} = c^{2}\\]<div class=\"rozwiazanie-kroki\"><div class=\"rozw-komentarz\">Najpierw górny trójkąt. Jego przyprostokątne to przesunięcie z \\(A\\) do \\(C\\): \\(4 - (-1) = 4 + 1 = 5\\) w górę i \\(3 - (-2) = 3 + 2 = 5\\) w prawo. Przeciwprostokątną jest przekątna \\(AC\\).</div><div class=\"rozw-linia\">\\(5^{2} + 5^{2} = |AC|^{2}\\)</div><div class=\"rozw-linia\">\\(25 + 25 = |AC|^{2}\\)</div><div class=\"rozw-linia\">\\(50 = |AC|^{2}\\)</div><div class=\"rozw-komentarz\">Pierwiastkujemy obie strony. Wynik ujemny odpada, bo długość nie może być ujemna.</div><div class=\"rozw-linia\">\\(\\sqrt{50} = |AC|\\)</div><div class=\"rozw-komentarz\">\\(\\sqrt{50} = \\sqrt{25 \\cdot 2} = \\sqrt{25} \\cdot \\sqrt{2} = 5\\sqrt{2}\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{5\\sqrt{2} = |AC|}\\)</div><div class=\"rozw-komentarz rozw-odstep\">Teraz dolny trójkąt. Jego przyprostokątne to boki kwadratu \\(AB\\) i \\(BC\\), obie równe \\(a\\), a przeciwprostokątną jest policzona przekątna.</div><div class=\"rozw-linia\">\\(a^{2} + a^{2} = (5\\sqrt{2})^{2}\\)</div><div class=\"rozw-linia\">\\(2a^{2} = (5\\sqrt{2})^{2}\\)</div><div class=\"rozw-komentarz\">\\((5\\sqrt{2})^{2} = 5^{2} \\cdot (\\sqrt{2})^{2} = 25 \\cdot 2 = 50\\)</div><div class=\"rozw-linia\">\\(2a^{2} = 50\\)<span class=\"rozw-dzialanie\">\\(\\big/ : 2\\)</span></div><div class=\"rozw-linia\">\\(a^{2} = 25\\)</div><div class=\"rozw-komentarz\">Znowu pierwiastkujemy i znowu bierzemy tylko wynik dodatni.</div><div class=\"rozw-linia\">\\(\\boldsymbol{a = 5}\\)</div><div class=\"rozw-linia rozw-odstep\">Odpowiedź <b>A</b>.</div></div>",
+        "solutionStepByStep": [
+            {
+                "type": "video",
+                "src": "media/zad21/solution-step-by-step/step1.mp4",
+                "text": "Punkty \\(A\\) i \\(C\\) leżą naprzeciw siebie, więc odcinek \\(AC\\) jest przekątną kwadratu."
+            },
+            {
+                "type": "video",
+                "src": "media/zad21/solution-step-by-step/step2.mp4",
+                "text": "Przekątna dzieli kwadrat na dwa trójkąty prostokątne.<br>Zaczynamy od górnego: jego przyprostokątne to \\(AD\\) i \\(DC\\), a przekątna jest w nim przeciwprostokątną."
+            },
+            {
+                "type": "video",
+                "src": "media/zad21/solution-step-by-step/step3.mp4",
+                "text": "Długość przyprostokątnej to różnica współrzędnych.<br>W pionie: \\(4 - (-1) = 4 + 1 = 5\\).<br>W poziomie: \\(3 - (-2) = 3 + 2 = 5\\).<br>Odjęcie liczby ujemnej daje dodawanie.<br>Dalej liczymy z twierdzenia Pitagorasa:\\[a^{2} + b^{2} = c^{2}\\]"
+            },
+            {
+                "type": "video",
+                "src": "media/zad21/solution-step-by-step/step4.mp4",
+                "text": "Pod \\(a\\) i \\(b\\) wchodzą przyprostokątne, pod \\(c\\) przekątna, której szukamy."
+            },
+            {
+                "type": "video",
+                "src": "media/zad21/solution-step-by-step/step5.mp4",
+                "text": "\\(5^{2} = 5 \\cdot 5 = 25\\), i tak samo drugi raz."
+            },
+            {
+                "type": "video",
+                "src": "media/zad21/solution-step-by-step/step6.mp4",
+                "text": "\\(25 + 25 = 50\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad21/solution-step-by-step/step7.mp4",
+                "text": "Pierwiastkujemy obie strony. Wynik ujemny odpada, bo długość nie może być ujemna."
+            },
+            {
+                "type": "video",
+                "src": "media/zad21/solution-step-by-step/step8.mp4",
+                "text": "\\(\\sqrt{50} = \\sqrt{25 \\cdot 2} = \\sqrt{25} \\cdot \\sqrt{2} = 5\\sqrt{2}\\).<br>Spod pierwiastka wychodzi \\(25\\), bo \\(5 \\cdot 5 = 25\\). Dwójka zostaje pod pierwiastkiem."
+            },
+            {
+                "type": "video",
+                "src": "media/zad21/solution-step-by-step/step9.mp4",
+                "text": "Przekątna jest już policzona, więc jej długość zostaje przy odcinku.<br>Teraz dolny trójkąt: jego przyprostokątne to boki kwadratu, oba równe \\(a\\), a przeciwprostokątną jest przekątna."
+            },
+            {
+                "type": "video",
+                "src": "media/zad21/solution-step-by-step/step10.mp4",
+                "text": "Ten sam wzór drugi raz. Pod \\(a\\) i \\(b\\) wchodzą boki kwadratu, pod \\(c\\) policzona przekątna."
+            },
+            {
+                "type": "video",
+                "src": "media/zad21/solution-step-by-step/step11.mp4",
+                "text": "\\(a^{2} + a^{2} = 2a^{2}\\), bo dodajemy dwa takie same składniki."
+            },
+            {
+                "type": "video",
+                "src": "media/zad21/solution-step-by-step/step12.mp4",
+                "text": "\\((5\\sqrt{2})^{2} = 5^{2} \\cdot (\\sqrt{2})^{2} = 25 \\cdot 2 = 50\\).<br>Podniesienie do kwadratu znosi pierwiastek."
+            },
+            {
+                "type": "video",
+                "src": "media/zad21/solution-step-by-step/step13.mp4",
+                "text": "Dzielimy obie strony przez \\(2\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad21/solution-step-by-step/step14.mp4",
+                "text": "Pierwiastkujemy. Ujemny wynik znowu odpada, bo bok nie ma ujemnej długości."
+            },
+            {
+                "type": "video",
+                "src": "media/zad21/solution-step-by-step/step15.mp4",
+                "text": "Bok kwadratu ma długość \\(5\\), czyli odpowiedź <b>A</b>."
+            }
+        ],
         "solutionWidget": null
     },
     {
@@ -1418,7 +1494,43 @@
         "hint": "Proste równoległe mają ten sam współczynnik kierunkowy. Punkt \\((0,\\ 6)\\) od razu daje wyraz wolny prostej l.",
         "formulasPage": 24,
         "solutionText": "Prosta l: \\(y = -7x + 6\\), więc \\(p = -7 \\cdot 1 + 6 = \\boldsymbol{-1}\\), odpowiedź <b>B</b>.",
-        "solutionStepByStep": null,
+        "solutionStepByStep": [
+            {
+                "type": "video",
+                "src": "media/zad22/solution-step-by-step/step1.mp4",
+                "text": "Prosta \\(k\\) jest dana w treści zadania. Punkt \\((0,\\ 6)\\) mówi, gdzie prosta \\(l\\) przecina oś \\(Oy\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad22/solution-step-by-step/step2.mp4",
+                "text": "Proste równoległe mają ten sam współczynnik kierunkowy.\\[a_1 = a_2\\]Prosta \\(l\\) ma więc taki sam współczynnik jak \\(k\\) i przechodzi przez \\((0,\\ 6)\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad22/solution-step-by-step/step3.mp4",
+                "text": "Współczynnik \\(-7\\) bierzemy z prostej \\(k\\), a wyraz wolny \\(6\\) z punktu \\((0,\\ 6)\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad22/solution-step-by-step/step4.mp4",
+                "text": "Punkt \\((1,\\ p)\\) leży na prostej \\(l\\), więc podstawiamy \\(x = 1\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad22/solution-step-by-step/step5.mp4",
+                "text": "\\(-7 \\cdot 1 = -7\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad22/solution-step-by-step/step6.mp4",
+                "text": "\\(-7 + 6 = -1\\)."
+            },
+            {
+                "type": "video",
+                "src": "media/zad22/solution-step-by-step/step7.mp4",
+                "text": "Liczba \\(p\\) jest równa \\(-1\\), czyli odpowiedź <b>B</b>."
+            }
+        ],
         "solutionWidget": null
     },
     {
@@ -1435,7 +1547,38 @@
         "hint": "Okrąg o środku \\((a,\\ b)\\) i promieniu \\(r\\) nie dotyka osi, gdy \\(|a| > r\\) oraz \\(|b| > r\\). Sprawdź każdy okrąg po kolei.",
         "formulasPage": 24,
         "solutionText": "\\(o_3\\) ma środek \\((3,\\ 4)\\) i promień \\(2\\): odległości od osi (3 i 4) są większe od promienia, więc \\(\\boldsymbol{o_3}\\) nie dotyka żadnej z osi, odpowiedź <b>C</b>. (\\(o_1\\) jest styczny do osi \\(Oy\\), \\(o_2\\) i \\(o_4\\) przecinają osie.)",
-        "solutionStepByStep": null,
+        "solutionStepByStep": [
+            {
+                "type": "video",
+                "src": "media/zad23/solution-step-by-step/step1.mp4",
+                "text": "Sprawdzimy po kolei, jak każdy okrąg leży względem osi \\(Ox\\) i \\(Oy\\): porównujemy odległość środka od osi z promieniem."
+            },
+            {
+                "type": "video",
+                "src": "media/zad23/solution-step-by-step/step2.mp4",
+                "text": "\\(o_1\\): odległość środka od osi \\(Oy\\) to \\(|1| = 1\\), tyle samo co promień. Okrąg dotyka osi, więc odpada."
+            },
+            {
+                "type": "video",
+                "src": "media/zad23/solution-step-by-step/step3.mp4",
+                "text": "\\(o_2\\): obie odległości są mniejsze od promienia \\(3\\), więc \\(o_2\\) przecina obie osie."
+            },
+            {
+                "type": "video",
+                "src": "media/zad23/solution-step-by-step/step4.mp4",
+                "text": "\\(o_3\\): obie odległości (\\(3\\) i \\(4\\)) są większe od promienia \\(2\\), więc \\(o_3\\) nie ma żadnego punktu wspólnego z osiami."
+            },
+            {
+                "type": "video",
+                "src": "media/zad23/solution-step-by-step/step5.mp4",
+                "text": "\\(o_4\\): odległość od osi \\(Oy\\) (\\(3\\)) jest mniejsza od promienia \\(4\\), więc \\(o_4\\) też przecina oś."
+            },
+            {
+                "type": "video",
+                "src": "media/zad23/solution-step-by-step/step6.mp4",
+                "text": "Jedynym okręgiem bez punktu wspólnego z osiami jest \\(o_3\\), czyli odpowiedź <b>C</b>."
+            }
+        ],
         "solutionWidget": null
     },
     {
@@ -1451,7 +1594,7 @@
         "selfScore": false,
         "hint": "Kąt nachylenia ściany bocznej leży w trójkącie: wysokość ostrosłupa H i połowa boku podstawy (2). \\(\\operatorname{tg}\\alpha = \\frac{H}{2}\\).",
         "formulasPage": 11,
-        "solutionText": "\\(\\operatorname{tg}\\alpha = \\frac{H}{a/2}\\), czyli \\(3 = \\frac{H}{2}\\), stąd \\(\\boldsymbol{H = 6}\\), odpowiedź <b>B</b>.",
+        "solutionText": "Kąt nachylenia ściany bocznej do podstawy leży w trójkącie prostokątnym: wysokość ostrosłupa, połowa boku podstawy i wysokość ściany bocznej. Wzór na tangens: \\(a\\) to przyprostokątna naprzeciw kąta \\(\\alpha\\), \\(b\\) to przyprostokątna przy nim.\\[\\operatorname{tg}\\alpha = \\frac{a}{b}\\]<div class=\"rozwiazanie-kroki\"><div class=\"rozw-komentarz\">Wysokość ściany bocznej opada na środek krawędzi podstawy, a wysokość ostrosłupa na środek kwadratu. Odcinek między tymi punktami to połowa boku: \\(4 : 2 = 2\\). Naprzeciw kąta \\(\\alpha\\) stoi wysokość ostrosłupa \\(H\\), przy kącie stoi ta połowa boku.</div><div class=\"rozw-linia\">\\(\\operatorname{tg}\\alpha = \\dfrac{H}{2}\\)</div><div class=\"rozw-komentarz\">Z treści zadania \\(\\operatorname{tg}\\alpha = 3\\), więc ułamek \\(\\dfrac{H}{2}\\) też jest równy \\(3\\).</div><div class=\"rozw-linia\">\\(\\dfrac{H}{2} = 3\\)<span class=\"rozw-dzialanie\">\\(\\big/ \\cdot 2\\)</span></div><div class=\"rozw-linia\">\\(\\boldsymbol{H = 6}\\)</div><div class=\"rozw-linia\">Odpowiedź <b>B</b>.</div></div>",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -1468,7 +1611,7 @@
         "selfScore": false,
         "hint": "Kolejne parzyste liczby różnią się o 2, więc krawędzie to \\(p - 4\\), \\(p - 2\\) oraz \\(p\\). Wymnóż.",
         "formulasPage": 26,
-        "solutionText": "\\(V = (p - 4)(p - 2)p = (p^{2} - 6p + 8)p = \\boldsymbol{p^{3} - 6p^{2} + 8p}\\), odpowiedź <b>D</b>.",
+        "solutionText": "Kolejne liczby parzyste różnią się o \\(2\\). Najdłuższa krawędź ma długość \\(p\\), więc krótsze mają długości \\(p - 2\\) oraz \\(p - 4\\). Objętość prostopadłościanu to iloczyn trzech krawędzi \\(a\\), \\(b\\), \\(c\\) wychodzących z jednego wierzchołka.\\[V = abc\\]<div class=\"rozwiazanie-kroki\"><div class=\"rozw-linia\">\\(V = (p - 4)(p - 2) \\cdot p\\)</div><div class=\"rozw-komentarz\">Najpierw wymnażamy dwa nawiasy, każdy składnik przez każdy: \\(p \\cdot p = p^{2}\\), \\(p \\cdot (-2) = -2p\\), \\((-4) \\cdot p = -4p\\), \\((-4) \\cdot (-2) = 8\\). Środkowe wyrazy zbieramy: \\(-2p - 4p = -6p\\).</div><div class=\"rozw-linia\">\\(V = (p^{2} - 6p + 8) \\cdot p\\)</div><div class=\"rozw-komentarz\">Teraz każdy wyraz nawiasu mnożymy przez \\(p\\): \\(p^{2} \\cdot p = p^{3}\\), \\(-6p \\cdot p = -6p^{2}\\), \\(8 \\cdot p = 8p\\).</div><div class=\"rozw-linia\">\\(\\boldsymbol{V = p^{3} - 6p^{2} + 8p}\\)</div><div class=\"rozw-linia\">Odpowiedź <b>D</b>.</div></div>",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -1485,7 +1628,7 @@
         ],
         "hint": "Z wzoru \\(V = \\frac{1}{3}\\pi r^{2} h\\) wyznacz promień podstawy. Kąt rozwarcia to 2× kąt między wysokością a tworzącą: \\(\\operatorname{tg}\\frac{\\alpha}{2} = \\frac{r}{h}\\).",
         "formulasPage": 27,
-        "solutionText": "\\(\\frac{1}{3}\\pi r^{2} \\cdot 2 = 8\\pi \\Rightarrow r^{2} = 12 \\Rightarrow r = 2\\sqrt{3}\\). Dalej \\(\\operatorname{tg}\\frac{\\alpha}{2} = \\frac{r}{h} = \\frac{2\\sqrt{3}}{2} = \\sqrt{3}\\), więc \\(\\frac{\\alpha}{2} = 60^{\\circ}\\) i kąt rozwarcia \\(\\boldsymbol{\\alpha = 120^{\\circ}}\\).",
+        "solutionText": "Wysokość i objętość stożka są dane, więc ze wzoru na objętość wyznaczamy promień podstawy \\(r\\).\\[V = \\frac{1}{3} \\pi r^{2} h\\]<div class=\"rozwiazanie-kroki\"><div class=\"rozw-komentarz\">Za \\(V\\) wstawiamy \\(8\\pi\\), a za \\(h\\) wstawiamy \\(2\\).</div><div class=\"rozw-linia\">\\(\\dfrac{1}{3} \\pi r^{2} \\cdot 2 = 8\\pi\\)</div><div class=\"rozw-komentarz\">\\(\\dfrac{1}{3} \\cdot 2 = \\dfrac{2}{3}\\)</div><div class=\"rozw-linia\">\\(\\dfrac{2}{3} \\pi r^{2} = 8\\pi\\)<span class=\"rozw-dzialanie\">\\(\\big/ : \\pi\\)</span></div><div class=\"rozw-linia\">\\(\\dfrac{2}{3} r^{2} = 8\\)<span class=\"rozw-dzialanie\">\\(\\big/ \\cdot \\dfrac{3}{2}\\)</span></div><div class=\"rozw-komentarz\">\\(8 \\cdot \\dfrac{3}{2} = \\dfrac{24}{2} = 12\\)</div><div class=\"rozw-linia\">\\(r^{2} = 12\\)</div><div class=\"rozw-komentarz\">Pierwiastkujemy obie strony. Wynik ujemny odpada, bo promień nie może być ujemny. \\(\\sqrt{12} = \\sqrt{4 \\cdot 3} = \\sqrt{4} \\cdot \\sqrt{3} = 2\\sqrt{3}\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{r = 2\\sqrt{3}}\\)</div><div class=\"rozw-komentarz rozw-odstep\">Przekrój osiowy stożka to trójkąt równoramienny, a kąt rozwarcia \\(\\alpha\\) leży przy jego wierzchołku. Wysokość stożka dzieli ten trójkąt na dwa trójkąty prostokątne i dzieli kąt \\(\\alpha\\) na połowy.</div><div class=\"rozw-komentarz\">W takim trójkącie naprzeciw kąta \\(\\dfrac{\\alpha}{2}\\) leży promień \\(r\\), a przy nim stoi wysokość \\(h\\). Wzór na tangens: \\(\\operatorname{tg}\\alpha = \\dfrac{a}{b}\\), gdzie \\(a\\) leży naprzeciw kąta, a \\(b\\) przy nim.</div><div class=\"rozw-linia\">\\(\\operatorname{tg}\\dfrac{\\alpha}{2} = \\dfrac{r}{h}\\)</div><div class=\"rozw-linia\">\\(\\operatorname{tg}\\dfrac{\\alpha}{2} = \\dfrac{2\\sqrt{3}}{2}\\)</div><div class=\"rozw-komentarz\">Dwójki się skracają: \\(\\dfrac{2\\sqrt{3}}{2} = \\sqrt{3}\\).</div><div class=\"rozw-linia\">\\(\\operatorname{tg}\\dfrac{\\alpha}{2} = \\sqrt{3}\\)</div><div class=\"rozw-komentarz\">Z tablicy wartości funkcji trygonometrycznych \\(\\operatorname{tg} 60^{\\circ} = \\sqrt{3}\\).</div><div class=\"rozw-linia\">\\(\\dfrac{\\alpha}{2} = 60^{\\circ}\\)<span class=\"rozw-dzialanie\">\\(\\big/ \\cdot 2\\)</span></div><div class=\"rozw-linia\">\\(\\boldsymbol{\\alpha = 120^{\\circ}}\\)</div><div class=\"rozw-linia rozw-odstep\">Kąt rozwarcia tego stożka ma miarę \\(120^{\\circ}\\).</div></div>",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -1502,7 +1645,7 @@
         "selfScore": false,
         "hint": "Reguła mnożenia: pierwsza cyfra nie może być zerem, ostatnia musi być nieparzysta (1 albo 3), środkowe trzy: dowolne z czterech cyfr.",
         "formulasPage": 28,
-        "solutionText": "\\(3 \\cdot 4 \\cdot 4 \\cdot 4 \\cdot 2 = \\boldsymbol{384}\\), odpowiedź <b>B</b>.",
+        "solutionText": "<div class=\"rozwiazanie-kroki\"><div class=\"rozw-linia\">Liczba ma pięć miejsc na cyfry. Każde miejsce obsadzamy osobno, a na koniec liczby możliwości mnożymy przez siebie.</div><div class=\"rozw-linia rozw-odstep\"><b>1. Pierwsza cyfra:</b> nie może być zerem, bo liczba ma być pięciocyfrowa.</div><div class=\"rozw-komentarz\">Zostają \\(1\\), \\(2\\) oraz \\(3\\).</div><div class=\"rozw-linia\">\\(\\boldsymbol{3}\\) możliwości</div><div class=\"rozw-linia rozw-odstep\"><b>2. Trzy środkowe cyfry:</b> żaden warunek ich nie ogranicza.</div><div class=\"rozw-komentarz\">Na każdym z tych trzech miejsc może stanąć \\(0\\), \\(1\\), \\(2\\) albo \\(3\\), a cyfry mogą się powtarzać. W tablicy są to wariacje z powtórzeniami, czyli \\(4^{3}\\).</div><div class=\"rozw-linia\">\\(\\boldsymbol{4^{3} = 64}\\) możliwości</div><div class=\"rozw-linia rozw-odstep\"><b>3. Ostatnia cyfra:</b> to ona decyduje, czy liczba jest nieparzysta.</div><div class=\"rozw-komentarz\">Spośród \\(0\\), \\(1\\), \\(2\\), \\(3\\) nieparzyste są \\(1\\) oraz \\(3\\).</div><div class=\"rozw-linia\">\\(\\boldsymbol{2}\\) możliwości</div><div class=\"rozw-komentarz rozw-odstep\">Mnożymy przez siebie liczby możliwości z trzech części.</div><div class=\"rozw-linia\">\\(3 \\cdot 64 \\cdot 2\\)</div><div class=\"rozw-komentarz\">\\(3 \\cdot 2 = 6\\), więc zostaje \\(64 \\cdot 6\\).</div><div class=\"rozw-linia\">\\(64 \\cdot 6\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{384}\\)</div><div class=\"rozw-linia rozw-odstep\">Odpowiedź <b>B</b>.</div></div>",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -1519,7 +1662,7 @@
         ],
         "hint": "Wszystkich par jest \\(6 \\cdot 4 = 24\\). Przejrzyj liczby z D: przy 8 iloczyn zawsze dzieli się przez 4; przy 7 i 9 musi pomóc liczba z C; przy 10 wystarczy, że liczba z C jest parzysta.",
         "formulasPage": 29,
-        "solutionText": "\\(|\\Omega| = 24\\). Sprzyjające: z 8: każde c (6 par); z 7 i 9: tylko \\(c = 4\\) (2 pary); z 10: c parzyste: 2, 4, 6 (3 pary). Razem 11, więc \\(\\boldsymbol{P(A) = \\frac{11}{24}}\\).",
+        "solutionText": "Wszystkie pary liczb są jednakowo prawdopodobne, więc liczymy prawdopodobieństwo klasyczne: ile jest par sprzyjających w stosunku do tego, ile jest par w ogóle.\\[P(A) = \\frac{|A|}{|\\Omega|}\\]<div class=\"rozwiazanie-kroki\"><div class=\"rozw-linia\"><b>1. Wszystkie pary \\(|\\Omega|\\).</b></div><div class=\"rozw-komentarz\">Liczbę ze zbioru \\(C\\) wybieramy na \\(6\\) sposobów, a liczbę ze zbioru \\(D\\) na \\(4\\). Każdy wybór z \\(C\\) łączy się z każdym wyborem z \\(D\\), więc liczby możliwości mnożymy.</div><div class=\"rozw-linia\">\\(|\\Omega| = 6 \\cdot 4\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{|\\Omega| = 24}\\)</div><div class=\"rozw-linia rozw-odstep\"><b>2. Pary sprzyjające \\(|A|\\).</b></div><div class=\"rozw-komentarz\">Liczba \\(4\\) to \\(2 \\cdot 2\\), więc iloczyn dzieli się przez \\(4\\) wtedy, gdy siedzą w nim dwie dwójki. Bierzemy po kolei liczby ze zbioru \\(D\\) i patrzymy, ile dwójek wnosi każda z nich, a ile musi dołożyć liczba ze zbioru \\(C\\).</div><div class=\"rozw-linia\">\\(8 = 2 \\cdot 2 \\cdot 2\\)</div><div class=\"rozw-komentarz\">Dwie dwójki są już w samej ósemce, więc iloczyn dzieli się przez \\(4\\) przy każdej liczbie ze zbioru \\(C\\). Pasuje cała szóstka.</div><div class=\"rozw-linia\">\\(\\boldsymbol{6}\\) par</div><div class=\"rozw-linia rozw-odstep\">\\(7\\) oraz \\(9\\) są nieparzyste</div><div class=\"rozw-komentarz\">Nie wnoszą ani jednej dwójki, więc obie musi mieć liczba ze zbioru \\(C\\), czyli musi ona dzielić się przez \\(4\\). W zbiorze \\(C\\) taka jest tylko \\(4\\), stąd pary \\((4,\\ 7)\\) oraz \\((4,\\ 9)\\).</div><div class=\"rozw-linia\">\\(\\boldsymbol{2}\\) pary</div><div class=\"rozw-linia rozw-odstep\">\\(10 = 2 \\cdot 5\\)</div><div class=\"rozw-komentarz\">Jedna dwójka jest, brakuje drugiej, więc liczba ze zbioru \\(C\\) ma być parzysta: \\(2\\), \\(4\\) albo \\(6\\).</div><div class=\"rozw-linia\">\\(\\boldsymbol{3}\\) pary</div><div class=\"rozw-komentarz\">Dodajemy pary z trzech przypadków.</div><div class=\"rozw-linia\">\\(|A| = 6 + 2 + 3\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{|A| = 11}\\)</div><div class=\"rozw-linia rozw-odstep\"><b>3. Prawdopodobieństwo.</b></div><div class=\"rozw-komentarz\">Wstawiamy obie liczby do wzoru.</div><div class=\"rozw-linia\">\\(\\boldsymbol{P(A) = \\dfrac{11}{24}}\\)</div><div class=\"rozw-linia rozw-odstep\">Prawdopodobieństwo zdarzenia \\(A\\) jest równe \\(\\dfrac{11}{24}\\).</div><div class=\"rozw-sprawdzenie\"><div class=\"rozw-linia\"><b>Sprawdzenie.</b></div><div class=\"rozw-komentarz\">Te same pary można wypisać wszystkie: \\((1,\\ 8)\\), \\((2,\\ 8)\\), \\((2,\\ 10)\\), \\((3,\\ 8)\\), \\((4,\\ 7)\\), \\((4,\\ 8)\\), \\((4,\\ 9)\\), \\((4,\\ 10)\\), \\((5,\\ 8)\\), \\((6,\\ 8)\\), \\((6,\\ 10)\\). Jest ich \\(11\\).</div></div></div>",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -1550,7 +1693,7 @@
         "selfScore": false,
         "hint": "Średnia: suma (liczba książek · liczba uczniów) podzielona przez 50. Mediana przy 50 uczniach to średnia 25. i 26. wyniku po uporządkowaniu.",
         "formulasPage": 31,
-        "solutionText": "1. Średnia: \\(\\frac{4 \\cdot 5 + 5 \\cdot 8 + 6 \\cdot 12 + 7 \\cdot 13 + 8 \\cdot 12}{50} = \\frac{319}{50} = \\boldsymbol{6{,}38}\\). <br> 2. Mediana: 25. wynik to 6, a 26. to 7, więc \\(\\frac{6 + 7}{2} = \\boldsymbol{6{,}5}\\).",
+        "solutionText": "Tabela nie podaje pięćdziesięciu osobnych wyników, tylko mówi, ilu uczniów przeczytało po tyle samo książek. Średnia arytmetyczna to suma wszystkich pięćdziesięciu wyników podzielona przez \\(50\\).\\[\\bar{a} = \\frac{a_1 + a_2 + \\ldots + a_n}{n}\\]<div class=\"rozwiazanie-kroki\"><div class=\"rozw-linia\"><b>1. Średnia arytmetyczna.</b></div><div class=\"rozw-komentarz\">Zamiast dodawać \\(4\\) pięć razy, mnożymy: \\(5 \\cdot 4\\). Tak samo w każdej kolumnie tabeli, czyli liczba uczniów razy liczba przeczytanych książek. W mianowniku stoi liczba uczniów: \\(5 + 8 + 12 + 13 + 12 = 50\\).</div><div class=\"rozw-linia\">\\(\\dfrac{5 \\cdot 4 + 8 \\cdot 5 + 12 \\cdot 6 + 13 \\cdot 7 + 12 \\cdot 8}{50}\\)</div><div class=\"rozw-komentarz\">\\(5 \\cdot 4 = 20\\),&nbsp;&nbsp; \\(8 \\cdot 5 = 40\\),&nbsp;&nbsp; \\(12 \\cdot 6 = 72\\),&nbsp;&nbsp; \\(13 \\cdot 7 = 91\\),&nbsp;&nbsp; \\(12 \\cdot 8 = 96\\)</div><div class=\"rozw-linia\">\\(\\dfrac{20 + 40 + 72 + 91 + 96}{50}\\)</div><div class=\"rozw-komentarz\">Dodajemy licznik: \\(20 + 40 = 60\\),&nbsp;&nbsp; \\(60 + 72 = 132\\),&nbsp;&nbsp; \\(132 + 91 = 223\\),&nbsp;&nbsp; \\(223 + 96 = 319\\).</div><div class=\"rozw-linia\">\\(\\dfrac{319}{50}\\)</div><div class=\"rozw-komentarz\">Licznik i mianownik mnożymy przez \\(2\\), żeby w mianowniku stanęło \\(100\\): \\(\\dfrac{319}{50} = \\dfrac{638}{100}\\).</div><div class=\"rozw-linia\">\\(\\boldsymbol{6{,}38}\\)</div></div><br>Mediana to wynik ze środka uporządkowanego zestawu. Uczniów jest \\(50\\), czyli parzyście, więc środek wypada między \\(25\\). a \\(26\\). wynikiem, a medianą jest ich średnia.\\[\\text{mediana} = \\frac{1}{2} \\cdot \\left( a_{\\frac{n}{2}} + a_{\\frac{n}{2}+1} \\right)\\]<div class=\"rozwiazanie-kroki\"><div class=\"rozw-linia\"><b>2. Mediana.</b></div><div class=\"rozw-komentarz\">Tabela jest już uporządkowana od najmniejszej liczby książek. Sumujemy uczniów od lewej i patrzymy, co stoi na \\(25\\). i na \\(26\\). miejscu.</div><div class=\"rozw-linia\">\\(4\\) książki: miejsca od \\(1\\) do \\(5\\)</div><div class=\"rozw-linia\">\\(5\\) książek: miejsca od \\(6\\) do \\(13\\)</div><div class=\"rozw-linia\">\\(6\\) książek: miejsca od \\(14\\) do \\(25\\)</div><div class=\"rozw-linia\">\\(7\\) książek: miejsca od \\(26\\) do \\(38\\)</div><div class=\"rozw-komentarz\">Na \\(25\\). miejscu stoi \\(6\\), a na \\(26\\). stoi \\(7\\).</div><div class=\"rozw-linia\">\\(\\dfrac{6 + 7}{2}\\)</div><div class=\"rozw-linia\">\\(\\dfrac{13}{2}\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{6{,}5}\\)</div><div class=\"rozw-linia rozw-odstep\">Średnia jest równa \\(6{,}38\\), a mediana \\(6{,}5\\).</div></div>",
         "solutionStepByStep": null,
         "solutionWidget": null
     },
@@ -1569,7 +1712,7 @@
         ],
         "hint": "Oznacz \\(AB = x\\), \\(AE = 3x\\), a trzecią krawędź (AD) wyznacz z sumy krawędzi: \\(4(x + AD + 3x) = 48\\). Pole całkowite to suma pól trzech par ścian; maksimum funkcji kwadratowej jest w wierzchołku.",
         "formulasPage": 8,
-        "solutionText": "Z sumy krawędzi: \\(AD = 12 - 4x\\), stąd \\(\\boldsymbol{P(x) = -26x^{2} + 96x}\\) dla \\(\\boldsymbol{x \\in (0,\\ 3)}\\). Maksimum w wierzchołku: \\(x = \\frac{96}{52} = \\boldsymbol{\\frac{24}{13}}\\).<br><br><b>DAWNE \"POKAŻ WIĘCEJ\":</b><br>Krawędzie: \\(AB = x\\), \\(AE = 3x\\), \\(AD = y\\). Suma: \\(4(x + y + 3x) = 48 \\Rightarrow y = 12 - 4x\\); warunek \\(y > 0\\) daje dziedzinę \\(x \\in (0,\\ 3)\\).\\[P(x) = 2xy + 2 \\cdot x \\cdot 3x + 2 \\cdot y \\cdot 3x = 6x^{2} + 8xy = 6x^{2} + 8x(12 - 4x) = \\boldsymbol{-26x^{2} + 96x}\\]Ramiona w dół, więc największa wartość w wierzchołku: \\(x = \\frac{-96}{2 \\cdot (-26)} = \\boldsymbol{\\frac{24}{13}}\\) (należy do dziedziny).",
+        "solutionText": "Krawędź \\(AB\\) ma długość \\(x\\), krawędź \\(AE\\) jest od niej trzy razy dłuższa. Trzeciej krawędzi, \\(AD\\), zadanie nie podaje, więc nazywamy ją \\(y\\) i wyliczamy z sumy wszystkich krawędzi.<div class=\"rozwiazanie-kroki\"><div class=\"rozw-linia\"><b>1. Krawędzie i dziedzina.</b></div><div class=\"rozw-linia\"><b>Krawędzie:</b> &nbsp; \\(AB = x\\) &nbsp;&nbsp; \\(AE = 3x\\) &nbsp;&nbsp; \\(AD = y\\)</div><div class=\"rozw-komentarz\">Prostopadłościan ma dwanaście krawędzi: po cztery każdej z tych trzech długości. Ich suma jest równa \\(48\\).</div><div class=\"rozw-linia\">\\(4x + 4y + 4 \\cdot 3x = 48\\)</div><div class=\"rozw-komentarz\">\\(4 \\cdot 3x = 12x\\), a dalej \\(4x + 12x = 16x\\).</div><div class=\"rozw-linia\">\\(16x + 4y = 48\\)<span class=\"rozw-dzialanie\">\\(\\big/ : 4\\)</span></div><div class=\"rozw-linia\">\\(4x + y = 12\\)<span class=\"rozw-dzialanie\">\\(\\big/ - 4x\\)</span></div><div class=\"rozw-linia\">\\(\\boldsymbol{y = 12 - 4x}\\)</div><div class=\"rozw-komentarz rozw-odstep\">Każda krawędź musi mieć dodatnią długość. Warunek \\(x > 0\\) daje lewy koniec dziedziny, a warunek \\(y > 0\\) prawy.</div><div class=\"rozw-linia\">\\(12 - 4x > 0\\)<span class=\"rozw-dzialanie\">\\(\\big/ + 4x\\)</span></div><div class=\"rozw-linia\">\\(12 > 4x\\)<span class=\"rozw-dzialanie\">\\(\\big/ : 4\\)</span></div><div class=\"rozw-linia\">\\(3 > x\\)</div><div class=\"rozw-komentarz\">Oba warunki naraz: \\(x\\) jest większe od \\(0\\) i mniejsze od \\(3\\).</div><div class=\"rozw-linia\">\\(\\boldsymbol{x \\in (0,\\ 3)}\\)</div></div><br>Pole powierzchni całkowitej to suma pól sześciu ścian. Ściany są parami jednakowe, więc wystarczą trzy iloczyny krawędzi.\\[P_c = 2(ab + bc + ca)\\]<div class=\"rozwiazanie-kroki\"><div class=\"rozw-linia\"><b>2. Wzór funkcji \\(P\\).</b></div><div class=\"rozw-komentarz\">Za \\(a\\), \\(b\\), \\(c\\) wstawiamy trzy krawędzie: \\(x\\), \\(y\\) oraz \\(3x\\).</div><div class=\"rozw-linia\">\\(P = 2(x \\cdot y + y \\cdot 3x + 3x \\cdot x)\\)</div><div class=\"rozw-komentarz\">\\(y \\cdot 3x = 3xy\\), &nbsp;&nbsp; \\(3x \\cdot x = 3x^{2}\\)</div><div class=\"rozw-linia\">\\(P = 2(xy + 3xy + 3x^{2})\\)</div><div class=\"rozw-komentarz\">\\(xy + 3xy = 4xy\\)</div><div class=\"rozw-linia\">\\(P = 2(4xy + 3x^{2})\\)</div><div class=\"rozw-komentarz\">Mnożymy nawias przez \\(2\\).</div><div class=\"rozw-linia\">\\(P = 8xy + 6x^{2}\\)</div><div class=\"rozw-komentarz\">Wzór ma zależeć od samego \\(x\\), więc za \\(y\\) wstawiamy \\(12 - 4x\\).</div><div class=\"rozw-linia\">\\(P(x) = 8x(12 - 4x) + 6x^{2}\\)</div><div class=\"rozw-komentarz\">\\(8x \\cdot 12 = 96x\\), &nbsp;&nbsp; \\(8x \\cdot (-4x) = -32x^{2}\\)</div><div class=\"rozw-linia\">\\(P(x) = 96x - 32x^{2} + 6x^{2}\\)</div><div class=\"rozw-komentarz\">\\(-32x^{2} + 6x^{2} = -26x^{2}\\)</div><div class=\"rozw-linia\">\\(\\boldsymbol{P(x) = -26x^{2} + 96x}\\)</div></div><br>Przy \\(x^{2}\\) stoi liczba ujemna, więc ramiona paraboli idą w dół, a największa wartość funkcji stoi w wierzchołku. Szukamy jego pierwszej współrzędnej.\\[p = -\\frac{b}{2a}\\]<div class=\"rozwiazanie-kroki\"><div class=\"rozw-linia\"><b>3. Największe pole.</b></div><div class=\"rozw-linia\"><b>Współczynniki:</b> &nbsp; \\(a = -26\\) &nbsp;&nbsp; \\(b = 96\\)</div><div class=\"rozw-linia\">\\(p = -\\dfrac{96}{2 \\cdot (-26)}\\)</div><div class=\"rozw-komentarz\">\\(2 \\cdot (-26) = -52\\)</div><div class=\"rozw-linia\">\\(p = -\\dfrac{96}{-52}\\)</div><div class=\"rozw-komentarz\">Minus przed ułamkiem i minus w mianowniku znoszą się.</div><div class=\"rozw-linia\">\\(p = \\dfrac{96}{52}\\)</div><div class=\"rozw-komentarz\">Skracamy przez \\(4\\): \\(96 : 4 = 24\\), &nbsp;&nbsp; \\(52 : 4 = 13\\).</div><div class=\"rozw-linia\">\\(\\boldsymbol{p = \\dfrac{24}{13}}\\)</div><div class=\"rozw-komentarz\">\\(\\dfrac{24}{13}\\) to około \\(1{,}85\\), a ta liczba leży w przedziale \\((0,\\ 3)\\), czyli taki prostopadłościan istnieje.</div><div class=\"rozw-linia rozw-odstep\">Funkcja pola ma wzór \\(P(x) = -26x^{2} + 96x\\) i dziedzinę \\((0,\\ 3)\\), a pole jest największe dla \\(x = \\dfrac{24}{13}\\).</div></div>",
         "solutionStepByStep": null,
         "solutionWidget": "widgetProstopadloscian"
     }

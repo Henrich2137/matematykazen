@@ -13,7 +13,7 @@
 // Instrukcja wdrożenia krok po kroku: issues/cloudflare-hosting.md.
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "matematykazen",
+	"name": "matematykazen-worker",
 	"compatibility_date": "2026-08-22",
 	"assets": {
 		// Kropka = korzeń repo. Nie ma etapu budowania, więc nie ma katalogu

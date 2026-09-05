@@ -187,6 +187,8 @@ Domena kupiona u rejestratora hitme, obsługiwana przez serwery nazw Cloudflare;
 
 Cztery pliki w korzeniu obsługują wariant Cloudflare: `wrangler.jsonc` (ustawienia wdrożenia), `.assetsignore` (czego nie wysyłać), `_headers` (nagłówki HTTP), `404.html` (własna strona błędu, działa też na GitHub Pages).
 
+- **Worker nazywa się `matematykazen-worker` i ta sama nazwa musi stać w `wrangler.jsonc`.** Przy rozjechanej nazwie ręczne `npx wrangler deploy` zakłada drugiego, pustego Workera i strona pod domeną się nie zmienia, choć wdrożenie wygląda na udane.
+- **Push na `main` publikuje stronę sam** (Workers Builds, gałąź produkcyjna `main`). Gdyby domena stanęła w miejscu mimo pushy, sprawdź w panelu, czy `Production branch` to nadal `main`: raz już była tam nieistniejąca nazwa `master` i strona stała dwanaście dni na starej wersji. Rozpoznanie i naprawa w [issues/cloudflare-hosting.md](issues/cloudflare-hosting.md).
 - **Dokładasz albo przenosisz plik potrzebny stronie w przeglądarce? Odpal `python3 tools/sprawdz-cloudflare.py`.** Skrypt pilnuje limitów Cloudflare (25 MiB na plik) i tego, żeby `.assetsignore` nie wyciął czegoś, bez czego strona się sypie. Cichy, gdy wszystko gra.
 - **Nie wpisuj w kodzie ścieżek od korzenia** (`/style/...`, `/app/...`). Na Cloudflare strona leży w korzeniu domeny, a na GitHub Pages w podkatalogu, więc taka ścieżka działa tylko w jednym z tych miejsc. Wszystkie odwołania są dziś względne i mają takie zostać.
 - **To, co wypchniesz na `dev`, nie pojawi się od razu na `matematykazen.pl`.** Domena jedzie z `main`, więc zmiana widoczna pod domeną wymaga osobnego scalenia, które robi Henrich (patrz sekcja Git). Prosząc go o test na telefonie, powiedz wprost, pod którym adresem ma patrzeć.

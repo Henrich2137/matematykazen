@@ -1,5 +1,191 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-09-04] (Local Opus 5 High) Pasek kropek w rozwiazaniu krok po kroku:
+zlikwidowana martwa strefa szerokosci okna, ogranicznik przewijania i wieksze pole
+dotyku kropek.
+[odtwarzacz-krokow, kropki, responsywnosc, safari, test-playwright]
+
+MARTWA STREFA. `odswiezStrzalkiKropek` w app/steps.js porownywala szerokosc tresci
+kropek z `wiersz.clientWidth`, czyli z calym rzedem, a kropki dostaja rzad POMNIEJSZONY
+o wlasne marginesy okna (po 8 px). Prog stal przez to o 16 px za wysoko i przy paru
+szerokosciach okna kropki juz wystawaly poza okno, a strzalki jeszcze sie nie pokazywaly.
+Henrich trafil na to przy 310-325 px, Chromium w kontenerze pokazuje to samo przy 340 px.
+Teraz marginesy okna sa odczytywane z ukladu i odejmowane od szerokosci rzedu. Warunek
+w obu stanach sprowadza sie do „tresc > miejsce bez strzalek", wiec strzalki nie mrugaja.
+
+OGRANICZNIK. Strzalki wolaly `scrollBy({behavior:"smooth"})` prosto z app/render.js.
+W Chromium to sie przycina samo, na Safari (iPhone SE) po kilku szybkich klknieciach
+pasek wyjezdzal poza tresc i kropki zostawaly za lewa krawedzia. Skok liczy teraz nowa
+funkcja `przewinPasek(ctx, kierunek)` w app/steps.js i przycina cel do przedzialu
+[0, scrollWidth - clientWidth]; okno kropek dostalo tez `overscroll-behavior-x: contain`.
+Samego objawu nie da sie odtworzyc w Chromium (przycina sam), wiec test pilnuje
+niezmiennika, a nie odtwarza bledu.
+
+POLE DOTYKU. Kropka miala 20x44 px pola trafienia, w poziomie za waskie na palec.
+Rozszerzone pseudoelementem `.step-dot::after { inset: 0 -5px }` do 30 px, a nie
+paddingiem, bo padding zmniejszylby liczbe kropek mieszczacych sie w pasku. Przy
+odcinkach szerokich na 10 px pola sasiednich kropek dokladnie sie stykaja i nigdzie
+nie nachodza, wiec kazde dotkniecie paska trafia w najblizsza kropke. `.step-link`
+dostal `pointer-events: none` (jako element pozycjonowany lezal NAD tym polem
+i przechwytywal klikniecia), a `.steps-dots` `box-sizing: border-box` z paddingiem
+`8px 5px`, zeby pola skrajnych kropek nie wystawaly poza tresc i nie zawyzaly
+scrollWidth o 5 px.
+
+TEST. Nowy tools/test-paska-krokow.js: przy trzynastu szerokosciach okna sprawdza
+trzy niezmienniki (kazda kropka osiagalna, pole dotyku >= 30x44, scrollLeft w granicach
+tresci po kilkunastu klknieciach w kazda strone). Przed poprawka 14 zastrzezen
+(martwa strefa przy 340 px + pole dotyku 20 px wszedzie), po poprawce czysto.
+tools/test-krokow.js przechodzi na serwerze szybkim i zdlawionym.
+
+[ZROBIONE 2026-09-04] (Local Opus 5 High) Zad. 30 z grudnia 2024: rozwiazanie zwykle
+napisane od zera i scalone ze stara trescia (znikl naglowek „DAWNE POKAZ WIECEJ"
+i doklejony pod nim akapit). Wyniki zgodne z kluczem CKE: P(x) = -26x^2 + 96x,
+dziedzina (0, 3), pole najwieksze dla x = 24/13.
+[2024-grudzien, zad30, funkcja-kwadratowa, optymalizacja, scalanie-pokaz-wiecej]
+
+Uklad jak w zad. 26, 28 i 29: trzy ponumerowane czesci, kazda we wlasnym bloku
+`rozwiazanie-kroki`, rozdzielone `<br>`, ze wzorem z tablicy w `\[ … \]` nad blokiem
+tam, gdzie taki wzor istnieje. Czesc 1 (krawedzie i dziedzina) wzoru nie ma, bo sumy
+dwunastu krawedzi w tablicy nie ma; czesc 2 stoi na [12.2] `P_c = 2(ab + bc + ca)`
+(s. 26), czesc 3 na [7.3] `p = -b/(2a)` (s. 8, zgadza sie z `formulasPage`).
+Trzecia krawedz nazwana `y` i wyliczona z sumy krawedzi, dziedzina wyprowadzona
+z warunku `y > 0` osobnymi linijkami, a nie podana gotowa, bo CKE daje za nia punkt.
+
+Ze starej tresci weszlo wszystko, co niosla: oznaczenia krawedzi, rownanie
+`4(x + y + 3x) = 48`, warunek `y > 0`, pole jako `6x^2 + 8xy`, podstawienie
+`y = 12 - 4x`, ramiona w dol i wierzcholek. Nie weszla jej forma: jednozdaniowe
+streszczenie z gory (powtarzalo koncowke) oraz jeden dlugi `\[ … \]` z calym lancuchem
+przeksztalcen pola, rozbity teraz na osiem linijek z komentarzami.
+
+Zrzuty obejrzane na 1300 px, na 485 px (telefon Henricha) i w ciemnym motywie: nic
+nie wychodzi poza karte, linijka „Krawedzie:" z trzema rownosciami miesci sie w jednym
+wierszu takze na telefonie. Filmu nie ma (`solutionStepByStep: null`), wiec nie bylo
+czego synchronizowac. Wersja podbita do v113.
+
+[ZROBIONE 2026-09-04] (Local Opus 5 High) Zad. 28 i 29 z grudnia 2024: rozwiazania
+zwykle, jedna kolumna. Oba mialy dotad jednozdaniowe zaslepki wciśnięte w akapit,
+wiec zostaly napisane od zera wg SOLUTION_TEXT_RULES.md. Wyniki zgodne z kluczem CKE:
+P(A) = 11/24 oraz srednia 6,38 i mediana 6,5.
+[2024-grudzien, zad28, zad29, prawdopodobienstwo, statystyka]
+
+Zad. 28 (prawdopodobienstwo klasyczne, otwarte na 2 pkt): trzy ponumerowane czesci
+w jednym bloku `rozwiazanie-kroki`, tak jak w zad. 27. Wzor [14.2] (s. 29, zgadza sie
+z `formulasPage`) stoi w `\[ … \]` nad rachunkiem. Sedno nie jest w rachunku, tylko
+w tym, ze 4 = 2 * 2, wiec kazda liczba ze zbioru D jest rozlozona na dwojki i widac,
+ile dwojek musi dolozyc liczba ze zbioru C: 8 daje dwie (6 par), 7 i 9 zadnej (2 pary),
+10 jedna (3 pary). Oba punkty CKE stoja jako osobne linijki (`|Omega| = 24`, `|A| = 11`).
+Na dole `rozw-sprawdzenie` z pelna lista jedenastu par, czyli sposobem I z klucza.
+
+Zad. 29 (srednia i mediana z tabeli, zadanie typu fillIn na 2 pkt): dwie niezalezne
+czesci, kazda z wlasnym wzorem z tablicy, wiec **sa tu dwa `\[ … \]` i dwa bloki
+`rozwiazanie-kroki`** rozdzielone `<br>`. To pierwszy taki uklad w arkuszu (przy zad. 26
+swiadomie tego nie zaczynano); zrzuty na 1300 i 485 px wygladaja dobrze, ale jesli
+Henrichowi sie to nie spodoba, do cofniecia jest tylko drugi naglowek. Wzory: srednia
+arytmetyczna [15.1] i mediana dla n parzystego [15.6] (s. 31 i 32; `formulasPage` = 31).
+Ogniwa, ktorych uczen nie widzi, ida w komentarzach: mnozenia w liczniku, sumowanie
+licznika po kawalku i rozszerzenie 319/50 do 638/100. Miejsca 25. i 26. sa znalezione
+przez wypisanie zakresow miejsc dla kolejnych kolumn tabeli, nie przez sam wynik.
+Wzory rozdzielone przecinkiem dostaly `&nbsp;&nbsp;`, bo bez tego "20, 8 * 5 = 40"
+czytalo sie jak jedna lista liczb.
+
+Sprawdzone: `json.load` przechodzi, zrzuty `tools/zrzut-rozwiazania.js` na 1300 px,
+485 px i w ciemnym motywie, plus test w Playwrighcie na `scrollWidth - clientWidth`
+strony i wszystkich blokow rozwiazania (0 na obu szerokosciach).
+
+[ZROBIONE 2026-09-04] (Cloud Opus 5) Zad. 26 i 27 z grudnia 2024: rozwiazania zwykle,
+jedna kolumna. Oba mialy dotad jednozdaniowe zaslepki (jedna linijka rachunku wciśnięta
+w akapit), wiec zostaly napisane od zera wg SOLUTION_TEXT_RULES.md. Film do zad. 27
+zostaje do zrobienia lokalnie: w chmurze nie ma Manima ani TeX Live.
+[2024-grudzien, zad26, zad27, stereometria, trygonometria, kombinatoryka]
+
+Zad. 26 (kat rozwarcia stozka, zadanie otwarte na 2 pkt): rozwiazanie ma dwie czesci
+i ida w jednym bloku `rozwiazanie-kroki`, tak jak w zad. 20. Wzor na objetosc stozka
+[12.6] (s. 27, zgadza sie z `formulasPage`) stoi w `\[ … \]` nad rachunkiem, a tangens
+[9.1] (s. 11) wchodzi dopiero w polowie, wiec jest wprowadzony komentarzem z `rozw-odstep`,
+nie drugim wysrodkowanym wzorem. Zadnego arkusza z dwoma `\[ … \]` w jednym rozwiazaniu
+jeszcze nie ma i nie chcialem tego zaczynac przy okazji.
+
+Sedno zadania nie jest w rachunku, tylko w tym, ze kat rozwarcia to DWA razy kat miedzy
+wysokoscia a tworzaca. Dlatego przekroj osiowy jest opisany zdaniem przed pierwsza linijka
+trygonometryczna, a `\big/ \cdot 2` na koncu ma wlasna linijke. Punkt posredni CKE
+(`r^2 = 12`) stoi jako osobna linijka, wiec widac, gdzie uczen dostaje pierwszy punkt.
+
+Zad. 27 (liczby pieciocyfrowe z cyfr 0-3, nieparzyste): uklad jak w zad. 10, czyli trzy
+czesci z wytluszczonym naglowkiem wtopionym w pierwsza linijke, po jednej na kazde
+ograniczenie. Regula mnozenia sama w tablicy nie stoi, ale trzy srodkowe miejsca to
+wariacje z powtorzeniami [13.3] (s. 28, zgadza sie z `formulasPage`), wiec `4^3` jest
+nazwane po imieniu w komentarzu. Dystraktor C (512) bierze sie z zapomnienia obu warunkow,
+a D (576) z zapomnienia tylko warunku na pierwsza cyfre, wiec kazdy warunek ma osobna
+czesc i wlasna liczbe mozliwosci, zamiast jednego iloczynu `3 · 4 · 4 · 4 · 2` w jednej linijce.
+
+Zieleni nie ma w zadnym z dwoch: uklad jednokolumnowy, wiec nie ma kolumny wzorow,
+przy ktorej zielony mialby cokolwiek wskazywac (regula 13 z SOLUTION_TEXT_RULES.md).
+
+Sprawdzone zrzutami (`tools/zrzut-rozwiazania.js`) przy 900, 485 i 390 px oraz w ciemnym
+motywie; osobnym skryptem Playwrighta zmierzone, ze przy 360, 485 i 900 px strona nie
+przewija sie w bok i zadna linijka nowych rozwiazan sie nie obcina (jedyny obciety element
+przy 360 px to stary wzor klamrowy w zad. 10, sprzed tej zmiany).
+
+[ZROBIONE 2026-09-04] (Cloud Opus 5) Zad. 24 i 25 z grudnia 2024: rozwiazania zwykle,
+jedna kolumna ze wzorem z tablicy nad rachunkiem. Bez filmow: w kolejce oba mialy tylko
+„zwykle", a w chmurze i tak nie ma Manima ani TeX Live.
+[2024-grudzien, zad24, zad25, stereometria, trygonometria]
+
+Zad. 24 (wysokosc ostroslupa): sedno nie jest w rachunku, tylko w tym, GDZIE lezy kat
+nachylenia sciany bocznej. Uczen bierze zwykle krawedz boczna zamiast wysokosci sciany,
+i wtedy przyprostokatna to polowa PRZEKATNEJ podstawy, a nie polowa boku. Dlatego trojkat
+jest opisany zdaniem przed pierwsza linijka rachunku, a nie zalozony po cichu. Wzor
+z tablicy to zwykly tangens [9.1], s. 11 (stereometrii tu nie ma wcale, mimo tematu
+zadania) i zgadza sie z `formulasPage`, ktore juz tam stalo.
+
+Zad. 25 (objetosc prostopadloscianu): wzor [12.2] `V = abc`, s. 26. Cala trudnosc siedzi
+w wymnozeniu `(p - 4)(p - 2)p`, wiec oba przejscia dostaly komentarz z ogniwami
+(kazdy skladnik przez kazdy, potem kazdy wyraz nawiasu przez `p`) zamiast jednej linijki
+z gotowym wynikiem. Dystraktor C rozni sie tylko znakiem przy `8p`, wiec `(-4)(-2) = 8`
+stoi w komentarzu jawnie.
+
+Zieleni nie ma w zadnym z dwoch: w obu wzor z tablicy obejmuje CALE wyrazenie linijki,
+a wtedy regula 13 z SOLUTION_TEXT_RULES.md mowi, ze nie ma czego wskazywac.
+
+Sprawdzone zrzutami (`tools/zrzut-rozwiazania.js`) przy 900 i 485 px oraz w ciemnym
+motywie; osobnym skryptem Playwrighta zmierzone, ze przy 360, 485 i 900 px strona nie
+przewija sie w bok, a zaden blok `.rozwiazanie-kroki` sie nie obcina.
+
+[ZROBIONE 2026-09-04] (Opus 5) Zad. 20 i 21 z grudnia 2024: rozwiazania zwykle do obu,
+plus nowy film krok po kroku do zad. 21 (scena `solutionZad21.py`, 15 krokow). Projekt
+w `issues/projekt-zad20-zad21-2024-grudzien.md`.
+[2024-grudzien, zad20, zad21, manim, planimetria, geometria-analityczna]
+
+Zad. 20 (dlugosc luku): kat srodkowy dostal wlasna linijke, zanim w ogole pojawil sie wzor
+na luk. Chodzi o dystraktor A: uczen, ktory podstawi 60 stopni zamiast 120, dostaje 2pi
+i ma wrazenie, ze policzyl. Zaleznosc „wpisany to polowa srodkowego" idzie zdaniem, a nie
+wzorem w ramce, bo w tablicy wzorow stoi zdaniem (sekcja [10.13], s. 19).
+
+Zad. 21: w tablicy wzorow NIE MA przekatnej kwadratu (`a\sqrt{2}`), wiec obie dlugosci
+licza sie Pitagorasem. Henrich wybral droge i ksztalt filmu (2026-09-04): kwadrat widoczny
+od pierwszego kroku, trojkat pod przekatna pokazany jawnie, rysunek zostaje w kadrze do
+konca.
+
+Pulapka geometryczna, ktora zmienila projekt: z danych wychodzi B = (3, -1) i D = (-2, 4),
+czyli kwadrat lezy ROWNOLEGLE DO OSI, a przekatna dzieli go na dwa przystajace trojkaty.
+Gdyby obie czesci filmu uzyly tego samego trojkata, druga liczylaby to, co widac juz
+w pierwszej. Stad podzial: gorny trojkat ACD liczy przekatna (przyprostokatne to roznice
+wspolrzednych), dolny ABC liczy bok (przyprostokatne to boki kwadratu). Henrich zostal
+uprzedzony, ze przy takim polozeniu bok 5 daje sie odczytac z kratek, i mimo to wybral
+rysunek od pierwszego kroku.
+
+Druga decyzja warta zapamietania: niewiadoma zostaje po tej stronie, po ktorej postawilo ja
+podstawienie (`5^2 + 5^2 = |AC|^2`, potem `\sqrt{50} = |AC|`). Przestawienie stron rownania
+byloby drugim przeksztalceniem w tej samej linijce, a tak kazdy krok robi dokladnie jedno.
+
+Pierwszy render mial liczby na osiach polozone dokladnie na bokach kwadratu (kazdy bok
+przechodzi przez swoja liczbe), wiec „3" siedziala na kwadraciku kata prostego przy B.
+Zlapane na `tools/klatki.sh stany --koniec`, poprawione przesunieciem podpisow od bokow.
+
+Sprawdzone: styki klatek bez zastrzezen (najslabszy 0,99905), `tools/zielen-krokow.py` bez
+zastrzezen, `tools/test-krokow.js --zadania=25` przeszedl na trzech ziarnach, zrzuty
+rozwiazan na komputerze i na telefonie 485 px bez przewijania w bok.
+
 [ZROBIONE 2026-08-30] (Opus 5) Zad. 19 z grudnia 2024 PO RAZ DRUGI, tym razem przez
 podobieństwo trójkątów zamiast przez sinus (uwaga Henricha), oraz zad. 12.2: krok 7
 rozbity na dwa. Nowa scena `solutionZad19.py`, 17 kroków (poprzednia miała 24),
