@@ -11,51 +11,19 @@ Oto plik który tworzy Henrich (ja, użytkownik).
       bo w chmurze nie ma Manima ani TeX Live)
       (pomysł na 5 slotów ze zmieniajacymi się liczbami i licznikiem na górze kombinacji)
 
-    - Przy suwakach / sliderach w rozwiązaniach interaktywnych powinny być strzałki w lewo po lewe i po prawejktóre można klikać lub przytrzymywać również na telefonach, aby wartość suwaka. W stylu strzałek prev-step i next-step lub tych które pojawiają się prz yzaszerockich dotsach. 
-
     - zrób rzeczy z sekcji "+ UI" które są najlepiej opisane, nie ma w nich niejasności oraz są bezpieczneie do zrobienia autonomicznie bez ryzyka dziwnych błędów lub podjęcia ważnych decyzji przez henricha 
 
     - Zaprojektuj i stwórz w Zad 24 rozwiązanie krok po kroku z animacjami 3D
 
+    - Arkusz 2024-grudzien - Zad 9, "Sprawdzanie obliczeń", pierwszy checkbox:
+      PO CO JEST ZDANIE PIERWSZE SKORO NIE DAJE ONO PUNKTÓW?
+      klucz CKE daje pierwszy punkt dopiero za miejsca zerowe, więc "nierówność w postaci
+      x^2 - 6x - 7 <= 0" musi stać na 0 pkt. Lista jest jednak także listą KROKÓW do
+      odhaczenia, a to jest ten krok, w którym uczniowie najczęściej się mylą.
+      Do Twojej decyzji: (a) zostawić i dopisać przy nim "(bez punktu)", (b) wywalić
+      i zacząć listę od miejsc zerowych. Sam nie ruszam, bo to zmiana w treści.
 
 
-    SPRAWDŹ TO I JEŚLI KTÓREŚ JEST EWIDENTNIE NIEAKTUALNE TO USUŃ:
-  
-    - Arkusz 2024-grudzien:
-      - Zad 7
-        - Rozwiązanie krok po kroku
-          - krok 2: Nie wiadomoco skąd się wzięło założenie. Trzba go rozłożyć na wiele kroków z dopisanym u góry ZAŁOŻENIE. Może zaczyać się od wizualizacji czerwonego zera zamiast mianowników i potem przejśc do 2 nierówności uwtorzonych od tych mianowników
-          - krok 3 źle koloruje, powinien najpierw kolorować obie 2jki a potem 2 przed nawiasem bo tam one powędrowały. Powinna to odwzorowywać też animacja.
-          - krok 5 jest za bardzo na skróty, też go trzeba rozłożyć na więcej
-          - krok 6 ma podobny problem jak 3
-          - powinno być to zwizualizowane emotką odznaczenia zielonego przy x = 6 i jednoczesnym pokolorowaniem założenia na zielono
-        - Rozwiązania zwykłe powinny follołować krok po kroku
-
-      - Zad 9 - Sprawdzanie obliczeń - Pierwszy checkbox
-        (sprawdzone 2026-08-20: trzy kryteria zgadzają się z kluczem CKE co do punktów,
-        pierwsze jest za 0 pkt celowo, bo klucz daje punkt dopiero za pierwiastki.
-        Napisz, co Ci w nim nie pasowało, bo w samym wpisie tego nie ma)
-        PO CO JEST ZDANIE PIERWSZE SKORO NIE DAJE ONO PUNKTÓW?
-
-      - Rozwiązania 
-        - Krok po kroku (zad. 1–9, komplet po v27) i ich opisy pod filmem:
-
-          - opisy pod filmami (v29, 51 sztuk, wg zasad z manimations/README.md): krótkie linijki,
-            wzory w osobnych wierszach, bez wstępów typu „zaczynamy od…”, bez myślników/podkreśleń
-            poza wzorami — sprawdzić brzmienie i czy nic nie ucieka poza ekran na telefonie
-
-          - zad. 7
-            - Rozwiązanie krok po kroku:
-              - oba równania układu jadą jedno pod drugim przez cały film — sprawdzić, czy klamra
-                z dwoma równaniami nie jest za mała na telefonie
-
-          - zad. 9
-            - Rozwiązanie krok po kroku:
-              - film robi sam rachunek, NIE rysuje paraboli (widżet niżej już ją pokazuje interaktywnie)
-                — czy to dobry podział, czy parabola ma być też w filmie
-          POWYŻSZE SA CHYBA BARDZO NIEAKTUALNE 
-
-          
 <br>
 
 
@@ -74,6 +42,11 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 <br> Mój telefon na chrome ma "okno": 485x945
 <br> Próg wejścia jest wysoki, patrz ZASADY DLA CLAUDE-A niżej. Archiwum dawnych list: issues/testowanie-archiwum.md.
 
+  - v115, strzałki przy suwakach widżetów (np. zad. 15 i 30 z grudnia 2024), PALCEM na telefonie:
+    - stuknij strzałkę - wartość ma przeskoczyć o jeden krok, bez skoku o dwa
+    - przytrzymaj strzałkę przez sekundę - wartość ma przewijać się dalej, a po dłuższym trzymaniu przyspieszyć
+    - w trakcie trzymania nie powinno zaznaczyć się nic z tekstu ani wyskoczyć menu kopiowania (na iPhonie to zachowuje się inaczej niż na androidzie)
+
   - v114, pasek kropek w rozwiązaniu krok po kroku, na iPhonie SE w SAFARI: przyciśnij strzałkę w prawo kilkanaście razy pod rząd, potem tyle samo w lewo - pasek ma zatrzymać się na ostatniej i na pierwszej kropce, bez pustego miejsca po żadnej stronie
 
   - v114, pasek kropek w zad. 1 z grudnia 2024, PALCEM na telefonie: postukaj w kolejne kropki - pole trafienia jest teraz szersze i sięga do połowy odcinka, więc każde dotknięcie paska ma przenosić do najbliższej kropki
@@ -89,9 +62,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
   - v105, zad. 17.1 i 17.2, filmy w CIEMNYM motywie: zielone boki trójkąta zostają podświetlone do końca filmu razem z liczbami we wzorze. sprawdź, czy po odwróceniu kolorów ta zieleń nadal wyraźnie odróżnia się od czarnych boków
 
   - v104, zad. 2 z grudnia 2024, rozwiązanie zwykłe na TELEFONIE: kolumna rachunku i kolumna wzorów dostały po połowie karty, żeby przerwa między nimi wypadała na środku. sprawdź, czy przez to któraś linijka nie łamie się w środku wzoru
-
-  - v94, zad. 8 z grudnia 2024, film krok po kroku w CIEMNYM motywie na telefonie: szare \(x \ne 1\) nad równaniem i szary dopisek działania z boku (np. „/ · 2") mają być czytelne, a nie zlewać się z tłem
-  JEST CZYTELNE NAWET NA MAŁEJ JASNOŚĆI
 
   - v103, zad. 12.2 z grudnia 2024, film krok po kroku na TELEFONIE: kroki 1 do 7 mają zajętą całą górę kadru (dwa punkty, pod nimi \(f(0) = -9\) i pas \(p = 3\), \(q = 0\), wszystko drobnym pismem). sprawdź, czy te zapisy da się odczytać, bo na komputerze są wyraźne
 
@@ -173,13 +143,10 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
   + UI
 
-    - Umieścić linię na prawo od sidebara na warstwę pod oknami pdfów
-
-    - Zmiejsz szerokość przycisków P i F (Prawda i Fałsz) na komputerach
-
     - "Wskaźniki" (oceń się):
-      - Przycisk "Wskaźniki" powinien się nazywać "Wskaźniki zad. do oceny" lub coś w tym stylu, samo wskaźniki mało mówi. 
-      - Póki co niech będą defaultowo wyłączone
+      - Przycisk "Wskaźniki" powinien się nazywać "Wskaźniki zad. do oceny" lub coś w tym stylu, samo wskaźniki mało mówi.
+        (nie ruszone: w panelu zostaje na etykietę jakieś 85px, dłuższy napis się nie mieści.
+        Podaj krótszy wariant, np. "Do oceny", to wstawię)
       - Zmień ich styl na bardziej spójny z resztą np czarne/szare kółka lub żółte cyfry. Obecnie wyglądają zbyt nachalnie.
       - na telefonie powinny być:
         - ALBO: niewidzialne, wtedy opcja w menu powinna być szara z wybranym
@@ -197,10 +164,6 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     - Strona na telefonie wygląda jakby była przybliżona (troche jakby na komputerze naklikać Ctrl + = albo Ctrl + ScrollUP) ale może to jest tylko u mnie.
 
     - Przekminić i postprzątać trzy rodzaje tekstu które dodają tylko bałaganu w rozwiązaniu.
-
-    - Zad. 10/11 na telefonie: zdania i przyciski P/F
-      - brakuje odstępu między kolejnymi zdaniami (1, 2, 3…). Zlewają się w jeden blok
-      - są za bardzo przyklejone do lewej. Powinny się formatować jak reszta treści zadania.
 
     - Odwracanie kolorów grafik/wideo w dark mode (`--filtr-grafik-zadan`) działa nierówno między przeglądarkami:
       - Pixel 7a GrapheneOS:
@@ -350,7 +313,7 @@ Oto plik który tworzy Henrich (ja, użytkownik).
 
   + OPUS 5 MEDIUM DOPISAŁ (2026-08-30, po poprawkach do zad. 15, 16, 17.1 i 17.2):
 
-    - w widżetach (`widgets/*.js`) zostały pauzy „—" w tekstach widocznych dla ucznia, np. „Zmieniaj \(m\) i patrz na różnice między kolejnymi wyrazami — w ciągu arytmetycznym muszą być identyczne" (`ciagArytmetyczny`, `katWpisany`, `koloTrygonometryczne`, `nierownoscKwadratowa`). W `exercises.json` wyczyściłem je 2026-08-30, w widżetach nie, żeby nie mieszać dwóch tematów w jednym commicie. To ten sam punkt, który zgłosił Opus 2026-08-28
+    - [ZROBIONE 2026-09-05] pauzy „—" w tekstach widżetów widocznych dla ucznia: wyczyszczone (5 miejsc w `ciagArytmetyczny`, `katWpisany`, `koloTrygonometryczne`). W komentarzach w kodzie pauzy zostały, to osobny przebieg
 
     - `ReplacementTransform(cos, cel.copy())` w scenie Manim ZOSTAWIA tę kopię na ekranie do końca kroku, więc glif rysuje się dwa razy i wygląda na rozmazany. Właśnie to Henrich widział jako „krok 7 się źle renderuje" (zad. 15) i „strzałka q" (zad. 16). Poprawiłem w obu scenach i dopisałem regułę do `manimations/README.md`, ale wzorzec mógł się rozejść po starszych scenach: warto przejrzeć jednym grepem
 
@@ -371,6 +334,23 @@ Oto plik który tworzy Henrich (ja, użytkownik).
     - **nie widziałem filmów w przeglądarce** - Chromium w tej chmurowej piaskownicy nie odtwarza H.264 (to ten sam brak kodeka, o którym już jest notatka w CLAUDE.md przy sekcji o teście kroków). Zweryfikowałem inaczej: SSIM na stykach klatek (`styk-klatek.sh`, wszystkie pary ponad 0,999), `zielen-krokow.py` (zielone piksele czyste na starcie/końcu każdego kroku, poza świadomym wyjątkiem: w zad. 23 okrąg o3 zostaje zielony od kroku 4 do końca, tak jak wolno w README), oraz `klatki.sh stany`/`film` obejrzane okiem. `tools/test-krokow.js` odpalałem, ale dwa jego sprawdziany (dojście cofki do końca, klikanie kropek) failują identycznie na już wdrożonym zad. 21, więc to też środowisko, nie moja zmiana - ale **nikt nie widział tych dwóch filmów w prawdziwej przeglądarce**, więc przydałoby się, żeby ktoś kliknął je choć raz z hosta
     - zad. 23 (cztery okręgi) ma na rysunku nachodzące się na siebie okręgi (o1 leży częściowo na o3, o2 częściowo na o4) - to wynika z samych danych zadania, nie da się tego uniknąć bez zniekształcenia skali. Sprawdź, czy przy szerokości telefonu nachodzenie nie utrudnia odróżnienia, który okrąg jest który
     - oba filmy są krótkie (7 i 6 kroków) w porównaniu do reszty arkusza - to były proste zadania 1-punktowe, nie oszczędność na jakości
+
+  + OPUS 5 HIGH DOPISAŁ (2026-09-05, po strzałkach przy suwakach i paczce poprawek UI):
+
+    - strzałki przy suwakach wstawia jedna funkcja na gotowym DOM (`wgDodajStrzalkiSuwakow`
+      w app/widget-helpers.js, wołana z render.js), więc pliki w widgets/ nic o nich nie wiedzą.
+      Nowy widżet dostaje je za darmo, ale jeśli kiedyś zbuduje suwak PÓŹNIEJ, np. dopiero po
+      kliknięciu zakładki, trzeba będzie zawołać tę funkcję jeszcze raz
+    - `max` suwaka nie zawsze da się osiągnąć: w zad. 26 maja przy min -1,25 i kroku 0,0833333
+      ostatnia wartość to 1,249999. Strzałka liczy to sama i wtedy się blokuje
+    - test: `tools/test-suwakow.js` (15 suwaków w obu arkuszach; sprawdza krok, zdarzenie
+      "input", zakresy i brak dryfu zmiennoprzecinkowego). `tools/zrzut-rozwiazania.js` ma
+      nową flagę `--widzet` (zrzut samego widżetu zamiast całej karty rozwiązania)
+    - trzy stare punkty z „SPRAWDŹ TO..." skasowane jako nieaktualne: uwagi do filmu zad. 7
+      dotyczyły w istocie zad. 8 (mianowniki, założenie) i zostały spełnione przy pisaniu go
+      od nowa 2026-08-28, a blok „opisy pod filmami / zad. 7 klamra / zad. 9 parabola" opisuje
+      filmy sprzed kilku przerenderowań
+
 
 + ZASADY DLA CLAUDE-A:
 

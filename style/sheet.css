@@ -264,7 +264,13 @@ body.sidebar-otwarty #sidebar {
     top: 72px;
     bottom: 40px;
     left: 276px; /* 260px panelu + 16px oddechu */
-    z-index: 12;
+    /* 8, czyli POD panelami PDF (tablica wzorów i zasady oceniania mają 9), choć
+       sam panel boczny ma 12. Poniżej 720px panel PDF rozciąga się na 94%
+       ekranu, sięga więc w lewo aż tutaj, a kreska przecinała mu kartkę na
+       wylot (Henrich, TODO). Kreska jest granicą panelu bocznego, a nie
+       elementem pływającym nad stroną, więc ma chować się pod wszystkim,
+       co nad stroną faktycznie pływa. */
+    z-index: 8;
     width: 1px;
     background-color: var(--border-strong);
     opacity: 0;
@@ -811,6 +817,12 @@ body.sidebar-otwarty #sidebar-linia {
 .pf-row button {
     flex: 0 0 44px;
     width: 44px;
+    /* Bez tego przycisk P/F rozciągał się na komputerze do 22% szerokości bloku
+       odpowiedzi (jakieś 130px na kartę 650px): wspólny kontener .button-container
+       ma `min-width: 22%`, a min-width bije zarówno `width`, jak i `flex-basis`.
+       Litera „P" na takiej płycie wyglądała jak przycisk odpowiedzi ABCD
+       (Henrich, TODO). Reguła telefonowa w responsive.css robi to samo od dawna. */
+    min-width: 44px;
     padding: 8px 0;
     border: 1px solid var(--border);
     border-radius: var(--radius-kontrolka);
@@ -1979,6 +1991,60 @@ canvas {
     max-width: 90%;
     border: none;
     accent-color: var(--accent-purple);
+}
+/* Strzałki po bokach suwaka, wstawiane przez wgDodajStrzalkiSuwakow
+   (app/widget-helpers.js) już po zbudowaniu widżetu, więc w widgets/ nie ma po
+   nich śladu. Stuknięcie przesuwa o jeden krok, przytrzymanie przewija; palcem
+   inaczej nie da się trafić w dokładną wartość. Kształt i barwy jak przy
+   strzałkach kroków rozwiązania (.steps-nav). */
+.wg-suwak-grupa {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    max-width: 100%;
+}
+/* Suwak w grupie ma się KURCZYĆ, gdy strzałki nie mieszczą się razem z nim:
+   inaczej cały rząd wyjeżdża poza kartę zadania. */
+.wg-suwak-grupa input[type=range] {
+    flex: 0 1 auto;
+    min-width: 0;
+    max-width: none;
+}
+.wg-suwak-strzalka {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* Pole dotyku 44px w pionie (zasada Henricha dla przycisków dotykowych).
+       W poziomie węższe, bo dwie strzałki zabierają szerokość samemu suwakowi. */
+    width: 30px;
+    min-height: 44px;
+    padding: 0;
+    border: none;
+    background: none;
+    color: var(--text-faint);
+    cursor: pointer;
+    /* Bez tych trzech przytrzymanie palcem zaznacza tekst i otwiera menu
+       kontekstowe, zamiast przewijać wartość. */
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-touch-callout: none;
+}
+.wg-suwak-strzalka:hover:not(:disabled) {
+    color: var(--text);
+}
+.wg-suwak-strzalka:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+.wg-suwak-ikona {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 .widget input[type=number] {
     width: 40px;

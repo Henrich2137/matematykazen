@@ -146,6 +146,146 @@ function wgZakladki(container, etykiety, onZmiana) {
     return stan;
 }
 
+// --- Strzałki przy suwakach -----------------------------------------------
+// Suwak <input type=range> ustawia się palcem z dokładnością do kilku kroków,
+// a w zadaniach liczy się trafienie w konkretną wartość (m = 4, x = 2). Każdy
+// suwak dostaje więc po strzałce z obu stron: stuknięcie przesuwa o jeden krok,
+// przytrzymanie przewija dalej. Kształt „daszka" i barwy jak przy strzałkach
+// kroków (.steps-nav w template.html), żeby sterowanie na stronie było jedno.
+//
+// Wołane RAZ po zbudowaniu widżetu, z app/render.js, na gotowym DOM. Dzięki temu
+// pliki w widgets/ nie muszą o strzałkach wiedzieć ani ich powtarzać. Funkcja
+// jest idempotentna: suwak już opakowany jest pomijany.
+
+// Przytrzymanie: pierwsze powtórzenie po ZWLOKA, potem co TEMPO, a od
+// PRZYSPIESZ_PO powtórzenia co TEMPO_SZYBKO. Dzięki tej zwłoce stuknięcie
+// przesuwa dokładnie o jeden krok, a dłuższe trzymanie przejeżdża zakres.
+const WG_SUWAK_ZWLOKA = 400;
+const WG_SUWAK_TEMPO = 90;
+const WG_SUWAK_TEMPO_SZYBKO = 35;
+const WG_SUWAK_PRZYSPIESZ_PO = 10;
+
+// Te same ścieżki, co „daszki" przy krokach rozwiązania (template.html).
+const WG_DASZEK = {
+    "-1": "M14.5 6 8.5 12l6 6",
+    "1": "M9.5 6l6 6-6 6"
+};
+
+// Wartości OSIĄGALNE suwakiem: pierwsza to min, kolejne co krok. Ostatnia nie
+// musi być równa max. W zad. 26 maja przy min = -1,25 i kroku 0,0833333
+// maksimum 1,25 wypada między dwoma krokami i przeglądarka nigdy go dokładnie
+// nie ustawi. Bez tej poprawki prawa strzałka zostawałaby na końcu włączona,
+// choć nie miałaby już czego zrobić.
+function wgGraniceSuwaka(suwak) {
+    const min = parseFloat(suwak.min);
+    const max = parseFloat(suwak.max);
+    const krok = parseFloat(suwak.step) || 1;
+    return {
+        krok,
+        dolna: min,
+        gorna: min + Math.floor((max - min) / krok + 1e-9) * krok
+    };
+}
+
+// Przesunięcie suwaka o jeden krok. Zwraca false, gdy wartość się nie zmieniła
+// (koniec zakresu); wołający zatrzymuje wtedy powtarzanie.
+function wgKrokSuwaka(suwak, kierunek) {
+    const g = wgGraniceSuwaka(suwak);
+    // Liczymy w LICZBIE KROKÓW od min, zamiast dodawać krok do wartości: przy
+    // kroku 0,0833333 (zad. 26 maja) sumowanie zmiennoprzecinkowe rozjeżdża się
+    // po kilkunastu naciśnięciach i suwak przestaje trafiać w okrągłe wartości.
+    const n = Math.round((parseFloat(suwak.value) - g.dolna) / g.krok);
+    const nowa = Math.min(g.gorna, Math.max(g.dolna, g.dolna + (n + kierunek) * g.krok));
+    const przed = suwak.value;
+    suwak.value = String(nowa);
+    if (suwak.value === przed) return false;
+    // Widżety słuchają "input" (przeciąganie), więc strzałka musi to zdarzenie
+    // wystawić sama, bo ustawienie .value z kodu go nie wywołuje.
+    suwak.dispatchEvent(new Event("input", { bubbles: true }));
+    suwak.dispatchEvent(new Event("change", { bubbles: true }));
+    return true;
+}
+
+// Klikanie i przytrzymywanie jednego przycisku. akcja() zwraca false, gdy nie
+// ma już czego robić.
+function wgPrzytrzymanie(przycisk, akcja) {
+    let timer = null;
+    let powtorzenia = 0;
+    const stop = () => { clearTimeout(timer); timer = null; };
+    const tik = () => {
+        if (!akcja()) { stop(); return; }
+        powtorzenia++;
+        timer = setTimeout(tik,
+            powtorzenia >= WG_SUWAK_PRZYSPIESZ_PO ? WG_SUWAK_TEMPO_SZYBKO : WG_SUWAK_TEMPO);
+    };
+    przycisk.addEventListener("pointerdown", (e) => {
+        if (e.button > 0) return;
+        // Bez tego przytrzymanie palcem zaznacza tekst i otwiera menu
+        // kontekstowe zamiast przewijać wartość. preventDefault zabiera też
+        // ustawienie focusu, więc ustawiamy go z ręki.
+        e.preventDefault();
+        przycisk.focus();
+        // Palec, który zjedzie z przycisku, ma dalej przewijać (i tak zwolnić
+        // przycisk na pointerup), więc łapiemy wskaźnik.
+        try { przycisk.setPointerCapture(e.pointerId); } catch (_) { /* starsza przeglądarka */ }
+        stop();
+        powtorzenia = 0;
+        if (akcja()) timer = setTimeout(tik, WG_SUWAK_ZWLOKA);
+    });
+    ["pointerup", "pointercancel", "pointerleave", "blur"].forEach(
+        (nazwa) => przycisk.addEventListener(nazwa, stop));
+    // Klawiatura. Świadomie NIE słuchamy "click": na przycisku Enter i spacja
+    // wywołują klik same, a przy myszy klik przyszedłby po pointerdown i krok
+    // policzyłby się dwa razy. preventDefault blokuje ten domyślny klik.
+    przycisk.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
+            e.preventDefault();
+            akcja();
+        }
+    });
+}
+
+function wgStrzalkaSuwaka(kierunek, etykieta) {
+    const b = wgElement("button", "wg-suwak-strzalka",
+        `<svg class="wg-suwak-ikona" viewBox="0 0 24 24" aria-hidden="true">` +
+        `<path d="${WG_DASZEK[kierunek]}"/></svg>`);
+    b.type = "button";
+    b.setAttribute("aria-label", etykieta);
+    // Strzałka jest dublem tego, co suwak i tak umie z klawiatury, więc dla
+    // czytnika ekranu wystarczy sam suwak, a przyciski zostają poza tabulacją.
+    b.tabIndex = -1;
+    return b;
+}
+
+// Opakowanie każdego suwaka wewnątrz root w grupę „strzałka - suwak - strzałka".
+function wgDodajStrzalkiSuwakow(root) {
+    root.querySelectorAll("input[type=range]").forEach((suwak) => {
+        if (suwak.__wgStrzalki) return;
+        suwak.__wgStrzalki = true;
+        const grupa = wgElement("span", "wg-suwak-grupa");
+        const lewo = wgStrzalkaSuwaka("-1", "Zmniejsz wartość");
+        const prawo = wgStrzalkaSuwaka("1", "Zwiększ wartość");
+        suwak.parentNode.insertBefore(grupa, suwak);
+        grupa.appendChild(lewo);
+        grupa.appendChild(suwak);   // przeniesienie z dotychczasowego miejsca
+        grupa.appendChild(prawo);
+        const odswiez = () => {
+            const g = wgGraniceSuwaka(suwak);
+            const v = parseFloat(suwak.value);
+            // Zapas tysięcznej kroku: wartość wraca z przeglądarki zaokrąglona
+            // i porównanie „wprost" gubiłoby ostatni krok.
+            const zapas = g.krok / 1000;
+            lewo.disabled = v <= g.dolna + zapas;
+            prawo.disabled = v >= g.gorna - zapas;
+        };
+        wgPrzytrzymanie(lewo, () => { const ok = wgKrokSuwaka(suwak, -1); odswiez(); return ok; });
+        wgPrzytrzymanie(prawo, () => { const ok = wgKrokSuwaka(suwak, 1); odswiez(); return ok; });
+        // Także po przeciągnięciu suwaka palcem albo myszą.
+        suwak.addEventListener("input", odswiez);
+        odswiez();
+    });
+}
+
 // --- Układ współrzędnych na płótnie ---------------------------------------
 // Mapowanie wartości <-> piksele dla płótna z marginesami. Zwraca obiekt
 // z px/py (wartość -> piksel) i vx/vy (piksel -> wartość) plus parametry,

@@ -17,6 +17,9 @@
  *   --etykieta=<n>     katalog /tmp/zrzuty-rozw/<etykieta>/ (domyślnie „biezace")
  *   --szer=<px>        szerokość okna (domyślnie 900; 390 = telefon)
  *   --ciemny           motyw ciemny
+ *   --widzet           sam widżet interaktywny zamiast całej karty rozwiązania
+ *                      (rozwiązanie opisowe bywa na kilka ekranów, a przy pracy
+ *                      nad sterowaniem widżetu i tak liczy się tylko jego dół)
  */
 
 const { chromium } = require('playwright');
@@ -68,7 +71,14 @@ const KAT = `/tmp/zrzuty-rozw/${ETYKIETA}`;
         await przycisk.click();
         await page.waitForTimeout(600);
         const plik = `${KAT}/zad${nr}.png`;
-        await karta.locator('.solution-container').first().screenshot({ path: plik });
+        const cel = karta.locator(jest('widzet')
+            ? '.solution-interactive-container'
+            : '.solution-container').first();
+        if (jest('widzet') && !(await cel.evaluate(el => el.children.length > 0))) {
+            console.log(`zad ${nr}: brak widżetu`);
+            continue;
+        }
+        await cel.screenshot({ path: plik });
         console.log(plik);
     }
     await browser.close();

@@ -723,6 +723,10 @@ function loadExercises() {
                 // zadania-nie-renderuja-sie-mobile.md.
                 try {
                     widget(solutionInteractiveContainer);
+                    // Strzałki „o jeden krok" przy każdym suwaku widżetu. Robione
+                    // tu, na gotowym DOM, a nie w plikach widgets/: jedno miejsce
+                    // zamiast czternastu (app/widget-helpers.js).
+                    wgDodajStrzalkiSuwakow(solutionInteractiveContainer);
                 } catch (bladWidzetu) {
                     console.error(`Zadanie ${numerZadania(exercise, index)}: widżet "${exercise.solutionWidget}" rzucił wyjątek`, bladWidzetu);
                     if (window.__pokazBladStrony) window.__pokazBladStrony(bladWidzetu, `widżet ${exercise.solutionWidget} (zad ${numerZadania(exercise, index)})`);

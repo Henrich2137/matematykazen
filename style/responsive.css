@@ -163,6 +163,26 @@
     .answers-container {
         width: 100%;
     }
+    /* ...ale bloki odpowiedzi wyrównane do LEWEJ (zdania P/F, wiersze fillIn)
+       dostają wtedy to samo wcięcie, co treść zadania (.question ma
+       padding-left: 16px). Bez tego zdania „1., 2., 3." zaczynały się o 16px
+       na lewo od zdania nad nimi i wyglądały na wypchnięte poza kolumnę
+       (Henrich, TODO: „są za bardzo przyklejone do lewej"). Bloków ze
+       środkowaniem (ABCD, „oceń się") to nie dotyczy. */
+    .pf-container,
+    .fill-in-container {
+        padding-left: 16px;
+    }
+    /* Odstęp MIĘDZY kolejnymi stwierdzeniami. Po zawinięciu wiersza jedno
+       stwierdzenie zajmuje dwie linie (treść, pod nią para przycisków), a przy
+       dawnych 10px sąsiadujące marginesy zlewały to w jeden blok i nie było
+       widać, gdzie kończy się zdanie 1., a zaczyna 2. (Henrich, TODO).
+       Marginesy pionowe sąsiadów i tak się sklejają, więc realny odstęp to 22px
+       przy 6px między treścią a przyciskami w środku wiersza. */
+    .pf-row,
+    .fill-in-row {
+        margin: 22px 0;
+    }
     #exercises-wrapper {
         padding-top: 56px;
     }
@@ -341,6 +361,12 @@
        max-width w procentach tego nie łapie, bo nie wie o szerokości etykiety. */
     .widget input[type=range] {
         width: 210px;
+    }
+    /* Dwie strzałki przy suwaku zabierają razem 60px, więc sam suwak dostaje
+       tu mniej niż wcześniej, inaczej rząd „etykieta + strzałka + suwak +
+       strzałka" nie mieści się w karcie zadania. */
+    .wg-suwak-grupa input[type=range] {
+        width: 150px;
     }
     #naroznik-lewy {
         max-width: calc(100vw - 16px);

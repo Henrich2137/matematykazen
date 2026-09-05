@@ -1,5 +1,96 @@
 Dziennik ukończonych zadań, partia bieżąca (otwarta 2026-07-27). Zasady formatu i podziału na pliki: patrz done/README.md — najnowsze wpisy na górze.
 
+[ZROBIONE 2026-09-05] (Cloud Opus 5 High) Strzalki przy suwakach widzetow plus paczka
+poprawek UI: przyciski P/F, wciecie i odstepy zdan P/F na telefonie, warstwa kreski
+przy panelu bocznym, wskazniki samooceny domyslnie wylaczone, pauzy w tekstach widzetow.
+[widzety, suwaki, dostepnosc-dotyk, pf, responsywnosc, z-index, wskazniki, test-playwright]
+
+STRZALKI PRZY SUWAKACH (TODO: „przy suwakach powinny byc strzalki w lewo i w prawo, ktore
+mozna klikac lub przytrzymywac rowniez na telefonach"). Czternascie suwakow siedzi w
+dziesieciu plikach w widgets/, a ten katalog jest zastrzezony i ma trzymac wylacznie
+widzety, wiec strzalek NIE dokladalismy w kazdym z osobna. Zamiast tego nowa funkcja
+`wgDodajStrzalkiSuwakow(root)` w app/widget-helpers.js opakowuje kazdy `input[type=range]`
+w `.wg-suwak-grupa` juz po zbudowaniu widzetu; `loadExercises` (app/render.js) wola ja raz,
+zaraz po `widget(container)`. Pliki widzetow zostaly nietkniete.
+
+Trzy pulapki, ktore ta funkcja obchodzi:
+- Krok liczony jest w LICZBIE KROKOW od `min`, nie przez dodawanie kroku do wartosci.
+  Przy kroku 0,0833333 (zad. 26 maja) sumowanie zmiennoprzecinkowe rozjezdza sie po
+  kilkunastu nacisnieciach i suwak przestaje trafiac w okragle wartosci.
+- Ustawienie `.value` z kodu NIE wywoluje zdarzenia "input", a wszystkie widzety na nim
+  wisza (rysunek zostalby w miejscu przy przesunietym suwaku), wiec funkcja wystawia
+  "input" i "change" sama.
+- `max` nie zawsze lezy na siatce krokow: zad. 26 maja ma min -1,25, max 1,25 i krok
+  0,0833333, wiec ostatnia osiagalna wartosc to 1,249999. Bez `wgGraniceSuwaka` prawa
+  strzalka zostawalaby na koncu wlaczona i nic by nie robila.
+
+Przytrzymanie: pierwsze powtorzenie po 400 ms, potem co 90 ms, a od dziesiatego co 35 ms.
+Ta zwloka sprawia, ze stukniecie przesuwa dokladnie o jeden krok. `pointerdown` robi
+`preventDefault` (inaczej dlugie przytrzymanie palcem zaznacza tekst i otwiera menu
+kontekstowe) i dlatego ustawia focus recznie; wskaznik jest przechwytywany, wiec palec
+moze zjechac z przycisku. Klawiatura idzie przez `keydown` (Enter, spacja) z
+`preventDefault`, a NIE przez "click" - przy myszy klik przyszedlby po `pointerdown`
+i krok policzylby sie dwa razy.
+
+Wyglad: 30x44 px pole dotyku, ten sam zaokraglony „daszek" i te same barwy, co strzalki
+krokow rozwiazania. W grupie suwak dostaje `flex: 0 1 auto`, wiec kurczy sie zamiast
+wypychac strzalki poza karte; ponizej 560 px schodzi z 210 px na 150 px. Przy 485 px
+(telefon Henricha) caly rzad „etykieta + strzalka + suwak + strzalka" miesci sie w karcie,
+przy 360 px etykieta zawija sie nad suwak i to tez wyglada poprawnie.
+
+TEST. Nowy `tools/test-suwakow.js` (Playwright) chodzi po wszystkich 15 suwakach obu
+arkuszy i sprawdza: uklad strzalka-suwak-strzalka, krok w obie strony, zdarzenie "input"
+na kazde kliniecie, dwadziescia krokow tam i z powrotem wracajace DOKLADNIE do wartosci
+startowej, blokade strzalek na koncach zakresu i to, ze przytrzymanie przewija dalej niz
+stukniecie. Przed zmiana test pada na 8 asercjach, po zmianie przechodzi w calosci
+(suwaki schowane pod druga zakladka widzetu sa pomijane po sprawdzeniu samego ukladu).
+
+PRZYCISKI P/F NA KOMPUTERZE (TODO: „zmniejsz szerokosc przyciskow P i F"). `.pf-row button`
+mialo `width: 44px` i `flex: 0 0 44px`, ale przyciski P/F dziela kontener `.button-container`
+z odpowiedziami ABCD, a jego `min-width: 22%` bije oba te ustawienia. Litera „P" rozciagala
+sie przez to do jakichs 130 px na karcie 650 px i czytala sie jak odpowiedz ABCD. Dolozone
+`min-width: 44px` - dokladnie ta linijka stala juz od dawna w responsive.css dla telefonow.
+
+ZDANIA P/F NA TELEFONIE (TODO: dwie uwagi Henricha do zad. 10 i 11). Ponizej 720 px
+`.answers-container` ma `width: 100%`, a `.question` ma `padding-left: 16px`, wiec zdania
+„1., 2., 3." zaczynaly sie o 16 px na lewo od zdania nad nimi. `.pf-container` i
+`.fill-in-container` dostaly to samo wciecie. Drugie: `.pf-row`/`.fill-in-row` mialy
+`margin: 10px 0`, a po zawinieciu jedno stwierdzenie zajmuje dwie linie (tresc, pod nia
+przyciski), wiec sasiednie zdania zlewaly sie w blok. Teraz `22px 0`.
+
+KRESKA PRZY PANELU BOCZNYM (TODO: „umiescic linie na prawo od sidebara na warstwe pod
+oknami pdfow"). `#sidebar-linia` mial `z-index: 12`, czyli tyle co panel, a panele PDF
+maja 9. Ponizej 720 px panel PDF rozciaga sie na 94% ekranu i kreska przecinala mu kartke
+na wylot. Teraz `z-index: 8`. Sprawdzone pomiarem: przy oknie 700 px kreska stoi na
+x = 276, panel zajmuje 21-679, wiec faktycznie sie pod nim chowa.
+
+WSKAZNIKI SAMOOCENY (TODO: „poki co niech beda defaultowo wylaczone"). Domyslny tryb
+`czytajTrybWskaznikow()` zmieniony z "wszystkie" na "wyl"; `data-stan` i `.wartosc`
+przycisku `#wskazniki-tryb-toggle` w template.html zmienione na to samo, zeby panel nie
+klamal przed pierwszym zapisem do localStorage. Kto ma juz zapisany swoj wybor, zachowuje
+go. NIE zmieniona zostala etykieta przycisku („Wskazniki zad. do oceny"): w panelu zostaje
+na tekst okolo 85 px, dluzszy napis sie nie miesci, wiec czeka na krotszy wariant.
+
+PAUZY W WIDZETACH. Piec miejsc widocznych dla ucznia (ciagArytmetyczny x2, katWpisany,
+koloTrygonometryczne x2) mialo zakazana pauze „—" albo polpauze. Zamienione na kropke,
+przecinek albo dywiz. W komentarzach w kodzie pauzy zostaly - to osobny przebieg.
+
+TRZY NIEAKTUALNE PUNKTY Z TODO skasowane po sprawdzeniu, nie na oko:
+- „Zad 7 / rozwiazanie krok po kroku / krok 2: nie wiadomo skad sie wzielo zalozenie,
+  mianowniki, x = 6" opisuje w istocie ZADANIE 8 (zad. 7 grudnia to uklad rownan, bez
+  zadnego mianownika). Zad. 8 zostalo napisane od nowa 2026-08-28: dzisiejsze kroki 1-7
+  buduja zalozenie wprost z obu mianownikow, kroki 8-9 rozkladaja `2x - 2` na `2(x - 1)`,
+  a krok 19 sprawdza wynik wzgledem zalozenia. Wszystkie uwagi z tego punktu sa spelnione.
+- Blok „opisy pod filmami (v29, 51 sztuk) / zad. 7 klamra / zad. 9 parabola" opisuje filmy
+  sprzed kilku przerenderowan (zad. 9 ma dzis 21 krokow). Henrich sam dopisal przy nim
+  „POWYZSZE SA CHYBA BARDZO NIEAKTUALNE".
+- Wpis v94 z sekcji TESTOWANIE (czytelnosc szarego `x != 1` w ciemnym motywie) mial juz
+  odpowiedz Henricha „JEST CZYTELNE NAWET NA MALEJ JASNOSCI", wiec zeszedl z listy.
+
+NARZEDZIA. `tools/zrzut-rozwiazania.js` dostal flage `--widzet`: zrzuca sam widzet zamiast
+calej karty rozwiazania (rozwiazanie opisowe bywa na kilka ekranow, a przy pracy nad
+sterowaniem liczy sie tylko jego dol).
+
 [ZROBIONE 2026-09-04] (Local Opus 5 High) Pasek kropek w rozwiazaniu krok po kroku:
 zlikwidowana martwa strefa szerokosci okna, ogranicznik przewijania i wieksze pole
 dotyku kropek.

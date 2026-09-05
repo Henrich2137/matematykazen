@@ -9,7 +9,7 @@
 function widgetKatWpisany(container) {
     const wrap = wgElement("div", "widget");
     wrap.appendChild(wgElement("div", "widget-title",
-        "Przeciągaj punkt C po okręgu — kąt wpisany oparty na tym samym łuku się nie zmienia:"));
+        "Przeciągaj punkt C po okręgu. Kąt wpisany oparty na tym samym łuku się nie zmienia:"));
 
     const canvas = wgCanvas(wrap, 520, 310);
     const ctx = canvas.getContext("2d");

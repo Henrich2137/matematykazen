@@ -30,12 +30,14 @@ function ustawFazeOceniania(wlacz) {
 
 /* Ustawienie „Wskaźniki samooceny" (panel boczny, sub-opcja pod egzaminem).
    Globalne, wspólne dla wszystkich arkuszy — jak motyw. Trzy stany:
-     "wszystkie"  (domyślny) — kropka przy KAŻDYM zadaniu otwartym bez samooceny.
+     "wszystkie"  — kropka przy KAŻDYM zadaniu otwartym bez samooceny.
                   Okienko na tok rozwiązania jest OPCJONALNE (uczeń może liczyć
                   na kartce), więc brak wpisu nie znaczy „nie rozwiązał".
      "wypelnione" — dawne zachowanie: kropka tylko, gdy coś wpisał w okienko.
-     "wyl"        — kropek nie ma wcale (dodane 2026-07-27; wcześniej jedynym
-                  wyjściem było „Ukryj wskaźniki", które KOŃCZYŁO fazę „oceń się").
+     "wyl"        (DOMYŚLNY od 2026-09-05, Henrich: „póki co niech będą domyślnie
+                  wyłączone") — kropek nie ma wcale (dodane 2026-07-27; wcześniej
+                  jedynym wyjściem było „Ukryj wskaźniki", które KOŃCZYŁO fazę
+                  „oceń się").
    W localStorage trzymamy te ASCII-owe identyfikatory (stara wartość
    "wypelnione" zostaje zgodna), a w panelu pokazujemy etykiety z data-stany. */
 const KLUCZ_TRYBU_WSKAZNIKOW = "matematykazen-tryb-wskaznikow";
@@ -50,7 +52,7 @@ function czytajTrybWskaznikow() {
         const t = localStorage.getItem(KLUCZ_TRYBU_WSKAZNIKOW);
         if (TRYBY_WSKAZNIKOW.includes(t)) return t;
     } catch (e) {}
-    return "wszystkie";
+    return "wyl";
 }
 function applyTrybWskaznikow(tryb) {
     try { localStorage.setItem(KLUCZ_TRYBU_WSKAZNIKOW, tryb); } catch (e) {}

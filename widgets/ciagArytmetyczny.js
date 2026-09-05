@@ -9,7 +9,7 @@
 function widgetCiagArytmetyczny(container) {
     const wrap = wgElement("div", "widget");
     wrap.appendChild(wgElement("div", "widget-title",
-        `Zmieniaj ${wgMath("m")} i patrz na różnice między kolejnymi wyrazami — w ciągu arytmetycznym muszą być identyczne:`));
+        `Zmieniaj ${wgMath("m")} i patrz na różnice między kolejnymi wyrazami. W ciągu arytmetycznym muszą być identyczne:`));
 
     const canvas = wgCanvas(wrap, 520, 240);
     const ctx = canvas.getContext("2d");
@@ -73,7 +73,7 @@ function widgetCiagArytmetyczny(container) {
 
         wgUstawHTML(readout,
             wgMath(`m = ${wgTexLiczba(m)}\\!:\\quad (${wgTexLiczba(wyrazy[0])},\\ ${wgTexLiczba(wyrazy[1])},\\ ${wgTexLiczba(wyrazy[2])})`) + `<br>` +
-            (arytmetyczny ? `<span class="wg-ok">✓ różnice równe — ciąg arytmetyczny (${wgMath("m = 4")})</span>`
+            (arytmetyczny ? `<span class="wg-ok">✓ różnice równe, czyli ciąg arytmetyczny (${wgMath("m = 4")})</span>`
                           : `<span class="wg-zle">różnice ${wgMath(`${wgTexLiczba(r1)} \\ne ${wgTexLiczba(r2)}`)}</span>`));
     }
 

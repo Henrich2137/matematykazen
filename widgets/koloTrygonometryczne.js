@@ -39,7 +39,7 @@ function widgetKoloTrygonometryczne(container) {
         ctx.font = "11px Arial";
         ctx.textAlign = "left";
         ctx.textBaseline = "top";
-        ctx.fillText("kąty rozwarte (90°–180°)", cx - R - 10, cy - R - 10);
+        ctx.fillText("kąty rozwarte (90°-180°)", cx - R - 10, cy - R - 10);
 
         // Osie i okrąg.
         ctx.strokeStyle = ctx.fillStyle = WG_KOLORY.osie;
@@ -102,7 +102,7 @@ function widgetKoloTrygonometryczne(container) {
         if (sinOk && cos < 0) {
             dodatek = `<span class="wg-ok">✓ kąt rozwarty: ${wgMath(`\\cos\\alpha = -\\tfrac{\\sqrt{13}}{4} \\approx ${fmtTex(COS_CEL)}`)}</span>`;
         } else if (sinOk) {
-            dodatek = `<span class="wg-neutral">sin się zgadza, ale ten kąt jest ostry — przejdź na lewą stronę!</span>`;
+            dodatek = `<span class="wg-neutral">sin się zgadza, ale ten kąt jest ostry, przejdź na lewą stronę!</span>`;
         }
         // Kolory sin/cos we wzorze = kolory odcinków na rysunku (KaTeXowy \textcolor).
         wgUstawHTML(readout,
